@@ -1,11 +1,7 @@
-import { Sequelize} from "sequelize-typescript";
-import { User } from "./User";
-import { Session } from "./Session";
-import { Point } from "./Point";
+import { Sequelize, } from 'sequelize-typescript';
+import { Session, } from './Session';
+import { Admin } from './Admin';
 
-export { User } from "./User";
-export { Session } from "./Session";
-export { Point } from "./Point";
 export async function initDatabase(
   dbLink: string,
   logging = false,
@@ -16,14 +12,14 @@ export async function initDatabase(
   sequelize = new Sequelize(dbLink, {
     dialect: "postgres",
     models: [
-      User,
-      Session,
-      Point,
+      Admin,
+      Session
     ],
     logging: logging,
-  });
+  })
 
   if (sync) await sequelize.sync();
 
   return { sequelize };
 }
+

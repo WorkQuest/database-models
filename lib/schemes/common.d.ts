@@ -1,0 +1,22 @@
+import Joi = require("joi");
+export declare const idSchema: Joi.StringSchema;
+export declare const isoDateSchema: Joi.StringSchema;
+export declare const countField: Joi.NumberSchema;
+export declare const firstNameSchema: Joi.StringSchema;
+export declare const lastNameSchema: Joi.StringSchema;
+export declare const middleNameSchema: Joi.StringSchema;
+export declare const fullNameSchema: Joi.StringSchema;
+export declare const activityFieldSchema: Joi.StringSchema;
+export declare const missionSchema: Joi.StringSchema;
+export declare const descriptionSchema: Joi.StringSchema;
+export declare const sumsubVerifiedSchema: Joi.BooleanSchema;
+export declare const emailSchema: Joi.StringSchema;
+export declare const phoneSchema: Joi.StringSchema;
+export declare const passwordSchema: Joi.StringSchema;
+export declare const jwtToken: Joi.StringSchema;
+export declare const hexToken: Joi.StringSchema;
+export declare const base64String: Joi.StringSchema;
+export declare const paginationFields: {
+    limit: Joi.NumberSchema;
+    offset: Joi.NumberSchema;
+};
