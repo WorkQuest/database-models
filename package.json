@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "repository": "git://github.com/WorkQuest/database-models.git",
-  "main": "lib/models/index.ts",
+  "main": "lib/index.ts",
   "files": [
     "lib"
   ],
