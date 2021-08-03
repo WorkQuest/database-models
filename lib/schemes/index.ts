@@ -39,9 +39,10 @@ export const locationSchema = Joi.object({
   latitude: latitudeSchema.required(),
 }).label('Location');
 
-export const emptyOkSchema = Joi.object({
-  ok: Joi.boolean().example(true)
-}).label("EmptyOkResponse");
+export const outputOkSchema = (res: Joi.Schema): Joi.Schema => Joi.object({
+  ok: Joi.boolean().example(true),
+  result: res,
+});
 
 export const jwtTokens = Joi.object({
   access: jwtTokenAccess,
@@ -54,6 +55,20 @@ export const tokensWithStatus = Joi.object({
   refresh: jwtTokenRefresh,
 }).label("TokensWithStatus");
 
+export const emptyOutputSchema = Joi.object({
+  ok: Joi.boolean().example(true)
+}).label('EmptyOutputSchema')
+
+export const jwtTokens = Joi.object({
+  access: jwtTokenAccess,
+  refresh: jwtTokenRefresh,
+}).label("JwtTokensSchema");
+
+export const paginationFields = {
+	limit: Joi.number().integer().default(10).max(100).example(10),
+	offset: Joi.number().integer().default(0).example(5)
+};
+
 export * from "./media";
 export * from "./user";
 export * from "./portfolio";
@@ -62,3 +77,4 @@ export * from "./ratingStatistic";
 export * from "./questsResponse";
 export * from "./review";
 export * from "./map";
+export * from "./admin";
