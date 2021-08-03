@@ -1,0 +1,13 @@
+{
+  "name": "work-quest-database-models",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^17.4.0",
+    "sequelize": "6.6.2",
+    "sequelize-typescript": "^2.0.0"
+  }
+}
