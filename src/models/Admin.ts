@@ -9,7 +9,7 @@ import * as speakeasy from "speakeasy"
     main = "main",
     disput = "disput",
     advertising = "advertising",
-    KYC = "KYC",
+    KYC = "kyc",
   }
   export const Roles= Object.values(Role)
 

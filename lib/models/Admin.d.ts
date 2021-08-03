@@ -3,7 +3,7 @@ export declare enum Role {
     main = "main",
     disput = "disput",
     advertising = "advertising",
-    KYC = "KYC"
+    KYC = "kyc"
 }
 export declare const Roles: Role[];
 export interface TOTP {

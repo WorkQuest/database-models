@@ -7,7 +7,7 @@ import {
 } from "./common";
 import { Role, Roles, } from "../models/Admin";
 
-export const adminRoleSchema = Joi.string().allow(...Roles).default(Role.main);
+export const adminRoleSchema = Joi.string().max(255).valid(...Roles).default(Role.main).example('main');
 export const isActiveSchema = Joi.boolean().example(true)
 
 export const accountSchema = Joi.object({
