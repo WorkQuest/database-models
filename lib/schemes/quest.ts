@@ -1,4 +1,5 @@
 import * as Joi from "joi";
+import { QuestPriority, AdType, QuestStatus } from '../models';
 import {
   idSchema,
   isoDateSchema,
@@ -6,36 +7,35 @@ import {
   locationSchema,
   offsetSchema,
   searchSchema,
-  sortDirectionSchema
+  sortDirectionSchema,
+  userSchema,
+  reviewsSchema,
+  questsResponsesSchema,
+  mediasUrlOnlySchema,
 } from './index';
-import { QuestPriority, AdType, QuestStatus } from '../models/Quest';
-import { userSchema } from './user';
-import { reviewsSchema } from './review';
-import { questsResponsesSchema } from './questsResponse';
-import { mediasUrlOnlySchema } from './media';
 
 const userIdSchema = idSchema.label('UserId');
 const questIdSchema = idSchema.label('QuestId');
-export const categorySchema = Joi.string().example('Retail').label('Category');
+export const questCategorySchema = Joi.string().example('Retail').label('Category');
 export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestStatus.Created).label('Status');
 export const questPrioritySchema = Joi.number().valid(...Object.keys(QuestPriority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestPriority.AllPriority).label('Priority');
-export const titleSchema = Joi.string().example('Title...').label('Title');
-export const descriptionSchema = Joi.string().example('Description quest...').label('Description');
-export const priceSchema = Joi.string().example("500").label('Price');
-export const adTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('AdType');
+export const questTitleSchema = Joi.string().example('Title...').label('Title');
+export const questDescriptionSchema = Joi.string().example('Description quest...').label('Description');
+export const questPriceSchema = Joi.string().example("500").label('Price');
+export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('AdType');
 
 export const questSchema = Joi.object({
   id: questIdSchema,
   userId: userIdSchema,
   assignedWorkerId: userIdSchema,
-  category: categorySchema,
+  category: questCategorySchema,
   status: questStatusSchema,
   priority: questPrioritySchema,
   location: locationSchema,
-  title: titleSchema,
-  description: descriptionSchema,
-  price: priceSchema,
-  adType: adTypeSchema,
+  title: questTitleSchema,
+  description: questDescriptionSchema,
+  price: questPriceSchema,
+  adType: questAdTypeSchema,
   medias: mediasUrlOnlySchema,
   reviews: reviewsSchema,
   createdAt: isoDateSchema,
@@ -46,14 +46,14 @@ export const questFullSchema = Joi.object({
   id: questIdSchema,
   userId: userIdSchema,
   assignedWorkerId: userIdSchema,
-  category: categorySchema,
+  category: questCategorySchema,
   status: questStatusSchema,
   priority: questPrioritySchema,
   location: locationSchema,
-  title: titleSchema,
-  description: descriptionSchema,
-  price: priceSchema,
-  adType: adTypeSchema,
+  title: questTitleSchema,
+  description: questDescriptionSchema,
+  price: questPriceSchema,
+  adType: questAdTypeSchema,
   user: userSchema,
   medias: mediasUrlOnlySchema,
   reviews: reviewsSchema,
@@ -61,6 +61,10 @@ export const questFullSchema = Joi.object({
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label("QuestFull");
+
+export const questsSchema = Joi.array().items(questSchema).label('Quests');
+
+export const questsFullSchema = Joi.array().items(questFullSchema).label('QuestsFull');
 
 export const questsListSortSchema = Joi.object({
   price: sortDirectionSchema,
@@ -73,7 +77,7 @@ export const questsQuerySchema = Joi.object({
   q: searchSchema,
   priority: questPrioritySchema.default(null),
   status: questStatusSchema.default(null),
-  adType: adTypeSchema.default(null),
+  adType: questAdTypeSchema.default(null),
   sort: questsListSortSchema,
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),

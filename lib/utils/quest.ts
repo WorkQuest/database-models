@@ -1,4 +1,4 @@
-import { Location } from '../models/Quest';
+import { Location } from '../models';
 
 export function transformToGeoPostGIS(location: Location) {
   const coordinates = [location.longitude, location.latitude];

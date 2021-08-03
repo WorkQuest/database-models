@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import { UserStatus } from "../models/User";
+import { userStatusSchema } from "./user";
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
@@ -30,7 +30,6 @@ export const isoDateSchema = Joi.string().isoDate().example("2021-05-12T05:24:47
 export const longitudeSchema = Joi.number().min(-180).max(180).example(84.948846).label("Longitude");
 export const latitudeSchema = Joi.number().min(-90).max(90).example(56.48122).label("Latitude");
 export const countSchema = Joi.number().example(10);
-export const accountStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const offsetSchema = Joi.number().min(0).default(0).label("Offset");
 export const limitSchema = Joi.number().min(0).default(10).max(100).label('Limit');
 export const searchSchema = Joi.string().default(null).max(255).label('Search');
@@ -50,7 +49,15 @@ export const jwtTokens = Joi.object({
 }).label("JwtTokensSchema");
 
 export const tokensWithStatus = Joi.object({
-  userStatus: accountStatusSchema,
+  userStatus: userStatusSchema,
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
 }).label("TokensWithStatus");
+
+export * from "./media";
+export * from "./user";
+export * from "./portfolio";
+export * from "./quest";
+export * from "./ratingStatistic";
+export * from "./questsResponse";
+export * from "./review";

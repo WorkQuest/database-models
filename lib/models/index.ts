@@ -33,4 +33,15 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
   return sequelize;
 }
 
+export * from "./User";
+export * from "./Session";
+export * from "./Quest";
+export * from "./QuestsResponse";
+export * from "./Media";
+export * from "./QuestMedia";
+export * from "./Review";
+export * from "./RatingStatistic";
+export * from "./StarredQuests";
+export * from "./PortfolioMedia";
+export * from "./Portfolio";
 
