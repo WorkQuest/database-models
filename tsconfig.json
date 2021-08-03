@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "declaration": true,
+    "emitDecoratorMetadata": true,
     "outDir": "build",
-    "rootDir": "src",
     "allowJs": false,
     "target": "es6",
-    "sourceMap": false,
+    "sourceMap": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "removeComments": true
   },
-  "include": [
-    "./src/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["./lib/**/*.ts"],
+  "exclude": ["node_modules"],
+  "rootDirs": [
+    "lib",
+  ]
 }
