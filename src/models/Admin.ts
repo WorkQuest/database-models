@@ -79,6 +79,10 @@ import * as speakeasy from "speakeasy"
       return bcrypt.compareSync(pwd, this.password);
     }
 
+    isAccountActive(): boolean{
+      return this.isActive
+    }
+
     validateTOTP(TOTP: string){
       return speakeasy.totp.verify({
         secret: this.settings.security.TOTP.secret,

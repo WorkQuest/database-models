@@ -25,5 +25,6 @@ export declare class Admin extends Model {
     settings: AccountSettings;
     isActive: boolean;
     passwordCompare(pwd: string): Promise<any>;
+    isAccountActive(): boolean;
     validateTOTP(TOTP: string): any;
 }
