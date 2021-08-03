@@ -70,7 +70,10 @@ import * as speakeasy from "speakeasy"
     @Column({type: DataType.STRING, defaultValue: Role.main}) 
     adminRole: Role
     @Column({ type: DataType.JSONB, defaultValue: defaultAccountSettings})
-    settings: AccountSettings;
+    settings: AccountSettings
+
+    @Column({type: DataType.BOOLEAN, defaultValue: true})
+    isActive: boolean
 
     async passwordCompare(pwd: string) {
       return bcrypt.compareSync(pwd, this.password);

@@ -23,6 +23,7 @@ export declare class Admin extends Model {
     lastName: string;
     adminRole: Role;
     settings: AccountSettings;
+    isActive: boolean;
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
 }

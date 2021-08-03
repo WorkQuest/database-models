@@ -5,10 +5,10 @@ import {
 	idSchema,
 	lastNameSchema,
 } from "./common";
-
 import { Role, Roles, } from "../models/Admin";
 
 export const adminRoleSchema = Joi.string().allow(...Roles).default(Role.main);
+export const isActiveSchema = Joi.boolean().example(true)
 
 export const accountSchema = Joi.object({
 	id: idSchema,
@@ -16,6 +16,7 @@ export const accountSchema = Joi.object({
     email: emailSchema,
 	firstName: firstNameSchema,
 	lastName: lastNameSchema,
+	isActive: isActiveSchema,
 
 	adminRole: adminRoleSchema,
 }).label('AccountSchema')
