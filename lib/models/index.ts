@@ -48,4 +48,5 @@ export * from "./RatingStatistic";
 export * from "./StarredQuests";
 export * from "./PortfolioMedia";
 export * from "./Portfolio";
+export * from "./Admin";
 
