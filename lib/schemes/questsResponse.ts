@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {idSchema, questSchema, userSchema} from './index';
+import {countSchema, idSchema, questSchema, userSchema} from './index';
 import { QuestsResponseStatus, QuestsResponseType } from "../models"
 
 export const questsResponseMessageSchema = Joi.string().example('Hello, I need this job').default('').label('Message');
@@ -19,4 +19,7 @@ export const questsResponseSchema = Joi.object({
 
 export const questsResponsesSchema = Joi.array().items(questsResponseSchema).label('QuestsResponsesSchema');
 
-
+export const questsResponsesWithCountSchema = Joi.object({
+  count: countSchema,
+  responses: questsResponsesSchema,
+}).label('QuestsResponsesWithCount')
