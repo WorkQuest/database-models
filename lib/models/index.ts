@@ -10,12 +10,14 @@ import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from './StarredQuests';
 import { PortfolioMedia } from './PortfolioMedia';
 import { Portfolio } from './Portfolio';
+import { Admin } from './Admin'
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging,
     dialect: "postgres",
-    models: [ StarredQuests,
+    models: [
+      StarredQuests,
       User,
       Session,
       Quest,
@@ -25,7 +27,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Review,
       RatingStatistic,
       Portfolio,
-      PortfolioMedia, ]
+      PortfolioMedia,
+      Admin,
+    ]
   });
   if (sync)
     await sequelize.sync();
