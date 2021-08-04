@@ -11,7 +11,7 @@ import {
   userSchema,
   reviewsSchema,
   questsResponsesSchema,
-  mediasUrlOnlySchema,
+  mediasUrlOnlySchema, countSchema,
 } from './index';
 
 const userIdSchema = idSchema.label('UserId');
@@ -65,6 +65,11 @@ export const questFullSchema = Joi.object({
 export const questsSchema = Joi.array().items(questSchema).label('Quests');
 
 export const questsFullSchema = Joi.array().items(questFullSchema).label('QuestsFull');
+
+const questsWithCountSchema = Joi.object({
+  count: countSchema,
+  quests: questsSchema,
+}).label("QuestsOutput");
 
 export const questsListSortSchema = Joi.object({
   price: sortDirectionSchema,
