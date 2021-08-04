@@ -9,7 +9,7 @@ export const mediaHashSchema = Joi.number().min(60).max(60).label("MediaHash");
 export const mediaUrlOnlySchema = Joi.object({
   id: mediaIdSchema,
   url: urlSchema
-}).label("MediaUrlOnlyScheme");
+}).label("MediaUrlOnly");
 
 export const mediaUploadLinkSchema = Joi.object({
   mediaId: mediaIdSchema,
@@ -25,4 +25,4 @@ export const mediaSchema = Joi.object({
 }).label('MediaScheme');
 
 export const mediaIdsSchema = Joi.array().items(mediaIdSchema).label("MediaIdsArray");
-export const mediasUrlOnlySchema = Joi.array().items(mediaUrlOnlySchema).label('MediasUrlOnlyScheme');
+export const mediasUrlOnlySchema = Joi.array().items(mediaUrlOnlySchema).label('MediasUrlOnly');
