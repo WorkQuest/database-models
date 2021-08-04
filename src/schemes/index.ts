@@ -43,6 +43,11 @@ export const emptyOkSchema = Joi.object({
   ok: Joi.boolean().example(true)
 }).label("EmptyOkResponse");
 
+export const paginationFields = {
+  limit: Joi.number().integer().default(10).max(100).example(10),
+  offset: Joi.number().integer().default(0).example(5)
+};
+
 export const jwtTokens = Joi.object({
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,

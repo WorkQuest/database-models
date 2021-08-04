@@ -18,6 +18,10 @@ export declare const limitSchema: Joi.NumberSchema;
 export declare const searchSchema: Joi.StringSchema;
 export declare const locationSchema: Joi.ObjectSchema<any>;
 export declare const emptyOkSchema: Joi.ObjectSchema<any>;
+export declare const paginationFields: {
+    limit: Joi.NumberSchema;
+    offset: Joi.NumberSchema;
+};
 export declare const jwtTokens: Joi.ObjectSchema<any>;
 export declare const tokensWithStatus: Joi.ObjectSchema<any>;
 export * from "./media";
