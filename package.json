@@ -1,11 +1,8 @@
 {
   "name": "@workquest/database-models",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "repository": "git://github.com/WorkQuest/database-models.git",
-  "files": [
-    "src"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
