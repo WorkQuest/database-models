@@ -66,7 +66,7 @@ export const questsSchema = Joi.array().items(questSchema).label('Quests');
 
 export const questsFullSchema = Joi.array().items(questFullSchema).label('QuestsFull');
 
-const questsWithCountSchema = Joi.object({
+export const questsWithCountSchema = Joi.object({
   count: countSchema,
   quests: questsSchema,
 }).label("QuestsOutput");
