@@ -11,6 +11,11 @@ export const mediaUrlOnlySchema = Joi.object({
   url: urlSchema
 }).label("MediaUrlOnlyScheme");
 
+export const mediaUploadLinkSchema = Joi.object({
+  mediaId: mediaIdSchema,
+  url: urlSchema,
+}).label('MediaUploadLink');
+
 export const mediaSchema = Joi.object({
   id: mediaIdSchema,
   userId: idSchema.label("UserId"),
