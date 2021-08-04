@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import { idSchema, isoDateSchema } from './index';
+import {idSchema, isoDateSchema} from './common';
 
 const reviewIdSchema = idSchema.label('ReviewId');
 const questIdSchema = idSchema.label('QuestId');

@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import { ContentType } from "../models";
-import { idSchema, urlSchema } from "./index";
+import { idSchema, urlSchema } from "./common";
 
 const mediaIdSchema = idSchema.label("MediaId");
 export const mediaContentTypeSchema = Joi.string().valid(...Object.values(ContentType)).example(ContentType.png).label("ContentType");
@@ -10,6 +10,11 @@ export const mediaUrlOnlySchema = Joi.object({
   id: mediaIdSchema,
   url: urlSchema
 }).label("MediaUrlOnlyScheme");
+
+export const mediaUploadLinkSchema = Joi.object({
+  mediaId: mediaIdSchema,
+  url: urlSchema,
+}).label('MediaUploadLink');
 
 export const mediaSchema = Joi.object({
   id: mediaIdSchema,

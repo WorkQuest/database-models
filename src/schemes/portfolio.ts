@@ -1,5 +1,6 @@
 import * as Joi from "joi";
-import {idSchema, isoDateSchema, mediaIdsSchema} from './index';
+import {mediaIdsSchema} from "./media";
+import {idSchema, isoDateSchema} from './common';
 
 const portfolioIdSchema = idSchema.label('PortfolioId');
 export const portfolioTitleSchema = Joi.string().example('Title...').label('Title');
