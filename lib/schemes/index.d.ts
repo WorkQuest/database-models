@@ -28,3 +28,4 @@ export * from "./ratingStatistic";
 export * from "./questsResponse";
 export * from "./review";
 export * from "./map";
+export * from "./sumsub";
