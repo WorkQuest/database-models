@@ -1,5 +1,9 @@
 import * as Joi from "joi";
-export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
+export declare const outputOkSchema: (res: Joi.Schema<any>) => Joi.Schema<any>;
+export declare const paginationFields: {
+    limit: Joi.NumberSchema;
+    offset: Joi.NumberSchema;
+};
 export declare function outputPaginationSchema(title: string, item: Joi.Schema): Joi.Schema;
 export declare const idSchema: Joi.StringSchema;
 export declare const urlSchema: Joi.StringSchema;
@@ -28,3 +32,4 @@ export * from "./ratingStatistic";
 export * from "./questsResponse";
 export * from "./review";
 export * from "./map";
+export * from "./admin";
