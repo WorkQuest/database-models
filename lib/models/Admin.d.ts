@@ -1,5 +1,5 @@
 import { Model } from 'sequelize-typescript';
-import { Session } from "./Session";
+import { AdminSession } from "./AdminSession";
 export declare enum Role {
     main = "main",
     disput = "disput",
@@ -25,7 +25,7 @@ export declare class Admin extends Model {
     adminRole: Role;
     settings: AdminAccountSettings;
     isActive: boolean;
-    sessions: Session[];
+    sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
 }

@@ -4,7 +4,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { getUUID, } from '../utils';
 import * as speakeasy from "speakeasy"
-import { Session } from "./Session"
+import { AdminSession } from "./AdminSession"
 
 export enum Role {
     main = "main",
@@ -76,7 +76,7 @@ export class Admin extends Model {
     @Column({type: DataType.BOOLEAN, defaultValue: true})
     isActive: boolean
 
-    @HasMany(() => Session) sessions: Session[];
+    @HasMany(() => AdminSession) sessions: AdminSession[];
 
     async passwordCompare(pwd: string) {
         return bcrypt.compareSync(pwd, this.password);
