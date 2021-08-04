@@ -8,7 +8,8 @@ import { Admin } from "./Admin";
 export class Session extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
+  @ForeignKey(() => User) @Column(DataType.STRING) adminId: string;
 
-  @BelongsTo(() => User) user: User;
-  @BelongsTo(() => Admin) admin: Admin;
+  @BelongsTo(() => User, 'userId') user: User;
+  @BelongsTo(() => Admin, 'adminId') admin: Admin;
 }
