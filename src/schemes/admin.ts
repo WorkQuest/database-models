@@ -1,5 +1,5 @@
 import Joi = require("joi");
-import { idSchema, } from "./index";
+import { idSchema, } from "./common";
 import { Role, Roles, } from "../models";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel');
