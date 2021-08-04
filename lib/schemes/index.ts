@@ -1,13 +1,6 @@
 import * as Joi from "joi";
 import { userStatusSchema } from "./user";
 
-export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
-  return Joi.object({
-    ok: Joi.boolean().example(true),
-    result: res
-  });
-};
-
 export function outputPaginationSchema(title: string, item: Joi.Schema): Joi.Schema {
   return Joi.object({
     ok: Joi.boolean().example(true),
@@ -39,10 +32,12 @@ export const locationSchema = Joi.object({
   latitude: latitudeSchema.required(),
 }).label('Location');
 
-export const outputOkSchema = (res: Joi.Schema): Joi.Schema => Joi.object({
-  ok: Joi.boolean().example(true),
-  result: res,
-});
+export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
+  return Joi.object({
+    ok: Joi.boolean().example(true),
+    result: res
+  });
+};
 
 export const jwtTokens = Joi.object({
   access: jwtTokenAccess,
@@ -58,11 +53,6 @@ export const tokensWithStatus = Joi.object({
 export const emptyOutputSchema = Joi.object({
   ok: Joi.boolean().example(true)
 }).label('EmptyOutputSchema')
-
-export const jwtTokens = Joi.object({
-  access: jwtTokenAccess,
-  refresh: jwtTokenRefresh,
-}).label("JwtTokensSchema");
 
 export const paginationFields = {
 	limit: Joi.number().integer().default(10).max(100).example(10),

@@ -14,19 +14,19 @@ import { Session } from "./Session"
   }
   export const Roles= Object.values(Role)
 
-  export interface TOTP {
+  export interface AdminTOTP {
     secret: string;
   }
 
-  export interface Security {
-    TOTP: TOTP;
+  export interface AdminSecurity {
+    TOTP: AdminTOTP;
   }
 
-  export interface AccountSettings {
-    security: Security
+  export interface AdminAccountSettings {
+    security: AdminSecurity;
   }
 
-  const defaultAccountSettings: AccountSettings = {
+  const defaultAdminAccountSettings: AdminAccountSettings = {
     security: null
   };
 
@@ -70,8 +70,8 @@ import { Session } from "./Session"
 
     @Column({type: DataType.STRING, defaultValue: Role.main})
     adminRole: Role
-    @Column({ type: DataType.JSONB, defaultValue: defaultAccountSettings})
-    settings: AccountSettings
+    @Column({ type: DataType.JSONB, defaultValue: defaultAdminAccountSettings})
+    settings: AdminAccountSettings
 
     @Column({type: DataType.BOOLEAN, defaultValue: true})
     isActive: boolean
