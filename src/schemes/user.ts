@@ -1,11 +1,9 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import { idSchema,
-  isoDateSchema,
-  mediaUrlOnlySchema,
-  reviewsSchema,
-  ratingStatisticSchema,
-} from "./index";
+import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
+import {mediaUrlOnlySchema } from "./media";
+import {reviewsSchema} from "./review";
+import {ratingStatisticSchema} from "./ratingStatistic";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -76,3 +74,9 @@ export const userSchema = Joi.object({
 }).label("UserSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
+
+export const tokensWithStatus = Joi.object({
+  userStatus: userStatusSchema,
+  access: jwtTokenAccess,
+  refresh: jwtTokenRefresh,
+}).label("TokensWithStatus");

@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {idSchema} from "./index";
+import {idSchema} from "./common";
 
 export const mapPointsCountSchema = Joi.number().label('PointsCount');
 export const mapTypeSchema = Joi.string().valid('point', 'cluster').label('PointType');

@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
-import { idSchema } from './index';
+import {idSchema} from './common';
 
 const ratingStatisticIdSchema = idSchema.label('RatingStatisticId');
 const userIdSchema = idSchema.label('UserId');
