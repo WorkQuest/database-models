@@ -11,6 +11,7 @@ import { StarredQuests } from './StarredQuests';
 import { PortfolioMedia } from './PortfolioMedia';
 import { Portfolio } from './Portfolio';
 import { Admin } from './Admin'
+import { AdminSession } from "./AdminSession";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -28,6 +29,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       PortfolioMedia,
       Admin,
+      AdminSession,
     ]
   });
   if (sync)
