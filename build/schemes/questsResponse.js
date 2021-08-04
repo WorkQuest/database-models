@@ -13,6 +13,12 @@ exports.questsResponseSchema = Joi.object({
     status: exports.questsResponseStatusSchema,
     type: exports.questsResponseTypeSchema,
     message: exports.questsResponseMessageSchema,
+    worker: index_1.userSchema,
+    quest: index_1.questSchema,
 }).label('QuestsResponseSchema');
 exports.questsResponsesSchema = Joi.array().items(exports.questsResponseSchema).label('QuestsResponsesSchema');
+exports.questsResponsesWithCountSchema = Joi.object({
+    count: index_1.countSchema,
+    responses: exports.questsResponsesSchema,
+}).label('QuestsResponsesWithCount');
 //# sourceMappingURL=questsResponse.js.map

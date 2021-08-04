@@ -50,6 +50,10 @@ exports.questFullSchema = Joi.object({
 }).label("QuestFull");
 exports.questsSchema = Joi.array().items(exports.questSchema).label('Quests');
 exports.questsFullSchema = Joi.array().items(exports.questFullSchema).label('QuestsFull');
+const questsWithCountSchema = Joi.object({
+    count: index_1.countSchema,
+    quests: exports.questsSchema,
+}).label("QuestsOutput");
 exports.questsListSortSchema = Joi.object({
     price: index_1.sortDirectionSchema,
     createdAt: index_1.sortDirectionSchema,
