@@ -7,86 +7,82 @@ import * as speakeasy from "speakeasy"
 import { AdminSession } from "./AdminSession"
 
 export enum Role {
-    main = "main",
-    disput = "disput",
-    advertising = "advertising",
-    KYC = "kyc",
+  main = "main",
+  dispute = "dispute",
+  advertising = "advertising",
+  kyc = "kyc",
 }
 export const Roles= Object.values(Role)
 
 export interface AdminTOTP {
-    secret: string;
+  secret: string;
 }
 
 export interface AdminSecurity {
-    TOTP: AdminTOTP;
+  TOTP: AdminTOTP;
 }
 
 export interface AdminAccountSettings {
-    security: AdminSecurity;
+  security: AdminSecurity;
 }
 
-const defaultAdminAccountSettings: AdminAccountSettings = {
-    security: null
-};
-
 @Scopes(() => ({
-    defaultScope: {
-        attributes: {
-            exclude: ["password", "settings", "createdAt", "updatedAt", "deletedAt"],
-        },
+  defaultScope: {
+    attributes: {
+      exclude: ["password", "settings", "createdAt", "updatedAt", "deletedAt"],
     },
-    withPassword: {
-        attributes: {
+  },
+  withPassword: {
+    attributes: {
             include: ["password", "settings"],
         },
     },
 }))
 @Table
 export class Admin extends Model {
-    @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true })
-    id: string;
+  @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true })
+  id: string;
 
-    @Column({type: DataType.STRING, unique: true})
-    email: string
+  @Column({type: DataType.STRING, unique: true})
+  email: string
 
-    @Column({
-        type: DataType.STRING,
-        set(value: string) {
-            const salt = bcrypt.genSaltSync(10);
-            const hash = bcrypt.hashSync(value, salt);
-            this.setDataValue('password', hash);
-        },
-        get() {
-            return this.getDataValue('password');
-        },
-    })
-    password: string;
+  @Column({
+    type: DataType.STRING,
+    set(value: string) {
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(value, salt);
+      this.setDataValue('password', hash);
+      },
+    get() {
+      return this.getDataValue('password');
+    },
+  })
+  password: string;
 
-    @Column(DataType.STRING)
-    firstName: string
-    @Column(DataType.STRING)
-    lastName: string
+  @Column(DataType.STRING)
+  firstName: string
+  @Column(DataType.STRING)
+  lastName: string
 
-    @Column({type: DataType.STRING, defaultValue: Role.main})
-    adminRole: Role
-    @Column({ type: DataType.JSONB, defaultValue: defaultAdminAccountSettings})
-    settings: AdminAccountSettings
+  @Column({type: DataType.STRING, allowNull: false})
+  adminRole: Role
+  @Column({ type: DataType.JSONB, allowNull: false })
+  settings: AdminAccountSettings
 
-    @Column({type: DataType.BOOLEAN, defaultValue: true})
-    isActive: boolean
+  @Column({type: DataType.BOOLEAN, defaultValue: false})
+  isActive: boolean
+  
+  @HasMany(() => AdminSession) sessions: AdminSession[];
 
-    @HasMany(() => AdminSession) sessions: AdminSession[];
+  async passwordCompare(pwd: string) {
+    return bcrypt.compareSync(pwd, this.password);
+  }
 
-    async passwordCompare(pwd: string) {
-        return bcrypt.compareSync(pwd, this.password);
-    }
-
-    validateTOTP(TOTP: string){
-        return speakeasy.totp.verify({
-            secret: this.settings.security.TOTP.secret,
-            encoding: 'base32',
-            token: Number(TOTP)
-        });
-    }
+  validateTOTP(TOTP: string){
+    return speakeasy.totp.verify({
+      secret: this.settings.security.TOTP.secret,
+      encoding: 'base32',
+      token: Number(TOTP)
+    });
+  }
 }

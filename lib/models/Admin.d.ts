@@ -2,9 +2,9 @@ import { Model } from 'sequelize-typescript';
 import { AdminSession } from "./AdminSession";
 export declare enum Role {
     main = "main",
-    disput = "disput",
+    dispute = "dispute",
     advertising = "advertising",
-    KYC = "kyc"
+    kyc = "kyc"
 }
 export declare const Roles: Role[];
 export interface AdminTOTP {
