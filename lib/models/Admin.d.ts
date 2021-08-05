@@ -28,4 +28,5 @@ export declare class Admin extends Model {
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
+    static isEmailExist(email: string): Promise<boolean>;
 }

@@ -85,4 +85,17 @@ export class Admin extends Model {
       token: Number(TOTP)
     });
   }
+  
+  static async isEmailExist(email: string) {
+    const checkEmail = await Admin.findOne({
+      where: {
+        email: email,
+      }
+    })
+    if(checkEmail){
+      return true
+    }
+    return false
+  }
+  
 }
