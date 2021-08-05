@@ -42,14 +42,14 @@ export const questSchema = Joi.object({
   reviews: reviewsSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
-}).label("QuestSchema");
+}).label("Quest");
 
 export const questsSchema = Joi.array().items(questSchema).label('Quests');
 
 export const questsWithCountSchema = Joi.object({
   count: countSchema,
   quests: questsSchema,
-}).label("QuestsOutput");
+}).label("QuestsWithCount");
 
 export const questsListSortSchema = Joi.object({
   price: sortDirectionSchema,
