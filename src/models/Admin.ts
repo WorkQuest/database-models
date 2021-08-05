@@ -38,7 +38,7 @@ export interface AdminAccountSettings {
         },
     },
 }))
-@Table
+@Table({paranoid: true})
 export class Admin extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true })
   id: string;
