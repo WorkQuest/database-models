@@ -5,13 +5,13 @@ import { getUUID, error } from '../utils';
 import { Errors } from "../utils/errors";
 import { AdminSession } from "./AdminSession"
 
-export enum AminRole {
+export enum AdminRole {
   main = "main",
   dispute = "dispute",
   advertising = "advertising",
   kyc = "kyc",
 }
-export const AdminRoles = Object.values(AminRole)
+export const AdminRoles = Object.values(AdminRole)
 
 export interface AdminTOTP {
   secret: string;
@@ -58,7 +58,7 @@ export class Admin extends Model {
   @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) role: AminRole;
+  @Column({type: DataType.STRING, allowNull: false}) role: AdminRole;
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
 
@@ -76,7 +76,7 @@ export class Admin extends Model {
     });
   }
 
-  MustHaveAdminRole(role: AminRole) {
+  MustHaveAdminRole(role: AdminRole) {
     if (this.role !== role) {
       throw error(Errors.InvalidRole, 'Invalid admin type', {});
     }
