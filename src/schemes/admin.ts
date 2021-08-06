@@ -1,5 +1,5 @@
 import Joi = require("joi");
-import { idSchema } from "./common";
+import { idSchema, offsetSchema, limitSchema } from "./common";
 import { AdminRole, AdminRoles } from "../models";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('FirstNameSchema');
@@ -18,3 +18,8 @@ export const accountSchema = Joi.object({
   isActive: isActiveSchema,
   adminRole: adminRoleSchema,
 }).label('AccountSchema')
+
+export const aminQuerySchema = Joi.object({
+  offset: offsetSchema,
+  limit: limitSchema,
+}).label('QuestsQuery');
