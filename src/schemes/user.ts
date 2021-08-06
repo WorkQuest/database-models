@@ -71,7 +71,7 @@ export const userSchema = Joi.object({
   ratingStatistic: ratingStatisticSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
-}).label("User");
+}).label("UserSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 
