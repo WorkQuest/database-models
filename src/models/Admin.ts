@@ -2,7 +2,8 @@ import {
     Column, DataType, Model, Scopes, Table, HasOne, HasMany,
 } from 'sequelize-typescript';
 import * as bcrypt from 'bcrypt';
-import { getUUID, } from '../utils';
+import { getUUID, error } from '../utils';
+import { Errors } from "../utils/errors";
 import * as speakeasy from "speakeasy"
 import { AdminSession } from "./AdminSession"
 
@@ -84,6 +85,12 @@ export class Admin extends Model {
       encoding: 'base32',
       token: Number(TOTP)
     });
+  }
+  
+  checkAdminRole(role: Role){
+    if(this.adminRole !== role) {
+      return error(Errors.InvalidRole, 'Invalid admin type', {})
+    }
   }
   
   static async isEmailExist(email: string) {
