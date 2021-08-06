@@ -23,6 +23,11 @@ export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   });
 };
 
+export const paginationFields = {
+  limit: Joi.number().integer().default(10).max(100).example(10),
+  offset: Joi.number().integer().default(0).example(5)
+};
+
 export function outputPaginationSchema(title: string, item: Joi.Schema): Joi.Schema {
   return Joi.object({
     ok: Joi.boolean().example(true),
