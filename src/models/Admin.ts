@@ -89,7 +89,7 @@ export class Admin extends Model {
   
   checkAdminRole(role: Role){
     if(this.adminRole !== role) {
-      return error(Errors.InvalidRole, 'Invalid admin type', {})
+      throw error(Errors.InvalidRole, 'Invalid admin type', {})
     }
   }
   

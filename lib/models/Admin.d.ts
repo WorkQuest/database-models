@@ -28,6 +28,6 @@ export declare class Admin extends Model {
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
-    checkAdminRole(role: Role): import("@hapi/boom").Boom<any>;
+    checkAdminRole(role: Role): void;
     static isEmailExist(email: string): Promise<boolean>;
 }
