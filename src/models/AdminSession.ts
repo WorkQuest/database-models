@@ -2,7 +2,6 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize
 import { getUUID } from "../utils";
 import { Admin } from "./Admin";
 
-
 @Table
 export class AdminSession extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;

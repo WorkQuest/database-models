@@ -1,10 +1,8 @@
-import {
-    Column, DataType, Model, Scopes, Table, HasOne, HasMany,
-} from 'sequelize-typescript';
 import * as bcrypt from 'bcrypt';
+import * as speakeasy from "speakeasy"
+import { Column, DataType, Model, Scopes, Table, HasMany } from 'sequelize-typescript';
 import { getUUID, error } from '../utils';
 import { Errors } from "../utils/errors";
-import * as speakeasy from "speakeasy"
 import { AdminSession } from "./AdminSession"
 
 export enum Role {
@@ -13,7 +11,7 @@ export enum Role {
   advertising = "advertising",
   kyc = "kyc",
 }
-export const Roles= Object.values(Role)
+export const Roles = Object.values(Role)
 
 export interface AdminTOTP {
   secret: string;
@@ -41,11 +39,9 @@ export interface AdminAccountSettings {
 }))
 @Table({paranoid: true})
 export class Admin extends Model {
-  @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true })
-  id: string;
+  @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
-  @Column({type: DataType.STRING, unique: true})
-  email: string
+  @Column({type: DataType.STRING, unique: true}) email: string;
 
   @Column({
     type: DataType.STRING,
@@ -57,52 +53,38 @@ export class Admin extends Model {
     get() {
       return this.getDataValue('password');
     },
-  })
-  password: string;
+  }) password: string;
 
-  @Column(DataType.STRING)
-  firstName: string
-  @Column(DataType.STRING)
-  lastName: string
+  @Column(DataType.STRING) firstName: string;
+  @Column(DataType.STRING) lastName: string;
 
-  @Column({type: DataType.STRING, allowNull: false})
-  adminRole: Role
-  @Column({ type: DataType.JSONB, allowNull: false })
-  settings: AdminAccountSettings
+  @Column({type: DataType.STRING, allowNull: false}) adminRole: Role;
+  @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
+  @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
 
-  @Column({type: DataType.BOOLEAN, defaultValue: false})
-  isActive: boolean
-  
   @HasMany(() => AdminSession) sessions: AdminSession[];
 
   async passwordCompare(pwd: string) {
     return bcrypt.compareSync(pwd, this.password);
   }
 
-  validateTOTP(TOTP: string){
+  validateTOTP(TOTP: string) {
     return speakeasy.totp.verify({
       secret: this.settings.security.TOTP.secret,
       encoding: 'base32',
       token: Number(TOTP)
     });
   }
-  
-  checkAdminRole(role: Role){
-    if(this.adminRole !== role) {
-      throw error(Errors.InvalidRole, 'Invalid admin type', {})
+
+  checkAdminRole(role: Role) {
+    if (this.adminRole !== role) {
+      throw error(Errors.InvalidRole, 'Invalid admin type', {});
     }
   }
-  
+
   static async isEmailExist(email: string) {
-    const checkEmail = await Admin.findOne({
-      where: {
-        email: email,
-      }
-    })
-    if(checkEmail){
-      return true
-    }
-    return false
+    return await Admin.findOne({
+      where: { email: email }
+    });
   }
-  
 }
