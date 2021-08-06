@@ -19,7 +19,7 @@ export const accountSchema = Joi.object({
   adminRole: adminRoleSchema,
 }).label('AccountSchema')
 
-export const aminQuerySchema = Joi.object({
+export const adminQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
 }).label('QuestsQuery');
