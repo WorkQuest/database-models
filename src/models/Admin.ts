@@ -26,7 +26,7 @@ export interface AdminAccountSettings {
 }
 
 @Scopes(() => ({
-  Хо: {
+  defaultScope: {
     attributes: {
       exclude: ["password", "settings", "createdAt", "updatedAt", "deletedAt"],
     },
