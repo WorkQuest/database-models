@@ -14,7 +14,11 @@ export declare const countSchema: Joi.NumberSchema;
 export declare const offsetSchema: Joi.NumberSchema;
 export declare const limitSchema: Joi.NumberSchema;
 export declare const searchSchema: Joi.StringSchema;
-export declare const outputOkSchema: (res: Joi.Schema<any>) => Joi.Schema<any>;
+export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
+export declare const paginationFields: {
+    limit: Joi.NumberSchema;
+    offset: Joi.NumberSchema;
+};
 export declare function outputPaginationSchema(title: string, item: Joi.Schema): Joi.Schema;
 export declare const locationSchema: Joi.ObjectSchema<any>;
 export declare const emptyOkSchema: Joi.ObjectSchema<any>;
