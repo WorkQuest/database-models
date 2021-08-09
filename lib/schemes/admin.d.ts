@@ -6,4 +6,4 @@ export declare const adminPhoneSchema: Joi.StringSchema;
 export declare const adminPasswordSchema: Joi.StringSchema;
 export declare const adminRoleSchema: Joi.StringSchema;
 export declare const isActiveSchema: Joi.BooleanSchema;
-export declare const accountSchema: Joi.ObjectSchema<any>;
+export declare const adminSchema: Joi.ObjectSchema<any>;
