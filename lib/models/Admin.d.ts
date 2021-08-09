@@ -1,12 +1,12 @@
 import { Model } from 'sequelize-typescript';
 import { AdminSession } from "./AdminSession";
-export declare enum Role {
+export declare enum AdminRole {
     main = "main",
     dispute = "dispute",
     advertising = "advertising",
     kyc = "kyc"
 }
-export declare const Roles: Role[];
+export declare const AdminRoles: AdminRole[];
 export interface AdminTOTP {
     secret: string;
 }
@@ -22,12 +22,12 @@ export declare class Admin extends Model {
     password: string;
     firstName: string;
     lastName: string;
-    adminRole: Role;
+    role: AdminRole;
     settings: AdminAccountSettings;
     isActive: boolean;
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
-    checkAdminRole(role: Role): void;
+    MustHaveAdminRole(role: AdminRole): void;
     static isEmailExist(email: string): Promise<Admin>;
 }

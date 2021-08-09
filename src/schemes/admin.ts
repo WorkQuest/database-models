@@ -1,13 +1,13 @@
 import Joi = require("joi");
-import { idSchema } from "./common";
-import { Role, Roles } from "../models";
+import { idSchema, offsetSchema, limitSchema } from "./common";
+import { AdminRole, AdminRoles } from "../models";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('FirstNameSchema');
 export const adminLastNameSchema = Joi.string().max(255).example('Durov').label('LastNameSchema');
 export const adminEmailSchema = Joi.string().email().max(255).example('test@test.com').label('EmailSchema');
 export const adminPhoneSchema = Joi.string().max(255).example('88005553535').label('PhoneSchema');
 export const adminPasswordSchema = Joi.string().min(8).max(255).label('PasswordSchema'); // TODO: describe custom validator rule
-export const adminRoleSchema = Joi.string().max(255).valid(...Roles).default(Role.main).example('main').label('RoleSchema');
+export const adminRoleSchema = Joi.string().max(255).valid(...AdminRoles).default(AdminRole.main).example('main').label('RoleSchema');
 export const isActiveSchema = Joi.boolean().example(true).label('IsActiveSchema');
 
 export const adminSchema = Joi.object({
@@ -18,3 +18,8 @@ export const adminSchema = Joi.object({
   isActive: isActiveSchema,
   adminRole: adminRoleSchema,
 }).label('AccountSchema')
+
+export const adminQuerySchema = Joi.object({
+  offset: offsetSchema,
+  limit: limitSchema,
+}).label('QuestsQuery');
