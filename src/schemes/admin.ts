@@ -10,7 +10,7 @@ export const adminPasswordSchema = Joi.string().min(8).max(255).label('PasswordS
 export const adminRoleSchema = Joi.string().max(255).valid(...AdminRoles).default(AdminRole.main).example('main').label('RoleSchema');
 export const isActiveSchema = Joi.boolean().example(true).label('IsActiveSchema');
 
-export const accountSchema = Joi.object({
+export const adminSchema = Joi.object({
   id: idSchema,
   email: adminEmailSchema,
   firstName: adminFirstNameSchema,
