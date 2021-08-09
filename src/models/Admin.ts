@@ -11,6 +11,7 @@ export enum AdminRole {
   advertising = "advertising",
   kyc = "kyc",
 }
+
 export const AdminRoles = Object.values(AdminRole)
 
 export interface AdminTOTP {
@@ -33,9 +34,9 @@ export interface AdminAccountSettings {
   },
   withPassword: {
     attributes: {
-            include: ["password", "settings"],
-        },
+      include: ["password", "settings"],
     },
+  },
 }))
 @Table({paranoid: true})
 export class Admin extends Model {
