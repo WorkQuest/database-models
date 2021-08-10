@@ -53,7 +53,7 @@ export class Chat extends Model {
   @HasMany(() => ChatMember) chatMember: ChatMember[];
 
   mustHaveMember(userId: String) {
-    if (this.members.some(user => user.id === userId)) {
+    if (!this.members.some(user => user.id === userId)) {
       throw error(Errors.Forbidden, "User is not a member of this chat", {});
     }
   }
