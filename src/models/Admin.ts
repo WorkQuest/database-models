@@ -77,13 +77,13 @@ export class Admin extends Model {
     });
   }
 
-  MustHaveAdminRole(role: AdminRole) {
+  mustHaveAdminRole(role: AdminRole) {
     if (this.role !== role) {
       throw error(Errors.InvalidRole, 'Invalid admin type', {});
     }
   }
 
-  MustBeActivated() {
+  mustBeActivated(): void {
     if(this.isActivated !== true) {
       throw error(Errors.InvalidStatus, 'Admin is deactivate', {})
     }
