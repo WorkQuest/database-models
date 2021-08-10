@@ -8,13 +8,13 @@ export declare enum DisputeStatus {
 export declare const DisputeStatuses: DisputeStatus[];
 export declare class Disputes extends Model {
     id: string;
-    employerId: string;
-    workerId: string;
+    userId: string;
+    assignedWorkerId: string;
     questId: string;
     status: DisputeStatus;
     problem: string;
     decision: string;
-    employer: User;
-    worker: User;
+    user: User;
+    assignedWorker: User;
     quest: Quest;
 }

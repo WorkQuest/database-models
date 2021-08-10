@@ -27,10 +27,10 @@ export class Disputes extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, unique: true}) employerId: string;
+  @Column({type: DataType.STRING, unique: true}) userId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, unique: true}) workerId: string;
+  @Column({type: DataType.STRING, unique: true}) assignedWorkerId: string;
 
   @ForeignKey(() => Quest)
   @Column(DataType.STRING) questId: string;
@@ -40,8 +40,8 @@ export class Disputes extends Model {
   @Column(DataType.STRING) problem: string;
   @Column(DataType.STRING) decision: string;
 
-  @BelongsTo(() => User, 'employerId') employer: User;
-  @BelongsTo(() => User, 'workerId') worker: User;
+  @BelongsTo(() => User, 'userId') user: User;
+  @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
 
 }
