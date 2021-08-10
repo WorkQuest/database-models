@@ -1,7 +1,7 @@
-import * as Joi from "joi";
-export declare const disputeStatusSchema: Joi.StringSchema;
-export declare const problemDescriptionSchema: Joi.StringSchema;
-export declare const adminDecisionSchema: Joi.StringSchema;
-export declare const disputeSchema: Joi.ObjectSchema<any>;
-export declare const disputesSchema: Joi.ArraySchema;
-export declare const disputesQuerySchema: Joi.ObjectSchema<any>;
+export declare const disputeStatusSchema: any;
+export declare const problemDescriptionSchema: any;
+export declare const adminDecisionSchema: any;
+export declare const disputeOpeningTimeSchema: any;
+export declare const disputeSchema: any;
+export declare const disputesSchema: any;
+export declare const disputesQuerySchema: any;

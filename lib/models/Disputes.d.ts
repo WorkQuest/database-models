@@ -3,6 +3,7 @@ import { User } from "./User";
 import { Quest } from "./Quest";
 export declare enum DisputeStatus {
     pending = "pending",
+    in_queue = "in_queue",
     completed = "completed"
 }
 export declare const DisputeStatuses: DisputeStatus[];
@@ -14,6 +15,7 @@ export declare class Disputes extends Model {
     status: DisputeStatus;
     problem: string;
     decision: string;
+    disputeOpeningTime: Date;
     user: User;
     assignedWorker: User;
     quest: Quest;

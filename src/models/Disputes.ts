@@ -6,6 +6,7 @@ import {Media} from "./Media";
 
 export enum DisputeStatus {
   pending  = "pending",
+  in_queue = "in_queue",
   completed = "completed"
 }
 export const DisputeStatuses = Object.values(DisputeStatus)
@@ -42,6 +43,8 @@ export class Disputes extends Model {
 
   @Column(DataType.STRING) problem: string;
   @Column(DataType.STRING) decision: string;
+
+  @Column(DataType.DATE) disputeOpeningTime: Date;
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
