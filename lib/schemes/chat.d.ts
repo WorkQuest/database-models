@@ -1,4 +1,5 @@
 import * as Joi from "joi";
+export declare const chatTypeSchema: Joi.NumberSchema;
 export declare const messageTextSchema: Joi.StringSchema;
 export declare const messageSchema: Joi.ObjectSchema<any>;
 export declare const chatSchema: Joi.ObjectSchema<any>;
