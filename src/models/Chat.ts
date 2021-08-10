@@ -25,7 +25,7 @@ export enum ChatType {
       exclude: ["message"]
     },
     include: [{
-      model: ChatMember,
+      model: User,
       as: 'members',
       through: {
         attributes: []
