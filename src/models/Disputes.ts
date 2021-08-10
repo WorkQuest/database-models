@@ -22,7 +22,7 @@ export const DisputeStatuses = Object.values(DisputeStatus)
     },
   },
 }))
-@Table({paranoid: true})
+@Table
 export class Disputes extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
