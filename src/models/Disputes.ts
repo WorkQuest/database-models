@@ -2,6 +2,7 @@ import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} 
 import { getUUID, error } from '../utils';
 import {User} from "./User";
 import {Quest} from "./Quest";
+import {Media} from "./Media";
 
 export enum DisputeStatus {
   pending  = "pending",
@@ -13,14 +14,22 @@ export const DisputeStatuses = Object.values(DisputeStatus)
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "createdAt", "updatedAt", "deletedAt"],
+      exclude: ["locationPostGIS"]
     },
-  },
-  withPassword: {
-    attributes: {
-      include: ["password", "settings"],
-    },
-  },
+    include: [{
+      model: Media.scope('urlOnly'),
+      as: 'medias',
+      through: {
+        attributes: []
+      }
+    }, {
+      model: User,
+      as: 'user'
+    }, {
+      model: User,
+      as: 'assignedWorker'
+    }]
+  }
 }))
 @Table
 export class Disputes extends Model {
