@@ -12,6 +12,10 @@ import { PortfolioMedia } from './PortfolioMedia';
 import { Portfolio } from './Portfolio';
 import { Admin } from './Admin'
 import { AdminSession } from "./AdminSession";
+import { Chat } from "./Chat";
+import { ChatMember } from "./ChatMember";
+import { MessageMedia } from "./MessageMedia";
+import { Message } from "./Message";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -30,6 +34,10 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PortfolioMedia,
       Admin,
       AdminSession,
+      Chat,
+      ChatMember,
+      Message,
+      MessageMedia,
     ]
   });
   if (sync)
