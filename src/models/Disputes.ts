@@ -17,12 +17,6 @@ export const DisputeStatuses = Object.values(DisputeStatus)
       exclude: ["locationPostGIS"]
     },
     include: [{
-      model: Media.scope('urlOnly'),
-      as: 'medias',
-      through: {
-        attributes: []
-      }
-    }, {
       model: User,
       as: 'user'
     }, {
