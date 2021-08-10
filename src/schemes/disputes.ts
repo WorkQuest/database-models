@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {
-  idSchema
+  idSchema, limitSchema, offsetSchema
 } from './common';
 import {DisputeStatus, DisputeStatuses} from "../models/Disputes";
 
@@ -21,3 +21,7 @@ export const disputeSchema = Joi.object({
 
 export const disputesSchema = Joi.array().items(disputeSchema).label('Disputes');
 
+export const disputesQuerySchema = Joi.object({
+  offset: offsetSchema,
+  limit: limitSchema,
+}).label('DisputesQuery');
