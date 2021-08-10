@@ -22,7 +22,7 @@ export enum ChatType {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["message", "chatMember"]
+      exclude: ["message", "chatMember", "updatedAt"]
     },
     include: [{
       model: User,
