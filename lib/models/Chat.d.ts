@@ -10,8 +10,9 @@ export declare class Chat extends Model {
     id: string;
     creatorUserId: string;
     type: ChatType;
+    members: User[];
     creator: User;
     message: Message[];
-    members: ChatMember[];
+    member: ChatMember;
     mustHaveMember(userId: String): void;
 }

@@ -7,9 +7,9 @@ export declare class Message extends Model {
     senderUserId: string;
     chatId: string;
     text: string;
+    medias: Media[];
     sender: User;
     chat: Chat;
-    medias: Media[];
-    mastBeSender(userId: String): void;
-    mastBeChat(chatId: String): void;
+    mustBeSender(userId: String): void;
+    mustBeChat(chatId: String): void;
 }

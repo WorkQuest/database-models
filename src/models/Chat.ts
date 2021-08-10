@@ -6,7 +6,7 @@ import {
   Table,
   BelongsTo,
   HasMany,
-  BelongsToMany, Scopes
+  BelongsToMany, Scopes, HasOne
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
@@ -46,11 +46,11 @@ export class Chat extends Model {
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
   // @Column({type: DataType.BOOLEAN, defaultValue: true}) isPrivate: boolean; // TODO ??
 
+  @BelongsToMany(() => User, () => ChatMember) members: User[];
   @BelongsTo(() => User) creator: User;
 
   @HasMany(() => Message) message: Message[];
-
-  @BelongsToMany(() => User, () => ChatMember) members: ChatMember[];
+  @HasOne(() => ChatMember) member: ChatMember;
 
   mustHaveMember(userId: String) {
     if (this.members.some(user => user.id === userId)) {
