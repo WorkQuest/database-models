@@ -22,7 +22,7 @@ export enum ChatType {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["message", "chatMember", "updatedAt"]
+      exclude: ["updatedAt"]
     },
     include: [{
       model: User,
@@ -50,7 +50,7 @@ export class Chat extends Model {
   @BelongsTo(() => User) creator: User;
 
   @HasMany(() => Message) message: Message[];
-  @HasMany(() => ChatMember) chatMember: ChatMember[];
+  @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   mustHaveMember(userId: String) {
     if (!this.members.some(user => user.id === userId)) {
