@@ -6,7 +6,7 @@ import {
   Table,
   BelongsTo,
   HasMany,
-  BelongsToMany
+  BelongsToMany, Scopes
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
@@ -19,6 +19,23 @@ export enum ChatType {
   group,
 }
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ["message"]
+    },
+    include: [{
+      model: ChatMember,
+      as: 'members',
+      through: {
+        attributes: []
+      }
+    }, {
+      model: User,
+      as: 'creator'
+    }]
+  }
+}))
 @Table
 export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
