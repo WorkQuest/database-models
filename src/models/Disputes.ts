@@ -2,11 +2,10 @@ import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} 
 import { getUUID, error } from '../utils';
 import {User} from "./User";
 import {Quest} from "./Quest";
-import {AdminRole} from "./Admin";
 
 export enum DisputeStatus {
-  active = "active",
-  resolved = "resolved"
+  pending  = "pending",
+  completed = "completed"
 }
 export const DisputeStatuses = Object.values(DisputeStatus)
 
@@ -36,7 +35,7 @@ export class Disputes extends Model {
   @ForeignKey(() => Quest)
   @Column(DataType.STRING) questId: string;
 
-  @Column({type: DataType.STRING, defaultValue: DisputeStatus.active}) status: DisputeStatus;
+  @Column({type: DataType.STRING, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
 
   @Column(DataType.STRING) problem: string;
   @Column(DataType.STRING) decision: string;

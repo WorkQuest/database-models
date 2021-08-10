@@ -2,8 +2,8 @@ import { Model } from 'sequelize-typescript';
 import { User } from "./User";
 import { Quest } from "./Quest";
 export declare enum DisputeStatus {
-    active = "active",
-    resolved = "resolved"
+    pending = "pending",
+    completed = "completed"
 }
 export declare const DisputeStatuses: DisputeStatus[];
 export declare class Disputes extends Model {

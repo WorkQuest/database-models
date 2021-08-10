@@ -4,7 +4,7 @@ import {
 } from './common';
 import {DisputeStatus, DisputeStatuses} from "../models/Disputes";
 
-export const disputeStatusSchema = Joi.string().max(255).valid(...DisputeStatuses).default(DisputeStatus.active).example('active').label('DisputeStatusSchema');
+export const disputeStatusSchema = Joi.string().max(255).valid(...DisputeStatuses).default(DisputeStatus.pending).example('active').label('DisputeStatusSchema');
 export const problemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescriptionSchema');
 export const adminDecisionSchema = Joi.string().example('Decision is...').label('AdminDecisionSchema');
 
