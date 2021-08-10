@@ -24,10 +24,11 @@ export declare class Admin extends Model {
     lastName: string;
     role: AdminRole;
     settings: AdminAccountSettings;
-    isActive: boolean;
+    isActivate: boolean;
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
     MustHaveAdminRole(role: AdminRole): void;
+    MustBeActivated(): void;
     static isEmailExist(email: string): Promise<Admin>;
 }

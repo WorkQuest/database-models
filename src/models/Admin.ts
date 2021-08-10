@@ -61,7 +61,7 @@ export class Admin extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) role: AdminRole;
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
-  @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
+  @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivate: boolean;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 
@@ -80,6 +80,12 @@ export class Admin extends Model {
   MustHaveAdminRole(role: AdminRole) {
     if (this.role !== role) {
       throw error(Errors.InvalidRole, 'Invalid admin type', {});
+    }
+  }
+
+  MustBeActivated() {
+    if(this.isActivate !== true) {
+      throw error(Errors.InvalidStatus, 'Admin is deactivate', {})
     }
   }
 
