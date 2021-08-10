@@ -15,11 +15,11 @@ export const adminSchema = Joi.object({
   email: adminEmailSchema,
   firstName: adminFirstNameSchema,
   lastName: adminLastNameSchema,
-  isActive: isActiveSchema,
+  isActivated: isActiveSchema,
   adminRole: adminRoleSchema,
 }).label('AccountSchema')
 
 export const adminQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
-}).label('QuestsQuery');
+}).label('AdminsQuery');
