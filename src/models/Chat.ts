@@ -24,7 +24,7 @@ export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) creatorUserId: string;
+  @Column(DataType.STRING) creatorUserId: string;
 
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
   // @Column({type: DataType.BOOLEAN, defaultValue: true}) isPrivate: boolean; // TODO ??
