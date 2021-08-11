@@ -10,6 +10,7 @@ export declare class Chat extends Model {
     id: string;
     creatorUserId: string;
     lastMessageId: string;
+    lastMessageDate: Date;
     type: ChatType;
     members: User[];
     creator: User;

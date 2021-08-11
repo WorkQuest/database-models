@@ -44,13 +44,14 @@ export class Chat extends Model {
   @Column(DataType.STRING) creatorUserId: string;
 
   @ForeignKey(() => Message)
-  @Column(DataType.STRING) lastMessageId: string;
+  @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
+  @Column(DataType.DATE) lastMessageDate: Date;
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];
   @BelongsTo(() => User) creator: User;
-  @BelongsTo(() => Message, {constraints: false}) lastMessage: Message;
+  @BelongsTo(() => Message, {foreignKey: 'lastMessageId', constraints: false}) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
