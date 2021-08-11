@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {idSchema} from "./common";
-import {userSchema} from "./user";
+import {userSchema, usersSchema} from "./user";
 import {mediaIdsSchema} from "./media";
 import {ChatType} from "../models";
 
@@ -22,15 +22,19 @@ export const messageSchema = Joi.object({
   // chat: chatSchema,
 }).label('Message');
 
+export const messagesSchema = Joi.array().items(messageSchema).label('Messages');
+export const messageIdsSchema = Joi.array().items(messageIdSchema).label('MessageIds');
+
 export const chatSchema = Joi.object({
   id: chatIdSchema,
   creatorUserId: userIdSchema,
+  lastMessageId: messageIdSchema,
   type: chatTypeSchema,
   creator: userSchema,
+  lastMessage: messageSchema,
+  members: usersSchema,
+  messages: messagesSchema,
 }).label('Chat');
-
-export const messagesSchema = Joi.array().items(messageSchema).label('Messages');
-export const messageIdsSchema = Joi.array().items(messageIdSchema).label('MessageIds');
 
 export const chatsSchema = Joi.array().items(chatSchema).label('Chats');
 export const chatIdsSchema = Joi.array().items(chatIdSchema).label('ChatIds');
