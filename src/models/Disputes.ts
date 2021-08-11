@@ -19,7 +19,7 @@ export const DisputeStatuses = Object.values(DisputeStatus)
       as: 'openDisputeUser'
     }, {
       model: User,
-      as: 'opponentUserId'
+      as: 'opponentUser'
     }, {
       model: Quest,
       as: 'quest'
