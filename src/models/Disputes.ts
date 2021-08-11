@@ -3,6 +3,7 @@ import { getUUID, error } from '../utils';
 import {User} from "./User";
 import {Quest} from "./Quest";
 import {Errors} from "../utils/errors";
+import {Media} from "./Media";
 
 export enum DisputeStatus {
   pending  = 0,
@@ -11,7 +12,17 @@ export enum DisputeStatus {
 }
 export const DisputeStatuses = Object.values(DisputeStatus)
 
-
+@Scopes(() => ({
+  defaultScope: {
+    include: [{
+      model: User,
+      as: 'openDisputeUser'
+    }, {
+      model: Quest,
+      as: 'quest'
+    }]
+  }
+}))
 @Table({ paranoid: true })
 export class Dispute extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
