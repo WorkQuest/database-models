@@ -55,6 +55,7 @@ export class Chat extends Model {
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
+  @HasOne(() => ChatMember) otherMember: ChatMember;
 
   mustHaveMember(userId: String) {
     if (!this.members.some(user => user.id === userId)) {
