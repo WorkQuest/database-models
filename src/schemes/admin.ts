@@ -19,10 +19,8 @@ export const adminSchema = Joi.object({
   lastName: adminLastNameSchema,
   isActivated: isActiveSchema,
   adminRole: adminRoleSchema,
-  loginTime: isoDateSchema,
-  logoutTime: isoDateSchema,
-  place: adminPlaceSchema,
-  device: adminDeviceSchema,
+  loginAt: isoDateSchema,
+  logoutAt: isoDateSchema,
 }).label('AccountSchema')
 
 export const adminQuerySchema = Joi.object({

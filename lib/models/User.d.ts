@@ -89,12 +89,10 @@ export declare class User extends Model {
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
-    loginTime: Date;
-    logoutTime: Date;
-    place: string;
-    device: string;
     tempPhone: string;
     phone: string;
+    loginAt: Date;
+    logoutAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     starredQuests: StarredQuests[];

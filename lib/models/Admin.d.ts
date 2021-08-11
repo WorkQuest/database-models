@@ -25,10 +25,8 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActivated: boolean;
-    loginTime: Date;
-    logoutTime: Date;
-    place: string;
-    device: string;
+    loginAt: Date;
+    logoutAt: Date;
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;

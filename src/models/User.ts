@@ -159,13 +159,11 @@ export class User extends Model {
   @Column({ type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed }) status: UserStatus;
   @Column({ type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed }) statusKYC: StatusKYC;
 
-  @Column(DataType.DATE) loginTime: Date;
-  @Column(DataType.DATE) logoutTime: Date;
-  @Column({type: DataType.STRING, allowNull: false}) place: string;
-  @Column({type: DataType.STRING, allowNull: false}) device: string;
-
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
+
+  @Column(DataType.DATE) loginAt: Date;
+  @Column(DataType.DATE) logoutAt: Date;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 

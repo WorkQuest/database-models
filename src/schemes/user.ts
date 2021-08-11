@@ -71,10 +71,8 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
-  loginTime: isoDateSchema,
-  logoutTime: isoDateSchema,
-  place: userPlaceSchema,
-  device: userDeviceSchema,
+  loginAt: isoDateSchema,
+  logoutAt: isoDateSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label("UserSchema");

@@ -8,5 +8,8 @@ export class Session extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
 
+  @Column({type: DataType.STRING, allowNull: false}) place: string;
+  @Column({type: DataType.STRING, allowNull: false}) device: string;
+
   @BelongsTo(() => User) user: User;
 }

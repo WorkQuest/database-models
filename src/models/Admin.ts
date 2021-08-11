@@ -63,12 +63,8 @@ export class Admin extends Model {
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
-  @Column(DataType.DATE) loginTime: Date;
-  @Column(DataType.DATE) logoutTime: Date;
-  @Column({type: DataType.STRING, allowNull: false}) place: string;
-  @Column({type: DataType.STRING, allowNull: false}) device: string;
-
-
+  @Column(DataType.DATE) loginAt: Date;
+  @Column(DataType.DATE) logoutAt: Date;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 
