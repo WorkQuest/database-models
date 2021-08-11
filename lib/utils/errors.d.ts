@@ -10,6 +10,7 @@ export declare enum Errors {
     InvalidActiveStatusTOTP = 400006,
     InvalidTOTP = 400007,
     UserAlreadyConfirmed = 400008,
+    IsBlocked = 400009,
     TokenExpired = 401001,
     TokenInvalid = 401002,
     SessionNotFound = 401003,
