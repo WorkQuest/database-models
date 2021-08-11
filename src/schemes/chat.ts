@@ -32,6 +32,7 @@ export const chatSchema = Joi.object({
   type: chatTypeSchema,
   creator: userSchema,
   lastMessage: messageSchema,
+  otherMember: userSchema,
   members: usersSchema,
   messages: messagesSchema,
 }).label('Chat');
