@@ -12,9 +12,11 @@ export const disputeStatusSchema = Joi.string().max(255).valid(...DisputeStatuse
 export const problemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescriptionSchema');
 export const adminDecisionSchema = Joi.string().example('Decision is...').label('AdminDecisionSchema');
 export const disputeOpeningTimeSchema = Joi.date().format('YYYY-MM-DD HH:mm').example('2021-08-10 09:48').label('DisputeOpeningTimeSchema');
+export const disputeNumberSchema = Joi.number().example('123').label('DisputeNumberSchema');
 
 export const disputeSchema = Joi.object({
   id: idSchema,
+  disputeNumber: disputeNumberSchema,
   employerId: idSchema,
   workerId: idSchema,
   questId: idSchema,
