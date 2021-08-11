@@ -111,7 +111,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt"]
+      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt", "deletedAt"]
     },
     include: [{
       model: Media.scope('urlOnly'),
@@ -185,6 +185,18 @@ export class User extends Model {
         [`settings.social.${network}.id`]: id
       }
     });
+  }
+
+  static async userMustExist(userId: string) {
+    if (!await User.findByPk(userId)) {
+      throw error(Errors.NotFound, "User does not exist", { userId });
+    }
+  }
+
+  static async usersMustExist(userIds: string[]) {
+    for (const id of userIds) {
+      await User.userMustExist(id);
+    }
   }
 
   mustHaveRole(role: UserRole) {

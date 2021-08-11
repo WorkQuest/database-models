@@ -8,3 +8,4 @@ export * from "./review";
 export * from "./map";
 export * from "./sumsub";
 export * from "./admin";
+export * from "./chat";
