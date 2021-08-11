@@ -4,9 +4,9 @@ const Joi = JoiImport.extend(DateExtension);
 import {
   idSchema, limitSchema, offsetSchema
 } from './common';
-import {DisputeStatus, DisputeStatuses} from "../models/Disputes";
-import {questTitleSchema} from "./quest";
-import {userSchema} from "./user";
+import { DisputeStatus, DisputeStatuses } from "../models/Disputes";
+import { questSchema } from "./quest";
+import { userSchema } from "./user";
 
 export const disputeStatusSchema = Joi.string().max(255).valid(...DisputeStatuses).default(DisputeStatus.pending).example('active').label('DisputeStatusSchema');
 export const problemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescriptionSchema');
@@ -17,13 +17,10 @@ export const disputeNumberSchema = Joi.number().example('123').label('DisputeNum
 export const disputeSchema = Joi.object({
   id: idSchema,
   disputeNumber: disputeNumberSchema,
-  employerId: idSchema,
-  workerId: idSchema,
+  openDisputeUserId: idSchema,
   questId: idSchema,
-  questTitle: questTitleSchema,
-  user: userSchema,
-  assignedWorker: userSchema,
-  disputeOpeningTime: disputeOpeningTimeSchema,
+  openDisputeUser: userSchema,
+  quest: questSchema,
   status: disputeStatusSchema,
   problem: problemDescriptionSchema,
   decision: adminDecisionSchema,

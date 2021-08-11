@@ -7,18 +7,15 @@ export declare enum DisputeStatus {
     completed = "completed"
 }
 export declare const DisputeStatuses: DisputeStatus[];
-export declare class Disputes extends Model {
+export declare class Dispute extends Model {
     id: string;
     disputeNumber: number;
-    userId: string;
-    assignedWorkerId: string;
+    openDisputeUserId: string;
     questId: string;
     status: DisputeStatus;
     problem: string;
     decision: string;
-    disputeOpeningTime: Date;
-    user: User;
-    assignedWorker: User;
+    openDisputeUser: User;
     quest: Quest;
     mustHaveStatus(status: DisputeStatus): void;
 }

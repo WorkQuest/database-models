@@ -12,43 +12,23 @@ export enum DisputeStatus {
 export const DisputeStatuses = Object.values(DisputeStatus)
 
 
-@Scopes(() => ({
-  defaultScope: {
-    attributes: {
-      exclude: ["locationPostGIS"]
-    },
-    include: [{
-      model: User,
-      as: 'user'
-    }, {
-      model: User,
-      as: 'assignedWorker'
-    }]
-  }
-}))
 @Table({ paranoid: true })
-export class Disputes extends Model {
+export class Dispute extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
   @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, unique: true}) userId: string;
-
-  @ForeignKey(() => User)
-  @Column({type: DataType.STRING, unique: true}) assignedWorkerId: string;
+  @Column({type: DataType.STRING, unique: true}) openDisputeUserId: string;
 
   @ForeignKey(() => Quest)
   @Column(DataType.STRING) questId: string;
 
   @Column({type: DataType.STRING, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
 
-  @Column(DataType.STRING) problem: string;
-  @Column(DataType.STRING) decision: string;
+  @Column({type: DataType.STRING, allowNull: false}) problem: string;
+  @Column({type: DataType.STRING, allowNull: false}) decision: string;
 
-  @Column(DataType.DATE) disputeOpeningTime: Date;
-
-  @BelongsTo(() => User, 'userId') user: User;
-  @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
+  @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
 
   mustHaveStatus(status: DisputeStatus) {
