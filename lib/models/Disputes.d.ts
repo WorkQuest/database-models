@@ -14,12 +14,10 @@ export declare class Dispute extends Model {
     opponentUserId: string;
     questId: string;
     status: DisputeStatus;
-    isBlocked: boolean;
     problem: string;
     decision: string;
     openDisputeUser: User;
     opponentUser: User;
     quest: Quest;
     mustHaveStatus(status: DisputeStatus): void;
-    mustBeUnblock(status: DisputeStatus): void;
 }

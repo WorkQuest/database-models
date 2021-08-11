@@ -40,7 +40,6 @@ export class Dispute extends Model {
   @Column(DataType.STRING) questId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
-  @Column({type: DataType.BOOLEAN, defaultValue: false}) isBlocked: boolean;
 
   @Column({type: DataType.STRING, allowNull: false}) problem: string;
   @Column(DataType.STRING) decision: string;
@@ -52,12 +51,6 @@ export class Dispute extends Model {
   mustHaveStatus(status: DisputeStatus) {
     if (this.status !== status) {
       throw error(Errors.InvalidStatus, 'Invalid status', {});
-    }
-  }
-
-  mustBeUnblock(status: DisputeStatus) {
-    if (this.isBlocked) {
-      throw error(Errors.IsBlocked, 'Quest is blocked', {});
     }
   }
 }

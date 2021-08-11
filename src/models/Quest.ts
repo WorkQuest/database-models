@@ -8,6 +8,7 @@ import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
+import {DisputeStatus} from "./Disputes";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -73,6 +74,7 @@ export class Quest extends Model {
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
+  @Column({type: DataType.BOOLEAN, defaultValue: false}) isBlocked: boolean;
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
@@ -111,6 +113,12 @@ export class Quest extends Model {
         current: this.userId,
         mustHave: userId
       });
+    }
+  }
+
+  mustBeUnblock(status: DisputeStatus) {
+    if (this.isBlocked) {
+      throw error(Errors.IsBlocked, 'Quest is blocked', {});
     }
   }
 }
