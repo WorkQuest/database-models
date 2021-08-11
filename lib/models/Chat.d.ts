@@ -13,6 +13,7 @@ export declare class Chat extends Model {
     type: ChatType;
     members: User[];
     creator: User;
+    lastMessage: Message;
     messages: Message[];
     chatMembers: ChatMember[];
     mustHaveMember(userId: String): void;

@@ -50,6 +50,7 @@ export class Chat extends Model {
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];
   @BelongsTo(() => User) creator: User;
+  @BelongsTo(() => Message) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
