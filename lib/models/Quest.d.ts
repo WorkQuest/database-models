@@ -42,6 +42,7 @@ export declare class Quest extends Model {
     price: string;
     adType: AdType;
     isBlocked: boolean;
+    blockReason: string;
     medias: Media[];
     user: User;
     assignedWorker: User;

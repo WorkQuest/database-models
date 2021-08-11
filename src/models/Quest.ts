@@ -75,6 +75,8 @@ export class Quest extends Model {
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isBlocked: boolean;
+  @Column({type: DataType.TEXT, defaultValue: false}) blockReason: string;
+
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 

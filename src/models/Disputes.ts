@@ -41,8 +41,8 @@ export class Dispute extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
 
-  @Column({type: DataType.STRING, allowNull: false}) problem: string;
-  @Column(DataType.STRING) decision: string;
+  @Column({type: DataType.TEXT, allowNull: false}) problem: string;
+  @Column(DataType.TEXT) decision: string;
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
