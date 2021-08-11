@@ -3,15 +3,17 @@ import { getUUID } from '../utils';
 import { User } from './User';
 
 export enum ContentType {
-  mp4 = "video/mp4",
-  jpeg = "image/jpeg",
-  png = "image/png",
+  mp4 = 'video/mp4',
+  jpeg = 'image/jpeg',
+  png = 'image/png',
+  pdf = 'application/pdf',
+  DOC = 'application/msword'
 }
 
 @Table({
   scopes: {
     urlOnly: {
-      attributes: ["id", "url"]
+      attributes: ["id", "url", "ContentType"]
     }
   }
 })
