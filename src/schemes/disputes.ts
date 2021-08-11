@@ -26,7 +26,7 @@ export const disputeSchema = Joi.object({
   status: disputeStatusSchema,
   problem: problemDescriptionSchema,
   decision: adminDecisionSchema,
-}).label("QuestSchema");
+}).label("DisputeSchema");
 
 export const disputesSchema = Joi.array().items(disputeSchema).label('Disputes');
 
