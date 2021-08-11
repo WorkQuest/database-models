@@ -19,4 +19,5 @@ export declare class Disputes extends Model {
     user: User;
     assignedWorker: User;
     quest: Quest;
+    mustHaveStatus(status: DisputeStatus): void;
 }

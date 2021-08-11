@@ -2,7 +2,7 @@ import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} 
 import { getUUID, error } from '../utils';
 import {User} from "./User";
 import {Quest} from "./Quest";
-import {Media} from "./Media";
+import {Errors} from "../utils/errors";
 
 export enum DisputeStatus {
   pending  = "pending",
@@ -50,4 +50,9 @@ export class Disputes extends Model {
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
 
+  mustHaveStatus(status: DisputeStatus) {
+    if (this.status !== status) {
+      throw error(Errors.InvalidStatus, 'Invalid status', {});
+    }
+  }
 }
