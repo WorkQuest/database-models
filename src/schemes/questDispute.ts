@@ -1,6 +1,4 @@
-import DateExtension from '@joi/date';
-import * as JoiImport from 'joi';
-const Joi = JoiImport.extend(DateExtension);
+import * as Joi from 'joi';
 import {
   idSchema, limitSchema, offsetSchema
 } from './common';
