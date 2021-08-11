@@ -6,7 +6,7 @@ import {Errors} from "../utils/errors";
 
 export enum DisputeStatus {
   pending  = "pending",
-  in_queue = "in_queue",
+  in_progress = "in_progress",
   completed = "completed"
 }
 export const DisputeStatuses = Object.values(DisputeStatus)
@@ -26,9 +26,10 @@ export const DisputeStatuses = Object.values(DisputeStatus)
     }]
   }
 }))
-@Table
+@Table({ paranoid: true })
 export class Disputes extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
+  @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, unique: true}) userId: string;
