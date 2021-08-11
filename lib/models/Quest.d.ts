@@ -4,7 +4,7 @@ import { Media } from './Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { DisputeStatus } from "./Disputes";
+import { DisputeStatus } from "./QuestDispute";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -22,7 +22,8 @@ export declare enum QuestStatus {
     Dispute = 3,
     WaitWorker = 4,
     WaitConfirm = 5,
-    Done = 6
+    Done = 6,
+    isBlocked = 7
 }
 export interface Location {
     longitude: number;
@@ -41,7 +42,6 @@ export declare class Quest extends Model {
     description: string;
     price: string;
     adType: AdType;
-    isBlocked: boolean;
     blockReason: string;
     medias: Media[];
     user: User;

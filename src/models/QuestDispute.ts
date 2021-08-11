@@ -27,7 +27,7 @@ export const DisputeStatuses = Object.values(DisputeStatus)
   }
 }))
 @Table({ paranoid: true })
-export class Dispute extends Model {
+export class QuestDispute extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
   @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
 

@@ -12,7 +12,7 @@ import { PortfolioMedia } from './PortfolioMedia';
 import { Portfolio } from './Portfolio';
 import { Admin } from './Admin'
 import { AdminSession } from "./AdminSession";
-import { Dispute } from "./Disputes";
+import { QuestDispute } from "./QuestDispute";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -31,7 +31,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PortfolioMedia,
       Admin,
       AdminSession,
-      Dispute,
+      QuestDispute,
     ]
   });
   if (sync)
@@ -53,5 +53,6 @@ export * from "./PortfolioMedia";
 export * from "./Portfolio";
 export * from "./Admin";
 export * from "./AdminSession";
+export * from "./QuestDispute";
 
 

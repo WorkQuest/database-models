@@ -8,7 +8,7 @@ import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import {DisputeStatus} from "./Disputes";
+import {DisputeStatus} from "./QuestDispute";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -30,6 +30,7 @@ export enum QuestStatus {
   WaitWorker,
   WaitConfirm,
   Done,
+  isBlocked
 }
 
 export interface Location {
@@ -74,8 +75,7 @@ export class Quest extends Model {
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
-  @Column({type: DataType.BOOLEAN, defaultValue: false}) isBlocked: boolean;
-  @Column({type: DataType.TEXT, defaultValue: false}) blockReason: string;
+  @Column(DataType.TEXT) blockReason: string;
 
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
@@ -119,7 +119,7 @@ export class Quest extends Model {
   }
 
   mustBeUnblock(status: DisputeStatus) {
-    if (this.isBlocked) {
+    if (this.status === QuestStatus.isBlocked) {
       throw error(Errors.IsBlocked, 'Quest is blocked', {});
     }
   }

@@ -13,6 +13,8 @@ export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).ma
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const userPhoneSchema = Joi.string().example('+79991234567').label("Phone");
 export const userTempPhoneSchema = Joi.string().example('+79991234567').label("TempPhone");
+export const userPlaceSchema = Joi.string().max(255).example('Tomsk').label('AdminPlaceSchema');
+export const userDeviceSchema = Joi.string().max(255).example('Phone').label('AdminDeviceSchema');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -69,6 +71,10 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  loginTime: isoDateSchema,
+  logoutTime: isoDateSchema,
+  place: userPlaceSchema,
+  device: userDeviceSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label("UserSchema");

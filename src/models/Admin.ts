@@ -63,6 +63,13 @@ export class Admin extends Model {
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
+  @Column(DataType.DATE) loginTime: Date;
+  @Column(DataType.DATE) logoutTime: Date;
+  @Column({type: DataType.STRING, allowNull: false}) place: string;
+  @Column({type: DataType.STRING, allowNull: false}) device: string;
+
+
+
   @HasMany(() => AdminSession) sessions: AdminSession[];
 
   async passwordCompare(pwd: string) {
@@ -84,7 +91,7 @@ export class Admin extends Model {
   }
 
   mustBeActivated(): void {
-    if(this.isActivated !== true) {
+    if(!this.isActivated) {
       throw error(Errors.InvalidStatus, 'Admin is deactivate', {})
     }
   }

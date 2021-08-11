@@ -13,3 +13,4 @@ export * from "./PortfolioMedia";
 export * from "./Portfolio";
 export * from "./Admin";
 export * from "./AdminSession";
+export * from "./QuestDispute";
