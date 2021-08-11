@@ -18,6 +18,9 @@ export const DisputeStatuses = Object.values(DisputeStatus)
       model: User,
       as: 'openDisputeUser'
     }, {
+      model: User,
+      as: 'opponentUserId'
+    }, {
       model: Quest,
       as: 'quest'
     }]
@@ -30,6 +33,8 @@ export class Dispute extends Model {
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, unique: true}) openDisputeUserId: string;
+  @ForeignKey(() => User)
+  @Column({type: DataType.STRING, unique: true}) opponentUserId: string;
 
   @ForeignKey(() => Quest)
   @Column(DataType.STRING) questId: string;
@@ -40,6 +45,7 @@ export class Dispute extends Model {
   @Column(DataType.STRING) decision: string;
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
+  @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
 
   mustHaveStatus(status: DisputeStatus) {

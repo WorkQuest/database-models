@@ -11,11 +11,13 @@ export declare class Dispute extends Model {
     id: string;
     disputeNumber: number;
     openDisputeUserId: string;
+    opponentUserId: string;
     questId: string;
     status: DisputeStatus;
     problem: string;
     decision: string;
     openDisputeUser: User;
+    opponentUser: User;
     quest: Quest;
     mustHaveStatus(status: DisputeStatus): void;
 }
