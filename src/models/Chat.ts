@@ -43,13 +43,15 @@ export class Chat extends Model {
   @ForeignKey(() => User)
   @Column(DataType.STRING) creatorUserId: string;
 
+  @ForeignKey(() => Message)
+  @Column(DataType.STRING) lastMessageId: string;
+
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
-  // @Column({type: DataType.BOOLEAN, defaultValue: true}) isPrivate: boolean; // TODO ??
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];
   @BelongsTo(() => User) creator: User;
 
-  @HasMany(() => Message) message: Message[];
+  @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   mustHaveMember(userId: String) {

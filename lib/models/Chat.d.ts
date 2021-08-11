@@ -9,10 +9,11 @@ export declare enum ChatType {
 export declare class Chat extends Model {
     id: string;
     creatorUserId: string;
+    lastMessageId: string;
     type: ChatType;
     members: User[];
     creator: User;
-    message: Message[];
+    messages: Message[];
     chatMembers: ChatMember[];
     mustHaveMember(userId: String): void;
 }
