@@ -23,7 +23,7 @@ export class Dispute extends Model {
   @ForeignKey(() => Quest)
   @Column(DataType.STRING) questId: string;
 
-  @Column({type: DataType.NUMBER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
+  @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
 
   @Column({type: DataType.STRING, allowNull: false}) problem: string;
   @Column({type: DataType.STRING, allowNull: false}) decision: string;
