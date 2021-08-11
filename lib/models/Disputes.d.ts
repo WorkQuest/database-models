@@ -2,11 +2,11 @@ import { Model } from 'sequelize-typescript';
 import { User } from "./User";
 import { Quest } from "./Quest";
 export declare enum DisputeStatus {
-    pending = "pending",
-    in_progress = "in_progress",
-    completed = "completed"
+    pending = 0,
+    inProgress = 1,
+    completed = 2
 }
-export declare const DisputeStatuses: DisputeStatus[];
+export declare const DisputeStatuses: (string | DisputeStatus)[];
 export declare class Dispute extends Model {
     id: string;
     disputeNumber: number;

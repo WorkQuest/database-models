@@ -5,9 +5,9 @@ import {Quest} from "./Quest";
 import {Errors} from "../utils/errors";
 
 export enum DisputeStatus {
-  pending  = "pending",
-  in_progress = "in_progress",
-  completed = "completed"
+  pending  = 0,
+  inProgress = 1,
+  completed = 2,
 }
 export const DisputeStatuses = Object.values(DisputeStatus)
 
@@ -23,7 +23,7 @@ export class Dispute extends Model {
   @ForeignKey(() => Quest)
   @Column(DataType.STRING) questId: string;
 
-  @Column({type: DataType.STRING, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
+  @Column({type: DataType.NUMBER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
 
   @Column({type: DataType.STRING, allowNull: false}) problem: string;
   @Column({type: DataType.STRING, allowNull: false}) decision: string;
