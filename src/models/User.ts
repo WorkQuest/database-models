@@ -168,8 +168,6 @@ export class User extends Model {
   @Column(DataType.DATE) logoutAt: Date;
   @Column(DataType.JSONB) lastSession: LastSession;
 
-  @Column({type: DataType.BOOLEAN, defaultValue: false}) isBlocked: boolean;
-
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

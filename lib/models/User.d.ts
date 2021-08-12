@@ -96,7 +96,6 @@ export declare class User extends Model {
     loginAt: Date;
     logoutAt: Date;
     lastSession: LastSession;
-    isBlocked: boolean;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     starredQuests: StarredQuests[];
