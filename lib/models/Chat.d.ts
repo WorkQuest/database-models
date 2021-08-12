@@ -19,4 +19,5 @@ export declare class Chat extends Model {
     chatMembers: ChatMember[];
     otherMember: ChatMember;
     mustHaveMember(userId: String): void;
+    mustHaveOwner(userId: String): void;
 }

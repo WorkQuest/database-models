@@ -62,4 +62,10 @@ export class Chat extends Model {
       throw error(Errors.Forbidden, "User is not a member of this chat", {});
     }
   }
+
+  mustHaveOwner(userId: String) {
+    if (this.ownerUserId !== userId) {
+      throw error(Errors.Forbidden, "User is not a owner in this chat", {});
+    }
+  }
 }
