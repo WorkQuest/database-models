@@ -18,7 +18,7 @@ export declare class Chat extends Model {
     messages: Message[];
     chatMembers: ChatMember[];
     otherMember: ChatMember;
-    mustHaveMember(userId: String): void;
+    mustHaveMember(userId: string): Promise<void>;
     mustHaveType(type: ChatType): void;
     mustHaveOwner(userId: String): void;
 }

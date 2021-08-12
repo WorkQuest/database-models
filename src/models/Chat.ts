@@ -51,8 +51,12 @@ export class Chat extends Model {
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasOne(() => ChatMember) otherMember: ChatMember;
 
-  mustHaveMember(userId: String) {
-    if (!this.members.some(user => user.id === userId)) {
+  async mustHaveMember(userId: string) {
+    const member = await ChatMember.findOne({
+      where: { chatId: this.id, userId }
+    });
+
+    if (!member) {
       throw error(Errors.Forbidden, "User is not a member of this chat", {});
     }
   }
