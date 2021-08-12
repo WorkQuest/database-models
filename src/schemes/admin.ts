@@ -11,7 +11,14 @@ export const adminRoleSchema = Joi.string().max(255).valid(...AdminRoles).defaul
 export const isActiveSchema = Joi.boolean().example(true).label('IsActiveSchema');
 export const adminPlaceSchema = Joi.string().max(255).example('Tomsk').label('AdminPlaceSchema');
 export const adminDeviceSchema = Joi.string().max(255).example('Phone').label('AdminDeviceSchema');
-
+export const lastSessionSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  place: adminPlaceSchema,
+  device: adminDeviceSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+})
 export const adminSchema = Joi.object({
   id: idSchema,
   email: adminEmailSchema,
@@ -21,6 +28,7 @@ export const adminSchema = Joi.object({
   adminRole: adminRoleSchema,
   loginAt: isoDateSchema,
   logoutAt: isoDateSchema,
+  lastSession: lastSessionSchema,
 }).label('AccountSchema')
 
 export const adminQuerySchema = Joi.object({

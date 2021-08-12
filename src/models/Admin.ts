@@ -26,6 +26,15 @@ export interface AdminAccountSettings {
   security: AdminSecurity;
 }
 
+export interface LastSession {
+  id: string,
+  adminId: string,
+  place: string,
+  device: string,
+  createdAt: Date,
+  updatedAt: Date,
+}
+
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -65,6 +74,7 @@ export class Admin extends Model {
 
   @Column(DataType.DATE) loginAt: Date;
   @Column(DataType.DATE) logoutAt: Date;
+  @Column(DataType.JSONB) lastSession: LastSession;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 
