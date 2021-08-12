@@ -18,3 +18,4 @@ export declare const userAdditionalInfoEmployerSchema: Joi.ObjectSchema<any>;
 export declare const userSchema: Joi.ObjectSchema<any>;
 export declare const usersSchema: Joi.ArraySchema;
 export declare const tokensWithStatus: Joi.ObjectSchema<any>;
+export declare const usersQuerySchema: Joi.ObjectSchema<any>;
