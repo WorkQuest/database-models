@@ -4,7 +4,14 @@ import { Session } from "./Session";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
-import { LastSession } from "./Admin";
+export interface UserLastSession {
+    id: string;
+    adminId: string;
+    place: string;
+    device: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
 export interface SocialInfo {
     id: string;
     email: string;
@@ -93,9 +100,9 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
+    lastSession: UserLastSession;
     loginAt: Date;
     logoutAt: Date;
-    lastSession: LastSession;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     starredQuests: StarredQuests[];

@@ -9,8 +9,14 @@ export const adminPhoneSchema = Joi.string().max(255).example('88005553535').lab
 export const adminPasswordSchema = Joi.string().min(8).max(255).label('PasswordSchema'); // TODO: describe custom validator rule
 export const adminRoleSchema = Joi.string().max(255).valid(...AdminRoles).default(AdminRole.main).example('main').label('RoleSchema');
 export const isActiveSchema = Joi.boolean().example(true).label('IsActiveSchema');
-export const adminPlaceSchema = Joi.string().max(255).example('Tomsk').label('AdminPlaceSchema');
 export const adminDeviceSchema = Joi.string().max(255).example('Phone').label('AdminDeviceSchema');
+export const adminCountrySchema = Joi.string().max(255).example('Russia').label('AdminCountrySchema');
+export const adminCitySchema = Joi.string().max(255).example('Tomsk').label('AdminPlaceSchema');
+export const adminPlaceSchema = Joi.object({
+  country: adminCountrySchema,
+  city: adminCitySchema,
+}).label('AdminPlaceSchema');
+
 export const adminLastSessionSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
@@ -18,7 +24,8 @@ export const adminLastSessionSchema = Joi.object({
   device: adminDeviceSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
-})
+}).label('AdminLastSessionSchema');
+
 export const adminSchema = Joi.object({
   id: idSchema,
   email: adminEmailSchema,
@@ -26,9 +33,9 @@ export const adminSchema = Joi.object({
   lastName: adminLastNameSchema,
   isActivated: isActiveSchema,
   adminRole: adminRoleSchema,
+  lastSession: adminLastSessionSchema,
   loginAt: isoDateSchema,
   logoutAt: isoDateSchema,
-  lastSession: adminLastSessionSchema,
 }).label('AccountSchema')
 
 export const adminQuerySchema = Joi.object({

@@ -7,7 +7,15 @@ import { Errors } from "../utils/errors";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
-import {LastSession} from "./Admin";
+
+export interface UserLastSession {
+  id: string,
+  adminId: string,
+  place: string,
+  device: string,
+  createdAt: Date,
+  updatedAt: Date,
+}
 
 export interface SocialInfo {
   id: string;
@@ -164,9 +172,11 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
+  @Column(DataType.JSONB) lastSession: UserLastSession;
+
   @Column(DataType.DATE) loginAt: Date;
   @Column(DataType.DATE) logoutAt: Date;
-  @Column(DataType.JSONB) lastSession: LastSession;
+
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 

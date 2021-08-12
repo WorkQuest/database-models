@@ -26,7 +26,7 @@ export interface AdminAccountSettings {
   security: AdminSecurity;
 }
 
-export interface LastSession {
+export interface AdminLastSession {
   id: string,
   adminId: string,
   place: string,
@@ -72,9 +72,10 @@ export class Admin extends Model {
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
+  @Column(DataType.JSONB) lastSession: AdminLastSession;
+
   @Column(DataType.DATE) loginAt: Date;
   @Column(DataType.DATE) logoutAt: Date;
-  @Column(DataType.JSONB) lastSession: LastSession;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 

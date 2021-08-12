@@ -4,6 +4,8 @@ import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh, limitSchema, o
 import {mediaUrlOnlySchema } from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {Column, DataType} from "sequelize-typescript";
+import {string} from "joi";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -13,16 +15,25 @@ export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).ma
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const userPhoneSchema = Joi.string().example('+79991234567').label("Phone");
 export const userTempPhoneSchema = Joi.string().example('+79991234567').label("TempPhone");
-export const userPlaceSchema = Joi.string().max(255).example('Tomsk').label('AdminPlaceSchema');
-export const userDeviceSchema = Joi.string().max(255).example('Phone').label('AdminDeviceSchema');
+export const userCountrySchema = Joi.string().max(255).example('Russia').label('UserCountrySchema');
+export const userCitySchema = Joi.string().max(255).example('Tomsk').label('UserCitySchema');
+export const userIpAddressSchema = Joi.string().max(255).example('192.168.1.1').label('UserIpAddressSchema');
+export const userPlaceSchema = Joi.object({
+  country: userCountrySchema,
+  city: userCitySchema,
+  ipAddress: userIpAddressSchema,
+}).label('UserPlaceSchema');
+
+export const userDeviceSchema = Joi.string().max(255).example('Phone').label('UserDeviceSchema');
 export const userLastSessionSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
   place: userPlaceSchema,
   device: userDeviceSchema,
+  ipAddress: userIpAddressSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
-})
+}).label('UserLastSessionSchema');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -79,11 +90,11 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  lastSession: userLastSessionSchema,
   loginAt: isoDateSchema,
   logoutAt: isoDateSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
-  lastSession: userLastSessionSchema,
 }).label("UserSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
