@@ -13,7 +13,7 @@ export enum ContentType {
 @Table({
   scopes: {
     urlOnly: {
-      attributes: ["id", "url", "ContentType"]
+      attributes: ["id", "url", "contentType"]
     }
   }
 })
