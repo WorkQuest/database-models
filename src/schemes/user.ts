@@ -21,7 +21,6 @@ export const userIpAddressSchema = Joi.string().max(255).example('192.168.1.1').
 export const userPlaceSchema = Joi.object({
   country: userCountrySchema,
   city: userCitySchema,
-  ipAddress: userIpAddressSchema,
 }).label('UserPlaceSchema');
 
 export const userDeviceSchema = Joi.string().max(255).example('Phone').label('UserDeviceSchema');
