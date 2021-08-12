@@ -8,6 +8,6 @@ export declare const adminRoleSchema: Joi.StringSchema;
 export declare const isActiveSchema: Joi.BooleanSchema;
 export declare const adminPlaceSchema: Joi.StringSchema;
 export declare const adminDeviceSchema: Joi.StringSchema;
-export declare const lastSessionSchema: Joi.ObjectSchema<any>;
+export declare const adminLastSessionSchema: Joi.ObjectSchema<any>;
 export declare const adminSchema: Joi.ObjectSchema<any>;
 export declare const adminQuerySchema: Joi.ObjectSchema<any>;

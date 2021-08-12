@@ -15,6 +15,14 @@ export const userPhoneSchema = Joi.string().example('+79991234567').label("Phone
 export const userTempPhoneSchema = Joi.string().example('+79991234567').label("TempPhone");
 export const userPlaceSchema = Joi.string().max(255).example('Tomsk').label('AdminPlaceSchema');
 export const userDeviceSchema = Joi.string().max(255).example('Phone').label('AdminDeviceSchema');
+export const userLastSessionSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  place: userPlaceSchema,
+  device: userDeviceSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+})
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -75,6 +83,7 @@ export const userSchema = Joi.object({
   logoutAt: isoDateSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
+  lastSession: userLastSessionSchema,
 }).label("UserSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');

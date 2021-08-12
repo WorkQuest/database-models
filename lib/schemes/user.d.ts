@@ -9,6 +9,7 @@ export declare const userPhoneSchema: Joi.StringSchema;
 export declare const userTempPhoneSchema: Joi.StringSchema;
 export declare const userPlaceSchema: Joi.StringSchema;
 export declare const userDeviceSchema: Joi.StringSchema;
+export declare const userLastSessionSchema: Joi.ObjectSchema<any>;
 export declare const userSocialMediaNicknamesSchema: Joi.ObjectSchema<any>;
 export declare const userKnowledgeSchema: Joi.ObjectSchema<any>;
 export declare const userWorkExperienceSchema: Joi.ObjectSchema<any>;
