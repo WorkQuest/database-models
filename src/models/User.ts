@@ -59,6 +59,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
+  isBlocked,
 }
 
 export enum UserRole {
@@ -167,6 +168,8 @@ export class User extends Model {
   @Column(DataType.DATE) logoutAt: Date;
   @Column(DataType.JSONB) lastSession: LastSession;
 
+  @Column({type: DataType.BOOLEAN, defaultValue: false}) isBlocked: boolean;
+
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
@@ -205,6 +208,12 @@ export class User extends Model {
     if (this.settings.security.TOTP.active !== activeStatus) {
       throw error(Errors.InvalidActiveStatusTOTP,
         `Active status TOTP is not ${activeStatus ? "enable" : "disable"}`, {});
+    }
+  }
+
+  mustBeUnblock(status: UserStatus) {
+    if (this.status === UserStatus.isBlocked) {
+      throw error(Errors.IsBlocked, 'Quest is blocked', {});
     }
   }
 

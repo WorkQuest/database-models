@@ -8,7 +8,6 @@ import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import {DisputeStatus} from "./QuestDispute";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -118,7 +117,7 @@ export class Quest extends Model {
     }
   }
 
-  mustBeUnblock(status: DisputeStatus) {
+  mustBeUnblock(status: QuestStatus) {
     if (this.status === QuestStatus.isBlocked) {
       throw error(Errors.IsBlocked, 'Quest is blocked', {});
     }

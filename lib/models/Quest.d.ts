@@ -4,7 +4,6 @@ import { Media } from './Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { DisputeStatus } from "./QuestDispute";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -53,5 +52,5 @@ export declare class Quest extends Model {
     mustHaveStatus(...statuses: QuestStatus[]): void;
     mustBeAppointedOnQuest(workerId: string): void;
     mustBeQuestCreator(userId: String): void;
-    mustBeUnblock(status: DisputeStatus): void;
+    mustBeUnblock(status: QuestStatus): void;
 }

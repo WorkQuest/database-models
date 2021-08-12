@@ -36,7 +36,8 @@ export declare const defaultUserSettings: UserSettings;
 export declare enum UserStatus {
     Unconfirmed = 0,
     Confirmed = 1,
-    NeedSetRole = 2
+    NeedSetRole = 2,
+    isBlocked = 3
 }
 export declare enum UserRole {
     Employer = "employer",
@@ -95,6 +96,7 @@ export declare class User extends Model {
     loginAt: Date;
     logoutAt: Date;
     lastSession: LastSession;
+    isBlocked: boolean;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     starredQuests: StarredQuests[];
@@ -106,6 +108,7 @@ export declare class User extends Model {
     static findWithSocialId(network: string, id: string): Promise<User>;
     mustHaveRole(role: UserRole): void;
     mustHaveActiveStatusTOTP(activeStatus: boolean): void;
+    mustBeUnblock(status: UserStatus): void;
     isTOTPEnabled(): boolean;
     validateTOTP(TOTP: string): void;
 }
