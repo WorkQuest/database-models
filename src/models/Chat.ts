@@ -26,7 +26,7 @@ export enum ChatType {
     },
     include: [{
       model: User,
-      as: 'creator'
+      as: 'owner'
     }]
   }
 }))
