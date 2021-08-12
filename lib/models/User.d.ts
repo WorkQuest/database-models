@@ -9,6 +9,7 @@ export interface UserLastSession {
     adminId: string;
     place: string;
     device: string;
+    ipAddress: string;
     createdAt: Date;
     updatedAt: Date;
 }
