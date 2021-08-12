@@ -44,7 +44,7 @@ export class Chat extends Model {
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];
-  @BelongsTo(() => User) creator: User;
+  @BelongsTo(() => User) owner: User;
   @BelongsTo(() => Message, {foreignKey: 'lastMessageId', constraints: false}) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
