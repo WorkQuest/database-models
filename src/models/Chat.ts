@@ -63,6 +63,12 @@ export class Chat extends Model {
     }
   }
 
+  mustHaveType(type: ChatType) {
+    if (this.type !== type) {
+      throw error(Errors.InvalidType, "Type does not match", {});
+    }
+  }
+
   mustHaveOwner(userId: String) {
     if (this.ownerUserId !== userId) {
       throw error(Errors.Forbidden, "User is not a owner in this chat", {});
