@@ -97,4 +97,4 @@ export const tokensWithStatus = Joi.object({
 export const usersQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
-}).label('AdminsQuery');
+}).label('UsersQuery');
