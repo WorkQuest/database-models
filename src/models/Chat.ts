@@ -40,6 +40,7 @@ export class Chat extends Model {
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
+  @Column({type: DataType.STRING, defaultValue: null}) name: Date; /* If group chat */
   @Column(DataType.DATE) lastMessageDate: Date;
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
 
