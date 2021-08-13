@@ -4,6 +4,7 @@ import { Session } from "./Session";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
+import { UserBlockReason } from "./UserBlockReason";
 export interface UserLastSession {
     id: string;
     adminId: string;
@@ -106,6 +107,7 @@ export declare class User extends Model {
     logoutAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
+    blockReason: UserBlockReason;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];

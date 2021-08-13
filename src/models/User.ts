@@ -7,6 +7,7 @@ import { Errors } from "../utils/errors";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
+import {UserBlockReason} from "./UserBlockReason";
 
 export interface UserLastSession {
   id: string,
@@ -178,10 +179,10 @@ export class User extends Model {
   @Column(DataType.DATE) loginAt: Date;
   @Column(DataType.DATE) logoutAt: Date;
 
-
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
