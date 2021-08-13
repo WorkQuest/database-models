@@ -96,6 +96,30 @@ export const userSchema = Joi.object({
   updatedAt: isoDateSchema,
 }).label("UserSchema");
 
+export const userFullSchema = Joi.object({
+  id: idSchema.label("UserId"),
+  avatarId: idSchema.label('AvatarId'),
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: userPhoneSchema,
+  tempPhone: userTempPhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: Joi.object()
+    .concat(userAdditionalInfoEmployerSchema)
+    .concat(userAdditionalInfoWorkerSchema)
+    .allow(null).label('AdditionalInfo'),
+  role: userRoleSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
+  ratingStatistic: ratingStatisticSchema,
+  lastSession: userLastSessionSchema,
+  loginAt: isoDateSchema,
+  logoutAt: isoDateSchema,
+  changeRoleAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+}).label("UserFullSchema");
+
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 
 export const tokensWithStatus = Joi.object({

@@ -120,6 +120,10 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
   website: string | null;
 }
 
+interface isConfirmed{
+
+}
+
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -178,6 +182,7 @@ export class User extends Model {
 
   @Column(DataType.DATE) loginAt: Date;
   @Column(DataType.DATE) logoutAt: Date;
+  @Column(DataType.DATE) changeRoleAt: Date;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 

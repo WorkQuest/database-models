@@ -105,6 +105,7 @@ export declare class User extends Model {
     lastSession: UserLastSession;
     loginAt: Date;
     logoutAt: Date;
+    changeRoleAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     blockReason: UserBlockReason;
