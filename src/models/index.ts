@@ -13,6 +13,7 @@ import { Portfolio } from './Portfolio';
 import { Admin } from './Admin'
 import { AdminSession } from "./AdminSession";
 import { QuestDispute } from "./QuestDispute";
+import {UserBlockReason} from "./UserBlockReason";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -32,6 +33,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Admin,
       AdminSession,
       QuestDispute,
+      UserBlockReason
     ]
   });
   if (sync)
@@ -54,5 +56,6 @@ export * from "./Portfolio";
 export * from "./Admin";
 export * from "./AdminSession";
 export * from "./QuestDispute";
+export * from "./UserBlockReason"
 
 
