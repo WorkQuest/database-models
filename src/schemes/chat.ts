@@ -9,7 +9,7 @@ const userIdSchema = idSchema.label("UserId");
 const messageIdSchema = idSchema.label("MessageId");
 
 export const chatTypeSchema = Joi.number().valid(...Object.keys(ChatType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(ChatType.private).label('ChatType');
-
+export const chatNameSchema = Joi.string().allow(null).label('ChatName');
 export const messageTextSchema = Joi.string().label('MessageText');
 
 export const messageSchema = Joi.object({
@@ -29,6 +29,7 @@ export const chatSchema = Joi.object({
   id: chatIdSchema,
   creatorUserId: userIdSchema,
   lastMessageId: messageIdSchema,
+  name: chatNameSchema,
   type: chatTypeSchema,
   creator: userSchema,
   lastMessage: messageSchema,
