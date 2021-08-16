@@ -4,7 +4,7 @@ export declare const adminLastNameSchema: Joi.StringSchema;
 export declare const adminEmailSchema: Joi.StringSchema;
 export declare const adminPhoneSchema: Joi.StringSchema;
 export declare const adminPasswordSchema: Joi.StringSchema;
-export declare const adminRoleSchema: Joi.StringSchema;
+export declare const adminRoleSchema: Joi.NumberSchema;
 export declare const isActiveSchema: Joi.BooleanSchema;
 export declare const adminDeviceSchema: Joi.StringSchema;
 export declare const adminCountrySchema: Joi.StringSchema;

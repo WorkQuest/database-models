@@ -1,11 +1,9 @@
 import * as Joi from "joi";
-import { UserRole, UserStatus } from "../models";
+import {StatusesKYC, StatusKYC, UserRole, UserStatus} from "../models";
 import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh, limitSchema, offsetSchema} from "./common";
 import {mediaUrlOnlySchema } from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
-import {Column, DataType} from "sequelize-typescript";
-import {string} from "joi";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -18,11 +16,11 @@ export const userTempPhoneSchema = Joi.string().example('+79991234567').label("T
 export const userCountrySchema = Joi.string().max(255).example('Russia').label('UserCountrySchema');
 export const userCitySchema = Joi.string().max(255).example('Tomsk').label('UserCitySchema');
 export const userIpAddressSchema = Joi.string().max(255).example('192.168.1.1').label('UserIpAddressSchema');
+export const userStatusKYCSchema = Joi.number().valid(...StatusesKYC).default(StatusKYC.Unconfirmed).example(StatusKYC.Unconfirmed).label('StatusKYCSchema');
 export const userPlaceSchema = Joi.object({
   country: userCountrySchema,
   city: userCitySchema,
 }).label('UserPlaceSchema');
-
 export const userDeviceSchema = Joi.string().max(255).example('Phone').label('UserDeviceSchema');
 export const userLastSessionSchema = Joi.object({
   id: idSchema,
@@ -96,6 +94,7 @@ export const userSchema = Joi.object({
   updatedAt: isoDateSchema,
 }).label("UserSchema");
 
+//добавить сюда подтверждён или нет и тд
 export const userFullSchema = Joi.object({
   id: idSchema.label("UserId"),
   avatarId: idSchema.label('AvatarId'),
@@ -109,6 +108,8 @@ export const userFullSchema = Joi.object({
     .concat(userAdditionalInfoWorkerSchema)
     .allow(null).label('AdditionalInfo'),
   role: userRoleSchema,
+  status: userStatusSchema,
+  statusKYC: userStatusKYCSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
@@ -116,8 +117,7 @@ export const userFullSchema = Joi.object({
   loginAt: isoDateSchema,
   logoutAt: isoDateSchema,
   changeRoleAt: isoDateSchema,
-  createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
+  deletedAt: isoDateSchema,
 }).label("UserFullSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');

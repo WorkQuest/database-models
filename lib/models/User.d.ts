@@ -56,6 +56,7 @@ export declare enum StatusKYC {
     Unconfirmed = 0,
     Confirmed = 1
 }
+export declare const StatusesKYC: (string | StatusKYC)[];
 interface SocialMediaNicknames {
     instagram: string | null;
     twitter: string | null;

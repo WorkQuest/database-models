@@ -81,6 +81,7 @@ export enum StatusKYC {
   Unconfirmed = 0,
   Confirmed,
 }
+export const StatusesKYC = Object.values(StatusKYC)
 
 interface SocialMediaNicknames {
   instagram: string | null;
@@ -141,7 +142,8 @@ interface isConfirmed{
     attributes: {
       include: ["password", "settings", "tempPhone"]
     }
-  }
+  },
+
 }))
 @Table({ paranoid: true })
 export class User extends Model {
