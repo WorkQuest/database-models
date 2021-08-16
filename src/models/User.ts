@@ -166,7 +166,7 @@ export class User extends Model {
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
-  @HasMany(() => ChatMember) chatMember: ChatMember;
+  @HasOne(() => ChatMember) chatMember: ChatMember;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
