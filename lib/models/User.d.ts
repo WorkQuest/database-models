@@ -94,11 +94,12 @@ export declare class User extends Model {
     phone: string;
     avatar: Media;
     ratingStatistic: RatingStatistic;
+    chatMember: ChatMember;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];
     medias: Media[];
-    chatMember: ChatMember;
+    chatsMember: ChatMember[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;

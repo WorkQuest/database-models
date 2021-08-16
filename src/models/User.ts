@@ -166,12 +166,13 @@ export class User extends Model {
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasMany(() => ChatMember) chatMember: ChatMember;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
-  @HasMany(() => ChatMember) chatMember: ChatMember;
+  @HasMany(() => ChatMember) chatsMember: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);
