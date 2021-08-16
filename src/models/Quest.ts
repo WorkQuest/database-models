@@ -59,11 +59,13 @@ export interface Location {
         attributes: []
       }
     }, {
-      model: User,
-      as: 'user'
+      model: User.scope('short'),
+      as: 'user',
+      attributes: []
     }, {
-      model: User,
-      as: 'assignedWorker'
+      model: User.scope('short'),
+      as: 'assignedWorker',
+      attributes: []
     }]
   }
 }))
