@@ -8,7 +8,6 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {UserBlockReason} from "./UserBlockReason";
-import {AdminSession} from "./AdminSession";
 
 export interface SocialInfo {
   id: string;
@@ -177,7 +176,7 @@ export class User extends Model {
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
-  @HasOne(() => AdminSession, 'lastSessionId') lastSession: Session
+  @HasOne(() => Session, 'lastSessionId') lastSession: Session
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
