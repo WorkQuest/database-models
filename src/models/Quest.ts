@@ -117,6 +117,15 @@ export class Quest extends Model {
     }
   }
 
+  mustBeQuestWorker(userId: String) {
+    if (this.assignedWorkerId !== userId) {
+      throw error(Errors.Forbidden, "User is not work on quest", {
+        current: this.userId,
+        mustHave: userId
+      });
+    }
+  }
+
   mustBeUnblock(status: QuestStatus) {
     if (this.status === QuestStatus.isBlocked) {
       throw error(Errors.IsBlocked, 'Quest is blocked', {});

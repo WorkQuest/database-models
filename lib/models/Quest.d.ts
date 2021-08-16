@@ -52,5 +52,6 @@ export declare class Quest extends Model {
     mustHaveStatus(...statuses: QuestStatus[]): void;
     mustBeAppointedOnQuest(workerId: string): void;
     mustBeQuestCreator(userId: String): void;
+    mustBeQuestWorker(userId: String): void;
     mustBeUnblock(status: QuestStatus): void;
 }
