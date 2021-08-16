@@ -138,6 +138,31 @@ export const userFullSchema = Joi.object({
     .concat(userAdditionalInfoWorkerSchema)
     .allow(null).label('AdditionalInfo'),
   role: userRoleSchema,
+  status: userStatusSchema,
+  statusKYC: userStatusKYCSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
+  ratingStatistic: ratingStatisticSchema,
+  lastSession: userLastSessionSchema,
+  loginAt: isoDateSchema,
+  logoutAt: isoDateSchema,
+  changeRoleAt: isoDateSchema,
+  deletedAt: isoDateSchema,
+}).label("UserFullSchema");
+
+export const userWithSettingsFullSchema = Joi.object({
+  id: idSchema.label("UserId"),
+  avatarId: idSchema.label('AvatarId'),
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: userPhoneSchema,
+  tempPhone: userTempPhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: Joi.object()
+    .concat(userAdditionalInfoEmployerSchema)
+    .concat(userAdditionalInfoWorkerSchema)
+    .allow(null).label('AdditionalInfo'),
+  role: userRoleSchema,
   settings: userSettingsSchema,
   status: userStatusSchema,
   statusKYC: userStatusKYCSchema,
