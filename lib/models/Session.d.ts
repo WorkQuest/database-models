@@ -10,5 +10,8 @@ export declare class Session extends Model {
     place: UserPlace;
     device: string;
     ipAddress: string;
+    isActive: boolean;
+    logoutAt: Date;
+    lastActionTime: Date;
     user: User;
 }

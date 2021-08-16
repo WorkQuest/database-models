@@ -9,5 +9,8 @@ export declare class AdminSession extends Model {
     adminId: string;
     place: AdminPlace;
     device: string;
+    isActive: boolean;
+    logoutAt: Date;
+    lastActionTime: Date;
     admin: Admin;
 }

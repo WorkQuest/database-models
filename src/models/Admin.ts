@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import * as speakeasy from "speakeasy"
-import { Column, DataType, Model, Scopes, Table, HasMany } from 'sequelize-typescript';
+import {Column, DataType, Model, Scopes, Table, HasMany, HasOne, ForeignKey} from 'sequelize-typescript';
 import { getUUID, error } from '../utils';
 import { Errors } from "../utils/errors";
 import { AdminSession } from "./AdminSession"
@@ -26,15 +26,6 @@ export interface AdminAccountSettings {
   security: AdminSecurity;
 }
 
-export interface AdminLastSession {
-  id: string,
-  adminId: string,
-  place: string,
-  device: string,
-  createdAt: Date,
-  updatedAt: Date,
-}
-
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -51,6 +42,9 @@ export interface AdminLastSession {
 export class Admin extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
+  @ForeignKey(()=> AdminSession)
+  @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
+
   @Column({type: DataType.STRING, unique: true}) email: string;
 
   @Column({
@@ -59,7 +53,7 @@ export class Admin extends Model {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(value, salt);
       this.setDataValue('password', hash);
-      },
+    },
     get() {
       return this.getDataValue('password');
     },
@@ -72,12 +66,8 @@ export class Admin extends Model {
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
-  @Column(DataType.JSONB) lastSession: AdminLastSession;
-
-  @Column(DataType.DATE) loginAt: Date;
-  @Column(DataType.DATE) logoutAt: Date;
-
-  @HasMany(() => AdminSession) sessions: AdminSession[];
+  @HasMany(() => AdminSession, 'sessionId') sessions: AdminSession[];
+  @HasOne(() => AdminSession, 'lastSessionId') lastSession: AdminSession
 
   async passwordCompare(pwd: string) {
     return bcrypt.compareSync(pwd, this.password);

@@ -8,16 +8,7 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {UserBlockReason} from "./UserBlockReason";
-
-export interface UserLastSession {
-  id: string,
-  adminId: string,
-  place: string,
-  device: string,
-  ipAddress: string,
-  createdAt: Date,
-  updatedAt: Date,
-}
+import {AdminSession} from "./AdminSession";
 
 export interface SocialInfo {
   id: string;
@@ -69,7 +60,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
-  isBlocked,
+  Blocked,
 }
 
 export enum UserRole {
@@ -81,7 +72,6 @@ export enum StatusKYC {
   Unconfirmed = 0,
   Confirmed,
 }
-export const StatusesKYC = Object.values(StatusKYC)
 
 interface SocialMediaNicknames {
   instagram: string | null;
@@ -121,10 +111,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
   website: string | null;
 }
 
-interface isConfirmed{
-
-}
-
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -148,7 +134,12 @@ interface isConfirmed{
 @Table({ paranoid: true })
 export class User extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-  @ForeignKey(() => Media) @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
+  @ForeignKey(() => Media)
+  @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
+
+  @ForeignKey(()=> Session)
+  @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
+
 
   @Column({
     type: DataType.STRING,
@@ -180,16 +171,13 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
-  @Column(DataType.JSONB) lastSession: UserLastSession;
-
-  @Column(DataType.DATE) loginAt: Date;
-  @Column(DataType.DATE) logoutAt: Date;
   @Column(DataType.DATE) changeRoleAt: Date;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
+  @HasOne(() => AdminSession, 'lastSessionId') lastSession: Session
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
@@ -241,7 +229,7 @@ export class User extends Model {
   }
 
   mustBeUnblock(status: UserStatus) {
-    if (this.status === UserStatus.isBlocked) {
+    if (this.status === UserStatus.Blocked) {
       throw error(Errors.IsBlocked, 'Quest is blocked', {});
     }
   }

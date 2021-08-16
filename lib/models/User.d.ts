@@ -5,15 +5,6 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import { UserBlockReason } from "./UserBlockReason";
-export interface UserLastSession {
-    id: string;
-    adminId: string;
-    place: string;
-    device: string;
-    ipAddress: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
 export interface SocialInfo {
     id: string;
     email: string;
@@ -46,7 +37,7 @@ export declare enum UserStatus {
     Unconfirmed = 0,
     Confirmed = 1,
     NeedSetRole = 2,
-    isBlocked = 3
+    Blocked = 3
 }
 export declare enum UserRole {
     Employer = "employer",
@@ -56,7 +47,6 @@ export declare enum StatusKYC {
     Unconfirmed = 0,
     Confirmed = 1
 }
-export declare const StatusesKYC: (string | StatusKYC)[];
 interface SocialMediaNicknames {
     instagram: string | null;
     twitter: string | null;
@@ -92,6 +82,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
+    lastSessionId: string;
     password: string;
     firstName: string;
     lastName: string;
@@ -103,13 +94,11 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
-    lastSession: UserLastSession;
-    loginAt: Date;
-    logoutAt: Date;
     changeRoleAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     blockReason: UserBlockReason;
+    lastSession: Session;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];

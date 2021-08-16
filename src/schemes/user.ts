@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {Security, StatusesKYC, StatusKYC, UserRole, UserStatus} from "../models";
+import {Security, StatusKYC, UserRole, UserStatus} from "../models";
 import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh, limitSchema, offsetSchema} from "./common";
 import {mediaUrlOnlySchema } from "./media";
 import {reviewsSchema} from "./review";
@@ -17,11 +17,12 @@ export const userTempPhoneSchema = Joi.string().example('+79991234567').label("T
 export const userCountrySchema = Joi.string().max(255).example('Russia').label('UserCountrySchema');
 export const userCitySchema = Joi.string().max(255).example('Tomsk').label('UserCitySchema');
 export const userIpAddressSchema = Joi.string().max(255).example('192.168.1.1').label('UserIpAddressSchema');
-export const userStatusKYCSchema = Joi.number().valid(...StatusesKYC).default(StatusKYC.Unconfirmed).example(StatusKYC.Unconfirmed).label('StatusKYCSchema');
+export const userStatusKYCSchema = Joi.number().valid(...Object.values(StatusKYC)).default(StatusKYC.Unconfirmed).example(StatusKYC.Unconfirmed).label('StatusKYCSchema');
 export const userDeviceSchema = Joi.string().max(255).example('Phone').label('UserDeviceSchema');
 export const userConfirmCodeSchema = Joi.string().max(255).example('2D4em7').label('UserConfirmCodeSchema');
 export const userSecretSchema = Joi.string().max(255).example('JAYWY6KYG47XYNQ5').label('UserSecuritySchema');
 export const userTOTPActiveSchema = Joi.boolean().example(false).label('UserTOTPActiveSchema');
+export const userSessionIsActiveSchema = Joi.bool().example(false).label('UserSessionIsActiveSchema');
 export const userTOTPSchema = Joi.object({
   confirmCode: userConfirmCodeSchema,
   active: userTOTPActiveSchema,
@@ -55,10 +56,13 @@ export const userPlaceSchema = Joi.object({
 }).label('UserPlaceSchema');
 export const userLastSessionSchema = Joi.object({
   id: idSchema,
-  adminId: idSchema,
+  userId: idSchema,
   place: userPlaceSchema,
   device: userDeviceSchema,
   ipAddress: userIpAddressSchema,
+  isActive: userSessionIsActiveSchema,
+  logoutAt: isoDateSchema,
+  lastActionTime: isoDateSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label('UserLastSessionSchema');
@@ -105,6 +109,7 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
 export const userSchema = Joi.object({
   id: userIdSchema,
   avatarId: userIdSchema,
+  lastSessionId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   phone: userPhoneSchema,
@@ -119,8 +124,6 @@ export const userSchema = Joi.object({
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   lastSession: userLastSessionSchema,
-  loginAt: isoDateSchema,
-  logoutAt: isoDateSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label("UserSchema");
@@ -129,6 +132,7 @@ export const userSchema = Joi.object({
 export const userFullSchema = Joi.object({
   id: idSchema.label("UserId"),
   avatarId: idSchema.label('AvatarId'),
+  lastSessionId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   phone: userPhoneSchema,
@@ -148,12 +152,15 @@ export const userFullSchema = Joi.object({
   loginAt: isoDateSchema,
   logoutAt: isoDateSchema,
   changeRoleAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
   deletedAt: isoDateSchema,
 }).label("UserFullSchema");
 
 export const userWithSettingsFullSchema = Joi.object({
   id: idSchema.label("UserId"),
   avatarId: idSchema.label('AvatarId'),
+  lastSessionId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   phone: userPhoneSchema,
@@ -171,9 +178,9 @@ export const userWithSettingsFullSchema = Joi.object({
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   lastSession: userLastSessionSchema,
-  loginAt: isoDateSchema,
-  logoutAt: isoDateSchema,
   changeRoleAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
   deletedAt: isoDateSchema,
 }).label("UserFullSchema");
 

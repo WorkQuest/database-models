@@ -16,5 +16,10 @@ export class Session extends Model {
   @Column(DataType.STRING) device: string;
   @Column(DataType.STRING) ipAddress: string;
 
+  @Column({type: DataType.BOOLEAN, allowNull: true}) isActive: boolean;
+
+  @Column({type: DataType.DATE, allowNull: true}) logoutAt: Date;
+  @Column({type: DataType.DATE, allowNull: true}) lastActionTime: Date;
+
   @BelongsTo(() => User) user: User;
 }

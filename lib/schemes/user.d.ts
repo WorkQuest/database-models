@@ -15,6 +15,7 @@ export declare const userDeviceSchema: Joi.StringSchema;
 export declare const userConfirmCodeSchema: Joi.StringSchema;
 export declare const userSecretSchema: Joi.StringSchema;
 export declare const userTOTPActiveSchema: Joi.BooleanSchema;
+export declare const userSessionIsActiveSchema: Joi.BooleanSchema;
 export declare const userTOTPSchema: Joi.ObjectSchema<any>;
 export declare const userSecuritySchema: Joi.ObjectSchema<any>;
 export declare const userSocialInfoSchema: Joi.ObjectSchema<any>;

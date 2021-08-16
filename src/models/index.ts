@@ -37,7 +37,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Admin,
       AdminSession,
       QuestDispute,
-      UserBlockReason
+      UserBlockReason,
       Chat,
       ChatMember,
       Message,

@@ -16,16 +16,9 @@ export interface AdminSecurity {
 export interface AdminAccountSettings {
     security: AdminSecurity;
 }
-export interface AdminLastSession {
-    id: string;
-    adminId: string;
-    place: string;
-    device: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
 export declare class Admin extends Model {
     id: string;
+    lastSessionId: string;
     email: string;
     password: string;
     firstName: string;
@@ -33,10 +26,8 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActivated: boolean;
-    lastSession: AdminLastSession;
-    loginAt: Date;
-    logoutAt: Date;
     sessions: AdminSession[];
+    lastSession: AdminSession;
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
     mustHaveAdminRole(role: AdminRole): void;
