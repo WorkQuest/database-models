@@ -138,9 +138,9 @@ export const userFullSchema = Joi.object({
     .concat(userAdditionalInfoWorkerSchema)
     .allow(null).label('AdditionalInfo'),
   role: userRoleSchema,
+  settings: userSettingsSchema,
   status: userStatusSchema,
   statusKYC: userStatusKYCSchema,
-  userSettings: userSettingsSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
