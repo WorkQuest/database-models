@@ -4,7 +4,10 @@ import { User } from "./User";
 import { Chat } from "./Chat";
 
 @Scopes(() => ({
-  defaultScope: {
+  userOnly: {
+    attributes: {
+      exclude: ['id', 'chatId', 'createdAt', 'updatedAt']
+    },
     include: [{
       model: User,
       as: 'user'
