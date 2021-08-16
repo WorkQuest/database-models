@@ -5,6 +5,7 @@ import {mediaUrlOnlySchema } from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
 
+const userIdSchema = idSchema.label("UserId");
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
 export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan").label("UserFirstName");
@@ -102,8 +103,8 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
 }).label('AdditionalInfoEmployer');
 
 export const userSchema = Joi.object({
-  id: idSchema.label("UserId"),
-  avatarId: idSchema.label('AvatarId'),
+  id: userIdSchema,
+  avatarId: userIdSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   phone: userPhoneSchema,
@@ -177,6 +178,7 @@ export const userWithSettingsFullSchema = Joi.object({
 }).label("UserFullSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
+export const userIdsSchema = Joi.array().items(userIdSchema).label('UserIds');
 
 export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,

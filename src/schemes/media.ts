@@ -8,7 +8,8 @@ export const mediaHashSchema = Joi.number().min(60).max(60).label("MediaHash");
 
 export const mediaUrlOnlySchema = Joi.object({
   id: mediaIdSchema,
-  url: urlSchema
+  url: urlSchema,
+  contentType: mediaContentTypeSchema
 }).label("MediaUrlOnlyScheme");
 
 export const mediaUploadLinkSchema = Joi.object({

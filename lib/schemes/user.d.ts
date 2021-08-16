@@ -31,5 +31,6 @@ export declare const userSchema: Joi.ObjectSchema<any>;
 export declare const userFullSchema: Joi.ObjectSchema<any>;
 export declare const userWithSettingsFullSchema: Joi.ObjectSchema<any>;
 export declare const usersSchema: Joi.ArraySchema;
+export declare const userIdsSchema: Joi.ArraySchema;
 export declare const tokensWithStatus: Joi.ObjectSchema<any>;
 export declare const usersQuerySchema: Joi.ObjectSchema<any>;

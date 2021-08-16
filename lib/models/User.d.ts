@@ -117,6 +117,8 @@ export declare class User extends Model {
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;
+    static userMustExist(userId: string): Promise<void>;
+    static usersMustExist(userIds: string[]): Promise<void>;
     mustHaveRole(role: UserRole): void;
     mustHaveActiveStatusTOTP(activeStatus: boolean): void;
     mustBeUnblock(status: UserStatus): void;

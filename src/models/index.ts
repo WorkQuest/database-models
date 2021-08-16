@@ -14,6 +14,10 @@ import { Admin } from './Admin'
 import { AdminSession } from "./AdminSession";
 import { QuestDispute } from "./QuestDispute";
 import {UserBlockReason} from "./UserBlockReason";
+import { Chat } from "./Chat";
+import { ChatMember } from "./ChatMember";
+import { MessageMedia } from "./MessageMedia";
+import { Message } from "./Message";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -34,6 +38,10 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       AdminSession,
       QuestDispute,
       UserBlockReason
+      Chat,
+      ChatMember,
+      Message,
+      MessageMedia,
     ]
   });
   if (sync)
@@ -55,6 +63,10 @@ export * from "./PortfolioMedia";
 export * from "./Portfolio";
 export * from "./Admin";
 export * from "./AdminSession";
+export * from "./Chat";
+export * from "./ChatMember";
+export * from "./Message";
+export * from "./MessageMedia";
 export * from "./QuestDispute";
 export * from "./UserBlockReason"
 
