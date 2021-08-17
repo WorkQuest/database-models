@@ -127,9 +127,12 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       include: ["password", "settings", "tempPhone"]
     }
   },
-  short : {
-    attributes: ["id","firstName", "lastName"],
-    include: {model: Media.scope('urlOnly'), as: 'avatar'}
+  short: {
+    attributes: ["id", "firstName", "lastName"],
+    include: {
+      model: Media.scope('urlOnly'),
+      as: 'avatar'
+    }
   }
 }))
 @Table({ paranoid: true })
