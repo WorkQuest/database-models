@@ -134,10 +134,11 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Table({ paranoid: true })
 export class User extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
-  @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
+  //@Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
 
 
   @Column({
@@ -176,7 +177,7 @@ export class User extends Model {
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
-  @HasOne(() => Session, 'lastSessionId') lastSession: Session
+  @HasOne(() => Session) lastSession: Session
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];

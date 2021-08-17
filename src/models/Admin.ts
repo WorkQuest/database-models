@@ -65,8 +65,8 @@ export class Admin extends Model {
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
-  @HasMany(() => AdminSession, 'sessionId') sessions: AdminSession[];
-  @HasOne(() => AdminSession, 'lastSessionId') lastSession: AdminSession
+  @HasMany(() => AdminSession) sessions: AdminSession[];
+  @HasOne(() => AdminSession) lastSession: AdminSession
 
   async passwordCompare(pwd: string) {
     return bcrypt.compareSync(pwd, this.password);
