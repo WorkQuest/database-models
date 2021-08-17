@@ -5,6 +5,9 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import { ChatMember } from "./ChatMember";
+import { LikeNews } from "./NewsLike";
+import { News } from "./News";
+import { Comment } from "./Comment";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -99,6 +102,9 @@ export declare class User extends Model {
     sessions: Session[];
     medias: Media[];
     chatMember: ChatMember;
+    newsLikes: LikeNews[];
+    authorId: News[];
+    author: Comment[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;

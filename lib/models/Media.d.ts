@@ -1,5 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { User } from './User';
+import { CommentMedia } from "./CommentMedia";
 export declare enum ContentType {
     mp4 = "video/mp4",
     jpeg = "image/jpeg",
@@ -14,4 +15,5 @@ export declare class Media extends Model {
     url: string;
     hash: string;
     user: User;
+    idComment: CommentMedia[];
 }
