@@ -97,9 +97,9 @@ export declare class User extends Model {
     phone: string;
     changeRoleAt: Date;
     avatar: Media;
+    lastSession: Session;
     ratingStatistic: RatingStatistic;
     blockReason: UserBlockReason;
-    lastSession: Session;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];

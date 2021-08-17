@@ -174,10 +174,10 @@ export class User extends Model {
   @Column(DataType.DATE) changeRoleAt: Date;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
+  @BelongsTo(() => Session,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: Session;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
-  @HasOne(()=> Session, { constraints: false }) lastSession: Session;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
