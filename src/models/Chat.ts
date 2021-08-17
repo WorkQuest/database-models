@@ -26,8 +26,7 @@ export enum ChatType {
     },
     include: [{
       model: User.scope('short'),
-      as: 'owner',
-      attributes: []
+      as: 'owner'
     }]
   }
 }))

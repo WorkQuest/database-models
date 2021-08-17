@@ -25,10 +25,7 @@ import { Errors } from '../utils/errors';
       }
     },{
       model: User.scope('short'),
-      as:'user',
-      through: {
-        attributes: []
-      }
+      as:'user'
     }]
   }
 }))

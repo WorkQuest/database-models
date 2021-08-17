@@ -60,12 +60,10 @@ export interface Location {
       }
     }, {
       model: User.scope('short'),
-      as: 'user',
-      attributes: []
+      as: 'user'
     }, {
       model: User.scope('short'),
-      as: 'assignedWorker',
-      attributes: []
+      as: 'assignedWorker'
     }]
   }
 }))
