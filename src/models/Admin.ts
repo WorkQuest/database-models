@@ -42,7 +42,6 @@ export interface AdminAccountSettings {
 export class Admin extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
-  @ForeignKey(()=> AdminSession)
   @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
 
   @Column({type: DataType.STRING, unique: true}) email: string;
