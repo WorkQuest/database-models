@@ -1,4 +1,14 @@
-import { BelongsToMany, Column, DataType, ForeignKey, Model, Scopes, Table } from 'sequelize-typescript';
+import {
+  annotateModelWithIndex,
+  BelongsToMany,
+  Column,
+  DataType,
+  ForeignKey,
+  HasOne,
+  Model,
+  Scopes,
+  Table
+} from 'sequelize-typescript';
 import { error, getUUID } from '../utils';
 import { User } from './User';
 import { PortfolioMedia } from './PortfolioMedia';
@@ -13,6 +23,12 @@ import { Errors } from '../utils/errors';
       through: {
         attributes: []
       }
+    },{
+      model: User.scope('short'),
+      as:'user',
+      through: {
+        attributes: []
+      }
     }]
   }
 }))
@@ -24,6 +40,7 @@ export class Portfolio extends Model {
   @Column({type: DataType.STRING, allowNull: false }) title: string;
   @Column({type: DataType.TEXT }) description: string;
 
+  @HasOne(() => User) user: User;
   @BelongsToMany(() => Media, () => PortfolioMedia) medias: Media[];
 
   mustBeCaseCreator(userId: String) {

@@ -1,7 +1,7 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
 import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
-import {mediaUrlOnlySchema } from "./media";
+import {mediaIdsSchema, mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
 
@@ -56,7 +56,7 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
 
 export const userSchema = Joi.object({
   id: userIdSchema,
-  avatarId: userIdSchema,
+  avatarId: mediaIdsSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   phone: userPhoneSchema,
@@ -73,6 +73,13 @@ export const userSchema = Joi.object({
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label("UserSchema");
+
+export const userShortSchema = Joi.object({
+  id: userIdSchema,
+  avatarId: mediaIdsSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+})
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userIdsSchema = Joi.array().items(userIdSchema).label('UserIds');
