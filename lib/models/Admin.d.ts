@@ -26,8 +26,8 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActivated: boolean;
-    sessions: AdminSession[];
     lastSession: AdminSession;
+    sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
     mustHaveAdminRole(role: AdminRole): void;
