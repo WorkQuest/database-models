@@ -45,6 +45,7 @@ export declare class Quest extends Model {
     medias: Media[];
     user: User;
     assignedWorker: User;
+    star: StarredQuests;
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
     reviews: Review[];

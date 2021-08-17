@@ -8,15 +8,18 @@ export declare enum ChatType {
 }
 export declare class Chat extends Model {
     id: string;
-    creatorUserId: string;
+    ownerUserId: string;
     lastMessageId: string;
+    name: Date;
     lastMessageDate: Date;
     type: ChatType;
     members: User[];
-    creator: User;
+    owner: User;
     lastMessage: Message;
     messages: Message[];
     chatMembers: ChatMember[];
     otherMember: ChatMember;
-    mustHaveMember(userId: String): void;
+    mustHaveMember(userId: string): Promise<void>;
+    mustHaveType(type: ChatType): void;
+    mustHaveOwner(userId: String): void;
 }

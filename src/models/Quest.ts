@@ -1,4 +1,15 @@
-import { BelongsTo, HasMany, BelongsToMany, Column, DataType, ForeignKey, Model, Scopes, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  HasMany,
+  BelongsToMany,
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Scopes,
+  Table,
+  HasOne
+} from 'sequelize-typescript';
 import { User } from "./User";
 import { error, getUUID } from '../utils';
 import { Media } from './Media';
@@ -82,6 +93,7 @@ export class Quest extends Model {
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
 
+  @HasOne(() => StarredQuests) star: StarredQuests;
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];

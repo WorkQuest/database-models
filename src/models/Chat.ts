@@ -22,17 +22,11 @@ export enum ChatType {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["updatedAt"]
+      exclude: ["messages", "chatMembers", "updatedAt"]
     },
     include: [{
       model: User,
-      as: 'members',
-      through: {
-        attributes: []
-      }
-    }, {
-      model: User,
-      as: 'creator'
+      as: 'owner'
     }]
   }
 }))
@@ -40,26 +34,43 @@ export enum ChatType {
 export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
-  @ForeignKey(() => User)
-  @Column(DataType.STRING) creatorUserId: string;
+  @ForeignKey(() => User) /* If group chat */
+  @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string;
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
+  @Column({type: DataType.STRING, defaultValue: null}) name: Date; /* If group chat */
   @Column(DataType.DATE) lastMessageDate: Date;
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];
-  @BelongsTo(() => User) creator: User;
+  @BelongsTo(() => User) owner: User;
   @BelongsTo(() => Message, {foreignKey: 'lastMessageId', constraints: false}) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasOne(() => ChatMember) otherMember: ChatMember;
 
-  mustHaveMember(userId: String) {
-    if (!this.members.some(user => user.id === userId)) {
+  async mustHaveMember(userId: string) {
+    const member = await ChatMember.findOne({
+      where: { chatId: this.id, userId }
+    });
+
+    if (!member) {
       throw error(Errors.Forbidden, "User is not a member of this chat", {});
+    }
+  }
+
+  mustHaveType(type: ChatType) {
+    if (this.type !== type) {
+      throw error(Errors.InvalidType, "Type does not match", {});
+    }
+  }
+
+  mustHaveOwner(userId: String) {
+    if (this.ownerUserId !== userId) {
+      throw error(Errors.Forbidden, "User is not a owner in this chat", {});
     }
   }
 }
