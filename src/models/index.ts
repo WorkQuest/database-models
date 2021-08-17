@@ -76,5 +76,11 @@ export * from "./Chat";
 export * from "./ChatMember";
 export * from "./Message";
 export * from "./MessageMedia";
+export * from "./Comment";
+export * from "./CommentLike";
+export * from "./CommentMedia";
+export * from "./News";
+export * from "./NewsLike";
+export * from "./NewsMedia";
 
 
