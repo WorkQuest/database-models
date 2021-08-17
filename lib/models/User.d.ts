@@ -83,7 +83,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
-    lastSessionId: string;
     password: string;
     firstName: string;
     lastName: string;

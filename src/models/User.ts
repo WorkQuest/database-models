@@ -138,9 +138,6 @@ export class User extends Model {
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
-  //@Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
-
-
   @Column({
     type: DataType.STRING,
     set(value: string) {
