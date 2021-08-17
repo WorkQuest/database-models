@@ -138,6 +138,9 @@ export class User extends Model {
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
+  @ForeignKey(() => Session)
+  @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
+
   @Column({
     type: DataType.STRING,
     set(value: string) {
@@ -174,7 +177,7 @@ export class User extends Model {
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
-  @HasOne(() => Session) lastSession: Session
+  @BelongsTo(() => Session) lastSession: Session;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
