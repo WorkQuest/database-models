@@ -1,7 +1,5 @@
 import * as Joi from "joi";
 import {idSchema, isoDateSchema} from './common';
-import {mediaIdsSchema} from "./media";
-import {userFirstNameSchema, userLastNameSchema} from "./user";
 
 const reviewIdSchema = idSchema.label('ReviewId');
 const questIdSchema = idSchema.label('QuestId');
@@ -19,14 +17,6 @@ export const reviewSchema = Joi.object({
   message: reviewMessageSchema,
   mark: reviewMarkSchema,
   createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
 }).label('ReviewSchema');
-
-export const reviewShortSchema = Joi.object({
-  id: userIdSchema,
-  avatarId: mediaIdsSchema,
-  firstName: userFirstNameSchema,
-  lastName: userLastNameSchema,
-})
 
 export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');

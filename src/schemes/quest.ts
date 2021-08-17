@@ -10,9 +10,8 @@ import {
   sortDirectionSchema,
   countSchema,
 } from './common';
-import {userFirstNameSchema, userLastNameSchema, userSchema} from "./user";
-import {reviewsSchema} from "./review";
-import {mediaIdsSchema, mediasUrlOnlySchema} from "./media";
+import {userShortSchema} from "./user";
+import {mediasUrlOnlySchema} from "./media";
 
 // Quests schemes
 
@@ -26,14 +25,6 @@ export const questDescriptionSchema = Joi.string().example('Description quest...
 export const questPriceSchema = Joi.string().example("500").label('Price');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('AdType');
 
-
-export const userQuestShortSchema = Joi.object({
-  id: userIdSchema,
-  avatarId: mediaIdsSchema,
-  firstName: userFirstNameSchema,
-  lastName: userLastNameSchema,
-})
-
 export const questSchema = Joi.object({
   id: questIdSchema,
   userId: userIdSchema,
@@ -46,13 +37,11 @@ export const questSchema = Joi.object({
   description: questDescriptionSchema,
   price: questPriceSchema,
   adType: questAdTypeSchema,
+  user: userShortSchema,
+  assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
-  reviews: reviewsSchema,
   createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
 }).label("QuestSchema");
-
-
 
 export const questsSchema = Joi.array().items(questSchema).label('Quests');
 
@@ -85,13 +74,6 @@ export const questsResponseMessageSchema = Joi.string().example('Hello, I need t
 export const questsResponseStatusSchema = Joi.number().example(QuestsResponseStatus.Open).valid(...Object.keys(QuestsResponseStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).label('QuestsResponseStatus');
 export const questsResponseTypeSchema = Joi.number().example(QuestsResponseType.Response).valid(...Object.keys(QuestsResponseType).map(key => parseInt(key)).filter(key => !isNaN(key))).label('QuestsResponseType');
 
-export const userQuestShortResponseSchema = Joi.object({
-  id: userIdSchema,
-  avatarId: mediaIdsSchema,
-  firstName: userFirstNameSchema,
-  lastName: userLastNameSchema,
-})
-
 export const questsResponseSchema = Joi.object({
   id: idSchema.label('QuestsResponseId'),
   workerId: idSchema.label('WorkerId'),
@@ -99,8 +81,8 @@ export const questsResponseSchema = Joi.object({
   status: questsResponseStatusSchema,
   type: questsResponseTypeSchema,
   message: questsResponseMessageSchema,
-  worker: userSchema,
-  quest: questSchema,
+  worker: userShortSchema,
+  // quest: questSchema,
 }).label('QuestsResponseSchema');
 
 export const questsResponsesSchema = Joi.array().items(questsResponseSchema).label('QuestsResponsesSchema');
@@ -110,29 +92,6 @@ export const questsResponsesWithCountSchema = Joi.object({
   responses: questsResponsesSchema,
 }).label('QuestsResponsesWithCount')
 
-// Quest full schemes
-
-export const questFullSchema = Joi.object({
-  id: questIdSchema,
-  userId: userIdSchema,
-  assignedWorkerId: userIdSchema,
-  category: questCategorySchema,
-  status: questStatusSchema,
-  priority: questPrioritySchema,
-  location: locationSchema,
-  title: questTitleSchema,
-  description: questDescriptionSchema,
-  price: questPriceSchema,
-  adType: questAdTypeSchema,
-  user: userSchema,
-  medias: mediasUrlOnlySchema,
-  reviews: reviewsSchema,
-  responses: questsResponsesSchema,
-  createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
-}).label("QuestFull");
-
-export const questsFullSchema = Joi.array().items(questFullSchema).label('QuestsFull');
 
 
 

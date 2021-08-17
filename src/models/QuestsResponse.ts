@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
 import { User } from './User';
 import { Quest } from './Quest';
 import { error, getUUID } from '../utils';
@@ -16,6 +16,17 @@ export enum QuestsResponseType {
   Invite,
 }
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ['updatedAt']
+    },
+    include: [{
+      model: User.scope('short'),
+      as: 'worker'
+    }]
+  }
+}))
 @Table
 export class QuestsResponse extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;

@@ -50,7 +50,7 @@ export interface Location {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["locationPostGIS"]
+      exclude: ["locationPostGIS", "updatedAt"]
     },
     include: [{
       model: Media.scope('urlOnly'),

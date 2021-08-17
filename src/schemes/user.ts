@@ -70,8 +70,6 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
-  createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
 }).label("UserSchema");
 
 export const userShortSchema = Joi.object({
@@ -79,7 +77,7 @@ export const userShortSchema = Joi.object({
   avatarId: mediaIdsSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-})
+});
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userIdsSchema = Joi.array().items(userIdSchema).label('UserIds');
