@@ -1,10 +1,9 @@
 import {
-  annotateModelWithIndex,
+  BelongsTo,
   BelongsToMany,
   Column,
   DataType,
   ForeignKey,
-  HasOne,
   Model,
   Scopes,
   Table
@@ -37,7 +36,7 @@ export class Portfolio extends Model {
   @Column({type: DataType.STRING, allowNull: false }) title: string;
   @Column({type: DataType.TEXT }) description: string;
 
-  @HasOne(() => User) user: User;
+  @BelongsTo(() => User) user: User;
   @BelongsToMany(() => Media, () => PortfolioMedia) medias: Media[];
 
   mustBeCaseCreator(userId: String) {
