@@ -1,5 +1,6 @@
 import * as Joi from 'joi';
 export declare const disputeStatusSchema: Joi.StringSchema;
+export declare const disputeReasonSchema: Joi.StringSchema;
 export declare const problemDescriptionSchema: Joi.StringSchema;
 export declare const adminDecisionSchema: Joi.StringSchema;
 export declare const disputeNumberSchema: Joi.NumberSchema;

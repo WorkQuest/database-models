@@ -6,7 +6,14 @@ export declare enum DisputeStatus {
     inProgress = 1,
     completed = 2
 }
-export declare const DisputeStatuses: (string | DisputeStatus)[];
+export declare enum DisputeReason {
+    noAnswer = "noAnswer",
+    poorlyDoneJob = "poorlyDoneJob",
+    additionalRequirement = "additionalRequirement",
+    requirementDoesNotMatch = "requirementDoesNotMatch",
+    noConfirmationOfComplete = "noConfirmationOfComplete",
+    anotherReason = "anotherReason"
+}
 export declare class QuestDispute extends Model {
     id: string;
     disputeNumber: number;
@@ -14,6 +21,7 @@ export declare class QuestDispute extends Model {
     opponentUserId: string;
     questId: string;
     status: DisputeStatus;
+    reason: DisputeReason;
     problem: string;
     decision: string;
     openDisputeUser: User;

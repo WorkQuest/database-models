@@ -3,14 +3,21 @@ import { getUUID, error } from '../utils';
 import {User} from "./User";
 import {Quest} from "./Quest";
 import {Errors} from "../utils/errors";
-import {Media} from "./Media";
 
 export enum DisputeStatus {
-  pending  = 0,
-  inProgress = 1,
-  completed = 2,
+  pending = 0,
+  inProgress,
+  completed,
 }
-export const DisputeStatuses = Object.values(DisputeStatus)
+
+export enum DisputeReason {
+  noAnswer = "noAnswer",
+  poorlyDoneJob = "poorlyDoneJob",
+  additionalRequirement = "additionalRequirement",
+  requirementDoesNotMatch = "requirementDoesNotMatch",
+  noConfirmationOfComplete = "noConfirmationOfComplete",
+  anotherReason = "anotherReason",
+}
 
 @Scopes(() => ({
   defaultScope: {
@@ -40,6 +47,7 @@ export class QuestDispute extends Model {
   @Column(DataType.STRING) questId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
+  @Column({type: DataType.STRING, defaultValue: DisputeReason.anotherReason}) reason: DisputeReason;
 
   @Column({type: DataType.TEXT, allowNull: false}) problem: string;
   @Column(DataType.TEXT) decision: string;
