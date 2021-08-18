@@ -18,7 +18,7 @@ export declare enum QuestStatus {
     Created = 0,
     Active = 1,
     Closed = 2,
-    Dispute = 3,
+    Reject = 3,
     WaitWorker = 4,
     WaitConfirm = 5,
     Done = 6,
