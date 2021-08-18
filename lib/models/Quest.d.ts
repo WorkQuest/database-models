@@ -19,10 +19,11 @@ export declare enum QuestStatus {
     Active = 1,
     Closed = 2,
     Reject = 3,
-    WaitWorker = 4,
-    WaitConfirm = 5,
-    Done = 6,
-    isBlocked = 7
+    Dispute = 4,
+    WaitWorker = 5,
+    WaitConfirm = 6,
+    Done = 7,
+    isBlocked = 8
 }
 export interface Location {
     longitude: number;
