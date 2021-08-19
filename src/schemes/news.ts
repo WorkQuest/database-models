@@ -1,35 +1,22 @@
 import * as Joi from "joi";
-import { idSchema, isoDateSchema, limitSchema, offsetSchema } from "./index";
+import {idSchema, isoDateSchema, limitSchema, offsetSchema, textTitleSchema} from "./index";
 import { mediaIdsSchema } from "./media";
 
 const newsIdSchema = idSchema.label("newsId");
 const authorIdSchema = idSchema.label("authorId");
-const likeNewsIdSchemes = idSchema.label("questId");
-const commentIdSchema = idSchema.label("commentId");
-export const textTitleSchema = Joi.string().example("Text...").label("Text");
-export const textCommentSchema = Joi.string().example("Text...").label("Text");
 
-export const getForumNewsSchema = Joi.object({
+export const newsSchema = Joi.object({
     id: newsIdSchema,
     authorId: authorIdSchema,
     text: textTitleSchema,
     newsMedia: mediaIdsSchema,
-    createdAt: isoDateSchema,
-    updatedAt: isoDateSchema
-}).label("newsForumSchemes");
+    createdAt: isoDateSchema
+}).label("NewsSchema");
 
-export const forumLikeNewsSchemes = Joi.object({
-    id: likeNewsIdSchemes,
-    newsId: newsIdSchema,
-    userId: authorIdSchema
-});
-
-export const forumNewsCommentsSchemes = Joi.object({
+export const countNewsSchema = Joi.object({
     limit: limitSchema,
     offset: offsetSchema,
-    id: commentIdSchema,
-    authorId: authorIdSchema,
-    newsId: newsIdSchema,
-    rootCommentId: commentIdSchema,
-    text: textCommentSchema
-});
+    news: newsSchema
+}).label("countNewsSchema");
+
+export const newsAllSchema = Joi.array().items(countNewsSchema).label('NewsAllSchema');
