@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import * as speakeasy from "speakeasy"
-import {Column, DataType, Model, Scopes, Table, HasMany, HasOne, ForeignKey, BelongsTo} from 'sequelize-typescript';
+import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
 import { getUUID, error } from '../utils';
 import { Errors } from "../utils/errors";
 import { AdminSession } from "./AdminSession"
@@ -10,6 +10,19 @@ export enum AdminRole {
   dispute = "dispute",
   advertising = "advertising",
   kyc = "kyc",
+}
+
+export enum AdminLanguages {
+  en = "en",
+  ru = "ru",
+  ba = "ba",
+  zh = "zh",
+  fr = "fr",
+  hi = "hi",
+  in = "in",
+  po = "po",
+  sp = "sp",
+  ae = "ae",
 }
 
 export const AdminRoles = Object.values(AdminRole)
@@ -29,12 +42,12 @@ export interface AdminAccountSettings {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "createdAt", "updatedAt", "deletedAt"],
+      exclude: ["password", "settings", "createdAt", "updatedAt",],
     },
   },
   withPassword: {
     attributes: {
-      include: ["password", "settings"],
+      include: ["password", "settings", ],
     },
   },
 }))
@@ -43,7 +56,7 @@ export class Admin extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
   @ForeignKey(() => AdminSession)
-  @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
+  @Column(DataType.STRING) lastSessionId: string;
 
   @Column({type: DataType.STRING, unique: true}) email: string;
 
@@ -65,6 +78,11 @@ export class Admin extends Model {
   @Column({type: DataType.STRING, allowNull: false}) role: AdminRole;
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
+
+  @Column(DataType.INTEGER) age: number;
+  @Column(DataType.INTEGER) resolvedDisputes: number;
+  @Column(DataType.TEXT) about: string;
+  @Column({type: DataType.ARRAY(DataType.STRING), defaultValue: []}) languages: Array<AdminLanguages>;
 
   @BelongsTo(() => AdminSession,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: AdminSession;
 

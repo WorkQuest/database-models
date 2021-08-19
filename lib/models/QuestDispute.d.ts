@@ -1,6 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { User } from "./User";
 import { Quest } from "./Quest";
+import { Admin } from "./Admin";
 export declare enum DisputeStatus {
     pending = 0,
     inProgress = 1,
@@ -19,13 +20,16 @@ export declare class QuestDispute extends Model {
     disputeNumber: number;
     openDisputeUserId: string;
     opponentUserId: string;
+    resolvedByAdminId: string;
     questId: string;
     status: DisputeStatus;
     reason: DisputeReason;
     problem: string;
     decision: string;
+    resolveAt: Date;
     openDisputeUser: User;
     opponentUser: User;
+    resolvedByAdmin: Admin;
     quest: Quest;
     mustHaveStatus(status: DisputeStatus): void;
 }

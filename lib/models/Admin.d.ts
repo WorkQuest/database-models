@@ -6,6 +6,18 @@ export declare enum AdminRole {
     advertising = "advertising",
     kyc = "kyc"
 }
+export declare enum AdminLanguages {
+    en = "en",
+    ru = "ru",
+    ba = "ba",
+    zh = "zh",
+    fr = "fr",
+    hi = "hi",
+    in = "in",
+    po = "po",
+    sp = "sp",
+    ae = "ae"
+}
 export declare const AdminRoles: AdminRole[];
 export interface AdminTOTP {
     secret: string;
@@ -26,6 +38,10 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActivated: boolean;
+    age: number;
+    resolvedDisputes: number;
+    about: string;
+    languages: Array<AdminLanguages>;
     lastSession: AdminSession;
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;

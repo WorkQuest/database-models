@@ -3,6 +3,7 @@ import { getUUID, error } from '../utils';
 import {User} from "./User";
 import {Quest} from "./Quest";
 import {Errors} from "../utils/errors";
+import {Admin} from "./Admin";
 
 export enum DisputeStatus {
   pending = 0,
@@ -43,6 +44,9 @@ export class QuestDispute extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, unique: true}) opponentUserId: string;
 
+  @ForeignKey(() => Admin)
+  @Column({type: DataType.STRING, unique: true}) resolvedByAdminId: string;
+
   @ForeignKey(() => Quest)
   @Column(DataType.STRING) questId: string;
 
@@ -52,8 +56,11 @@ export class QuestDispute extends Model {
   @Column({type: DataType.TEXT, allowNull: false}) problem: string;
   @Column(DataType.TEXT) decision: string;
 
+  @Column(DataType.DATE) resolveAt: Date;
+
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
+  @BelongsTo(() => Admin, 'resolvedByAdminId') resolvedByAdmin: Admin;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
 
   mustHaveStatus(status: DisputeStatus) {

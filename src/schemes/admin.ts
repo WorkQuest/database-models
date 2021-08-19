@@ -1,6 +1,6 @@
 import Joi = require("joi");
 import {idSchema, offsetSchema, limitSchema, isoDateSchema} from "./common";
-import { AdminRole, AdminRoles } from "../models";
+import {AdminLanguages, AdminRole, AdminRoles} from "../models";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('FirstNameSchema');
 export const adminLastNameSchema = Joi.string().max(255).example('Durov').label('LastNameSchema');
@@ -13,6 +13,11 @@ export const adminDeviceSchema = Joi.string().max(255).example('Phone').label('A
 export const adminCountrySchema = Joi.string().max(255).example('Russia').label('AdminCountrySchema');
 export const adminCitySchema = Joi.string().max(255).example('Tomsk').label('AdminPlaceSchema');
 export const adminSessionIsActiveSchema = Joi.bool().example(false).label('AdminSessionIsActiveSchema');
+export const adminAgeSchema = Joi.number().example(25).label('AdminAgeSchema');
+export const adminResolvedDisputesSchema = Joi.number().example(25).label('AdminResolvedDisputesSchema');
+export const adminAboutSchema = Joi.string().example('I am cool admin').label('AdminAboutSchema');
+export const adminLanguageSchema = Joi.string().max(255).example(AdminLanguages.en).label('AdminLanguageSchema');
+export const adminLanguagesSchema = Joi.array().items(adminLanguageSchema).label('AdminLanguagesSchema');
 export const adminPlaceSchema = Joi.object({
   country: adminCountrySchema,
   city: adminCitySchema,
@@ -36,8 +41,12 @@ export const adminSchema = Joi.object({
   email: adminEmailSchema,
   firstName: adminFirstNameSchema,
   lastName: adminLastNameSchema,
+  role: adminRoleSchema,
   isActivated: isActiveSchema,
-  adminRole: adminRoleSchema,
+  age: adminAgeSchema,
+  resolvedDisputes: adminResolvedDisputesSchema,
+  about: adminAboutSchema,
+  languages: adminLanguagesSchema,
   lastSession: adminLastSessionSchema,
   updatedAt: isoDateSchema,
   deletedAt: isoDateSchema,

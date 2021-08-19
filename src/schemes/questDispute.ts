@@ -1,10 +1,11 @@
 import * as Joi from 'joi';
 import {
-  idSchema, limitSchema, offsetSchema
+  idSchema, isoDateSchema, limitSchema, offsetSchema
 } from './common';
 import {DisputeReason, DisputeStatus,} from "../models";
 import { questSchema } from "./quest";
-import { userSchema } from "./user";
+import { userFullSchema } from "./user";
+import {adminSchema} from "./admin";
 
 export const disputeStatusSchema = Joi.string().max(255).valid(...Object.values(DisputeStatus)).default(DisputeStatus.pending).example('active').label('DisputeStatusSchema');
 export const disputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeStatus.pending).example('active').label('DisputeReasonSchema');
@@ -17,14 +18,19 @@ export const disputeSchema = Joi.object({
   disputeNumber: disputeNumberSchema,
   openDisputeUserId: idSchema,
   opponentUserId: idSchema,
+  resolvedByAdminId: idSchema,
   questId: idSchema,
-  openDisputeUser: userSchema,
-  opponentUser: userSchema,
+  openDisputeUser: userFullSchema,
+  opponentUser: userFullSchema,
+  resolvedByAdmin: adminSchema,
   quest: questSchema,
   status: disputeStatusSchema,
   reason: disputeReasonSchema,
   problem: problemDescriptionSchema,
   decision: adminDecisionSchema,
+  resolveAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
 }).label("DisputeSchema");
 
 export const disputesSchema = Joi.array().items(disputeSchema).label('Disputes');
