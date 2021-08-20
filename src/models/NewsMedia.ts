@@ -5,14 +5,14 @@ import { News } from "./News";
 
 @Table
 export class NewsMedia extends Model {
-    @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-    @ForeignKey(() => Media)
-    @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
+  @ForeignKey(() => Media)
+  @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
 
-    @ForeignKey(() => News)
-    @Column({type: DataType.STRING, allowNull: false}) newsId: string;
+  @ForeignKey(() => News)
+  @Column({type: DataType.STRING, allowNull: false}) newsId: string;
 
-    @BelongsTo(() => Media) media: Media;
-    @BelongsTo(() => News) news: News;
+  @BelongsTo(() => Media) media: Media;
+  @BelongsTo(() => News) news: News;
 }

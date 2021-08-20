@@ -49,19 +49,18 @@ import { LikeNews } from "./NewsLike";
 }))
 @Table({ paranoid: true })
 export class News extends Model {
-    @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() })
-    id: string;
+  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-    @ForeignKey(() => User)
-    @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
+  @ForeignKey(() => User)
+  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
 
-    @Column({ type: DataType.TEXT, allowNull: false }) text: string;
+  @Column({ type: DataType.TEXT, allowNull: false }) text: string;
 
-    @BelongsTo(() => User) author: User;
+  @BelongsTo(() => User) author: User;
 
-    @HasMany(() => Comment) rootComments: Comment[];
-    @HasMany(() => LikeNews) likes: LikeNews[];
+  @HasMany(() => Comment) rootComments: Comment[];
+  @HasMany(() => LikeNews) likes: LikeNews[];
 
-    @BelongsToMany(() => Media, () => NewsMedia) medias: Media[];
-    @BelongsToMany(() => User, () => LikeNews) userLikes: User[];
+  @BelongsToMany(() => Media, () => NewsMedia) medias: Media[];
+  @BelongsToMany(() => User, () => LikeNews) userLikes: User[];
 }

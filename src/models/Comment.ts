@@ -51,26 +51,26 @@ import { LikeComment } from "./CommentLike";
 }))
 @Table
 export class Comment extends Model {
-    @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-    @ForeignKey(() => User)
-    @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
+  @ForeignKey(() => User)
+  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
 
-    @ForeignKey(() => News)
-    @Column({ type: DataType.STRING, allowNull: false }) newsId: string;
+  @ForeignKey(() => News)
+  @Column({ type: DataType.STRING, allowNull: false }) newsId: string;
 
-    @ForeignKey(() => Comment)
-    @Column(DataType.STRING) rootCommentId: string;
+  @ForeignKey(() => Comment)
+  @Column(DataType.STRING) rootCommentId: string;
 
-    @Column({ type: DataType.TEXT, allowNull: false }) text: string;
+  @Column({ type: DataType.TEXT, allowNull: false }) text: string;
 
-    @BelongsTo(() => User) author: User;
-    @BelongsTo(() => News) news: News;
-    @BelongsTo(() => Comment) rootComment: Comment;
+  @BelongsTo(() => User) author: User;
+  @BelongsTo(() => News) news: News;
+  @BelongsTo(() => Comment) rootComment: Comment;
 
-    @HasMany(() => Comment) subComments: Comment[];
-    @HasMany(() => LikeComment) likeComment: LikeComment[];
+  @HasMany(() => Comment) subComments: Comment[];
+  @HasMany(() => LikeComment) likeComment: LikeComment[];
 
-    @BelongsToMany(() => Media, () => CommentMedia) medias: Media[];
-    @BelongsToMany(() => User, () => LikeComment) userLikes: User[];
+  @BelongsToMany(() => Media, () => CommentMedia) medias: Media[];
+  @BelongsToMany(() => User, () => LikeComment) userLikes: User[];
 }

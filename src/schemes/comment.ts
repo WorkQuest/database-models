@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {countNewsSchema, idSchema, isoDateSchema, limitSchema, newsSchema, offsetSchema} from "./index";
+import {countNewsSchema, idSchema, isoDateSchema, limitSchema,offsetSchema} from "./index";
 
 const commentIdSchema = idSchema.label("commentId");
 const authorIdSchema = idSchema.label("authorId");
