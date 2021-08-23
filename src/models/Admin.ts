@@ -42,12 +42,12 @@ export interface AdminAccountSettings {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "createdAt", "updatedAt",],
+      exclude: ["password", "settings", "createdAt", "updatedAt"],
     },
   },
   withPassword: {
     attributes: {
-      include: ["password", "settings", ],
+      include: ["password", "settings"],
     },
   },
 }))
@@ -76,14 +76,20 @@ export class Admin extends Model {
   @Column(DataType.STRING) lastName: string;
 
   @Column({type: DataType.STRING, allowNull: false}) role: AdminRole;
-  @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
+  @Column({type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
+  // TODO: Выноси все в AdditionInfo ---->
   @Column(DataType.INTEGER) age: number;
   @Column(DataType.INTEGER) resolvedDisputes: number;
   @Column(DataType.TEXT) about: string;
-  @Column({type: DataType.ARRAY(DataType.STRING), defaultValue: []}) languages: Array<AdminLanguages>;
+  // -----<
 
+  @Column({type: DataType.ARRAY(DataType.STRING), defaultValue: []}) languages: AdminLanguages[]; // TODO: неа, не прокатит
+    // Что если ты будешь делать фильтрацию и вывод этих данных? Будет ужасная сложность это делать и поддерживать. Создавай табличку
+    // И выноси туда enum AdminLanguages, ставь HasMany
+
+  // TODO: почему просто не has one?
   @BelongsTo(() => AdminSession,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: AdminSession;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
@@ -102,18 +108,18 @@ export class Admin extends Model {
 
   mustHaveAdminRole(role: AdminRole) {
     if (this.role !== role) {
-      throw error(Errors.InvalidRole, 'Invalid admin type', {});
+      throw error(Errors.InvalidRole, "Admin isn't match role", {});
     }
   }
 
   mustBeActivated(): void {
     if(!this.isActivated) {
-      throw error(Errors.InvalidStatus, 'Admin is deactivate', {})
+      throw error(Errors.InvalidStatus, 'Admin is not activated', {})
     }
   }
 
   static async isEmailExist(email: string) {
-    return await Admin.findOne({
+    return Admin.findOne({
       where: { email: email }
     });
   }

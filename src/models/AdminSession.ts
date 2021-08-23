@@ -2,9 +2,14 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize
 import { getUUID } from "../utils";
 import { Admin } from "./Admin";
 
-export interface AdminPlace{
-  country: string,
-  city: string,
+export interface AdminLoginPlace {
+  country: string | null;
+  city: string | null;
+}
+
+const defaultAdminLoginPlace: AdminLoginPlace = {
+  country: null,
+  city: null,
 }
 
 @Table
@@ -12,13 +17,12 @@ export class AdminSession extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
   @ForeignKey(() => Admin) @Column(DataType.STRING) adminId: string;
 
-  @Column(DataType.JSONB) place: AdminPlace;
-  @Column(DataType.STRING) device: string;
+  @Column({type: DataType.JSONB, defaultValue: defaultAdminLoginPlace}) place: AdminLoginPlace;
+  @Column({type: DataType.STRING, defaultValue: null}) device: string;
+  @Column({type: DataType.BOOLEAN, defaultValue: true}) isActive: boolean;
 
-  @Column({type: DataType.BOOLEAN, allowNull: true}) isActive: boolean;
-
-  @Column({type: DataType.DATE, allowNull: true}) logoutAt: Date;
-  @Column({type: DataType.DATE, allowNull: true}) lastActionTime: Date;
+  @Column(DataType.DATE) logoutAt: Date;
+  @Column(DataType.DATE) lastActionTime: Date;
 
   @BelongsTo(() => Admin) admin: Admin;
 }

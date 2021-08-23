@@ -36,19 +36,20 @@ export enum DisputeReason {
 }))
 @Table({ paranoid: true })
 export class QuestDispute extends Model {
-  @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
+  @Column({type: DataType.STRING, defaultValue: getUUID, primaryKey: true}) id: string;
   @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, unique: true}) openDisputeUserId: string;
+  @Column({type: DataType.STRING, allowNull: false}) openDisputeUserId: string;
+
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, unique: true}) opponentUserId: string;
+  @Column({type: DataType.STRING, allowNull: false}) opponentUserId: string;
 
   @ForeignKey(() => Admin)
-  @Column({type: DataType.STRING, unique: true}) resolvedByAdminId: string;
+  @Column(DataType.STRING) resolvedByAdminId: string;
 
   @ForeignKey(() => Quest)
-  @Column(DataType.STRING) questId: string;
+  @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
   @Column({type: DataType.STRING, defaultValue: DisputeReason.anotherReason}) reason: DisputeReason;
