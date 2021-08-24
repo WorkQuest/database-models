@@ -9,8 +9,8 @@ export class Filter extends Model {
 
     @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: true}) userId: string;
     @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: true}) questId: string;
-    @Column({type: DataType.STRING, allowNull: false}) Category: string;
-    @Column({type: DataType.STRING, allowNull: false}) Skills: string;
+    @Column({type: DataType.STRING, allowNull: false}) category: string;
+    @Column({type: DataType.STRING, allowNull: false}) skills: string;
 
     @BelongsTo(() => User) user: User;
     @BelongsTo(() => Quest) quest: Quest;
