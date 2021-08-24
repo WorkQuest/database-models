@@ -34,7 +34,6 @@ export const chatSchema = Joi.object({
   owner: userShortSchema,
   lastMessage: messageSchema,
   members: usersShortSchema,
-  messages: messagesSchema,
 }).label('Chat');
 
 export const chatsSchema = Joi.array().items(chatSchema).label('Chats');
