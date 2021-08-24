@@ -1,13 +1,13 @@
 import { Model } from "sequelize-typescript";
 import { User } from "./User";
-export interface UserPlace {
-    country: string;
-    city: string;
+export interface UserLoginPlace {
+    country: string | null;
+    city: string | null;
 }
 export declare class Session extends Model {
     id: string;
     userId: string;
-    place: UserPlace;
+    place: UserLoginPlace;
     device: string;
     ipAddress: string;
     isActive: boolean;

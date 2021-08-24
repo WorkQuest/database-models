@@ -41,7 +41,7 @@ export declare class Admin extends Model {
     age: number;
     resolvedDisputes: number;
     about: string;
-    languages: Array<AdminLanguages>;
+    languages: AdminLanguages[];
     lastSession: AdminSession;
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;

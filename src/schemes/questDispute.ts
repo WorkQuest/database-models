@@ -7,8 +7,8 @@ import { questSchema } from "./quest";
 import { userFullSchema } from "./user";
 import {adminSchema} from "./admin";
 
-export const disputeStatusSchema = Joi.string().max(255).valid(...Object.values(DisputeStatus)).default(DisputeStatus.pending).example('active').label('DisputeStatusSchema');
-export const disputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeStatus.pending).example('active').label('DisputeReasonSchema');
+export const disputeStatusSchema = Joi.string().max(255).valid(...Object.values(DisputeStatus)).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatusSchema');
+export const disputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReasonSchema');
 export const problemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescriptionSchema');
 export const adminDecisionSchema = Joi.string().example('Decision is...').label('AdminDecisionSchema');
 export const disputeNumberSchema = Joi.number().example('123').label('DisputeNumberSchema');
