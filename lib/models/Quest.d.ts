@@ -34,6 +34,7 @@ export declare class Quest extends Model {
     status: QuestStatus;
     priority: QuestPriority;
     category: string;
+    locationName: string;
     location: Location;
     locationPostGIS: any;
     title: string;

@@ -24,6 +24,7 @@ export const questTitleSchema = Joi.string().example('Title...').label('Title');
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('Description');
 export const questPriceSchema = Joi.string().example("500").label('Price');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('AdType');
+export const locationNameSchema = Joi.string().max(255).example('Tomsk').label('LocationNameSchema');
 
 export const questSchema = Joi.object({
   id: questIdSchema,
@@ -32,6 +33,7 @@ export const questSchema = Joi.object({
   category: questCategorySchema,
   status: questStatusSchema,
   priority: questPrioritySchema,
+  locationName: locationNameSchema,
   location: locationSchema,
   title: questTitleSchema,
   description: questDescriptionSchema,
@@ -101,6 +103,7 @@ export const questForGetSchema = Joi.object({
   category: questCategorySchema,
   status: questStatusSchema,
   priority: questPrioritySchema,
+  locationName: locationNameSchema,
   location: locationSchema,
   title: questTitleSchema,
   description: questDescriptionSchema,
