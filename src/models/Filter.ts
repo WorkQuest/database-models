@@ -7,8 +7,8 @@ import {User} from "./User";
 export class Filter extends Model {
     @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-    @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) userId: string;
-    @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: false}) questId: string;
+    @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: true}) userId: string;
+    @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: true}) questId: string;
     @Column({type: DataType.STRING, allowNull: false}) Category: string;
     @Column({type: DataType.STRING, allowNull: false}) Skills: string;
 
