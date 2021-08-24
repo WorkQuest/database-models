@@ -121,6 +121,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    },{
+      model: Filter.scope('userFilter'),
+      as: 'filters',
     }]
   },
   withPassword: {

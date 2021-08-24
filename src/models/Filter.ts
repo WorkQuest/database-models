@@ -1,8 +1,17 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
 import { getUUID } from '../utils';
 import { Quest } from './Quest';
 import {User} from "./User";
 
+
+@Scopes(() => ({
+    questFilter: {
+        attributes: ["id", "questId", "category", "skills"]
+    },
+    userFilter: {
+        attributes: ["id", "userId", "category", "skills"]
+    }
+}))
 @Table
 export class Filter extends Model {
     @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;

@@ -4,6 +4,7 @@ import { Media } from './Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
+import { Filter } from "./Filter";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -48,6 +49,7 @@ export declare class Quest extends Model {
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
     reviews: Review[];
+    filters: Filter[];
     updateFieldLocationPostGIS(): void;
     mustHaveStatus(...statuses: QuestStatus[]): void;
     mustBeAppointedOnQuest(workerId: string): void;
