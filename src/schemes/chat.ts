@@ -27,11 +27,11 @@ export const messageIdsSchema = Joi.array().items(messageIdSchema).label('Messag
 
 export const chatSchema = Joi.object({
   id: chatIdSchema,
-  creatorUserId: userIdSchema,
+  ownerUserId: userIdSchema,
   lastMessageId: messageIdSchema,
   name: chatNameSchema.allow(null),
   type: chatTypeSchema,
-  creator: userShortSchema,
+  owner: userShortSchema,
   lastMessage: messageSchema,
   members: usersShortSchema,
   messages: messagesSchema,
