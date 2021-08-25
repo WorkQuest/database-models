@@ -44,12 +44,13 @@ export declare class Quest extends Model {
     medias: Media[];
     user: User;
     assignedWorker: User;
+    filter: Filter;
     star: StarredQuests;
     response: QuestsResponse;
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
     reviews: Review[];
-    filter: Filter[];
+    filters: Filter[];
     updateFieldLocationPostGIS(): void;
     mustHaveStatus(...statuses: QuestStatus[]): void;
     mustBeAppointedOnQuest(workerId: string): void;
