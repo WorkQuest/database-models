@@ -4,12 +4,13 @@ import {Quest} from './Quest';
 import {User} from "./User";
 
 
-@Scopes(() => ({
-    defaultScope: {
-      attributes: ["category", "skills"]
-    },
-}))
-@Table
+@Table({
+scopes: {
+    filters: {
+        attributes: ["category", "skills"]
+    }
+}
+})
 export class Filter extends Model {
     @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 

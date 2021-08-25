@@ -122,8 +122,8 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     },{
-      model: Filter,
-      as: 'filters'
+      model: Filter.scope('filters'),
+      as: 'filter'
     }]
   },
   withPassword: {
@@ -183,7 +183,7 @@ export class User extends Model {
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
   @HasMany(() => ChatMember) chatMember: ChatMember;
-  @HasMany(() => Filter,{foreignKey: 'userId'}) filters: Filter[];
+  @HasMany(() => Filter,{foreignKey: 'userId'}) filter: Filter[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);
