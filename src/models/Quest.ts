@@ -66,8 +66,9 @@ export interface Location {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: Filter.scope('questFilter'),
+      model: Filter,
       as: 'filter',
+      attributes: ["id", "questId", "category", "skills"]
     }]
   }
 }))
