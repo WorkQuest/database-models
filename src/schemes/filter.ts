@@ -1,6 +1,7 @@
 import * as Joi from "joi";
 import {idSchema} from "./common";
 
+
 const skillsSchema = Joi.string().label('SkillsSchema')
 const nameCategory = Joi.string().label('NameCategory');
 const filterIdSchema = idSchema.label('FilterId');
@@ -16,9 +17,9 @@ export const questFilterSchema = Joi.object({
 export const filterSchema = Joi.array().items(questFilterSchema).label('FilterSchema');
 
 
-export const questFiletrSchemaResponse = Joi.object({
+export const questFilterSchemaResponse = Joi.object({
     id: filterIdSchema,
     questId: questFilterId,
     filter: filterSchema
 })
-export const filtersSchema = Joi.array().items(questFiletrSchemaResponse).label('FilterSchemaResponse')
+export const filtersSchema = Joi.array().items(questFilterSchemaResponse).label('FilterSchemaResponse')
