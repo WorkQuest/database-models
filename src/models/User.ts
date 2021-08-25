@@ -175,7 +175,7 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
-  @BelongsTo(() => Filter,{ constraints: false, foreignKey: 'avatarId' }) filter: Filter;
+  @BelongsTo(() => Filter) filter: Filter;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
 
