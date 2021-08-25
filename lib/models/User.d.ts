@@ -6,6 +6,7 @@ import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import { UserBlockReason } from "./UserBlockReason";
 import { ChatMember } from "./ChatMember";
+import { UserQuestsInfo } from "./UserQuestsInfo";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -100,6 +101,7 @@ export declare class User extends Model {
     lastSession: Session;
     ratingStatistic: RatingStatistic;
     blockReason: UserBlockReason;
+    userQuestsInfo: UserQuestsInfo;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];
