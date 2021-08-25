@@ -12,6 +12,7 @@ import {
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
+import {filterSchema} from "./filter";
 
 // Quests schemes
 
@@ -40,6 +41,7 @@ export const questSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
+  filter: filterSchema,
   createdAt: isoDateSchema,
 }).label("QuestSchema");
 
