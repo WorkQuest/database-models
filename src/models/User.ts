@@ -8,6 +8,7 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {ChatMember} from "./ChatMember";
+import {UserQuestsInfo} from "./UserQuestsInfo";
 
 export interface SocialInfo {
   id: string;
@@ -126,12 +127,18 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     attributes: {
       include: ["password", "settings", "tempPhone"]
     }
-  }
+  },
+
 }))
 @Table({ paranoid: true })
 export class User extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-  @ForeignKey(() => Media) @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
+
+  @ForeignKey(() => Media)
+  @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
+
+  @ForeignKey(() => Session)
+  @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
 
   @Column({
     type: DataType.STRING,
@@ -166,6 +173,7 @@ export class User extends Model {
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(()=> UserQuestsInfo) userQuestsInfo: UserQuestsInfo;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
