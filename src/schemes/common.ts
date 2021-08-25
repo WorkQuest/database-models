@@ -39,8 +39,8 @@ export function outputPaginationSchema(title: string, item: Joi.Schema): Joi.Sch
 }
 
 export const locationSchema = Joi.object({
-  longitude: longitudeSchema.required(),
-  latitude: latitudeSchema.required(),
+  longitude: longitudeSchema,
+  latitude: latitudeSchema,
 }).label('Location');
 
 export const emptyOkSchema = Joi.object({
