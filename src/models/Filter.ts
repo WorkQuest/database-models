@@ -5,12 +5,9 @@ import {User} from "./User";
 
 
 @Scopes(() => ({
-    questFilter: {
-        attributes: ["id", "questId", "category", "skills"]
+    defaultScope: {
+      attributes: ["category", "skills"]
     },
-    userFilter: {
-        attributes: ["id", "userId", "category", "skills"]
-    }
 }))
 @Table
 export class Filter extends Model {

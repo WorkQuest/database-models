@@ -94,7 +94,6 @@ export declare class User extends Model {
     tempPhone: string;
     phone: string;
     avatar: Media;
-    filter: Filter;
     ratingStatistic: RatingStatistic;
     starredQuests: StarredQuests[];
     reviews: Review[];

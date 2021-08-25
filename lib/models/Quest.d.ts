@@ -44,7 +44,6 @@ export declare class Quest extends Model {
     medias: Media[];
     user: User;
     assignedWorker: User;
-    filter: Filter;
     star: StarredQuests;
     response: QuestsResponse;
     starredQuests: StarredQuests[];

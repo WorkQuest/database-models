@@ -21,7 +21,6 @@ export const questFilterSchema = Joi.object({
 
 export const filterSchema = Joi.array().items(questFilterSchema).label('FilterSchema');
 
-
 export const questFilterSchemaResponse = Joi.object({
     id: filterIdSchema,
     questId: questIdSchema,
