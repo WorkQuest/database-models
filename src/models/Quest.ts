@@ -93,7 +93,7 @@ export class Quest extends Model {
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
-  @BelongsTo(() => Filter,{ constraints: false, foreignKey: 'avatarId' }) filter: Filter;
+  @BelongsTo(() => Filter, {foreignKey: 'questId'}) filter: Filter;
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
