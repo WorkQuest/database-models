@@ -68,7 +68,7 @@ export interface Location {
     }, {
       model: Filter,
       as: 'filter',
-      attributes: ["id","category","skills"]
+      attributes: ["category","skills"]
     }]
   }
 }))
