@@ -7,7 +7,7 @@ import {User} from "./User";
 @Table({
 scopes: {
     filter: {
-        attributes: ["category", "skills"]
+        attributes: ["id","userId","questId","category", "skills"]
     }
 }
 })

@@ -124,7 +124,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     },{
       model: Filter,
       as: 'filter',
-      attributes: ["category", "skills"]
+      attributes: ["id","userId","questId","category", "skills"]
     }]
   },
   withPassword: {
