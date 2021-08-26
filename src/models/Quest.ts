@@ -67,8 +67,7 @@ export interface Location {
       as: 'assignedWorker'
     }, {
       model: Filter,
-      as: 'filters',
-      attributes: ["category","skills"]
+      attributes: ["filters"]
     }]
   }
 }))
