@@ -6,6 +6,7 @@ import {User} from "./User";
 @Scopes(() => ({
     defaultScope: {
         attributes: {
+            exclude: ["userId","questId","updatedAt"],
             include: ["category", "skills"]
         }
     }

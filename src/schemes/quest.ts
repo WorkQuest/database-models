@@ -113,6 +113,7 @@ export const questForGetSchema = Joi.object({
   star: Joi.object().allow(null).label('Star'),
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
+  filter: filtersSchema,
   createdAt: isoDateSchema,
 }).label('QuestForGet');
 
