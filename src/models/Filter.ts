@@ -6,8 +6,8 @@ import {User} from "./User";
 
 @Table({
 scopes: {
-    defaultScope: {
-        attributes: ["id","questId","category", "skills"]
+    filter: {
+        attributes: ["category", "skills"]
     }
 }
 })
