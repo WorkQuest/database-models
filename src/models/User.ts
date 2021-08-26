@@ -7,7 +7,6 @@ import { Errors } from "../utils/errors";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
-import {UserQuestsInfo} from "./UserQuestsInfo";
 import {QuestsStatistic} from "./QuestsStatistic";
 
 export interface SocialInfo {
