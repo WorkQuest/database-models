@@ -179,7 +179,7 @@ export class User extends Model {
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
-  @HasOne(()=> QuestsStatistic) userQuestsInfo: QuestsStatistic;
+  @HasOne(()=> QuestsStatistic) questsStatistic: QuestsStatistic;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];

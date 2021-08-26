@@ -4,6 +4,7 @@ import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh, limitSchema, o
 import {mediaUrlOnlySchema } from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {questsStatisticSchema} from "./questsStatistic";
 
 const userIdSchema = idSchema.label("UserId");
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -123,6 +124,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
   lastSession: userLastSessionSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
@@ -148,6 +150,7 @@ export const userFullSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
   lastSession: userLastSessionSchema,
   loginAt: isoDateSchema,
   logoutAt: isoDateSchema,
@@ -177,6 +180,7 @@ export const userWithSettingsFullSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
   lastSession: userLastSessionSchema,
   changeRoleAt: isoDateSchema,
   createdAt: isoDateSchema,

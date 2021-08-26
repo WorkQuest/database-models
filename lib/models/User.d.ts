@@ -101,7 +101,7 @@ export declare class User extends Model {
     lastSession: Session;
     ratingStatistic: RatingStatistic;
     blockReason: UserBlockReason;
-    userQuestsInfo: QuestsStatistic;
+    questsStatistic: QuestsStatistic;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];
