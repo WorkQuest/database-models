@@ -8,9 +8,8 @@ const filterCategorySchema = Joi.string().label('SkillsSchema')
 const filterSkillSchema = Joi.string().label('NameCategory');
 
 const questIdSchema = idSchema.label('QuestId');
-const filterIdSchema = idSchema.label('QuestId');
-// export const filterIdSchema = Joi.alternatives().try(Joi.string().uuid(), Joi.string().default(null)).label("FilterId");
-// export const questFilterId = Joi.alternatives().try(Joi.string().uuid(), Joi.string().default(null)).label("QuestIdFilter");
+const filterIdSchema = idSchema.label('FilterId');
+const userIdSchema = idSchema.label('UserId')
 const filterSkillsSchema = Joi.array().items(skillsSchema).label('SkillsSchema')
 
 export const questFilterSchema = Joi.object({
@@ -27,4 +26,12 @@ export const questFilterSchemaResponse = Joi.object({
     category: filterCategorySchema,
     skills: filterSkillSchema
 })
+export const userFilterSchemaResponse = Joi.object({
+    id: filterIdSchema,
+    userId: userIdSchema,
+    category: filterCategorySchema,
+    skills: filterSkillSchema
+})
+
 export const filtersSchema = Joi.array().items(questFilterSchemaResponse).label('FilterSchemaResponse')
+export const filtersUserSchema = Joi.array().items(userFilterSchemaResponse).label('FilterSchemaResponse')

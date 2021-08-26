@@ -1,9 +1,10 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
+import {idSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
 import {mediaIdsSchema, mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {filtersUserSchema} from "./filter";
 
 const userIdSchema = idSchema.label("UserId");
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -69,6 +70,7 @@ export const userSchema = Joi.object({
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
+  filter: filtersUserSchema,
   ratingStatistic: ratingStatisticSchema,
 }).label("UserSchema");
 
@@ -77,7 +79,8 @@ export const userShortSchema = Joi.object({
   avatarId: mediaIdsSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-});
+  filter: filtersUserSchema
+}).label("UserShortSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userIdsSchema = Joi.array().items(userIdSchema).label('UserIds');
