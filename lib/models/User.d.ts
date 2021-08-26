@@ -5,6 +5,7 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import { ChatMember } from "./ChatMember";
+import { QuestsStatistic } from "./QuestsStatistic";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -81,6 +82,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
+    lastSessionId: string;
     password: string;
     firstName: string;
     lastName: string;
@@ -94,6 +96,8 @@ export declare class User extends Model {
     phone: string;
     avatar: Media;
     ratingStatistic: RatingStatistic;
+    userQuestsInfo: QuestsStatistic;
+    questsStatistic: QuestsStatistic;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];
