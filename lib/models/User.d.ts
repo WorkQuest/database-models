@@ -100,7 +100,7 @@ export declare class User extends Model {
     sessions: Session[];
     medias: Media[];
     chatMember: ChatMember;
-    filter: Filter[];
+    filters: Filter[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;

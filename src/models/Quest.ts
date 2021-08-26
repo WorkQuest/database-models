@@ -66,8 +66,11 @@ export interface Location {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: Filter.scope('filters'),
-      as: 'filter',
+      model: Filter,
+      as: 'filters',
+      trough: {
+        attributes: ["category","skills"]
+      }
     }]
   }
 }))
@@ -99,7 +102,7 @@ export class Quest extends Model {
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => Filter,{foreignKey: 'questId'}) filter: Filter[];
+  @HasMany(() => Filter,{foreignKey: 'questId'}) filters: Filter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
