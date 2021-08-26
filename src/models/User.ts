@@ -8,6 +8,7 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {UserQuestsInfo} from "./UserQuestsInfo";
+import {QuestsStatistic} from "./QuestsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -174,6 +175,7 @@ export class User extends Model {
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(()=> UserQuestsInfo) userQuestsInfo: UserQuestsInfo;
+  @HasOne(()=> QuestsStatistic) userQuestsInfo: QuestsStatistic;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
