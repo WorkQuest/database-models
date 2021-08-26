@@ -4,7 +4,7 @@ import {Quest} from './Quest';
 import {User} from "./User";
 
 @Scopes(() => ({
-    filters: {
+    defaultScope: {
         attributes: {
             include: ["category", "skills"]
         }

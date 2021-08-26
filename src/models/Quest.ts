@@ -66,7 +66,7 @@ export interface Location {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: Filter.scope('filters'),
+      model: Filter,
       as: 'filter'
     }]
   }

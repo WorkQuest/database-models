@@ -122,7 +122,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     },{
-      model: Filter.scope('filters'),
+      model: Filter,
       as: 'filter'
     }]
   },
