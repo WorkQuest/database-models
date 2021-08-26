@@ -123,7 +123,8 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       as: 'ratingStatistic'
     },{
       model: Filter,
-      as: 'filter'
+      as: 'filter',
+      attributes: ["id","category","skills"]
     }]
   },
   withPassword: {
