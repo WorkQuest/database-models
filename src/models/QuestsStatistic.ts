@@ -3,7 +3,7 @@ import { getUUID } from "../utils";
 import {User, UserStatus} from "./User";
 
 @Table
-export class UserQuestsInfo extends Model {
+export class QuestsStatistic extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
 

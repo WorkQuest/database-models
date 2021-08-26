@@ -19,3 +19,4 @@ export * from "./Message";
 export * from "./MessageMedia";
 export * from "./QuestDispute";
 export * from "./UserBlockReason";
+export * from "./QuestsStatistic";
