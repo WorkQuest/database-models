@@ -4,6 +4,7 @@ import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh} from "./common
 import {mediaUrlOnlySchema } from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {questsStatisticSchema} from "./questsStatistic";
 
 const userIdSchema = idSchema.label("UserId");
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -70,9 +71,63 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label("UserSchema");
+
+//добавить сюда подтверждён или нет и тд
+export const userFullSchema = Joi.object({
+  id: idSchema.label("UserId"),
+  avatarId: idSchema.label('AvatarId'),
+  lastSessionId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: userPhoneSchema,
+  tempPhone: userTempPhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: Joi.object()
+    .concat(userAdditionalInfoEmployerSchema)
+    .concat(userAdditionalInfoWorkerSchema)
+    .allow(null).label('AdditionalInfo'),
+  role: userRoleSchema,
+  status: userStatusSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
+  ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
+  loginAt: isoDateSchema,
+  logoutAt: isoDateSchema,
+  changeRoleAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+  deletedAt: isoDateSchema,
+}).label("UserFullSchema");
+
+export const userWithSettingsFullSchema = Joi.object({
+  id: idSchema.label("UserId"),
+  avatarId: idSchema.label('AvatarId'),
+  lastSessionId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: userPhoneSchema,
+  tempPhone: userTempPhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: Joi.object()
+    .concat(userAdditionalInfoEmployerSchema)
+    .concat(userAdditionalInfoWorkerSchema)
+    .allow(null).label('AdditionalInfo'),
+  role: userRoleSchema,
+  status: userStatusSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
+  ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
+  changeRoleAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+  deletedAt: isoDateSchema,
+}).label("UserFullSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userIdsSchema = Joi.array().items(userIdSchema).label('UserIds');
