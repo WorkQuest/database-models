@@ -56,6 +56,8 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
   website: Joi.string().allow(null).label('Website'),
 }).label('AdditionalInfoEmployer');
 
+export const userLanguagesSchema = Joi.array().items(languageTableSchema).default([]).label('UserLanguagesSchema');
+
 export const userSchema = Joi.object({
   id: userIdSchema,
   avatarId: mediaIdSchema,
@@ -70,7 +72,7 @@ export const userSchema = Joi.object({
     .allow(null).label('AdditionalInfo'),
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  languages: languageTableSchema,
+  languages: userLanguagesSchema,
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
 }).label("UserSchema");
