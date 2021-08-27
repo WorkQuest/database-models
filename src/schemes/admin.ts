@@ -23,6 +23,12 @@ export const adminPlaceSchema = Joi.object({
   city: adminCitySchema,
 }).label('AdminPlaceSchema');
 
+export const adminAdditionalInfoSchema = Joi.object({
+  age: adminAgeSchema,
+  resolvedDisputes: adminResolvedDisputesSchema,
+  about: adminAboutSchema,
+}).label('AdminAdditionalInfoSchema');
+
 export const adminLastSessionSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
@@ -43,14 +49,12 @@ export const adminSchema = Joi.object({
   lastName: adminLastNameSchema,
   role: adminRoleSchema,
   isActivated: isActiveSchema,
-  age: adminAgeSchema,
-  resolvedDisputes: adminResolvedDisputesSchema,
-  about: adminAboutSchema,
+  additionalInfo: adminAdditionalInfoSchema,
   languages: adminLanguagesSchema,
   lastSession: adminLastSessionSchema,
   updatedAt: isoDateSchema,
   deletedAt: isoDateSchema,
-}).label('AccountSchema')
+}).label('AdminAccountSchema')
 
 export const adminQuerySchema = Joi.object({
   offset: offsetSchema,

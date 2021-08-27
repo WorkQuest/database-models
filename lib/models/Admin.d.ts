@@ -1,5 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { AdminSession } from "./AdminSession";
+import { Language } from "./Language";
 export declare enum AdminRole {
     main = "main",
     dispute = "dispute",
@@ -28,6 +29,11 @@ export interface AdminSecurity {
 export interface AdminAccountSettings {
     security: AdminSecurity;
 }
+export interface AdditionalInfo {
+    age: number | null;
+    resolvedDisputes: number | null;
+    about: string | null;
+}
 export declare class Admin extends Model {
     id: string;
     lastSessionId: string;
@@ -38,12 +44,10 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActivated: boolean;
-    age: number;
-    resolvedDisputes: number;
-    about: string;
-    languages: AdminLanguages[];
+    additionalInfo: AdditionalInfo;
     lastSession: AdminSession;
     sessions: AdminSession[];
+    languages: Language[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
     mustHaveAdminRole(role: AdminRole): void;

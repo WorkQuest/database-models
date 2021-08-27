@@ -4,6 +4,8 @@ import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} 
 import { getUUID, error } from '../utils';
 import { Errors } from "../utils/errors";
 import { AdminSession } from "./AdminSession"
+import { Language } from "./Language";
+import {JSONB} from "sequelize";
 
 export enum AdminRole {
   main = "main",
@@ -37,6 +39,12 @@ export interface AdminSecurity {
 
 export interface AdminAccountSettings {
   security: AdminSecurity;
+}
+
+export interface AdditionalInfo {
+  age: number | null;
+  resolvedDisputes: number | null;
+  about: string | null;
 }
 
 @Scopes(() => ({
@@ -79,21 +87,12 @@ export class Admin extends Model {
   @Column({type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
-  // TODO: Выноси все в AdditionInfo ---->
-  @Column(DataType.INTEGER) age: number;
-  @Column(DataType.INTEGER) resolvedDisputes: number;
-  @Column(DataType.TEXT) about: string;
-  // -----<
+  @Column(DataType.JSONB) additionalInfo: AdditionalInfo;
 
-  @Column({type: DataType.ARRAY(DataType.STRING), defaultValue: []}) languages: AdminLanguages[]; // TODO: неа, не прокатит
-    // Что если ты будешь делать фильтрацию и вывод этих данных? Будет ужасная сложность это делать и поддерживать. Создавай табличку
-    // И выноси туда enum AdminLanguages, ставь HasMany
-
-  // TODO: почему просто не has one?
   @BelongsTo(() => AdminSession,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: AdminSession;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
-
+  @HasMany(() => Language) languages: Language[];
   async passwordCompare(pwd: string) {
     return bcrypt.compareSync(pwd, this.password);
   }
