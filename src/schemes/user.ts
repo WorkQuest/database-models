@@ -24,6 +24,7 @@ export const userConfirmCodeSchema = Joi.string().max(255).example('2D4em7').lab
 export const userSecretSchema = Joi.string().max(255).example('JAYWY6KYG47XYNQ5').label('UserSecuritySchema');
 export const userTOTPActiveSchema = Joi.boolean().example(false).label('UserTOTPActiveSchema');
 export const userSessionIsActiveSchema = Joi.bool().example(false).label('UserSessionIsActiveSchema');
+export const userBlockReasonSchema = Joi.string().example('You are blocked').label('UserBlockReasonSchema');
 export const userTOTPSchema = Joi.object({
   confirmCode: userConfirmCodeSchema,
   active: userTOTPActiveSchema,
@@ -67,6 +68,13 @@ export const userLastSessionSchema = Joi.object({
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label('UserLastSessionSchema');
+
+export const userBlockSchema = Joi.object({
+  id: idSchema,
+  userId: idSchema,
+  blockReason: userBlockReasonSchema,
+  previousStatus: userStatusSchema,
+}).label('UserBlockReason');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -125,6 +133,7 @@ export const userSchema = Joi.object({
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   questsStatistic: questsStatisticSchema,
+  userBlockReason: userBlockSchema,
   lastSession: userLastSessionSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
@@ -151,6 +160,7 @@ export const userFullSchema = Joi.object({
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   questsStatistic: questsStatisticSchema,
+  userBlockReason: userBlockSchema,
   lastSession: userLastSessionSchema,
   loginAt: isoDateSchema,
   logoutAt: isoDateSchema,

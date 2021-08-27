@@ -16,8 +16,14 @@ export const adminSessionIsActiveSchema = Joi.bool().example(false).label('Admin
 export const adminAgeSchema = Joi.number().example(25).label('AdminAgeSchema');
 export const adminResolvedDisputesSchema = Joi.number().example(25).label('AdminResolvedDisputesSchema');
 export const adminAboutSchema = Joi.string().example('I am cool admin').label('AdminAboutSchema');
-export const adminLanguageSchema = Joi.string().max(255).example(AdminLanguages.en).label('AdminLanguageSchema');
-export const adminLanguagesSchema = Joi.array().items(adminLanguageSchema).label('AdminLanguagesSchema');
+export const languageSchema = Joi.string().max(255).example(AdminLanguages.en).label('languageSchema');
+
+export const adminLanguageSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  language: languageSchema,
+}).label('adminLanguageSchema');
+
 export const adminPlaceSchema = Joi.object({
   country: adminCountrySchema,
   city: adminCitySchema,
@@ -50,7 +56,7 @@ export const adminSchema = Joi.object({
   role: adminRoleSchema,
   isActivated: isActiveSchema,
   additionalInfo: adminAdditionalInfoSchema,
-  languages: adminLanguagesSchema,
+  languages: adminLanguageSchema,
   lastSession: adminLastSessionSchema,
   updatedAt: isoDateSchema,
   deletedAt: isoDateSchema,
