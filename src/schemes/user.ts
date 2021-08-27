@@ -4,6 +4,7 @@ import {idSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {languageTableSchema} from "./language";
 
 const mediaIdSchema = idSchema.label("MediaId");
 const userIdSchema = idSchema.label("UserId");
@@ -69,6 +70,7 @@ export const userSchema = Joi.object({
     .allow(null).label('AdditionalInfo'),
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+  languages: languageTableSchema,
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
 }).label("UserSchema");
