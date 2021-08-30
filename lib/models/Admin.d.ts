@@ -45,7 +45,7 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActivated: boolean;
-    additionalInfo: AdditionalInfo;
+    additionalInfo: object;
     resolvedDisputes: number;
     lastSession: AdminSession;
     avatar: Media;
