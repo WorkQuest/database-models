@@ -1,6 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { AdminSession } from "./AdminSession";
 import { Language } from "./Language";
+import { Media } from "./Media";
 export declare enum AdminRole {
     main = "main",
     dispute = "dispute",
@@ -37,6 +38,7 @@ export interface AdditionalInfo {
 export declare class Admin extends Model {
     id: string;
     lastSessionId: string;
+    avatarId: string;
     email: string;
     password: string;
     firstName: string;
@@ -46,6 +48,7 @@ export declare class Admin extends Model {
     isActivated: boolean;
     additionalInfo: AdditionalInfo;
     lastSession: AdminSession;
+    avatar: Media;
     sessions: AdminSession[];
     languages: Language[];
     passwordCompare(pwd: string): Promise<any>;

@@ -1,6 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { Admin } from "./Admin";
-export declare enum Languages {
+export declare enum LanguagesEnum {
     en = "en",
     ru = "ru",
     ba = "ba",
@@ -12,9 +12,10 @@ export declare enum Languages {
     sp = "sp",
     ae = "ae"
 }
+export declare const languages: LanguagesEnum[];
 export declare class Language extends Model {
     id: string;
     adminId: any;
-    language: Languages;
+    language: LanguagesEnum;
     admin: Admin;
 }

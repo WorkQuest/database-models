@@ -6,6 +6,7 @@ import { Errors } from "../utils/errors";
 import { AdminSession } from "./AdminSession"
 import { Language } from "./Language";
 import {JSONB} from "sequelize";
+import {Media} from "./Media";
 
 export enum AdminRole {
   main = "main",
@@ -66,6 +67,9 @@ export class Admin extends Model {
   @ForeignKey(() => AdminSession)
   @Column(DataType.STRING) lastSessionId: string;
 
+  @ForeignKey(() => Media)
+  @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
+
   @Column({type: DataType.STRING, unique: true}) email: string;
 
   @Column({
@@ -90,6 +94,7 @@ export class Admin extends Model {
   @Column(DataType.JSONB) additionalInfo: AdditionalInfo;
 
   @BelongsTo(() => AdminSession,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: AdminSession;
+  @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
   @HasMany(() => Language) languages: Language[];

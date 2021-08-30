@@ -1,6 +1,8 @@
 import Joi = require("joi");
 import {idSchema, offsetSchema, limitSchema, isoDateSchema} from "./common";
 import {AdminLanguages, AdminRole, AdminRoles} from "../models";
+import {languageTableSchema} from "./language";
+import {mediaUrlOnlySchema} from "./media";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('FirstNameSchema');
 export const adminLastNameSchema = Joi.string().max(255).example('Durov').label('LastNameSchema');
@@ -16,13 +18,7 @@ export const adminSessionIsActiveSchema = Joi.bool().example(false).label('Admin
 export const adminAgeSchema = Joi.number().example(25).label('AdminAgeSchema');
 export const adminResolvedDisputesSchema = Joi.number().example(25).label('AdminResolvedDisputesSchema');
 export const adminAboutSchema = Joi.string().example('I am cool admin').label('AdminAboutSchema');
-export const languageSchema = Joi.string().max(255).example(AdminLanguages.en).label('languageSchema');
-
-export const adminLanguageSchema = Joi.object({
-  id: idSchema,
-  adminId: idSchema,
-  language: languageSchema,
-}).label('adminLanguageSchema');
+export const adminLanguagesSchema = Joi.array().items(languageTableSchema).default([]).label('AdminLanguagesSchema');
 
 export const adminPlaceSchema = Joi.object({
   country: adminCountrySchema,
@@ -50,13 +46,15 @@ export const adminLastSessionSchema = Joi.object({
 export const adminSchema = Joi.object({
   id: idSchema,
   lastSessionId: idSchema,
+  avatarId: idSchema,
   email: adminEmailSchema,
   firstName: adminFirstNameSchema,
   lastName: adminLastNameSchema,
   role: adminRoleSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  languages: adminLanguagesSchema,
   isActivated: isActiveSchema,
   additionalInfo: adminAdditionalInfoSchema,
-  languages: adminLanguageSchema,
   lastSession: adminLastSessionSchema,
   updatedAt: isoDateSchema,
   deletedAt: isoDateSchema,
