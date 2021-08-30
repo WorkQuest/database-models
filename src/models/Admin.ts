@@ -44,7 +44,6 @@ export interface AdminAccountSettings {
 
 export interface AdditionalInfo {
   age: number | null;
-  resolvedDisputes: number | 0;
   about: string | null;
 }
 
@@ -92,6 +91,7 @@ export class Admin extends Model {
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
   @Column({ type: DataType.JSONB, defaultValue: {} }) additionalInfo: AdditionalInfo;
+  @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedDisputes: number;
 
   @BelongsTo(() => AdminSession,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: AdminSession;
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;

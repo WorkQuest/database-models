@@ -32,7 +32,6 @@ export interface AdminAccountSettings {
 }
 export interface AdditionalInfo {
     age: number | null;
-    resolvedDisputes: number | 0;
     about: string | null;
 }
 export declare class Admin extends Model {
@@ -47,6 +46,7 @@ export declare class Admin extends Model {
     settings: AdminAccountSettings;
     isActivated: boolean;
     additionalInfo: AdditionalInfo;
+    resolvedDisputes: number;
     lastSession: AdminSession;
     avatar: Media;
     sessions: AdminSession[];
