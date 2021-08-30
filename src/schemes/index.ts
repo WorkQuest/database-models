@@ -12,3 +12,4 @@ export * from "./admin";
 export * from "./questDispute";
 export * from "./chat";
 export * from "./questsStatistic";
+export * from "./language";
