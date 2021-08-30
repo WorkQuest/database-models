@@ -44,7 +44,7 @@ export interface AdminAccountSettings {
 
 export interface AdditionalInfo {
   age: number | null;
-  resolvedDisputes: number | null;
+  resolvedDisputes: number | 0;
   about: string | null;
 }
 
