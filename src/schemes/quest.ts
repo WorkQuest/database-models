@@ -56,6 +56,8 @@ export const questsListSortSchema = Joi.object({
 }).default({}).label('QuestsListSort');
 
 export const questsQuerySchema = Joi.object({
+  north: locationSchema,
+  south: locationSchema,
   offset: offsetSchema,
   limit: limitSchema,
   q: searchSchema,
