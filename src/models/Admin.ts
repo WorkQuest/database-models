@@ -91,7 +91,7 @@ export class Admin extends Model {
   @Column({type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActivated: boolean;
 
-  @Column(DataType.JSONB) additionalInfo: AdditionalInfo;
+  @Column({ type: DataType.JSONB, defaultValue: {} }) additionalInfo: AdditionalInfo;
 
   @BelongsTo(() => AdminSession,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: AdminSession;
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
