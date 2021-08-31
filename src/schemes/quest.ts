@@ -75,6 +75,7 @@ export const questsQuerySchema = Joi.object({
 export const questsResponseMessageSchema = Joi.string().example('Hello, I need this job').default('').label('Message');
 export const questsResponseStatusSchema = Joi.number().example(QuestsResponseStatus.Open).valid(...Object.keys(QuestsResponseStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).label('QuestsResponseStatus');
 export const questsResponseTypeSchema = Joi.number().example(QuestsResponseType.Response).valid(...Object.keys(QuestsResponseType).map(key => parseInt(key)).filter(key => !isNaN(key))).label('QuestsResponseType');
+export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceNameSchema');
 
 export const questsResponseSchema = Joi.object({
   id: idSchema.label('QuestsResponseId'),
@@ -103,6 +104,7 @@ export const questForGetSchema = Joi.object({
   category: questCategorySchema,
   status: questStatusSchema,
   priority: questPrioritySchema,
+  locationPlaceName: questLocationPlaceNameSchema,
   location: locationSchema,
   title: questTitleSchema,
   description: questDescriptionSchema,
