@@ -25,13 +25,13 @@ export const questFilterSchemaResponse = Joi.object({
     questId: questIdSchema,
     category: filterCategorySchema,
     skills: filterSkillSchema
-})
+}).label('QuestFilterSchemaResponse')
 export const userFilterSchemaResponse = Joi.object({
     id: filterIdSchema,
     userId: userIdSchema,
     category: filterCategorySchema,
     skills: filterSkillSchema
-})
+}).label('UserFilterSchemaResponse')
 
 export const filtersSchema = Joi.array().items(questFilterSchemaResponse).label('FilterSchemaResponse')
 export const filtersUserSchema = Joi.array().items(userFilterSchemaResponse).label('FilterSchemaResponse')

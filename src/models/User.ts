@@ -134,10 +134,14 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
   },
   short: {
     attributes: ["id", "firstName", "lastName"],
-    include: {
+    include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
-    }
+    },{
+      model: Filter,
+      as: 'filter',
+      attributes: ["category","skills"]
+    }]
   }
 }))
 @Table({ paranoid: true })
