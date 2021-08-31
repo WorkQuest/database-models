@@ -16,9 +16,11 @@ export class RoleChange extends Model {
 
     @Column({ type: DataType.INTEGER, defaultValue: ChangeRoleStatus.Pending }) status: ChangeRoleStatus;
 
-    @Column(DataType.STRING) changedFrom: UserRole;
-    @Column(DataType.STRING) changedTo: UserRole;
-    @Column(DataType.DATE) changedAt: Date;
+    @Column(DataType.STRING) reason: string;
+
+    @Column({ type: DataType.STRING, allowNull: true, defaultValue: null }) changedFrom: UserRole;
+    @Column({ type: DataType.STRING, allowNull: true, defaultValue: null }) changedTo: UserRole;
+    @Column({ type: DataType.DATE, allowNull: true, defaultValue: null }) changedAt: Date;
 
     @BelongsTo(() => User) user: User;
 }
