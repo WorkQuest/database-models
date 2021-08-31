@@ -7,6 +7,7 @@ import { Errors } from "../utils/errors";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
+import {QuestsStatistic} from "./QuestsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -119,6 +120,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: QuestsStatistic,
+      as: 'questsStatistic'
     }]
   },
   withPassword: {
@@ -172,6 +176,7 @@ export class User extends Model {
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
