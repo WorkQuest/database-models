@@ -4,6 +4,7 @@ import {idSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {questsStatisticSchema} from "./questsStatistic";
 
 const mediaIdSchema = idSchema.label("MediaId");
 const userIdSchema = idSchema.label("UserId");
@@ -71,6 +72,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
 }).label("UserSchema");
 
 export const userShortSchema = Joi.object({
@@ -79,6 +81,7 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+  questsStatistic: questsStatisticSchema,
 }).label('UserShort');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
