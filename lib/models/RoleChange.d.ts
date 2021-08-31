@@ -9,6 +9,7 @@ export declare class RoleChange extends Model {
     id: string;
     userId: string;
     status: ChangeRoleStatus;
+    reason: string;
     changedFrom: UserRole;
     changedTo: UserRole;
     changedAt: Date;
