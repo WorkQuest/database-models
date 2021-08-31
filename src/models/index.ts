@@ -16,6 +16,7 @@ import { Chat } from "./Chat";
 import { ChatMember } from "./ChatMember";
 import { MessageMedia } from "./MessageMedia";
 import { Message } from "./Message";
+import {RoleChange} from "./RoleChange";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -38,6 +39,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ChatMember,
       Message,
       MessageMedia,
+      RoleChange
     ]
   });
   if (sync)
