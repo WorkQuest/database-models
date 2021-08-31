@@ -15,6 +15,7 @@ export const countSchema = Joi.number().example(10);
 export const offsetSchema = Joi.number().min(0).default(0).label("Offset");
 export const limitSchema = Joi.number().min(0).default(10).max(100).label('Limit');
 export const searchSchema = Joi.string().default(null).max(255).label('Search');
+export const reasonSchema = Joi.string().min(20).max(255).label('Reason');
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
