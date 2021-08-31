@@ -1,7 +1,16 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import { getUUID } from "../utils";
 import {User, UserStatus} from "./User";
+import {Media} from "./Media";
+import {RatingStatistic} from "./RatingStatistic";
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ["id", "userId"]
+    },
+  },
+}))
 @Table
 export class QuestsStatistic extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
