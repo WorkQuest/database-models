@@ -4,7 +4,7 @@ import {idSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
 import {mediaIdsSchema, mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
-import {filtersUserSchema} from "./filter";
+import {filtersUserSchema, shortFiltersSchema} from "./filter";
 
 const userIdSchema = idSchema.label("UserId");
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -79,7 +79,7 @@ export const userShortSchema = Joi.object({
   avatarId: mediaIdsSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-  filter: filtersUserSchema
+  filter: shortFiltersSchema
 }).label("UserShortSchema");
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');

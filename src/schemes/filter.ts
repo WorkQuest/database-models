@@ -33,5 +33,12 @@ export const userFilterSchemaResponse = Joi.object({
     skills: filterSkillSchema
 }).label('UserFilterSchemaResponse')
 
-export const filtersSchema = Joi.array().items(questFilterSchemaResponse).label('FilterSchemaResponse')
-export const filtersUserSchema = Joi.array().items(userFilterSchemaResponse).label('FilterSchemaResponse')
+export const  shortFilterSchema = Joi.object({
+    category: filterCategorySchema,
+    skills: filterSkillSchema
+}).label('ShortFilterSchema')
+
+
+export const shortFiltersSchema = Joi.array().items(shortFilterSchema).label('ShortFiltersSchemaResponse')
+export const filtersSchema = Joi.array().items(questFilterSchemaResponse).label('FiltersSchemaResponse')
+export const filtersUserSchema = Joi.array().items(userFilterSchemaResponse).label('FiltersUserSchemaResponse')
