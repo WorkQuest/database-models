@@ -77,7 +77,7 @@ export class Quest extends Model {
   @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority }) priority: QuestPriority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
-  @Column({type: DataType.STRING}) locationPlaceName: string;
+  @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
   @Column({type: DataType.JSONB}) location: Location;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
   @Column({type: DataType.STRING, allowNull: false }) title: string;
