@@ -97,8 +97,8 @@ export class Quest extends Model {
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
 
-  updateFieldLocationPostGIS(): void {
-    this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
+  updateFieldLocationPostGIS(location: Location): void {
+    this.setDataValue('locationPostGIS', transformToGeoPostGIS(location));
   }
 
   mustHaveStatus(...statuses: QuestStatus[]) {
