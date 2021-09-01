@@ -97,10 +97,6 @@ export class Quest extends Model {
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
 
-  updateFieldLocationPostGIS(location: Location): void {
-    this.setDataValue('locationPostGIS', transformToGeoPostGIS(location));
-  }
-
   mustHaveStatus(...statuses: QuestStatus[]) {
     if (!statuses.includes(this.status)) {
       throw error(Errors.InvalidStatus, "Quest status doesn't match", {

@@ -49,7 +49,6 @@ export declare class Quest extends Model {
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
     reviews: Review[];
-    updateFieldLocationPostGIS(location: Location): void;
     mustHaveStatus(...statuses: QuestStatus[]): void;
     mustBeAppointedOnQuest(workerId: string): void;
     mustBeQuestCreator(userId: String): void;
