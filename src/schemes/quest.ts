@@ -72,6 +72,11 @@ export const questsQuerySchema = Joi.object({
   starred: Joi.boolean().default(false),
 }).label('QuestsQuery');
 
+export const locationForValidateSchema = Joi.object({
+  location: locationSchema.required(),
+  locationPlaceName: questLocationPlaceNameSchema.required(),
+}).label('LocationForValidate');
+
 // QuestsResponse schemes
 
 export const questsResponseMessageSchema = Joi.string().example('Hello, I need this job').default('').label('Message');
