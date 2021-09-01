@@ -1,8 +1,19 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import { getUUID } from "../utils";
 import { User } from "./User";
 import { Chat } from "./Chat";
 
+@Scopes(() => ({
+  userOnly: {
+    attributes: {
+      exclude: ['id', 'chatId', 'createdAt', 'updatedAt']
+    },
+    include: [{
+      model: User,
+      as: 'user'
+    }]
+  }
+}))
 @Table
 export class ChatMember extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;

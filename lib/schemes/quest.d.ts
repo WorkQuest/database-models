@@ -17,3 +17,6 @@ export declare const questsResponseTypeSchema: Joi.NumberSchema;
 export declare const questsResponseSchema: Joi.ObjectSchema<any>;
 export declare const questsResponsesSchema: Joi.ArraySchema;
 export declare const questsResponsesWithCountSchema: Joi.ObjectSchema<any>;
+export declare const questForGetSchema: Joi.ObjectSchema<any>;
+export declare const questsForGetSchema: Joi.ArraySchema;
+export declare const questsForGetWithCountSchema: Joi.ObjectSchema<any>;

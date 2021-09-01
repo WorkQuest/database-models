@@ -56,6 +56,8 @@ export const questsListSortSchema = Joi.object({
 }).default({}).label('QuestsListSort');
 
 export const questsQuerySchema = Joi.object({
+  north: locationSchema,
+  south: locationSchema,
   offset: offsetSchema,
   limit: limitSchema,
   q: searchSchema,
@@ -85,14 +87,41 @@ export const questsResponseSchema = Joi.object({
   // quest: questSchema,
 }).label('QuestsResponseSchema');
 
-export const questsResponsesSchema = Joi.array().items(questsResponseSchema).label('QuestsResponsesSchema');
+export const questsResponsesSchema = Joi.array().items(questsResponseSchema).label('QuestsResponses');
 
 export const questsResponsesWithCountSchema = Joi.object({
   count: countSchema,
   responses: questsResponsesSchema,
-}).label('QuestsResponsesWithCount')
+}).label('QuestsResponsesWithCount');
 
+// Quest on route get quest/quests
 
+export const questForGetSchema = Joi.object({
+  id: questIdSchema,
+  userId: userIdSchema,
+  assignedWorkerId: userIdSchema,
+  category: questCategorySchema,
+  status: questStatusSchema,
+  priority: questPrioritySchema,
+  location: locationSchema,
+  title: questTitleSchema,
+  description: questDescriptionSchema,
+  price: questPriceSchema,
+  adType: questAdTypeSchema,
+  user: userShortSchema,
+  assignedWorker: userShortSchema,
+  star: Joi.object().allow(null).label('Star'),
+  response: questsResponseSchema.allow(null),
+  medias: mediasUrlOnlySchema,
+  createdAt: isoDateSchema,
+}).label('QuestForGet');
+
+export const questsForGetSchema = Joi.array().items(questForGetSchema).label('QuestsForGet');
+
+export const questsForGetWithCountSchema = Joi.object({
+  count: countSchema,
+  responses: questsForGetSchema,
+}).label('QuestsResponsesWithCount');
 
 
 

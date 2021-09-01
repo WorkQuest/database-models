@@ -91,6 +91,7 @@ export class Quest extends Model {
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
 
   @HasOne(() => StarredQuests) star: StarredQuests;
+  @HasOne(() => QuestsResponse) response: QuestsResponse;
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
