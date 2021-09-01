@@ -75,7 +75,7 @@ export const questsQuerySchema = Joi.object({
 export const locationForValidateSchema = Joi.object({
   location: locationSchema.required(),
   locationPlaceName: questLocationPlaceNameSchema.required(),
-}).label('LocationForValidate');
+}).unknown(true).label('LocationForValidate');
 
 // QuestsResponse schemes
 
