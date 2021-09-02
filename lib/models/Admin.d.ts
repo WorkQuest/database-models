@@ -56,4 +56,6 @@ export declare class Admin extends Model {
     mustHaveAdminRole(role: AdminRole): void;
     mustBeActivated(): void;
     static isEmailExist(email: string): Promise<Admin>;
+    static adminMustExists(adminId: string): Promise<void>;
+    static adminsMustExist(adminIds: string[]): Promise<void>;
 }

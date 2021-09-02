@@ -127,4 +127,17 @@ export class Admin extends Model {
       where: { email: email }
     });
   }
+
+  static async adminMustExists(adminId: string){
+    if(!await Admin.findByPk(adminId)){
+      throw error(Errors.NotFound, "Admin is not found", { adminId })
+    }
+  }
+
+  static async adminsMustExist(adminIds: string[]){
+    for(let id of adminIds){
+      await this.adminMustExists(id);
+    }
+  }
 }
+
