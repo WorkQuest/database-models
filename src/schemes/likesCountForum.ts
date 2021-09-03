@@ -19,5 +19,5 @@ export const getCountsLikeNewsSchema = Joi.object({
     limit: limitSchema,
     offset: offsetSchema,
     count: countLikeSchema,
-    likesId: allCountsLikeNewsSchema
+    likes: allCountsLikeNewsSchema
 }).label('GetCountsLikeNewsSchemaResponse')
