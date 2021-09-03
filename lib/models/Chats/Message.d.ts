@@ -10,7 +10,6 @@ export declare class Message extends Model {
     id: string;
     senderUserId: string;
     chatId: string;
-    type: MessageType;
     text: string;
     medias: Media[];
     sender: User;
