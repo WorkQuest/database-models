@@ -35,6 +35,8 @@ export class Message extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
+  @Column({type: DataType.INTEGER, allowNull: false}) type: MessageType;
+
   @Column(DataType.TEXT) text: string;
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
