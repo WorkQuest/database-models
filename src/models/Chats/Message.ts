@@ -1,9 +1,9 @@
 import {Column, DataType, ForeignKey, Model, Table, BelongsTo, BelongsToMany, Scopes} from "sequelize-typescript";
-import { error, getUUID } from "../utils";
-import { Errors } from "../utils/errors";
-import { User } from "./User";
+import { error, getUUID } from "../../utils";
+import { Errors } from "../../utils/errors";
+import { User } from "../User";
 import { Chat } from "./Chat";
-import { Media } from "./Media";
+import { Media } from "../Media";
 import { MessageMedia } from "./MessageMedia";
 
 export enum MessageType {

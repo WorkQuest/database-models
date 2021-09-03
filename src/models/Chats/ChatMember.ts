@@ -1,6 +1,6 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
-import { getUUID } from "../utils";
-import { User } from "./User";
+import { getUUID } from "../../utils";
+import { User } from "../User";
 import { Chat } from "./Chat";
 
 @Scopes(() => ({
