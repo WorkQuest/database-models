@@ -12,3 +12,4 @@ export * from "./admin";
 export * from "./comment";
 export * from "./news"
 export * from "./chat";
+export * from "./likesCountForum"

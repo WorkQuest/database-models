@@ -23,7 +23,7 @@ import { LikeNews } from "./NewsLike";
             model: User.scope("short"),
             as: "userLikes",
             through: {
-                attributes: []
+                attributes: ["id"]
             }
         }]
     },
@@ -42,7 +42,7 @@ import { LikeNews } from "./NewsLike";
             model: User,
             as: "userLikes",
             through: {
-                attributes: []
+                attributes: ['id']
             }
         }]
     }
