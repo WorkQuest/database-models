@@ -5,8 +5,6 @@ import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
 
-const mediaIdSchema = idSchema.label("MediaId");
-const userIdSchema = idSchema.label("UserId");
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
 export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan").label("UserFirstName");
@@ -56,8 +54,8 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
 }).label('AdditionalInfoEmployer');
 
 export const userSchema = Joi.object({
-  id: userIdSchema,
-  avatarId: mediaIdSchema,
+  id: idSchema,
+  avatarId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   phone: userPhoneSchema,
@@ -74,8 +72,8 @@ export const userSchema = Joi.object({
 }).label("UserSchema");
 
 export const userShortSchema = Joi.object({
-  id: userIdSchema,
-  avatarId: mediaIdSchema,
+  id: idSchema,
+  avatarId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
@@ -83,7 +81,7 @@ export const userShortSchema = Joi.object({
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const usersShortSchema = Joi.array().items(userShortSchema).label('UsersShort');
-export const userIdsSchema = Joi.array().items(userIdSchema).label('UserIds');
+export const userIdsSchema = Joi.array().items(idSchema).label('UserIds');
 
 export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,

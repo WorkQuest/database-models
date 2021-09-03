@@ -3,14 +3,12 @@ import {mediaIdsSchema} from "./media";
 import {idSchema, isoDateSchema} from './common';
 import {userShortSchema} from "./user";
 
-const portfolioIdSchema = idSchema.label('PortfolioId');
-const userIdSchema = idSchema.label("UserId");
 export const portfolioTitleSchema = Joi.string().example('Title...').label('Title');
 export const portfolioDescriptionSchema = Joi.string().example('Description..').label('Description');
 
 export const portfolioSchema = Joi.object({
-  id: portfolioIdSchema,
-  userId: userIdSchema,
+  id: idSchema,
+  userId: idSchema,
   title: portfolioTitleSchema,
   description: portfolioDescriptionSchema,
   medias: mediaIdsSchema,

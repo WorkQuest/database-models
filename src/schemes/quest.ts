@@ -15,8 +15,6 @@ import {mediasUrlOnlySchema} from "./media";
 
 // Quests schemes
 
-const userIdSchema = idSchema.label('UserId');
-const questIdSchema = idSchema.label('QuestId');
 export const questCategorySchema = Joi.string().example('Retail').label('Category');
 export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestStatus.Created).label('Status');
 export const questPrioritySchema = Joi.number().valid(...Object.keys(QuestPriority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestPriority.AllPriority).label('Priority');
@@ -27,9 +25,9 @@ export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(k
 export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceNameSchema');
 
 export const questSchema = Joi.object({
-  id: questIdSchema,
-  userId: userIdSchema,
-  assignedWorkerId: userIdSchema,
+  id: idSchema,
+  userId: idSchema,
+  assignedWorkerId: idSchema,
   category: questCategorySchema,
   status: questStatusSchema,
   priority: questPrioritySchema,
@@ -104,9 +102,9 @@ export const questsResponsesWithCountSchema = Joi.object({
 // Quest on route get quest/quests
 
 export const questForGetSchema = Joi.object({
-  id: questIdSchema,
-  userId: userIdSchema,
-  assignedWorkerId: userIdSchema,
+  id: idSchema,
+  userId: idSchema,
+  assignedWorkerId: idSchema,
   category: questCategorySchema,
   status: questStatusSchema,
   priority: questPrioritySchema,
