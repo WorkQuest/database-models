@@ -20,4 +20,4 @@ export const getCountsLikeNewsSchema = Joi.object({
     offset: offsetSchema,
     count: countLikeSchema,
     likesId: allCountsLikeNewsSchema
-})
+}).label('GetCountsLikeNewsSchemaResponse')
