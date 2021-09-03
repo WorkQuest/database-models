@@ -6,6 +6,11 @@ import { Chat } from "./Chat";
 import { Media } from "./Media";
 import { MessageMedia } from "./MessageMedia";
 
+export enum MessageType {
+  informational,
+  common,
+}
+
 @Scopes(() => ({
   defaultScope: {
     include: [{
@@ -26,6 +31,8 @@ export class Message extends Model {
 
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
+
+  @Column({type: DataType.INTEGER, allowNull: false}) type: MessageType;
 
   @Column(DataType.TEXT) text: string;
 

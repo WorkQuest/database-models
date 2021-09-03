@@ -50,8 +50,6 @@ export class Chat extends Model {
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
-  @HasOne(() => ChatMember) otherChatMember: ChatMember;
-
   async mustHaveMember(userId: string) {
     const member = await ChatMember.findOne({
       where: { chatId: this.id, userId }
