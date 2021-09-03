@@ -28,7 +28,7 @@ import { Errors } from '../utils/errors';
     }]
   }
 }))
-@Table
+@Table({paranoid: true})
 export class Portfolio extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) userId: string;
