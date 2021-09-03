@@ -9,8 +9,7 @@ import {
   BelongsToMany, Scopes, HasOne
 } from "sequelize-typescript";
 import { Message } from "./Message";
-import { ChatMember } from "./ChatMember";
-import { User } from "../User";
+import { AdminChatMember } from "./AdminChatMember";
 import { error, getUUID } from "../../utils";
 import { Errors } from "../../utils/errors";
 import {Admin} from "../Admin";
@@ -26,20 +25,17 @@ export enum ChatType {
       exclude: ["messages", "updatedAt"]
     },
     include: [{
-      model: User.scope('short'),
+      model: Admin.scope('short'),
       as: 'owner'
     }]
   }
 }))
 @Table
-export class Chat extends Model {
+export class AdminChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
-  @ForeignKey(() => User) /* If group chat */
-  @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string;
-
-  @ForeignKey(() => Admin) /* If dispute */
-  @Column({type: DataType.STRING, defaultValue: null}) adminId: string;
+  @ForeignKey(() => Admin) /* If group chat */
+  @Column({type: DataType.STRING, defaultValue: null}) ownerAdminId: string;
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
@@ -48,20 +44,20 @@ export class Chat extends Model {
   @Column(DataType.DATE) lastMessageDate: Date;
   @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
 
-  @BelongsToMany(() => User, () => ChatMember) members: User[];
-  @BelongsTo(() => User) owner: User;
-  @BelongsTo(() => Admin) admin: Admin; /* If dispute */
+  @BelongsToMany(() => Admin, () => AdminChatMember) members: Admin[];
+  @BelongsTo(() => Admin) owner: Admin;
   @BelongsTo(() => Message, {foreignKey: 'lastMessageId', constraints: false}) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
-  @HasMany(() => ChatMember) chatMembers: ChatMember[];
-  async mustHaveMember(userId: string) {
-    const member = await ChatMember.findOne({
-      where: { chatId: this.id, userId }
+  @HasMany(() => AdminChatMember) adminChatMember: AdminChatMember[];
+
+  async mustHaveMember(adminId: string) {
+    const member = await AdminChatMember.findOne({
+      where: { chatId: this.id, adminId }
     });
 
     if (!member) {
-      throw error(Errors.Forbidden, "User is not a member of this chat", {});
+      throw error(Errors.Forbidden, "Admin is not a member of this chat", {});
     }
   }
 
@@ -71,9 +67,9 @@ export class Chat extends Model {
     }
   }
 
-  mustHaveOwner(userId: String) {
-    if (this.ownerUserId !== userId) {
-      throw error(Errors.Forbidden, "User is not a owner in this chat", {});
+  mustHaveOwner(adminId: String) {
+    if (this.ownerAdminId !== adminId) {
+      throw error(Errors.Forbidden, "Admin is not a owner in this chat", {});
     }
   }
 }

@@ -2,6 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize
 import { getUUID } from "../../utils";
 import { Media } from "../Media";
 import { Message } from "./Message";
+import {AdminMessage} from "./AdminMessage";
 
 @Table
 export class MessageMedia extends Model {
@@ -10,9 +11,13 @@ export class MessageMedia extends Model {
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
 
-  @ForeignKey(() => Message)
+  @ForeignKey(() => Message) /*when user chat*/
   @Column({type: DataType.STRING, allowNull: false}) messageId: string;
+
+  @ForeignKey(() => AdminMessage) /*when admin chat*/
+  @Column({type: DataType.STRING, allowNull: false}) adminMessageId: string;
 
   @BelongsTo(() => Media) media: Media;
   @BelongsTo(() => Message) message: Message;
+  @BelongsTo(() => AdminMessage) adminMessage: AdminMessage;
 }
