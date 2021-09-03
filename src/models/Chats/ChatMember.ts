@@ -9,7 +9,7 @@ import { Chat } from "./Chat";
       exclude: ['id', 'chatId', 'createdAt', 'updatedAt']
     },
     include: [{
-      model: User,
+      model: User.scope('short'),
       as: 'user'
     }]
   }

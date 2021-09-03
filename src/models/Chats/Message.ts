@@ -5,7 +5,6 @@ import { User } from "../User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { MessageMedia } from "./MessageMedia";
-import {Admin} from "../Admin";
 
 export enum MessageType {
   informational,
@@ -20,6 +19,9 @@ export enum MessageType {
       through: {
         attributes: []
       }
+    }, {
+      model: User.scope('short'),
+      as: 'sender'
     }]
   }
 }))
@@ -30,9 +32,6 @@ export class Message extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
 
-  @ForeignKey(() => Admin) /*if dispute*/
-  @Column({type: DataType.STRING, allowNull: false}) senderAdminId: string;
-
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
@@ -42,7 +41,6 @@ export class Message extends Model {
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => User) sender: User;
-  @BelongsTo(() => Admin) adminSender: Admin; /*if dispute*/
   @BelongsTo(() => Chat) chat: Chat;
 
   mustBeSender(userId: String) {

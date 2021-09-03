@@ -2,7 +2,6 @@ import { Model } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
 import { User } from "../User";
-import { Admin } from "../Admin";
 export declare enum ChatType {
     private = 0,
     group = 1
@@ -10,14 +9,12 @@ export declare enum ChatType {
 export declare class Chat extends Model {
     id: string;
     ownerUserId: string;
-    adminId: string;
     lastMessageId: string;
-    name: Date;
-    lastMessageDate: Date;
+    name: string;
     type: ChatType;
+    lastMessageDate: Date;
     members: User[];
     owner: User;
-    admin: Admin;
     lastMessage: Message;
     messages: Message[];
     chatMembers: ChatMember[];
