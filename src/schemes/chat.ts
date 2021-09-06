@@ -16,10 +16,12 @@ export const messageTextSchema = Joi.string().label('MessageText');
 export const messageSchema = Joi.object({
   id: messageIdSchema,
   senderUserId: userIdSchema,
+  actionUserId: userIdSchema,
   chatId: chatIdSchema,
   type: messageTypeSchema,
   text: messageTextSchema,
   sender: userShortSchema,
+  actionUser: userShortSchema,
   medias: mediaIdsSchema,
   // chat: chatSchema,
 }).label('Message');

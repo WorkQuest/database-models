@@ -9,11 +9,13 @@ export declare enum MessageType {
 export declare class Message extends Model {
     id: string;
     senderUserId: string;
+    actionUserId: string;
     chatId: string;
     type: MessageType;
     text: string;
     medias: Media[];
     sender: User;
+    actionUser: User;
     chat: Chat;
     mustBeSender(userId: String): void;
     adminMustBeSender(adminId: String): void;

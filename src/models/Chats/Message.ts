@@ -32,6 +32,9 @@ export class Message extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
 
+  @ForeignKey(() => User)
+  @Column({type: DataType.STRING, allowNull: false}) actionUserId: string;
+
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
@@ -40,7 +43,8 @@ export class Message extends Model {
   @Column(DataType.TEXT) text: string;
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
-  @BelongsTo(() => User) sender: User;
+  @BelongsTo(() => User, 'senderUserId') sender: User;
+  @BelongsTo(() => User, 'actionUserId') actionUser: User;
   @BelongsTo(() => Chat) chat: Chat;
 
   mustBeSender(userId: String) {
