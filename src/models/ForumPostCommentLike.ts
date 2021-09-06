@@ -7,7 +7,7 @@ import { ForumPostComment } from "./ForumPostComment";
 
 @Scopes(() => ({
   defaultScope: {
-    attributes: ["id", "userId", "commentId"],
+    attributes: ["id", "userId", "forumPostCommentId"],
   }
 }))
 @Table
@@ -15,7 +15,7 @@ export class ForumPostCommentLike extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => ForumPostComment)
-  @Column ({type:DataType.STRING, allowNull: false}) commentId: string;
+  @Column ({type:DataType.STRING, allowNull: false}) forumPostCommentId: string;
 
   @ForeignKey(() => User)
   @Column ({type:DataType.STRING, allowNull: false}) userId: string;

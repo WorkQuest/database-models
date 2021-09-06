@@ -2,21 +2,24 @@ import * as Joi from "joi";
 import {idSchema, isoDateSchema, limitSchema, offsetSchema, textTitleSchema} from "./index";
 import { mediaIdsSchema } from "./media";
 
-const newsIdSchema = idSchema.label("newsId");
+const forumPostIdSchema = idSchema.label("forumPostId");
 const authorIdSchema = idSchema.label("authorId");
 
-export const newsSchema = Joi.object({
-    id: newsIdSchema,
+export const forumPostSchema = Joi.object({
+    // newsSchema
+    id: forumPostIdSchema,
     authorId: authorIdSchema,
     text: textTitleSchema,
-    newsMedia: mediaIdsSchema,
+    forumPostMedia: mediaIdsSchema,
     createdAt: isoDateSchema
-}).label("NewsSchema");
+}).label("forumPostSchemaResponse");
 
-export const countNewsSchema = Joi.object({
+export const countForumPostSchema = Joi.object({
+    // countNewsSchema
     limit: limitSchema,
     offset: offsetSchema,
-    news: newsSchema
-}).label("countNewsSchema");
+    forumPostId: forumPostSchema
+}).label("countForumPostSchemaResponse");
 
-export const newsAllSchema = Joi.array().items(countNewsSchema).label('NewsAllSchema');
+export const forumPostsSchema = Joi.array().items(countForumPostSchema).label('forumPostsSchemaResponse');
+    // newsAllSchema

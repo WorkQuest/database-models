@@ -19,7 +19,7 @@ export class ForumPostCommentMedia extends Model {
   @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
 
   @ForeignKey(() => ForumPostComment)
-  @Column ({type:DataType.STRING, allowNull: false}) commentId: string;
+  @Column ({type:DataType.STRING, allowNull: false}) forumPostCommentId: string;
 
   @BelongsTo(() => Media) media: Media;
   @BelongsTo(() => ForumPostComment) comment: ForumPostComment;

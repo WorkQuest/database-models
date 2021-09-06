@@ -11,8 +11,8 @@ export class ForumPostMedia extends Model {
   @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
 
   @ForeignKey(() => ForumPost)
-  @Column({type: DataType.STRING, allowNull: false}) newsId: string;
+  @Column({type: DataType.STRING, allowNull: false}) forumPostId: string;
 
   @BelongsTo(() => Media) media: Media;
-  @BelongsTo(() => ForumPost) news: ForumPost;
+  @BelongsTo(() => ForumPost) postId: ForumPost;
 }

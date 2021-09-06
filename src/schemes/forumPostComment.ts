@@ -1,25 +1,28 @@
 import * as Joi from "joi";
-import {countNewsSchema, idSchema, isoDateSchema, limitSchema,offsetSchema} from "./index";
+import { idSchema, isoDateSchema, limitSchema,offsetSchema} from "./index";
 
-const commentIdSchema = idSchema.label("commentId");
+const forumPostCommentIdSchema = idSchema.label("forumPostCommentId");
 const authorIdSchema = idSchema.label("authorId");
-const newsIdSchema = idSchema.label("newsId");
+const forumPostIdSchema = idSchema.label("forumPostId");
 export const textTitleSchema = Joi.string().example("Text...").label("Text");
-export const commentIdOrNullSchema = Joi.alternatives().try(Joi.string().uuid(), Joi.string().default(null)).label("IdOrNull");
+export const forumPostRootCommentIdSchema = Joi.alternatives().try(Joi.string().uuid(), Joi.string().default(null)).label("IdOrNull");
 
-export const commentSchema = Joi.object({
-    id: commentIdSchema,
+export const forumPostCommentSchema = Joi.object({
+    // commentSchema
+    id: forumPostCommentIdSchema,
     authorId: authorIdSchema,
-    newsId: newsIdSchema,
-    rootCommentId: commentIdOrNullSchema,
+    forumPostId: forumPostIdSchema,
+    rootCommentId: forumPostRootCommentIdSchema,
     text: textTitleSchema,
     createdAt: isoDateSchema,
-}).label("newsForumSchema");
+}).label("forumPostCommentSchemaResponse");
 
-export const countCommentSchema = Joi.object({
+export const forumPostCountCommentsSchema = Joi.object({
+    // countCommentSchema
     limit: limitSchema,
     offset: offsetSchema,
-    comments: commentSchema
-}).label("countNewsSchema");
+    comments: forumPostCommentSchema
+}).label("forumPostCountCommentsSchemaResponse");
 
-export const commentsSchema = Joi.array().items(countCommentSchema).label('NewsAllSchema');
+export const forumPostCommentsSchema = Joi.array().items(forumPostCountCommentsSchema).label('forumPostCommentsSchemaResponse');
+    // commentsSchema

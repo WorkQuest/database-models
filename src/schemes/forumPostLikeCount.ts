@@ -1,23 +1,26 @@
 import * as Joi from "joi";
 import {idSchema, limitSchema, offsetSchema} from "./common";
 
-const countLikeSchema = Joi.number().min(0).label('countLikes');
+const forumPostCountLikeSchema = Joi.number().min(0).label('forumPostCountLike');
 
-const likeIdSchema = idSchema.label('likeId')
-const newsIdSchema = idSchema.label('newsId')
+const forumPostLikeIdSchema = idSchema.label('forumPostLikeId')
+const forumPostIdSchema = idSchema.label('forumPostId')
 const userIdSchema = idSchema.label('newsId')
 
-export const likeNewsSchema = Joi.object({
-    id: likeIdSchema,
-    newsId: newsIdSchema,
+export const forumPostLikeSchema = Joi.object({
+    // likeNewsSchema
+    id: forumPostLikeIdSchema,
+    forumPostId: forumPostIdSchema,
     userId: userIdSchema,
-}).label('likeNewsSchema')
+}).label('forumPostLikeSchemaResponse')
 
-export const allCountsLikeNewsSchema = Joi.array().items(likeNewsSchema).label('NewsAllSchema');
+export const forumPostLikesCountSchema = Joi.array().items(forumPostLikeSchema).label('forumPostLikesCountSchemaResponse');
+// allCountsLikeNewsSchema
 
-export const getCountsLikeNewsSchema = Joi.object({
+export const forumPostGetLikesSchema = Joi.object({
+    // getCountsLikeNewsSchema
     limit: limitSchema,
     offset: offsetSchema,
-    count: countLikeSchema,
-    likes: allCountsLikeNewsSchema
-}).label('GetCountsLikeNewsSchemaResponse')
+    count: forumPostCountLikeSchema,
+    likes: forumPostLikesCountSchema
+}).label('forumPostGetLikesSchemaResponse')

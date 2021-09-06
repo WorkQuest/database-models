@@ -57,7 +57,7 @@ export class ForumPostComment extends Model {
   @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
 
   @ForeignKey(() => ForumPost)
-  @Column({ type: DataType.STRING, allowNull: false }) newsId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) forumPostId: string;
 
   @ForeignKey(() => ForumPostComment)
   @Column(DataType.STRING) rootCommentId: string;
@@ -65,7 +65,7 @@ export class ForumPostComment extends Model {
   @Column({ type: DataType.TEXT, allowNull: false }) text: string;
 
   @BelongsTo(() => User) author: User;
-  @BelongsTo(() => ForumPost) news: ForumPost;
+  @BelongsTo(() => ForumPost) forumPost: ForumPost;
   @BelongsTo(() => ForumPostComment) rootComment: ForumPostComment;
 
   @HasMany(() => ForumPostComment) subComments: ForumPostComment[];
