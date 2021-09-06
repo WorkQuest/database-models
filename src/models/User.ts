@@ -179,6 +179,10 @@ export class User extends Model {
   @HasMany(() => Media, { constraints: false }) medias: Media[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
+    if(!pwd) {
+      return false;
+    }
+
     return bcrypt.compareSync(pwd, this.password);
   }
 
