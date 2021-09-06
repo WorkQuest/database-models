@@ -1,10 +1,15 @@
 import {
-    Column, DataType, ForeignKey, Model, Table, BelongsTo
+  Column, DataType, ForeignKey, Model, Table, BelongsTo, Scopes
 } from 'sequelize-typescript';
 import {getUUID} from "../utils";
 import { User } from "./User";
 import { News } from "./News";
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: ["id", "userId"],
+  }
+}))
 @Table
 export class LikeNews extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
