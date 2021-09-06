@@ -33,7 +33,7 @@ export class Message extends Model {
   @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) actionUserId: string; /*if informational message*/
+  @Column({ type: DataType.STRING }) actionUserId: string; /*if informational message*/
 
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
