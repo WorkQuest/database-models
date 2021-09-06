@@ -8,9 +8,9 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {ChatMember} from "./ChatMember";
-import {LikeNews} from "./NewsLike";
-import {News} from "./News";
-import {Comment} from "./Comment";
+import {ForumPostLike} from "./ForumPostLike";
+import {ForumPost} from "./ForumPost";
+import {ForumPostComment} from "./ForumPostComment";
 
 export interface SocialInfo {
   id: string;
@@ -182,10 +182,10 @@ export class User extends Model {
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
   @HasMany(() => ChatMember) chatMember: ChatMember;
-  @HasMany(() => LikeNews) newsLikes: LikeNews[];
+  @HasMany(() => ForumPostLike) newsLikes: ForumPostLike[];
 
-  @HasMany(() => News, {onDelete: 'cascade', hooks:true, foreignKey: "authorId"}) authorId: News[];
-  @HasMany (() => Comment, {onDelete: 'cascade', hooks:true}) author: Comment[];
+  @HasMany(() => ForumPost, {onDelete: 'cascade', hooks:true, foreignKey: "authorId"}) authorId: ForumPost[];
+  @HasMany (() => ForumPostComment, {onDelete: 'cascade', hooks:true}) author: ForumPostComment[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);

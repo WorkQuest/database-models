@@ -3,10 +3,10 @@ import {
 } from "sequelize-typescript";
 import { getUUID } from "../utils";
 import { User } from "./User";
-import { Comment } from "./Comment";
+import { ForumPostComment } from "./ForumPostComment";
 import { Media } from "./Media";
-import { NewsMedia } from "./NewsMedia";
-import { LikeNews } from "./NewsLike";
+import { ForumPostMedia } from "./ForumPostMedia";
+import { ForumPostLike } from "./ForumPostLike";
 
 @Scopes(() => ({
     defaultScope: {
@@ -29,7 +29,7 @@ import { LikeNews } from "./NewsLike";
     },
     withRootComments: {
         include: [{
-            model: Comment,
+            model: ForumPostComment,
             as: "rootComments",
             where: { rootCommentId: null }
         }, {
@@ -48,7 +48,7 @@ import { LikeNews } from "./NewsLike";
     }
 }))
 @Table({ paranoid: true })
-export class News extends Model {
+export class ForumPost extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
@@ -58,9 +58,9 @@ export class News extends Model {
 
   @BelongsTo(() => User) author: User;
 
-  @HasMany(() => Comment) rootComments: Comment[];
-  @HasMany(() => LikeNews) likes: LikeNews[];
+  @HasMany(() => ForumPostComment) rootComments: ForumPostComment[];
+  @HasMany(() => ForumPostLike) likes: ForumPostLike[];
 
-  @BelongsToMany(() => Media, () => NewsMedia) medias: Media[];
-  @BelongsToMany(() => User, () => LikeNews) userLikes: User[];
+  @BelongsToMany(() => Media, () => ForumPostMedia) medias: Media[];
+  @BelongsToMany(() => User, () => ForumPostLike) userLikes: User[];
 }

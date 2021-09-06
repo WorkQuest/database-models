@@ -9,10 +9,10 @@ import {
 } from "sequelize-typescript";
 import { getUUID } from "../utils";
 import { User } from "./User";
-import { News } from "./News";
-import { CommentMedia } from "./CommentMedia";
+import { ForumPost } from "./ForumPost";
+import { ForumPostCommentMedia } from "./ForumPostCommentMedia";
 import { Media } from "./Media";
-import { LikeComment } from "./CommentLike";
+import { ForumPostCommentLike } from "./ForumPostCommentLike";
 
 @Scopes(() => ({
     defaultScope: {
@@ -32,7 +32,7 @@ import { LikeComment } from "./CommentLike";
     },
     withSubComments: {
         include: [{
-            model: Comment,
+            model: ForumPostComment,
             as: 'subComments'
         }, {
             model: Media.scope("urlOnly"),
@@ -50,27 +50,27 @@ import { LikeComment } from "./CommentLike";
     }
 }))
 @Table
-export class Comment extends Model {
+export class ForumPostComment extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
   @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
 
-  @ForeignKey(() => News)
+  @ForeignKey(() => ForumPost)
   @Column({ type: DataType.STRING, allowNull: false }) newsId: string;
 
-  @ForeignKey(() => Comment)
+  @ForeignKey(() => ForumPostComment)
   @Column(DataType.STRING) rootCommentId: string;
 
   @Column({ type: DataType.TEXT, allowNull: false }) text: string;
 
   @BelongsTo(() => User) author: User;
-  @BelongsTo(() => News) news: News;
-  @BelongsTo(() => Comment) rootComment: Comment;
+  @BelongsTo(() => ForumPost) news: ForumPost;
+  @BelongsTo(() => ForumPostComment) rootComment: ForumPostComment;
 
-  @HasMany(() => Comment) subComments: Comment[];
-  @HasMany(() => LikeComment) likeComment: LikeComment[];
+  @HasMany(() => ForumPostComment) subComments: ForumPostComment[];
+  @HasMany(() => ForumPostCommentLike) likeComment: ForumPostCommentLike[];
 
-  @BelongsToMany(() => Media, () => CommentMedia) medias: Media[];
-  @BelongsToMany(() => User, () => LikeComment) userLikes: User[];
+  @BelongsToMany(() => Media, () => ForumPostCommentMedia) medias: Media[];
+  @BelongsToMany(() => User, () => ForumPostCommentLike) userLikes: User[];
 }

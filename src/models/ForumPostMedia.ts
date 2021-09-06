@@ -1,18 +1,18 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { getUUID } from "../utils";
 import { Media } from "./Media";
-import { News } from "./News";
+import { ForumPost } from "./ForumPost";
 
 @Table
-export class NewsMedia extends Model {
+export class ForumPostMedia extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
 
-  @ForeignKey(() => News)
+  @ForeignKey(() => ForumPost)
   @Column({type: DataType.STRING, allowNull: false}) newsId: string;
 
   @BelongsTo(() => Media) media: Media;
-  @BelongsTo(() => News) news: News;
+  @BelongsTo(() => ForumPost) news: ForumPost;
 }

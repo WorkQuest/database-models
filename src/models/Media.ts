@@ -1,7 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from 'sequelize-typescript';
 import { getUUID } from '../utils';
 import { User } from './User';
-import {CommentMedia} from "./CommentMedia";
+import {ForumPostCommentMedia} from "./ForumPostCommentMedia";
 
 export enum ContentType {
   mp4 = 'video/mp4',
@@ -27,5 +27,5 @@ export class Media extends Model {
   @Column({type: DataType.STRING, allowNull: false}) hash: string;
 
   @BelongsTo(() => User) user: User;
-  @HasMany (()=> CommentMedia) idComment: CommentMedia[];
+  @HasMany (()=> ForumPostCommentMedia) idComment: ForumPostCommentMedia[];
 }

@@ -16,12 +16,12 @@ import {Chat} from "./Chat";
 import {ChatMember} from "./ChatMember";
 import {MessageMedia} from "./MessageMedia";
 import {Message} from "./Message";
-import {Comment} from "./Comment";
-import {LikeComment} from "./CommentLike";
-import {CommentMedia} from "./CommentMedia";
-import {News} from "./News";
-import {LikeNews} from "./NewsLike";
-import {NewsMedia} from "./NewsMedia";
+import {ForumPostComment} from "./ForumPostComment";
+import {ForumPostCommentLike} from "./ForumPostCommentLike";
+import {ForumPostCommentMedia} from "./ForumPostCommentMedia";
+import {ForumPost} from "./ForumPost";
+import {ForumPostLike} from "./ForumPostLike";
+import {ForumPostMedia} from "./ForumPostMedia";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
     const sequelize = new Sequelize(dbLink, {
@@ -45,12 +45,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
             ChatMember,
             Message,
             MessageMedia,
-            Comment,
-            LikeComment,
-            CommentMedia,
-            News,
-            LikeNews,
-            NewsMedia
+            ForumPostComment,
+            ForumPostCommentLike,
+            ForumPostCommentMedia,
+            ForumPost,
+            ForumPostLike,
+            ForumPostMedia
         ]
     });
     if (sync)
@@ -76,11 +76,11 @@ export * from "./Chat";
 export * from "./ChatMember";
 export * from "./Message";
 export * from "./MessageMedia";
-export * from "./Comment";
-export * from "./CommentLike";
-export * from "./CommentMedia";
-export * from "./News";
-export * from "./NewsLike";
-export * from "./NewsMedia";
+export * from "./ForumPostComment";
+export * from "./ForumPostCommentLike";
+export * from "./ForumPostCommentMedia";
+export * from "./ForumPost";
+export * from "./ForumPostLike";
+export * from "./ForumPostMedia";
 
 

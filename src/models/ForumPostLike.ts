@@ -3,23 +3,23 @@ import {
 } from 'sequelize-typescript';
 import {getUUID} from "../utils";
 import { User } from "./User";
-import { Comment } from "./Comment";
+import {ForumPost} from "./ForumPost";
 
 @Scopes(() => ({
   defaultScope: {
-    attributes: ["id", "userId", "commentId"],
+    attributes: ["id", "userId"],
   }
 }))
 @Table
-export class LikeComment extends Model {
+export class ForumPostLike extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @ForeignKey(() => Comment)
-  @Column ({type:DataType.STRING, allowNull: false}) commentId: string;
+  @ForeignKey(() => ForumPost)
+  @Column ({type:DataType.STRING, allowNull: false}) newsId: string;
 
   @ForeignKey(() => User)
   @Column ({type:DataType.STRING, allowNull: false}) userId: string;
 
-  @BelongsTo(() => Comment) likeComment: Comment;
+  @BelongsTo(() => ForumPost) news: ForumPost;
   @BelongsTo(() => User) user: User;
 }
