@@ -16,8 +16,8 @@ import { error, getUUID } from "../../utils";
 import { Errors } from "../../utils/errors";
 
 export enum ChatType {
-  private = 0,
-  group,
+  private = 'private',
+  group = 'group',
 }
 
 @Scopes(() => ({
@@ -51,7 +51,7 @@ export class Chat extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
   @Column({type: DataType.STRING, defaultValue: null}) name: string; /* If group chat */
-  @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
+  @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
   @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];

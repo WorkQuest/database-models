@@ -2,13 +2,14 @@ import { Model } from "sequelize-typescript";
 import { User } from "../User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
+import { InfoMessage } from "./InfoMessage";
 export declare enum MessageType {
-    informational = 0,
-    message = 1
+    info = "info",
+    message = "message"
 }
 export declare enum SenderMessageStatus {
-    unread = 0,
-    read = 1
+    unread = "unread",
+    read = "read"
 }
 export declare class Message extends Model {
     id: string;
@@ -17,10 +18,10 @@ export declare class Message extends Model {
     senderStatus: SenderMessageStatus;
     type: MessageType;
     text: string;
+    infoMessage: InfoMessage;
     medias: Media[];
     sender: User;
     chat: Chat;
     mustBeSender(userId: String): void;
-    adminMustBeSender(adminId: String): void;
     mustBeChat(chatId: String): void;
 }

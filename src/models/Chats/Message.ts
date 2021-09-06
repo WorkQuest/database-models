@@ -1,19 +1,30 @@
-import {Column, DataType, ForeignKey, Model, Table, BelongsTo, BelongsToMany, Scopes} from "sequelize-typescript";
+import {
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Table,
+  BelongsTo,
+  BelongsToMany,
+  Scopes,
+  HasOne
+} from "sequelize-typescript";
 import { error, getUUID } from "../../utils";
 import { Errors } from "../../utils/errors";
 import { User } from "../User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { MessageMedia } from "./MessageMedia";
+import {InfoMessage} from "./InfoMessage";
 
 export enum MessageType {
-  informational,
-  message,
+  info = 'info',
+  message = 'message',
 }
 
 export enum SenderMessageStatus {
-  unread = 0,
-  read,
+  unread = 'unread',
+  read = 'read',
 }
 
 @Scopes(() => ({
@@ -27,6 +38,9 @@ export enum SenderMessageStatus {
     }, {
       model: User.scope('short'),
       as: 'sender'
+    }, {
+      model: InfoMessage,
+      as: 'infoMessage'
     }]
   }
 }))
@@ -40,10 +54,12 @@ export class Message extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: SenderMessageStatus.unread}) senderStatus: SenderMessageStatus;
-  @Column({type: DataType.INTEGER, allowNull: false}) type: MessageType;
+  @Column({type: DataType.STRING, defaultValue: SenderMessageStatus.unread}) senderStatus: SenderMessageStatus;
+  @Column({type: DataType.STRING, allowNull: false}) type: MessageType;
 
   @Column(DataType.TEXT) text: string;
+
+  @HasOne(() => InfoMessage) infoMessage: InfoMessage;
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => User, 'senderUserId') sender: User;
@@ -52,14 +68,6 @@ export class Message extends Model {
   mustBeSender(userId: String) {
     if (this.senderUserId !== userId) {
       throw error(Errors.Forbidden, "User isn't sender of the message", {
-        messageId: this.id,
-      });
-    }
-  }
-
-  adminMustBeSender(adminId: String) { /** if dispute */
-    if (this.senderUserId !== adminId) {
-      throw error(Errors.Forbidden, "Admin isn't sender of the message", {
         messageId: this.id,
       });
     }
