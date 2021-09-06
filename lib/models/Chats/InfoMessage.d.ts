@@ -8,6 +8,7 @@ export declare enum MessageAction {
 }
 export declare class InfoMessage extends Model {
     id: string;
+    messageId: string;
     userId: string;
     messageAction: MessageAction;
     message: Message;

@@ -14,6 +14,10 @@ export enum MessageAction {
 export class InfoMessage extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true }) id: string;
 
+  @ForeignKey(() => Message)
+  @Column(DataType.STRING) messageId: string;
+
+  /** Common relations user table: who was removed and etc */
   @ForeignKey(() => User)
   @Column(DataType.STRING) userId: string;
 
