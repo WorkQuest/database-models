@@ -8,7 +8,12 @@ import { MessageMedia } from "./MessageMedia";
 
 export enum MessageType {
   informational,
-  common,
+  message,
+}
+
+export enum SenderMessageStatus {
+  unread = 0,
+  read,
 }
 
 @Scopes(() => ({
@@ -29,22 +34,19 @@ export enum MessageType {
 export class Message extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true }) id: string;
 
-  @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
-
-  @ForeignKey(() => User)
-  @Column({ type: DataType.STRING }) actionUserId: string; /*if informational message*/
-
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
+  @ForeignKey(() => User)
+  @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
+
+  @Column({type: DataType.INTEGER, defaultValue: SenderMessageStatus.unread}) senderStatus: SenderMessageStatus;
   @Column({type: DataType.INTEGER, allowNull: false}) type: MessageType;
 
   @Column(DataType.TEXT) text: string;
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => User, 'senderUserId') sender: User;
-  @BelongsTo(() => User, 'actionUserId') actionUser: User;
   @BelongsTo(() => Chat) chat: Chat;
 
   mustBeSender(userId: String) {
@@ -55,7 +57,7 @@ export class Message extends Model {
     }
   }
 
-  adminMustBeSender(adminId: String) { /*if dispute*/
+  adminMustBeSender(adminId: String) { /** if dispute */
     if (this.senderUserId !== adminId) {
       throw error(Errors.Forbidden, "Admin isn't sender of the message", {
         messageId: this.id,

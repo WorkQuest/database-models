@@ -5,6 +5,7 @@ export declare class ChatMember extends Model {
     id: string;
     chatId: string;
     userId: string;
+    unreadCountMessages: number;
     user: User;
     chat: Chat;
 }

@@ -6,7 +6,8 @@ import {
   Table,
   BelongsTo,
   HasMany,
-  BelongsToMany, Scopes, HasOne
+  BelongsToMany,
+  Scopes, HasOne,
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
@@ -36,9 +37,6 @@ export enum ChatType {
       through: {
         attributes: []
       }
-    }, {
-      model: User.scope('short'),
-      as: 'owner'
     }]
   }
 }))
@@ -62,6 +60,10 @@ export class Chat extends Model {
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
+
+  /** Aliases for Queries */
+  @HasOne(() => ChatMember) firstMemberInPrivateChat: ChatMember;
+  @HasOne(() => ChatMember) secondMemberInPrivateChat: ChatMember;
 
   async mustHaveMember(userId: string) {
     const member = await ChatMember.findOne({
