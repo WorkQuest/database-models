@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {QuestPriority, AdType, QuestStatus, QuestsResponseStatus, QuestsResponseType} from '../models';
+import {QuestPriority, AdType, QuestStatus, QuestsResponseStatus, QuestsResponseType, QuestEmployment} from '../models';
 import {
   idSchema,
   isoDateSchema,
@@ -25,6 +25,7 @@ export const questDescriptionSchema = Joi.string().example('Description quest...
 export const questPriceSchema = Joi.string().example("500").label('Price');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('AdType');
 export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceNameSchema');
+export const questEmploymentSchema = Joi.number().valid(...Object.keys(QuestEmployment).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestEmployment.FullTime).label('QuestEmploymentSchema');
 
 export const questSchema = Joi.object({
   id: questIdSchema,
@@ -65,6 +66,7 @@ export const questsQuerySchema = Joi.object({
   q: searchSchema,
   priority: questPrioritySchema.default(null),
   status: questStatusSchema.default(null),
+  employment: questEmploymentSchema,
   adType: questAdTypeSchema.default(null),
   sort: questsListSortSchema,
   invited: Joi.boolean().default(false),
@@ -88,6 +90,7 @@ export const questsResponseSchema = Joi.object({
   workerId: idSchema.label('WorkerId'),
   questId: idSchema.label('QuestId'),
   status: questsResponseStatusSchema,
+  employment: questEmploymentSchema,
   type: questsResponseTypeSchema,
   message: questsResponseMessageSchema,
   worker: userShortSchema,
@@ -109,6 +112,7 @@ export const questForGetSchema = Joi.object({
   assignedWorkerId: userIdSchema,
   category: questCategorySchema,
   status: questStatusSchema,
+  employment: questEmploymentSchema,
   priority: questPrioritySchema,
   locationPlaceName: questLocationPlaceNameSchema,
   location: locationSchema,
