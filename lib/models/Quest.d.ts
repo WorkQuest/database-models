@@ -46,6 +46,7 @@ export declare class Quest extends Model {
     assignedWorker: User;
     star: StarredQuests;
     response: QuestsResponse;
+    filterBySkillFilter: SkillFilter;
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
     reviews: Review[];

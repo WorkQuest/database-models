@@ -97,6 +97,7 @@ export class Quest extends Model {
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
+  @HasOne(() => QuestsResponse) filterBySkillFilter: SkillFilter; /** Alias */
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
