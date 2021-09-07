@@ -12,7 +12,7 @@ import {
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
-import {skillFiltersSchema} from "./filter";
+import {skillFilterCategorySchema, skillFilterSkillSchema, skillFiltersSchema} from "./filter";
 
 // Quests schemes
 
@@ -68,6 +68,8 @@ export const questsQuerySchema = Joi.object({
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),
   starred: Joi.boolean().default(false),
+  filterByCategories: skillFilterCategorySchema,
+  filterBySkills: skillFilterSkillSchema,
 }).label('QuestsQuery');
 
 // QuestsResponse schemes
