@@ -42,6 +42,12 @@ export enum QuestStatus {
   Done,
 }
 
+export enum QuestEmployment {
+  FullTime,
+  PartTime,
+  FixedTerm,
+}
+
 export interface Location {
   longitude: number;
   latitude: number;
@@ -74,6 +80,7 @@ export class Quest extends Model {
   @ForeignKey(() => User) @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
+  @Column({type: DataType.INTEGER, defaultValue: QuestEmployment.FullTime }) employment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority }) priority: QuestPriority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
