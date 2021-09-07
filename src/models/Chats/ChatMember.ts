@@ -6,12 +6,23 @@ import { Chat } from "./Chat";
 @Scopes(() => ({
   userOnly: {
     attributes: {
-      exclude: ['id', 'chatId', 'createdAt', 'updatedAt']
+      exclude: ['id', 'chatId','createdAt', 'updatedAt']
     },
     include: [{
       model: User.scope('short'),
       as: 'user'
     }]
+  },
+  userIdsOnly: {
+    attributes: {
+      exclude: [
+        'id',
+        'chatId',
+        'createdAt',
+        'updatedAt',
+        'unreadCountMessages',
+      ]
+    },
   }
 }))
 @Table
