@@ -8,7 +8,7 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {ChatMember} from "./ChatMember";
-import {Filter} from "./Filter";
+import {SkillFilter} from "./SkillFilter";
 
 export interface SocialInfo {
   id: string;
@@ -122,8 +122,8 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     },{
-      model: Filter,
-      as: 'filters',
+      model: SkillFilter,
+      as: 'skillFilters',
       attributes: ["category", "skill"]
     }]
   },
@@ -184,7 +184,7 @@ export class User extends Model {
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
   @HasMany(() => ChatMember) chatMember: ChatMember;
-  @HasMany(() => Filter) filters: Filter[];
+  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);

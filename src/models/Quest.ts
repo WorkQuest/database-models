@@ -19,7 +19,7 @@ import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import {Filter} from "./Filter";
+import {SkillFilter} from "./SkillFilter";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -66,8 +66,8 @@ export interface Location {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: Filter,
-      as: 'filters',
+      model: SkillFilter,
+      as: 'skillFilters',
       attributes: ["category", "skill"]
     }]
   }
@@ -100,7 +100,7 @@ export class Quest extends Model {
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => Filter) filters: Filter[];
+  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));

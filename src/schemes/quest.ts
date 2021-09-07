@@ -12,7 +12,7 @@ import {
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
-import {filtersSchema} from "./filter";
+import {skillFiltersSchema} from "./filter";
 
 // Quests schemes
 
@@ -41,7 +41,7 @@ export const questSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
-  filters: filtersSchema,
+  filters: skillFiltersSchema,
   createdAt: isoDateSchema,
 }).label("QuestSchema");
 
@@ -113,7 +113,7 @@ export const questForGetSchema = Joi.object({
   star: Joi.object().allow(null).label('Star'),
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
-  filters: filtersSchema,
+  filters: skillFiltersSchema,
   createdAt: isoDateSchema,
 }).label('QuestForGet');
 

@@ -11,7 +11,7 @@ import {User} from "./User";
   }
 }))
 @Table
-export class Filter extends Model {
+export class SkillFilter extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
