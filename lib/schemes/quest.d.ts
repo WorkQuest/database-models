@@ -7,6 +7,7 @@ export declare const questDescriptionSchema: Joi.StringSchema;
 export declare const questPriceSchema: Joi.StringSchema;
 export declare const questAdTypeSchema: Joi.NumberSchema;
 export declare const questLocationPlaceNameSchema: Joi.StringSchema;
+export declare const questWorkPlacementSchema: Joi.NumberSchema;
 export declare const questSchema: Joi.ObjectSchema<any>;
 export declare const questsSchema: Joi.ArraySchema;
 export declare const questsWithCountSchema: Joi.ObjectSchema<any>;

@@ -23,6 +23,11 @@ export declare enum QuestStatus {
     WaitConfirm = 5,
     Done = 6
 }
+export declare enum QuestWorkPlacement {
+    Distant = 0,
+    Office = 1,
+    Both = 2
+}
 export interface Location {
     longitude: number;
     latitude: number;
@@ -32,6 +37,7 @@ export declare class Quest extends Model {
     userId: string;
     assignedWorkerId: string;
     status: QuestStatus;
+    placement: QuestWorkPlacement;
     priority: QuestPriority;
     category: string;
     locationPlaceName: string;
