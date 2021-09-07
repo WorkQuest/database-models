@@ -42,6 +42,7 @@ export const questSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
+  deadlineAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label("QuestSchema");
 
@@ -91,6 +92,7 @@ export const questsResponseSchema = Joi.object({
   type: questsResponseTypeSchema,
   message: questsResponseMessageSchema,
   worker: userShortSchema,
+  deadlineAt: isoDateSchema,
   // quest: questSchema,
 }).label('QuestsResponseSchema');
 
@@ -121,6 +123,7 @@ export const questForGetSchema = Joi.object({
   star: Joi.object().allow(null).label('Star'),
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
+  deadlineAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label('QuestForGet');
 

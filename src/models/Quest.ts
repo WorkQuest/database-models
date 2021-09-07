@@ -19,6 +19,7 @@ import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
+import {allow} from "joi";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -85,6 +86,8 @@ export class Quest extends Model {
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
+
+  @Column({type: DataType.DATE}) deadlineAt: Date;
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 

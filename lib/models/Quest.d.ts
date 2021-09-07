@@ -41,6 +41,7 @@ export declare class Quest extends Model {
     description: string;
     price: string;
     adType: AdType;
+    deadlineAt: Date;
     medias: Media[];
     user: User;
     assignedWorker: User;
