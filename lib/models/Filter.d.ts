@@ -6,7 +6,7 @@ export declare class Filter extends Model {
     userId: string;
     questId: string;
     category: string;
-    skills: string;
+    skill: string;
     user: User;
     quest: Quest;
 }

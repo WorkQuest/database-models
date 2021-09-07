@@ -123,8 +123,8 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       as: 'ratingStatistic'
     },{
       model: Filter,
-      as: 'filter',
-      attributes: ["category","skills"]
+      as: 'filters',
+      attributes: ["category", "skill"]
     }]
   },
   withPassword: {
@@ -137,10 +137,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
-    },{
-      model: Filter,
-      as: 'filter',
-      attributes: ["category","skills"]
     }]
   }
 }))
@@ -188,7 +184,7 @@ export class User extends Model {
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
   @HasMany(() => ChatMember) chatMember: ChatMember;
-  @HasMany(() => Filter) filter: Filter[];
+  @HasMany(() => Filter) filters: Filter[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);

@@ -67,8 +67,8 @@ export interface Location {
       as: 'assignedWorker'
     }, {
       model: Filter,
-      as: 'filter',
-      attributes: ["category","skills"]
+      as: 'filters',
+      attributes: ["category", "skill"]
     }]
   }
 }))
@@ -100,7 +100,7 @@ export class Quest extends Model {
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => Filter) filter: Filter[];
+  @HasMany(() => Filter) filters: Filter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
