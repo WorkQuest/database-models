@@ -4,6 +4,7 @@ import { Session } from "./Session";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
+import { ChatMember } from "./Chats/ChatMember";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -93,6 +94,7 @@ export declare class User extends Model {
     phone: string;
     avatar: Media;
     ratingStatistic: RatingStatistic;
+    chatMember: ChatMember;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];
