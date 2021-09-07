@@ -1,10 +1,10 @@
 import { Model } from "sequelize-typescript";
 import { Message } from "./Message";
 export declare enum MessageAction {
-    messageActionGroupChatCreate = "messageActionGroupChatCreate",
-    messageActionGroupChatAddUser = "messageActionGroupChatAddUser",
-    messageActionGroupChatDeleteUser = "messageActionGroupChatDeleteUser",
-    messageActionGroupChatLeaveUser = "messageActionGroupChatLeaveUser"
+    groupChatCreate = "groupChatCreate",
+    groupChatAddUser = "groupChatAddUser",
+    groupChatDeleteUser = "groupChatDeleteUser",
+    groupChatLeaveUser = "groupChatLeaveUser"
 }
 export declare class InfoMessage extends Model {
     id: string;

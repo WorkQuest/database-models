@@ -4,10 +4,10 @@ import {Message} from "./Message";
 import {User} from "../User";
 
 export enum MessageAction {
-  messageActionGroupChatCreate = 'messageActionGroupChatCreate',
-  messageActionGroupChatAddUser = 'messageActionGroupChatAddUser',
-  messageActionGroupChatDeleteUser = 'messageActionGroupChatDeleteUser',
-  messageActionGroupChatLeaveUser = 'messageActionGroupChatLeaveUser',
+  groupChatCreate = 'groupChatCreate',
+  groupChatAddUser = 'groupChatAddUser',
+  groupChatDeleteUser = 'groupChatDeleteUser',
+  groupChatLeaveUser = 'groupChatLeaveUser',
 }
 
 @Table
