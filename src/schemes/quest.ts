@@ -97,6 +97,7 @@ export const questsResponseSchema = Joi.object({
   workerId: idSchema.label('WorkerId'),
   questId: idSchema.label('QuestId'),
   status: questsResponseStatusSchema,
+  placement: questWorkPlacementSchema,
   type: questsResponseTypeSchema,
   message: questsResponseMessageSchema,
   worker: userShortSchema,
