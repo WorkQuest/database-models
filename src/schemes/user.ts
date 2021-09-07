@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import {idSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
+import {idSchema, jwtTokenAccess, jwtTokenRefresh, mobilePhoneSchema} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
@@ -13,8 +13,8 @@ export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan")
 export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov").label("UserLastName");
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
-export const userPhoneSchema = Joi.string().min(3).max(20).regex(/^[\d +]+$/).example('+79991234567').label("Phone");
-export const userTempPhoneSchema = Joi.string().example('+79991234567').label("TempPhone");
+export const userPhoneSchema = mobilePhoneSchema.label("UserPhone");
+export const userTempPhoneSchema = mobilePhoneSchema.label("UserTempPhone");
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
