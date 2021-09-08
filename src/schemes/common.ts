@@ -15,7 +15,7 @@ export const countSchema = Joi.number().example(10);
 export const offsetSchema = Joi.number().min(0).default(0).label("Offset");
 export const limitSchema = Joi.number().min(0).default(10).max(100).label('Limit');
 export const searchSchema = Joi.string().default(null).max(255).label('Search');
-export const mobilePhoneSchema = Joi.string().length(10).pattern(/\+\d{1,4}\d{10}/).label('MobilePhone');
+export const mobilePhoneSchema = Joi.string().length(10).pattern(/^\+\d{1,4}\d{10}$/).label('MobilePhone');
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
 
