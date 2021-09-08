@@ -22,7 +22,7 @@ export enum ChatType {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["messages", "chatMembers", "updatedAt"]
+      exclude: ["messages", "updatedAt"]
     },
     include: [{
       model: User.scope('short'),
@@ -50,7 +50,7 @@ export class Chat extends Model {
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
-  @HasOne(() => ChatMember) otherMember: ChatMember;
+  @HasOne(() => ChatMember) otherChatMember: ChatMember;
 
   async mustHaveMember(userId: string) {
     const member = await ChatMember.findOne({
