@@ -17,6 +17,8 @@ export const limitSchema = Joi.number().min(0).default(10).max(100).label('Limit
 export const searchSchema = Joi.string().default(null).max(255).label('Search');
 export const mobilePhoneSchema = Joi.string().length(10).pattern(/^[0-9]+$/).label('MobilePhone');
 
+export const idsSchema = Joi.array().items(idSchema).label('Ids');
+
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
     ok: Joi.boolean().example(true),
