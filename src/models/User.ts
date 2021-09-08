@@ -86,7 +86,6 @@ interface AdditionalInfo {
   description: string | null;
   secondMobileNumber: string | null;
   address: string | null;
-  location: UserLocation,
   socialNetwork: SocialMediaNicknames;
 }
 
@@ -129,11 +128,15 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
   },
   withPassword: {
     attributes: {
-      include: ["password", "settings", "tempPhone"]
+      include: ["password", "settings", "tempPhone"],
+      exclude: ["location", "locationPostGIS"]
     }
   },
   short: {
-    attributes: ["id", "firstName", "lastName"],
+    attributes: {
+      include: ["id", "firstName", "lastName"],
+      exclude: ["location", "locationPostGIS"]
+    },
     include: {
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -175,6 +178,7 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
+  @Column({type: DataType.JSONB}) location: Location;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
@@ -250,7 +254,6 @@ export function getDefaultAdditionalInfo(role: UserRole) {
     description: null,
     secondMobileNumber: null,
     address: null,
-    location: null,
     socialNetwork: {
       instagram: null,
       twitter: null,

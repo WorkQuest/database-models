@@ -59,7 +59,6 @@ interface AdditionalInfo {
     description: string | null;
     secondMobileNumber: string | null;
     address: string | null;
-    location: UserLocation;
     socialNetwork: SocialMediaNicknames;
 }
 interface Knowledge {
@@ -96,6 +95,7 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
+    location: Location;
     locationPostGIS: any;
     avatar: Media;
     ratingStatistic: RatingStatistic;
