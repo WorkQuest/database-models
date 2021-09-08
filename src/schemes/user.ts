@@ -70,7 +70,7 @@ export const userSchema = Joi.object({
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
-  filters: skillFiltersSchema,
+  skillFilters: skillFiltersSchema,
   ratingStatistic: ratingStatisticSchema,
 }).label("UserSchema");
 
