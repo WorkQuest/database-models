@@ -4,6 +4,7 @@ import {idSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {skillFiltersSchema} from "./filter";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -68,6 +69,7 @@ export const userSchema = Joi.object({
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
+  skillFilters: skillFiltersSchema,
   ratingStatistic: ratingStatisticSchema,
 }).label("UserSchema");
 

@@ -12,6 +12,7 @@ import {
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
+import {skillFiltersSchema} from "./filter";
 
 // Quests schemes
 
@@ -40,6 +41,7 @@ export const questSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
+  skillFilters: skillFiltersSchema,
   createdAt: isoDateSchema,
 }).label("QuestSchema");
 
@@ -68,6 +70,8 @@ export const questsQuerySchema = Joi.object({
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),
   starred: Joi.boolean().default(false),
+  // filterByCategories: skillFilterCategorySchema, // TODO
+  // filterBySkills: skillFilterSkillSchema, // TODO
 }).label('QuestsQuery');
 
 export const locationForValidateSchema = Joi.object({
@@ -119,6 +123,7 @@ export const questForGetSchema = Joi.object({
   star: Joi.object().allow(null).label('Star'),
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
+  skillFilters: skillFiltersSchema,
   createdAt: isoDateSchema,
 }).label('QuestForGet');
 

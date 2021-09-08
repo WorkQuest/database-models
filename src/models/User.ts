@@ -7,6 +7,8 @@ import { Errors } from "../utils/errors";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
+import {ChatMember} from "./ChatMember";
+import {SkillFilter} from "./SkillFilter";
 
 export interface SocialInfo {
   id: string;
@@ -119,6 +121,10 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    },{
+      model: SkillFilter,
+      as: 'skillFilters',
+      attributes: ["category", "skill"]
     }]
   },
   withPassword: {
@@ -128,10 +134,10 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
   },
   short: {
     attributes: ["id", "firstName", "lastName"],
-    include: {
+    include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
-    }
+    }]
   }
 }))
 @Table({ paranoid: true })
@@ -177,6 +183,8 @@ export class User extends Model {
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
+  @HasMany(() => ChatMember) chatMember: ChatMember;
+  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);
