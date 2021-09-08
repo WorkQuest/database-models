@@ -68,8 +68,8 @@ export const questsQuerySchema = Joi.object({
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),
   starred: Joi.boolean().default(false),
-  filterByCategories: skillFilterCategorySchema,
-  filterBySkills: skillFilterSkillSchema,
+  // filterByCategories: skillFilterCategorySchema,
+  // filterBySkills: skillFilterSkillSchema,
 }).label('QuestsQuery');
 
 // QuestsResponse schemes
