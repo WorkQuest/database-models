@@ -12,7 +12,7 @@ import {
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
-import {skillFilterCategorySchema, skillFilterSkillSchema, skillFiltersSchema} from "./filter";
+import {skillFiltersSchema} from "./filter";
 
 // Quests schemes
 

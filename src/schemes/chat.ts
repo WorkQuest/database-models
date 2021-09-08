@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {idSchema} from "./common";
-import {userSchema, userShortSchema, usersSchema, usersShortSchema} from "./user";
+import {userShortSchema, usersShortSchema} from "./user";
 import {mediaIdsSchema} from "./media";
 import {ChatType} from "../models";
 
