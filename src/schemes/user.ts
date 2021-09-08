@@ -83,7 +83,6 @@ export const userShortSchema = Joi.object({
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const usersShortSchema = Joi.array().items(userShortSchema).label('UsersShort');
-export const userIdsSchema = Joi.array().items(idSchema).label('UserIds');
 
 export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,

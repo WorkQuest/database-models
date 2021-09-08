@@ -9,7 +9,7 @@ export const mediaUrlOnlySchema = Joi.object({
   id: idSchema,
   url: urlSchema,
   contentType: mediaContentTypeSchema
-}).label("MediaUrlOnlyScheme");
+}).label("MediaUrlOnly");
 
 export const mediaUploadLinkSchema = Joi.object({
   mediaId: idSchema,
@@ -18,11 +18,10 @@ export const mediaUploadLinkSchema = Joi.object({
 
 export const mediaSchema = Joi.object({
   id: idSchema,
-  userId: idSchema.label("UserId"),
+  userId: idSchema,
   contentType: mediaContentTypeSchema,
   url: urlSchema,
   hash: mediaHashSchema,
-}).label('MediaScheme');
+}).label('Media');
 
-export const mediaIdsSchema = Joi.array().items(idSchema).label("MediaIdsArray");
-export const mediasUrlOnlySchema = Joi.array().items(mediaUrlOnlySchema).label('MediasUrlOnlyScheme');
+export const mediasUrlOnlySchema = Joi.array().items(mediaUrlOnlySchema).label('MediasUrlOnly');

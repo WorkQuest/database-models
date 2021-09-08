@@ -1,7 +1,6 @@
 import * as Joi from "joi";
-import {idSchema} from "./common";
+import {idSchema, idsSchema} from "./common";
 import {userShortSchema, usersShortSchema} from "./user";
-import {mediaIdsSchema} from "./media";
 import {ChatType} from "../models";
 
 export const chatTypeSchema = Joi.number().valid(...Object.keys(ChatType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(ChatType.private).label('ChatType');
@@ -14,12 +13,11 @@ export const messageSchema = Joi.object({
   chatId: idSchema,
   text: messageTextSchema,
   sender: userShortSchema,
-  medias: mediaIdsSchema,
+  medias: idsSchema,
   // chat: chatSchema,
 }).label('Message');
 
 export const messagesSchema = Joi.array().items(messageSchema).label('Messages');
-export const messageIdsSchema = Joi.array().items(idSchema).label('MessageIds');
 
 export const chatSchema = Joi.object({
   id: idSchema,
@@ -33,5 +31,4 @@ export const chatSchema = Joi.object({
 }).label('Chat');
 
 export const chatsSchema = Joi.array().items(chatSchema).label('Chats');
-export const chatIdsSchema = Joi.array().items(idSchema).label('ChatIds');
 
