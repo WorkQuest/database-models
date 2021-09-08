@@ -1,5 +1,5 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Scopes, Table } from "sequelize-typescript";
-import { error, getUUID, totpValidate } from "../utils";
+import {error, getUUID, totpValidate, transformToGeoPostGIS} from "../utils";
 import * as bcrypt from "bcrypt";
 import { Media } from "./Media";
 import { Session } from "./Session";
@@ -77,6 +77,11 @@ interface SocialMediaNicknames {
   facebook: string | null;
 }
 
+export interface UserLocation {
+  longitude: number;
+  latitude: number;
+}
+
 interface AdditionalInfo {
   description: string | null;
   secondMobileNumber: string | null;
@@ -111,7 +116,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt", "deletedAt"]
+      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt", "deletedAt", "location", "locationPostGIS"]
     },
     include: [{
       model: Media.scope('urlOnly'),
@@ -169,6 +174,9 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
+  @Column({type: DataType.JSONB}) location: UserLocation;
+  @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
+
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
@@ -177,6 +185,10 @@ export class User extends Model {
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
+
+  updateFieldLocationPostGIS(): void {
+    this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
+  }
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);
@@ -238,6 +250,7 @@ export function getDefaultAdditionalInfo(role: UserRole) {
     description: null,
     secondMobileNumber: null,
     address: null,
+
     socialNetwork: {
       instagram: null,
       twitter: null,

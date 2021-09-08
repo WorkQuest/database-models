@@ -51,6 +51,10 @@ interface SocialMediaNicknames {
     linkedin: string | null;
     facebook: string | null;
 }
+export interface UserLocation {
+    longitude: number;
+    latitude: number;
+}
 interface AdditionalInfo {
     description: string | null;
     secondMobileNumber: string | null;
@@ -91,12 +95,15 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
+    location: UserLocation;
+    locationPostGIS: any;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];
     medias: Media[];
+    updateFieldLocationPostGIS(): void;
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;
