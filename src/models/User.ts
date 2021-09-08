@@ -190,10 +190,6 @@ export class User extends Model {
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
 
-  updateFieldLocationPostGIS(): void {
-    this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
-  }
-
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);
   }

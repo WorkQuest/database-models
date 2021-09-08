@@ -103,7 +103,6 @@ export declare class User extends Model {
     reviews: Review[];
     sessions: Session[];
     medias: Media[];
-    updateFieldLocationPostGIS(): void;
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;
