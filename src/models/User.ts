@@ -250,7 +250,7 @@ export function getDefaultAdditionalInfo(role: UserRole) {
     description: null,
     secondMobileNumber: null,
     address: null,
-
+    location: null,
     socialNetwork: {
       instagram: null,
       twitter: null,
