@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import {idSchema, jwtTokenAccess, jwtTokenRefresh} from "./common";
+import {idSchema, jwtTokenAccess, jwtTokenRefresh, latitudeSchema, longitudeSchema} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
@@ -15,6 +15,11 @@ export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).ma
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const userPhoneSchema = Joi.string().example('+79991234567').label("Phone");
 export const userTempPhoneSchema = Joi.string().example('+79991234567').label("TempPhone");
+
+export const userLocationSchema = Joi.object({
+  longitude: longitudeSchema,
+  latitude: latitudeSchema,
+}).label('UserLocation');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -38,6 +43,7 @@ export const userWorkExperienceSchema = Joi.object({
 export const userAdditionalInfoWorkerSchema = Joi.object({
   secondMobileNumber: Joi.string().allow(null).label('SecondMobileNumber'),
   address: Joi.string().allow(null).label('Address'),
+  location: userLocationSchema.label('Location'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   skills: Joi.array().items(Joi.string()).default([]).label('Skills'),
   educations: Joi.array().items(userKnowledgeSchema).default([]).label('Educations'),
@@ -48,6 +54,7 @@ export const userAdditionalInfoWorkerSchema = Joi.object({
 export const userAdditionalInfoEmployerSchema = Joi.object({
   secondMobileNumber: Joi.string().allow(null).label('SecondMobileNumber'),
   address: Joi.string().allow(null).label('Address'),
+  location: userLocationSchema.label('Location'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   description: Joi.string().allow(null).label("Description"),
   company: Joi.string().allow(null).label('Company'),

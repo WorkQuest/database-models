@@ -52,13 +52,14 @@ interface SocialMediaNicknames {
     facebook: string | null;
 }
 export interface UserLocation {
-    longitude: number;
-    latitude: number;
+    longitude: number | null;
+    latitude: number | null;
 }
 interface AdditionalInfo {
     description: string | null;
     secondMobileNumber: string | null;
     address: string | null;
+    location: UserLocation;
     socialNetwork: SocialMediaNicknames;
 }
 interface Knowledge {
@@ -95,7 +96,6 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
-    location: UserLocation;
     locationPostGIS: any;
     avatar: Media;
     ratingStatistic: RatingStatistic;

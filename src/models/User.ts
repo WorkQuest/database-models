@@ -78,14 +78,15 @@ interface SocialMediaNicknames {
 }
 
 export interface UserLocation {
-  longitude: number;
-  latitude: number;
+  longitude: number | null;
+  latitude: number | null;
 }
 
 interface AdditionalInfo {
   description: string | null;
   secondMobileNumber: string | null;
   address: string | null;
+  location: UserLocation,
   socialNetwork: SocialMediaNicknames;
 }
 
@@ -116,7 +117,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt", "deletedAt", "location", "locationPostGIS"]
+      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt", "deletedAt", "locationPostGIS"]
     },
     include: [{
       model: Media.scope('urlOnly'),
@@ -174,7 +175,6 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
-  @Column({type: DataType.JSONB}) location: UserLocation;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
