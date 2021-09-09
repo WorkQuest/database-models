@@ -9,7 +9,7 @@ export const mapCoordinatesSchema = Joi.array().example([83.1123, 40.221]).items
 export const mapClusterRadiusSchema = Joi.number().allow(null).label('ClusterRadius');
 
 export const mapPointSchema = Joi.object({
-  questId: idSchema.label('QuestId'),
+  questId: idSchema,
   questStatus: questStatusSchema,
   questPrice: questPriceSchema,
   questPriority: questPrioritySchema,
