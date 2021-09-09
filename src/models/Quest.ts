@@ -19,7 +19,7 @@ import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import {SkillFilter} from "./SkillFilter";
+import {SkillFilter, SkillsMap, SkillsRaw} from "./SkillFilter";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -67,7 +67,7 @@ export interface Location {
       as: 'assignedWorker'
     }, {
       model: SkillFilter,
-      as: 'skillFilters',
+      as: 'questSkillFilters',
       attributes: ["category", "skill"]
     }]
   }
@@ -91,6 +91,16 @@ export class Quest extends Model {
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
+  @Column({
+    type: DataType.VIRTUAL,
+    get() {
+      const questSkillFilters: SkillsRaw[] = this.getDataValue('questSkillFilters');
+
+      return (questSkillFilters ? SkillFilter.toMapSkills(questSkillFilters) : undefined);
+    },
+    set (value) { throw new Error('This field (skillFilters) cannot be changed') }
+  }) skillFilters?: SkillsMap;
+
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
   @BelongsTo(() => User, 'userId') user: User;
@@ -102,7 +112,7 @@ export class Quest extends Model {
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
+  @HasMany(() => SkillFilter) questSkillFilters: SkillFilter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));

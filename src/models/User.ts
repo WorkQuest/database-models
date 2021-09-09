@@ -8,7 +8,7 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {ChatMember} from "./ChatMember";
-import {SkillFilter} from "./SkillFilter";
+import {SkillFilter, SkillsMap, SkillsRaw} from "./SkillFilter";
 
 export interface SocialInfo {
   id: string;
@@ -121,9 +121,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
-    },{
+    }, {
       model: SkillFilter,
-      as: 'skillFilters',
+      as: 'userSkillFilters',
       attributes: ["category", "skill"]
     }]
   },
@@ -175,6 +175,16 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
+  @Column({
+    type: DataType.VIRTUAL,
+    get() {
+      const userSkillFilters: SkillsRaw[] = this.getDataValue('userSkillFilters');
+
+      return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
+    },
+    set (value) { throw new Error('This field (skillFilters) cannot be changed') }
+  }) skillFilters?: SkillsMap;
+
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
@@ -184,7 +194,7 @@ export class User extends Model {
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
   @HasMany(() => ChatMember) chatMember: ChatMember;
-  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
+  @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);
