@@ -67,6 +67,7 @@ export * from "./Chat";
 export * from "./ChatMember";
 export * from "./Message";
 export * from "./MessageMedia";
-export * from "./SkillFilter"
+export * from "./SkillFilter";
+export * from "./QuestsStatistic";
 
 
