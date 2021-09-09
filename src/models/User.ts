@@ -135,8 +135,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       include: ["password", "settings", "tempPhone"]
     }
   },
-
-  },
   short: {
     attributes: ["id", "firstName", "lastName"],
     include: [{

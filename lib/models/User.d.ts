@@ -7,6 +7,7 @@ import { StarredQuests } from "./StarredQuests";
 import { UserBlockReason } from "./UserBlockReason";
 import { ChatMember } from "./ChatMember";
 import { QuestsStatistic } from "./QuestsStatistic";
+import { SkillFilter } from "./SkillFilter";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -107,6 +108,7 @@ export declare class User extends Model {
     sessions: Session[];
     medias: Media[];
     chatMember: ChatMember;
+    skillFilters: SkillFilter[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;

@@ -21,3 +21,4 @@ export * from "./QuestDispute";
 export * from "./UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
+export * from "./SkillFilter";
