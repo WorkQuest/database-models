@@ -33,6 +33,12 @@ export class Message extends Model {
   @BelongsTo(() => User) sender: User;
   @BelongsTo(() => Chat) chat: Chat;
 
+  static async messageMustExist(messageId: string) {
+    if (!await Message.findByPk(messageId)) {
+      throw error(Errors.NotFound, "Message does not exist", { messageId });
+    }
+  }
+
   mustBeSender(userId: String) {
     if (this.senderUserId !== userId) {
       throw error(Errors.Forbidden, "User isn't sender of the message", {
@@ -46,4 +52,6 @@ export class Message extends Model {
       throw error(Errors.Forbidden, "This message not from this chat", {});
     }
   }
+
+
 }
