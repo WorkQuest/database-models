@@ -33,7 +33,7 @@ export class Message extends Model {
   @BelongsTo(() => User) sender: User;
   @BelongsTo(() => Chat) chat: Chat;
 
-  static async messageMustExist(messageId: string) {
+  static async messageMustExists(messageId: string) {
     if (!await Message.findByPk(messageId)) {
       throw error(Errors.NotFound, "Message does not exist", { messageId });
     }
