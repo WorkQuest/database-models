@@ -18,3 +18,4 @@ export * from "./Chats/ChatMember";
 export * from "./Chats/Message";
 export * from "./Chats/MessageMedia";
 export * from "./Chats/InfoMessage";
+export * from "./SkillFilter";

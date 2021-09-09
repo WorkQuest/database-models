@@ -1,7 +1,7 @@
 import * as Joi from "joi";
 import {idSchema, idsSchema} from "./common";
 import {userShortSchema, usersShortSchema} from "./user";
-import {ChatType} from "../models";
+import {ChatType, MessageType} from "../models";
 
 export const chatTypeSchema = Joi.number().valid(...Object.keys(ChatType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(ChatType.private).label('ChatType');
 export const chatNameSchema = Joi.string().label('ChatName');
