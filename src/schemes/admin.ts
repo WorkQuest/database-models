@@ -3,6 +3,7 @@ import {idSchema, offsetSchema, limitSchema, isoDateSchema} from "./common";
 import {AdminLanguages, AdminRole, AdminRoles} from "../models";
 import {languageTableSchema} from "./language";
 import {mediaUrlOnlySchema} from "./media";
+import { AdminRole, AdminRoles } from "../models";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('FirstNameSchema');
 export const adminLastNameSchema = Joi.string().max(255).example('Durov').label('LastNameSchema');
@@ -58,7 +59,9 @@ export const adminSchema = Joi.object({
   lastSession: adminLastSessionSchema,
   updatedAt: isoDateSchema,
   deletedAt: isoDateSchema,
-}).label('AdminAccountSchema')
+  isActive: isActiveSchema,
+  adminRole: adminRoleSchema,
+}).label('Admin')
 
 export const adminQuerySchema = Joi.object({
   offset: offsetSchema,

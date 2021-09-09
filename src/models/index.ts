@@ -18,6 +18,7 @@ import { Chat } from "./Chat";
 import { ChatMember } from "./ChatMember";
 import { MessageMedia } from "./MessageMedia";
 import { Message } from "./Message";
+import {SkillFilter} from "./SkillFilter";
 import {QuestsStatistic} from "./QuestsStatistic";
 import {Language} from "./Language";
 
@@ -46,6 +47,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       MessageMedia,
       QuestsStatistic,
       Language,
+      SkillFilter,
     ]
   });
   if (sync)
@@ -75,5 +77,6 @@ export * from "./QuestDispute";
 export * from "./UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
+export * from "./SkillFilter"
 
 

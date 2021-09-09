@@ -18,4 +18,3 @@ export declare const adminPlaceSchema: Joi.ObjectSchema<any>;
 export declare const adminAdditionalInfoSchema: Joi.ObjectSchema<any>;
 export declare const adminLastSessionSchema: Joi.ObjectSchema<any>;
 export declare const adminSchema: Joi.ObjectSchema<any>;
-export declare const adminQuerySchema: Joi.ObjectSchema<any>;
