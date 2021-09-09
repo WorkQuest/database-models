@@ -1,19 +1,14 @@
 import * as Joi from "joi";
 import {idSchema, isoDateSchema} from './common';
 
-const reviewIdSchema = idSchema.label('ReviewId');
-const questIdSchema = idSchema.label('QuestId');
-const fromUserIdSchema = idSchema.label('FromUserId');
-const toUserIdSchema = idSchema.label('ToUserId');
-const userIdSchema = idSchema.label('UserId');
 export const reviewMessageSchema = Joi.string().example('Hello, I need this job').default('').label('Message');
 export const reviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
 
 export const reviewSchema = Joi.object({
-  reviewId: reviewIdSchema,
-  questId: questIdSchema,
-  fromUserId: fromUserIdSchema,
-  toUserId: toUserIdSchema,
+  reviewId: idSchema,
+  questId: idSchema,
+  fromUserId: idSchema,
+  toUserId: idSchema,
   message: reviewMessageSchema,
   mark: reviewMarkSchema,
   createdAt: isoDateSchema,
