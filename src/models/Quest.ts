@@ -19,6 +19,7 @@ import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
+import {SkillFilter} from "./SkillFilter";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -64,6 +65,10 @@ export interface Location {
     }, {
       model: User.scope('short'),
       as: 'assignedWorker'
+    }, {
+      model: SkillFilter,
+      as: 'skillFilters',
+      attributes: ["category", "skill"]
     }]
   }
 }))
@@ -77,6 +82,7 @@ export class Quest extends Model {
   @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority }) priority: QuestPriority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
+  @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
   @Column({type: DataType.JSONB}) location: Location;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
   @Column({type: DataType.STRING, allowNull: false }) title: string;
@@ -92,9 +98,11 @@ export class Quest extends Model {
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
+  @HasOne(() => SkillFilter) filterBySkillFilter: SkillFilter; /** Alias */
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
+  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
