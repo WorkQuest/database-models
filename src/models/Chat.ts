@@ -52,6 +52,12 @@ export class Chat extends Model {
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasOne(() => ChatMember) otherChatMember: ChatMember;
 
+  static async chatMustExists(chatId: string) {
+    if (!await Chat.findByPk(chatId)) {
+      throw error(Errors.NotFound, "User does not exist", { chatId });
+    }
+  }
+
   async mustHaveMember(userId: string) {
     const member = await ChatMember.findOne({
       where: { chatId: this.id, userId }
