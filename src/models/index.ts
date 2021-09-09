@@ -17,6 +17,7 @@ import { ChatMember } from "./ChatMember";
 import { MessageMedia } from "./MessageMedia";
 import { Message } from "./Message";
 import {SkillFilter} from "./SkillFilter";
+import {StarredChat} from "./StarredChat";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -40,6 +41,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Message,
       MessageMedia,
       SkillFilter,
+      StarredChat,
     ]
   });
   if (sync)
@@ -65,6 +67,7 @@ export * from "./Chat";
 export * from "./ChatMember";
 export * from "./Message";
 export * from "./MessageMedia";
-export * from "./SkillFilter"
+export * from "./SkillFilter";
+export * from "./StarredChat";
 
 
