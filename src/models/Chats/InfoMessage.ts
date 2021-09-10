@@ -15,11 +15,11 @@ export class InfoMessage extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true }) id: string;
 
   @ForeignKey(() => Message)
-  @Column(DataType.STRING) messageId: string;
+  @Column({type: DataType.STRING, allowNull: false}) messageId: string;
 
   /** Common relations user table: who was removed and etc */
   @ForeignKey(() => User)
-  @Column(DataType.STRING) userId: string;
+  @Column({type: DataType.STRING, defaultValue: null}) userId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) messageAction: MessageAction;
 
