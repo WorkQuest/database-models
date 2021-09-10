@@ -10,4 +10,3 @@ export * from "./sumsub";
 export * from "./admin";
 export * from "./chat";
 export * from "./filter";
-export * from "./starredQuest";
