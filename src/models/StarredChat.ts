@@ -1,7 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { getUUID } from '../utils';
 import { User } from './User';
-import { Chat } from './Chat';
+import { Chat } from './Chats/Chat';
 
 @Table
 export class StarredChat extends Model {
