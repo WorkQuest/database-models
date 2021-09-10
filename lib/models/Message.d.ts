@@ -11,7 +11,7 @@ export declare class Message extends Model {
     medias: Media[];
     sender: User;
     chat: Chat;
-    starredMessages: StarredMessage[];
+    starredMessage: StarredMessage;
     static messageMustExists(messageId: string): Promise<void>;
     mustBeSender(userId: String): void;
     mustBeChat(chatId: String): void;

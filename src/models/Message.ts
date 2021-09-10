@@ -1,4 +1,4 @@
-import {Column, DataType, ForeignKey, Model, Table, HasMany, BelongsTo, BelongsToMany, Scopes} from "sequelize-typescript";
+import {Column, DataType, ForeignKey, Model, Table, HasOne, BelongsTo, BelongsToMany, Scopes} from "sequelize-typescript";
 import { error, getUUID } from "../utils";
 import { Errors } from "../utils/errors";
 import { User } from "./User";
@@ -34,7 +34,7 @@ export class Message extends Model {
   @BelongsTo(() => User) sender: User;
   @BelongsTo(() => Chat) chat: Chat;
 
-  @HasMany(() => StarredMessage) starredMessages: StarredMessage[];
+  @HasOne(() => StarredMessage) starredMessage: StarredMessage;
 
   static async messageMustExists(messageId: string) {
     if (!await Message.findByPk(messageId)) {
