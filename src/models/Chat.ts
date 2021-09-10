@@ -13,6 +13,7 @@ import { ChatMember } from "./ChatMember";
 import { User } from "./User";
 import { error, getUUID } from "../utils";
 import { Errors } from "../utils/errors";
+import {StarredChat} from "./StarredChat";
 
 export enum ChatType {
   private = 0,
@@ -47,6 +48,8 @@ export class Chat extends Model {
   @BelongsToMany(() => User, () => ChatMember) members: User[];
   @BelongsTo(() => User) owner: User;
   @BelongsTo(() => Message, {foreignKey: 'lastMessageId', constraints: false}) lastMessage: Message;
+
+  @HasOne(() => StarredChat) starredChat: StarredChat;
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
