@@ -54,7 +54,7 @@ export class Chat extends Model {
 
   static async chatMustExists(chatId: string) {
     if (!await Chat.findByPk(chatId)) {
-      throw error(Errors.NotFound, "User does not exist", { chatId });
+      throw error(Errors.NotFound, "Chat does not exist", { chatId });
     }
   }
 
