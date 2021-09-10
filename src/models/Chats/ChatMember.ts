@@ -1,17 +1,28 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
-import { getUUID } from "../utils";
-import { User } from "./User";
+import { getUUID } from "../../utils";
+import { User } from "../User";
 import { Chat } from "./Chat";
 
 @Scopes(() => ({
   userOnly: {
     attributes: {
-      exclude: ['id', 'chatId', 'createdAt', 'updatedAt']
+      exclude: ['id', 'chatId','createdAt', 'updatedAt']
     },
     include: [{
-      model: User,
+      model: User.scope('short'),
       as: 'user'
     }]
+  },
+  userIdsOnly: {
+    attributes: {
+      exclude: [
+        'id',
+        'chatId',
+        'createdAt',
+        'updatedAt',
+        'unreadCountMessages',
+      ]
+    },
   }
 }))
 @Table
@@ -23,6 +34,9 @@ export class ChatMember extends Model {
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
+
+  /** Metadata */
+  @Column({type: DataType.INTEGER.UNSIGNED, defaultValue: 0}) unreadCountMessages: number;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Chat) chat: Chat;

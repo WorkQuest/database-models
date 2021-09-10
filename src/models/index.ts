@@ -12,10 +12,11 @@ import { PortfolioMedia } from './PortfolioMedia';
 import { Portfolio } from './Portfolio';
 import { Admin } from './Admin'
 import { AdminSession } from "./AdminSession";
-import { Chat } from "./Chat";
-import { ChatMember } from "./ChatMember";
-import { MessageMedia } from "./MessageMedia";
-import { Message } from "./Message";
+import { Chat } from "./Chats/Chat";
+import { ChatMember } from "./Chats/ChatMember";
+import { MessageMedia } from "./Chats/MessageMedia";
+import { Message } from "./Chats/Message";
+import { InfoMessage } from "./Chats/InfoMessage";
 import {SkillFilter} from "./SkillFilter";
 import {StarredChat} from "./StarredChat";
 
@@ -42,6 +43,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       MessageMedia,
       SkillFilter,
       StarredChat,
+      InfoMessage,
     ]
   });
   if (sync)
@@ -69,5 +71,11 @@ export * from "./Message";
 export * from "./MessageMedia";
 export * from "./SkillFilter";
 export * from "./StarredChat";
+export * from "./Chats/Chat";
+export * from "./Chats/ChatMember";
+export * from "./Chats/Message";
+export * from "./Chats/MessageMedia";
+export * from "./Chats/InfoMessage";
+export * from "./SkillFilter"
 
 

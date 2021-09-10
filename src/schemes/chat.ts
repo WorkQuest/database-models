@@ -1,10 +1,11 @@
 import * as Joi from "joi";
 import {idSchema, idsSchema, isoDateSchema} from "./common";
 import {userShortSchema, usersShortSchema} from "./user";
-import {ChatType} from "../models";
+import {ChatType, MessageType} from "../models";
 
 export const chatTypeSchema = Joi.number().valid(...Object.keys(ChatType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(ChatType.private).label('ChatType');
 export const chatNameSchema = Joi.string().label('ChatName');
+export const messageTypeSchema = Joi.number().valid(...Object.keys(MessageType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(MessageType.message).label('MessageType');
 export const messageTextSchema = Joi.string().label('MessageText');
 
 export const messageSchema = Joi.object({

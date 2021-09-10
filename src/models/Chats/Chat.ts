@@ -6,7 +6,8 @@ import {
   Table,
   BelongsTo,
   HasMany,
-  BelongsToMany, Scopes, HasOne
+  BelongsToMany,
+  Scopes, HasOne,
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
@@ -14,10 +15,13 @@ import { User } from "./User";
 import { error, getUUID } from "../utils";
 import { Errors } from "../utils/errors";
 import {StarredChat} from "./StarredChat";
+import { User } from "../User";
+import { error, getUUID } from "../../utils";
+import { Errors } from "../../utils/errors";
 
 export enum ChatType {
-  private = 0,
-  group,
+  private = 'private',
+  group = 'group',
 }
 
 @Scopes(() => ({
@@ -28,6 +32,15 @@ export enum ChatType {
     include: [{
       model: User.scope('short'),
       as: 'owner'
+    }, {
+      model: Message,
+      as: 'lastMessage'
+    }, {
+      model: User.scope('short'),
+      as: 'members',
+      through: {
+        attributes: []
+      }
     }]
   }
 }))
@@ -41,19 +54,22 @@ export class Chat extends Model {
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
-  @Column({type: DataType.STRING, defaultValue: null}) name: Date; /* If group chat */
-  @Column(DataType.DATE) lastMessageDate: Date;
-  @Column({type: DataType.INTEGER, allowNull: false}) type: ChatType;
+  @Column({type: DataType.STRING, defaultValue: null}) name: string; /* If group chat */
+  @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
+  @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];
   @BelongsTo(() => User) owner: User;
-  @BelongsTo(() => Message, {foreignKey: 'lastMessageId', constraints: false}) lastMessage: Message;
+  @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasOne(() => StarredChat) starredChat: StarredChat;
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
-  @HasOne(() => ChatMember) otherChatMember: ChatMember;
+
+  /** Aliases for Queries */
+  @HasOne(() => ChatMember) firstMemberInPrivateChat: ChatMember;
+  @HasOne(() => ChatMember) secondMemberInPrivateChat: ChatMember;
 
   static async chatMustExists(chatId: string) {
     if (!await Chat.findByPk(chatId)) {
