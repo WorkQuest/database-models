@@ -13,16 +13,6 @@ export class StarredMessage extends Model {
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, allowNull: false}) messageId: string;
 
-  @Column({
-    type: DataType.VIRTUAL,
-    get(){
-      return true
-    },
-    set(value) {
-      throw new Error('Do not try to set the `fullName` value!');
-    }
-  }) starred: boolean;
-
   @BelongsTo(() => User, { constraints: false }) user: User;
   @BelongsTo(() => Message, { constraints: false }) message: Message;
 }

@@ -6,7 +6,9 @@ import {ChatType} from "../models";
 export const chatTypeSchema = Joi.number().valid(...Object.keys(ChatType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(ChatType.private).label('ChatType');
 export const chatNameSchema = Joi.string().label('ChatName');
 export const messageTextSchema = Joi.string().label('MessageText');
-export const starredMessageScheme = Joi.boolean().example(false).label('StarredMessageScheme');
+export const starredMessageScheme = Joi.object({
+  id: idSchema,
+}).label('StarredMessageScheme');
 
 export const messageSchema = Joi.object({
   id: idSchema,
@@ -15,7 +17,7 @@ export const messageSchema = Joi.object({
   text: messageTextSchema,
   sender: userShortSchema,
   medias: idsSchema,
-  starred: starredMessageScheme,
+  starredMessage: starredMessageScheme,
   // chat: chatSchema,
 }).label('Message');
 
