@@ -19,13 +19,6 @@ export const messageSchema = Joi.object({
 }).label('Message');
 
 export const messagesSchema = Joi.array().items(messageSchema).label('Messages');
-export const starredChatSchema = Joi.object({
-  id: idSchema,
-  userId: idSchema,
-  chatId: idSchema,
-  createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
-}).label('StarredChatScheme');
 
 export const chatSchema = Joi.object({
   id: idSchema,
