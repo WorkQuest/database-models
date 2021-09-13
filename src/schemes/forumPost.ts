@@ -4,7 +4,7 @@ import { mediaIdsSchema } from "./media";
 
 const forumPostIdSchema = idSchema.label("forumPostId");
 const authorIdSchema = idSchema.label("authorId");
-const textTitleSchema = Joi.string().example("Text...").label("Text");
+export const textTitleSchema = Joi.string().example("Text...").label("Text");
 
 export const forumPostSchema = Joi.object({
     id: forumPostIdSchema,

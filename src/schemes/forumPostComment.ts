@@ -1,10 +1,9 @@
 import * as Joi from "joi";
-import { idSchema, isoDateSchema, limitSchema,offsetSchema} from "./index";
+import {idSchema, isoDateSchema, limitSchema, offsetSchema, textTitleSchema} from "./index";
 
 const forumPostCommentIdSchema = idSchema.label("forumPostCommentId");
 const authorIdSchema = idSchema.label("authorId");
 const forumPostIdSchema = idSchema.label("forumPostId");
-const textTitleSchema = Joi.string().example("Text...").label("Text");
 export const forumPostRootCommentIdSchema = Joi.alternatives().try(Joi.string().uuid(), Joi.string().default(null)).label("IdOrNull");
 
 export const forumPostCommentSchema = Joi.object({
