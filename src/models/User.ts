@@ -8,7 +8,7 @@ import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
 import {SkillFilter, SkillsMap, SkillsRaw} from "./SkillFilter";
-import {ChatMember} from "./Chats/ChatMember";
+import { ChatMember } from "./chats/ChatMember";
 
 export interface SocialInfo {
   id: string;
