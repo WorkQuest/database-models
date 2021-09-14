@@ -3,6 +3,7 @@ import { User } from "../User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { InfoMessage } from "./InfoMessage";
+import { StarredMessage } from "./StarredMessage";
 export declare enum MessageType {
     info = "info",
     message = "message"
@@ -19,10 +20,10 @@ export declare class Message extends Model {
     type: MessageType;
     text: string;
     infoMessage: InfoMessage;
+    star: StarredMessage;
     medias: Media[];
     sender: User;
     chat: Chat;
-    static messageMustExists(messageId: string): Promise<void>;
     mustBeSender(userId: String): void;
     mustBeChat(chatId: String): void;
 }
