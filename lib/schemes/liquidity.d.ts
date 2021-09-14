@@ -6,3 +6,5 @@ export declare const timestampContractSchema: Joi.DateSchema;
 export declare const pairContractSchema: Joi.ObjectSchema<any>;
 export declare const liquiditySwapSchema: Joi.ObjectSchema<any>;
 export declare const swapWQTSchema: Joi.ArraySchema;
+export declare const tokenDayContract: Joi.ObjectSchema<any>;
+export declare const tokenDayWQTSchema: Joi.ArraySchema;
