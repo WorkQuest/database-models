@@ -9,6 +9,7 @@ import {
   searchSchema,
   sortDirectionSchema,
   countSchema,
+  starSchema,
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
@@ -50,7 +51,7 @@ export const questsSchema = Joi.array().items(questSchema).label('Quests');
 export const questsWithCountSchema = Joi.object({
   count: countSchema,
   quests: questsSchema,
-}).label("QuestsOutput");
+}).label("QuestsWithCount");
 
 export const questsListSortSchema = Joi.object({
   price: sortDirectionSchema,
@@ -120,7 +121,7 @@ export const questForGetSchema = Joi.object({
   adType: questAdTypeSchema,
   user: userShortSchema,
   assignedWorker: userShortSchema,
-  star: Joi.object().allow(null).label('Star'),
+  star: starSchema,
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
   skillFilters: skillFilterSchema,
@@ -132,7 +133,7 @@ export const questsForGetSchema = Joi.array().items(questForGetSchema).label('Qu
 export const questsForGetWithCountSchema = Joi.object({
   count: countSchema,
   responses: questsForGetSchema,
-}).label('QuestsResponsesWithCount');
+}).label('QuestsForGetWithCount');
 
 
 

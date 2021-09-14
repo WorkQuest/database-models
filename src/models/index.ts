@@ -12,22 +12,23 @@ import { PortfolioMedia } from './PortfolioMedia';
 import { Portfolio } from './Portfolio';
 import { Admin } from './Admin'
 import { AdminSession } from "./AdminSession";
-import { Chat } from "./Chats/Chat";
-import { ChatMember } from "./Chats/ChatMember";
-import { MessageMedia } from "./Chats/MessageMedia";
-import { Message } from "./Chats/Message";
-import { InfoMessage } from "./Chats/InfoMessage";
-import {SkillFilter} from "./SkillFilter";
-import {StarredChat} from "./StarredChat";
+import { Chat } from "./chats/Chat";
+import { ChatMember } from "./chats/ChatMember";
+import { MessageMedia } from "./chats/MessageMedia";
+import { Message } from "./chats/Message";
+import { InfoMessage } from "./chats/InfoMessage";
+import { StarredMessage } from "./chats/StarredMessage";
+import { SkillFilter } from "./SkillFilter";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging,
     dialect: "postgres",
-    models: [ StarredQuests,
+    models: [
       User,
       Session,
       Quest,
+      StarredQuests,
       QuestsResponse,
       Media,
       QuestMedia,
@@ -42,8 +43,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Message,
       MessageMedia,
       SkillFilter,
-      StarredChat,
       InfoMessage,
+      StarredMessage,
     ]
   });
   if (sync)
@@ -65,13 +66,12 @@ export * from "./PortfolioMedia";
 export * from "./Portfolio";
 export * from "./Admin";
 export * from "./AdminSession";
-export * from "./SkillFilter";
-export * from "./StarredChat";
-export * from "./Chats/Chat";
-export * from "./Chats/ChatMember";
-export * from "./Chats/Message";
-export * from "./Chats/MessageMedia";
-export * from "./Chats/InfoMessage";
+export * from "./chats/Chat";
+export * from "./chats/ChatMember";
+export * from "./chats/Message";
+export * from "./chats/MessageMedia";
+export * from "./chats/InfoMessage";
+export * from "./chats/StarredMessage";
 export * from "./SkillFilter"
 
 
