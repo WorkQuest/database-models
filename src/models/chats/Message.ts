@@ -15,7 +15,8 @@ import { User } from "../User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { MessageMedia } from "./MessageMedia";
-import {InfoMessage} from "./InfoMessage";
+import { InfoMessage } from "./InfoMessage";
+import { StarredMessage } from "./StarredMessage";
 
 export enum MessageType {
   info = 'info',
@@ -60,16 +61,11 @@ export class Message extends Model {
   @Column(DataType.TEXT) text: string;
 
   @HasOne(() => InfoMessage) infoMessage: InfoMessage;
+  @HasOne(() => StarredMessage) star: StarredMessage;
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => User, 'senderUserId') sender: User;
   @BelongsTo(() => Chat) chat: Chat;
-
-  static async messageMustExists(messageId: string) {
-    if (!await Message.findByPk(messageId)) {
-      throw error(Errors.NotFound, "Message does not exist", { messageId });
-    }
-  }
 
   mustBeSender(userId: String) {
     if (this.senderUserId !== userId) {
@@ -84,6 +80,4 @@ export class Message extends Model {
       throw error(Errors.Forbidden, "This message not from this chat", {});
     }
   }
-
-
 }
