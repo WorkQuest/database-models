@@ -30,6 +30,9 @@ export enum SenderMessageStatus {
 
 @Scopes(() => ({
   defaultScope: {
+    attributes: {
+      exclude: ["updatedAt"]
+    },
     include: [{
       model: Media,
       as: 'medias',
