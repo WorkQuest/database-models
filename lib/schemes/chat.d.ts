@@ -6,5 +6,7 @@ export declare const messageTextSchema: Joi.StringSchema;
 export declare const starredMessageScheme: Joi.ObjectSchema<any>;
 export declare const messageSchema: Joi.ObjectSchema<any>;
 export declare const messagesSchema: Joi.ArraySchema;
+export declare const messagesWithCountSchema: Joi.ObjectSchema<any>;
 export declare const chatSchema: Joi.ObjectSchema<any>;
 export declare const chatsSchema: Joi.ArraySchema;
+export declare const chatsWithCountSchema: Joi.ObjectSchema<any>;

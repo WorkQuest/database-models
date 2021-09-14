@@ -50,7 +50,7 @@ export const questsSchema = Joi.array().items(questSchema).label('Quests');
 export const questsWithCountSchema = Joi.object({
   count: countSchema,
   quests: questsSchema,
-}).label("QuestsOutput");
+}).label("QuestsWithCount");
 
 export const questsListSortSchema = Joi.object({
   price: sortDirectionSchema,
@@ -132,7 +132,7 @@ export const questsForGetSchema = Joi.array().items(questForGetSchema).label('Qu
 export const questsForGetWithCountSchema = Joi.object({
   count: countSchema,
   responses: questsForGetSchema,
-}).label('QuestsResponsesWithCount');
+}).label('QuestsForGetWithCount');
 
 
 
