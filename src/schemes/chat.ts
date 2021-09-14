@@ -38,7 +38,7 @@ export const messagesSchema = Joi.array().items(messageSchema).label('Messages')
 export const messagesWithCountSchema = Joi.object({
   count: countSchema,
   messages: messagesSchema,
-});
+}).label('MessagesWithCount');
 
 export const messagesForGetWithCountSchema = Joi.object({
   count: countSchema,
