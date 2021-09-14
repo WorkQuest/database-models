@@ -9,6 +9,7 @@ import {
   searchSchema,
   sortDirectionSchema,
   countSchema,
+  starSchema,
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
@@ -120,7 +121,7 @@ export const questForGetSchema = Joi.object({
   adType: questAdTypeSchema,
   user: userShortSchema,
   assignedWorker: userShortSchema,
-  star: Joi.object().allow(null).label('Star'),
+  star: starSchema,
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
   skillFilters: skillFilterSchema,
