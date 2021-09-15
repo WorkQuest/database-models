@@ -2,6 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "seq
 import { getUUID } from "../../utils";
 import { User } from "../User";
 import { Chat } from "./Chat";
+import {Message} from "./Message";
 
 @Scopes(() => ({
   userOnly: {
@@ -35,9 +36,13 @@ export class ChatMember extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
+  @ForeignKey(() => Message)
+  @Column({type: DataType.STRING, allowNull: false}) lastReadMessageId: string;
+
   /** Metadata */
   @Column({type: DataType.INTEGER.UNSIGNED, defaultValue: 0}) unreadCountMessages: number;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Chat) chat: Chat;
+  @BelongsTo(() => Message) lastReadMessage: Message;
 }
