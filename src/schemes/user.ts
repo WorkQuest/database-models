@@ -54,6 +54,11 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
   website: Joi.string().allow(null).label('Website'),
 }).label('AdditionalInfoEmployer');
 
+export const userCommonAdditionalInfoSchema = Joi.object()
+  .concat(userAdditionalInfoEmployerSchema)
+  .concat(userAdditionalInfoWorkerSchema)
+  .allow(null).label('CommonAdditionalInfo');
+
 export const userSchema = Joi.object({
   id: idSchema,
   avatarId: idSchema,
@@ -62,10 +67,7 @@ export const userSchema = Joi.object({
   phone: userPhoneSchema,
   tempPhone: userTempPhoneSchema,
   email: userEmailSchema,
-  additionalInfo: Joi.object()
-    .concat(userAdditionalInfoEmployerSchema)
-    .concat(userAdditionalInfoWorkerSchema)
-    .allow(null).label('AdditionalInfo'),
+  additionalInfo: userCommonAdditionalInfoSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
@@ -79,6 +81,7 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+  additionalInfo: userCommonAdditionalInfoSchema,
 }).label('UserShort');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
