@@ -6,33 +6,33 @@ export const pairTokenInfoContractSchema = Joi.string().example('WQT').label('Am
 export const timestampContractSchema = Joi.date().timestamp('unix').example(1631568392).label('TimeStamp');
 
 export const pairContractSchema = Joi.object({
-    token0: pairTokenInfoContractSchema,
-    token1: pairTokenInfoContractSchema,
+  token0: pairTokenInfoContractSchema,
+  token1: pairTokenInfoContractSchema,
 }).label('PairContractSchema')
 
 export const liquiditySwapSchema = Joi.object({
-    amount0In: amountContractSchema,
-    amount0Out: amountContractSchema,
-    amount1In: amountContractSchema,
-    amount1Out: amountContractSchema,
-    amountUSD: amountContractSchema,
-    pair: pairContractSchema,
-    timestamp: timestampContractSchema,
-    to: addressContractSchema,
+  amount0In: amountContractSchema,
+  amount0Out: amountContractSchema,
+  amount1In: amountContractSchema,
+  amount1Out: amountContractSchema,
+  amountUSD: amountContractSchema,
+  pair: pairContractSchema,
+  timestamp: timestampContractSchema,
+  to: addressContractSchema,
 }).label('LiquiditySwapSchema')
 
 export const swapWQTSchema = Joi.array().items(liquiditySwapSchema).label('SwapWQTSchema');
 
 export const tokenDayContract = Joi.object({
-    dailyVolumeETH: amountContractSchema,
-    dailyVolumeToken: amountContractSchema,
-    dailyVolumeUSD: amountContractSchema,
-    date: timestampContractSchema,
-    id: addressContractSchema,
-    priceUSD: amountContractSchema,
-    totalLiquidityETH: amountContractSchema,
-    totalLiquidityToken: amountContractSchema,
-    totalLiquidityUSD: amountContractSchema,
+  dailyVolumeETH: amountContractSchema,
+  dailyVolumeToken: amountContractSchema,
+  dailyVolumeUSD: amountContractSchema,
+  date: timestampContractSchema,
+  id: addressContractSchema,
+  priceUSD: amountContractSchema,
+  totalLiquidityETH: amountContractSchema,
+  totalLiquidityToken: amountContractSchema,
+  totalLiquidityUSD: amountContractSchema,
 }).label('TokenDayContract')
 
 export const tokenDayWQTSchema = Joi.array().items(tokenDayContract).label('TokenDayWQTSchema');
