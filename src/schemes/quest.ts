@@ -32,7 +32,7 @@ export const questDescriptionSchema = Joi.string().example('Description quest...
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('QuestAdType');
 export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceName');
-export const questWorkPlaceSchema = Joi.number().valid(...Object.keys(QuestWorkPlace).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestWorkPlace.Distant).label('QuestWorkPlaceSchema');
+export const questWorkPlaceSchema = Joi.string().valid(...Object.keys(QuestWorkPlace).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestWorkPlace.Distant).label('QuestWorkPlaceSchema');
 
 export const questSchema = Joi.object({
   id: idSchema,

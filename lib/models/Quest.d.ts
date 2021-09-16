@@ -25,9 +25,9 @@ export declare enum QuestStatus {
     Done = 6
 }
 export declare enum QuestWorkPlace {
-    Distant = 0,
-    Office = 1,
-    Both = 2
+    Distant = "distant",
+    Office = "office",
+    Both = "both"
 }
 export interface Location {
     longitude: number;
