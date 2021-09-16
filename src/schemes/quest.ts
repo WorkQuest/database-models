@@ -5,7 +5,7 @@ import {
   QuestStatus,
   QuestsResponseStatus,
   QuestsResponseType,
-  QuestWorkPlacement
+  QuestWorkPlace
 } from '../models';
 import {
   idSchema,
@@ -32,7 +32,7 @@ export const questDescriptionSchema = Joi.string().example('Description quest...
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('QuestAdType');
 export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceName');
-export const questWorkPlacementSchema = Joi.number().valid(...Object.keys(QuestWorkPlacement).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestWorkPlacement.Distant).label('QuestWorkPlacementSchema');
+export const questWorkPlaceSchema = Joi.number().valid(...Object.keys(QuestWorkPlace).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestWorkPlace.Distant).label('QuestWorkPlaceSchema');
 
 export const questSchema = Joi.object({
   id: idSchema,
@@ -40,7 +40,7 @@ export const questSchema = Joi.object({
   assignedWorkerId: idSchema,
   category: questCategorySchema,
   status: questStatusSchema,
-  placement: questWorkPlacementSchema,
+  workplace: questWorkPlaceSchema,
   priority: questPrioritySchema,
   location: locationSchema,
   locationPlaceName: questLocationPlaceNameSchema,
@@ -100,7 +100,7 @@ export const questsResponseSchema = Joi.object({
   workerId: idSchema,
   questId: idSchema,
   status: questsResponseStatusSchema,
-  placement: questWorkPlacementSchema,
+  workplace: questWorkPlaceSchema,
   type: questsResponseTypeSchema,
   message: questsResponseMessageSchema,
   worker: userShortSchema,
@@ -122,7 +122,7 @@ export const questForGetSchema = Joi.object({
   assignedWorkerId: idSchema,
   category: questCategorySchema,
   status: questStatusSchema,
-  placement: questWorkPlacementSchema,
+  workplace: questWorkPlaceSchema,
   priority: questPrioritySchema,
   locationPlaceName: questLocationPlaceNameSchema,
   location: locationSchema,

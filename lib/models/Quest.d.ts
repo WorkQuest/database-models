@@ -24,7 +24,7 @@ export declare enum QuestStatus {
     WaitConfirm = 5,
     Done = 6
 }
-export declare enum QuestWorkPlacement {
+export declare enum QuestWorkPlace {
     Distant = 0,
     Office = 1,
     Both = 2
@@ -38,7 +38,7 @@ export declare class Quest extends Model {
     userId: string;
     assignedWorkerId: string;
     status: QuestStatus;
-    placement: QuestWorkPlacement;
+    workplace: QuestWorkPlace;
     priority: QuestPriority;
     category: string;
     locationPlaceName: string;
