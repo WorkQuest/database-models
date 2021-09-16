@@ -37,7 +37,7 @@ export class ChatMember extends Model {
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, allowNull: false}) lastReadMessageId: string;
+  @Column({type: DataType.STRING, }) lastReadMessageId: string;
 
   /** Metadata */
   @Column({type: DataType.INTEGER.UNSIGNED, defaultValue: 0}) unreadCountMessages: number;
