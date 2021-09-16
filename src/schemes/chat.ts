@@ -1,7 +1,7 @@
 import * as Joi from "joi";
 import {countSchema, idSchema, idsSchema, starSchema} from "./common";
 import {userShortSchema, usersShortSchema} from "./user";
-import {ChatType, MessageType, SenderMessageStatus} from "../models";
+import {ChatType, MessageAction, MessageType, SenderMessageStatus} from "../models";
 
 export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.private).label("MessageType");
 export const chatNameSchema = Joi.string().example('Chat name').label('ChatName');
@@ -58,3 +58,12 @@ export const chatSchema = Joi.object({
 
 export const chatsSchema = Joi.array().items(chatSchema).label('Chats');
 
+export const messageActionSchema = Joi.string().valid(...Object.values(MessageAction)).example(MessageAction.groupChatAddUser).label("MessageAction");
+
+export const infoMessageSchema = Joi.object({
+  id: idSchema,
+  messageId: idSchema,
+  userId: idSchema,
+  messageAction: messageActionSchema,
+  message: messageSchema,
+}).label('InfoMessageSchema');
