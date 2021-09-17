@@ -49,10 +49,10 @@ export const chatSchema = Joi.object({
   id: idSchema,
   ownerUserId: idSchema,
   lastMessageId: idSchema,
+  lastMessage: messagesForGetSchema,
   name: chatNameSchema.allow(null),
   type: chatTypeSchema,
   owner: userShortSchema,
-  lastMessage: messageSchema,
   members: usersShortSchema,
 }).label('Chat');
 
