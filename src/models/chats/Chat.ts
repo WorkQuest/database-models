@@ -14,6 +14,7 @@ import { ChatMember } from "./ChatMember";
 import { User } from "../User";
 import { error, getUUID } from "../../utils";
 import { Errors } from "../../utils/errors";
+import {Col} from "sequelize/types/lib/utils";
 
 export enum ChatType {
   private = 'private',
@@ -49,6 +50,7 @@ export class Chat extends Model {
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
+  @Column({type: DataType.JSONB, defaultValue: null}) lastMessage: object;
 
   @Column({type: DataType.STRING, defaultValue: null}) name: string; /* If group chat */
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
@@ -56,7 +58,6 @@ export class Chat extends Model {
 
   @BelongsToMany(() => User, () => ChatMember) members: User[];
   @BelongsTo(() => User) owner: User;
-  @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];

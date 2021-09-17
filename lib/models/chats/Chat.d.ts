@@ -10,12 +10,12 @@ export declare class Chat extends Model {
     id: string;
     ownerUserId: string;
     lastMessageId: string;
+    lastMessage: object;
     name: string;
     type: ChatType;
     lastMessageDate: Date;
     members: User[];
     owner: User;
-    lastMessage: Message;
     messages: Message[];
     chatMembers: ChatMember[];
     firstMemberInPrivateChat: ChatMember;
