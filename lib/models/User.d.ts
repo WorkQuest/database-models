@@ -53,6 +53,10 @@ interface SocialMediaNicknames {
     linkedin: string | null;
     facebook: string | null;
 }
+export interface UserLocation {
+    longitude: number | null;
+    latitude: number | null;
+}
 interface AdditionalInfo {
     description: string | null;
     secondMobileNumber: string | null;
@@ -93,6 +97,8 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
+    location: Location;
+    locationPostGIS: any;
     skillFilters?: SkillsMap;
     avatar: Media;
     ratingStatistic: RatingStatistic;
