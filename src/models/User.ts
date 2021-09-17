@@ -7,6 +7,8 @@ import { Errors } from "../utils/errors";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
+import {SkillFilter, SkillsMap, SkillsRaw} from "./SkillFilter";
+import { ChatMember } from "./chats/ChatMember";
 
 export interface SocialInfo {
   id: string;
@@ -124,23 +126,24 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    },{
+      model: SkillFilter,
+      as: 'skillFilters',
+      attributes: ["category", "skill"]
     }]
   },
   withPassword: {
     attributes: {
       include: ["password", "settings", "tempPhone"],
-      exclude: ["location", "locationPostGIS"]
+      exclude: ["locationPostGIS"],
     }
   },
   short: {
-    attributes: {
-      include: ["id", "firstName", "lastName"],
-      exclude: ["location", "locationPostGIS"]
-    },
-    include: {
+    attributes: ["id", "firstName", "lastName", "additionalInfo"],
+    include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
-    }
+    }]
   }
 }))
 @Table({ paranoid: true })
@@ -181,14 +184,27 @@ export class User extends Model {
   @Column({type: DataType.JSONB}) location: Location;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
 
+  @Column({
+    type: DataType.VIRTUAL,
+    get() {
+      const userSkillFilters: SkillsRaw[] = this.getDataValue('userSkillFilters');
+
+      return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
+    },
+    set (value) { throw new Error('This field (skillFilters) cannot be changed') }
+  }) skillFilters?: SkillsMap;
+
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(() => ChatMember) chatMember: ChatMember;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
+  @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
+  @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     return bcrypt.compareSync(pwd, this.password);

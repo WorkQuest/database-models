@@ -4,6 +4,8 @@ import { Session } from "./Session";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
+import { SkillFilter, SkillsMap } from "./SkillFilter";
+import { ChatMember } from "./chats/ChatMember";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -51,10 +53,6 @@ interface SocialMediaNicknames {
     linkedin: string | null;
     facebook: string | null;
 }
-export interface UserLocation {
-    longitude: number | null;
-    latitude: number | null;
-}
 interface AdditionalInfo {
     description: string | null;
     secondMobileNumber: string | null;
@@ -95,14 +93,16 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
-    location: Location;
-    locationPostGIS: any;
+    skillFilters?: SkillsMap;
     avatar: Media;
     ratingStatistic: RatingStatistic;
+    chatMember: ChatMember;
     starredQuests: StarredQuests[];
     reviews: Review[];
     sessions: Session[];
     medias: Media[];
+    userSkillFilters: SkillFilter[];
+    chatMembers: ChatMember[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;

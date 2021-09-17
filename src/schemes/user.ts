@@ -4,7 +4,7 @@ import {idSchema, jwtTokenAccess, jwtTokenRefresh, latitudeSchema, longitudeSche
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
-import {skillFiltersSchema} from "./filter";
+import {skillFilterSchema} from "./filter";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -58,6 +58,11 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
   website: Joi.string().allow(null).label('Website'),
 }).label('AdditionalInfoEmployer');
 
+export const userCommonAdditionalInfoSchema = Joi.object()
+  .concat(userAdditionalInfoEmployerSchema)
+  .concat(userAdditionalInfoWorkerSchema)
+  .allow(null).label('CommonAdditionalInfo');
+
 export const userSchema = Joi.object({
   id: idSchema,
   avatarId: idSchema,
@@ -66,14 +71,11 @@ export const userSchema = Joi.object({
   phone: userPhoneSchema,
   tempPhone: userTempPhoneSchema,
   email: userEmailSchema,
-  additionalInfo: Joi.object()
-    .concat(userAdditionalInfoEmployerSchema)
-    .concat(userAdditionalInfoWorkerSchema)
-    .allow(null).label('AdditionalInfo'),
+  additionalInfo: userCommonAdditionalInfoSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
-  skillFilters: skillFiltersSchema,
+  skillFilters: skillFilterSchema,
   ratingStatistic: ratingStatisticSchema,
   location: userLocationSchema,
 }).label("UserSchema");
@@ -84,6 +86,7 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+  additionalInfo: userCommonAdditionalInfoSchema,
 }).label('UserShort');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
