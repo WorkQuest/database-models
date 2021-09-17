@@ -1,7 +1,7 @@
 import { Model } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
-import { User } from "../User";
+import { User } from "../user/User";
 export declare enum ChatType {
     private = "private",
     group = "group"

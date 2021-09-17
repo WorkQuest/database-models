@@ -1,5 +1,5 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { getUUID } from "../utils";
+import { getUUID } from "../../utils";
 import { Admin } from "./Admin";
 
 @Table

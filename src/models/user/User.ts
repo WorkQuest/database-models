@@ -1,14 +1,15 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Scopes, Table } from "sequelize-typescript";
-import {error, getUUID, totpValidate, transformToGeoPostGIS} from "../utils";
+import {error, getUUID, totpValidate} from "../../utils";
 import * as bcrypt from "bcrypt";
-import { Media } from "./Media";
+import { Media } from "../Media";
 import { Session } from "./Session";
-import { Errors } from "../utils/errors";
-import { Review } from "./Review";
+import { Errors } from "../../utils/errors";
+import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
-import { StarredQuests } from "./StarredQuests";
-import {SkillFilter, SkillsMap, SkillsRaw} from "./SkillFilter";
-import { ChatMember } from "./chats/ChatMember";
+import { StarredQuests } from "../quest/StarredQuests";
+import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
+import { ChatMember } from "../chats/ChatMember";
+import {LocationPostGISType, LocationType} from "../types";
 
 export interface SocialInfo {
   id: string;
@@ -79,11 +80,6 @@ interface SocialMediaNicknames {
   facebook: string | null;
 }
 
-export interface UserLocation {
-  longitude: number | null;
-  latitude: number | null;
-}
-
 interface AdditionalInfo {
   description: string | null;
   secondMobileNumber: string | null;
@@ -126,7 +122,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
-    },{
+    }, {
       model: SkillFilter,
       as: 'skillFilters',
       attributes: ["category", "skill"]
@@ -149,7 +145,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Table({ paranoid: true })
 export class User extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-  @ForeignKey(() => Media) @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
+
+  @ForeignKey(() => Media)
+  @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
   @Column({
     type: DataType.STRING,
@@ -181,8 +179,8 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
-  @Column({type: DataType.JSONB}) location: Location;
-  @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
+  @Column({type: DataType.JSONB}) location: LocationType;
+  @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
 
   @Column({
     type: DataType.VIRTUAL,
@@ -197,7 +195,7 @@ export class User extends Model {
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
-  @HasOne(() => ChatMember) chatMember: ChatMember;
+  @HasOne(() => ChatMember) chatMember: ChatMember; /** Alias for query */
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];

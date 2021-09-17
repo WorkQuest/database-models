@@ -1,7 +1,7 @@
-import { Location } from '../models';
+import {LocationType, LocationPostGISType} from "../models/types";
 
-export function transformToGeoPostGIS(location: Location) {
-  const coordinates = [location.longitude, location.latitude];
+export function transformToGeoPostGIS(location: LocationType): LocationPostGISType {
+  const coordinates: [number, number] = [location.longitude, location.latitude];
 
   return {
     type: "Point",

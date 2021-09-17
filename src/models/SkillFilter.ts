@@ -1,7 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
 import {getUUID} from '../utils';
-import {Quest} from './Quest';
-import {User} from "./User";
+import {Quest} from './quest/Quest';
+import {User} from "./user/User";
 
 export type SkillsMap = {
   [category: string]: string[];

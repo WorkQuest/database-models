@@ -11,7 +11,7 @@ import {
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
-import { User } from "../User";
+import { User } from "../user/User";
 import { error, getUUID } from "../../utils";
 import { Errors } from "../../utils/errors";
 

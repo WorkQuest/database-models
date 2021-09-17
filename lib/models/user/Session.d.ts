@@ -1,5 +1,5 @@
 import { Model } from "sequelize-typescript";
-import { User } from "./user/User";
+import { User } from "./User";
 export declare class Session extends Model {
     id: string;
     userId: string;

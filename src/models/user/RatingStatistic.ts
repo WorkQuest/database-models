@@ -1,6 +1,6 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { getUUID } from '../utils';
-import { User } from './User';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
+import {getUUID} from '../../utils';
+import {User} from './User';
 
 @Table
 export class RatingStatistic extends Model {

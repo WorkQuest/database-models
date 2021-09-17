@@ -1,7 +1,7 @@
 import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { User } from './User';
+import { User } from '../user/User';
 import { Quest } from './Quest';
-import { getUUID } from '../utils';
+import { getUUID } from '../../utils';
 
 @Table
 export class Review extends Model {

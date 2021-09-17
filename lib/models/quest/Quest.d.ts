@@ -1,11 +1,11 @@
 import { Model } from 'sequelize-typescript';
-import { User } from "./User";
-import { Media } from './Media';
+import { User } from "../user/User";
+import { Media } from '../Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { SkillFilter, SkillsMap } from "./SkillFilter";
-import { LocationPostGISType, LocationType } from "./types";
+import { SkillFilter, SkillsMap } from "../SkillFilter";
+import { LocationPostGISType, LocationType } from "../types";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,

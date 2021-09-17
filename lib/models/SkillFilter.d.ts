@@ -1,6 +1,6 @@
 import { Model } from 'sequelize-typescript';
-import { Quest } from './Quest';
-import { User } from "./User";
+import { Quest } from './quest/Quest';
+import { User } from "./user/User";
 export declare type SkillsMap = {
     [category: string]: string[];
 };

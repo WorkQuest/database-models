@@ -1,7 +1,7 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { getUUID } from '../utils';
-import { User } from './User';
-import { Quest } from './Quest';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
+import {getUUID} from '../../utils';
+import {User} from '../user/User';
+import {Quest} from './Quest';
 
 @Table
 export class StarredQuests extends Model {

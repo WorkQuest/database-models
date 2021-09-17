@@ -1,5 +1,5 @@
 import { Model } from "sequelize-typescript";
-import { User } from "../User";
+import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { InfoMessage } from "./InfoMessage";

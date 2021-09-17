@@ -1,12 +1,12 @@
 import { Model } from "sequelize-typescript";
-import { Media } from "./Media";
+import { Media } from "../Media";
 import { Session } from "./Session";
-import { Review } from "./Review";
+import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
-import { StarredQuests } from "./StarredQuests";
-import { SkillFilter, SkillsMap } from "./SkillFilter";
-import { ChatMember } from "./chats/ChatMember";
-import { LocationPostGISType, LocationType } from "./types";
+import { StarredQuests } from "../quest/StarredQuests";
+import { SkillFilter, SkillsMap } from "../SkillFilter";
+import { ChatMember } from "../chats/ChatMember";
+import { LocationPostGISType, LocationType } from "../types";
 export interface SocialInfo {
     id: string;
     email: string;

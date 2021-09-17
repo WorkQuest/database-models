@@ -1,8 +1,8 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
-import { User } from './User';
+import { User } from '../user/User';
 import { Quest } from './Quest';
-import { error, getUUID } from '../utils';
-import { Errors } from '../utils/errors';
+import { error, getUUID } from '../../utils';
+import { Errors } from '../../utils/errors';
 
 export enum QuestsResponseStatus {
   Rejected = -1,

@@ -8,11 +8,11 @@ import {
   Scopes,
   Table
 } from 'sequelize-typescript';
-import { error, getUUID } from '../utils';
+import { error, getUUID } from '../../utils';
 import { User } from './User';
 import { PortfolioMedia } from './PortfolioMedia';
-import { Media } from './Media';
-import { Errors } from '../utils/errors';
+import { Media } from '../Media';
+import { Errors } from '../../utils/errors';
 
 @Scopes(() => ({
   defaultScope: {

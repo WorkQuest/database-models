@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcrypt';
 import * as speakeasy from "speakeasy"
-import { Column, DataType, Model, Scopes, Table, HasMany } from 'sequelize-typescript';
-import { getUUID, error } from '../utils';
-import { Errors } from "../utils/errors";
-import { AdminSession } from "./AdminSession"
+import {Column, DataType, Model, Scopes, Table, HasMany} from 'sequelize-typescript';
+import {getUUID, error} from '../../utils';
+import {Errors} from "../../utils/errors";
+import {AdminSession} from "./AdminSession"
 
 export enum AdminRole {
   main = "main",

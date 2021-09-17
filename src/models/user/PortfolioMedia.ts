@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { getUUID } from '../utils';
-import { Media } from './Media';
+import { getUUID } from '../../utils';
+import { Media } from '../Media';
 import { Portfolio } from './Portfolio';
 
 @Table
