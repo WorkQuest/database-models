@@ -14,7 +14,7 @@ import {Message} from "./Message";
       as: 'user'
     }]
   },
-  userIdsOnly: {
+  userIdsOnly: { // TODO attributes: ['userId']
     attributes: {
       exclude: [
         'id',
@@ -38,10 +38,10 @@ export class ChatMember extends Model {
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, }) lastReadMessageId: string;
-  @Column({type: DataType.DATE, }) lastReadMessageDate: Date;
 
   /** Metadata */
   @Column({type: DataType.INTEGER.UNSIGNED, defaultValue: 0}) unreadCountMessages: number;
+  @Column({type: DataType.DATE, }) lastReadMessageDate: Date;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Chat) chat: Chat;

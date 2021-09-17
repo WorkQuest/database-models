@@ -3,7 +3,7 @@ import {countSchema, idSchema, idsSchema, starSchema} from "./common";
 import {userShortSchema, usersShortSchema} from "./user";
 import {ChatType, MessageAction, MessageType, SenderMessageStatus} from "../models";
 
-export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.private).label("MessageType");
+export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.private).label("ChatType");
 export const chatNameSchema = Joi.string().example('Chat name').label('ChatName');
 
 export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType)).example(MessageType.message).label("MessageType");
