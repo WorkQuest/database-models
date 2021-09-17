@@ -11,6 +11,7 @@ import {
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
+import {StarredChat} from "./StarredChat";
 import { User } from "../User";
 import { error, getUUID } from "../../utils";
 import { Errors } from "../../utils/errors";
@@ -58,12 +59,20 @@ export class Chat extends Model {
   @BelongsTo(() => User) owner: User;
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
+  @HasOne(() => StarredChat) star: StarredChat;
+
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   /** Aliases for Queries */
   @HasOne(() => ChatMember) firstMemberInPrivateChat: ChatMember;
   @HasOne(() => ChatMember) secondMemberInPrivateChat: ChatMember;
+
+  static async chatMustExists(chatId: string) {
+    if (!await Chat.findByPk(chatId)) {
+      throw error(Errors.NotFound, "Chat does not exist", { chatId });
+    }
+  }
 
   async mustHaveMember(userId: string) {
     const member = await ChatMember.findOne({

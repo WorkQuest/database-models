@@ -1,6 +1,7 @@
 import { Model } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
+import { StarredChat } from "./StarredChat";
 import { User } from "../User";
 export declare enum ChatType {
     private = "private",
@@ -16,10 +17,12 @@ export declare class Chat extends Model {
     members: User[];
     owner: User;
     lastMessage: Message;
+    star: StarredChat;
     messages: Message[];
     chatMembers: ChatMember[];
     firstMemberInPrivateChat: ChatMember;
     secondMemberInPrivateChat: ChatMember;
+    static chatMustExists(chatId: string): Promise<void>;
     mustHaveMember(userId: string): Promise<void>;
     mustHaveType(type: ChatType): void;
     mustHaveOwner(userId: String): void;

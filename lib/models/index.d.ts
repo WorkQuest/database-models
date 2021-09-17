@@ -19,4 +19,5 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
+export * from "./chats/StarredChat";
 export * from "./SkillFilter";

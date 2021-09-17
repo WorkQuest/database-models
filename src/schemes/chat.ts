@@ -56,5 +56,23 @@ export const chatSchema = Joi.object({
   members: usersShortSchema,
 }).label('Chat');
 
+export const chatForGetSchema = Joi.object({
+  id: idSchema,
+  ownerUserId: idSchema,
+  lastMessageId: idSchema,
+  name: chatNameSchema.allow(null),
+  type: chatTypeSchema,
+  owner: userShortSchema,
+  lastMessage: messageSchema,
+  members: usersShortSchema,
+  star: starSchema,
+}).label('ChatForGet');
+
 export const chatsSchema = Joi.array().items(chatSchema).label('Chats');
+export const chatsForGetSchema = Joi.array().items(chatForGetSchema).label('ChatForGet');
+
+export const chatsForGetWithCountSchema = Joi.object({
+  count: countSchema,
+  chats: chatsForGetSchema,
+});
 
