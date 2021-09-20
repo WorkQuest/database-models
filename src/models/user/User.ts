@@ -124,7 +124,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       as: 'ratingStatistic'
     }, {
       model: SkillFilter,
-      as: 'skillFilters',
+      as: 'userSkillFilters',
       attributes: ["category", "skill"]
     }]
   },
@@ -189,7 +189,7 @@ export class User extends Model {
 
       return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
     },
-    set (value) { }
+    set (_) { }
   }) skillFilters?: SkillsMap;
 
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
