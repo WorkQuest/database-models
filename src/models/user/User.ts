@@ -1,12 +1,12 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Scopes, Table } from "sequelize-typescript";
 import {error, getUUID, totpValidate} from "../../utils";
 import * as bcrypt from "bcrypt";
-import { Media } from "../Media";
-import { Session } from "./Session";
-import { Errors } from "../../utils/errors";
-import { Review } from "../quest/Review";
-import { RatingStatistic } from "./RatingStatistic";
-import { StarredQuests } from "../quest/StarredQuests";
+import {Media} from "../Media";
+import {Session} from "./Session";
+import {Errors} from "../../utils/errors";
+import {Review} from "../quest/Review";
+import {RatingStatistic} from "./RatingStatistic";
+import {StarredQuests} from "../quest/StarredQuests";
 import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
@@ -144,7 +144,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 }))
 @Table({ paranoid: true })
 export class User extends Model {
-  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+  @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
@@ -168,13 +168,13 @@ export class User extends Model {
 
   @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
-  @Column({ type: DataType.JSONB, defaultValue: {} }) additionalInfo: object;
+  @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
 
-  @Column({ type: DataType.STRING, unique: true }) email: string;
-  @Column({ type: DataType.STRING, defaultValue: null }) role: UserRole;
-  @Column({ type: DataType.JSONB, defaultValue: defaultUserSettings }) settings: UserSettings;
-  @Column({ type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed }) status: UserStatus;
-  @Column({ type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed }) statusKYC: StatusKYC;
+  @Column({type: DataType.STRING, unique: true}) email: string;
+  @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
+  @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
+  @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
+  @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
@@ -192,7 +192,7 @@ export class User extends Model {
     set (value) { throw new Error('This field (skillFilters) cannot be changed') }
   }) skillFilters?: SkillsMap;
 
-  @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
+  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => ChatMember) chatMember: ChatMember; /** Alias for query */
@@ -200,7 +200,7 @@ export class User extends Model {
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
-  @HasMany(() => Media, { constraints: false }) medias: Media[];
+  @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
