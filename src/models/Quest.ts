@@ -112,7 +112,7 @@ export class Quest extends Model {
 
       return (questSkillFilters ? SkillFilter.toMapSkills(questSkillFilters) : undefined);
     },
-    set (value) { throw new Error('This field (skillFilters) cannot be changed') }
+    set (value) { }
   }) skillFilters?: SkillsMap;
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];

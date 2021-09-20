@@ -182,7 +182,7 @@ export class User extends Model {
 
       return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
     },
-    set (value) { throw new Error('This field (skillFilters) cannot be changed') }
+    set (value) { }
   }) skillFilters?: SkillsMap;
 
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
