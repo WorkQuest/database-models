@@ -30,6 +30,15 @@ export declare enum QuestWorkPlace {
     Office = "office",
     Both = "both"
 }
+export declare enum QuestEmployment {
+    FullTime = "fullTime",
+    PartTime = "partTime",
+    FixedTerm = "fixedTerm"
+}
+export interface Location {
+    longitude: number;
+    latitude: number;
+}
 export declare class Quest extends Model {
     id: string;
     userId: string;
@@ -38,6 +47,7 @@ export declare class Quest extends Model {
     description: string;
     status: QuestStatus;
     workplace: QuestWorkPlace;
+    employment: QuestEmployment;
     priority: QuestPriority;
     category: string;
     locationPlaceName: string;

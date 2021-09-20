@@ -10,11 +10,10 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
+import {error, getUUID, transformToGeoPostGIS} from '../../utils';
 import {User} from "../user/User";
-import {error, getUUID} from '../../utils';
 import {Media} from '../Media';
 import {QuestMedia} from './QuestMedia';
-import {transformToGeoPostGIS} from '../../utils';
 import {Errors} from '../../utils/errors';
 import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";

@@ -179,8 +179,8 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
-  @Column({type: DataType.JSONB}) location: LocationType;
-  @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
+  @Column(DataType.JSONB) location: LocationType;
+  @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
   @Column({
     type: DataType.VIRTUAL,
@@ -195,13 +195,14 @@ export class User extends Model {
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
-  @HasOne(() => ChatMember) chatMember: ChatMember; /** Alias for query */
 
-  @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
+
+  /** Aliases for query */
+  @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
