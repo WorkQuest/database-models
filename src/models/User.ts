@@ -198,7 +198,7 @@ export class User extends Model {
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
-    if(!pwd) {
+    if (!this.password) {
       return false;
     }
 
