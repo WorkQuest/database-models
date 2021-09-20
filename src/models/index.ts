@@ -12,20 +12,23 @@ import { PortfolioMedia } from './PortfolioMedia';
 import { Portfolio } from './Portfolio';
 import { Admin } from './Admin'
 import { AdminSession } from "./AdminSession";
-import { Chat } from "./Chat";
-import { ChatMember } from "./ChatMember";
-import { MessageMedia } from "./MessageMedia";
-import { Message } from "./Message";
-import {SkillFilter} from "./SkillFilter";
+import { Chat } from "./chats/Chat";
+import { ChatMember } from "./chats/ChatMember";
+import { MessageMedia } from "./chats/MessageMedia";
+import { Message } from "./chats/Message";
+import { InfoMessage } from "./chats/InfoMessage";
+import { StarredMessage } from "./chats/StarredMessage";
+import { SkillFilter } from "./SkillFilter";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging,
     dialect: "postgres",
-    models: [ StarredQuests,
+    models: [
       User,
       Session,
       Quest,
+      StarredQuests,
       QuestsResponse,
       Media,
       QuestMedia,
@@ -40,6 +43,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Message,
       MessageMedia,
       SkillFilter,
+      InfoMessage,
+      StarredMessage,
     ]
   });
   if (sync)
@@ -61,10 +66,12 @@ export * from "./PortfolioMedia";
 export * from "./Portfolio";
 export * from "./Admin";
 export * from "./AdminSession";
-export * from "./Chat";
-export * from "./ChatMember";
-export * from "./Message";
-export * from "./MessageMedia";
+export * from "./chats/Chat";
+export * from "./chats/ChatMember";
+export * from "./chats/Message";
+export * from "./chats/MessageMedia";
+export * from "./chats/InfoMessage";
+export * from "./chats/StarredMessage";
 export * from "./SkillFilter"
 
 

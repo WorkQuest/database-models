@@ -7,8 +7,8 @@ import { Errors } from "../utils/errors";
 import { Review } from "./Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "./StarredQuests";
-import {ChatMember} from "./ChatMember";
-import {SkillFilter} from "./SkillFilter";
+import {SkillFilter, SkillsMap, SkillsRaw} from "./SkillFilter";
+import { ChatMember } from "./chats/ChatMember";
 
 export interface SocialInfo {
   id: string;
@@ -121,9 +121,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
-    },{
+    }, {
       model: SkillFilter,
-      as: 'skillFilters',
+      as: 'userSkillFilters',
       attributes: ["category", "skill"]
     }]
   },
@@ -133,7 +133,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
-    attributes: ["id", "firstName", "lastName"],
+    attributes: ["id", "firstName", "lastName", "additionalInfo"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -175,16 +175,27 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
+  @Column({
+    type: DataType.VIRTUAL,
+    get() {
+      const userSkillFilters: SkillsRaw[] = this.getDataValue('userSkillFilters');
+
+      return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
+    },
+    set (value) { }
+  }) skillFilters?: SkillsMap;
+
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(() => ChatMember) chatMember: ChatMember;
 
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, { constraints: false }) medias: Media[];
-  @HasMany(() => ChatMember) chatMember: ChatMember;
-  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
+  @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
+  @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     if(!pwd) {

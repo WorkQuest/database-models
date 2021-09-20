@@ -14,6 +14,8 @@ export declare const countSchema: Joi.NumberSchema;
 export declare const offsetSchema: Joi.NumberSchema;
 export declare const limitSchema: Joi.NumberSchema;
 export declare const searchSchema: Joi.StringSchema;
+export declare const starSchema: Joi.ObjectSchema<any>;
+export declare const mobilePhoneSchema: Joi.StringSchema;
 export declare const idsSchema: Joi.ArraySchema;
 export declare const outputOkSchema: (res: Joi.Schema<any>) => Joi.Schema<any>;
 export declare const paginationFields: {

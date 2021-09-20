@@ -14,12 +14,12 @@ import { User } from "./User";
 import { error, getUUID } from '../utils';
 import { Media } from './Media';
 import { QuestMedia } from './QuestMedia';
-import { transformToGeoPostGIS } from '../utils/quest';
+import { transformToGeoPostGIS } from '../utils';
 import { Errors } from '../utils/errors';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import {SkillFilter} from "./SkillFilter";
+import {SkillFilter, SkillsMap, SkillsRaw} from "./SkillFilter";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -41,6 +41,18 @@ export enum QuestStatus {
   WaitWorker,
   WaitConfirm,
   Done,
+}
+
+export enum QuestWorkPlace {
+  Distant = "distant",
+  Office = "office",
+  Both = "both",
+}
+
+export enum QuestEmployment {
+  FullTime = 'fullTime',
+  PartTime = 'partTime',
+  FixedTerm = 'fixedTerm',
 }
 
 export interface Location {
@@ -67,7 +79,7 @@ export interface Location {
       as: 'assignedWorker'
     }, {
       model: SkillFilter,
-      as: 'skillFilters',
+      as: 'questSkillFilters',
       attributes: ["category", "skill"]
     }]
   }
@@ -79,17 +91,29 @@ export class Quest extends Model {
   @ForeignKey(() => User) @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
-  @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority }) priority: QuestPriority;
+  @Column({type: DataType.STRING, allowNull: false}) workplace: QuestWorkPlace;
+  @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
+  @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority}) priority: QuestPriority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
   @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
-  @Column({type: DataType.JSONB}) location: Location;
+  @Column({type: DataType.JSONB, allowNull: false}) location: Location;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS;
-  @Column({type: DataType.STRING, allowNull: false }) title: string;
-  @Column({type: DataType.TEXT }) description: string;
+  @Column({type: DataType.STRING, allowNull: false}) title: string;
+  @Column({type: DataType.TEXT}) description: string;
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
+
+  @Column({
+    type: DataType.VIRTUAL,
+    get() {
+      const questSkillFilters: SkillsRaw[] = this.getDataValue('questSkillFilters');
+
+      return (questSkillFilters ? SkillFilter.toMapSkills(questSkillFilters) : undefined);
+    },
+    set (_) { }
+  }) skillFilters?: SkillsMap;
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
@@ -102,7 +126,7 @@ export class Quest extends Model {
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => SkillFilter) skillFilters: SkillFilter[];
+  @HasMany(() => SkillFilter) questSkillFilters: SkillFilter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));

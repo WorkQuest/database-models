@@ -3,6 +3,15 @@ import {getUUID} from '../utils';
 import {Quest} from './Quest';
 import {User} from "./User";
 
+export type SkillsMap = {
+  [category: string]: string[];
+}
+
+export type SkillsRaw = {
+  category: string;
+  skill: string;
+}
+
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -25,4 +34,34 @@ export class SkillFilter extends Model {
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Quest) quest: Quest;
+
+  static toMapSkills(skillsRaw: SkillsRaw[]) {
+    const skillsMap: SkillsMap = { };
+
+    for (const skill of skillsRaw) {
+      if (!skillsMap[skill.category]) skillsMap[skill.category] = [];
+
+      skillsMap[skill.category].push(skill.skill);
+    }
+
+    return skillsMap;
+  }
+
+  static toRawSkills(skillsMap: SkillsMap, alias: string, id: string): SkillsRaw[] {
+    const serializedSkills = [];
+
+    for (const [category, skills] of Object.entries(skillsMap)) {
+      skills.forEach(skill => serializedSkills.push({ [alias]: id , category, skill }));
+    }
+
+    return serializedSkills;
+  }
+
+  static toRawUserSkills(skillsMap: SkillsMap, userId: string): SkillsRaw[] {
+    return SkillFilter.toRawSkills(skillsMap, 'userId', userId);
+  }
+
+  static toRawQuestSkills(skillsMap: SkillsMap, questId: string): SkillsRaw[] {
+    return SkillFilter.toRawSkills(skillsMap, 'questId', questId);
+  }
 }
