@@ -17,9 +17,11 @@ export class Session extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
 
+  @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
+
   @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: UserLoginPlace;
+  @Column({type: DataType.STRING, defaultValue: null}) ipAddress: string;
   @Column({type: DataType.STRING, defaultValue: null}) device: string;
-  @Column({type: DataType.BOOLEAN, defaultValue: true}) isActive: boolean;
 
   @Column(DataType.DATE) logoutAt: Date;
   @Column(DataType.DATE) lastActionTime: Date;
