@@ -8,7 +8,7 @@ import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { StarredQuests } from "../quest/StarredQuests";
 import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
-import { ChatMember } from "../chats/ChatMember";
+import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
 
 export interface SocialInfo {

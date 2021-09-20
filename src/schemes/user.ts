@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import {idSchema, jwtTokenAccess, jwtTokenRefresh, mobilePhoneSchema} from "./common";
+import {idSchema, jwtTokenAccess, jwtTokenRefresh, locationSchema, mobilePhoneSchema} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
@@ -71,7 +71,7 @@ export const userSchema = Joi.object({
   reviews: reviewsSchema,
   skillFilters: skillFilterSchema,
   ratingStatistic: ratingStatisticSchema,
-  location: userLocationSchema,
+  location: locationSchema,
 }).label("UserSchema");
 
 export const userShortSchema = Joi.object({
