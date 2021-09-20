@@ -50,6 +50,17 @@ export enum QuestWorkPlace {
   Both = "both",
 }
 
+export enum QuestEmployment {
+  FullTime = 'fullTime',
+  PartTime = 'partTime',
+  FixedTerm = 'fixedTerm',
+}
+
+export interface Location {
+  longitude: number;
+  latitude: number;
+}
+
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -83,16 +94,17 @@ export class Quest extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
-  @Column({type: DataType.STRING, allowNull: false }) title: string;
-  @Column({type: DataType.TEXT }) description: string;
+  @Column({type: DataType.STRING, allowNull: false}) title: string;
+  @Column(DataType.TEXT) description: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
-  @Column({type: DataType.STRING, defaultValue: QuestWorkPlace.Distant }) workplace: QuestWorkPlace;
-  @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority }) priority: QuestPriority;
+  @Column({type: DataType.STRING, allowNull: false}) workplace: QuestWorkPlace;
+  @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
+  @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority}) priority: QuestPriority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
   @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
-  @Column({type: DataType.JSONB}) location: LocationType;
+  @Column({type: DataType.JSONB, allowNull: false}) location: LocationType;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
@@ -105,7 +117,7 @@ export class Quest extends Model {
 
       return (questSkillFilters ? SkillFilter.toMapSkills(questSkillFilters) : undefined);
     },
-    set (value) { throw new Error('This field (skillFilters) cannot be changed') }
+    set (_) { }
   }) skillFilters?: SkillsMap;
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
