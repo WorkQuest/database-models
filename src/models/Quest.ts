@@ -50,9 +50,9 @@ export enum QuestWorkPlace {
 }
 
 export enum QuestEmployment {
-  FullTime,
-  PartTime,
-  FixedTerm,
+  FullTime = 'FullTime',
+  PartTime = 'PartTime',
+  FixedTerm = 'FixedTerm',
 }
 
 export interface Location {
@@ -92,7 +92,7 @@ export class Quest extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
   @Column({type: DataType.STRING, defaultValue: QuestWorkPlace.Distant }) workplace: QuestWorkPlace;
-  @Column({type: DataType.INTEGER, defaultValue: QuestEmployment.FullTime }) employment: QuestEmployment;
+  @Column({type: DataType.STRING, defaultValue: QuestEmployment.FullTime }) employment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority }) priority: QuestPriority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
