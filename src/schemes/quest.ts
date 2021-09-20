@@ -79,6 +79,8 @@ export const questsQuerySchema = Joi.object({
   priority: questPrioritySchema.default(null),
   status: questStatusSchema.default(null),
   adType: questAdTypeSchema.default(null),
+  workplace: questWorkPlaceSchema.default(null),
+  employment: questEmploymentSchema.default(null),
   sort: questsListSortSchema,
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),
