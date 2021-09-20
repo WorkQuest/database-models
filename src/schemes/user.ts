@@ -12,8 +12,6 @@ export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan")
 export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov").label("UserLastName");
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
-export const userPhoneSchema = mobilePhoneSchema.label("UserPhone");
-export const userTempPhoneSchema = mobilePhoneSchema.label("UserTempPhone");
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -35,7 +33,7 @@ export const userWorkExperienceSchema = Joi.object({
 }).label('WorkExperience');
 
 export const userAdditionalInfoWorkerSchema = Joi.object({
-  secondMobileNumber: mobilePhoneSchema.allow(null).label('SecondMobileNumber'),
+  secondMobileNumber: mobilePhoneSchema.allow(null),
   address: Joi.string().allow(null).label('Address'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   skills: Joi.array().items(Joi.string()).default([]).label('Skills'),
@@ -45,7 +43,7 @@ export const userAdditionalInfoWorkerSchema = Joi.object({
 }).label('AdditionalInfoWorker');
 
 export const userAdditionalInfoEmployerSchema = Joi.object({
-  secondMobileNumber: mobilePhoneSchema.allow(null).label('SecondMobileNumber'),
+  secondMobileNumber: mobilePhoneSchema.allow(null),
   address: Joi.string().allow(null).label('Address'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   description: Joi.string().allow(null).label("Description"),
@@ -59,8 +57,8 @@ export const userSchema = Joi.object({
   avatarId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-  phone: userPhoneSchema,
-  tempPhone: userTempPhoneSchema,
+  phone: mobilePhoneSchema,
+  tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
   additionalInfo: Joi.object()
     .concat(userAdditionalInfoEmployerSchema)
