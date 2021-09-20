@@ -30,9 +30,9 @@ export declare enum QuestWorkPlace {
     Both = "both"
 }
 export declare enum QuestEmployment {
-    FullTime = "FullTime",
-    PartTime = "PartTime",
-    FixedTerm = "FixedTerm"
+    FullTime = "fullTime",
+    PartTime = "partTime",
+    FixedTerm = "fixedTerm"
 }
 export interface Location {
     longitude: number;
