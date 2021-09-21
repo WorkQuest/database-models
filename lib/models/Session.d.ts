@@ -12,6 +12,5 @@ export declare class Session extends Model {
     ip: string;
     device: string;
     logoutAt: Date;
-    lastActionTime: Date;
     user: User;
 }

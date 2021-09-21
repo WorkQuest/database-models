@@ -24,7 +24,6 @@ export class Session extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) device: string;
 
   @Column(DataType.DATE) logoutAt: Date;
-  @Column(DataType.DATE) lastActionTime: Date;
 
   @BelongsTo(() => User) user: User;
 }
