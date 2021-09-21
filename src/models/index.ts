@@ -53,6 +53,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
   return sequelize;
 }
 
+export * from "./types";
 export * from "./user/User";
 export * from "./user/Session";
 export * from "./quest/Quest";
