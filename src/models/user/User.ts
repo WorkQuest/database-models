@@ -206,6 +206,10 @@ export class User extends Model {
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
+    if (!this.password) {
+      return false;
+    }
+
     return bcrypt.compareSync(pwd, this.password);
   }
 
