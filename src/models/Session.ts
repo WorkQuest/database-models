@@ -20,7 +20,7 @@ export class Session extends Model {
   @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
 
   @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: UserLoginPlace;
-  @Column({type: DataType.STRING, defaultValue: null}) ipAddress: string;
+  @Column({type: DataType.STRING, defaultValue: null}) ip: string;
   @Column({type: DataType.STRING, defaultValue: null}) device: string;
 
   @Column(DataType.DATE) logoutAt: Date;

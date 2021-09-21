@@ -9,7 +9,7 @@ export declare class Session extends Model {
     userId: string;
     invalidating: boolean;
     place: UserLoginPlace;
-    ipAddress: string;
+    ip: string;
     device: string;
     logoutAt: Date;
     lastActionTime: Date;
