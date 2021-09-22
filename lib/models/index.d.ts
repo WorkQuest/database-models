@@ -21,3 +21,4 @@ export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
 export * from "./SkillFilter";
+export * from "./ParserInfo";
