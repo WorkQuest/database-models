@@ -20,6 +20,7 @@ import {InfoMessage} from "./chats/InfoMessage";
 import {StarredMessage} from "./chats/StarredMessage";
 import {SkillFilter} from "./SkillFilter";
 import {ParserInfo} from "./ParserInfo";
+import {SwapData} from "./SwapData";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -47,6 +48,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       InfoMessage,
       StarredMessage,
       ParserInfo,
+      SwapData,
     ]
   });
   if (sync)
@@ -77,5 +79,8 @@ export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
 export * from "./SkillFilter";
 export * from "./ParserInfo";
+export * from "./ExportModels";
+export * from "./SwapData";
+
 
 
