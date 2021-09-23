@@ -57,6 +57,16 @@ export class SkillFilter extends Model {
     return serializedSkills;
   }
 
+  static toRawSkillsForFilter(skillsMap: SkillsMap): SkillsRaw[] {
+    const serializedSkills = [];
+
+    for (const [category, skills] of Object.entries(skillsMap)) {
+      skills.forEach(skill => serializedSkills.push({ category, skill }));
+    }
+
+    return serializedSkills;
+  }
+
   static toRawUserSkills(skillsMap: SkillsMap, userId: string): SkillsRaw[] {
     return SkillFilter.toRawSkills(skillsMap, 'userId', userId);
   }

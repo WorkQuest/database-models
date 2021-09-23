@@ -18,6 +18,7 @@ export declare class SkillFilter extends Model {
     quest: Quest;
     static toMapSkills(skillsRaw: SkillsRaw[]): SkillsMap;
     static toRawSkills(skillsMap: SkillsMap, alias: string, id: string): SkillsRaw[];
+    static toRawSkillsForFilter(skillsMap: SkillsMap): SkillsRaw[];
     static toRawUserSkills(skillsMap: SkillsMap, userId: string): SkillsRaw[];
     static toRawQuestSkills(skillsMap: SkillsMap, questId: string): SkillsRaw[];
 }
