@@ -71,8 +71,6 @@ export const questsListSortSchema = Joi.object({
 }).default({}).label('QuestsListSort');
 
 export const questsQuerySchema = Joi.object({
-  north: locationSchema,
-  south: locationSchema,
   offset: offsetSchema,
   limit: limitSchema,
   q: searchSchema,
@@ -85,8 +83,6 @@ export const questsQuerySchema = Joi.object({
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),
   starred: Joi.boolean().default(false),
-  // filterByCategories: skillFilterCategorySchema, // TODO
-  // filterBySkills: skillFilterSkillSchema, // TODO
 }).label('QuestsQuery');
 
 export const locationForValidateSchema = Joi.object({
