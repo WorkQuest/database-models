@@ -100,7 +100,6 @@ interface WorkExperience {
 }
 
 export interface AdditionalInfoWorker extends AdditionalInfo {
-  skills: string[];
   educations: Knowledge[] | null;
   workExperiences: WorkExperience[] | null;
 }

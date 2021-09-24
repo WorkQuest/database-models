@@ -36,7 +36,6 @@ export const userAdditionalInfoWorkerSchema = Joi.object({
   secondMobileNumber: mobilePhoneSchema.allow(null),
   address: Joi.string().allow(null).label('Address'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
-  skills: Joi.array().items(Joi.string()).default([]).label('Skills'),
   educations: Joi.array().items(userKnowledgeSchema).default([]).label('Educations'),
   workExperiences: Joi.array().items(userWorkExperienceSchema).default([]).label('WorkExperiences'),
   description: Joi.string().allow(null).label("Description"),
