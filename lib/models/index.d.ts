@@ -21,6 +21,5 @@ export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
 export * from "./SkillFilter";
-export * from "./ParserInfo";
-export * from "./ExportModels";
-export * from "./SwapData";
+export * from "./swapListener/ParserBlockInfo";
+export * from "./swapListener/SwapTokenEvent";
