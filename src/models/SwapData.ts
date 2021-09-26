@@ -29,6 +29,6 @@ export class SwapData extends BlockTransaction {
 
     @Column({type: DataType.INTEGER,}) chainFrom: number;
 
-    @Column({type: DataType.STRING,}) token: string;
+    @Column({type: DataType.STRING,}) symbol: string;
 
 }
