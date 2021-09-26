@@ -10,6 +10,6 @@ export declare class SwapTokenEvent extends Model {
     amount: number;
     chainTo: number;
     chainFrom: number;
-    token: string;
+    symbol: string;
     blockNumber: number;
 }
