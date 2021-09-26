@@ -19,8 +19,8 @@ import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
 import {StarredMessage} from "./chats/StarredMessage";
 import {SkillFilter} from "./SkillFilter";
-import {ParserInfo} from "./ParserInfo";
-import {SwapData} from "./SwapData";
+import {ParserBlockInfo} from "./swapListener/ParserBlockInfo";
+import {SwapTokenEvent} from "./swapListener/SwapTokenEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -47,8 +47,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       SkillFilter,
       InfoMessage,
       StarredMessage,
-      ParserInfo,
-      SwapData,
+      ParserBlockInfo,
+      SwapTokenEvent,
     ]
   });
   if (sync)
@@ -78,9 +78,8 @@ export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
 export * from "./SkillFilter";
-export * from "./ParserInfo";
-export * from "./ExportModels";
-export * from "./SwapData";
+export * from "./swapListener/ParserBlockInfo";
+export * from "./swapListener/SwapTokenEvent";
 
 
 
