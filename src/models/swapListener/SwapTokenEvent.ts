@@ -12,6 +12,6 @@ export class SwapTokenEvent extends Model {
   @Column(DataType.DOUBLE) amount: number;
   @Column(DataType.INTEGER) chainTo: number;
   @Column(DataType.INTEGER) chainFrom: number;
-  @Column(DataType.STRING) token: string;
+  @Column(DataType.STRING) symbol: string;
   @Column(DataType.INTEGER) blockNumber: number;
 }
