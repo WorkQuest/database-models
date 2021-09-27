@@ -12,6 +12,11 @@ export type SkillsRaw = {
   skill: string;
 }
 
+export type SplitSkill = {
+  categories: string[];
+  skills: string[];
+}
+
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -57,14 +62,16 @@ export class SkillFilter extends Model {
     return serializedSkills;
   }
 
-  static toRawSkillsForFilter(skillsMap: SkillsMap): SkillsRaw[] {
-    const serializedSkills = [];
+  static splitByFields(skillsMap: SkillsMap): SplitSkill {
+    const skills: string[] = [];
+    const categories: string[] = [];
 
-    for (const [category, skills] of Object.entries(skillsMap)) {
-      skills.forEach(skill => serializedSkills.push({ category, skill }));
+    for (const [key, value] of Object.entries(skillsMap)) {
+      categories.push(key);
+      skills.push(...value);
     }
 
-    return serializedSkills;
+    return { skills, categories };
   }
 
   static toRawUserSkills(skillsMap: SkillsMap, userId: string): SkillsRaw[] {
