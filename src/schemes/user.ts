@@ -95,8 +95,6 @@ export const tokensWithStatus = Joi.object({
 export const workerQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
-  north: locationSchema,
-  south: locationSchema,
   q: searchSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
 }).label('QuestsQuery');
@@ -104,8 +102,6 @@ export const workerQuerySchema = Joi.object({
 export const employerQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
-  north: locationSchema,
-  south: locationSchema,
   q: searchSchema,
   additionalInfo: userAdditionalInfoEmployerSchema,
 }).label('QuestsQuery');
