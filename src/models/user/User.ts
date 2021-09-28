@@ -279,7 +279,6 @@ export function getDefaultAdditionalInfo(role: UserRole) {
   if (role === UserRole.Worker) {
     additionalInfo = {
       ...additionalInfo,
-      skills: [],
       educations: [],
       workExperiences: []
     };
