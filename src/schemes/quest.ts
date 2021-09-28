@@ -70,15 +70,18 @@ export const questsListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('QuestsListSort');
 
+export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).label('QuestsResponses');
+export const questPrioritiesSchema = Joi.array().items(questPrioritySchema).label('Quests');
+
 export const questsQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
   q: searchSchema,
-  priority: questPrioritySchema.default(null),
+  priority: questPrioritiesSchema.default(null),
   status: questStatusSchema.default(null),
   adType: questAdTypeSchema.default(null),
   workplace: questWorkPlaceSchema.default(null),
-  employment: questEmploymentSchema.default(null),
+  employment: questEmploymentsSchema.default(null),
   sort: questsListSortSchema,
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),
