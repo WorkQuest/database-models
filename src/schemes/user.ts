@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import {idSchema, jwtTokenAccess, jwtTokenRefresh, locationSchema, mobilePhoneSchema} from "./common";
+import {idSchema, jwtTokenAccess, jwtTokenRefresh, locationSchema, mobilePhoneSchema, offsetSchema, limitSchema, searchSchema} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
@@ -90,3 +90,22 @@ export const tokensWithStatus = Joi.object({
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
 }).label("TokensWithStatus");
+
+
+export const workerQuerySchema = Joi.object({
+  offset: offsetSchema,
+  limit: limitSchema,
+  north: locationSchema,
+  south: locationSchema,
+  q: searchSchema,
+  additionalInfo: userAdditionalInfoWorkerSchema,
+}).label('QuestsQuery');
+
+export const employerQuerySchema = Joi.object({
+  offset: offsetSchema,
+  limit: limitSchema,
+  north: locationSchema,
+  south: locationSchema,
+  q: searchSchema,
+  additionalInfo: userAdditionalInfoEmployerSchema,
+}).label('QuestsQuery');

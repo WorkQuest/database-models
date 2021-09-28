@@ -16,3 +16,5 @@ export declare const userShortSchema: Joi.ObjectSchema<any>;
 export declare const usersSchema: Joi.ArraySchema;
 export declare const usersShortSchema: Joi.ArraySchema;
 export declare const tokensWithStatus: Joi.ObjectSchema<any>;
+export declare const workerQuerySchema: Joi.ObjectSchema<any>;
+export declare const employerQuerySchema: Joi.ObjectSchema<any>;
