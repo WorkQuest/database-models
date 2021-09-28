@@ -1,9 +1,9 @@
 import { Model } from "sequelize-typescript";
 import { User } from "./User";
-export interface UserLoginPlace {
+export declare type UserLoginPlace = {
     country: string | null;
     city: string | null;
-}
+};
 export declare class Session extends Model {
     id: string;
     userId: string;

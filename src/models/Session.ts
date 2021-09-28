@@ -2,7 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize
 import { getUUID } from "../utils";
 import { User } from "./User";
 
-export interface UserLoginPlace {
+export type UserLoginPlace = {
   country: string | null;
   city: string | null;
 }
