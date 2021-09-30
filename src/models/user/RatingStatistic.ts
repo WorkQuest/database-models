@@ -2,7 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-t
 import {getUUID} from '../../utils';
 import {User} from './User';
 
-enum RatingStatus {
+export enum RatingStatus {
   verify = "verified",
   reliable = "reliable",
   topRanked = "topRanked"
