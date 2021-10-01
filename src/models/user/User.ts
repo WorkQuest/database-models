@@ -192,6 +192,8 @@ export class User extends Model {
     set (_) { }
   }) skillFilters?: SkillsMap;
 
+  @Column({type: DataType.DATE, defaultValue: null}) changedRoleAt: Date;
+
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

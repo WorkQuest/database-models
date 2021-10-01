@@ -96,6 +96,7 @@ export declare class User extends Model {
     location: LocationType;
     locationPostGIS: LocationPostGISType;
     skillFilters?: SkillsMap;
+    changedRoleAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     reviews: Review[];
