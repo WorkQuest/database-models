@@ -7,7 +7,7 @@ export declare class SwapTokenEvent extends Model {
     timestamp: string;
     initiator: string;
     recipient: string;
-    amount: number;
+    amount: string;
     chainTo: number;
     chainFrom: number;
     symbol: string;
