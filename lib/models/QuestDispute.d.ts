@@ -1,7 +1,7 @@
 import { Model } from 'sequelize-typescript';
-import { User } from "./User";
-import { Quest } from "./Quest";
-import { Admin } from "./Admin";
+import { User } from "./user/User";
+import { Quest } from "./quest/Quest";
+import { Admin } from "./user/Admin";
 export declare enum DisputeStatus {
     pending = 0,
     inProgress = 1,

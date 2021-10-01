@@ -1,9 +1,9 @@
 import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
 import { getUUID, error } from '../utils';
-import {User} from "./User";
-import {Quest} from "./Quest";
+import {User} from "./user/User";
+import {Quest} from "./quest/Quest";
 import {Errors} from "../utils/errors";
-import {Admin} from "./Admin";
+import {Admin} from "./user/Admin";
 
 export enum DisputeStatus {
   pending = 0,

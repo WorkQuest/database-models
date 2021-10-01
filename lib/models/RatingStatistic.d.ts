@@ -1,5 +1,5 @@
 import { Model } from 'sequelize-typescript';
-import { User } from './User';
+import { User } from './user/User';
 export declare class RatingStatistic extends Model {
     id: string;
     userId: string;

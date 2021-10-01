@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { getUUID } from "../utils";
-import {User, UserStatus} from "./User";
+import {User, UserStatus} from "./user/User";
 
 @Table
 export class QuestsStatistic extends Model {

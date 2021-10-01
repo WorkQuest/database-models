@@ -1,11 +1,12 @@
 import * as Joi from "joi";
-import {Security, StatusKYC, UserRole, UserStatus} from "../models";
-import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh, limitSchema, offsetSchema} from "./common";
+import {StatusKYC, UserRole, UserStatus} from "../models";
+import {idSchema, isoDateSchema, jwtTokenAccess, jwtTokenRefresh, limitSchema, offsetSchema, locationSchema, mobilePhoneSchema} from "./common";
 import {mediaUrlOnlySchema } from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {skillFilterSchema} from "./filter";
 import {questsStatisticSchema} from "./questsStatistic";
-import {skillFiltersSchema} from "./filter";
+
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -96,7 +97,7 @@ export const userWorkExperienceSchema = Joi.object({
 }).label('WorkExperience');
 
 export const userAdditionalInfoWorkerSchema = Joi.object({
-  secondMobileNumber: Joi.string().allow(null).label('SecondMobileNumber'),
+  secondMobileNumber: mobilePhoneSchema.allow(null),
   address: Joi.string().allow(null).label('Address'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   skills: Joi.array().items(Joi.string()).default([]).label('Skills'),
@@ -106,7 +107,7 @@ export const userAdditionalInfoWorkerSchema = Joi.object({
 }).label('AdditionalInfoWorker');
 
 export const userAdditionalInfoEmployerSchema = Joi.object({
-  secondMobileNumber: Joi.string().allow(null).label('SecondMobileNumber'),
+  secondMobileNumber: mobilePhoneSchema.allow(null),
   address: Joi.string().allow(null).label('Address'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   description: Joi.string().allow(null).label("Description"),
@@ -115,23 +116,26 @@ export const userAdditionalInfoEmployerSchema = Joi.object({
   website: Joi.string().allow(null).label('Website'),
 }).label('AdditionalInfoEmployer');
 
+export const userCommonAdditionalInfoSchema = Joi.object()
+  .concat(userAdditionalInfoEmployerSchema)
+  .concat(userAdditionalInfoWorkerSchema)
+  .allow(null).label('CommonAdditionalInfo');
+
 export const userSchema = Joi.object({
   id: idSchema,
   avatarId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-  phone: userPhoneSchema,
-  tempPhone: userTempPhoneSchema,
+  phone: mobilePhoneSchema,
+  tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
-  additionalInfo: Joi.object()
-    .concat(userAdditionalInfoEmployerSchema)
-    .concat(userAdditionalInfoWorkerSchema)
-    .allow(null).label('AdditionalInfo'),
+  additionalInfo: userCommonAdditionalInfoSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
-  skillFilters: skillFiltersSchema,
+  skillFilters: skillFilterSchema,
   ratingStatistic: ratingStatisticSchema,
+  location: locationSchema,
   questsStatistic: questsStatisticSchema,
   userBlockReason: userBlockSchema,
   lastSession: userLastSessionSchema,
@@ -145,6 +149,7 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+  additionalInfo: userCommonAdditionalInfoSchema,
 }).label('UserShort');
 
 //добавить сюда подтверждён или нет и тд

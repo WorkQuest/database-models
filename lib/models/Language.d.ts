@@ -1,5 +1,5 @@
 import { Model } from 'sequelize-typescript';
-import { Admin } from "./Admin";
+import { Admin } from "./user/Admin";
 export declare enum LanguagesEnum {
     en = "en",
     ru = "ru",

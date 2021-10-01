@@ -1,11 +1,2 @@
-import { Location } from '../models';
-export declare function transformToGeoPostGIS(location: Location): {
-    type: string;
-    coordinates: number[];
-    crs: {
-        type: string;
-        properties: {
-            name: string;
-        };
-    };
-};
+import { LocationType, LocationPostGISType } from "../models/types";
+export declare function transformToGeoPostGIS(location: LocationType): LocationPostGISType;

@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { getUUID } from '../utils';
-import { User } from './User';
+import { User } from './user/User';
 
 export enum ContentType {
   mp4 = 'video/mp4',

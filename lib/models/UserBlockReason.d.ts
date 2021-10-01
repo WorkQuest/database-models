@@ -1,5 +1,5 @@
 import { Model } from "sequelize-typescript";
-import { User, UserStatus } from "./User";
+import { User, UserStatus } from "./user/User";
 export declare class UserBlockReason extends Model {
     id: string;
     userId: string;
