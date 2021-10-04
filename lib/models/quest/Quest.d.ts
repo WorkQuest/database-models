@@ -25,7 +25,8 @@ export declare enum QuestStatus {
     WaitWorker = 5,
     WaitConfirm = 6,
     Done = 7,
-    isBlocked = 8
+    isBlocked = 8,
+    Prolonged = 9
 }
 export declare enum QuestWorkPlace {
     Distant = "distant",
