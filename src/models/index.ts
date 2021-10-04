@@ -23,6 +23,7 @@ import {QuestsStatistic} from "./QuestsStatistic";
 import {Language} from "./Language";
 import { QuestDispute } from "./QuestDispute";
 import {UserBlockReason} from "./UserBlockReason";
+import {ProlongedQuest} from "./quest/ProlongedQuest";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -53,6 +54,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       SkillFilter,
       InfoMessage,
       StarredMessage,
+      ProlongedQuest,
     ]
   });
   if (sync)
@@ -86,5 +88,6 @@ export * from "./QuestDispute";
 export * from "./UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
+export * from "./quest/ProlongedQuest";
 
 
