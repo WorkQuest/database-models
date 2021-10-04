@@ -42,7 +42,8 @@ export enum QuestStatus {
   WaitWorker,
   WaitConfirm,
   Done,
-  isBlocked
+  isBlocked,
+  Prolonged,
 }
 
 export enum QuestWorkPlace {
