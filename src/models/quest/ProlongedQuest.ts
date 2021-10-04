@@ -16,7 +16,7 @@ export class ProlongedQuest extends Model {
   @ForeignKey(() => Quest)
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
-  @Column({type: DataType.DATE, allowNull: false}) prolongedTill: Date;
+  @Column({type: DataType.DATE}) prolongedTill: Date;
 
   @BelongsTo(() => Quest, 'questId') quest: Quest;
 }
