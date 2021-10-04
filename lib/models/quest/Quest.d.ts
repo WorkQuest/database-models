@@ -6,6 +6,7 @@ import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
 import { SkillFilter, SkillsMap } from "../SkillFilter";
 import { LocationPostGISType, LocationType } from "../types";
+import { ProlongedQuest } from "./ProlongedQuest";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -64,6 +65,7 @@ export declare class Quest extends Model {
     user: User;
     assignedWorker: User;
     star: StarredQuests;
+    prolongedQuest: ProlongedQuest;
     response: QuestsResponse;
     filterBySkillFilter: SkillFilter;
     starredQuests: StarredQuests[];

@@ -20,6 +20,7 @@ import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
 import {LocationPostGISType, LocationType} from "../types";
+import {ProlongedQuest} from "./ProlongedQuest";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -130,6 +131,7 @@ export class Quest extends Model {
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
 
   @HasOne(() => StarredQuests) star: StarredQuests;
+  @HasOne(() => ProlongedQuest) prolongedQuest: ProlongedQuest;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
   @HasOne(() => SkillFilter) filterBySkillFilter: SkillFilter; /** Alias */
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];

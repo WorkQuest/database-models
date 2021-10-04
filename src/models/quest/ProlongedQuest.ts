@@ -4,6 +4,7 @@ import {
   ForeignKey,
   Model,
   Table,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { getUUID } from '../../utils';
 import {Quest} from "./Quest";
@@ -16,4 +17,6 @@ export class ProlongedQuest extends Model {
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
   @Column({type: DataType.DATE, allowNull: false}) prolongedTill: Date;
+
+  @BelongsTo(() => Quest, 'questId') quest: Quest;
 }
