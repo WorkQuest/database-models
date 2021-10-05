@@ -8,17 +8,17 @@ export enum SwapEvents {
 
 @Table
 export class BridgeSwapTokenEvent extends Model {
-  @Column({type: DataType.STRING, primaryKey: true, allowNull: false}) transactionHash: string;
-  @Column({type: DataType.INTEGER.UNSIGNED, allowNull: false}) blockNumber: number;
-  @Column({type: DataType.STRING, allowNull: false}) network: BlockchainNetworks;
-  @Column({type: DataType.STRING, allowNull: false}) event: SwapEvents;
-  @Column({type: DataType.STRING, allowNull: false}) messageHash: string;
-  @Column({type: DataType.INTEGER, allowNull: false}) nonce: number;
-  @Column({type: DataType.STRING, allowNull: false}) timestamp: string;
-  @Column({type: DataType.STRING, allowNull: false}) initiator: string;
-  @Column({type: DataType.STRING, allowNull: false}) recipient: string;
-  @Column({type: DataType.DECIMAL, allowNull: false}) amount: string;
-  @Column({type: DataType.INTEGER, allowNull: false}) chainTo: number;
-  @Column({type: DataType.INTEGER, allowNull: false}) chainFrom: number;
-  @Column({type: DataType.STRING, allowNull: false}) symbol: string;
+  @Column(DataType.STRING) transactionHash: string;
+  @Column(DataType.INTEGER.UNSIGNED) blockNumber: number;
+  @Column(DataType.STRING) network: BlockchainNetworks;
+  @Column(DataType.STRING) event: SwapEvents;
+  @Column(DataType.STRING) messageHash: string;
+  @Column(DataType.INTEGER) nonce: number;
+  @Column(DataType.STRING) timestamp: string;
+  @Column(DataType.STRING) initiator: string;
+  @Column(DataType.STRING) recipient: string;
+  @Column(DataType.DECIMAL) amount: string;
+  @Column(DataType.INTEGER) chainTo: number;
+  @Column(DataType.INTEGER) chainFrom: number;
+  @Column(DataType.STRING) symbol: string;
 }
