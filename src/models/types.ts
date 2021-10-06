@@ -1,4 +1,9 @@
 
+enum BlockchainNetworks {
+  bscMainNetwork = 'bscMainNetwork',
+  ethMainNetwork = 'ethMainNetwork',
+}
+
 type LocationType = {
   longitude: number;
   latitude: number;
@@ -12,5 +17,6 @@ type LocationPostGISType = {
 
 export {
   LocationType,
+  BlockchainNetworks,
   LocationPostGISType,
 }
