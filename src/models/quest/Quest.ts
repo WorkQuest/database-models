@@ -18,8 +18,8 @@ import {Errors} from '../../utils/errors';
 import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
-import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
 import {LocationPostGISType, LocationType} from "../types";
+import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -55,11 +55,6 @@ export enum QuestEmployment {
   FixedTerm = 'fixedTerm',
 }
 
-export interface Location {
-  longitude: number;
-  latitude: number;
-}
-
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -78,9 +73,9 @@ export interface Location {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: SkillFilter,
-      as: 'questSkillFilters',
-      attributes: ["category", "skill"]
+      model: QuestSpecializationFilter,
+      as: 'questSpecializations',
+      attributes: ['specialization'],
     }]
   }
 }))
@@ -111,13 +106,23 @@ export class Quest extends Model {
 
   @Column({
     type: DataType.VIRTUAL,
-    get() {
-      const questSkillFilters: SkillsRaw[] = this.getDataValue('questSkillFilters');
 
-      return (questSkillFilters ? SkillFilter.toMapSkills(questSkillFilters) : undefined);
+    get() {
+      const specialization: string[] = [];
+      const questSpecializations: QuestSpecializationFilter[] = this.getDataValue('questSpecializations');
+
+      for (const questSpecialization of questSpecializations) {
+        const industryKey = questSpecialization.specialization.industryKey;
+        const specializationKey = questSpecialization.specialization.key;
+
+        specialization.push(`${industryKey}.${specializationKey}`);
+      }
+
+      return specialization;
     },
-    set (_) { }
-  }) skillFilters?: SkillsMap;
+
+    set(_) { }
+  }) specializations;
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
@@ -126,11 +131,10 @@ export class Quest extends Model {
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
-  @HasOne(() => SkillFilter) filterBySkillFilter: SkillFilter; /** Alias */
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => SkillFilter) questSkillFilters: SkillFilter[];
+  @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));

@@ -6,8 +6,6 @@ import {Session} from "./Session";
 import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
-import {StarredQuests} from "../quest/StarredQuests";
-import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
 
@@ -122,10 +120,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
-    }, {
-      model: SkillFilter,
-      as: 'userSkillFilters',
-      attributes: ["category", "skill"]
     }]
   },
   withPassword: {
@@ -182,16 +176,6 @@ export class User extends Model {
   @Column(DataType.JSONB) location: LocationType;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
-  @Column({
-    type: DataType.VIRTUAL,
-    get() {
-      const userSkillFilters: SkillsRaw[] = this.getDataValue('userSkillFilters');
-
-      return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
-    },
-    set (_) { }
-  }) skillFilters?: SkillsMap;
-
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
@@ -199,7 +183,6 @@ export class User extends Model {
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
-  @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
 
   /** Aliases for query */
   @HasOne(() => ChatMember) chatMember: ChatMember;

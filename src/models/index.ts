@@ -18,9 +18,10 @@ import {MessageMedia} from "./chats/MessageMedia";
 import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
 import {StarredMessage} from "./chats/StarredMessage";
-import {SkillFilter} from "./SkillFilter";
 import {BridgeParserBlockInfo} from "./bridge/BridgeParserBlockInfo";
 import {BridgeSwapTokenEvent} from "./bridge/BridgeSwapTokenEvent";
+import {IndustryFilter} from "./filtres/IndustryFilter";
+import {SpecializationFilter} from "./filtres/SpecializationFilter";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -44,11 +45,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ChatMember,
       Message,
       MessageMedia,
-      SkillFilter,
       InfoMessage,
       StarredMessage,
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
+      IndustryFilter,
+      SpecializationFilter,
     ]
   });
   if (sync)
@@ -77,9 +79,10 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
-export * from "./SkillFilter";
 export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
+export * from "./filtres/IndustryFilter";
+export * from "./filtres/SpecializationFilter";
 
 
 

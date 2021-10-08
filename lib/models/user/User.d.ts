@@ -3,7 +3,6 @@ import { Media } from "../Media";
 import { Session } from "./Session";
 import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
-import { SkillFilter, SkillsMap } from "../SkillFilter";
 import { ChatMember } from "../chats/ChatMember";
 import { LocationPostGISType, LocationType } from "../types";
 export interface SocialInfo {
@@ -95,13 +94,11 @@ export declare class User extends Model {
     phone: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
-    skillFilters?: SkillsMap;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     reviews: Review[];
     sessions: Session[];
     medias: Media[];
-    userSkillFilters: SkillFilter[];
     chatMember: ChatMember;
     chatMembers: ChatMember[];
     passwordCompare(pwd: string): Promise<boolean>;

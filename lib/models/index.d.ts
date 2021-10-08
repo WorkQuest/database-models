@@ -20,6 +20,7 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
-export * from "./SkillFilter";
 export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
+export * from "./filtres/IndustryFilter";
+export * from "./filtres/SpecializationFilter";
