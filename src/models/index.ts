@@ -22,6 +22,7 @@ import {BridgeParserBlockInfo} from "./bridge/BridgeParserBlockInfo";
 import {BridgeSwapTokenEvent} from "./bridge/BridgeSwapTokenEvent";
 import {IndustryFilter} from "./filtres/IndustryFilter";
 import {SpecializationFilter} from "./filtres/SpecializationFilter";
+import {QuestSpecializationFilter} from "./quest/QuestSpecializationFilter";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -51,6 +52,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       BridgeSwapTokenEvent,
       IndustryFilter,
       SpecializationFilter,
+      QuestSpecializationFilter,
     ]
   });
   if (sync)
@@ -83,6 +85,7 @@ export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
 export * from "./filtres/IndustryFilter";
 export * from "./filtres/SpecializationFilter";
+export * from "./quest/QuestSpecializationFilter";
 
 
 
