@@ -21,7 +21,7 @@ import {
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
-import {skillFilterSchema} from "./filter";
+import {specializationsSchema, specializationsFilerSchema} from "./specialization";
 
 // Quests schemes
 
@@ -54,7 +54,7 @@ export const questSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
-  skillFilters: skillFilterSchema,
+  specializations: specializationsSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
 
@@ -76,6 +76,7 @@ export const questsQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
   q: searchSchema,
+  specialization: specializationsFilerSchema,
   priority: questPrioritySchema.default(null),
   status: questStatusSchema.default(null),
   adType: questAdTypeSchema.default(null),
@@ -85,8 +86,6 @@ export const questsQuerySchema = Joi.object({
   invited: Joi.boolean().default(false),
   performing: Joi.boolean().default(false),
   starred: Joi.boolean().default(false),
-  // filterByCategories: skillFilterCategorySchema, // TODO
-  // filterBySkills: skillFilterSkillSchema, // TODO
 }).label('QuestsQuery');
 
 export const locationForValidateSchema = Joi.object({
@@ -142,7 +141,7 @@ export const questForGetSchema = Joi.object({
   star: starSchema,
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
-  skillFilters: skillFilterSchema,
+  specializations: specializationsSchema,
   createdAt: isoDateSchema,
 }).label('QuestForGet');
 
