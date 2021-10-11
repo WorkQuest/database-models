@@ -5,7 +5,7 @@ import {Quest} from "../quest/Quest";
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["CreatedAt", "updatedAt"]
+      exclude: ["createdAt", "updatedAt"]
     },
     include: [{
       model: IndustryFilter,

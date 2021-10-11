@@ -7,7 +7,7 @@ import {SpecializationFilter} from "./SpecializationFilter";
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["CreatedAt", "updatedAt"]
+      exclude: ["createdAt", "updatedAt"]
     }
   }
 }))
