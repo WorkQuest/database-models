@@ -2,6 +2,7 @@ import {Column, DataType, ForeignKey, HasOne, Model, Table} from "sequelize-type
 import {getUUID} from "../../utils";
 import {Quest} from "./Quest";
 import {SpecializationFilter} from "../filtres/SpecializationFilter";
+import {IndustryFilter} from "../filtres/IndustryFilter";
 
 @Table
 export class QuestSpecializationFilter extends Model {
@@ -10,8 +11,9 @@ export class QuestSpecializationFilter extends Model {
   @ForeignKey(() => Quest)
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
+  @ForeignKey(() => IndustryFilter)
+  @Column({type: DataType.STRING, defaultValue: null}) industryKey: number;
+
   @ForeignKey(() => SpecializationFilter)
   @Column({type: DataType.STRING, allowNull: false}) specializationKey: string;
-
-  @HasOne(() => SpecializationFilter) specialization: SpecializationFilter;
 }
