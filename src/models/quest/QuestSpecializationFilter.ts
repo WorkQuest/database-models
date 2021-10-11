@@ -1,4 +1,4 @@
-import {Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import {Quest} from "./Quest";
 import {SpecializationFilter} from "../filtres/SpecializationFilter";
@@ -16,4 +16,8 @@ export class QuestSpecializationFilter extends Model {
 
   @ForeignKey(() => SpecializationFilter)
   @Column({type: DataType.INTEGER, allowNull: false}) specializationKey: number;
+
+  @BelongsTo(() => Quest) quest: Quest;
+  @BelongsTo(() => IndustryFilter) industryFilter: IndustryFilter;
+  @BelongsTo(() => SpecializationFilter) specializationFilter: SpecializationFilter;
 }
