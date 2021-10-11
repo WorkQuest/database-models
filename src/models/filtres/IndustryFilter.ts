@@ -1,9 +1,16 @@
-import {BelongsTo, Column, DataType, Model, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, Model, Scopes, Table} from "sequelize-typescript";
 import {SpecializationFilter} from "./SpecializationFilter";
 
 // 1.100 IT - Программист
 // 1.101 IT - Сисадмин
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ["CreatedAt", "updatedAt"]
+    }
+  }
+}))
 @Table
 export class IndustryFilter extends Model {
   @Column({primaryKey: true, autoIncrement: true, type: DataType.INTEGER}) key: string;
