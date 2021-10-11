@@ -23,7 +23,7 @@ import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
 import {specializationsSchema, specializationsFilerSchema} from "./specialization";
 
-// Quests schemes
+/** Quests schemes */
 
 export const questCategorySchema = Joi.string().example('Retail').label('QuestCategory');
 export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestStatus.Created).label('QuestStatus');
@@ -88,12 +88,13 @@ export const questQuerySchema = Joi.object({
   starred: Joi.boolean().default(false),
 }).label('QuestsQuery');
 
+// TODO Добавить в общее
 export const locationForValidateSchema = Joi.object({
   location: locationSchema.required(),
   locationPlaceName: questLocationPlaceNameSchema.required(),
 }).unknown(true).label('LocationForValidate');
 
-// QuestsResponse schemes
+/** QuestsResponse schemes */
 
 export const questsResponseMessageSchema = Joi.string().example('Hello, I need this job').default('').label('QuestsResponseMessage');
 export const questsResponseStatusSchema = Joi.number().example(QuestsResponseStatus.Open).valid(...Object.keys(QuestsResponseStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).label('QuestsResponseStatus');
@@ -119,7 +120,7 @@ export const questsResponsesWithCountSchema = Joi.object({
   responses: questsResponsesSchema,
 }).label('QuestsResponsesWithCount');
 
-// Quest on route get quest/quests
+/** Quest on route get quest/quests */
 
 export const questForGetSchema = Joi.object({
   id: idSchema,

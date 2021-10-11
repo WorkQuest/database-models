@@ -79,7 +79,41 @@ export const userSchema = Joi.object({
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: specializationsSchema,
   location: locationSchema,
-}).label("UserSchema");
+}).label("User");
+
+export const userEmployerSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: mobilePhoneSchema,
+  tempPhone: mobilePhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: userAdditionalInfoEmployerSchema,
+  role: userRoleSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
+  ratingStatistic: ratingStatisticSchema,
+  userSpecializations: specializationsSchema,
+  location: locationSchema,
+}).label("UserEmployer");
+
+export const userWorkerSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: mobilePhoneSchema,
+  tempPhone: mobilePhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: userAdditionalInfoWorkerSchema,
+  role: userRoleSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
+  ratingStatistic: ratingStatisticSchema,
+  userSpecializations: specializationsSchema,
+  location: locationSchema,
+}).label("UserWorker");
 
 export const userShortSchema = Joi.object({
   id: idSchema,
@@ -103,6 +137,8 @@ export const userQuerySchema = Joi.object({
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
+export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
+export const userWorkersSchema = Joi.array().items(userWorkerSchema).label('UserWorkers');
 export const usersShortSchema = Joi.array().items(userShortSchema).label('UsersShort');
 
 export const tokensWithStatus = Joi.object({
