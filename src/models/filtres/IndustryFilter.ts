@@ -9,6 +9,4 @@ export class IndustryFilter extends Model {
   @Column({primaryKey: true, autoIncrement: true, type: DataType.INTEGER}) key: string;
 
   @Column({type: DataType.STRING, allowNull: false}) industry: string;
-
-  @BelongsTo(() => SpecializationFilter) specializationFilter: SpecializationFilter;
 }
