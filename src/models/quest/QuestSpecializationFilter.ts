@@ -1,4 +1,4 @@
-import {Column, DataType, ForeignKey, HasOne, Model, Table} from "sequelize-typescript";
+import {Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import {Quest} from "./Quest";
 import {SpecializationFilter} from "../filtres/SpecializationFilter";
