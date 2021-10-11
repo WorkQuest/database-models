@@ -20,6 +20,7 @@ import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
+import {SpecializationFilter} from "../filtres/SpecializationFilter";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -63,9 +64,7 @@ export enum QuestEmployment {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'medias',
-      through: {
-        attributes: []
-      }
+      through: { attributes: [] }
     }, {
       model: User.scope('short'),
       as: 'user'
@@ -75,7 +74,7 @@ export enum QuestEmployment {
     }, {
       model: QuestSpecializationFilter,
       as: 'questSpecializations',
-      attributes: ['specialization'],
+      through: { attributes: [] }
     }]
   }
 }))
@@ -104,27 +103,8 @@ export class Quest extends Model {
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
-  @Column({
-    type: DataType.VIRTUAL,
-
-    get() {
-      const specialization: string[] = [];
-      const questSpecializations: QuestSpecializationFilter[] = this.getDataValue('questSpecializations');
-
-      for (const questSpecialization of questSpecializations) {
-        const industryKey = questSpecialization.specialization.industryKey;
-        const specializationKey = questSpecialization.specialization.key;
-
-        specialization.push(`${industryKey}.${specializationKey}`);
-      }
-
-      return specialization;
-    },
-
-    set(_) { }
-  }) specializations;
-
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
+  @BelongsToMany(() => SpecializationFilter, () => QuestSpecializationFilter) questSpecializations: SpecializationFilter[];
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
@@ -134,7 +114,6 @@ export class Quest extends Model {
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));

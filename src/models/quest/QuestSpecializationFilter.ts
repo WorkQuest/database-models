@@ -10,5 +10,8 @@ export class QuestSpecializationFilter extends Model {
   @ForeignKey(() => Quest)
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
+  @ForeignKey(() => SpecializationFilter)
+  @Column({type: DataType.STRING, allowNull: false}) specializationKey: string;
+
   @HasOne(() => SpecializationFilter) specialization: SpecializationFilter;
 }

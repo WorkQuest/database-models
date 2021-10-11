@@ -1,4 +1,4 @@
-import {Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {Column, DataType, ForeignKey, HasOne, Model, Table} from "sequelize-typescript";
 import {IndustryFilter} from "./IndustryFilter";
 
 @Table
@@ -9,4 +9,6 @@ export class SpecializationFilter extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) industryKey: number;
 
   @Column({type: DataType.STRING, allowNull: false}) specialization: string;
+
+  @HasOne(() => IndustryFilter) industry: IndustryFilter;
 }
