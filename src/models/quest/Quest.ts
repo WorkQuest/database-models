@@ -72,7 +72,7 @@ export enum QuestEmployment {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: QuestSpecializationFilter,
+      model: SpecializationFilter,
       as: 'questSpecializations',
       through: { attributes: [] }
     }]
