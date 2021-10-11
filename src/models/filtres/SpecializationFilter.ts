@@ -10,5 +10,5 @@ export class SpecializationFilter extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) specialization: string;
 
-  @HasOne(() => IndustryFilter) industry: IndustryFilter;
+  @HasOne(() => IndustryFilter) industryFilter: IndustryFilter;
 }

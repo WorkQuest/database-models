@@ -3,5 +3,5 @@ export declare class QuestSpecializationFilter extends Model {
     id: string;
     questId: string;
     industryKey: number;
-    specializationKey: string;
+    specializationKey: number;
 }

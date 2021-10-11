@@ -4,5 +4,5 @@ export declare class SpecializationFilter extends Model {
     key: string;
     industryKey: number;
     specialization: string;
-    industry: IndustryFilter;
+    industryFilter: IndustryFilter;
 }
