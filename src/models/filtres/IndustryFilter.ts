@@ -5,7 +5,7 @@ import {Column, DataType, Model, Table} from "sequelize-typescript";
 
 @Table
 export class IndustryFilter extends Model {
-  @Column({primaryKey: true, autoIncrement: true, type: DataType.INTEGER.UNSIGNED}) key: string;
+  @Column({primaryKey: true, autoIncrement: true, type: DataType.INTEGER}) key: string;
 
   @Column({type: DataType.STRING, allowNull: false}) industry: string;
 }

@@ -12,7 +12,7 @@ export class QuestSpecializationFilter extends Model {
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
   @ForeignKey(() => IndustryFilter)
-  @Column({type: DataType.STRING, defaultValue: null}) industryKey: number;
+  @Column({type: DataType.INTEGER, allowNull: false}) industryKey: number;
 
   @ForeignKey(() => SpecializationFilter)
   @Column({type: DataType.STRING, allowNull: false}) specializationKey: string;

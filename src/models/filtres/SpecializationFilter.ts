@@ -3,10 +3,10 @@ import {IndustryFilter} from "./IndustryFilter";
 
 @Table
 export class SpecializationFilter extends Model {
-  @Column({primaryKey: true, autoIncrement: true, type: DataType.INTEGER.UNSIGNED}) key: string;
+  @Column({primaryKey: true, type: DataType.INTEGER}) key: string;
 
   @ForeignKey(() => IndustryFilter)
-  @Column({type: DataType.STRING, defaultValue: null}) industryKey: number;
+  @Column({type: DataType.INTEGER, allowNull: false}) industryKey: number;
 
   @Column({type: DataType.STRING, allowNull: false}) specialization: string;
 
