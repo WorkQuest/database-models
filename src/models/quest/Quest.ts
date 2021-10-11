@@ -114,7 +114,7 @@ export class Quest extends Model {
   @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
-  @HasMany(() => QuestSpecializationFilter, { as: 'questSpecializationsFilter' }) questSpecializationsFilter: QuestSpecializationFilter[];
+  @HasMany(() => QuestSpecializationFilter) questSpecializationsForFiltering: QuestSpecializationFilter[];
 
   updateFieldLocationPostGIS(): void {
     this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));

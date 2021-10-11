@@ -1,5 +1,6 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {IndustryFilter} from "./IndustryFilter";
+import {Quest} from "../quest/Quest";
 
 @Table
 export class SpecializationFilter extends Model {
