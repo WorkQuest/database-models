@@ -15,5 +15,5 @@ export class QuestSpecializationFilter extends Model {
   @Column({type: DataType.INTEGER, allowNull: false}) industryKey: number;
 
   @ForeignKey(() => SpecializationFilter)
-  @Column({type: DataType.STRING, allowNull: false}) specializationKey: string;
+  @Column({type: DataType.INTEGER, allowNull: false}) specializationKey: string;
 }
