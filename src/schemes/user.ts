@@ -1,9 +1,17 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import {idSchema, jwtTokenAccess, jwtTokenRefresh, locationSchema, mobilePhoneSchema} from "./common";
+import {
+  idSchema,
+  jwtTokenAccess,
+  jwtTokenRefresh,
+  locationSchema,
+  mobilePhoneSchema, searchSchema,
+  sortDirectionSchema
+} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
+import {specializationsFilerSchema, specializationsSchema} from "./specialization";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -69,6 +77,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
+  userSpecializations: specializationsSchema,
   location: locationSchema,
 }).label("UserSchema");
 
@@ -80,6 +89,18 @@ export const userShortSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   additionalInfo: userCommonAdditionalInfoSchema,
 }).label('UserShort');
+
+export const userListSortSchema = Joi.object({
+  createdAt: sortDirectionSchema,
+}).default({}).label('UserListSort');
+
+export const userQuerySchema = Joi.object({
+  q: searchSchema,
+  north: locationSchema,
+  south: locationSchema,
+  sort: userListSortSchema,
+  specialization: specializationsFilerSchema.default(null),
+}).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const usersShortSchema = Joi.array().items(userShortSchema).label('UsersShort');

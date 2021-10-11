@@ -77,7 +77,7 @@ export const questsQuerySchema = Joi.object({
   limit: limitSchema,
   q: searchSchema,
   sort: questsListSortSchema,
-  specialization: specializationsFilerSchema,
+  specialization: specializationsFilerSchema.default(null),
   priority: questPrioritySchema.default(null),
   status: questStatusSchema.default(null),
   adType: questAdTypeSchema.default(null),
@@ -141,7 +141,7 @@ export const questForGetSchema = Joi.object({
   star: starSchema,
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
-  specializations: specializationsSchema,
+  questSpecializations: specializationsSchema,
   createdAt: isoDateSchema,
 }).label('QuestForGet');
 

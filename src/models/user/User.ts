@@ -1,4 +1,15 @@
-import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Scopes, Table } from "sequelize-typescript";
+import {
+  BelongsTo,
+  BelongsToMany,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  HasOne,
+  Model,
+  Scopes,
+  Table
+} from "sequelize-typescript";
 import {error, getUUID, totpValidate} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
@@ -8,6 +19,9 @@ import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
+import {SpecializationFilter} from "../filtres/SpecializationFilter";
+import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {QuestSpecializationFilter} from "../quest/QuestSpecializationFilter";
 
 export interface SocialInfo {
   id: string;
@@ -120,6 +134,10 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: SpecializationFilter,
+      as: 'userSpecializations',
+      through: { attributes: [] }
     }]
   },
   withPassword: {
@@ -174,8 +192,10 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
   @Column(DataType.JSONB) location: LocationType;
+  // @Column(DataType.STRING) locationPlaceName: string; TODO
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
+  @BelongsToMany(() => SpecializationFilter, () => UserSpecializationFilter) userSpecializations: SpecializationFilter[];
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
@@ -186,6 +206,7 @@ export class User extends Model {
 
   /** Aliases for query */
   @HasOne(() => ChatMember) chatMember: ChatMember;
+  @HasOne(() => UserSpecializationFilter) userSpecializationsForFiltering: UserSpecializationFilter;
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {

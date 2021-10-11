@@ -5,6 +5,8 @@ import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
 import { LocationPostGISType, LocationType } from "../types";
+import { SpecializationFilter } from "../filtres/SpecializationFilter";
+import { UserSpecializationFilter } from "./UserSpecializationFilter";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -94,12 +96,14 @@ export declare class User extends Model {
     phone: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
+    userSpecializations: SpecializationFilter[];
     avatar: Media;
     ratingStatistic: RatingStatistic;
     reviews: Review[];
     sessions: Session[];
     medias: Media[];
     chatMember: ChatMember;
+    userSpecializationsForFiltering: UserSpecializationFilter;
     chatMembers: ChatMember[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;

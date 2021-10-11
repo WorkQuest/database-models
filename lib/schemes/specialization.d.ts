@@ -1,7 +1,13 @@
 import * as Joi from "joi";
-export declare const industrySchema: Joi.StringSchema;
-export declare const specializationSchema: Joi.StringSchema;
+export declare const industryKeySchema: Joi.StringSchema;
+export declare const industryNameSchema: Joi.StringSchema;
+export declare const specializationKeySchema: Joi.StringSchema;
+export declare const specializationNameSchema: Joi.StringSchema;
+export declare const industrySchema: Joi.ObjectSchema<any>;
+export declare const specializationSchema: Joi.ObjectSchema<any>;
+export declare const specializationFilerSchema: Joi.AlternativesSchema;
 export declare const industriesSchema: Joi.ArraySchema;
 export declare const specializationsSchema: Joi.ArraySchema;
-export declare const specializationFilerSchema: Joi.AlternativesSchema;
+export declare const industryKeysSchema: Joi.ArraySchema;
+export declare const specializationKeysSchema: Joi.ArraySchema;
 export declare const specializationsFilerSchema: Joi.ArraySchema;
