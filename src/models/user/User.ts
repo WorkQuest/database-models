@@ -21,7 +21,6 @@ import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
 import {SpecializationFilter} from "../filtres/SpecializationFilter";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
-import {QuestSpecializationFilter} from "../quest/QuestSpecializationFilter";
 
 export interface SocialInfo {
   id: string;
@@ -206,7 +205,8 @@ export class User extends Model {
 
   /** Aliases for query */
   @HasOne(() => ChatMember) chatMember: ChatMember;
-  @HasOne(() => UserSpecializationFilter) userSpecializationsForFiltering: UserSpecializationFilter;
+  @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
+  @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
