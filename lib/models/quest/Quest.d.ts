@@ -6,7 +6,6 @@ import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
 import { LocationPostGISType, LocationType } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
-import { SpecializationFilter } from "../filtres/SpecializationFilter";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -53,12 +52,12 @@ export declare class Quest extends Model {
     price: string;
     adType: AdType;
     medias: Media[];
-    questSpecializations: SpecializationFilter[];
     user: User;
     assignedWorker: User;
     star: StarredQuests;
     response: QuestsResponse;
     questSpecializationsForFiltering: QuestSpecializationFilter;
+    questSpecializations: QuestSpecializationFilter[];
     reviews: Review[];
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];

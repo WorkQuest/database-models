@@ -11,7 +11,7 @@ import {
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
-import {specializationsFilerSchema, specializationsSchema} from "./specialization";
+import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -77,7 +77,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
-  userSpecializations: specializationsSchema,
+  userSpecializations: modelSpecializationsSchema,
   location: locationSchema,
 }).label("User");
 
@@ -94,7 +94,6 @@ export const userEmployerSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
-  userSpecializations: specializationsSchema,
   location: locationSchema,
 }).label("UserEmployer");
 
@@ -111,7 +110,7 @@ export const userWorkerSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
-  userSpecializations: specializationsSchema,
+  userSpecializations: modelSpecializationsSchema,
   location: locationSchema,
 }).label("UserWorker");
 

@@ -7,6 +7,7 @@ export declare class UserSpecializationFilter extends Model {
     userId: string;
     industryKey: number;
     specializationKey: number;
+    path: string;
     user: User;
     industryFilter: IndustryFilter;
     specializationFilter: SpecializationFilter;

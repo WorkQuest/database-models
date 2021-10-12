@@ -21,7 +21,7 @@ import {
 } from './common';
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
-import {specializationsSchema, specializationsFilerSchema} from "./specialization";
+import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
 /** Quests schemes */
 
@@ -54,7 +54,7 @@ export const questSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
-  specializations: specializationsSchema,
+  questSpecializations: modelSpecializationsSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
 
@@ -142,7 +142,7 @@ export const questForGetSchema = Joi.object({
   star: starSchema,
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
-  questSpecializations: specializationsSchema,
+  questSpecializations: modelSpecializationsSchema,
   createdAt: isoDateSchema,
 }).label('QuestForGet');
 

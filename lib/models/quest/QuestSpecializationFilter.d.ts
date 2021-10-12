@@ -7,6 +7,7 @@ export declare class QuestSpecializationFilter extends Model {
     questId: string;
     industryKey: number;
     specializationKey: number;
+    path: string;
     quest: Quest;
     industryFilter: IndustryFilter;
     specializationFilter: SpecializationFilter;

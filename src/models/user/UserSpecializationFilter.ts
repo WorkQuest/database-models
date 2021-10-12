@@ -17,6 +17,9 @@ export class UserSpecializationFilter extends Model {
   @ForeignKey(() => SpecializationFilter)
   @Column({type: DataType.INTEGER, allowNull: false}) specializationKey: number;
 
+  /** industryKey.specializationKey => 1.100 */
+  @Column({type: DataType.STRING, allowNull: false}) path: string;
+
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => IndustryFilter) industryFilter: IndustryFilter;
   @BelongsTo(() => SpecializationFilter) specializationFilter: SpecializationFilter;

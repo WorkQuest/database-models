@@ -17,6 +17,9 @@ export class QuestSpecializationFilter extends Model {
   @ForeignKey(() => SpecializationFilter)
   @Column({type: DataType.INTEGER, allowNull: false}) specializationKey: number;
 
+  /** industryKey.specializationKey => 1.100 */
+  @Column({type: DataType.STRING, allowNull: false}) path: string;
+
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => IndustryFilter) industryFilter: IndustryFilter;
   @BelongsTo(() => SpecializationFilter) specializationFilter: SpecializationFilter;

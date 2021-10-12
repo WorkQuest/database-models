@@ -20,7 +20,6 @@ import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
-import {SpecializationFilter} from "../filtres/SpecializationFilter";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -72,9 +71,9 @@ export enum QuestEmployment {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: SpecializationFilter,
+      model: QuestSpecializationFilter,
       as: 'questSpecializations',
-      through: { attributes: [] }
+      attributes: ['path'],
     }]
   }
 }))
@@ -104,7 +103,6 @@ export class Quest extends Model {
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
-  @BelongsToMany(() => SpecializationFilter, () => QuestSpecializationFilter) questSpecializations: SpecializationFilter[];
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
@@ -112,7 +110,7 @@ export class Quest extends Model {
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
   @HasOne(() => QuestSpecializationFilter) questSpecializationsForFiltering: QuestSpecializationFilter;
-
+  @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];

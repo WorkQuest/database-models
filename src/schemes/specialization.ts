@@ -6,25 +6,17 @@ export const industryNameSchema = Joi.string().example('Programming').label('Ind
 export const specializationKeySchema = Joi.string().pattern(/\d+.\d+/).example('1.501').label('SpecializationKey');
 export const specializationNameSchema = Joi.string().example('IT').label('SpecializationName');
 
-export const industrySchema = Joi.object({
-  key: industryKeySchema,
-  industry: industryNameSchema,
-}).label('Industry');
-
-export const specializationSchema = Joi.object({
-  key: specializationKeySchema,
-  specialization: specializationNameSchema,
-  industry: industrySchema,
-}).label('Specialization');
+export const modelSpecializationSchema = Joi.object({
+  path: specializationKeySchema,
+}).label("ModelSpecialization"); // TODO to array [1.100, 1.1001]
 
 export const specializationFilerSchema = Joi.alternatives().try(
   industryKeySchema,
   specializationKeySchema,
 ).label('SpecializationFiler');
 
-export const industriesSchema = Joi.array().items(industrySchema).label('Industries');
-export const specializationsSchema = Joi.array().items(specializationSchema).label('Specializations');
 export const industryKeysSchema = Joi.array().items(industryKeySchema).label('IndustryKeys');
 export const specializationKeysSchema = Joi.array().items(specializationKeySchema).label('SpecializationKeys');
 export const specializationsFilerSchema = Joi.array().items(specializationFilerSchema).label('SpecializationFilers');
+export const modelSpecializationsSchema =  Joi.array().items(modelSpecializationSchema).label('ModelSpecializations');
 
