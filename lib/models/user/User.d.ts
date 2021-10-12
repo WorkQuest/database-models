@@ -5,7 +5,6 @@ import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
 import { LocationPostGISType, LocationType } from "../types";
-import { SpecializationFilter } from "../filtres/SpecializationFilter";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 export interface SocialInfo {
     id: string;
@@ -96,12 +95,12 @@ export declare class User extends Model {
     phone: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
-    userSpecializations: SpecializationFilter[];
     avatar: Media;
     ratingStatistic: RatingStatistic;
-    reviews: Review[];
     sessions: Session[];
+    reviews: Review[];
     medias: Media[];
+    userSpecializations: UserSpecializationFilter[];
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;

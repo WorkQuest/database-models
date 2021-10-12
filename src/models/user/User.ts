@@ -134,9 +134,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     }, {
-      model: SpecializationFilter,
+      model: UserSpecializationFilter,
       as: 'userSpecializations',
-      through: { attributes: [] }
+      attributes: ['path'],
     }]
   },
   withPassword: {
@@ -194,14 +194,14 @@ export class User extends Model {
   // @Column(DataType.STRING) locationPlaceName: string; TODO
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
-  @BelongsToMany(() => SpecializationFilter, () => UserSpecializationFilter) userSpecializations: SpecializationFilter[];
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
 
-  @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
+  @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
+  @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
   /** Aliases for query */
   @HasOne(() => ChatMember) chatMember: ChatMember;
