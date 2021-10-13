@@ -10,11 +10,10 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
-import {error, getUUID, transformToGeoPostGIS} from '../../utils';
+import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import {Media} from '../Media';
 import {QuestMedia} from './QuestMedia';
-import {Errors} from '../../utils/errors';
 import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
@@ -115,35 +114,4 @@ export class Quest extends Model {
   @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
-
-  updateFieldLocationPostGIS(): void {
-    this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
-  }
-
-  mustHaveStatus(...statuses: QuestStatus[]) {
-    if (!statuses.includes(this.status)) {
-      throw error(Errors.InvalidStatus, "Quest status doesn't match", {
-        current: this.status,
-        mustHave: statuses
-      });
-    }
-  }
-
-  mustBeAppointedOnQuest(workerId: string) {
-    if (this.assignedWorkerId !== workerId) {
-      throw error(Errors.Forbidden, "Worker is not appointed on quest", {
-        current: this.userId,
-        mustHave: workerId
-      });
-    }
-  }
-
-  mustBeQuestCreator(userId: String) {
-    if (this.userId !== userId) {
-      throw error(Errors.Forbidden, "User is not quest creator", {
-        current: this.userId,
-        mustHave: userId
-      });
-    }
-  }
 }
