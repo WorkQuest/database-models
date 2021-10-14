@@ -110,10 +110,6 @@ export declare class User extends Model {
     static findWithSocialId(network: string, id: string): Promise<User>;
     static userMustExist(userId: string): Promise<void>;
     static usersMustExist(userIds: string[]): Promise<void>;
-    mustHaveRole(role: UserRole): void;
-    mustHaveActiveStatusTOTP(activeStatus: boolean): void;
     isTOTPEnabled(): boolean;
-    validateTOTP(TOTP: string): void;
 }
-export declare function getDefaultAdditionalInfo(role: UserRole): object;
 export {};

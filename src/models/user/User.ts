@@ -241,61 +241,7 @@ export class User extends Model {
     }
   }
 
-  mustHaveRole(role: UserRole) {
-    if (this.role !== role) {
-      throw error(Errors.InvalidRole, "User isn't match role", {
-        current: this.role,
-        mustHave: role
-      });
-    }
-  }
-
-  mustHaveActiveStatusTOTP(activeStatus: boolean) {
-    if (this.settings.security.TOTP.active !== activeStatus) {
-      throw error(Errors.InvalidActiveStatusTOTP,
-        `Active status TOTP is not ${activeStatus ? "enable" : "disable"}`, {});
-    }
-  }
-
   isTOTPEnabled(): boolean {
     return this.settings.security.TOTP.active;
   }
-
-  validateTOTP(TOTP: string) {
-    if (!totpValidate(TOTP, this.settings.security.TOTP.secret)) {
-      throw error(Errors.InvalidTOTP, "Invalid TOTP", {});
-    }
-  }
-}
-
-export function getDefaultAdditionalInfo(role: UserRole) {
-  let additionalInfo: object = {
-    description: null,
-    secondMobileNumber: null,
-    address: null,
-    socialNetwork: {
-      instagram: null,
-      twitter: null,
-      linkedin: null,
-      facebook: null
-    }
-  };
-
-  if (role === UserRole.Worker) {
-    additionalInfo = {
-      ...additionalInfo,
-      skills: [],
-      educations: [],
-      workExperiences: []
-    };
-  } else if (role === UserRole.Employer) {
-    additionalInfo = {
-      ...additionalInfo,
-      company: null,
-      CEO: null,
-      website: null
-    };
-  }
-
-  return additionalInfo;
 }
