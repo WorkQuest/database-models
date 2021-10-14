@@ -1,6 +1,5 @@
 import {
   BelongsTo,
-  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -10,7 +9,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {error, getUUID, totpValidate} from "../../utils";
+import {error, getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
@@ -19,7 +18,6 @@ import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
-import {SpecializationFilter} from "../filtres/SpecializationFilter";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 
 export interface SocialInfo {
