@@ -4,6 +4,7 @@ export const contractAddressSchema = Joi.string().example('0xe7489ba661e0487669a
 export const contractAmountSchema = Joi.number().min(0).example(19494.677122626837340762).label('ContractAmount');
 export const contractSymbolSchema = Joi.string().example('WQT').label('ContractSymbol');
 export const contractTimestampSchema = Joi.date().timestamp('unix').example(1631568392).label('ContractTimeStamp');
+export const lpTokenWQTW_WBNB = Joi.number().min(0).example(19494.677122626837340762).label('ContractAmount');
 
 export const tokenOfPairSchema = Joi.object({
   symbol: contractSymbolSchema,
