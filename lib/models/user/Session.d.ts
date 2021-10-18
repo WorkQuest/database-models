@@ -7,8 +7,8 @@ export declare type UserLoginPlace = {
 export declare class Session extends Model {
     id: string;
     userId: string;
-    invalidating: boolean;
     place: UserLoginPlace;
+    invalidating: boolean;
     ip: string;
     device: string;
     logoutAt: Date;

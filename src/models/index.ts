@@ -10,8 +10,8 @@ import {RatingStatistic} from "./user/RatingStatistic";
 import {StarredQuests} from './quest/StarredQuests';
 import {PortfolioMedia} from './user/PortfolioMedia';
 import {Portfolio} from './user/Portfolio';
-import {Admin} from './user/Admin'
-import {AdminSession} from "./user/AdminSession";
+import {Admin} from './admin/Admin'
+import {AdminSession} from "./admin/AdminSession";
 import {Chat} from "./chats/Chat";
 import {ChatMember} from "./chats/ChatMember";
 import {MessageMedia} from "./chats/MessageMedia";
@@ -76,8 +76,8 @@ export * from "./user/RatingStatistic";
 export * from "./user/PortfolioMedia";
 export * from "./user/Portfolio";
 export * from "./user/Session";
-export * from "./user/Admin";
-export * from "./user/AdminSession";
+export * from "./admin/Admin";
+export * from "./admin/AdminSession";
 export * from "./user/UserSpecializationFilter";
 export * from "./chats/Chat";
 export * from "./chats/ChatMember";
