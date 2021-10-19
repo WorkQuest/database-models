@@ -6,7 +6,7 @@ export enum RatingStatus {
   noStatus = "noStatus",
   verified = "verified",
   reliable = "reliable",
-  topRanked = "topRanked"
+  topRanked = "topRanked",
 }
 
 @Table
