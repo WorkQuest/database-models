@@ -3,7 +3,8 @@ import {getUUID} from '../../utils';
 import {User} from './User';
 
 export enum RatingStatus {
-  verify = "verified",
+  noStatus = "noStatus",
+  verified = "verified",
   reliable = "reliable",
   topRanked = "topRanked"
 }
@@ -16,7 +17,7 @@ export class RatingStatistic extends Model {
   @Column({type: DataType.INTEGER, defaultValue: 0 }) reviewCount: number;
   @Column({type: DataType.DOUBLE, defaultValue: null }) averageMark: number;
 
-  @Column({type: DataType.STRING, defaultValue: null }) status: RatingStatus;
+  @Column({type: DataType.STRING, defaultValue: RatingStatus.noStatus }) status: RatingStatus;
 
   @BelongsTo(() => User) user: User;
 }

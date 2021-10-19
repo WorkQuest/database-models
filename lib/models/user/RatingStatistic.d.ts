@@ -1,7 +1,8 @@
 import { Model } from 'sequelize-typescript';
 import { User } from './User';
 export declare enum RatingStatus {
-    verify = "verified",
+    noStatus = "noStatus",
+    verified = "verified",
     reliable = "reliable",
     topRanked = "topRanked"
 }
