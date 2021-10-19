@@ -18,7 +18,12 @@ import {MessageMedia} from "./chats/MessageMedia";
 import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
 import {StarredMessage} from "./chats/StarredMessage";
-import {SkillFilter} from "./SkillFilter";
+import {BridgeParserBlockInfo} from "./bridge/BridgeParserBlockInfo";
+import {BridgeSwapTokenEvent} from "./bridge/BridgeSwapTokenEvent";
+import {IndustryFilter} from "./filtres/IndustryFilter";
+import {SpecializationFilter} from "./filtres/SpecializationFilter";
+import {QuestSpecializationFilter} from "./quest/QuestSpecializationFilter";
+import {UserSpecializationFilter} from "./user/UserSpecializationFilter";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -42,9 +47,14 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ChatMember,
       Message,
       MessageMedia,
-      SkillFilter,
       InfoMessage,
       StarredMessage,
+      BridgeParserBlockInfo,
+      BridgeSwapTokenEvent,
+      IndustryFilter,
+      SpecializationFilter,
+      QuestSpecializationFilter,
+      UserSpecializationFilter,
     ]
   });
   if (sync)
@@ -54,25 +64,28 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 }
 
 export * from "./types";
-export * from "./user/User";
-export * from "./user/Session";
+export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
-export * from "./Media";
 export * from "./quest/QuestMedia";
 export * from "./quest/Review";
-export * from "./user/RatingStatistic";
+export * from "./quest/QuestSpecializationFilter";
 export * from "./quest/StarredQuests";
+export * from "./user/User";
+export * from "./user/RatingStatistic";
 export * from "./user/PortfolioMedia";
 export * from "./user/Portfolio";
+export * from "./user/Session";
 export * from "./user/Admin";
 export * from "./user/AdminSession";
+export * from "./user/UserSpecializationFilter";
 export * from "./chats/Chat";
 export * from "./chats/ChatMember";
 export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
-export * from "./SkillFilter"
-
-
+export * from "./bridge/BridgeParserBlockInfo";
+export * from "./bridge/BridgeSwapTokenEvent";
+export * from "./filtres/IndustryFilter";
+export * from "./filtres/SpecializationFilter";

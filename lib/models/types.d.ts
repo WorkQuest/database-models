@@ -1,3 +1,7 @@
+declare enum BlockchainNetworks {
+    bscMainNetwork = "bscMainNetwork",
+    ethMainNetwork = "ethMainNetwork"
+}
 declare type LocationType = {
     longitude: number;
     latitude: number;
@@ -12,4 +16,4 @@ declare type LocationPostGISType = {
         };
     };
 };
-export { LocationType, LocationPostGISType, };
+export { LocationType, BlockchainNetworks, LocationPostGISType, };
