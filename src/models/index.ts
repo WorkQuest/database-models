@@ -24,12 +24,12 @@ import {IndustryFilter} from "./filtres/IndustryFilter";
 import {SpecializationFilter} from "./filtres/SpecializationFilter";
 import {QuestSpecializationFilter} from "./quest/QuestSpecializationFilter";
 import {UserSpecializationFilter} from "./user/UserSpecializationFilter";
-import {ForumComment} from "./forum/ForumComment";
-import {ForumCommentLike} from "./forum/ForumCommentLike";
-import {ForumCommentMedia} from "./forum/ForumCommentMedia";
-import {ForumPost} from "./forum/ForumPost";
-import {ForumPostLike} from "./forum/ForumPostLike";
-import {ForumPostMedia} from "./forum/ForumPostMedia";
+import {DiscussionComment} from "./discussion/DiscussionComment";
+import {DiscussionCommentLike} from "./discussion/DiscussionCommentLike";
+import {DiscussionCommentMedia} from "./discussion/DiscussionCommentMedia";
+import {Discussion} from "./discussion/Discussion";
+import {DiscussionLike} from "./discussion/DiscussionLike";
+import {DiscussionMedia} from "./discussion/DiscussionMedia";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -61,12 +61,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       SpecializationFilter,
       QuestSpecializationFilter,
       UserSpecializationFilter,
-      ForumPost,
-      ForumPostLike,
-      ForumPostMedia,
-      ForumComment,
-      ForumCommentLike,
-      ForumCommentMedia,
+      Discussion,
+      DiscussionLike,
+      DiscussionMedia,
+      DiscussionComment,
+      DiscussionCommentLike,
+      DiscussionCommentMedia,
     ]
   });
   if (sync)
@@ -101,9 +101,9 @@ export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
 export * from "./filtres/IndustryFilter";
 export * from "./filtres/SpecializationFilter";
-export * from "./forum/ForumComment";
-export * from "./forum/ForumCommentLike";
-export * from "./forum/ForumCommentMedia";
-export * from "./forum/ForumPost";
-export * from "./forum/ForumPostLike";
-export * from "./forum/ForumPostMedia";
+export * from "./discussion/DiscussionComment";
+export * from "./discussion/DiscussionCommentLike";
+export * from "./discussion/DiscussionCommentMedia";
+export * from "./discussion/Discussion";
+export * from "./discussion/DiscussionLike";
+export * from "./discussion/DiscussionMedia";

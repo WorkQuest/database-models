@@ -1,10 +1,10 @@
 import { Media } from "../Media";
-import { ForumComment } from "./ForumComment";
+import { DiscussionComment } from "./DiscussionComment";
 import { Model } from "sequelize-typescript";
-export declare class ForumCommentMedia extends Model {
+export declare class DiscussionCommentMedia extends Model {
     id: string;
     mediaId: string;
     commentId: string;
     media: Media;
-    comment: ForumComment;
+    comment: DiscussionComment;
 }

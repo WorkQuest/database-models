@@ -1,6 +1,6 @@
 import {getUUID} from "../../utils";
 import {User} from "../user/User";
-import {ForumPost} from "./ForumPost";
+import {DiscussionComment} from "./DiscussionComment";
 import {
   Model,
   Table,
@@ -11,15 +11,15 @@ import {
 } from 'sequelize-typescript';
 
 @Table
-export class ForumPostLike extends Model {
+export class DiscussionCommentLike extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @ForeignKey(() => ForumPost)
-  @Column ({type:DataType.STRING, allowNull: false}) postId: string;
+  @ForeignKey(() => DiscussionComment)
+  @Column ({type:DataType.STRING, allowNull: false}) commentId: string;
 
   @ForeignKey(() => User)
   @Column ({type:DataType.STRING, allowNull: false}) userId: string;
 
   @BelongsTo(() => User) user: User;
-  @BelongsTo(() => ForumPost) post: ForumPost;
+  @BelongsTo(() => DiscussionComment) likeComment: DiscussionComment;
 }

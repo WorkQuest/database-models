@@ -1,0 +1,66 @@
+import {getUUID} from "../../utils";
+import {Media} from "../Media";
+import {User} from "../user/User";
+import {DiscussionComment} from "./DiscussionComment";
+import {DiscussionMedia} from "./DiscussionMedia";
+import {DiscussionLike} from "./DiscussionLike";
+import {
+  Model,
+  Table,
+  Column,
+  Scopes,
+  HasMany,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  BelongsToMany,
+} from "sequelize-typescript";
+
+@Scopes(() => ({
+  defaultScope: {
+    include: [{
+      model: User.scope('short'),
+      as: 'author',
+    }, {
+      model: Media.scope("urlOnly"),
+      as: "medias",
+      through: { attributes: [] }
+    }, {
+      model: DiscussionComment,
+      as: 'comments',
+      where: { rootCommentId: null },
+      limit: 5,
+    }, {
+      model: User.scope('short'),
+      as: 'userLikes',
+      limit: 5,
+    }]
+  },
+  short: {
+    include: [{
+      model: User.scope('short'),
+      as: 'author',
+    }]
+  }
+}))
+@Table({ paranoid: true })
+export class Discussion extends Model {
+  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
+
+  @Column({ type: DataType.STRING, allowNull: false }) title: string;
+  @Column({ type: DataType.TEXT, allowNull: false }) description: string;
+
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) amountLikes: number;
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) amountComments: number;
+
+  @BelongsTo(() => User) author: User;
+
+  @HasMany(() => DiscussionComment) comments: DiscussionComment[];
+  @HasMany(() => DiscussionLike) likes: DiscussionLike[];
+
+  @BelongsToMany(() => Media, () => DiscussionMedia) medias: Media[];
+  @BelongsToMany(() => User, () => DiscussionLike) userLikes: User[];
+}
