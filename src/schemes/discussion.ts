@@ -17,13 +17,13 @@ export const discussionCommentSchema = Joi.object({
 }).label('DiscussionComment');
 
 export const discussionTitleSchema = Joi.string().example('New post').label('DiscussionTitle');
-export const discussionTextSchema = Joi.string().example('Hello World!').label('DiscussionText');
+export const discussionDescriptionSchema = Joi.string().example('Hello World!').label('DiscussionText');
 
 export const discussionSchema = Joi.object({
   id: idSchema,
   authorId: idSchema,
   title: discussionTitleSchema,
-  text: discussionTextSchema,
+  description: discussionDescriptionSchema,
   amountLikes: countSchema,
   amountComments: countSchema,
   medias: mediasUrlOnlySchema,
