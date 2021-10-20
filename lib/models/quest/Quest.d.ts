@@ -4,8 +4,8 @@ import { Media } from '../Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { SkillFilter, SkillsMap } from "../SkillFilter";
 import { LocationPostGISType, LocationType } from "../types";
+import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -35,10 +35,6 @@ export declare enum QuestEmployment {
     PartTime = "partTime",
     FixedTerm = "fixedTerm"
 }
-export interface Location {
-    longitude: number;
-    latitude: number;
-}
 export declare class Quest extends Model {
     id: string;
     userId: string;
@@ -55,19 +51,15 @@ export declare class Quest extends Model {
     locationPostGIS: LocationPostGISType;
     price: string;
     adType: AdType;
-    skillFilters?: SkillsMap;
     medias: Media[];
     user: User;
     assignedWorker: User;
     star: StarredQuests;
     response: QuestsResponse;
-    filterBySkillFilter: SkillFilter;
+    questIndustryForFiltering: QuestSpecializationFilter;
+    questSpecializationForFiltering: QuestSpecializationFilter;
+    questSpecializations: QuestSpecializationFilter[];
+    reviews: Review[];
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
-    reviews: Review[];
-    questSkillFilters: SkillFilter[];
-    updateFieldLocationPostGIS(): void;
-    mustHaveStatus(...statuses: QuestStatus[]): void;
-    mustBeAppointedOnQuest(workerId: string): void;
-    mustBeQuestCreator(userId: String): void;
 }

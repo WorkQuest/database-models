@@ -1,10 +1,17 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
-import {idSchema, jwtTokenAccess, jwtTokenRefresh, locationSchema, mobilePhoneSchema} from "./common";
+import {
+  idSchema,
+  jwtTokenAccess,
+  jwtTokenRefresh,
+  locationSchema,
+  mobilePhoneSchema, searchSchema,
+  sortDirectionSchema
+} from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
-import {skillFilterSchema} from "./filter";
+import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -69,10 +76,43 @@ export const userSchema = Joi.object({
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   reviews: reviewsSchema,
-  skillFilters: skillFilterSchema,
+  ratingStatistic: ratingStatisticSchema,
+  userSpecializations: modelSpecializationsSchema,
+  location: locationSchema,
+}).label("User");
+
+export const userEmployerSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: mobilePhoneSchema,
+  tempPhone: mobilePhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: userAdditionalInfoEmployerSchema,
+  role: userRoleSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   location: locationSchema,
-}).label("UserSchema");
+}).label("UserEmployer");
+
+export const userWorkerSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: mobilePhoneSchema,
+  tempPhone: mobilePhoneSchema,
+  email: userEmailSchema,
+  additionalInfo: userAdditionalInfoWorkerSchema,
+  role: userRoleSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  reviews: reviewsSchema,
+  ratingStatistic: ratingStatisticSchema,
+  userSpecializations: modelSpecializationsSchema,
+  location: locationSchema,
+}).label("UserWorker");
 
 export const userShortSchema = Joi.object({
   id: idSchema,
@@ -83,7 +123,21 @@ export const userShortSchema = Joi.object({
   additionalInfo: userCommonAdditionalInfoSchema,
 }).label('UserShort');
 
+export const userListSortSchema = Joi.object({
+  createdAt: sortDirectionSchema,
+}).default({}).label('UserListSort');
+
+export const userQuerySchema = Joi.object({
+  q: searchSchema,
+  north: locationSchema,
+  south: locationSchema,
+  sort: userListSortSchema,
+  specialization: specializationsFilerSchema.default(null),
+}).label('UserQuery');
+
 export const usersSchema = Joi.array().items(userSchema).label('Users');
+export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
+export const userWorkersSchema = Joi.array().items(userWorkerSchema).label('UserWorkers');
 export const usersShortSchema = Joi.array().items(userShortSchema).label('UsersShort');
 
 export const tokensWithStatus = Joi.object({
