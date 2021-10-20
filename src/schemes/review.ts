@@ -12,7 +12,7 @@ export const reviewSchema = Joi.object({
   toUserId: idSchema,
   message: reviewMessageSchema,
   mark: reviewMarkSchema,
-  fromUser: userShortSchema,
+  fromUserOnWq: userShortSchema,
   createdAt: isoDateSchema,
 }).label('ReviewSchema');
 
