@@ -84,7 +84,7 @@ export interface Location {
     }]
   }
 }))
-@Table
+@Table({paranoid: true})
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User)
