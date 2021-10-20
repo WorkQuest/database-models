@@ -24,6 +24,12 @@ import {IndustryFilter} from "./filtres/IndustryFilter";
 import {SpecializationFilter} from "./filtres/SpecializationFilter";
 import {QuestSpecializationFilter} from "./quest/QuestSpecializationFilter";
 import {UserSpecializationFilter} from "./user/UserSpecializationFilter";
+import {ForumComment} from "./forum/ForumComment";
+import {ForumCommentLike} from "./forum/ForumCommentLike";
+import {ForumCommentMedia} from "./forum/ForumCommentMedia";
+import {ForumPost} from "./forum/ForumPost";
+import {ForumPostLike} from "./forum/ForumPostLike";
+import {ForumPostMedia} from "./forum/ForumPostMedia";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -55,12 +61,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       SpecializationFilter,
       QuestSpecializationFilter,
       UserSpecializationFilter,
-      ForumPostComment,
-      ForumPostCommentLike,
-      ForumPostCommentMedia,
       ForumPost,
       ForumPostLike,
       ForumPostMedia,
+      ForumComment,
+      ForumCommentLike,
+      ForumCommentMedia,
     ]
   });
   if (sync)
@@ -95,3 +101,9 @@ export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
 export * from "./filtres/IndustryFilter";
 export * from "./filtres/SpecializationFilter";
+export * from "./forum/ForumComment";
+export * from "./forum/ForumCommentLike";
+export * from "./forum/ForumCommentMedia";
+export * from "./forum/ForumPost";
+export * from "./forum/ForumPostLike";
+export * from "./forum/ForumPostMedia";

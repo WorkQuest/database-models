@@ -11,3 +11,4 @@ export * from "./admin";
 export * from "./chat";
 export * from "./liquidity";
 export * from "./specialization";
+export * from "./forum";

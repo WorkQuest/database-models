@@ -11,6 +11,4 @@ export * from "./admin";
 export * from "./chat";
 export * from "./liquidity";
 export * from "./specialization";
-export * from "./forumPost"
-export * from "./forumPostComment";
-export * from "./forumPostLikeCount"
+export * from "./forum";
