@@ -1,7 +1,7 @@
 import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
 import {
-  idSchema,
+  idSchema, isoDateSchema,
   jwtTokenAccess,
   jwtTokenRefresh,
   locationSchema,
@@ -9,7 +9,7 @@ import {
   sortDirectionSchema
 } from "./common";
 import {mediaUrlOnlySchema} from "./media";
-import {reviewsSchema} from "./review";
+import {reviewMarkSchema, reviewMessageSchema, reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
@@ -122,6 +122,17 @@ export const userShortSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   additionalInfo: userCommonAdditionalInfoSchema,
 }).label('UserShort');
+
+export const userReviewSchema = Joi.object({
+  reviewId: idSchema,
+  questId: idSchema,
+  fromUserId: idSchema,
+  toUserId: idSchema,
+  message: reviewMessageSchema,
+  mark: reviewMarkSchema,
+  fromUser: userShortSchema,
+  createdAt: isoDateSchema,
+}).label('ReviewSchema');
 
 export const userListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,

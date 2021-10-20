@@ -15,6 +15,7 @@ export declare const userSchema: Joi.ObjectSchema<any>;
 export declare const userEmployerSchema: Joi.ObjectSchema<any>;
 export declare const userWorkerSchema: Joi.ObjectSchema<any>;
 export declare const userShortSchema: Joi.ObjectSchema<any>;
+export declare const userReviewSchema: Joi.ObjectSchema<any>;
 export declare const userListSortSchema: Joi.ObjectSchema<any>;
 export declare const userQuerySchema: Joi.ObjectSchema<any>;
 export declare const usersSchema: Joi.ArraySchema;
