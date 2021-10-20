@@ -8,6 +8,5 @@ export declare class Review extends Model {
     message: string;
     mark: number;
     fromUser: User;
-    toUser: User;
     avgMark: number;
 }
