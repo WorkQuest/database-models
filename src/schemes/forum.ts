@@ -10,6 +10,7 @@ export const forumCommentSchema = Joi.object({
   forumPostId: idSchema,
   rootCommentId: idSchema,
   text: forumCommentTextSchema,
+  medias: mediasUrlOnlySchema,
   createdAt: isoDateSchema,
 }).label('ForumComment');
 
@@ -25,4 +26,5 @@ export const forumPostSchema = Joi.object({
   createdAt: isoDateSchema,
 }).label('ForumPost');
 
-export const forumPostsSchema = Joi.array().items(forumPostSchema).label('ForumPosts')
+export const forumPostsSchema = Joi.array().items(forumPostSchema).label('ForumPosts');
+export const forumCommentsSchema = Joi.array().items(forumCommentSchema).label('ForumComments');
