@@ -14,6 +14,7 @@ export class Review extends Model {
   @Column({type: DataType.INTEGER, allowNull: false }) mark: number;
 
   @BelongsTo(() => User, 'fromUserId') fromUser: User;
+  @BelongsTo(() => User, 'toUserId') toUser: User;
 
   avgMark: number; /** Used for calculations */
 }
