@@ -26,11 +26,6 @@ import {
       model: User.scope('short'),
       as: "author",
     }, {
-      model: User.scope('short'),
-      as: "userLikes",
-      through: { attributes: [] },
-      limit: 5,
-    }, {
       model: DiscussionComment.unscoped(),
       as: 'rootComment',
     }],
