@@ -87,9 +87,10 @@ export const questQuerySchema = Joi.object({
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: questWorkPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
-  invited: Joi.boolean().default(false),
-  performing: Joi.boolean().default(false),
-  starred: Joi.boolean().default(false),
+  responded: Joi.boolean().default(false), /** Only quests that worker answered (see QuestResponse and its type) */
+  invited: Joi.boolean().default(false), /** Only quests where worker invited (see QuestResponse and its type) */
+  performing: Joi.boolean().default(false), /** Only quests where worker performs (see Quest.assignedWorkerId) */
+  starred: Joi.boolean().default(false), /** Only quest with star (see StarredQuests) */
 }).label('QuestsQuery');
 
 // TODO Добавить в общее
