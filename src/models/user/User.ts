@@ -19,6 +19,8 @@ import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {DiscussionLike} from "../discussion/DiscussionLike";
+import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 
 export interface SocialInfo {
   id: string;
@@ -213,6 +215,8 @@ export class User extends Model {
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
+  @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
+  @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     if (!this.password) {
