@@ -43,8 +43,8 @@ export class Discussion extends Model {
 
   @BelongsTo(() => User) author: User;
 
-  // @HasMany(() => DiscussionComment) comments: DiscussionComment[];
-  // @HasMany(() => DiscussionLike) likes: DiscussionLike[];
+  @HasMany(() => DiscussionComment) comments: DiscussionComment[];
+  @HasMany(() => DiscussionLike) likes: DiscussionLike[];
 
   @BelongsToMany(() => Media, () => DiscussionMedia) medias: Media[];
   @BelongsToMany(() => User, () => DiscussionLike) userLikes: User[];
