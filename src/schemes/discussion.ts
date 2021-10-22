@@ -41,3 +41,11 @@ export const discussionLikesSchema = Joi.object({
   createdAt: isoDateSchema,
   user: userShortSchema
 }).label('DiscussionLikes');
+
+export const commentLikesSchema = Joi.object({
+  id: idSchema,
+  commentId: idSchema,
+  userId: idSchema,
+  createdAt: isoDateSchema,
+  user: userShortSchema
+}).label('CommentLikes');
