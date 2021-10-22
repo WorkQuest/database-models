@@ -216,7 +216,7 @@ export class User extends Model {
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
-  @HasMany(() => DiscussionLike) commentLikes: DiscussionCommentLike[];
+  @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     if (!this.password) {
