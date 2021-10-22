@@ -24,6 +24,12 @@ import {IndustryFilter} from "./filtres/IndustryFilter";
 import {SpecializationFilter} from "./filtres/SpecializationFilter";
 import {QuestSpecializationFilter} from "./quest/QuestSpecializationFilter";
 import {UserSpecializationFilter} from "./user/UserSpecializationFilter";
+import {DiscussionComment} from "./discussion/DiscussionComment";
+import {DiscussionCommentLike} from "./discussion/DiscussionCommentLike";
+import {DiscussionCommentMedia} from "./discussion/DiscussionCommentMedia";
+import {Discussion} from "./discussion/Discussion";
+import {DiscussionLike} from "./discussion/DiscussionLike";
+import {DiscussionMedia} from "./discussion/DiscussionMedia";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -55,6 +61,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       SpecializationFilter,
       QuestSpecializationFilter,
       UserSpecializationFilter,
+      Discussion,
+      DiscussionLike,
+      DiscussionMedia,
+      DiscussionComment,
+      DiscussionCommentLike,
+      DiscussionCommentMedia,
     ]
   });
   if (sync)
@@ -89,3 +101,9 @@ export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
 export * from "./filtres/IndustryFilter";
 export * from "./filtres/SpecializationFilter";
+export * from "./discussion/DiscussionComment";
+export * from "./discussion/DiscussionCommentLike";
+export * from "./discussion/DiscussionCommentMedia";
+export * from "./discussion/Discussion";
+export * from "./discussion/DiscussionLike";
+export * from "./discussion/DiscussionMedia";
