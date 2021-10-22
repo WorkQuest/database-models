@@ -25,23 +25,8 @@ import {
       model: Media.scope("urlOnly"),
       as: "medias",
       through: { attributes: [] }
-    }, {
-      model: DiscussionComment,
-      as: 'comments',
-      where: { rootCommentId: null },
-      limit: 5,
-    }, {
-      model: User.scope('short'),
-      as: 'userLikes',
-      limit: 5,
     }]
   },
-  short: {
-    include: [{
-      model: User.scope('short'),
-      as: 'author',
-    }]
-  }
 }))
 @Table({ paranoid: true })
 export class Discussion extends Model {
