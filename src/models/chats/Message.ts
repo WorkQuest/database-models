@@ -36,11 +36,9 @@ export enum SenderMessageStatus {
     include: [{
       model: Media,
       as: 'medias',
-      through: {
-        attributes: []
-      }
+      through: { attributes: [] }
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortWithAdditionalInfo'),
       as: 'sender'
     }, {
       model: InfoMessage,

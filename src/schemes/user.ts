@@ -118,6 +118,14 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+}).label('UserShort');
+
+export const userShortWithAdditionalInfoSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
   additionalInfo: userCommonAdditionalInfoSchema,
 }).label('UserShort');
 

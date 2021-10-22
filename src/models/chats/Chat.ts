@@ -26,17 +26,15 @@ export enum ChatType {
       exclude: ["messages", "updatedAt"]
     },
     include: [{
-      model: User.scope('short'),
+      model: User.scope('shortWithAdditionalInfo'),
       as: 'owner'
     }, {
       model: Message,
       as: 'lastMessage'
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortWithAdditionalInfo'),
       as: 'members',
-      through: {
-        attributes: []
-      }
+      through: { attributes: [] }
     }]
   }
 }))
