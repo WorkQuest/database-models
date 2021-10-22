@@ -6,3 +6,4 @@ export declare const discussionDescriptionSchema: Joi.StringSchema;
 export declare const discussionSchema: Joi.ObjectSchema<any>;
 export declare const discussionsSchema: Joi.ArraySchema;
 export declare const discussionCommentsSchema: Joi.ArraySchema;
+export declare const discussionLikesSchema: Joi.ObjectSchema<any>;

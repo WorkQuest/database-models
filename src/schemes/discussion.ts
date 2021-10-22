@@ -1,6 +1,7 @@
 import * as Joi from "joi";
 import {countSchema, idSchema, isoDateSchema} from "./common";
 import {mediasUrlOnlySchema} from "./media";
+import {userShortSchema} from "./user";
 
 export const discussionCommentTextSchema = Joi.string().example('New Comment').label('DiscussionCommentText');
 
@@ -32,3 +33,11 @@ export const discussionSchema = Joi.object({
 
 export const discussionsSchema = Joi.array().items(discussionSchema).label('Discussions');
 export const discussionCommentsSchema = Joi.array().items(discussionCommentSchema).label('DiscussionComments');
+
+export const discussionLikesSchema = Joi.object({
+  id: idSchema,
+  discussionId: idSchema,
+  userId: idSchema,
+  createdAt: isoDateSchema,
+  user: userShortSchema
+}).label('DiscussionLikes');
