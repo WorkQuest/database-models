@@ -22,8 +22,4 @@ export declare class Chat extends Model {
     star: StarredChat;
     firstMemberInPrivateChat: ChatMember;
     secondMemberInPrivateChat: ChatMember;
-    static chatMustExists(chatId: string): Promise<void>;
-    mustHaveMember(userId: string): Promise<void>;
-    mustHaveType(type: ChatType): void;
-    mustHaveOwner(userId: String): void;
 }

@@ -24,6 +24,4 @@ export declare class Message extends Model {
     medias: Media[];
     sender: User;
     chat: Chat;
-    mustBeSender(userId: String): void;
-    mustBeChat(chatId: String): void;
 }

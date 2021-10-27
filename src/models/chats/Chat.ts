@@ -64,32 +64,4 @@ export class Chat extends Model {
   @HasOne(() => StarredChat) star: StarredChat;
   @HasOne(() => ChatMember) firstMemberInPrivateChat: ChatMember;
   @HasOne(() => ChatMember) secondMemberInPrivateChat: ChatMember;
-
-  static async chatMustExists(chatId: string) {
-    if (!await Chat.findByPk(chatId)) {
-      throw error(Errors.NotFound, "Chat does not exist", { chatId });
-    }
-  }
-
-  async mustHaveMember(userId: string) {
-    const member = await ChatMember.findOne({
-      where: { chatId: this.id, userId }
-    });
-
-    if (!member) {
-      throw error(Errors.Forbidden, "User is not a member of this chat", {});
-    }
-  }
-
-  mustHaveType(type: ChatType) {
-    if (this.type !== type) {
-      throw error(Errors.InvalidType, "Type does not match", {});
-    }
-  }
-
-  mustHaveOwner(userId: String) {
-    if (this.ownerUserId !== userId) {
-      throw error(Errors.Forbidden, "User is not a owner in this chat", {});
-    }
-  }
 }

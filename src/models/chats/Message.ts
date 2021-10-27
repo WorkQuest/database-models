@@ -67,18 +67,4 @@ export class Message extends Model {
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => User, 'senderUserId') sender: User;
   @BelongsTo(() => Chat) chat: Chat;
-
-  mustBeSender(userId: String) {
-    if (this.senderUserId !== userId) {
-      throw error(Errors.Forbidden, "User isn't sender of the message", {
-        messageId: this.id,
-      });
-    }
-  }
-
-  mustBeChat(chatId: String) {
-    if (this.chatId !== chatId) {
-      throw error(Errors.Forbidden, "This message not from this chat", {});
-    }
-  }
 }
