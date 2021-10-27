@@ -24,7 +24,7 @@ import {BridgeSwapTokenEvent} from "./bridge/BridgeSwapTokenEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
-    logging,
+    logging: logging ? console.log : logging,
     dialect: "postgres",
     models: [
       User,
