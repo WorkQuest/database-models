@@ -30,45 +30,53 @@ import {DiscussionCommentMedia} from "./discussion/DiscussionCommentMedia";
 import {Discussion} from "./discussion/Discussion";
 import {DiscussionLike} from "./discussion/DiscussionLike";
 import {DiscussionMedia} from "./discussion/DiscussionMedia";
-
+import {StarredChat} from "./chats/StarredChat";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging: logging ? console.log : logging,
     dialect: "postgres",
     models: [
+      /** User section */
       User,
       Session,
-      Quest,
-      StarredQuests,
-      QuestsResponse,
-      Media,
-      QuestMedia,
       Review,
-      RatingStatistic,
       Portfolio,
       PortfolioMedia,
+      RatingStatistic,
+      UserSpecializationFilter,
+      /** Admin section */
       Admin,
       AdminSession,
+      /** Quest section */
+      Quest,
+      QuestsResponse,
+      QuestMedia,
+      StarredQuests,
+      QuestSpecializationFilter,
+      /** Chat section */
       Chat,
+      StarredChat,
       ChatMember,
       Message,
       MessageMedia,
       InfoMessage,
       StarredMessage,
+      /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
-      IndustryFilter,
-      SpecializationFilter,
-      QuestSpecializationFilter,
-      UserSpecializationFilter,
+      /** Discussion section */
       Discussion,
       DiscussionLike,
       DiscussionMedia,
       DiscussionComment,
       DiscussionCommentLike,
       DiscussionCommentMedia,
-      StarredChat,
+      /** Filter section */
+      IndustryFilter,
+      SpecializationFilter,
+      /** Other */
+      Media,
     ]
   });
   if (sync)
@@ -99,6 +107,7 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
+export * from "./chats/StarredChat";
 export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
 export * from "./filtres/IndustryFilter";

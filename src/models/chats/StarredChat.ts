@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { getUUID } from '../../utils';
-import { User } from '../User';
+import { User } from '../user/User';
 import { Chat } from './Chat';
 
 @Table
