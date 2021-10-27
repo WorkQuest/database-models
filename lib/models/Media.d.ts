@@ -1,5 +1,5 @@
 import { Model } from 'sequelize-typescript';
-import { User } from './User';
+import { User } from './user/User';
 export declare enum ContentType {
     mp4 = "video/mp4",
     jpeg = "image/jpeg",

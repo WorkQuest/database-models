@@ -11,7 +11,7 @@ import {
 } from "sequelize-typescript";
 import { error, getUUID } from "../../utils";
 import { Errors } from "../../utils/errors";
-import { User } from "../User";
+import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { MessageMedia } from "./MessageMedia";
@@ -36,11 +36,9 @@ export enum SenderMessageStatus {
     include: [{
       model: Media,
       as: 'medias',
-      through: {
-        attributes: []
-      }
+      through: { attributes: [] }
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortWithAdditionalInfo'),
       as: 'sender'
     }, {
       model: InfoMessage,

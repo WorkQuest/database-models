@@ -24,5 +24,3 @@ export function totpValidate(totp: string, secret: string): boolean{
     token: Number(totp)
   });
 }
-
-export * from "./quest";

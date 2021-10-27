@@ -1,7 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import {Message} from "./Message";
-import {User} from "../User";
+import {User} from "../user/User";
 
 export enum MessageAction {
   groupChatCreate = 'groupChatCreate',

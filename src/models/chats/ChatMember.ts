@@ -1,8 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import { getUUID } from "../../utils";
-import { User } from "../User";
+import { User } from "../user/User";
 import { Chat } from "./Chat";
-import {Message} from "./Message";
 
 @Scopes(() => ({
   userOnly: {
@@ -10,11 +9,11 @@ import {Message} from "./Message";
       exclude: ['id', 'chatId','createdAt', 'updatedAt']
     },
     include: [{
-      model: User.scope('short'),
+      model: User.scope('shortWithAdditionalInfo'),
       as: 'user'
     }]
   },
-  userIdsOnly: { // TODO attributes: ['userId']
+  userIdsOnly: {
     attributes: {
       exclude: [
         'id',
@@ -36,14 +35,9 @@ export class ChatMember extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, }) lastReadMessageId: string;
-
   /** Metadata */
-  @Column({type: DataType.INTEGER.UNSIGNED, defaultValue: 0}) unreadCountMessages: number;
-  @Column({type: DataType.DATE, }) lastReadMessageDate: Date;
+  @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountMessages: number;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Chat) chat: Chat;
-  @BelongsTo(() => Message) lastReadMessage: Message;
 }
