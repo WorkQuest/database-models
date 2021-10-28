@@ -40,7 +40,7 @@ export class ChatMember extends Model {
   @Column({type: DataType.STRING, }) lastReadMessageId: string;
 
   /** Metadata */
-  @Column({type: DataType.INTEGER.UNSIGNED, defaultValue: 0}) unreadCountMessages: number;
+  @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountMessages: number;
   @Column({type: DataType.DATE, }) lastReadMessageDate: Date;
 
   @BelongsTo(() => User) user: User;
