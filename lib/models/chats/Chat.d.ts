@@ -14,11 +14,11 @@ export declare class Chat extends Model {
     name: string;
     type: ChatType;
     lastMessageDate: Date;
-    members: User[];
+    userMembers: User[];
     owner: User;
     lastMessage: Message;
     messages: Message[];
-    chatMembers: ChatMember[];
+    meMember: ChatMember;
     star: StarredChat;
     firstMemberInPrivateChat: ChatMember;
     secondMemberInPrivateChat: ChatMember;

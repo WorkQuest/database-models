@@ -34,7 +34,7 @@ export enum ChatType {
       as: 'lastMessage'
     }, {
       model: User.scope('shortWithAdditionalInfo'),
-      as: 'members',
+      as: 'userMembers',
       through: { attributes: [] }
     }]
   }
@@ -43,22 +43,22 @@ export enum ChatType {
 export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
-  @ForeignKey(() => User) /* If group chat */
+  @ForeignKey(() => User) /** If group chat */
   @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string;
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
-  @Column({type: DataType.STRING, defaultValue: null}) name: string; /* If group chat */
+  @Column({type: DataType.STRING, defaultValue: null}) name: string; /** If group chat */
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
   @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
-  @BelongsToMany(() => User, () => ChatMember) members: User[];
+  @BelongsToMany(() => User, () => ChatMember) userMembers: User[];
   @BelongsTo(() => User) owner: User;
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
-  @HasMany(() => ChatMember) chatMembers: ChatMember[];
+  @HasOne(() => ChatMember) meMember: ChatMember;
 
   /** Aliases for Queries */
   @HasOne(() => StarredChat) star: StarredChat;
