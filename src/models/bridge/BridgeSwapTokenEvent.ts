@@ -9,7 +9,7 @@ export enum SwapEvents {
 @Table
 export class BridgeSwapTokenEvent extends Model {
   @Column(DataType.STRING) transactionHash: string;
-  @Column(DataType.INTEGER.UNSIGNED) blockNumber: number;
+  @Column(DataType.INTEGER) blockNumber: number;
   @Column(DataType.STRING) network: BlockchainNetworks;
   @Column(DataType.STRING) event: SwapEvents;
   @Column(DataType.STRING) messageHash: string;
