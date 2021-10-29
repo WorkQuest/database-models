@@ -26,7 +26,7 @@ export const specialisationsSchema = Joi.object({
 
 export const industryWithSpecialisationSchema = Joi.object({
   key: industryKeySchema,
-  specialisationsSchema
+  specialisations: specialisationsSchema,
 }).label('IndustryWithSpecialisation');
 
 export const filterSchema = Joi.object().pattern(
