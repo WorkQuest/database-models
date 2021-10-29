@@ -20,9 +20,10 @@ export const specializationKeysSchema = Joi.array().items(specializationKeySchem
 export const specializationsFilerSchema = Joi.array().items(specializationFilerSchema).label('SpecializationFilers');
 export const modelSpecializationsSchema =  Joi.array().items(modelSpecializationSchema).label('ModelSpecializations');
 
-export const specialisationsSchema = Joi.object({
-  specializationName: specializationKeysSchema,
-}).label('Filter');
+export const specialisationsSchema = Joi.object().pattern(
+  specializationNameSchema,
+  specializationKeySchema,
+).label('Filter');
 
 export const industryWithSpecialisationSchema = Joi.object({
   key: industryKeySchema,
