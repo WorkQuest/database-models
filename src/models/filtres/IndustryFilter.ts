@@ -13,7 +13,7 @@ import {SpecializationFilter} from "./SpecializationFilter";
 }))
 @Table
 export class IndustryFilter extends Model {
-  @Column({primaryKey: true, autoIncrement: true, type: DataType.INTEGER}) key: string;
+  @Column({primaryKey: true, autoIncrement: true, type: DataType.INTEGER}) key: number;
 
   @Column({type: DataType.STRING, allowNull: false}) industry: string;
 
