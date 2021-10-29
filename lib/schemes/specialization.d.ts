@@ -9,3 +9,6 @@ export declare const industryKeysSchema: Joi.ArraySchema;
 export declare const specializationKeysSchema: Joi.ArraySchema;
 export declare const specializationsFilerSchema: Joi.ArraySchema;
 export declare const modelSpecializationsSchema: Joi.ArraySchema;
+export declare const specialisationsSchema: Joi.ObjectSchema<any>;
+export declare const industryWithSpecialisationSchema: Joi.ObjectSchema<any>;
+export declare const filterSchema: Joi.ObjectSchema<any>;
