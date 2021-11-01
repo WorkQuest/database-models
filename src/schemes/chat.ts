@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {countSchema, idSchema, idsSchema, isoDateSchema, starSchema} from "./common";
-import {userShortWithAdditionalInfoSchema, usersShortSchema} from "./user";
+import {userShortWithAdditionalInfoSchema} from "./user";
 import {ChatType, MessageType, SenderMessageStatus, MessageAction} from "../models";
 
 /** Chat member */
