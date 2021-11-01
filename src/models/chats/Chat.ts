@@ -51,7 +51,7 @@ export class Chat extends Model {
 
   @Column({type: DataType.STRING, defaultValue: null}) name: string; /** If group chat */
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
-  @Column({type: DataType.INTEGER, defaultValue: null}) lastReadMessageNumber: number;
+  @Column({type: DataType.INTEGER, defaultValue: null}) lastMessageNumber: number;
 
   @BelongsToMany(() => User, () => ChatMember) userMembers: User[];
   @BelongsTo(() => User) owner: User;
