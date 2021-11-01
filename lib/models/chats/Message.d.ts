@@ -14,6 +14,7 @@ export declare enum SenderMessageStatus {
 }
 export declare class Message extends Model {
     id: string;
+    number: number;
     chatId: string;
     senderUserId: string;
     senderStatus: SenderMessageStatus;

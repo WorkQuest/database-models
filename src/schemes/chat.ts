@@ -19,9 +19,11 @@ export const chatMemberSchema = Joi.object({
 export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType)).example(MessageType.message).label("MessageType");
 export const messageSenderStatusSchema = Joi.string().valid(...Object.values(SenderMessageStatus)).example(SenderMessageStatus.unread).label("MessageSenderStatus");
 export const messageTextSchema = Joi.string().example("Hello world!").label('MessageText');
+export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
 
 export const messageSchema = Joi.object({
   id: idSchema,
+  number: messageNumberSchema,
   senderUserId: idSchema,
   chatId: idSchema,
   text: messageTextSchema,

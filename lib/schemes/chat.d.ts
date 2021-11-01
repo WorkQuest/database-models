@@ -4,6 +4,7 @@ export declare const chatMemberSchema: Joi.ObjectSchema<any>;
 export declare const messageTypeSchema: Joi.StringSchema;
 export declare const messageSenderStatusSchema: Joi.StringSchema;
 export declare const messageTextSchema: Joi.StringSchema;
+export declare const messageNumberSchema: Joi.NumberSchema;
 export declare const messageSchema: Joi.ObjectSchema<any>;
 export declare const messageForGetSchema: Joi.ObjectSchema<any>;
 export declare const messagesForGetSchema: Joi.ArraySchema;
