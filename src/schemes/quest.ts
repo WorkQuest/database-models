@@ -82,7 +82,7 @@ export const questQuerySchema = Joi.object({
   limit: limitSchema,
   q: searchSchema,
   sort: questsListSortSchema,
-  status: questStatusesSchema.unique().default(null),
+  statuses: questStatusesSchema.unique().default(null),
   adType: questAdTypeSchema.default(null),
   specializations: specializationsFilerSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
