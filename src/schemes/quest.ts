@@ -39,6 +39,7 @@ export const questEmploymentSchema = Joi.string().valid(...Object.values(QuestEm
 export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).label('QuestEmployments');
 export const questWorkPlacesSchema = Joi.array().items(questWorkPlaceSchema).label('QuestPlaces');
 export const questPrioritiesSchema = Joi.array().items(questPrioritySchema).label('QuestPriorities');
+export const questStatusesSchema = Joi.array().items(questStatusSchema).label('QuestStatuses');
 
 export const questSchema = Joi.object({
   id: idSchema,
@@ -81,7 +82,7 @@ export const questQuerySchema = Joi.object({
   limit: limitSchema,
   q: searchSchema,
   sort: questsListSortSchema,
-  status: questStatusSchema.default(null),
+  status: questStatusesSchema.unique().default(null),
   adType: questAdTypeSchema.default(null),
   specializations: specializationsFilerSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
