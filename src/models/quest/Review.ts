@@ -15,6 +15,7 @@ export class Review extends Model {
 
   @BelongsTo(() => User, 'fromUserId') fromUser: User;
   @BelongsTo(() => User, 'toUserId') toUser: User;
+  @BelongsTo(() => Quest, 'questId') quest: Quest;
 
   avgMark: number; /** Used for calculations */
 }
