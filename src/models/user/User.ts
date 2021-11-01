@@ -21,6 +21,7 @@ import {LocationPostGISType, LocationType} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
 
 export interface SocialInfo {
   id: string;
@@ -211,9 +212,11 @@ export class User extends Model {
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
   /** Aliases for query */
+  @HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
+  @HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
   @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
