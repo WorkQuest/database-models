@@ -13,7 +13,7 @@ export declare class Chat extends Model {
     lastMessageId: string;
     name: string;
     type: ChatType;
-    lastMessageDate: Date;
+    lastReadMessageNumber: number;
     userMembers: User[];
     owner: User;
     lastMessage: Message;

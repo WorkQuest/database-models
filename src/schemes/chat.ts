@@ -5,6 +5,7 @@ import {ChatType, MessageType, SenderMessageStatus, MessageAction} from "../mode
 
 /** Chat member */
 export const chatMemberUnreadCountMessagesSchema = Joi.number().min(0).label('UnreadCountMessages');
+export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
 
 export const chatMemberSchema = Joi.object({
   id: idSchema,
@@ -12,14 +13,13 @@ export const chatMemberSchema = Joi.object({
   userId: idSchema,
   lastReadMessageId: idSchema,
   unreadCountMessages: chatMemberUnreadCountMessagesSchema,
-  lastReadMessageDate: isoDateSchema,
+  lastReadMessageNumber: messageNumberSchema,
 }).label('ChatMember');
 
 /** Chat message */
 export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType)).example(MessageType.message).label("MessageType");
 export const messageSenderStatusSchema = Joi.string().valid(...Object.values(SenderMessageStatus)).example(SenderMessageStatus.unread).label("MessageSenderStatus");
 export const messageTextSchema = Joi.string().example("Hello world!").label('MessageText');
-export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
 
 export const messageSchema = Joi.object({
   id: idSchema,
