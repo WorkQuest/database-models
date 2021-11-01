@@ -145,6 +145,8 @@ export const questForGetSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   star: starSchema,
+  invited: questsResponseSchema,
+  responded: questsResponseSchema,
   response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
   questSpecializations: modelSpecializationsSchema,
