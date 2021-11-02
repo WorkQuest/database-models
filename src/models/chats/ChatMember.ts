@@ -41,7 +41,7 @@ export class ChatMember extends Model {
 
   /** Metadata */
   @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountMessages: number;
-  @Column({type: DataType.DATE, }) lastReadMessageDate: Date;
+  @Column({type: DataType.INTEGER, }) lastReadMessageNumber: number;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Chat) chat: Chat;

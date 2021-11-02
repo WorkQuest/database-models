@@ -50,6 +50,8 @@ export enum SenderMessageStatus {
 export class Message extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true }) id: string;
 
+  @Column({type: DataType.INTEGER, autoIncrement: true}) number: number;
+
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
