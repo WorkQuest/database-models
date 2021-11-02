@@ -145,6 +145,7 @@ export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
 export const userWorkersSchema = Joi.array().items(userWorkerSchema).label('UserWorkers');
 export const usersShortSchema = Joi.array().items(userShortSchema).label('UsersShort');
+export const usersShortWithAdditionalInfoSchema = Joi.array().items(userShortWithAdditionalInfoSchema).label('UsersShortWithAdditionalInfo');
 
 export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,
@@ -166,6 +167,7 @@ export const reviewSchema = Joi.object({
   mark: reviewMarkSchema,
   fromUser: userShortSchema,
   toUser: userShortSchema,
+  // quest: , TODO undefined schema
   createdAt: isoDateSchema,
 }).label('ReviewSchema');
 

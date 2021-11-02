@@ -22,6 +22,7 @@ export declare const usersSchema: Joi.ArraySchema;
 export declare const userEmployersSchema: Joi.ArraySchema;
 export declare const userWorkersSchema: Joi.ArraySchema;
 export declare const usersShortSchema: Joi.ArraySchema;
+export declare const usersShortWithAdditionalInfoSchema: Joi.ArraySchema;
 export declare const tokensWithStatus: Joi.ObjectSchema<any>;
 export declare const reviewMessageSchema: Joi.StringSchema;
 export declare const reviewMarkSchema: Joi.NumberSchema;
