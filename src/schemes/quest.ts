@@ -111,6 +111,7 @@ export const questsResponseSchema = Joi.object({
   workerId: idSchema,
   questId: idSchema,
   status: questsResponseStatusSchema,
+  previousStatus: questsResponseStatusSchema,
   workplace: questWorkPlaceSchema,
   employment: questEmploymentSchema,
   type: questsResponseTypeSchema,
