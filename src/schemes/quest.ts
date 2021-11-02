@@ -82,12 +82,12 @@ export const questQuerySchema = Joi.object({
   limit: limitSchema,
   q: searchSchema,
   sort: questsListSortSchema,
-  statuses: questStatusesSchema.unique().default(null),
   adType: questAdTypeSchema.default(null),
-  specializations: specializationsFilerSchema.unique().default(null),
+  statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: questWorkPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
+  specializations: specializationsFilerSchema.unique().default(null),
   responded: Joi.boolean().default(false), /** Only quests that worker answered (see QuestResponse and its type) */
   invited: Joi.boolean().default(false), /** Only quests where worker invited (see QuestResponse and its type) */
   performing: Joi.boolean().default(false), /** Only quests where worker performs (see Quest.assignedWorkerId) */
