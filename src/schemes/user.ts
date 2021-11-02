@@ -167,6 +167,7 @@ export const reviewSchema = Joi.object({
   mark: reviewMarkSchema,
   fromUser: userShortSchema,
   toUser: userShortSchema,
+  // quest: , TODO undefined schema
   createdAt: isoDateSchema,
 }).label('ReviewSchema');
 
