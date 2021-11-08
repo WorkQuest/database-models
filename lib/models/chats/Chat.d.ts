@@ -5,7 +5,8 @@ import { User } from "../user/User";
 import { StarredChat } from "./StarredChat";
 export declare enum ChatType {
     private = "private",
-    group = "group"
+    group = "group",
+    quest = "quest"
 }
 export declare class Chat extends Model {
     id: string;

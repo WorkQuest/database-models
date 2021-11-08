@@ -13,12 +13,12 @@ import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
 import { User } from "../user/User";
 import {StarredChat} from "./StarredChat";
-import { error, getUUID } from "../../utils";
-import { Errors } from "../../utils/errors";
+import { getUUID } from "../../utils";
 
 export enum ChatType {
   private = 'private',
   group = 'group',
+  quest = 'quest'
 }
 
 @Scopes(() => ({
