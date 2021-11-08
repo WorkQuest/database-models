@@ -1,4 +1,5 @@
 import {
+  BelongsTo,
   Column,
   DataType,
   ForeignKey,
@@ -9,6 +10,7 @@ import { getUUID } from "../../utils";
 import {Quest} from "../quest/Quest";
 import {QuestsResponse} from "../quest/QuestsResponse";
 import {Chat} from "./Chat";
+import {User} from "../user/User";
 
 @Table
 export class QuestChat extends Model {
@@ -21,7 +23,11 @@ export class QuestChat extends Model {
   @Column({type: DataType.STRING, allowNull: false}) responseId: string;
 
   @ForeignKey(() => Chat)
-  @Column({type: DataType.STRING, defaultValue: null}) chatId: string;
+  @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
   @Column({type: DataType.BOOLEAN, defaultValue: true}) isActive: boolean; /**true - when response on quest chat should be create and be active*/
+
+  @BelongsTo(() => Quest) quest: Quest;
+  @BelongsTo(() => QuestsResponse) response: QuestsResponse;
+  @BelongsTo(() => Chat) chat: Chat;
 }
