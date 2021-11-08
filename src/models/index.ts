@@ -118,3 +118,4 @@ export * from "./discussion/DiscussionCommentMedia";
 export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
+export * from "./chats/QuestChat"
