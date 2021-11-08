@@ -31,6 +31,7 @@ import {Discussion} from "./discussion/Discussion";
 import {DiscussionLike} from "./discussion/DiscussionLike";
 import {DiscussionMedia} from "./discussion/DiscussionMedia";
 import {StarredChat} from "./chats/StarredChat";
+import {QuestChat} from "./chats/QuestChat";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -77,6 +78,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       SpecializationFilter,
       /** Other */
       Media,
+      QuestChat,
     ]
   });
   if (sync)
