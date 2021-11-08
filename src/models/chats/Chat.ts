@@ -14,6 +14,7 @@ import { ChatMember } from "./ChatMember";
 import { User } from "../user/User";
 import {StarredChat} from "./StarredChat";
 import { getUUID } from "../../utils";
+import {QuestChat} from "./QuestChat";
 
 export enum ChatType {
   private = 'private',
@@ -58,6 +59,7 @@ export class Chat extends Model {
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
+  @HasMany(() => QuestChat) questChats: QuestChat[];
   @HasOne(() => ChatMember) meMember: ChatMember;
 
   /** Aliases for Queries */
