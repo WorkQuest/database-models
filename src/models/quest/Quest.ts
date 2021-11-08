@@ -19,6 +19,7 @@ import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
+import {Chat} from "../chats/Chat";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -85,6 +86,9 @@ export class Quest extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
+  @ForeignKey(() => Chat)
+  @Column({type: DataType.STRING, defaultValue: null}) chatId: string;
+
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column(DataType.TEXT) description: string;
 
@@ -105,6 +109,7 @@ export class Quest extends Model {
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
+  @BelongsTo(() => Chat, 'chatId') chat: Chat;
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
