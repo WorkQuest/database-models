@@ -86,9 +86,6 @@ export class Quest extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
-  @ForeignKey(() => Chat)
-  @Column({type: DataType.STRING, defaultValue: null}) chatId: string;
-
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column(DataType.TEXT) description: string;
 
@@ -109,7 +106,6 @@ export class Quest extends Model {
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
-  @BelongsTo(() => Chat, 'chatId') chat: Chat;
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;

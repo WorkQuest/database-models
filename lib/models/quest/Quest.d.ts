@@ -6,7 +6,6 @@ import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
 import { LocationPostGISType, LocationType } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
-import { Chat } from "../chats/Chat";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -40,7 +39,6 @@ export declare class Quest extends Model {
     id: string;
     userId: string;
     assignedWorkerId: string;
-    chatId: string;
     title: string;
     description: string;
     status: QuestStatus;
@@ -56,7 +54,6 @@ export declare class Quest extends Model {
     medias: Media[];
     user: User;
     assignedWorker: User;
-    chat: Chat;
     star: StarredQuests;
     response: QuestsResponse;
     responded: QuestsResponse;
