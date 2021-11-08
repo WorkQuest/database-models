@@ -4,7 +4,8 @@ export declare enum MessageAction {
     groupChatCreate = "groupChatCreate",
     groupChatAddUser = "groupChatAddUser",
     groupChatDeleteUser = "groupChatDeleteUser",
-    groupChatLeaveUser = "groupChatLeaveUser"
+    groupChatLeaveUser = "groupChatLeaveUser",
+    questChatCreate = "questChatCreate"
 }
 export declare class InfoMessage extends Model {
     id: string;
