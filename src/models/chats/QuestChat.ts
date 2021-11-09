@@ -11,6 +11,11 @@ import {Quest} from "../quest/Quest";
 import {QuestsResponse} from "../quest/QuestsResponse";
 import {Chat} from "./Chat";
 
+export enum QuestChatStatuses {
+  open,
+  close
+}
+
 @Table
 export class QuestChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
@@ -24,7 +29,7 @@ export class QuestChat extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean; /**true - when response on quest chat should be create and be active*/
+  @Column({type: DataType.BOOLEAN, defaultValue: QuestChatStatuses.open}) status: QuestChatStatuses; /**true - when response on quest chat should be create and be active*/
 
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
