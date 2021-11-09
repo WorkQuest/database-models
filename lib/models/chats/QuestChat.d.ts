@@ -4,8 +4,8 @@ import { QuestsResponse } from "../quest/QuestsResponse";
 import { Chat } from "./Chat";
 import { User } from "../user/User";
 export declare enum QuestChatStatuses {
-    open = 0,
-    close = 1
+    Open = 0,
+    Close = 1
 }
 export declare class QuestChat extends Model {
     id: string;

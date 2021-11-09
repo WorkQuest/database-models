@@ -13,8 +13,8 @@ import {Chat} from "./Chat";
 import {User} from "../user/User";
 
 export enum QuestChatStatuses {
-  open,
-  close
+  Open,
+  Close
 }
 
 @Table
@@ -36,7 +36,7 @@ export class QuestChat extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: QuestChatStatuses.open}) status: QuestChatStatuses; /**true - when response on quest chat should be create and be active*/
+  @Column({type: DataType.INTEGER, defaultValue: QuestChatStatuses.Open}) status: QuestChatStatuses; /**true - when response on quest chat should be create and be active*/
 
   @BelongsTo(() => User, 'employerId') employer: User;
   @BelongsTo(() => User, 'workerId') worker: User;
