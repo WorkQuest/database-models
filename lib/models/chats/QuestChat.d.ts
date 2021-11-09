@@ -8,6 +8,8 @@ export declare enum QuestChatStatuses {
 }
 export declare class QuestChat extends Model {
     id: string;
+    employerId: string;
+    workerId: string;
     questId: string;
     responseId: string;
     chatId: string;
