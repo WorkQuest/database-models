@@ -38,6 +38,8 @@ export class QuestChat extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: QuestChatStatuses.open}) status: QuestChatStatuses; /**true - when response on quest chat should be create and be active*/
 
+  @BelongsTo(() => User, 'employerId') employer: User;
+  @BelongsTo(() => User, 'workerId') worker: User;
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
   @BelongsTo(() => Chat) chat: Chat;
