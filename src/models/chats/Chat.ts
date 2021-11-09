@@ -37,6 +37,9 @@ export enum ChatType {
       model: User.scope('shortWithAdditionalInfo'),
       as: 'userMembers',
       through: { attributes: [] }
+    }, {
+      model: QuestChat,
+      as: 'questChat',
     }]
   }
 }))
@@ -59,8 +62,8 @@ export class Chat extends Model {
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
-  @HasMany(() => QuestChat) questChats: QuestChat[];
   @HasOne(() => ChatMember) meMember: ChatMember;
+  @HasOne(() => QuestChat) questChat: QuestChat;
 
   /** Aliases for Queries */
   @HasOne(() => StarredChat) star: StarredChat;

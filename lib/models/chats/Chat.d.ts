@@ -20,8 +20,8 @@ export declare class Chat extends Model {
     owner: User;
     lastMessage: Message;
     messages: Message[];
-    questChats: QuestChat[];
     meMember: ChatMember;
+    questChat: QuestChat;
     star: StarredChat;
     firstMemberInPrivateChat: ChatMember;
     secondMemberInPrivateChat: ChatMember;
