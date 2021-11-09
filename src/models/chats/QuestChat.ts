@@ -36,7 +36,7 @@ export class QuestChat extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @Column({type: DataType.BOOLEAN, defaultValue: QuestChatStatuses.open}) status: QuestChatStatuses; /**true - when response on quest chat should be create and be active*/
+  @Column({type: DataType.INTEGER, defaultValue: QuestChatStatuses.open}) status: QuestChatStatuses; /**true - when response on quest chat should be create and be active*/
 
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
