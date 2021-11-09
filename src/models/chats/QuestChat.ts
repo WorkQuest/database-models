@@ -10,7 +10,6 @@ import { getUUID } from "../../utils";
 import {Quest} from "../quest/Quest";
 import {QuestsResponse} from "../quest/QuestsResponse";
 import {Chat} from "./Chat";
-import {User} from "../user/User";
 
 @Table
 export class QuestChat extends Model {
