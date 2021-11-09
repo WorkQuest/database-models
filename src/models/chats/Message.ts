@@ -9,8 +9,7 @@ import {
   Scopes,
   HasOne
 } from "sequelize-typescript";
-import { error, getUUID } from "../../utils";
-import { Errors } from "../../utils/errors";
+import { getUUID } from "../../utils";
 import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
@@ -50,7 +49,7 @@ export enum SenderMessageStatus {
 export class Message extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true }) id: string;
 
-  @Column({type: DataType.INTEGER, autoIncrement: true}) number: number;
+  @Column({ type: DataType.INTEGER, allowNull: false }) number: number;
 
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
