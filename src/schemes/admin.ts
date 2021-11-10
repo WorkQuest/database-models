@@ -20,6 +20,10 @@ export const adminResolvedDisputesSchema = Joi.number().example(25).label('Admin
 export const adminAboutSchema = Joi.string().example('I am cool admin').label('AdminAboutSchema');
 export const adminLanguagesSchema = Joi.array().items(languageTableSchema).default([]).label('AdminLanguagesSchema');
 
+export const adminIdParams = Joi.object({
+  adminId: idSchema.required()
+});
+
 export const adminPlaceSchema = Joi.object({
   country: adminCountrySchema,
   city: adminCitySchema,

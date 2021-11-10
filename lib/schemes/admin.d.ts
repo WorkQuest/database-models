@@ -14,6 +14,7 @@ export declare const adminAgeSchema: Joi.NumberSchema;
 export declare const adminResolvedDisputesSchema: Joi.NumberSchema;
 export declare const adminAboutSchema: Joi.StringSchema;
 export declare const adminLanguagesSchema: Joi.ArraySchema;
+export declare const adminIdParams: Joi.ObjectSchema<any>;
 export declare const adminPlaceSchema: Joi.ObjectSchema<any>;
 export declare const adminAdditionalInfoSchema: Joi.ObjectSchema<any>;
 export declare const adminLastSessionSchema: Joi.ObjectSchema<any>;
