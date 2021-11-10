@@ -36,7 +36,6 @@ export interface AdditionalInfo {
 }
 export declare class Admin extends Model {
     id: string;
-    lastSessionId: string;
     avatarId: string;
     email: string;
     password: string;

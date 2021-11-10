@@ -62,9 +62,6 @@ export interface AdditionalInfo {
 export class Admin extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
-  @ForeignKey(() => AdminSession)
-  @Column(DataType.STRING) lastSessionId: string;
-
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
