@@ -24,6 +24,10 @@ export enum MessageAction {
     attributes: {
       exclude: ["createdAt", "updatedAt"]
     },
+    include: [{
+      model: User.scope('shortWithAdditionalInfo'),
+      as: 'user',
+    }],
   }
 }))
 @Table
@@ -39,5 +43,6 @@ export class InfoMessage extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) messageAction: MessageAction;
 
+  @BelongsTo(() => User) user: User;
   @BelongsTo(() => Message) message: Message;
 }
