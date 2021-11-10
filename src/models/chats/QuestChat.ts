@@ -3,7 +3,7 @@ import {
   Column,
   DataType,
   ForeignKey,
-  Model,
+  Model, Scopes,
   Table,
 } from "sequelize-typescript";
 import {getUUID} from "../../utils";
@@ -17,6 +17,18 @@ export enum QuestChatStatuses {
   Close,
 }
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ["createdAt", "updatedAt"]
+    },
+    include: [{
+      model: Quest,
+      as: 'quest',
+      attributes: ["title"] // TODO Add Quest short
+    }]
+  }
+}))
 @Table
 export class QuestChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
