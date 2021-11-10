@@ -6,15 +6,15 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { getUUID } from "../../utils";
+import {getUUID} from "../../utils";
 import {Quest} from "../quest/Quest";
 import {QuestsResponse} from "../quest/QuestsResponse";
 import {Chat} from "./Chat";
 import {User} from "../user/User";
 
 export enum QuestChatStatuses {
-  Open,
-  Close
+  Open = 0,
+  Close,
 }
 
 @Table
@@ -36,11 +36,12 @@ export class QuestChat extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: QuestChatStatuses.Open}) status: QuestChatStatuses; /**true - when response on quest chat should be create and be active*/
+  @Column({type: DataType.INTEGER, defaultValue: QuestChatStatuses.Open}) status: QuestChatStatuses;
 
-  @BelongsTo(() => User, 'employerId') employer: User;
-  @BelongsTo(() => User, 'workerId') worker: User;
+  @BelongsTo(() => Chat) chat: Chat;
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
-  @BelongsTo(() => Chat) chat: Chat;
+
+  @BelongsTo(() => User, 'workerId') worker: User;
+  @BelongsTo(() => User, 'employerId') employer: User;
 }

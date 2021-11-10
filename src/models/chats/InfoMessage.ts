@@ -8,7 +8,15 @@ export enum MessageAction {
   groupChatAddUser = 'groupChatAddUser',
   groupChatDeleteUser = 'groupChatDeleteUser',
   groupChatLeaveUser = 'groupChatLeaveUser',
-  questChatCreate = 'questChatCreate',
+  /** Quest flow */
+  workerResponseOnQuest = 'workerResponseOnQuest',
+  employerRejectResponseOnQuest = 'employerRejectResponseOnQuest',
+
+  employerInviteOnQuest = 'employerInviteOnQuest',
+  workerRejectInviteOnQuest = 'workerRejectInviteOnQuest',
+  workerAcceptInviteOnQuest = 'workerAcceptInviteOnQuest',
+
+
 }
 
 @Scopes(() => ({

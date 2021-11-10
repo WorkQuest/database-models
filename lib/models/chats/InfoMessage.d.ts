@@ -5,7 +5,11 @@ export declare enum MessageAction {
     groupChatAddUser = "groupChatAddUser",
     groupChatDeleteUser = "groupChatDeleteUser",
     groupChatLeaveUser = "groupChatLeaveUser",
-    questChatCreate = "questChatCreate"
+    workerResponseOnQuest = "workerResponseOnQuest",
+    employerRejectResponseOnQuest = "employerRejectResponseOnQuest",
+    employerInviteOnQuest = "employerInviteOnQuest",
+    workerRejectInviteOnQuest = "workerRejectInviteOnQuest",
+    workerAcceptInviteOnQuest = "workerAcceptInviteOnQuest"
 }
 export declare class InfoMessage extends Model {
     id: string;
