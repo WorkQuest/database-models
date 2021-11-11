@@ -21,7 +21,7 @@ import {StarredMessage} from "./chats/StarredMessage";
 import {QuestsStatistic} from "./QuestsStatistic";
 import {Language} from "./Language";
 import { QuestDispute } from "./QuestDispute";
-import {UserBlockReason} from "./UserBlockReason";
+import {UserBlockReason} from "./user/UserBlockReason";
 import {BridgeParserBlockInfo} from "./bridge/BridgeParserBlockInfo";
 import {BridgeSwapTokenEvent} from "./bridge/BridgeSwapTokenEvent";
 import {IndustryFilter} from "./filtres/IndustryFilter";
@@ -130,7 +130,7 @@ export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat"
 export * from "./QuestDispute";
-export * from "./UserBlockReason";
+export * from "./user/UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
 

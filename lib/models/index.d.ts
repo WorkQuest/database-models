@@ -35,6 +35,6 @@ export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat";
 export * from "./QuestDispute";
-export * from "./UserBlockReason";
+export * from "./user/UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";

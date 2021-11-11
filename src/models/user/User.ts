@@ -22,7 +22,7 @@ import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
-import {UserBlockReason} from "../UserBlockReason";
+import {UserBlockReason} from "./UserBlockReason";
 
 export interface SocialInfo {
   id: string;

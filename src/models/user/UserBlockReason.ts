@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { getUUID } from "../utils";
-import {User, UserStatus} from "./user/User";
+import { getUUID } from "../../utils";
+import {User, UserStatus} from "./User";
 
 @Table
 export class UserBlockReason extends Model {
