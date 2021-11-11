@@ -13,5 +13,5 @@ export class QuestBlockReason extends Model {
   @Column({type: DataType.BOOLEAN}) isLast: boolean;
 
 
-  @BelongsTo(() => Quest) user: Quest;
+  @BelongsTo(() => Quest) quest: Quest;
 }

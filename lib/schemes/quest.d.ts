@@ -31,3 +31,4 @@ export declare const questsResponsesWithCountSchema: Joi.ObjectSchema<any>;
 export declare const questForGetSchema: Joi.ObjectSchema<any>;
 export declare const questsForGetSchema: Joi.ArraySchema;
 export declare const questsForGetWithCountSchema: Joi.ObjectSchema<any>;
+export declare const questBlockReasonSchema: Joi.ObjectSchema<any>;

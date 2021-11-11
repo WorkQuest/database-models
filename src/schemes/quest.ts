@@ -19,7 +19,7 @@ import {
   locationSchema,
   sortDirectionSchema,
 } from './common';
-import {userShortSchema} from "./user";
+import {blockReasonSchema, userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
@@ -173,6 +173,14 @@ export const questsForGetWithCountSchema = Joi.object({
   count: countSchema,
   responses: questsForGetSchema,
 }).label('QuestsForGetWithCount');
+
+export const questBlockReasonSchema = Joi.object({
+  id: idSchema,
+  questId: idSchema,
+  blockReason: blockReasonSchema,
+  previousStatus: questStatusSchema,
+  quest: questStatusSchema,
+}).label('QuestBlockReason');
 
 
 

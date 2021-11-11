@@ -6,5 +6,5 @@ export declare class QuestBlockReason extends Model {
     blockReason: string;
     previousStatus: QuestStatus;
     isLast: boolean;
-    user: Quest;
+    quest: Quest;
 }
