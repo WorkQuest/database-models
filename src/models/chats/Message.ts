@@ -9,8 +9,7 @@ import {
   Scopes,
   HasOne
 } from "sequelize-typescript";
-import { error, getUUID } from "../../utils";
-import { Errors } from "../../utils/errors";
+import { getUUID } from "../../utils";
 import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
@@ -36,11 +35,9 @@ export enum SenderMessageStatus {
     include: [{
       model: Media,
       as: 'medias',
-      through: {
-        attributes: []
-      }
+      through: { attributes: [] }
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortWithAdditionalInfo'),
       as: 'sender'
     }, {
       model: InfoMessage,
@@ -51,6 +48,8 @@ export enum SenderMessageStatus {
 @Table
 export class Message extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true }) id: string;
+
+  @Column({ type: DataType.INTEGER, allowNull: false }) number: number;
 
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
@@ -69,18 +68,4 @@ export class Message extends Model {
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => User, 'senderUserId') sender: User;
   @BelongsTo(() => Chat) chat: Chat;
-
-  mustBeSender(userId: String) {
-    if (this.senderUserId !== userId) {
-      throw error(Errors.Forbidden, "User isn't sender of the message", {
-        messageId: this.id,
-      });
-    }
-  }
-
-  mustBeChat(chatId: String) {
-    if (this.chatId !== chatId) {
-      throw error(Errors.Forbidden, "This message not from this chat", {});
-    }
-  }
 }

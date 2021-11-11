@@ -2,6 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "seq
 import { getUUID } from "../../utils";
 import { User } from "../user/User";
 import { Chat } from "./Chat";
+import {Message} from "./Message";
 
 @Scopes(() => ({
   userOnly: {
@@ -9,7 +10,7 @@ import { Chat } from "./Chat";
       exclude: ['id', 'chatId','createdAt', 'updatedAt']
     },
     include: [{
-      model: User.scope('short'),
+      model: User.scope('shortWithAdditionalInfo'),
       as: 'user'
     }]
   },
@@ -35,8 +36,12 @@ export class ChatMember extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
+  @ForeignKey(() => Message)
+  @Column({type: DataType.STRING, }) lastReadMessageId: string;
+
   /** Metadata */
-  @Column({type: DataType.INTEGER.UNSIGNED, defaultValue: 0}) unreadCountMessages: number;
+  @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountMessages: number;
+  @Column({type: DataType.INTEGER, }) lastReadMessageNumber: number;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Chat) chat: Chat;

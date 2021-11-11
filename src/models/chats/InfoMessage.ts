@@ -8,6 +8,15 @@ export enum MessageAction {
   groupChatAddUser = 'groupChatAddUser',
   groupChatDeleteUser = 'groupChatDeleteUser',
   groupChatLeaveUser = 'groupChatLeaveUser',
+  /** Quest flow */
+  workerResponseOnQuest = 'workerResponseOnQuest',
+  employerRejectResponseOnQuest = 'employerRejectResponseOnQuest',
+
+  employerInviteOnQuest = 'employerInviteOnQuest',
+  workerRejectInviteOnQuest = 'workerRejectInviteOnQuest',
+  workerAcceptInviteOnQuest = 'workerAcceptInviteOnQuest',
+
+
 }
 
 @Scopes(() => ({
@@ -15,6 +24,10 @@ export enum MessageAction {
     attributes: {
       exclude: ["createdAt", "updatedAt"]
     },
+    include: [{
+      model: User.scope('shortWithAdditionalInfo'),
+      as: 'user',
+    }],
   }
 }))
 @Table
@@ -30,5 +43,6 @@ export class InfoMessage extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) messageAction: MessageAction;
 
+  @BelongsTo(() => User) user: User;
   @BelongsTo(() => Message) message: Message;
 }

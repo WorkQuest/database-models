@@ -1,4 +1,4 @@
-import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { User } from '../user/User';
 import { Quest } from './Quest';
 import { getUUID } from '../../utils';
@@ -12,6 +12,10 @@ export class Review extends Model {
 
   @Column({type: DataType.TEXT, defaultValue: null }) message: string;
   @Column({type: DataType.INTEGER, allowNull: false }) mark: number;
+
+  @BelongsTo(() => User, 'fromUserId') fromUser: User;
+  @BelongsTo(() => User, 'toUserId') toUser: User;
+  @BelongsTo(() => Quest, 'questId') quest: Quest;
 
   avgMark: number; /** Used for calculations */
 }

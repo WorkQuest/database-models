@@ -2,9 +2,12 @@ import { Model } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
 import { User } from "../user/User";
+import { StarredChat } from "./StarredChat";
+import { QuestChat } from "./QuestChat";
 export declare enum ChatType {
     private = "private",
-    group = "group"
+    group = "group",
+    quest = "quest"
 }
 export declare class Chat extends Model {
     id: string;
@@ -13,14 +16,13 @@ export declare class Chat extends Model {
     name: string;
     type: ChatType;
     lastMessageDate: Date;
-    members: User[];
+    userMembers: User[];
     owner: User;
     lastMessage: Message;
     messages: Message[];
-    chatMembers: ChatMember[];
+    meMember: ChatMember;
+    questChat: QuestChat;
+    star: StarredChat;
     firstMemberInPrivateChat: ChatMember;
     secondMemberInPrivateChat: ChatMember;
-    mustHaveMember(userId: string): Promise<void>;
-    mustHaveType(type: ChatType): void;
-    mustHaveOwner(userId: String): void;
 }

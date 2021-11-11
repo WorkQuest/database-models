@@ -1,16 +1,27 @@
-import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Scopes, Table } from "sequelize-typescript";
-import {error, getUUID, totpValidate} from "../../utils";
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  HasOne,
+  Model,
+  Scopes,
+  Table
+} from "sequelize-typescript";
+import {error, getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
 import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
-import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
-import {UserBlockReason} from "../UserBlockReason";
-import {QuestsStatistic} from "../QuestsStatistic";
+import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {DiscussionLike} from "../discussion/DiscussionLike";
+import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
 
 export interface SocialInfo {
   id: string;
@@ -62,7 +73,6 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
-  Blocked,
 }
 
 export enum UserRole {
@@ -125,9 +135,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     }, {
-      model: SkillFilter,
-      as: 'userSkillFilters',
-      attributes: ["category", "skill"]
+      model: UserSpecializationFilter,
+      as: 'userSpecializations',
+      attributes: ['path'],
     }]
   },
   withPassword: {
@@ -137,6 +147,13 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
+    attributes: ["id", "firstName", "lastName"],
+    include: [{
+      model: Media.scope('urlOnly'),
+      as: 'avatar'
+    }]
+  },
+  shortWithAdditionalInfo: {
     attributes: ["id", "firstName", "lastName", "additionalInfo"],
     include: [{
       model: Media.scope('urlOnly'),
@@ -150,9 +167,6 @@ export class User extends Model {
 
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
-
-  @ForeignKey(() => Session)
-  @Column({type: DataType.STRING, allowNull: true}) lastSessionId: string;
 
   @Column({
     type: DataType.STRING,
@@ -184,36 +198,28 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;
 
-  @Column(DataType.DATE) changeRoleAt: Date;
-
-  @BelongsTo(() => Session,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: Session;
   @Column(DataType.JSONB) location: LocationType;
+  // @Column(DataType.STRING) locationPlaceName: string; TODO
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
-
-  @Column({
-    type: DataType.VIRTUAL,
-    get() {
-      const userSkillFilters: SkillsRaw[] = this.getDataValue('userSkillFilters');
-
-      return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
-    },
-    set (_) { }
-  }) skillFilters?: SkillsMap;
 
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
-  @HasOne(()=> UserBlockReason) blockReason: UserBlockReason;
-  @HasOne(()=> QuestsStatistic) questsStatistic: QuestsStatistic;
 
-  @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
+  @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
-  @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
+  @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
   /** Aliases for query */
+  @HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
+  @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
+  @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
+  @HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
+  @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
+  @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     if (!this.password) {
@@ -247,67 +253,7 @@ export class User extends Model {
     }
   }
 
-  mustHaveRole(role: UserRole) {
-    if (this.role !== role) {
-      throw error(Errors.InvalidRole, "User isn't match role", {
-        current: this.role,
-        mustHave: role
-      });
-    }
-  }
-
-  mustHaveActiveStatusTOTP(activeStatus: boolean) {
-    if (this.settings.security.TOTP.active !== activeStatus) {
-      throw error(Errors.InvalidActiveStatusTOTP,
-        `Active status TOTP is not ${activeStatus ? "enable" : "disable"}`, {});
-    }
-  }
-
-  mustBeUnblock(status: UserStatus) {
-    if (this.status === UserStatus.Blocked) {
-      throw error(Errors.IsBlocked, 'Quest is blocked', {});
-    }
-  }
-
   isTOTPEnabled(): boolean {
     return this.settings.security.TOTP.active;
   }
-
-  validateTOTP(TOTP: string) {
-    if (!totpValidate(TOTP, this.settings.security.TOTP.secret)) {
-      throw error(Errors.InvalidTOTP, "Invalid TOTP", {});
-    }
-  }
-}
-
-export function getDefaultAdditionalInfo(role: UserRole) {
-  let additionalInfo: object = {
-    description: null,
-    secondMobileNumber: null,
-    address: null,
-    socialNetwork: {
-      instagram: null,
-      twitter: null,
-      linkedin: null,
-      facebook: null
-    }
-  };
-
-  if (role === UserRole.Worker) {
-    additionalInfo = {
-      ...additionalInfo,
-      skills: [],
-      educations: [],
-      workExperiences: []
-    };
-  } else if (role === UserRole.Employer) {
-    additionalInfo = {
-      ...additionalInfo,
-      company: null,
-      CEO: null,
-      website: null
-    };
-  }
-
-  return additionalInfo;
 }

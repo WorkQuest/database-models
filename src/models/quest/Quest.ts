@@ -10,16 +10,16 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
-import {error, getUUID, transformToGeoPostGIS} from '../../utils';
+import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import {Media} from '../Media';
 import {QuestMedia} from './QuestMedia';
-import {Errors} from '../../utils/errors';
 import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
-import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
 import {LocationPostGISType, LocationType} from "../types";
+import {QuestSpecializationFilter} from './QuestSpecializationFilter';
+import {Chat} from "../chats/Chat";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -57,11 +57,6 @@ export enum QuestEmployment {
   FixedTerm = 'fixedTerm',
 }
 
-export interface Location {
-  longitude: number;
-  latitude: number;
-}
-
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -70,9 +65,7 @@ export interface Location {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'medias',
-      through: {
-        attributes: []
-      }
+      through: { attributes: [] }
     }, {
       model: User.scope('short'),
       as: 'user'
@@ -80,13 +73,13 @@ export interface Location {
       model: User.scope('short'),
       as: 'assignedWorker'
     }, {
-      model: SkillFilter,
-      as: 'questSkillFilters',
-      attributes: ["category", "skill"]
+      model: QuestSpecializationFilter,
+      as: 'questSpecializations',
+      attributes: ['path'],
     }]
   }
 }))
-@Table
+@Table({paranoid: true})
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User)
@@ -113,16 +106,6 @@ export class Quest extends Model {
   @Column(DataType.TEXT) blockReason: string;
 
 
-  @Column({
-    type: DataType.VIRTUAL,
-    get() {
-      const questSkillFilters: SkillsRaw[] = this.getDataValue('questSkillFilters');
-
-      return (questSkillFilters ? SkillFilter.toMapSkills(questSkillFilters) : undefined);
-    },
-    set (_) { }
-  }) skillFilters?: SkillsMap;
-
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
   @BelongsTo(() => User, 'userId') user: User;
@@ -130,7 +113,13 @@ export class Quest extends Model {
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
-  @HasOne(() => SkillFilter) filterBySkillFilter: SkillFilter; /** Alias */
+  @HasOne(() => QuestsResponse) responded: QuestsResponse; /** Alias for filter in get quests */
+  @HasOne(() => QuestsResponse) invited: QuestsResponse; /** Alias for filter get quests */
+  @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;
+  @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;
+
+  @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
+  @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
   @HasMany(() => Review) reviews: Review[];

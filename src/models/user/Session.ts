@@ -2,7 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize
 import { getUUID } from "../../utils";
 import { User } from "./User";
 
-export interface UserLoginPlace {
+export type UserLoginPlace = {
   country: string | null;
   city: string | null;
 }
@@ -18,12 +18,14 @@ export class Session extends Model {
   @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
 
   @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: UserLoginPlace;
-  @Column({type: DataType.STRING, defaultValue: null}) device: string;
-  @Column({type: DataType.STRING, defaultValue: null}) ipAddress: string;
-  @Column({type: DataType.BOOLEAN, defaultValue: true}) isActive: boolean;
+
+  @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
+
+  @Column(DataType.STRING) ip: string;
+
+  @Column(DataType.STRING) device: string;
 
   @Column(DataType.DATE) logoutAt: Date;
-  @Column(DataType.DATE) lastActionTime: Date;
 
   @BelongsTo(() => User) user: User;
 }
