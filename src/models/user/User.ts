@@ -22,6 +22,7 @@ import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
+import {UserBlockReason} from "../UserBlockReason";
 
 export interface SocialInfo {
   id: string;
@@ -210,6 +211,7 @@ export class User extends Model {
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
 
+  @HasMany(() => UserBlockReason) blockReasons: UserBlockReason[];
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];

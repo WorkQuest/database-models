@@ -9,6 +9,7 @@ import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
 import { Chat } from "../chats/Chat";
+import { UserBlockReason } from "../UserBlockReason";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -102,6 +103,7 @@ export declare class User extends Model {
     changeRoleAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
+    blockReasons: UserBlockReason[];
     sessions: Session[];
     reviews: Review[];
     medias: Media[];
