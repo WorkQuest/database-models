@@ -103,6 +103,7 @@ export declare class User extends Model {
     changeRoleAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
+    lastBlockReason: UserBlockReason;
     blockReasons: UserBlockReason[];
     sessions: Session[];
     reviews: Review[];

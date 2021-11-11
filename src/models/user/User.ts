@@ -210,6 +210,7 @@ export class User extends Model {
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(() => UserBlockReason) lastBlockReason: UserBlockReason;
 
   @HasMany(() => UserBlockReason) blockReasons: UserBlockReason[];
   @HasMany(() => Session) sessions: Session[];
