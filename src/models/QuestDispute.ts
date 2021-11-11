@@ -3,7 +3,7 @@ import { getUUID, error } from '../utils';
 import {User} from "./user/User";
 import {Quest} from "./quest/Quest";
 import {Errors} from "../utils/errors";
-import {Admin} from "./user/Admin";
+import {Admin} from "./admin/Admin";
 
 export enum DisputeStatus {
   pending = 0,

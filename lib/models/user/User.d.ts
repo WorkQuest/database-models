@@ -3,11 +3,12 @@ import { Media } from "../Media";
 import { Session } from "./Session";
 import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
-import { SkillFilter, SkillsMap } from "../SkillFilter";
 import { ChatMember } from "../chats/ChatMember";
 import { LocationPostGISType, LocationType } from "../types";
-import { UserBlockReason } from "../UserBlockReason";
-import { QuestsStatistic } from "../QuestsStatistic";
+import { UserSpecializationFilter } from "./UserSpecializationFilter";
+import { DiscussionLike } from "../discussion/DiscussionLike";
+import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
+import { Chat } from "../chats/Chat";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -39,8 +40,7 @@ export declare const defaultUserSettings: UserSettings;
 export declare enum UserStatus {
     Unconfirmed = 0,
     Confirmed = 1,
-    NeedSetRole = 2,
-    Blocked = 3
+    NeedSetRole = 2
 }
 export declare enum UserRole {
     Employer = "employer",
@@ -85,7 +85,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
-    lastSessionId: string;
     password: string;
     firstName: string;
     lastName: string;
@@ -97,31 +96,27 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     tempPhone: string;
     phone: string;
-    changeRoleAt: Date;
-    lastSession: Session;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
-    skillFilters?: SkillsMap;
     avatar: Media;
     ratingStatistic: RatingStatistic;
-    blockReason: UserBlockReason;
-    questsStatistic: QuestsStatistic;
-    reviews: Review[];
     sessions: Session[];
+    reviews: Review[];
     medias: Media[];
-    userSkillFilters: SkillFilter[];
+    userSpecializations: UserSpecializationFilter[];
+    chatOfUser: Chat;
     chatMember: ChatMember;
+    userIndustryForFiltering: UserSpecializationFilter;
+    userSpecializationForFiltering: UserSpecializationFilter;
+    chatsOfUser: Chat[];
     chatMembers: ChatMember[];
+    discussionLikes: DiscussionLike[];
+    commentLikes: DiscussionCommentLike[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;
     static userMustExist(userId: string): Promise<void>;
     static usersMustExist(userIds: string[]): Promise<void>;
-    mustHaveRole(role: UserRole): void;
-    mustHaveActiveStatusTOTP(activeStatus: boolean): void;
-    mustBeUnblock(status: UserStatus): void;
     isTOTPEnabled(): boolean;
-    validateTOTP(TOTP: string): void;
 }
-export declare function getDefaultAdditionalInfo(role: UserRole): object;
 export {};

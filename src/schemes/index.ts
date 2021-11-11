@@ -9,7 +9,6 @@ export * from "./sumsub";
 export * from "./admin";
 export * from "./questDispute";
 export * from "./chat";
-export * from "./filter";
 export * from "./liquidity"
 export * from "./questsStatistic";
 export * from "./language";

@@ -18,7 +18,6 @@ import {MessageMedia} from "./chats/MessageMedia";
 import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
 import {StarredMessage} from "./chats/StarredMessage";
-import {SkillFilter} from "./SkillFilter";
 import {QuestsStatistic} from "./QuestsStatistic";
 import {Language} from "./Language";
 import { QuestDispute } from "./QuestDispute";
@@ -51,6 +50,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PortfolioMedia,
       RatingStatistic,
       UserSpecializationFilter,
+      UserBlockReason,
       /** Admin section */
       Admin,
       AdminSession,
@@ -61,6 +61,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       StarredQuests,
       QuestSpecializationFilter,
       QuestsStatistic,
+      QuestDispute,
       /** Chat section */
       Chat,
       StarredChat,
@@ -86,7 +87,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Other */
       Media,
       QuestChat,
-      SkillFilter,
     ]
   });
   if (sync)
@@ -129,7 +129,6 @@ export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat"
-export * from "./SkillFilter"
 export * from "./QuestDispute";
 export * from "./UserBlockReason";
 export * from "./QuestsStatistic";

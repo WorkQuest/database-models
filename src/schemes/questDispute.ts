@@ -4,8 +4,8 @@ import {
 } from './common';
 import {DisputeReason, DisputeStatus,} from "../models";
 import { questSchema } from "./quest";
-import { userFullSchema } from "./user";
 import {adminSchema} from "./admin";
+import {userShortSchema} from "./user";
 
 export const disputeStatusSchema = Joi.string().max(255).valid(...Object.values(DisputeStatus)).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatusSchema');
 export const disputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReasonSchema');
@@ -20,8 +20,8 @@ export const disputeSchema = Joi.object({
   opponentUserId: idSchema,
   resolvedByAdminId: idSchema,
   questId: idSchema,
-  openDisputeUser: userFullSchema,
-  opponentUser: userFullSchema,
+  openDisputeUser: userShortSchema,
+  opponentUser: userShortSchema,
   resolvedByAdmin: adminSchema,
   quest: questSchema,
   status: disputeStatusSchema,

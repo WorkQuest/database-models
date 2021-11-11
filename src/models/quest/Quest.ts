@@ -10,7 +10,7 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
-import {getUUID} from '../../utils';
+import {getUUID, error} from '../../utils';
 import {User} from "../user/User";
 import {Media} from '../Media';
 import {QuestMedia} from './QuestMedia';
@@ -19,7 +19,8 @@ import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
-import {Chat} from "../chats/Chat";
+import {Errors} from "../../utils/errors";
+
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -122,12 +123,6 @@ export class Quest extends Model {
   @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
-  @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => SkillFilter) questSkillFilters: SkillFilter[];
-
-  updateFieldLocationPostGIS(): void {
-    this.setDataValue('locationPostGIS', transformToGeoPostGIS(this.getDataValue('location')));
-  }
 
   mustHaveStatus(...statuses: QuestStatus[]) {
     if (!statuses.includes(this.status)) {

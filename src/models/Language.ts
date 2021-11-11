@@ -1,6 +1,6 @@
 import {Column, DataType, Model, Table, ForeignKey, BelongsTo} from 'sequelize-typescript';
 import { getUUID } from '../utils';
-import {Admin} from "./user/Admin";
+import {Admin} from "./admin/Admin";
 
 export enum LanguagesEnum {
   en = "en",
