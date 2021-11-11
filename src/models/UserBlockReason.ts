@@ -10,5 +10,8 @@ export class UserBlockReason extends Model {
   @Column({type: DataType.TEXT, allowNull: false}) blockReason: string;
   @Column({type: DataType.INTEGER, allowNull: false}) previousStatus: UserStatus;
 
+  @Column({type: DataType.BOOLEAN}) isLast: boolean;
+
+
   @BelongsTo(() => User) user: User;
 }
