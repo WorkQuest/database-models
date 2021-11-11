@@ -104,8 +104,6 @@ export class Quest extends Model {
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
-  @Column(DataType.TEXT) blockReason: string;
-
 
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
