@@ -172,3 +172,13 @@ export const reviewSchema = Joi.object({
 }).label('ReviewSchema');
 
 export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');
+
+export const blockReasonSchema = Joi.string().example('You was blocked').label('BlockReason');
+
+export const userBlockReasonSchema = Joi.object({
+  id: idSchema,
+  userId: idSchema,
+  blockReason: blockReasonSchema,
+  previousStatus: userStatusSchema,
+  user: userShortSchema,
+}).label('UserBlockReason');
