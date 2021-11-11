@@ -73,6 +73,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
+  Blocked,
 }
 
 export enum UserRole {
@@ -201,6 +202,9 @@ export class User extends Model {
   @Column(DataType.JSONB) location: LocationType;
   // @Column(DataType.STRING) locationPlaceName: string; TODO
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
+
+  @Column({type: DataType.DATE}) changeRoleAt: Date;
+
 
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 

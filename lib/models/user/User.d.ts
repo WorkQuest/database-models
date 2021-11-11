@@ -40,7 +40,8 @@ export declare const defaultUserSettings: UserSettings;
 export declare enum UserStatus {
     Unconfirmed = 0,
     Confirmed = 1,
-    NeedSetRole = 2
+    NeedSetRole = 2,
+    Blocked = 3
 }
 export declare enum UserRole {
     Employer = "employer",
@@ -98,6 +99,7 @@ export declare class User extends Model {
     phone: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
+    changeRoleAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     sessions: Session[];
