@@ -6,6 +6,7 @@ import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
 import { LocationPostGISType, LocationType } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
+import { QuestBlockReason } from "./QuestBlockReason";
 export declare enum QuestPriority {
     AllPriority = 0,
     Low = 1,
@@ -66,6 +67,7 @@ export declare class Quest extends Model {
     reviews: Review[];
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
+    blockReasons: QuestBlockReason[];
     mustHaveStatus(...statuses: QuestStatus[]): void;
     mustBeAppointedOnQuest(workerId: string): void;
     mustBeQuestCreator(userId: String): void;

@@ -5,6 +5,5 @@ export declare class QuestBlockReason extends Model {
     questId: string;
     blockReason: string;
     previousStatus: QuestStatus;
-    isLast: boolean;
     quest: Quest;
 }

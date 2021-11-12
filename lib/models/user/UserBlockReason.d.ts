@@ -5,6 +5,5 @@ export declare class UserBlockReason extends Model {
     userId: string;
     blockReason: string;
     previousStatus: UserStatus;
-    isLast: boolean;
     user: User;
 }

@@ -10,7 +10,5 @@ export class QuestBlockReason extends Model {
   @Column({type: DataType.TEXT, allowNull: false}) blockReason: string;
   @Column({type: DataType.INTEGER, allowNull: false}) previousStatus: QuestStatus;
 
-  @Column({type: DataType.BOOLEAN}) isLast: boolean;
-
   @BelongsTo(() => Quest) quest: Quest;
 }

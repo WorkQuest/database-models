@@ -20,6 +20,7 @@ import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {Errors} from "../../utils/errors";
+import {QuestBlockReason} from "./QuestBlockReason";
 
 
 export enum QuestPriority {
@@ -121,6 +122,7 @@ export class Quest extends Model {
   @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
+  @HasMany(() => QuestBlockReason) blockReasons: QuestBlockReason[];
 
   mustHaveStatus(...statuses: QuestStatus[]) {
     if (!statuses.includes(this.status)) {
