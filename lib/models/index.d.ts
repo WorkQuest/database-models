@@ -38,3 +38,4 @@ export * from "./QuestDispute";
 export * from "./user/UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
+export * from "./quest/QuestBlockReason";

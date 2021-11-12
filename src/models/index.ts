@@ -36,6 +36,7 @@ import {DiscussionLike} from "./discussion/DiscussionLike";
 import {DiscussionMedia} from "./discussion/DiscussionMedia";
 import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
+import {QuestBlockReason} from "./quest/QuestBlockReason";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -56,6 +57,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       AdminSession,
       /** Quest section */
       Quest,
+      QuestBlockReason,
       QuestsResponse,
       QuestMedia,
       StarredQuests,
@@ -133,5 +135,6 @@ export * from "./QuestDispute";
 export * from "./user/UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
+export * from "./quest/QuestBlockReason";
 
 
