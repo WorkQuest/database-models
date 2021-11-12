@@ -4,6 +4,7 @@ import { idSchema, urlSchema } from "./common";
 
 export const mediaContentTypeSchema = Joi.string().valid(...Object.values(ContentType)).example(ContentType.png).label("ContentType");
 export const mediaHashSchema = Joi.number().min(60).max(60).label("MediaHash");
+export const mediaNameSchema = Joi.string().max(255).example('FileName').label('MediaName');
 
 export const mediaUrlOnlySchema = Joi.object({
   id: idSchema,
@@ -19,6 +20,7 @@ export const mediaUploadLinkSchema = Joi.object({
 export const mediaSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  name: mediaNameSchema,
   contentType: mediaContentTypeSchema,
   url: urlSchema,
   hash: mediaHashSchema,

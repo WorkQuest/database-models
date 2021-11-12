@@ -21,6 +21,8 @@ export class Media extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
+  @Column({type: DataType.STRING, allowNull: false}) name: string;
+
   @Column({type: DataType.STRING, allowNull: false}) contentType: ContentType;
   @Column({type: DataType.TEXT, allowNull: false}) url: string;
   @Column({type: DataType.STRING, allowNull: false}) hash: string;
