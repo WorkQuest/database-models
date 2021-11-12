@@ -28,5 +28,4 @@ export declare const reviewMessageSchema: Joi.StringSchema;
 export declare const reviewMarkSchema: Joi.NumberSchema;
 export declare const reviewSchema: Joi.ObjectSchema<any>;
 export declare const reviewsSchema: Joi.ArraySchema;
-export declare const blockReasonSchema: Joi.StringSchema;
 export declare const userBlockReasonSchema: Joi.ObjectSchema<any>;

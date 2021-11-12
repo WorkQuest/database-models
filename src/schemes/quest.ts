@@ -9,6 +9,7 @@ import {
   QuestsResponseStatus, QuestChatStatuses,
 } from '../models';
 import {
+  blockReasonSchema,
   idSchema,
   starSchema,
   limitSchema,
@@ -19,7 +20,7 @@ import {
   locationSchema,
   sortDirectionSchema,
 } from './common';
-import {blockReasonSchema, userShortSchema} from "./user";
+import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 

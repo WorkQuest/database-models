@@ -17,6 +17,7 @@ export const limitSchema = Joi.number().min(0).default(10).max(100).label('Limit
 export const searchSchema = Joi.string().default(null).max(255).label('Search');
 export const starSchema = Joi.object().allow(null).label('Star');
 export const mobilePhoneSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).label('MobilePhone');
+export const blockReasonSchema = Joi.string().example('You was blocked').label('BlockReason');
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
 

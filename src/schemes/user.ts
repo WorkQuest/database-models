@@ -8,7 +8,7 @@ import {
   jwtTokenAccess,
   jwtTokenRefresh,
   mobilePhoneSchema,
-  sortDirectionSchema,
+  sortDirectionSchema, blockReasonSchema,
 } from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {ratingStatisticSchema} from "./ratingStatistic";
@@ -172,8 +172,6 @@ export const reviewSchema = Joi.object({
 }).label('ReviewSchema');
 
 export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');
-
-export const blockReasonSchema = Joi.string().example('You was blocked').label('BlockReason');
 
 export const userBlockReasonSchema = Joi.object({
   id: idSchema,
