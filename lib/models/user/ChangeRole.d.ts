@@ -1,8 +1,10 @@
 import { Model } from "sequelize-typescript";
-import { UserRole, UserStatus } from "./User";
+import { User, UserRole, UserStatus } from "./User";
 export declare class ChangeRole extends Model {
     id: string;
+    userId: string;
     previousAdditionalInfo: object;
     previousRole: UserRole;
     previousStatus: UserStatus;
+    user: User;
 }
