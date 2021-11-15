@@ -89,7 +89,6 @@ export class Admin extends Model {
   @Column({ type: DataType.JSONB, defaultValue: {} }) additionalInfo: object;
   @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedDisputes: number;
 
-  @BelongsTo(() => AdminSession,{ constraints: false, foreignKey: 'lastSessionId' }) lastSession: AdminSession;
   @BelongsTo(() => Media,{ constraints: false, foreignKey: 'avatarId' }) avatar: Media;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];

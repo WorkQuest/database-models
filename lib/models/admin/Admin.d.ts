@@ -46,7 +46,6 @@ export declare class Admin extends Model {
     isActivated: boolean;
     additionalInfo: object;
     resolvedDisputes: number;
-    lastSession: AdminSession;
     avatar: Media;
     sessions: AdminSession[];
     languages: Language[];
