@@ -37,6 +37,7 @@ import {DiscussionMedia} from "./discussion/DiscussionMedia";
 import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
 import {QuestBlockReason} from "./quest/QuestBlockReason";
+import {ChangeRole} from "./user/ChangeRole";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -52,6 +53,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       RatingStatistic,
       UserSpecializationFilter,
       UserBlockReason,
+      ChangeRole,
       /** Admin section */
       Admin,
       AdminSession,
@@ -136,5 +138,5 @@ export * from "./user/UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
 export * from "./quest/QuestBlockReason";
-
+export * from "./user/ChangeRole";
 

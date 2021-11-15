@@ -39,3 +39,4 @@ export * from "./user/UserBlockReason";
 export * from "./QuestsStatistic";
 export * from "./Language";
 export * from "./quest/QuestBlockReason";
+export * from "./user/ChangeRole";
