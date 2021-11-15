@@ -6,5 +6,6 @@ export declare class ChangeRole extends Model {
     previousAdditionalInfo: object;
     previousRole: UserRole;
     previousStatus: UserStatus;
+    changeRoleAt: Date;
     user: User;
 }
