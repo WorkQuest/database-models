@@ -8,7 +8,7 @@ import {
   jwtTokenAccess,
   jwtTokenRefresh,
   mobilePhoneSchema,
-  sortDirectionSchema,
+  sortDirectionSchema, offsetSchema, limitSchema,
 } from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {ratingStatisticSchema} from "./ratingStatistic";
@@ -135,6 +135,8 @@ export const userListSortSchema = Joi.object({
 
 export const userQuerySchema = Joi.object({
   q: searchSchema,
+  offset: offsetSchema,
+  limit: limitSchema,
   north: locationSchema,
   south: locationSchema,
   sort: userListSortSchema,
