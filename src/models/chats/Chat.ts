@@ -62,6 +62,7 @@ export class Chat extends Model {
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
+  @HasMany(() => Message) members: ChatMember[];
   @HasOne(() => ChatMember) meMember: ChatMember;
   @HasOne(() => QuestChat) questChat: QuestChat;
 
