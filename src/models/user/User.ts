@@ -73,6 +73,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
+  Blocked
 }
 
 export enum UserRole {
