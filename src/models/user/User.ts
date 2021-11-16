@@ -204,9 +204,6 @@ export class User extends Model {
   // @Column(DataType.STRING) locationPlaceName: string; TODO
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
-  @Column({type: DataType.DATE}) changeRoleAt: Date;
-
-
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
