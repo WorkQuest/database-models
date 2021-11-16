@@ -19,7 +19,6 @@ export class ChangeRole extends Model {
   @Column({type: DataType.JSONB, defaultValue: {}}) previousAdditionalInfo: object;
 
   @Column({type: DataType.STRING, defaultValue: null}) previousRole: UserRole;
-  @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) previousStatus: UserStatus;
 
   @Column({type: DataType.DATE}) changeRoleAt: Date;
 
