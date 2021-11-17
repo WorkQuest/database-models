@@ -1,8 +1,10 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table, HasOne} from 'sequelize-typescript';
 import { User } from '../user/User';
 import { Quest } from './Quest';
 import { error, getUUID } from '../../utils';
 import { Errors } from '../../utils/errors';
+import {RatingStatistic} from "../user/RatingStatistic";
+import {QuestChat} from "../chats/QuestChat";
 
 export enum QuestsResponseStatus {
   Rejected = -1,
@@ -41,6 +43,8 @@ export class QuestsResponse extends Model {
 
   @BelongsTo(() => User) worker: User;
   @BelongsTo(() => Quest) quest: Quest;
+
+  @HasOne(() => QuestChat) questChat: QuestChat;
 
   mustBeInvitedToQuest(workerId: String): void {
     this.mustHaveType(QuestsResponseType.Invite);
