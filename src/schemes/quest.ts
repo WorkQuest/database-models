@@ -128,7 +128,6 @@ export const questsResponseSchema = Joi.object({
   message: questsResponseMessageSchema,
   worker: userShortSchema,
   questChat: questChatSchema,
-  // quest: questSchema,
 }).label('QuestsResponse');
 
 export const questsResponsesSchema = Joi.array().items(questsResponseSchema).label('QuestsResponses');
