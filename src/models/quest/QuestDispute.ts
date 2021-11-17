@@ -8,7 +8,7 @@ import {Admin} from "../admin/Admin";
 export enum DisputeStatus {
   pending = 0,
   inProgress,
-  completed,
+  closed,
 }
 
 export enum DisputeReason {

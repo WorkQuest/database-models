@@ -5,7 +5,7 @@ import { Admin } from "../admin/Admin";
 export declare enum DisputeStatus {
     pending = 0,
     inProgress = 1,
-    completed = 2
+    closed = 2
 }
 export declare enum DisputeReason {
     noAnswer = "noAnswer",
