@@ -32,6 +32,7 @@ import {DiscussionLike} from "./discussion/DiscussionLike";
 import {DiscussionMedia} from "./discussion/DiscussionMedia";
 import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
+import {QuestDispute} from "./quest/QuestDispute";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -51,6 +52,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       AdminSession,
       /** Quest section */
       Quest,
+      QuestDispute,
       QuestsResponse,
       QuestMedia,
       StarredQuests,
@@ -121,3 +123,4 @@ export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat"
+export * from "./quest/QuestDispute"
