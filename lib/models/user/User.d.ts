@@ -6,6 +6,9 @@ import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
 import { LocationPostGISType, LocationType } from "../types";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
+import { DiscussionLike } from "../discussion/DiscussionLike";
+import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
+import { Chat } from "../chats/Chat";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -101,10 +104,14 @@ export declare class User extends Model {
     reviews: Review[];
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
+    chatOfUser: Chat;
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;
+    chatsOfUser: Chat[];
     chatMembers: ChatMember[];
+    discussionLikes: DiscussionLike[];
+    commentLikes: DiscussionCommentLike[];
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;

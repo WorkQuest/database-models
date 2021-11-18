@@ -19,6 +19,9 @@ import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {DiscussionLike} from "../discussion/DiscussionLike";
+import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
 
 export interface SocialInfo {
   id: string;
@@ -144,6 +147,13 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
+    attributes: ["id", "firstName", "lastName"],
+    include: [{
+      model: Media.scope('urlOnly'),
+      as: 'avatar'
+    }]
+  },
+  shortWithAdditionalInfo: {
     attributes: ["id", "firstName", "lastName", "additionalInfo"],
     include: [{
       model: Media.scope('urlOnly'),
@@ -202,10 +212,14 @@ export class User extends Model {
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
   /** Aliases for query */
+  @HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
+  @HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
+  @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
+  @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     if (!this.password) {

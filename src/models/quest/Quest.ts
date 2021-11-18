@@ -19,6 +19,7 @@ import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
+import {Chat} from "../chats/Chat";
 
 export enum QuestPriority {
   AllPriority = 0,
@@ -76,7 +77,7 @@ export enum QuestEmployment {
     }]
   }
 }))
-@Table
+@Table({paranoid: true})
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User)
@@ -108,8 +109,11 @@ export class Quest extends Model {
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
+  @HasOne(() => QuestsResponse) responded: QuestsResponse; /** Alias for filter in get quests */
+  @HasOne(() => QuestsResponse) invited: QuestsResponse; /** Alias for filter get quests */
   @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;
   @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;
+
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];

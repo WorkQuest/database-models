@@ -2,14 +2,15 @@ import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
 import {
   idSchema,
+  searchSchema,
+  isoDateSchema,
+  locationSchema,
   jwtTokenAccess,
   jwtTokenRefresh,
-  locationSchema,
-  mobilePhoneSchema, searchSchema,
-  sortDirectionSchema
+  mobilePhoneSchema,
+  sortDirectionSchema, offsetSchema, limitSchema,
 } from "./common";
 import {mediaUrlOnlySchema} from "./media";
-import {reviewsSchema} from "./review";
 import {ratingStatisticSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
@@ -75,7 +76,6 @@ export const userSchema = Joi.object({
   additionalInfo: userCommonAdditionalInfoSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   location: locationSchema,
@@ -92,7 +92,6 @@ export const userEmployerSchema = Joi.object({
   additionalInfo: userAdditionalInfoEmployerSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   location: locationSchema,
 }).label("UserEmployer");
@@ -108,13 +107,20 @@ export const userWorkerSchema = Joi.object({
   additionalInfo: userAdditionalInfoWorkerSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  reviews: reviewsSchema,
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   location: locationSchema,
 }).label("UserWorker");
 
 export const userShortSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+}).label('UserShort');
+
+export const userShortWithAdditionalInfoSchema = Joi.object({
   id: idSchema,
   avatarId: idSchema,
   firstName: userFirstNameSchema,
@@ -129,6 +135,8 @@ export const userListSortSchema = Joi.object({
 
 export const userQuerySchema = Joi.object({
   q: searchSchema,
+  offset: offsetSchema,
+  limit: limitSchema,
   north: locationSchema,
   south: locationSchema,
   sort: userListSortSchema,
@@ -139,9 +147,30 @@ export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
 export const userWorkersSchema = Joi.array().items(userWorkerSchema).label('UserWorkers');
 export const usersShortSchema = Joi.array().items(userShortSchema).label('UsersShort');
+export const usersShortWithAdditionalInfoSchema = Joi.array().items(userShortWithAdditionalInfoSchema).label('UsersShortWithAdditionalInfo');
 
 export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
 }).label("TokensWithStatus");
+
+/** Review */
+
+export const reviewMessageSchema = Joi.string().example('Hello, I need this job').default('').label('Message');
+export const reviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
+
+export const reviewSchema = Joi.object({
+  reviewId: idSchema,
+  questId: idSchema,
+  fromUserId: idSchema,
+  toUserId: idSchema,
+  message: reviewMessageSchema,
+  mark: reviewMarkSchema,
+  fromUser: userShortSchema,
+  toUser: userShortSchema,
+  // quest: , TODO undefined schema
+  createdAt: isoDateSchema,
+}).label('ReviewSchema');
+
+export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');

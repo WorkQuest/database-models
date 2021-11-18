@@ -10,8 +10,8 @@ import {RatingStatistic} from "./user/RatingStatistic";
 import {StarredQuests} from './quest/StarredQuests';
 import {PortfolioMedia} from './user/PortfolioMedia';
 import {Portfolio} from './user/Portfolio';
-import {Admin} from './user/Admin'
-import {AdminSession} from "./user/AdminSession";
+import {Admin} from './admin/Admin'
+import {AdminSession} from "./admin/AdminSession";
 import {Chat} from "./chats/Chat";
 import {ChatMember} from "./chats/ChatMember";
 import {MessageMedia} from "./chats/MessageMedia";
@@ -24,37 +24,61 @@ import {IndustryFilter} from "./filtres/IndustryFilter";
 import {SpecializationFilter} from "./filtres/SpecializationFilter";
 import {QuestSpecializationFilter} from "./quest/QuestSpecializationFilter";
 import {UserSpecializationFilter} from "./user/UserSpecializationFilter";
+import {DiscussionComment} from "./discussion/DiscussionComment";
+import {DiscussionCommentLike} from "./discussion/DiscussionCommentLike";
+import {DiscussionCommentMedia} from "./discussion/DiscussionCommentMedia";
+import {Discussion} from "./discussion/Discussion";
+import {DiscussionLike} from "./discussion/DiscussionLike";
+import {DiscussionMedia} from "./discussion/DiscussionMedia";
+import {StarredChat} from "./chats/StarredChat";
+import {QuestChat} from "./chats/QuestChat";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
-    logging,
+    logging: logging ? console.log : logging,
     dialect: "postgres",
     models: [
+      /** User section */
       User,
       Session,
-      Quest,
-      StarredQuests,
-      QuestsResponse,
-      Media,
-      QuestMedia,
       Review,
-      RatingStatistic,
       Portfolio,
       PortfolioMedia,
+      RatingStatistic,
+      UserSpecializationFilter,
+      /** Admin section */
       Admin,
       AdminSession,
+      /** Quest section */
+      Quest,
+      QuestsResponse,
+      QuestMedia,
+      StarredQuests,
+      QuestSpecializationFilter,
+      /** Chat section */
       Chat,
+      StarredChat,
       ChatMember,
       Message,
       MessageMedia,
       InfoMessage,
       StarredMessage,
+      /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
+      /** Discussion section */
+      Discussion,
+      DiscussionLike,
+      DiscussionMedia,
+      DiscussionComment,
+      DiscussionCommentLike,
+      DiscussionCommentMedia,
+      /** Filter section */
       IndustryFilter,
       SpecializationFilter,
-      QuestSpecializationFilter,
-      UserSpecializationFilter,
+      /** Other */
+      Media,
+      QuestChat,
     ]
   });
   if (sync)
@@ -76,8 +100,8 @@ export * from "./user/RatingStatistic";
 export * from "./user/PortfolioMedia";
 export * from "./user/Portfolio";
 export * from "./user/Session";
-export * from "./user/Admin";
-export * from "./user/AdminSession";
+export * from "./admin/Admin";
+export * from "./admin/AdminSession";
 export * from "./user/UserSpecializationFilter";
 export * from "./chats/Chat";
 export * from "./chats/ChatMember";
@@ -85,7 +109,15 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
+export * from "./chats/StarredChat";
 export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
 export * from "./filtres/IndustryFilter";
 export * from "./filtres/SpecializationFilter";
+export * from "./discussion/DiscussionComment";
+export * from "./discussion/DiscussionCommentLike";
+export * from "./discussion/DiscussionCommentMedia";
+export * from "./discussion/Discussion";
+export * from "./discussion/DiscussionLike";
+export * from "./discussion/DiscussionMedia";
+export * from "./chats/QuestChat"
