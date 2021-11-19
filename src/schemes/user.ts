@@ -143,6 +143,7 @@ export const userQuerySchema = Joi.object({
   south: locationSchema,
   sort: userListSortSchema,
   specialization: specializationsFilerSchema.default(null),
+  wage: workerWageSchema.default(null),
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
