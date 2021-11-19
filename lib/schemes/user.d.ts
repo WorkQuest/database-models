@@ -5,6 +5,7 @@ export declare const userFirstNameSchema: Joi.StringSchema;
 export declare const userLastNameSchema: Joi.StringSchema;
 export declare const userStatusSchema: Joi.NumberSchema;
 export declare const userRoleSchema: Joi.StringSchema;
+export declare const workerWageSchema: Joi.StringSchema;
 export declare const userSocialMediaNicknamesSchema: Joi.ObjectSchema<any>;
 export declare const userKnowledgeSchema: Joi.ObjectSchema<any>;
 export declare const userWorkExperienceSchema: Joi.ObjectSchema<any>;

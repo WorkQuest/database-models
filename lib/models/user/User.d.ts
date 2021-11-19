@@ -76,6 +76,7 @@ export interface AdditionalInfoWorker extends AdditionalInfo {
     skills: string[];
     educations: Knowledge[] | null;
     workExperiences: WorkExperience[] | null;
+    wage: string;
 }
 export interface AdditionalInfoEmployer extends AdditionalInfo {
     company: string | null;
