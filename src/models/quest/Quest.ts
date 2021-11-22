@@ -19,12 +19,11 @@ import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
-import {Chat} from "../chats/Chat";
 
 export enum QuestPriority {
   AllPriority = 0,
-  Low,
-  Normal,
+  FixedDelivery,
+  ShortTerm,
   Urgent,
 }
 

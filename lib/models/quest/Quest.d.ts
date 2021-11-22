@@ -8,8 +8,8 @@ import { LocationPostGISType, LocationType } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 export declare enum QuestPriority {
     AllPriority = 0,
-    Low = 1,
-    Normal = 2,
+    FixedDelivery = 1,
+    ShortTerm = 2,
     Urgent = 3
 }
 export declare enum AdType {
