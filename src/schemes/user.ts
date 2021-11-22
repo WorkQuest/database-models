@@ -137,8 +137,8 @@ export const userListSortSchema = Joi.object({
 }).default({}).label('UserListSort');
 
 export const betweenWageSchema = Joi.object({
-  from: workerWageSchema.default("0"),
-  to: workerWageSchema.default("0"),
+  from: workerWageSchema.required(),
+  to: workerWageSchema.required(),
 }).label('BetweenWage');
 
 export const userQuerySchema = Joi.object({
