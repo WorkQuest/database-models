@@ -76,8 +76,8 @@ export const questsListSortSchema = Joi.object({
 }).default({}).label('QuestsListSort');
 
 export const betweenPriceSchema = Joi.object({
-  from: questPriceSchema.required(),
-  to: questPriceSchema.required(),
+  from: questPriceSchema.min(0).required(),
+  to: questPriceSchema.min(0).required(),
 }).label('BetweenPrice');
 
 export const questQuerySchema = Joi.object({
