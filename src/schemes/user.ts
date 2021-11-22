@@ -21,7 +21,7 @@ export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan")
 export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov").label("UserLastName");
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
-export const workerWageSchema = Joi.string().example("123").label('UserWageSchema');
+export const workerWagePerHourSchema = Joi.string().example("123").label('UserWage');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -107,7 +107,7 @@ export const userWorkerSchema = Joi.object({
   tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
-  wagePerHour: workerWageSchema,
+  wagePerHour: workerWagePerHourSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
@@ -136,10 +136,10 @@ export const userListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('UserListSort');
 
-export const betweenWageSchema = Joi.object({
-  from: workerWageSchema.required(),
-  to: workerWageSchema.required(),
-}).label('BetweenWage');
+export const betweenWagePerHourSchema = Joi.object({
+  from: workerWagePerHourSchema.required(),
+  to: workerWagePerHourSchema.required(),
+}).label('BetweenWagePerHour');
 
 export const userQuerySchema = Joi.object({
   q: searchSchema,
@@ -149,7 +149,7 @@ export const userQuerySchema = Joi.object({
   south: locationSchema,
   sort: userListSortSchema,
   specialization: specializationsFilerSchema.default(null),
-  wagePerHour: betweenWageSchema
+  betweenWagePerHour: betweenWagePerHourSchema
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
