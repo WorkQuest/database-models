@@ -80,6 +80,12 @@ export enum UserRole {
   Worker = "worker",
 }
 
+export declare enum UserWorkPlace {
+  Distant = "distant",
+  Office = "office",
+  Both = "both"
+}
+
 export enum StatusKYC {
   Unconfirmed = 0,
   Confirmed,
@@ -197,6 +203,8 @@ export class User extends Model {
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
+
+  @Column({type: DataType.STRING, defaultValue: null}) workplace: UserWorkPlace;
 
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;

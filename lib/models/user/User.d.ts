@@ -46,6 +46,11 @@ export declare enum UserRole {
     Employer = "employer",
     Worker = "worker"
 }
+export declare enum UserWorkPlace {
+    Distant = "distant",
+    Office = "office",
+    Both = "both"
+}
 export declare enum StatusKYC {
     Unconfirmed = 0,
     Confirmed = 1
@@ -95,6 +100,7 @@ export declare class User extends Model {
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
+    workplace: UserWorkPlace;
     tempPhone: string;
     phone: string;
     location: LocationType;
