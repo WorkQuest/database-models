@@ -13,7 +13,7 @@ import {
   sortDirectionSchema,
 } from "./common";
 import {mediaUrlOnlySchema} from "./media";
-import {ratingStatisticSchema} from "./ratingStatistic";
+import {ratingStatisticAverageMarkSchema, ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -96,7 +96,7 @@ export const userEmployerSchema = Joi.object({
   additionalInfo: userAdditionalInfoEmployerSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: ratingStatusSchema,
   location: locationSchema,
 }).label("UserEmployer");
 
@@ -112,7 +112,7 @@ export const userWorkerSchema = Joi.object({
   wagePerHour: workerWagePerHourSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: ratingStatusSchema,
   userSpecializations: modelSpecializationsSchema,
   location: locationSchema,
 }).label("UserWorker");
@@ -151,6 +151,7 @@ export const employerQuerySchema = Joi.object({
   north: locationSchema,
   south: locationSchema,
   sort: userListSortSchema,
+  ratingStatistic: ratingStatisticAverageMarkSchema
 }).label('UserQuery');
 
 export const workerQuerySchema = Joi.object({
