@@ -2,13 +2,15 @@ import * as Joi from "joi";
 import { UserRole, UserStatus } from "../models";
 import {
   idSchema,
+  limitSchema,
+  offsetSchema,
   searchSchema,
   isoDateSchema,
   locationSchema,
   jwtTokenAccess,
   jwtTokenRefresh,
   mobilePhoneSchema,
-  sortDirectionSchema, offsetSchema, limitSchema,
+  sortDirectionSchema,
 } from "./common";
 import {mediaUrlOnlySchema} from "./media";
 import {ratingStatisticSchema} from "./ratingStatistic";
@@ -74,8 +76,9 @@ export const userSchema = Joi.object({
   phone: mobilePhoneSchema,
   tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
-  additionalInfo: userCommonAdditionalInfoSchema,
   role: userRoleSchema,
+  wagePerHour: workerWagePerHourSchema,
+  additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
