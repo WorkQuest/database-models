@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import { UserRole, UserStatus } from "../models";
+import {UserRole, UserStatus, UserWorkPlace} from "../models";
 import {
   idSchema,
   searchSchema,
@@ -21,6 +21,7 @@ export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov"
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('UserWage');
+export const userWorkPlaceSchema = Joi.string().valid(...Object.values(UserWorkPlace)).example(UserWorkPlace.Distant).label('UserWorkPlace');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -107,6 +108,7 @@ export const userWorkerSchema = Joi.object({
   email: userEmailSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
   wagePerHour: workerWagePerHourSchema,
+  workplace: userWorkPlaceSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
@@ -159,6 +161,7 @@ export const workerQuerySchema = Joi.object({
   sort: userListSortSchema,
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   specialization: specializationsFilerSchema.default(null),
+  workplace: userWorkPlaceSchema,
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
