@@ -97,7 +97,7 @@ export const questQuerySchema = Joi.object({
   invited: Joi.boolean().default(false), /** Only quests where worker invited (see QuestResponse and its type) */
   performing: Joi.boolean().default(false), /** Only quests where worker performs (see Quest.assignedWorkerId) */
   starred: Joi.boolean().default(false), /** Only quest with star (see StarredQuests) */
-  price: betweenPriceSchema
+  priceBetween: betweenPriceSchema
 }).label('QuestsQuery');
 
 // TODO Добавить в общее
