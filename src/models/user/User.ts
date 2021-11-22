@@ -81,9 +81,9 @@ export enum UserRole {
 }
 
 export declare enum UserWorkPlace {
-  Distant = "distant",
-  Office = "office",
-  Both = "both"
+  Distant ,
+  Office ,
+  Both
 }
 
 export enum StatusKYC {
@@ -204,7 +204,7 @@ export class User extends Model {
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
-  @Column({type: DataType.STRING, defaultValue: null}) workplace: UserWorkPlace;
+  @Column({type: DataType.INTEGER, defaultValue: null}) workplace: UserWorkPlace;
 
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.STRING, defaultValue: null}) phone: string;

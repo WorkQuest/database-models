@@ -47,9 +47,9 @@ export declare enum UserRole {
     Worker = "worker"
 }
 export declare enum UserWorkPlace {
-    Distant = "distant",
-    Office = "office",
-    Both = "both"
+    Distant,
+    Office,
+    Both
 }
 export declare enum StatusKYC {
     Unconfirmed = 0,
