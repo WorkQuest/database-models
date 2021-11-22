@@ -13,6 +13,7 @@ import {
 import {mediaUrlOnlySchema} from "./media";
 import {ratingStatisticSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
+import {questPriceSchema} from "./quest";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -135,6 +136,11 @@ export const userListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('UserListSort');
 
+export const betweenWageSchema = Joi.object({
+  from: workerWageSchema.default("0"),
+  to: workerWageSchema.default("0"),
+}).label('BetweenWage');
+
 export const userQuerySchema = Joi.object({
   q: searchSchema,
   offset: offsetSchema,
@@ -143,7 +149,7 @@ export const userQuerySchema = Joi.object({
   south: locationSchema,
   sort: userListSortSchema,
   specialization: specializationsFilerSchema.default(null),
-  wage: Joi.array().items(workerWageSchema).min(2).max(2).label('WorkerWageArray')
+  wage: betweenWageSchema
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');

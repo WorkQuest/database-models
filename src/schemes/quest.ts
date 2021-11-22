@@ -75,6 +75,11 @@ export const questsListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('QuestsListSort');
 
+export const betweenPriceSchema = Joi.object({
+  from: questPriceSchema.default(0),
+  to: questPriceSchema.default(0),
+}).label('BetweenPrice');
+
 export const questQuerySchema = Joi.object({
   north: locationSchema,
   south: locationSchema,
@@ -92,7 +97,7 @@ export const questQuerySchema = Joi.object({
   invited: Joi.boolean().default(false), /** Only quests where worker invited (see QuestResponse and its type) */
   performing: Joi.boolean().default(false), /** Only quests where worker performs (see Quest.assignedWorkerId) */
   starred: Joi.boolean().default(false), /** Only quest with star (see StarredQuests) */
-  price: Joi.array().items(questPriceSchema).min(2).max(2).label('QuestPriceArray')
+  price: betweenPriceSchema
 }).label('QuestsQuery');
 
 // TODO Добавить в общее
