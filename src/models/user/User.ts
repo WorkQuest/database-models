@@ -80,7 +80,7 @@ export enum UserRole {
   Worker = "worker",
 }
 
-export declare enum UserWorkPlace {
+export enum UserWorkPlace {
   Distant = "distant",
   Office = "office",
   Both = "both"
