@@ -89,7 +89,7 @@ export declare class User extends Model {
     firstName: string;
     lastName: string;
     additionalInfo: object;
-    wage: string;
+    wagePerHour: string;
     email: string;
     role: UserRole;
     settings: UserSettings;

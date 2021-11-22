@@ -189,7 +189,7 @@ export class User extends Model {
   @Column(DataType.STRING) lastName: string;
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
 
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wage: string; //for worker only
+  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string; //for worker only
 
   @Column({type: DataType.STRING, unique: true}) email: string;
   @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;

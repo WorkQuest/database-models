@@ -107,7 +107,7 @@ export const userWorkerSchema = Joi.object({
   tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
-  wage: workerWageSchema,
+  wagePerHour: workerWageSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
@@ -149,7 +149,7 @@ export const userQuerySchema = Joi.object({
   south: locationSchema,
   sort: userListSortSchema,
   specialization: specializationsFilerSchema.default(null),
-  wage: betweenWageSchema
+  wagePerHour: betweenWageSchema
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
