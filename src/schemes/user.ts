@@ -13,7 +13,6 @@ import {
 import {mediaUrlOnlySchema} from "./media";
 import {ratingStatisticSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
-import {questPriceSchema} from "./quest";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -141,15 +140,25 @@ export const betweenWagePerHourSchema = Joi.object({
   to: workerWagePerHourSchema.required(),
 }).label('BetweenWagePerHour');
 
-export const userQuerySchema = Joi.object({
+// TODO "north" and "south" in object
+export const employerQuerySchema = Joi.object({
+  q: searchSchema,
+  limit: limitSchema,
+  offset: offsetSchema,
+  north: locationSchema,
+  south: locationSchema,
+  sort: userListSortSchema,
+}).label('UserQuery');
+
+export const workerQuerySchema = Joi.object({
   q: searchSchema,
   offset: offsetSchema,
   limit: limitSchema,
   north: locationSchema,
   south: locationSchema,
   sort: userListSortSchema,
+  betweenWagePerHour: betweenWagePerHourSchema.default(null),
   specialization: specializationsFilerSchema.default(null),
-  betweenWagePerHour: betweenWagePerHourSchema
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
