@@ -115,7 +115,6 @@ export interface AdditionalInfoWorker extends AdditionalInfo {
   skills: string[];
   educations: Knowledge[] | null;
   workExperiences: WorkExperience[] | null;
-  wage: string;
 }
 
 export interface AdditionalInfoEmployer extends AdditionalInfo {
@@ -189,6 +188,8 @@ export class User extends Model {
   @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
+
+  @Column({type: DataType.DECIMAL, defaultValue: null}) wage: string; //for worker only
 
   @Column({type: DataType.STRING, unique: true}) email: string;
   @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;

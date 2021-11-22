@@ -76,7 +76,6 @@ export interface AdditionalInfoWorker extends AdditionalInfo {
     skills: string[];
     educations: Knowledge[] | null;
     workExperiences: WorkExperience[] | null;
-    wage: string;
 }
 export interface AdditionalInfoEmployer extends AdditionalInfo {
     company: string | null;
@@ -90,6 +89,7 @@ export declare class User extends Model {
     firstName: string;
     lastName: string;
     additionalInfo: object;
+    wage: string;
     email: string;
     role: UserRole;
     settings: UserSettings;

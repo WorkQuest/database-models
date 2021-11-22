@@ -50,7 +50,6 @@ export const userAdditionalInfoWorkerSchema = Joi.object({
   educations: Joi.array().items(userKnowledgeSchema).default([]).label('Educations'),
   workExperiences: Joi.array().items(userWorkExperienceSchema).default([]).label('WorkExperiences'),
   description: Joi.string().allow(null).label("Description"),
-  wage: workerWageSchema
 }).label('AdditionalInfoWorker');
 
 export const userAdditionalInfoEmployerSchema = Joi.object({
@@ -108,6 +107,7 @@ export const userWorkerSchema = Joi.object({
   tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
+  wage: workerWageSchema,
   role: userRoleSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
