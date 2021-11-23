@@ -1,6 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { User } from '../user/User';
 import { Quest } from './Quest';
+import { QuestChat } from "../chats/QuestChat";
 export declare enum QuestsResponseStatus {
     Rejected = -1,
     Open = 0,
@@ -20,6 +21,7 @@ export declare class QuestsResponse extends Model {
     message: string;
     worker: User;
     quest: Quest;
+    questChat: QuestChat;
     mustBeInvitedToQuest(workerId: String): void;
     mustHaveStatus(status: QuestsResponseStatus): void;
     mustHaveType(type: QuestsResponseType): void;
