@@ -1,0 +1,73 @@
+import {BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Scopes, Table} from 'sequelize-typescript';
+import {User} from '../user/User';
+import {Quest} from './Quest';
+import {QuestChat} from "../chats/QuestChat";
+import {error, getUUID} from '../../utils';
+import {Errors} from '../../utils/errors';
+
+export enum QuestsResponseStatus {
+  Rejected = -1,
+  Open = 0,
+  Accepted,
+  Closed,
+}
+
+export enum QuestsResponseType {
+  Response = 0,
+  Invite,
+}
+
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ['updatedAt']
+    },
+    include: [{
+      model: User.scope('short'),
+      as: 'worker'
+    }]
+  }
+}))
+@Table
+export class QuestsResponse extends Model {
+  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+
+  @ForeignKey(() => User) @Column(DataType.STRING) workerId: string;
+  @ForeignKey(() => Quest) @Column(DataType.STRING) questId: string;
+
+  @Column({type: DataType.INTEGER, defaultValue: QuestsResponseStatus.Open }) status: QuestsResponseStatus;
+  @Column({type: DataType.INTEGER, defaultValue: QuestsResponseType.Response }) type: QuestsResponseType;
+
+  @Column({type: DataType.TEXT }) message: string;
+
+  @BelongsTo(() => User) worker: User;
+  @BelongsTo(() => Quest) quest: Quest;
+
+  @HasOne(() => QuestChat) questChat: QuestChat;
+
+  mustBeInvitedToQuest(workerId: String): void {
+    this.mustHaveType(QuestsResponseType.Invite);
+
+    if (this.workerId !== workerId) {
+      throw error(Errors.Forbidden, "User isn't invited to quest", {});
+    }
+  }
+
+  mustHaveStatus(status: QuestsResponseStatus): void {
+    if (this.status !== status) {
+      throw error(Errors.Forbidden, "Quest response status doesn't match", {
+        mustHave: status,
+        current: this.status,
+      });
+    }
+  }
+
+  mustHaveType(type: QuestsResponseType): void {
+    if (this.type !== type) {
+      throw error(Errors.Forbidden, "Quest response type doesn't match", {
+        mustHave: type,
+        current: this.type,
+      });
+    }
+  }
+}
