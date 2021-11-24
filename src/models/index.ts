@@ -32,6 +32,7 @@ import {DiscussionLike} from "./discussion/DiscussionLike";
 import {DiscussionMedia} from "./discussion/DiscussionMedia";
 import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
+import {DailyLiquidity} from "./dailyLiquidity/DailyLiquidity";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -66,6 +67,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
+      /**Daily pool liquidity section*/
+      DailyLiquidity,
       /** Discussion section */
       Discussion,
       DiscussionLike,
@@ -121,3 +124,4 @@ export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat"
+export * from "./dailyLiquidity/DailyLiquidity";
