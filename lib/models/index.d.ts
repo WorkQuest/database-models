@@ -35,4 +35,3 @@ export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat";
 export * from "./quest/QuestsStatistic";
-export * from "./liquidityPool/DailyLiquidity";
