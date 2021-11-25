@@ -5,7 +5,7 @@ import { getUUID } from "../../utils";
 export class DailyLiquidity extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @Column(DataType.STRING) timestamp: string;
+  @Column(DataType.DATE) timestamp: Date;
   @Column(DataType.STRING) blockNumber: string;
   @Column(DataType.DECIMAL) bnbPool: string;
   @Column(DataType.DECIMAL) wqtPool: string;
