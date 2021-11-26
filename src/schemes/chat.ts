@@ -1,5 +1,15 @@
 import * as Joi from "joi";
-import {countSchema, idSchema, idsSchema, isoDateSchema, starSchema} from "./common";
+import {
+  idSchema,
+  idsSchema,
+  starSchema,
+  countSchema,
+  limitSchema,
+  offsetSchema,
+  searchSchema,
+  isoDateSchema,
+  sortDirectionSchema,
+} from "./common";
 import {userShortWithAdditionalInfoSchema} from "./user";
 import {ChatType, MessageType, SenderMessageStatus, MessageAction} from "../models";
 
@@ -105,3 +115,13 @@ export const chatsForGetWithCountSchema = Joi.object({
   count: countSchema,
   chats: chatsForGetSchema,
 });
+
+export const chatQuerySchema = Joi.object({
+  starred: Joi.boolean().default(false),
+  offset: offsetSchema,
+  limit: limitSchema,
+  q: searchSchema,
+  sort: Joi.object({
+    lastMessageDate: sortDirectionSchema,
+  }).default({ lastMessageDate: 'DESC' }).label('SortChats'),
+}).label('ChatsQuery');
