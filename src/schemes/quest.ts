@@ -6,7 +6,8 @@ import {
   QuestWorkPlace,
   QuestEmployment,
   QuestsResponseType,
-  QuestsResponseStatus, QuestChatStatuses,
+  QuestsResponseStatus,
+  QuestChatStatuses,
 } from '../models';
 import {
   idSchema,
