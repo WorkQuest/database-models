@@ -148,22 +148,22 @@ export const employerQuerySchema = Joi.object({
   q: searchSchema,
   limit: limitSchema,
   offset: offsetSchema,
-  north: locationSchema,
+  north: locationSchema, // TODO in object
   south: locationSchema,
   sort: userListSortSchema,
-  ratingStatus: ratingStatusSchema
+  ratingStatus: ratingStatusSchema.default(null),
 }).label('UserQuery');
 
 export const workerQuerySchema = Joi.object({
   q: searchSchema,
   offset: offsetSchema,
   limit: limitSchema,
-  north: locationSchema,
+  north: locationSchema, // TODO in object
   south: locationSchema,
   sort: userListSortSchema,
+  ratingStatus: ratingStatusSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   specialization: specializationsFilerSchema.default(null),
-  ratingStatus: ratingStatusSchema
 }).label('UserQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
