@@ -22,7 +22,4 @@ export declare class QuestsResponse extends Model {
     worker: User;
     quest: Quest;
     questChat: QuestChat;
-    mustBeInvitedToQuest(workerId: String): void;
-    mustHaveStatus(status: QuestsResponseStatus): void;
-    mustHaveType(type: QuestsResponseType): void;
 }

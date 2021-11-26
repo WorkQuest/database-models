@@ -2,8 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Scopes, Table} f
 import {User} from '../user/User';
 import {Quest} from './Quest';
 import {QuestChat} from "../chats/QuestChat";
-import {error, getUUID} from '../../utils';
-import {Errors} from '../../utils/errors';
+import {getUUID} from '../../utils';
 
 export enum QuestsResponseStatus {
   Rejected = -1,
@@ -44,30 +43,4 @@ export class QuestsResponse extends Model {
   @BelongsTo(() => Quest) quest: Quest;
 
   @HasOne(() => QuestChat) questChat: QuestChat;
-
-  mustBeInvitedToQuest(workerId: String): void {
-    this.mustHaveType(QuestsResponseType.Invite);
-
-    if (this.workerId !== workerId) {
-      throw error(Errors.Forbidden, "User isn't invited to quest", {});
-    }
-  }
-
-  mustHaveStatus(status: QuestsResponseStatus): void {
-    if (this.status !== status) {
-      throw error(Errors.Forbidden, "Quest response status doesn't match", {
-        mustHave: status,
-        current: this.status,
-      });
-    }
-  }
-
-  mustHaveType(type: QuestsResponseType): void {
-    if (this.type !== type) {
-      throw error(Errors.Forbidden, "Quest response type doesn't match", {
-        mustHave: type,
-        current: this.type,
-      });
-    }
-  }
 }

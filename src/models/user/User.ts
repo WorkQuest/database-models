@@ -9,11 +9,10 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {error, getUUID} from "../../utils";
+import {getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
-import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
@@ -247,18 +246,6 @@ export class User extends Model {
         [`settings.social.${network}.id`]: id
       }
     });
-  }
-
-  static async userMustExist(userId: string) {
-    if (!await User.findByPk(userId)) {
-      throw error(Errors.NotFound, "User does not exist", { userId });
-    }
-  }
-
-  static async usersMustExist(userIds: string[]) {
-    for (const id of userIds) {
-      await User.userMustExist(id);
-    }
   }
 
   isTOTPEnabled(): boolean {
