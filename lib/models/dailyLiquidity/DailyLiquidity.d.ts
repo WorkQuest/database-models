@@ -1,7 +1,7 @@
 import { Model } from "sequelize-typescript";
 export declare class DailyLiquidity extends Model {
     id: string;
-    timestamp: string;
+    timestamp: number;
     blockNumber: string;
     bnbPool: string;
     wqtPool: string;
