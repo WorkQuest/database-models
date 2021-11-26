@@ -17,6 +17,7 @@ export declare const questSchema: Joi.ObjectSchema<any>;
 export declare const questsSchema: Joi.ArraySchema;
 export declare const questsWithCountSchema: Joi.ObjectSchema<any>;
 export declare const questsListSortSchema: Joi.ObjectSchema<any>;
+export declare const betweenPriceSchema: Joi.ObjectSchema<any>;
 export declare const questQuerySchema: Joi.ObjectSchema<any>;
 export declare const locationForValidateSchema: Joi.ObjectSchema<any>;
 export declare const questsResponseMessageSchema: Joi.StringSchema;

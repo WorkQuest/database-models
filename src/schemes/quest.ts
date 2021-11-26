@@ -6,7 +6,8 @@ import {
   QuestWorkPlace,
   QuestEmployment,
   QuestsResponseType,
-  QuestsResponseStatus, QuestChatStatuses,
+  QuestsResponseStatus,
+  QuestChatStatuses,
 } from '../models';
 import {
   idSchema,
@@ -75,6 +76,11 @@ export const questsListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('QuestsListSort');
 
+export const betweenPriceSchema = Joi.object({
+  from: questPriceSchema.required(),
+  to: questPriceSchema.required(),
+}).label('BetweenPrice');
+
 export const questQuerySchema = Joi.object({
   north: locationSchema,
   south: locationSchema,
@@ -83,6 +89,7 @@ export const questQuerySchema = Joi.object({
   q: searchSchema,
   sort: questsListSortSchema,
   adType: questAdTypeSchema.default(null),
+  priceBetween: betweenPriceSchema.default(null),
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: questWorkPlacesSchema.unique().default(null),
