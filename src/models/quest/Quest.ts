@@ -55,6 +55,14 @@ export enum QuestEmployment {
   FixedTerm = 'fixedTerm',
 }
 
+export const activeFlowStatuses = [
+  QuestStatus.Created,
+  QuestStatus.Active,
+  QuestStatus.Dispute,
+  QuestStatus.WaitWorker,
+  QuestStatus.WaitConfirm,
+];
+
 @Scopes(() => ({
   defaultScope: {
     attributes: {
