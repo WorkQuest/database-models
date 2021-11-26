@@ -13,3 +13,4 @@ export class DailyLiquidity extends Model {
   @Column(DataType.DECIMAL) usdPriceWQT: string;
   @Column(DataType.DECIMAL) liquidityPoolUSD: string;
 }
+
