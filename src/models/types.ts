@@ -15,7 +15,14 @@ type LocationPostGISType = {
   crs: { type: "name", properties: { name: "EPSG:4326" } };
 }
 
+enum WorkPlace {
+  Distant = "distant",
+  Office = "office",
+  Both = "both"
+}
+
 export {
+  WorkPlace,
   LocationType,
   BlockchainNetworks,
   LocationPostGISType,

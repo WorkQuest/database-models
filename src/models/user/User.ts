@@ -17,7 +17,7 @@ import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType} from "../types";
+import {LocationPostGISType, LocationType, WorkPlace} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
@@ -80,12 +80,6 @@ export enum UserRole {
   Worker = "worker",
 }
 
-export enum UserWorkPlace {
-  Distant = "distant",
-  Office = "office",
-  Both = "both"
-}
-
 export enum StatusKYC {
   Unconfirmed = 0,
   Confirmed,
@@ -118,7 +112,7 @@ interface WorkExperience {
 }
 
 export interface AdditionalInfoWorker extends AdditionalInfo {
-  skills: string[];
+  skills: string[]; // TODO remove
   educations: Knowledge[] | null;
   workExperiences: WorkExperience[] | null;
 }
@@ -174,6 +168,16 @@ export class User extends Model {
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
+  /** User profile */
+  @Column(DataType.STRING) firstName: string;
+  @Column(DataType.STRING) lastName: string;
+  @Column(DataType.JSONB) location: LocationType;
+  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  @Column({type: DataType.STRING, unique: true}) email: string;
+  @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
+  @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
+
+  /** User settings */
   @Column({
     type: DataType.STRING,
     set(value: string) {
@@ -190,32 +194,23 @@ export class User extends Model {
       return this.getDataValue("password");
     }
   }) password: string;
-
-  @Column(DataType.STRING) firstName: string;
-  @Column(DataType.STRING) lastName: string;
-  @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
-
-  /** For worker only */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
-
-  @Column({type: DataType.STRING, unique: true}) email: string;
-  @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
+  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
+  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
-  @Column({type: DataType.STRING, defaultValue: null}) workplace: UserWorkPlace;
+  /** UserRole.Worker: priority list for quests */
+  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
 
-  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
-  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
-
-  @Column(DataType.JSONB) location: LocationType;
-  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  /** PostGIS */
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
-  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
-
+  /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+
+  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];

@@ -1,9 +1,14 @@
 import * as Joi from "joi";
+import {userShortSchema} from "./user";
+import {mediasUrlOnlySchema} from "./media";
+import {
+  specializationsFilerSchema,
+  modelSpecializationsSchema,
+} from "./specialization";
 import {
   AdType,
   QuestStatus,
   QuestPriority,
-  QuestWorkPlace,
   QuestEmployment,
   QuestsResponseType,
   QuestsResponseStatus,
@@ -18,11 +23,9 @@ import {
   offsetSchema,
   isoDateSchema,
   locationSchema,
-  sortDirectionSchema,
+  workPlacesSchema,
+  sortDirectionSchema, workPlaceSchema,
 } from './common';
-import {userShortSchema} from "./user";
-import {mediasUrlOnlySchema} from "./media";
-import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
 /** Quests schemes */
 
@@ -34,11 +37,9 @@ export const questDescriptionSchema = Joi.string().example('Description quest...
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('QuestAdType');
 export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceName');
-export const questWorkPlaceSchema = Joi.string().valid(...Object.values(QuestWorkPlace)).example(QuestWorkPlace.Distant).label('QuestWorkPlace');
 export const questEmploymentSchema = Joi.string().valid(...Object.values(QuestEmployment)).example(QuestEmployment.FullTime).label('QuestEmployment');
 
 export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).label('QuestEmployments');
-export const questWorkPlacesSchema = Joi.array().items(questWorkPlaceSchema).label('QuestPlaces');
 export const questPrioritiesSchema = Joi.array().items(questPrioritySchema).label('QuestPriorities');
 export const questStatusesSchema = Joi.array().items(questStatusSchema).label('QuestStatuses');
 
@@ -48,7 +49,7 @@ export const questSchema = Joi.object({
   assignedWorkerId: idSchema,
   category: questCategorySchema,
   status: questStatusSchema,
-  workplace: questWorkPlaceSchema,
+  workplace: workPlaceSchema,
   employment: questEmploymentSchema,
   priority: questPrioritySchema,
   location: locationSchema,
@@ -82,17 +83,17 @@ export const betweenPriceSchema = Joi.object({
 }).label('BetweenPrice');
 
 export const questQuerySchema = Joi.object({
+  q: searchSchema,
+  limit: limitSchema,
+  offset: offsetSchema,
   north: locationSchema,
   south: locationSchema,
-  offset: offsetSchema,
-  limit: limitSchema,
-  q: searchSchema,
   sort: questsListSortSchema,
   adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
-  workplaces: questWorkPlacesSchema.unique().default(null),
+  workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
   specializations: specializationsFilerSchema.unique().default(null),
   responded: Joi.boolean().default(false), /** Only quests that worker answered (see QuestResponse and its type) */
@@ -129,8 +130,6 @@ export const questsResponseSchema = Joi.object({
   workerId: idSchema,
   questId: idSchema,
   status: questsResponseStatusSchema,
-  workplace: questWorkPlaceSchema,
-  employment: questEmploymentSchema,
   type: questsResponseTypeSchema,
   message: questsResponseMessageSchema,
   worker: userShortSchema,
@@ -153,7 +152,7 @@ export const questForGetSchema = Joi.object({
   assignedWorkerId: idSchema,
   category: questCategorySchema,
   status: questStatusSchema,
-  workplace: questWorkPlaceSchema,
+  workplace: workPlaceSchema,
   employment: questEmploymentSchema,
   priority: questPrioritySchema,
   locationPlaceName: questLocationPlaceNameSchema,
