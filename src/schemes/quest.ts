@@ -6,7 +6,8 @@ import {
   QuestWorkPlace,
   QuestEmployment,
   QuestsResponseType,
-  QuestsResponseStatus, QuestChatStatuses,
+  QuestsResponseStatus,
+  QuestChatStatuses,
 } from '../models';
 import {
   idSchema,
@@ -88,6 +89,7 @@ export const questQuerySchema = Joi.object({
   q: searchSchema,
   sort: questsListSortSchema,
   adType: questAdTypeSchema.default(null),
+  priceBetween: betweenPriceSchema.default(null),
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: questWorkPlacesSchema.unique().default(null),
@@ -97,7 +99,6 @@ export const questQuerySchema = Joi.object({
   invited: Joi.boolean().default(false), /** Only quests where worker invited (see QuestResponse and its type) */
   performing: Joi.boolean().default(false), /** Only quests where worker performs (see Quest.assignedWorkerId) */
   starred: Joi.boolean().default(false), /** Only quest with star (see StarredQuests) */
-  price: betweenPriceSchema
 }).label('QuestsQuery');
 
 // TODO Добавить в общее

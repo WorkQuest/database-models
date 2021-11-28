@@ -2,16 +2,18 @@ import * as Joi from "joi";
 import {UserRole, UserStatus, UserWorkPlace} from "../models";
 import {
   idSchema,
+  limitSchema,
+  offsetSchema,
   searchSchema,
   isoDateSchema,
   locationSchema,
   jwtTokenAccess,
   jwtTokenRefresh,
   mobilePhoneSchema,
-  sortDirectionSchema, offsetSchema, limitSchema,
+  sortDirectionSchema,
 } from "./common";
 import {mediaUrlOnlySchema} from "./media";
-import {ratingStatisticSchema} from "./ratingStatistic";
+import {ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -75,8 +77,9 @@ export const userSchema = Joi.object({
   phone: mobilePhoneSchema,
   tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
-  additionalInfo: userCommonAdditionalInfoSchema,
   role: userRoleSchema,
+  wagePerHour: workerWagePerHourSchema,
+  additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
@@ -147,18 +150,20 @@ export const employerQuerySchema = Joi.object({
   q: searchSchema,
   limit: limitSchema,
   offset: offsetSchema,
-  north: locationSchema,
+  north: locationSchema, // TODO in object
   south: locationSchema,
   sort: userListSortSchema,
+  ratingStatus: ratingStatusSchema.default(null),
 }).label('UserQuery');
 
 export const workerQuerySchema = Joi.object({
   q: searchSchema,
   offset: offsetSchema,
   limit: limitSchema,
-  north: locationSchema,
+  north: locationSchema, // TODO in object
   south: locationSchema,
   sort: userListSortSchema,
+  ratingStatus: ratingStatusSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   specialization: specializationsFilerSchema.default(null),
   workplace: userWorkPlaceSchema,
