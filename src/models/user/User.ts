@@ -140,7 +140,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       attributes: ['path'],
     }, {
       model: QuestsStatistic,
-      as: 'questsStatistic'
+      as: 'questsStatistic',
     }]
   },
   withPassword: {
