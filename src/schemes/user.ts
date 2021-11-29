@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {UserRole, UserStatus, WorkPlace} from "../models";
+import {UserRole, UserStatus} from "../models";
 import {mediaUrlOnlySchema} from "./media";
 import {ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";

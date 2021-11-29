@@ -29,9 +29,9 @@ enum Priority {
 }
 
 export {
+  Priority,
   WorkPlace,
   LocationType,
   BlockchainNetworks,
   LocationPostGISType,
-  Priority
 }

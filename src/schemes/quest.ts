@@ -21,9 +21,11 @@ import {
   searchSchema,
   offsetSchema,
   isoDateSchema,
+  prioritySchema,
   locationSchema,
+  workPlaceSchema,
   workPlacesSchema,
-  sortDirectionSchema, workPlaceSchema, prioritySchema,
+  sortDirectionSchema,
 } from './common';
 
 /** Quests schemes */
