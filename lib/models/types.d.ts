@@ -21,4 +21,10 @@ declare enum WorkPlace {
     Office = "office",
     Both = "both"
 }
-export { WorkPlace, LocationType, BlockchainNetworks, LocationPostGISType, };
+declare enum Priority {
+    AllPriority = 0,
+    FixedDelivery = 1,
+    ShortTerm = 2,
+    Urgent = 3
+}
+export { WorkPlace, LocationType, BlockchainNetworks, LocationPostGISType, Priority };

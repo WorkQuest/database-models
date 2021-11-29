@@ -4,14 +4,8 @@ import { Media } from '../Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { LocationPostGISType, LocationType, WorkPlace } from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
-export declare enum QuestPriority {
-    AllPriority = 0,
-    FixedDelivery = 1,
-    ShortTerm = 2,
-    Urgent = 3
-}
 export declare enum AdType {
     Free = 0,
     Paid = 1
@@ -39,7 +33,7 @@ export declare class Quest extends Model {
     status: QuestStatus;
     workplace: WorkPlace;
     employment: QuestEmployment;
-    priority: QuestPriority;
+    priority: Priority;
     category: string;
     locationPlaceName: string;
     location: LocationType;

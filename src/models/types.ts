@@ -21,9 +21,17 @@ enum WorkPlace {
   Both = "both"
 }
 
+enum Priority {
+  AllPriority = 0,
+  FixedDelivery,
+  ShortTerm,
+  Urgent,
+}
+
 export {
   WorkPlace,
   LocationType,
   BlockchainNetworks,
   LocationPostGISType,
+  Priority
 }

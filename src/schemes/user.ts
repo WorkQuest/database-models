@@ -15,7 +15,7 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   mobilePhoneSchema,
-  sortDirectionSchema,
+  sortDirectionSchema, prioritySchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -114,6 +114,7 @@ export const userWorkerSchema = Joi.object({
   wagePerHour: workerWagePerHourSchema,
   workplace: workPlaceSchema,
   role: userRoleSchema,
+  priority: prioritySchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,

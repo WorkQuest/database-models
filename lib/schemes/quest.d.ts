@@ -1,7 +1,6 @@
 import * as Joi from "joi";
 export declare const questCategorySchema: Joi.StringSchema;
 export declare const questStatusSchema: Joi.NumberSchema;
-export declare const questPrioritySchema: Joi.NumberSchema;
 export declare const questTitleSchema: Joi.StringSchema;
 export declare const questDescriptionSchema: Joi.StringSchema;
 export declare const questPriceSchema: Joi.StringSchema;

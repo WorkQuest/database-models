@@ -17,15 +17,8 @@ import {QuestMedia} from './QuestMedia';
 import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
-import {LocationPostGISType, LocationType, WorkPlace} from "../types";
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
-
-export enum QuestPriority {
-  AllPriority = 0,
-  FixedDelivery,
-  ShortTerm,
-  Urgent,
-}
 
 export enum AdType {
   Free = 0,
@@ -85,7 +78,7 @@ export class Quest extends Model {
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
-  @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority}) priority: QuestPriority;
+  @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
   @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;

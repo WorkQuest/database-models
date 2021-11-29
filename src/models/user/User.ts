@@ -17,7 +17,7 @@ import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, WorkPlace} from "../types";
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
@@ -203,6 +203,7 @@ export class User extends Model {
   /** UserRole.Worker: priority list for quests */
   @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
+  @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
   /** PostGIS */
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;

@@ -4,7 +4,7 @@ import { Session } from "./Session";
 import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
-import { LocationPostGISType, LocationType, WorkPlace } from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
@@ -99,6 +99,7 @@ export declare class User extends Model {
     statusKYC: StatusKYC;
     wagePerHour: string;
     workplace: WorkPlace;
+    priority: Priority;
     locationPostGIS: LocationPostGISType;
     ratingStatistic: RatingStatistic;
     avatar: Media;

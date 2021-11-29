@@ -8,7 +8,6 @@ import {
 import {
   AdType,
   QuestStatus,
-  QuestPriority,
   QuestEmployment,
   QuestsResponseType,
   QuestsResponseStatus,
@@ -24,14 +23,13 @@ import {
   isoDateSchema,
   locationSchema,
   workPlacesSchema,
-  sortDirectionSchema, workPlaceSchema,
+  sortDirectionSchema, workPlaceSchema, prioritySchema,
 } from './common';
 
 /** Quests schemes */
 
 export const questCategorySchema = Joi.string().example('Retail').label('QuestCategory');
 export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestStatus.Created).label('QuestStatus');
-export const questPrioritySchema = Joi.number().valid(...Object.keys(QuestPriority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestPriority.AllPriority).label('QuestPriority');
 export const questTitleSchema = Joi.string().example('Title...').label('QuestTitle');
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('QuestDescription');
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
@@ -40,7 +38,7 @@ export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk
 export const questEmploymentSchema = Joi.string().valid(...Object.values(QuestEmployment)).example(QuestEmployment.FullTime).label('QuestEmployment');
 
 export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).label('QuestEmployments');
-export const questPrioritiesSchema = Joi.array().items(questPrioritySchema).label('QuestPriorities');
+export const questPrioritiesSchema = Joi.array().items(prioritySchema).label('QuestPriorities');
 export const questStatusesSchema = Joi.array().items(questStatusSchema).label('QuestStatuses');
 
 export const questSchema = Joi.object({
@@ -51,7 +49,7 @@ export const questSchema = Joi.object({
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
-  priority: questPrioritySchema,
+  priority: prioritySchema,
   location: locationSchema,
   locationPlaceName: questLocationPlaceNameSchema,
   title: questTitleSchema,
@@ -154,7 +152,7 @@ export const questForGetSchema = Joi.object({
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
-  priority: questPrioritySchema,
+  priority: prioritySchema,
   locationPlaceName: questLocationPlaceNameSchema,
   location: locationSchema,
   title: questTitleSchema,
