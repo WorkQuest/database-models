@@ -1,8 +1,6 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import { getUUID } from "../../utils";
-import {User, UserStatus} from "../user/User";
-import {Media} from "../Media";
-import {RatingStatistic} from "../user/RatingStatistic";
+import {User} from "../user/User";
 
 @Scopes(() => ({
   defaultScope: {
