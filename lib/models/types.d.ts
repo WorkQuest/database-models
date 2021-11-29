@@ -27,4 +27,4 @@ declare enum Priority {
     ShortTerm = 2,
     Urgent = 3
 }
-export { WorkPlace, LocationType, BlockchainNetworks, LocationPostGISType, Priority };
+export { Priority, WorkPlace, LocationType, BlockchainNetworks, LocationPostGISType, };
