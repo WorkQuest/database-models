@@ -9,11 +9,10 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {error, getUUID} from "../../utils";
+import {getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
-import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
@@ -22,6 +21,7 @@ import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
+import {QuestsStatistic} from "../quest/QuestsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -138,6 +138,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: UserSpecializationFilter,
       as: 'userSpecializations',
       attributes: ['path'],
+    }, {
+      model: QuestsStatistic,
+      as: 'questsStatistic',
     }]
   },
   withPassword: {
@@ -210,6 +213,7 @@ export class User extends Model {
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
 
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
@@ -246,18 +250,6 @@ export class User extends Model {
         [`settings.social.${network}.id`]: id
       }
     });
-  }
-
-  static async userMustExist(userId: string) {
-    if (!await User.findByPk(userId)) {
-      throw error(Errors.NotFound, "User does not exist", { userId });
-    }
-  }
-
-  static async usersMustExist(userIds: string[]) {
-    for (const id of userIds) {
-      await User.userMustExist(id);
-    }
   }
 
   isTOTPEnabled(): boolean {

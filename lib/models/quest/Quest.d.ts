@@ -24,6 +24,7 @@ export declare enum QuestEmployment {
     PartTime = "partTime",
     FixedTerm = "fixedTerm"
 }
+export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {
     id: string;
     userId: string;

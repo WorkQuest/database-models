@@ -1,4 +1,9 @@
 import * as Joi from "joi";
+import {mediaUrlOnlySchema} from "./media";
+import { UserRole, UserStatus } from "../models";
+import {questsStatisticSchema} from "./questsStatistic";
+import {ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
+import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {UserRole, UserStatus} from "../models";
 import {mediaUrlOnlySchema} from "./media";
 import {ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
@@ -12,10 +17,11 @@ import {
   locationSchema,
   jwtTokenAccess,
   jwtTokenRefresh,
+  prioritySchema,
   workPlaceSchema,
   workPlacesSchema,
   mobilePhoneSchema,
-  sortDirectionSchema, prioritySchema,
+  sortDirectionSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -79,12 +85,13 @@ export const userSchema = Joi.object({
   tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
   role: userRoleSchema,
+  location: locationSchema,
   wagePerHour: workerWagePerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
-  location: locationSchema,
 }).label("User");
 
 export const userEmployerSchema = Joi.object({
@@ -97,9 +104,10 @@ export const userEmployerSchema = Joi.object({
   email: userEmailSchema,
   additionalInfo: userAdditionalInfoEmployerSchema,
   role: userRoleSchema,
+  location: locationSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
-  location: locationSchema,
+  questsStatistic: questsStatisticSchema,
 }).label("UserEmployer");
 
 export const userWorkerSchema = Joi.object({
@@ -115,10 +123,11 @@ export const userWorkerSchema = Joi.object({
   workplace: workPlaceSchema,
   role: userRoleSchema,
   priority: prioritySchema,
+  location: locationSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
-  location: locationSchema,
+  questsStatistic: questsStatisticSchema,
 }).label("UserWorker");
 
 export const userShortSchema = Joi.object({
