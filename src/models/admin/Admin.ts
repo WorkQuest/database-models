@@ -1,8 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import * as speakeasy from "speakeasy"
 import {Column, DataType, Model, Scopes, Table, HasMany} from 'sequelize-typescript';
-import {getUUID, error} from '../../utils';
-import {Errors} from "../../utils/errors";
+import {getUUID} from '../../utils';
 import {AdminSession} from "./AdminSession"
 
 export enum AdminRole {
@@ -77,11 +76,11 @@ export class Admin extends Model {
     });
   }
 
-  MustHaveAdminRole(role: AdminRole) {
-    if (this.role !== role) {
-      throw error(Errors.InvalidRole, 'Invalid admin type', {});
-    }
-  }
+  // MustHaveAdminRole(role: AdminRole) {
+  //   if (this.role !== role) {
+  //     throw error(Errors.InvalidRole, 'Invalid admin type', {});
+  //   }
+  // }
 
   static async isEmailExist(email: string) {
     return await Admin.findOne({

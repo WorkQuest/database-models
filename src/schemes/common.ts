@@ -1,4 +1,5 @@
 import * as Joi from "joi";
+import {Priority, WorkPlace} from "../models";
 
 export const idSchema = Joi.string().uuid().example("fa0e2e4e-c53f-4af7-8906-1649daa0cce3").label("Id");
 export const urlSchema = Joi.string().example("http://example.com/v1/getVideo").label("URL");
@@ -55,3 +56,8 @@ export const jwtTokens = Joi.object({
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
 }).label("JwtTokensSchema");
+
+export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
+
+export const workPlaceSchema = Joi.string().valid(...Object.values(WorkPlace)).example(WorkPlace.Distant).label('WorkPlace');
+export const workPlacesSchema = Joi.array().items(workPlaceSchema).label('WorkPlaces');

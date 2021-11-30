@@ -1,16 +1,13 @@
 import * as Joi from "joi";
 export declare const questCategorySchema: Joi.StringSchema;
 export declare const questStatusSchema: Joi.NumberSchema;
-export declare const questPrioritySchema: Joi.NumberSchema;
 export declare const questTitleSchema: Joi.StringSchema;
 export declare const questDescriptionSchema: Joi.StringSchema;
 export declare const questPriceSchema: Joi.StringSchema;
 export declare const questAdTypeSchema: Joi.NumberSchema;
 export declare const questLocationPlaceNameSchema: Joi.StringSchema;
-export declare const questWorkPlaceSchema: Joi.StringSchema;
 export declare const questEmploymentSchema: Joi.StringSchema;
 export declare const questEmploymentsSchema: Joi.ArraySchema;
-export declare const questWorkPlacesSchema: Joi.ArraySchema;
 export declare const questPrioritiesSchema: Joi.ArraySchema;
 export declare const questStatusesSchema: Joi.ArraySchema;
 export declare const questSchema: Joi.ObjectSchema<any>;

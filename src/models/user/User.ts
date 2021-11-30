@@ -9,19 +9,19 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {error, getUUID} from "../../utils";
+import {getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
-import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType} from "../types";
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
+import {QuestsStatistic} from "../quest/QuestsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -112,7 +112,7 @@ interface WorkExperience {
 }
 
 export interface AdditionalInfoWorker extends AdditionalInfo {
-  skills: string[];
+  skills: string[]; // TODO remove
   educations: Knowledge[] | null;
   workExperiences: WorkExperience[] | null;
 }
@@ -138,6 +138,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: UserSpecializationFilter,
       as: 'userSpecializations',
       attributes: ['path'],
+    }, {
+      model: QuestsStatistic,
+      as: 'questsStatistic',
     }]
   },
   withPassword: {
@@ -168,6 +171,16 @@ export class User extends Model {
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
+  /** User profile */
+  @Column(DataType.STRING) firstName: string;
+  @Column(DataType.STRING) lastName: string;
+  @Column(DataType.JSONB) location: LocationType;
+  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  @Column({type: DataType.STRING, unique: true}) email: string;
+  @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
+  @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
+
+  /** User settings */
   @Column({
     type: DataType.STRING,
     set(value: string) {
@@ -184,30 +197,25 @@ export class User extends Model {
       return this.getDataValue("password");
     }
   }) password: string;
-
-  @Column(DataType.STRING) firstName: string;
-  @Column(DataType.STRING) lastName: string;
-  @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
-
-  /** For worker only */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
-
-  @Column({type: DataType.STRING, unique: true}) email: string;
-  @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
+  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
+  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
-  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
-  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
+  /** UserRole.Worker: priority list for quests */
+  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
+  @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
-  @Column(DataType.JSONB) location: LocationType;
-  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  /** PostGIS */
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
-  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
-
+  /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
+
+  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
@@ -242,18 +250,6 @@ export class User extends Model {
         [`settings.social.${network}.id`]: id
       }
     });
-  }
-
-  static async userMustExist(userId: string) {
-    if (!await User.findByPk(userId)) {
-      throw error(Errors.NotFound, "User does not exist", { userId });
-    }
-  }
-
-  static async usersMustExist(userIds: string[]) {
-    for (const id of userIds) {
-      await User.userMustExist(id);
-    }
   }
 
   isTOTPEnabled(): boolean {

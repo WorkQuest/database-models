@@ -4,14 +4,8 @@ import { Media } from '../Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { LocationPostGISType, LocationType } from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
-export declare enum QuestPriority {
-    AllPriority = 0,
-    Low = 1,
-    Normal = 2,
-    Urgent = 3
-}
 export declare enum AdType {
     Free = 0,
     Paid = 1
@@ -25,16 +19,12 @@ export declare enum QuestStatus {
     WaitConfirm = 5,
     Done = 6
 }
-export declare enum QuestWorkPlace {
-    Distant = "distant",
-    Office = "office",
-    Both = "both"
-}
 export declare enum QuestEmployment {
     FullTime = "fullTime",
     PartTime = "partTime",
     FixedTerm = "fixedTerm"
 }
+export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {
     id: string;
     userId: string;
@@ -42,9 +32,9 @@ export declare class Quest extends Model {
     title: string;
     description: string;
     status: QuestStatus;
-    workplace: QuestWorkPlace;
+    workplace: WorkPlace;
     employment: QuestEmployment;
-    priority: QuestPriority;
+    priority: Priority;
     category: string;
     locationPlaceName: string;
     location: LocationType;
