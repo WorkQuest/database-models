@@ -126,7 +126,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt", "deletedAt", "locationPostGIS"]
+      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS"]
     },
     include: [{
       model: Media.scope('urlOnly'),
