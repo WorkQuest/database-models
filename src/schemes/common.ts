@@ -20,6 +20,9 @@ export const mobilePhoneSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).label
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
 
+export const timestampSchema = Joi.date().timestamp('unix').example(1631568392).label('timeStamp');
+export const blockNumberSchema = Joi.string().example("14382").label('BlockNumber');
+
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
     ok: Joi.boolean().example(true),
