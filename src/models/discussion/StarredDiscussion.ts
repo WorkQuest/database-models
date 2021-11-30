@@ -4,7 +4,7 @@ import { User } from '../user/User';
 import {Discussion} from "./Discussion";
 
 @Table
-export class StarredMessage extends Model {
+export class StarredDiscussion extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
