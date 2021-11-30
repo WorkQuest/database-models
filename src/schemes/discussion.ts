@@ -35,3 +35,11 @@ export const discussionSchema = Joi.object({
 
 export const discussionsSchema = Joi.array().items(discussionSchema).label('Discussions');
 export const discussionCommentsSchema = Joi.array().items(discussionCommentSchema).label('DiscussionComments');
+
+export const starredDiscussionSchema = Joi.object({
+  id: idSchema,
+  userId: idSchema,
+  discussionId: idSchema,
+  user: userShortSchema,
+  discussion: discussionSchema,
+}).label('StarredDiscussion');
