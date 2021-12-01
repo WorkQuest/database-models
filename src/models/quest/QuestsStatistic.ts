@@ -2,13 +2,6 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "seq
 import { getUUID } from "../../utils";
 import {User} from "../user/User";
 
-@Scopes(() => ({
-  defaultScope: {
-    attributes: {
-      exclude: ["id", "userId"]
-    },
-  },
-}))
 @Table
 export class QuestsStatistic extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
