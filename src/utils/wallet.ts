@@ -14,6 +14,7 @@ function hexEncoder() {
 function hexDecoder() {
     return (data: string) => {
         const stripped = stripHexPrefix(data);
+
         if (
             !isValidChecksumAddress(data) &&
             stripped !== stripped.toLowerCase() &&
@@ -21,6 +22,7 @@ function hexDecoder() {
         ) {
             throw Error('Invalid address checksum');
         }
+
         return Buffer.from(stripHexPrefix(data), 'hex');
     };
 }
@@ -44,7 +46,7 @@ function bech32Decoder(currPrefix: string) {
 function hexConverter() {
     return {
         decoder: hexDecoder(),
-        encoder: hexEncoder()
+        encoder: hexEncoder(),
     }
 }
 
@@ -57,8 +59,7 @@ function bech32Converter(prefix: string) {
 
 export function addressConverter(address: string) {
     return {
-        toHex: () => hexConverter().encoder(bech32Converter('wqt').decoder(address)),
-        toBech32: () => bech32Converter('wqt').encoder(hexConverter().decoder(address))
+        toHex: () => hexConverter().encoder(bech32Converter('wq').decoder(address)),
+        toBech32: () => bech32Converter('wq').encoder(hexConverter().decoder(address))
     }
 }
-
