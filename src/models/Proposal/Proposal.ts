@@ -30,6 +30,9 @@ export enum ProposalStatus {
 export class Proposal extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
+  @ForeignKey(() => User)
+  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+
   @Column({ type: DataType.INTEGER, autoIncrement: true }) number: string;
 
   @Column({ type: DataType.STRING, allowNull: false }) title: string;
@@ -37,10 +40,7 @@ export class Proposal extends Model {
 
   @Column({ type: DataType.INTEGER, defaultValue: ProposalStatus.Pending }) status: ProposalStatus;
 
-  @Column({ type: DataType.STRING, allowNull: false }) hash: string;
-
-  @ForeignKey(() => Media)
-  @Column({ type: DataType.STRING, allowNull: false }) fileId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) txHash: string;
 
   @BelongsTo(() => User) author: User;
   @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];

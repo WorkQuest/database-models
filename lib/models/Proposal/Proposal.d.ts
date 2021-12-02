@@ -8,12 +8,12 @@ export declare enum ProposalStatus {
 }
 export declare class Proposal extends Model {
     id: string;
+    userId: string;
     number: string;
     title: string;
     description: string;
     status: ProposalStatus;
-    hash: string;
-    fileId: string;
+    txHash: string;
     author: User;
     medias: Media[];
 }
