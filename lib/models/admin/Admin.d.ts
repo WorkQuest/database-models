@@ -28,6 +28,5 @@ export declare class Admin extends Model {
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
-    MustHaveAdminRole(role: AdminRole): void;
     static isEmailExist(email: string): Promise<Admin>;
 }

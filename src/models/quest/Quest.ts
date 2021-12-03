@@ -17,16 +17,8 @@ import {QuestMedia} from './QuestMedia';
 import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
-import {LocationPostGISType, LocationType} from "../types";
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
-import {Chat} from "../chats/Chat";
-
-export enum QuestPriority {
-  AllPriority = 0,
-  Low,
-  Normal,
-  Urgent,
-}
 
 export enum AdType {
   Free = 0,
@@ -43,17 +35,19 @@ export enum QuestStatus {
   Done,
 }
 
-export enum QuestWorkPlace {
-  Distant = "distant",
-  Office = "office",
-  Both = "both",
-}
-
 export enum QuestEmployment {
   FullTime = 'fullTime',
   PartTime = 'partTime',
   FixedTerm = 'fixedTerm',
 }
+
+export const activeFlowStatuses = [
+  QuestStatus.Created,
+  QuestStatus.Active,
+  QuestStatus.Dispute,
+  QuestStatus.WaitWorker,
+  QuestStatus.WaitConfirm,
+];
 
 @Scopes(() => ({
   defaultScope: {
@@ -90,9 +84,9 @@ export class Quest extends Model {
   @Column(DataType.TEXT) description: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
-  @Column({type: DataType.STRING, allowNull: false}) workplace: QuestWorkPlace;
+  @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
-  @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority}) priority: QuestPriority;
+  @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
   @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;

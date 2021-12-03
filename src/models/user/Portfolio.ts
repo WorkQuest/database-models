@@ -8,11 +8,10 @@ import {
   Scopes,
   Table
 } from 'sequelize-typescript';
-import { error, getUUID } from '../../utils';
+import { getUUID } from '../../utils';
 import { User } from './User';
 import { PortfolioMedia } from './PortfolioMedia';
 import { Media } from '../Media';
-import { Errors } from '../../utils/errors';
 
 @Scopes(() => ({
   defaultScope: {
@@ -38,13 +37,4 @@ export class Portfolio extends Model {
 
   @BelongsTo(() => User) user: User;
   @BelongsToMany(() => Media, () => PortfolioMedia) medias: Media[];
-
-  mustBeCaseCreator(userId: String) {
-    if (this.userId !== userId) {
-      throw error(Errors.Forbidden, "User is not portfolio creator", {
-        current: this.userId,
-        mustHave: userId
-      });
-    }
-  }
 }

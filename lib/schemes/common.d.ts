@@ -28,3 +28,6 @@ export declare function outputPaginationSchema(title: string, item: Joi.Schema):
 export declare const locationSchema: Joi.ObjectSchema<any>;
 export declare const emptyOkSchema: Joi.ObjectSchema<any>;
 export declare const jwtTokens: Joi.ObjectSchema<any>;
+export declare const prioritySchema: Joi.NumberSchema;
+export declare const workPlaceSchema: Joi.StringSchema;
+export declare const workPlacesSchema: Joi.ArraySchema;

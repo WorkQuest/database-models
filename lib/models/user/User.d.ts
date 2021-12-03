@@ -4,11 +4,12 @@ import { Session } from "./Session";
 import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
-import { LocationPostGISType, LocationType } from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
 import { Chat } from "../chats/Chat";
+import { QuestsStatistic } from "../quest/QuestsStatistic";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -85,22 +86,25 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
-    password: string;
     firstName: string;
     lastName: string;
-    additionalInfo: object;
-    wagePerHour: string;
+    location: LocationType;
     email: string;
     role: UserRole;
+    additionalInfo: object;
+    password: string;
+    phone: string;
+    tempPhone: string;
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
-    tempPhone: string;
-    phone: string;
-    location: LocationType;
+    wagePerHour: string;
+    workplace: WorkPlace;
+    priority: Priority;
     locationPostGIS: LocationPostGISType;
-    avatar: Media;
     ratingStatistic: RatingStatistic;
+    questsStatistic: QuestsStatistic;
+    avatar: Media;
     sessions: Session[];
     reviews: Review[];
     medias: Media[];
@@ -116,8 +120,6 @@ export declare class User extends Model {
     passwordCompare(pwd: string): Promise<boolean>;
     static findWithEmail(email: string): Promise<User>;
     static findWithSocialId(network: string, id: string): Promise<User>;
-    static userMustExist(userId: string): Promise<void>;
-    static usersMustExist(userIds: string[]): Promise<void>;
     isTOTPEnabled(): boolean;
 }
 export {};

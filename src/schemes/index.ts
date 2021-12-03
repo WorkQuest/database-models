@@ -11,3 +11,4 @@ export * from "./chat";
 export * from "./liquidity";
 export * from "./specialization";
 export * from "./discussion";
+export * from "./questsStatistic";

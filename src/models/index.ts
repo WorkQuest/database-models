@@ -33,6 +33,7 @@ import {DiscussionMedia} from "./discussion/DiscussionMedia";
 import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
 import {DailyLiquidity} from "./dailyLiquidity/DailyLiquidity";
+import {QuestsStatistic} from "./quest/QuestsStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -55,6 +56,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestsResponse,
       QuestMedia,
       StarredQuests,
+      QuestsStatistic,
       QuestSpecializationFilter,
       /** Chat section */
       Chat,
@@ -124,4 +126,5 @@ export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat"
+export * from "./quest/QuestsStatistic";
 export * from "./dailyLiquidity/DailyLiquidity";

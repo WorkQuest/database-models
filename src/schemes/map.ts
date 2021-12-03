@@ -1,6 +1,6 @@
 import * as Joi from "joi";
-import {idSchema, urlSchema} from "./common";
-import {questPriceSchema, questPrioritySchema, questStatusSchema} from "./quest";
+import {idSchema, urlSchema, prioritySchema} from "./common";
+import {questPriceSchema, questStatusSchema} from "./quest";
 import {userFirstNameSchema, userLastNameSchema} from "./user";
 
 export const mapPointsCountSchema = Joi.number().label('PointsCount');
@@ -12,7 +12,7 @@ export const mapPointSchema = Joi.object({
   questId: idSchema,
   questStatus: questStatusSchema,
   questPrice: questPriceSchema,
-  questPriority: questPrioritySchema,
+  questPriority: prioritySchema,
   userFirstName: userFirstNameSchema,
   userLastName: userLastNameSchema,
   userAvatarUrl: urlSchema,
