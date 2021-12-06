@@ -33,8 +33,8 @@ import {DiscussionMedia} from "./discussion/DiscussionMedia";
 import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
-import {Proposal} from "./Proposal/Proposal";
-import {ProposalMedia} from "./Proposal/ProposalMidia";
+import {Proposal} from "./proposal/Proposal";
+import {ProposalMedia} from "./proposal/ProposalMidia";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -77,7 +77,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       DiscussionComment,
       DiscussionCommentLike,
       DiscussionCommentMedia,
-      /**Proposal*/
+      /**proposal*/
       Proposal,
       ProposalMedia,
       /** Filter section */
@@ -129,5 +129,5 @@ export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat"
 export * from "./quest/QuestsStatistic";
-export * from "./Proposal/Proposal";
-export * from "./Proposal/ProposalMidia";
+export * from "./proposal/Proposal";
+export * from "./proposal/ProposalMidia";
