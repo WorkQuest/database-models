@@ -102,7 +102,6 @@ export declare class User extends Model {
     workplace: WorkPlace;
     priority: Priority;
     locationPostGIS: LocationPostGISType;
-    delegate: string;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
     avatar: Media;

@@ -163,11 +163,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       as: 'avatar'
     }]
   },
-  dao: {
-    attributes: {
-      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS"]
-    },
-  }
 }))
 @Table({ paranoid: true })
 export class User extends Model {
@@ -215,9 +210,6 @@ export class User extends Model {
 
   /** PostGIS */
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
-
-  /** DAO */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) delegate: string;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
