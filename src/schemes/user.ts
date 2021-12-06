@@ -27,6 +27,8 @@ export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov"
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
+export const userDelegateWQTSchema = Joi.string().example("35474").label('UserDelegateWQT');
+
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -78,6 +80,7 @@ export const userSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   phone: mobilePhoneSchema,
+  delegate: userDelegateWQTSchema,
   tempPhone: mobilePhoneSchema,
   email: userEmailSchema,
   role: userRoleSchema,
