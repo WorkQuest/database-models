@@ -7,6 +7,7 @@ import {DiscussionLike} from "./DiscussionLike";
 import {
   Model,
   Table,
+  HasOne,
   Column,
   Scopes,
   HasMany,
@@ -15,6 +16,7 @@ import {
   ForeignKey,
   BelongsToMany,
 } from "sequelize-typescript";
+import {StarredDiscussion} from "./StarredDiscussion";
 
 @Scopes(() => ({
   defaultScope: {
@@ -43,6 +45,8 @@ export class Discussion extends Model {
 
   @BelongsTo(() => User) author: User;
 
+  @HasOne(() => DiscussionLike) liked: DiscussionLike;
+  @HasOne(() => DiscussionLike) star: StarredDiscussion;
   @HasMany(() => DiscussionComment) comments: DiscussionComment[];
   @HasMany(() => DiscussionLike) likes: DiscussionLike[];
 

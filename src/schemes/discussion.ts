@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {countSchema, idSchema, isoDateSchema} from "./common";
+import {countSchema, idSchema, isoDateSchema, likeSchema, starSchema} from "./common";
 import {mediasUrlOnlySchema} from "./media";
 import {userShortSchema} from "./user";
 
@@ -33,5 +33,21 @@ export const discussionSchema = Joi.object({
   createdAt: isoDateSchema,
 }).label('Discussion');
 
+export const discussionForGetSchema = Joi.object({
+  id: idSchema,
+  authorId: idSchema,
+  title: discussionTitleSchema,
+  description: discussionDescriptionSchema,
+  amountLikes: countSchema,
+  amountComments: countSchema,
+  createdAt: isoDateSchema,
+  /**  */
+  author: userShortSchema,
+  medias: mediasUrlOnlySchema,
+  star: starSchema, /** if this user set star on this discussion */
+  liked: likeSchema, /** if this user put like on this discussion */
+});
+
 export const discussionsSchema = Joi.array().items(discussionSchema).label('Discussions');
+export const discussionsForGetSchema = Joi.array().items(discussionForGetSchema).label('DiscussionsForGet');
 export const discussionCommentsSchema = Joi.array().items(discussionCommentSchema).label('DiscussionComments');
