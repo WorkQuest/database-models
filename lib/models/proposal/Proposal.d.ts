@@ -9,6 +9,7 @@ export declare enum ProposalStatus {
 export declare class Proposal extends Model {
     id: string;
     userId: string;
+    txId: string;
     number: string;
     title: string;
     description: string;
