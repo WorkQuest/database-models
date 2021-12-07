@@ -7,12 +7,12 @@ export const proposalTitleSchema = Joi.string().example('New post').label('Propo
 export const proposalDescriptionSchema = Joi.string().example('Hello world').label('ProposalDescription');
 export const proposalStatus = Joi.number().valid(...Object.values(ProposalStatus)).example(ProposalStatus.Pending).label("ProposalStatus");
 export const proposalTxHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqzxy88uq').label("ProposalCreatorHash");
-export const txIdSchema = Joi.string().label('TxIdFromContract');
+export const proposalTxIdSchema = Joi.string().label('ProposalTxIdFromContract');
 
 export const proposalSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
-  txId: txIdSchema,
+  txId: proposalTxIdSchema,
   number: proposalNumberSchema,
   title: proposalTitleSchema,
   description: proposalDescriptionSchema,
