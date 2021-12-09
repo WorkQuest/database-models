@@ -42,7 +42,7 @@ export class Proposal extends Model {
 
   @Column({ type: DataType.INTEGER, defaultValue: ProposalStatus.Pending }) status: ProposalStatus;
 
-  @Column({ type: DataType.STRING, allowNull: false }) txHash: string;
+  @Column({ type: DataType.STRING, allowNull: true }) txHash: string;
 
   @BelongsTo(() => User) author: User;
   @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
