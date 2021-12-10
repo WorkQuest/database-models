@@ -1,15 +1,17 @@
 import {getUUID} from "../../utils";
 import {Media} from "../Media";
 import {User} from "../user/User";
+import {ProposalMedia} from "./ProposalMidia";
 import {
   Model,
   Table,
   Column,
+  Scopes,
   DataType,
   BelongsTo,
-  ForeignKey, BelongsToMany, Scopes,
+  ForeignKey,
+  BelongsToMany,
 } from "sequelize-typescript";
-import {ProposalMedia} from "./ProposalMidia";
 
 export enum ProposalStatus {
   Pending,
@@ -33,7 +35,7 @@ export class Proposal extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @Column({ type: DataType.STRING, allowNull: false}) txId: string; //from the contract
+  @Column({ type: DataType.STRING, allowNull: false}) txId: string; // from the contract
 
   @Column({ type: DataType.INTEGER, autoIncrement: true }) number: string;
 
