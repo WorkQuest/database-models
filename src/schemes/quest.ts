@@ -161,15 +161,16 @@ export const questForGetSchema = Joi.object({
   description: questDescriptionSchema,
   price: questPriceSchema,
   adType: questAdTypeSchema,
+  createdAt: isoDateSchema,
+  /**  */
   user: userShortSchema,
   assignedWorker: userShortSchema,
-  star: starSchema,
-  invited: questsResponseSchema,
-  responded: questsResponseSchema,
-  response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
   questSpecializations: modelSpecializationsSchema,
-  createdAt: isoDateSchema,
+  star: starSchema, /** if this user set star on this quest */
+  invited: questsResponseSchema, /** if this user invited on this quest */
+  responded: questsResponseSchema, /** if this user responded on this quest */
+  response: questsResponseSchema.allow(null),
 }).label('QuestForGet');
 
 export const questsForGetSchema = Joi.array().items(questForGetSchema).label('QuestsForGet');
