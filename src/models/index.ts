@@ -35,6 +35,7 @@ import {QuestChat} from "./chats/QuestChat";
 import {DailyLiquidity} from "./dailyLiquidity/DailyLiquidity";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
 import {StarredDiscussion} from "./discussion/StarredDiscussion";
+
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging: logging ? console.log : logging,
@@ -99,16 +100,17 @@ export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
 export * from "./quest/QuestMedia";
 export * from "./quest/Review";
-export * from "./quest/QuestSpecializationFilter";
 export * from "./quest/StarredQuests";
+export * from "./quest/QuestsStatistic";
+export * from "./quest/QuestSpecializationFilter";
 export * from "./user/User";
 export * from "./user/RatingStatistic";
 export * from "./user/PortfolioMedia";
 export * from "./user/Portfolio";
 export * from "./user/Session";
+export * from "./user/UserSpecializationFilter";
 export * from "./admin/Admin";
 export * from "./admin/AdminSession";
-export * from "./user/UserSpecializationFilter";
 export * from "./chats/Chat";
 export * from "./chats/ChatMember";
 export * from "./chats/Message";
@@ -116,6 +118,7 @@ export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
 export * from "./chats/StarredChat";
+export * from "./chats/QuestChat";
 export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
 export * from "./filtres/IndustryFilter";
@@ -126,7 +129,5 @@ export * from "./discussion/DiscussionCommentMedia";
 export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
-export * from "./chats/QuestChat";
-export * from "./quest/QuestsStatistic";
-export * from "./dailyLiquidity/DailyLiquidity";
 export * from "./discussion/StarredDiscussion";
+export * from "./dailyLiquidity/DailyLiquidity";
