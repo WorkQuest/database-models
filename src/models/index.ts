@@ -35,6 +35,7 @@ import {QuestChat} from "./chats/QuestChat";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
 import {Proposal} from "./proposal/Proposal";
 import {ProposalMedia} from "./proposal/ProposalMidia";
+import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -80,6 +81,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /**proposal*/
       Proposal,
       ProposalMedia,
+      ProposalParseBlock,
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
@@ -131,3 +133,4 @@ export * from "./chats/QuestChat"
 export * from "./quest/QuestsStatistic";
 export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMidia";
+export * from "./proposal/ProposalParseBlock"
