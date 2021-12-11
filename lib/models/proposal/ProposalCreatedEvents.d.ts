@@ -6,7 +6,7 @@ export declare enum ProposalEvent {
 export declare class ProposalCreatedEvents extends Model {
     blockNumber: string;
     transactionHash: string;
-    id: string;
+    transId: string;
     proposer: string;
     description: string;
     votingPeriod: string;
