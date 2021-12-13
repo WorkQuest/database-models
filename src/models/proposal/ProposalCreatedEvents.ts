@@ -1,10 +1,20 @@
-import {Model, Column, DataType, Table} from 'sequelize-typescript';
+import {Model, Column, DataType, Table, Scopes} from 'sequelize-typescript';
 import {BlockchainNetworks} from "../types";
+import {User} from "../user/User";
+import {Message} from "../chats/Message";
+import {QuestChat} from "../chats/QuestChat";
 
 export enum ProposalEvent {
     ProposalCreated = 'ProposalCreated'
 }
 
+@Scopes(() => ({
+    defaultScope: {
+        attributes: {
+            exclude: ["id", "network", "event"]
+        }
+    }
+}))
 @Table
 export class ProposalCreatedEvents extends Model {
     @Column(DataType.INTEGER) blockNumber: number;
