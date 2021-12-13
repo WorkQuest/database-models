@@ -35,7 +35,7 @@ export class Discussion extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
+  @Column({ type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" } }) authorId: string;
 
   @Column({ type: DataType.STRING, allowNull: false }) title: string;
   @Column({ type: DataType.TEXT, allowNull: false }) description: string;

@@ -18,7 +18,7 @@ export class SpecializationFilter extends Model {
   @Column({primaryKey: true, type: DataType.INTEGER}) key: string;
 
   @ForeignKey(() => IndustryFilter)
-  @Column({type: DataType.INTEGER, allowNull: false}) industryKey: number;
+  @Column({type: DataType.INTEGER, allowNull: false, references: { model: "IndustryFilters", key: "id" }}) industryKey: number;
 
   @Column({type: DataType.STRING, allowNull: false}) specialization: string;
 

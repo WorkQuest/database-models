@@ -15,10 +15,10 @@ export class DiscussionCommentLike extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => DiscussionComment)
-  @Column ({type:DataType.STRING, allowNull: false}) commentId: string;
+  @Column ({type:DataType.STRING, allowNull: false, references: { model: "DiscussionComments", key: "id" }}) commentId: string;
 
   @ForeignKey(() => User)
-  @Column ({type:DataType.STRING, allowNull: false}) userId: string;
+  @Column ({type:DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) userId: string;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => DiscussionComment) likeComment: DiscussionComment;

@@ -52,10 +52,10 @@ export class Message extends Model {
   @Column({ type: DataType.INTEGER, allowNull: false }) number: number;
 
   @ForeignKey(() => Chat)
-  @Column({type: DataType.STRING, allowNull: false}) chatId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Chats", key: "id" }}) chatId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) senderUserId: string;
 
   @Column({type: DataType.STRING, defaultValue: SenderMessageStatus.unread}) senderStatus: SenderMessageStatus;
   @Column({type: DataType.STRING, allowNull: false}) type: MessageType;

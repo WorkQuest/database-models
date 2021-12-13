@@ -15,7 +15,7 @@ const defaultUserLoginPlace: UserLoginPlace = {
 @Table
 export class Session extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-  @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
+  @ForeignKey(() => User) @Column({type: DataType.STRING, references: { model: "Users", key: "id" }}) userId: string;
 
   @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: UserLoginPlace;
 

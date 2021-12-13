@@ -7,8 +7,8 @@ import {Quest} from './Quest';
 export class QuestMedia extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @ForeignKey(() => Media) @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
-  @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: false}) questId: string;
+  @ForeignKey(() => Media) @Column({type: DataType.STRING, allowNull: false, references: { model: "Medias", key: "id" }}) mediaId: string;
+  @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: false, references: { model: "Quests", key: "id" }}) questId: string;
 
   @BelongsTo(() => Media) media: Media;
   @BelongsTo(() => Quest) quest: Quest;

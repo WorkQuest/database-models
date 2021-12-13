@@ -48,10 +48,10 @@ export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
   @ForeignKey(() => User) /** If group chat */
-  @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string;
+  @Column({type: DataType.STRING, defaultValue: null, references: { model: "Users", key: "id" }}) ownerUserId: string;
 
   @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
+  @Column({type: DataType.STRING, defaultValue: null, references: { model: "Messages", key: "id" }}) lastMessageId: string;
 
   @Column({type: DataType.STRING, defaultValue: null}) name: string; /** If group chat */
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;

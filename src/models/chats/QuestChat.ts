@@ -34,19 +34,19 @@ export class QuestChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) employerId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) employerId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) workerId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) workerId: string;
 
   @ForeignKey(() => Quest)
-  @Column({type: DataType.STRING, allowNull: false}) questId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Quests", key: "id" }}) questId: string;
 
   @ForeignKey(() => QuestsResponse)
-  @Column({type: DataType.STRING, allowNull: false}) responseId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "QuestsResponses", key: "id" }}) responseId: string;
 
   @ForeignKey(() => Chat)
-  @Column({type: DataType.STRING, allowNull: false}) chatId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Chats", key: "id" }}) chatId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestChatStatuses.Open}) status: QuestChatStatuses;
 

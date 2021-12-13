@@ -9,13 +9,13 @@ export class UserSpecializationFilter extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) userId: string;
 
   @ForeignKey(() => IndustryFilter)
-  @Column({type: DataType.INTEGER, allowNull: false}) industryKey: number;
+  @Column({type: DataType.INTEGER, allowNull: false, references: { model: "IndustryFilters", key: "id" }}) industryKey: number;
 
   @ForeignKey(() => SpecializationFilter)
-  @Column({type: DataType.INTEGER, allowNull: false}) specializationKey: number;
+  @Column({type: DataType.INTEGER, allowNull: false, references: { model: "SpecializationFilters", key: "id" }}) specializationKey: number;
 
   /** industryKey.specializationKey => 1.100 */
   @Column({type: DataType.STRING, allowNull: false}) path: string;

@@ -5,7 +5,7 @@ import {User} from "../user/User";
 @Table
 export class QuestsStatistic extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-  @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
+  @ForeignKey(() => User) @Column({type: DataType.STRING, references: { model: "Users", key: "id" }}) userId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: 0}) completed: number;
   @Column({type: DataType.INTEGER, defaultValue: 0}) opened: number;

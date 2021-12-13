@@ -31,8 +31,8 @@ export enum QuestsResponseType {
 export class QuestsResponse extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @ForeignKey(() => User) @Column(DataType.STRING) workerId: string;
-  @ForeignKey(() => Quest) @Column(DataType.STRING) questId: string;
+  @ForeignKey(() => User) @Column({type: DataType.STRING, references: { model: "Users", key: "id" }}) workerId: string;
+  @ForeignKey(() => Quest) @Column({type: DataType.STRING, references: { model: "Quests", key: "id" }}) questId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestsResponseStatus.Open }) status: QuestsResponseStatus;
   @Column({type: DataType.INTEGER, defaultValue: QuestsResponseType.Response }) type: QuestsResponseType;

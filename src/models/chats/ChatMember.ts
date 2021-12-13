@@ -31,13 +31,13 @@ export class ChatMember extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
   @ForeignKey(() => Chat)
-  @Column({type: DataType.STRING, allowNull: false}) chatId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Chats", key: "id" }}) chatId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) userId: string;
 
   @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, }) lastReadMessageId: string;
+  @Column({type: DataType.STRING, references: { model: "Messages", key: "id" }}) lastReadMessageId: string;
 
   /** Metadata */
   @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountMessages: number;

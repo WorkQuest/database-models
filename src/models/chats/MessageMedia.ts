@@ -8,10 +8,10 @@ export class MessageMedia extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => Media)
-  @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Medias", key: "id" }}) mediaId: string;
 
   @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, allowNull: false}) messageId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Messages", key: "id" }}) messageId: string;
 
   @BelongsTo(() => Media) media: Media;
   @BelongsTo(() => Message) message: Message;

@@ -33,11 +33,11 @@ export class InfoMessage extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true }) id: string;
 
   @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, allowNull: false}) messageId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Messages", key: "id" }}) messageId: string;
 
   /** Common relations user table: who was removed and etc */
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, defaultValue: null}) userId: string;
+  @Column({type: DataType.STRING, defaultValue: null, references: { model: "Users", key: "id" }}) userId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) messageAction: MessageAction;
 

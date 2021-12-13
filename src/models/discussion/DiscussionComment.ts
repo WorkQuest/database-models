@@ -36,13 +36,13 @@ export class DiscussionComment extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
+  @Column({ type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" } }) authorId: string;
 
   @ForeignKey(() => Discussion)
-  @Column({ type: DataType.STRING, allowNull: false }) discussionId: string;
+  @Column({ type: DataType.STRING, allowNull: false, references: { model: "Discussions", key: "id" } }) discussionId: string;
 
   @ForeignKey(() => DiscussionComment)
-  @Column(DataType.STRING) rootCommentId: string;
+  @Column({type: DataType.STRING, references: { model: "DiscussionComments", key: "id" }}) rootCommentId: string;
 
   @Column({ type: DataType.TEXT, allowNull: false }) text: string;
 

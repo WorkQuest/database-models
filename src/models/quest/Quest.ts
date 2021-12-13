@@ -75,10 +75,10 @@ export const activeFlowStatuses = [
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) userId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
+  @Column({type: DataType.STRING, defaultValue: null, references: { model: "Users", key: "id" }}) assignedWorkerId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column(DataType.TEXT) description: string;

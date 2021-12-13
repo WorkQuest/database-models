@@ -9,13 +9,13 @@ export class QuestSpecializationFilter extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => Quest)
-  @Column({type: DataType.STRING, allowNull: false}) questId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Quests", key: "id" }}) questId: string;
 
   @ForeignKey(() => IndustryFilter)
-  @Column({type: DataType.INTEGER, allowNull: false}) industryKey: number;
+  @Column({type: DataType.INTEGER, allowNull: false, references: { model: "IndustryFilters", key: "id" }}) industryKey: number;
 
   @ForeignKey(() => SpecializationFilter)
-  @Column({type: DataType.INTEGER, allowNull: false}) specializationKey: number;
+  @Column({type: DataType.INTEGER, allowNull: false, references: { model: "SpecializationFilters", key: "id" }}) specializationKey: number;
 
   /** industryKey.specializationKey => 1.100 */
   @Column({type: DataType.STRING, allowNull: false}) path: string;

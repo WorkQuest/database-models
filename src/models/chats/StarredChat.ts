@@ -8,10 +8,10 @@ export class StarredChat extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Users", key: "id" }}) userId: string;
 
   @ForeignKey(() => Chat)
-  @Column({type: DataType.STRING, allowNull: false}) chatId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Chats", key: "id" }}) chatId: string;
 
   @BelongsTo(() => User, { constraints: false }) user: User;
   @BelongsTo(() => Chat, { constraints: false }) chat: Chat;

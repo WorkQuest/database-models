@@ -15,10 +15,10 @@ export class DiscussionCommentMedia extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => Media)
-  @Column({type: DataType.STRING, allowNull: false}) mediaId: string;
+  @Column({type: DataType.STRING, allowNull: false, references: { model: "Medias", key: "id" }}) mediaId: string;
 
   @ForeignKey(() => DiscussionComment)
-  @Column ({type:DataType.STRING, allowNull: false}) commentId: string;
+  @Column ({type:DataType.STRING, allowNull: false, references: { model: "DiscussionComments", key: "id" }}) commentId: string;
 
   @BelongsTo(() => Media) media: Media;
   @BelongsTo(() => DiscussionComment) comment: DiscussionComment;
