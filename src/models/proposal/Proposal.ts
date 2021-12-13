@@ -35,11 +35,12 @@ export class Proposal extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @Column({ type: DataType.STRING, allowNull: false}) txId: string; // from the contract
+  @Column({ type: DataType.STRING, allowNull: false}) walletId: string; // from the contract
 
   @Column({ type: DataType.INTEGER, autoIncrement: true }) number: string;
 
   @Column({ type: DataType.STRING, allowNull: false }) title: string;
+
   @Column({ type: DataType.TEXT, allowNull: false }) description: string;
 
   @Column({ type: DataType.INTEGER, defaultValue: ProposalStatus.Pending }) status: ProposalStatus;

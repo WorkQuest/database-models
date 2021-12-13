@@ -15,7 +15,7 @@ export const proposerVotingPeriodSchema = Joi.string().example('1').label('Propo
 export const proposalSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
-  txId: proposalTxIdSchema,
+  walletId: proposalTxIdSchema,
   number: proposalNumberSchema,
   title: proposalTitleSchema,
   description: proposalDescriptionSchema,
