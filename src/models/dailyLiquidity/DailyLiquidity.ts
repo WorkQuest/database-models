@@ -7,10 +7,10 @@ export class DailyLiquidity extends Model {
 
   @Column(DataType.DECIMAL) timestamp: string;
   @Column(DataType.STRING) blockNumber: string;
-  @Column(DataType.DECIMAL) bnbPool: string;
-  @Column(DataType.DECIMAL) wqtPool: string;
-  @Column(DataType.DECIMAL) usdPriceBNB: string;
-  @Column(DataType.DECIMAL) usdPriceWQT: string;
-  @Column(DataType.DECIMAL) liquidityPoolUSD: string;
+  @Column(DataType.STRING) bnbPool: string;
+  @Column(DataType.STRING) wqtPool: string;
+  @Column(DataType.STRING) usdPriceBNB: string;
+  @Column(DataType.STRING) usdPriceWQT: string;
+  @Column(DataType.STRING) liquidityPoolUSD: string;
 }
 
