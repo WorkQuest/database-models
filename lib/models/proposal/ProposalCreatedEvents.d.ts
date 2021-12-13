@@ -4,7 +4,7 @@ export declare enum ProposalEvent {
     ProposalCreated = "ProposalCreated"
 }
 export declare class ProposalCreatedEvents extends Model {
-    blockNumber: string;
+    blockNumber: number;
     transactionHash: string;
     transId: string;
     proposer: string;
