@@ -80,7 +80,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       DiscussionComment,
       DiscussionCommentLike,
       DiscussionCommentMedia,
-      /**proposal*/
+      /** Proposal */
       Proposal,
       ProposalMedia,
       ProposalParseBlock,
