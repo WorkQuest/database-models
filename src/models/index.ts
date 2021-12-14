@@ -37,6 +37,7 @@ import {Proposal} from "./proposal/Proposal";
 import {ProposalMedia} from "./proposal/ProposalMedia";
 import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
 import {ProposalCreatedEvents} from "./proposal/ProposalCreatedEvents";
+import {VoteCastEvents} from "./proposal/VoteCastEvents";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -84,6 +85,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ProposalMedia,
       ProposalParseBlock,
       ProposalCreatedEvents,
+      VoteCastEvents,
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
@@ -137,3 +139,4 @@ export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock"
 export * from "./proposal/ProposalCreatedEvents"
+export * from "./proposal/VoteCastEvents"
