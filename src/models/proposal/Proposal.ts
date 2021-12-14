@@ -43,7 +43,7 @@ export class Proposal extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) nonceId: string;
 
-  @Column({type: DataType.INTEGER}) proposalId: number;
+  @Column({type: DataType.INTEGER, defaultValue: 0}) proposalId: number;
 
   @Column({type: DataType.STRING, allowNull: false}) title: string;
 
@@ -57,7 +57,7 @@ export class Proposal extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: null}) timestamp: number;
 
-  @Column({type: DataType.STRING, allowNull: true}) txHash: string;
+  @Column({type: DataType.STRING, defaultValue: null}) txHash: string;
 
   @BelongsTo(() => User) author: User;
   @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
