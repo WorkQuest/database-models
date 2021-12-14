@@ -1,7 +1,6 @@
 import { Media } from "../Media";
 import { User } from "../user/User";
 import { Model } from "sequelize-typescript";
-import { VoteCastEvents } from "./VoteCastEvents";
 export declare enum ProposalStatus {
     null = -1,
     Pending = 0,
@@ -24,5 +23,4 @@ export declare class Proposal extends Model {
     txHash: string;
     author: User;
     medias: Media[];
-    voting: VoteCastEvents[];
 }
