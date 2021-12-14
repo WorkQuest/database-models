@@ -41,7 +41,7 @@ export class Proposal extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) proposer: string;
 
-  @Column({type: DataType.INTEGER, allowNull: false}) nonceId: number;
+  @Column({type: DataType.DECIMAL, allowNull: false}) nonceId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: 0}) proposalId: number;
 

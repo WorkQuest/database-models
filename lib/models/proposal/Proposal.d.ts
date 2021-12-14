@@ -12,7 +12,7 @@ export declare class Proposal extends Model {
     id: string;
     userId: string;
     proposer: string;
-    nonceId: number;
+    nonceId: string;
     proposalId: number;
     title: string;
     description: string;

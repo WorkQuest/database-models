@@ -10,7 +10,7 @@ export const proposalTxHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqzx
 export const proposerIdWalletSchema = Joi.string().example('0xe7489ba661e0487669a685d76f4ee978e931dec9').label('ContractAddress');
 export const proposerVotingPeriodSchema = Joi.string().example('1').label('ProposerVotingPeriod');
 export const proposalTimestampSchema = Joi.date().timestamp('unix').example(1631568392).label('ContractTimeStamp');
-export const nonceIdSchema = Joi.number().example(12365651618978561).label('MessageNumber');
+export const nonceIdSchema = Joi.string().example("65464546452165556432245623").label('NonceId');
 
 
 export const proposalSchema = Joi.object({
