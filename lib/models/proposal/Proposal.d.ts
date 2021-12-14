@@ -2,11 +2,11 @@ import { Media } from "../Media";
 import { User } from "../user/User";
 import { Model } from "sequelize-typescript";
 export declare enum ProposalStatus {
-    null = -1,
     Pending = 0,
-    Rejected = 1,
-    Accepted = 2,
-    Cancelled = 3
+    Active = 1,
+    Rejected = 2,
+    Accepted = 3,
+    Cancelled = 4
 }
 export declare class Proposal extends Model {
     id: string;

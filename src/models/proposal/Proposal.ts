@@ -13,11 +13,10 @@ import {
     ForeignKey,
     BelongsToMany,
 } from "sequelize-typescript";
-import {VoteCastEvents} from "./VoteCastEvents";
 
 export enum ProposalStatus {
-    null = -1,
     Pending,
+    Active,
     Rejected,
     Accepted,
     Cancelled
@@ -53,7 +52,7 @@ export class Proposal extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: 0}) minimumQuorum: number;
 
-  @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.null}) status: ProposalStatus;
+  @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.Pending}) status: ProposalStatus;
 
   @Column({type: DataType.INTEGER, defaultValue: null}) timestamp: number;
 
