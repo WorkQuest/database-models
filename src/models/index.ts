@@ -34,7 +34,7 @@ import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
 import {Proposal} from "./proposal/Proposal";
-import {ProposalMedia} from "./proposal/ProposalMidia";
+import {ProposalMedia} from "./proposal/ProposalMedia";
 import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
 import {ProposalCreatedEvents} from "./proposal/ProposalCreatedEvents";
 
@@ -134,6 +134,6 @@ export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat"
 export * from "./quest/QuestsStatistic";
 export * from "./proposal/Proposal";
-export * from "./proposal/ProposalMidia";
+export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock"
 export * from "./proposal/ProposalCreatedEvents"

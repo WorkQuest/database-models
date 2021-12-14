@@ -1,7 +1,7 @@
 import {getUUID} from "../../utils";
 import {Media} from "../Media";
 import {User} from "../user/User";
-import {ProposalMedia} from "./ProposalMidia";
+import {ProposalMedia} from "./ProposalMedia";
 import {
   Model,
   Table,
@@ -37,7 +37,7 @@ export class Proposal extends Model {
 
   @Column({ type: DataType.STRING, allowNull: false}) walletId: string; // from the contract
 
-  @Column({ type: DataType.INTEGER, autoIncrement: true }) number: string;
+  @Column({ type: DataType.INTEGER }) number: string;
 
   @Column({ type: DataType.STRING, allowNull: false }) title: string;
 

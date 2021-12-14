@@ -36,6 +36,6 @@ export * from "./discussion/DiscussionMedia";
 export * from "./chats/QuestChat";
 export * from "./quest/QuestsStatistic";
 export * from "./proposal/Proposal";
-export * from "./proposal/ProposalMidia";
+export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock";
 export * from "./proposal/ProposalCreatedEvents";
