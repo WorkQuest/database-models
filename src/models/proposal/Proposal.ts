@@ -24,6 +24,7 @@ export enum ProposalStatus {
 
 @Scopes(() => ({
     defaultScope: {
+        exclude: ["proposalId","votingPeriod","minimumQuorum","timestamp", "txHash","updatedAt","createdAt","deletedAt"],
         include: [{
             model: Media.scope("urlOnly"),
             as: "medias",

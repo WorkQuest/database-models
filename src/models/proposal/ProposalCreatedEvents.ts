@@ -16,13 +16,13 @@ export enum ProposalEvent {
 export class ProposalCreatedEvents extends Model {
     @Column(DataType.INTEGER) blockNumber: number;
     @Column(DataType.STRING) transactionHash: string;
-    @Column(DataType.STRING) timestamp: ProposalEvent;
-    @Column(DataType.STRING) proposalId: string;
-    @Column(DataType.STRING) nonceId: string;
+    @Column(DataType.INTEGER) timestamp: number;
+    @Column(DataType.INTEGER) proposalId: number;
     @Column(DataType.STRING) proposer: string;
+    @Column(DataType.INTEGER) nonce: number;
     @Column(DataType.TEXT) description: string;
-    @Column(DataType.STRING) votingPeriod: string;
-    @Column(DataType.STRING) minimumQuorum: string;
+    @Column(DataType.INTEGER) votingPeriod: number;
+    @Column(DataType.INTEGER) minimumQuorum: number;
     @Column(DataType.STRING) network: BlockchainNetworks;
     @Column(DataType.STRING) event: ProposalEvent;
 }
