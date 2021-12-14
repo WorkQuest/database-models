@@ -1,7 +1,6 @@
 import * as Joi from "joi";
 import {idSchema} from "./common";
 import {ProposalStatus} from "../models";
-import {contractTimestampSchema} from "./liquidity";
 
 export const proposalNumberSchema = Joi.number().example(1).label('ProposalNumber');
 export const proposalTitleSchema = Joi.string().example('New post').label('ProposalTitle');
@@ -10,22 +9,26 @@ export const proposalStatus = Joi.number().valid(...Object.values(ProposalStatus
 export const proposalTxHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqzxy88uq').label("ProposalCreatorHash");
 export const proposerIdWalletSchema = Joi.string().example('0xe7489ba661e0487669a685d76f4ee978e931dec9').label('ContractAddress');
 export const proposerVotingPeriodSchema = Joi.string().example('1').label('ProposerVotingPeriod');
+export const proposalTimestampSchema = Joi.date().timestamp('unix').example(1631568392).label('ContractTimeStamp');
+export const nonceIdSchema = Joi.number().example(12365651618978561).label('MessageNumber');
+
 
 export const proposalSchema = Joi.object({
   id: idSchema,
+  userId: idSchema,
   proposer: proposerIdWalletSchema,
-  number: proposalNumberSchema,
+  nonceId: nonceIdSchema,
+  proposalId: proposalNumberSchema,
   title: proposalTitleSchema,
   description: proposalDescriptionSchema,
   status: proposalStatus,
-  txHash: proposalTxHashSchema,
 }).label('Proposal');
 
 export const proposalEventSchema = Joi.object({
   transId: proposalNumberSchema,
   transactionHash: proposalTxHashSchema,
-  timestamp: contractTimestampSchema,
-  blockNumber: contractTimestampSchema,
+  timestamp: proposalTimestampSchema,
+  blockNumber: proposalTimestampSchema,
   proposer: proposerIdWalletSchema,
   description: proposalDescriptionSchema,
   votingPeriod: proposerVotingPeriodSchema,
