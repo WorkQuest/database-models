@@ -4,12 +4,11 @@ export declare enum VoteCastEventType {
     VoteCast = "VoteCast"
 }
 export declare class VoteCastEvents extends Model {
-    blockNumber: number;
     transactionHash: string;
-    voter: number;
+    voter: string;
     proposalId: number;
     support: boolean;
-    votes: number;
+    votes: string;
     timestamp: string;
     network: BlockchainNetworks;
     event: VoteCastEventType;

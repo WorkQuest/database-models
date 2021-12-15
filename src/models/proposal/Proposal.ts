@@ -24,7 +24,7 @@ export enum ProposalStatus {
 
 @Scopes(() => ({
     defaultScope: {
-        exclude: ["proposalId","votingPeriod","minimumQuorum","timestamp", "txHash","updatedAt","createdAt","deletedAt"],
+        attributes: {exclude: ["proposalId", "votingPeriod", "minimumQuorum", "timestamp", "txHash", "updatedAt", "createdAt", "deletedAt"]},
         include: [{
             model: Media.scope("urlOnly"),
             as: "medias",
@@ -34,33 +34,33 @@ export enum ProposalStatus {
 }))
 @Table({paranoid: true})
 export class Proposal extends Model {
-  @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
+    @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
-  @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+    @ForeignKey(() => User)
+    @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) proposer: string;
+    @Column({type: DataType.STRING, allowNull: false}) proposer: string;
 
-  @Column({type: DataType.DECIMAL, allowNull: false}) nonceId: string;
+    @Column({type: DataType.DECIMAL, allowNull: false}) nonce: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: 0}) proposalId: number;
+    @Column({type: DataType.INTEGER, defaultValue: 0}) proposalId: number;
 
-  @Column({type: DataType.STRING, allowNull: false}) title: string;
+    @Column({type: DataType.STRING, allowNull: false}) title: string;
 
-  @Column({type: DataType.TEXT, allowNull: false}) description: string;
+    @Column({type: DataType.TEXT, allowNull: false}) description: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: 0}) votingPeriod: number;
+    @Column({type: DataType.INTEGER, defaultValue: 0}) votingPeriod: number;
 
-  @Column({type: DataType.INTEGER, defaultValue: 0}) minimumQuorum: number;
+    @Column({type: DataType.INTEGER, defaultValue: 0}) minimumQuorum: number;
 
-  @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.Pending}) status: ProposalStatus;
+    @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.Pending}) status: ProposalStatus;
 
-  @Column({type: DataType.INTEGER, defaultValue: null}) timestamp: number;
+    @Column({type: DataType.INTEGER, defaultValue: null}) timestamp: number;
 
-  @Column({type: DataType.STRING, defaultValue: null}) txHash: string;
+    @Column({type: DataType.STRING, defaultValue: null}) txHash: string;
 
-  @BelongsTo(() => User) author: User;
-  @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
+    @BelongsTo(() => User) author: User;
+    @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
 
-  // @HasMany(() => VoteCastEvents) voting: VoteCastEvents[];
+    // @HasMany(() => VoteCastEvents) voting: VoteCastEvents[];
 }
