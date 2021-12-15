@@ -1,4 +1,4 @@
-import {getUUID} from "../../utils";
+import {getUUID, getUUIDInt} from "../../utils";
 import {Media} from "../Media";
 import {User} from "../user/User";
 import {ProposalMedia} from "./ProposalMedia";
@@ -41,7 +41,7 @@ export class Proposal extends Model {
 
     @Column({type: DataType.STRING, allowNull: false}) proposer: string;
 
-    @Column({type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) nonce: string;
+    @Column({type: DataType.DECIMAL, defaultValue: () => getUUIDInt(), unique: true}) nonce: string;
 
     @Column({type: DataType.INTEGER, defaultValue: 0}) proposalId: number;
 
