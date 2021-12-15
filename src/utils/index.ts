@@ -1,5 +1,5 @@
 import * as speakeasy from "speakeasy";
-import { v4 as uuidv4 } from "uuid";
+import {v4 as uuidv4} from "uuid";
 const UUID = require('uuid-int');
 
 export function getUUID(): string {
@@ -7,8 +7,7 @@ export function getUUID(): string {
 }
 
 export function getUUIDInt(): string {
-  const uuid = UUID(0).uuid();
-  return uuid();
+  return UUID(0).uuid()
 }
 
 export function totpValidate(totp: string, secret: string): boolean{
