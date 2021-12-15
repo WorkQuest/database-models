@@ -41,7 +41,7 @@ export class Proposal extends Model {
 
     @Column({type: DataType.STRING, allowNull: false}) proposer: string;
 
-    @Column({type: DataType.DECIMAL, allowNull: false}) nonce: string;
+    @Column({type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) nonce: string;
 
     @Column({type: DataType.INTEGER, defaultValue: 0}) proposalId: number;
 
