@@ -17,7 +17,7 @@ export const proposalSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   proposer: proposerIdWalletSchema,
-  nonceId: nonceIdSchema,
+  nonce: nonceIdSchema,
   proposalId: proposalNumberSchema,
   title: proposalTitleSchema,
   description: proposalDescriptionSchema,
