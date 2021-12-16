@@ -42,15 +42,15 @@ export class Proposal extends Model {
 
     @Column({type: DataType.DECIMAL, defaultValue: () => getUUIDInt(), unique: true}) nonce: string;
 
-    @Column({type: DataType.INTEGER, defaultValue: 0}) proposalId: number;
+    @Column({type: DataType.INTEGER, defaultValue: null}) proposalId: number;
 
     @Column({type: DataType.STRING, allowNull: false}) title: string;
 
     @Column({type: DataType.TEXT, allowNull: false}) description: string;
 
-    @Column({type: DataType.INTEGER, defaultValue: 0}) votingPeriod: number;
+    @Column({type: DataType.INTEGER, defaultValue: null}) votingPeriod: number;
 
-    @Column({type: DataType.INTEGER, defaultValue: 0}) minimumQuorum: number;
+    @Column({type: DataType.INTEGER, defaultValue: null}) minimumQuorum: number;
 
     @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.Pending}) status: ProposalStatus;
 
