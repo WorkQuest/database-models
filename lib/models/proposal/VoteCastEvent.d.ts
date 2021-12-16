@@ -1,9 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
-export declare enum VoteCastEventType {
-    VoteCast = "VoteCast"
-}
-export declare class VoteCastEvents extends Model {
+export declare class VoteCastEvent extends Model {
     transactionHash: string;
     voter: string;
     proposalId: number;
@@ -11,5 +8,4 @@ export declare class VoteCastEvents extends Model {
     votes: string;
     timestamp: string;
     network: BlockchainNetworks;
-    event: VoteCastEventType;
 }

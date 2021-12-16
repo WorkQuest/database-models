@@ -1,9 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
-export declare enum ProposalEvent {
-    ProposalCreated = "ProposalCreated"
-}
-export declare class ProposalCreatedEvents extends Model {
+export declare class ProposalCreatedEvent extends Model {
     transactionHash: string;
     proposalId: number;
     nonce: string;
@@ -13,5 +10,4 @@ export declare class ProposalCreatedEvents extends Model {
     minimumQuorum: number;
     timestamp: string;
     network: BlockchainNetworks;
-    event: ProposalEvent;
 }

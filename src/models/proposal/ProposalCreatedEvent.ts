@@ -1,10 +1,6 @@
 import {Model, Column, DataType, Table, Scopes} from 'sequelize-typescript';
 import {BlockchainNetworks} from "../types";
 
-export enum VoteCastEventType {
-  VoteCast = 'VoteCast'
-}
-
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -13,13 +9,14 @@ export enum VoteCastEventType {
   }
 }))
 @Table
-export class VoteCastEvents extends Model {
+export class ProposalCreatedEvent extends Model {
   @Column(DataType.STRING) transactionHash: string;
-  @Column(DataType.STRING) voter: string;
   @Column(DataType.INTEGER) proposalId: number;
-  @Column(DataType.BOOLEAN) support: boolean;
-  @Column(DataType.DECIMAL) votes: string;
+  @Column(DataType.DECIMAL) nonce: string;
+  @Column(DataType.STRING) proposer: string;
+  @Column(DataType.TEXT) description: string;
+  @Column(DataType.INTEGER) votingPeriod: number;
+  @Column(DataType.INTEGER) minimumQuorum: number;
   @Column(DataType.DECIMAL) timestamp: string;
   @Column(DataType.STRING) network: BlockchainNetworks;
-  @Column(DataType.STRING) event: VoteCastEventType;
 }

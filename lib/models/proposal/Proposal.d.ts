@@ -10,14 +10,14 @@ export declare enum ProposalStatus {
 export declare class Proposal extends Model {
     id: string;
     userId: string;
-    proposer: string;
-    nonce: string;
-    proposalId: number;
     title: string;
     description: string;
+    status: ProposalStatus;
+    nonce: string;
+    proposer: string;
+    proposalId: number;
     votingPeriod: number;
     minimumQuorum: number;
-    status: ProposalStatus;
     timestamp: number;
     txHash: string;
     author: User;

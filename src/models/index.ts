@@ -38,9 +38,9 @@ import {DailyLiquidity} from "./dailyLiquidity/DailyLiquidity";
 import {Proposal} from "./proposal/Proposal";
 import {ProposalMedia} from "./proposal/ProposalMedia";
 import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
-import {ProposalCreatedEvents} from "./proposal/ProposalCreatedEvents";
-import {VoteCastEvents} from "./proposal/VoteCastEvents";
-import {ProposalExecuted} from "./proposal/ProposalExecuted";
+import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
+import {VoteCastEvent} from "./proposal/VoteCastEvent";
+import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -93,9 +93,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Proposal,
       ProposalMedia,
       ProposalParseBlock,
-      ProposalCreatedEvents,
-      VoteCastEvents,
-      ProposalExecuted,
+      ProposalCreatedEvent,
+      VoteCastEvent,
+      ProposalExecutedEvent,
       /** Other */
       Media,
       QuestChat,
@@ -147,6 +147,6 @@ export * from "./dailyLiquidity/DailyLiquidity";
 export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock";
-export * from "./proposal/ProposalCreatedEvents";
-export * from "./proposal/VoteCastEvents";
-export * from "./proposal/ProposalExecuted";
+export * from "./proposal/ProposalCreatedEvent";
+export * from "./proposal/VoteCastEvent";
+export * from "./proposal/ProposalExecutedEvent";
