@@ -39,7 +39,7 @@ import {Proposal} from "./proposal/Proposal";
 import {ProposalMedia} from "./proposal/ProposalMedia";
 import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
 import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
-import {VoteCastEvent} from "./proposal/VoteCastEvent";
+import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -94,7 +94,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ProposalMedia,
       ProposalParseBlock,
       ProposalCreatedEvent,
-      VoteCastEvent,
+      ProposalVoteCastEvent,
       ProposalExecutedEvent,
       /** Other */
       Media,
@@ -148,5 +148,5 @@ export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock";
 export * from "./proposal/ProposalCreatedEvent";
-export * from "./proposal/VoteCastEvent";
+export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";

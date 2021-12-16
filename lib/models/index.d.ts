@@ -41,5 +41,5 @@ export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock";
 export * from "./proposal/ProposalCreatedEvent";
-export * from "./proposal/VoteCastEvent";
+export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";

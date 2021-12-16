@@ -9,7 +9,7 @@ import {BlockchainNetworks} from "../types";
   }
 }))
 @Table
-export class VoteCastEvent extends Model {
+export class ProposalVoteCastEvent extends Model {
   @Column(DataType.STRING) transactionHash: string;
   @Column(DataType.STRING) voter: string;
   @Column(DataType.INTEGER) proposalId: number;

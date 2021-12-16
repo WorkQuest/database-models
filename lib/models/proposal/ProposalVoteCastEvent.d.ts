@@ -1,6 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
-export declare class VoteCastEvent extends Model {
+export declare class ProposalVoteCastEvent extends Model {
     transactionHash: string;
     voter: string;
     proposalId: number;
