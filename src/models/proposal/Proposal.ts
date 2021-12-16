@@ -19,7 +19,6 @@ export enum ProposalStatus {
     Active,
     Rejected,
     Accepted,
-    Cancelled
 }
 
 @Scopes(() => ({
@@ -61,6 +60,4 @@ export class Proposal extends Model {
 
     @BelongsTo(() => User) author: User;
     @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
-
-    // @HasMany(() => VoteCastEvents) voting: VoteCastEvents[];
 }

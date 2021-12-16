@@ -6,7 +6,7 @@ export declare enum ProposalExecutedEventType {
 export declare class ProposalExecuted extends Model {
     transactionHash: string;
     proposalId: number;
-    succeded: boolean;
+    succeeded: boolean;
     defeated: boolean;
     network: BlockchainNetworks;
     event: ProposalExecutedEventType;

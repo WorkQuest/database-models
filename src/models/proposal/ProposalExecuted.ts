@@ -16,7 +16,7 @@ export enum ProposalExecutedEventType {
 export class ProposalExecuted extends Model {
     @Column(DataType.STRING) transactionHash: string;
     @Column(DataType.INTEGER) proposalId: number;
-    @Column(DataType.BOOLEAN) succeded: boolean;
+    @Column(DataType.BOOLEAN) succeeded: boolean;
     @Column(DataType.BOOLEAN) defeated: boolean;
     @Column(DataType.STRING) network: BlockchainNetworks;
     @Column(DataType.STRING) event: ProposalExecutedEventType;

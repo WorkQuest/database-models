@@ -18,7 +18,7 @@ export class VoteCastEvents extends Model {
   @Column(DataType.STRING) voter: string;
   @Column(DataType.INTEGER) proposalId: number;
   @Column(DataType.BOOLEAN) support: boolean;
-  @Column(DataType.STRING) votes: string;
+  @Column(DataType.DECIMAL) votes: string;
   @Column(DataType.DECIMAL) timestamp: string;
   @Column(DataType.STRING) network: BlockchainNetworks;
   @Column(DataType.STRING) event: VoteCastEventType;
