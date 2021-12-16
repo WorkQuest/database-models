@@ -8,7 +8,7 @@ export enum ProposalExecutedEventType {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["id", "network", "event"]
+      exclude: ["id", "network", "event", "updatedAt", "createdAt", "deletedAt"]
     }
   }
 }))
