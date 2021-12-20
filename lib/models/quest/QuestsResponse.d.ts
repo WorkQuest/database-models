@@ -21,9 +21,9 @@ export declare class QuestsResponse extends Model {
     status: QuestsResponseStatus;
     type: QuestsResponseType;
     message: string;
+    chat: Chat;
     worker: User;
     quest: Quest;
     medias: Media[];
-    chat: Chat;
     questChat: QuestChat;
 }

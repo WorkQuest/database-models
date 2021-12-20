@@ -56,10 +56,10 @@ export class QuestsResponse extends Model {
 
   @Column({type: DataType.TEXT }) message: string;
 
+  @BelongsTo(() => Chat) chat: Chat;
   @BelongsTo(() => User) worker: User;
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsToMany(() => Media, () => QuestResponseMedia) medias: Media[];
 
-  @HasOne(() => Chat) chat: Chat;
   @HasOne(() => QuestChat) questChat: QuestChat;
 }
