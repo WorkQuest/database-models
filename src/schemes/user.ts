@@ -28,6 +28,7 @@ export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).ma
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
 
+
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
   twitter: Joi.string().allow(null).label('Twitter'),

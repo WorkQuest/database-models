@@ -126,7 +126,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS"]
+      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
     },
     include: [{
       model: Media.scope('urlOnly'),
@@ -162,7 +162,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: Media.scope('urlOnly'),
       as: 'avatar'
     }]
-  }
+  },
 }))
 @Table({ paranoid: true })
 export class User extends Model {

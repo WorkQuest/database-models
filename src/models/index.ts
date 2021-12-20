@@ -30,11 +30,17 @@ import {DiscussionCommentMedia} from "./discussion/DiscussionCommentMedia";
 import {Discussion} from "./discussion/Discussion";
 import {DiscussionLike} from "./discussion/DiscussionLike";
 import {DiscussionMedia} from "./discussion/DiscussionMedia";
+import {StarredDiscussion} from "./discussion/StarredDiscussion";
 import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
-import {DailyLiquidity} from "./dailyLiquidity/DailyLiquidity";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
-import {StarredDiscussion} from "./discussion/StarredDiscussion";
+import {DailyLiquidity} from "./dailyLiquidity/DailyLiquidity";
+import {Proposal} from "./proposal/Proposal";
+import {ProposalMedia} from "./proposal/ProposalMedia";
+import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
+import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
+import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
+import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -70,7 +76,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
-      /**Daily pool liquidity section*/
+      /** Daily pool liquidity section */
       DailyLiquidity,
       /** Discussion section */
       Discussion,
@@ -83,6 +89,13 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
+      /** Proposal */
+      Proposal,
+      ProposalMedia,
+      ProposalParseBlock,
+      ProposalCreatedEvent,
+      ProposalVoteCastEvent,
+      ProposalExecutedEvent,
       /** Other */
       Media,
       QuestChat,
@@ -131,3 +144,9 @@ export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./discussion/StarredDiscussion";
 export * from "./dailyLiquidity/DailyLiquidity";
+export * from "./proposal/Proposal";
+export * from "./proposal/ProposalMedia";
+export * from "./proposal/ProposalParseBlock";
+export * from "./proposal/ProposalCreatedEvent";
+export * from "./proposal/ProposalVoteCastEvent";
+export * from "./proposal/ProposalExecutedEvent";
