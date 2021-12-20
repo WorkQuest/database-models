@@ -3,6 +3,7 @@ import { User } from '../user/User';
 import { Quest } from './Quest';
 import { QuestChat } from "../chats/QuestChat";
 import { Media } from "../Media";
+import { Chat } from "../chats/Chat";
 export declare enum QuestsResponseStatus {
     Rejected = -1,
     Open = 0,
@@ -23,5 +24,6 @@ export declare class QuestsResponse extends Model {
     worker: User;
     quest: Quest;
     medias: Media[];
+    chat: Chat;
     questChat: QuestChat;
 }

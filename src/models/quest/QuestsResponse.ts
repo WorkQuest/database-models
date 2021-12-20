@@ -15,6 +15,7 @@ import {QuestChat} from "../chats/QuestChat";
 import {getUUID} from '../../utils';
 import {Media} from "../Media";
 import {QuestResponseMedia} from "./QuestResponseMedia";
+import {Chat} from "../chats/Chat";
 
 export enum QuestsResponseStatus {
   Rejected = -1,
@@ -40,7 +41,7 @@ export enum QuestsResponseType {
       model: Media.scope('urlOnly'),
       as: 'medias',
       through: { attributes: [] }
-    },]
+    }]
   }
 }))
 @Table
@@ -59,5 +60,6 @@ export class QuestsResponse extends Model {
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsToMany(() => Media, () => QuestResponseMedia) medias: Media[];
 
+  @HasOne(() => Chat) chat: Chat;
   @HasOne(() => QuestChat) questChat: QuestChat;
 }
