@@ -37,7 +37,11 @@ export enum QuestsResponseType {
     include: [{
       model: User.scope('short'),
       as: 'worker'
-    }]
+    }, {
+      model: Media.scope('urlOnly'),
+      as: 'medias',
+      through: { attributes: [] }
+    },]
   }
 }))
 @Table
