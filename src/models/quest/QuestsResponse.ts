@@ -1,8 +1,21 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
-import { User } from '../user/User';
-import { Quest } from './Quest';
-import { error, getUUID } from '../../utils';
-import { Errors } from '../../utils/errors';
+import {
+  BelongsTo,
+  BelongsToMany,
+  Column,
+  DataType,
+  ForeignKey,
+  HasOne,
+  Model,
+  Scopes,
+  Table
+} from 'sequelize-typescript';
+import {User} from '../user/User';
+import {Quest} from './Quest';
+import {QuestChat} from "../chats/QuestChat";
+import {getUUID} from '../../utils';
+import {Media} from "../Media";
+import {QuestResponseMedia} from "./QuestResponseMedia";
+import {Chat} from "../chats/Chat";
 
 export enum QuestsResponseStatus {
   Rejected = -1,
@@ -24,6 +37,10 @@ export enum QuestsResponseType {
     include: [{
       model: User.scope('short'),
       as: 'worker'
+    }, {
+      model: Media.scope('urlOnly'),
+      as: 'medias',
+      through: { attributes: [] }
     }]
   }
 }))
@@ -41,30 +58,7 @@ export class QuestsResponse extends Model {
 
   @BelongsTo(() => User) worker: User;
   @BelongsTo(() => Quest) quest: Quest;
+  @BelongsToMany(() => Media, () => QuestResponseMedia) medias: Media[];
 
-  mustBeInvitedToQuest(workerId: String): void {
-    this.mustHaveType(QuestsResponseType.Invite);
-
-    if (this.workerId !== workerId) {
-      throw error(Errors.Forbidden, "User isn't invited to quest", {});
-    }
-  }
-
-  mustHaveStatus(status: QuestsResponseStatus): void {
-    if (this.status !== status) {
-      throw error(Errors.Forbidden, "Quest response status doesn't match", {
-        mustHave: status,
-        current: this.status,
-      });
-    }
-  }
-
-  mustHaveType(type: QuestsResponseType): void {
-    if (this.type !== type) {
-      throw error(Errors.Forbidden, "Quest response type doesn't match", {
-        mustHave: type,
-        current: this.type,
-      });
-    }
-  }
+  @HasOne(() => QuestChat) questChat: QuestChat;
 }

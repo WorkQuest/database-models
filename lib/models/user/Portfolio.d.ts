@@ -8,5 +8,4 @@ export declare class Portfolio extends Model {
     description: string;
     user: User;
     medias: Media[];
-    mustBeCaseCreator(userId: String): void;
 }

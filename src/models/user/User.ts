@@ -1,15 +1,27 @@
-import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Scopes, Table } from "sequelize-typescript";
-import {error, getUUID, totpValidate} from "../../utils";
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  HasOne,
+  Model,
+  Scopes,
+  Table
+} from "sequelize-typescript";
+import {getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
-import {Errors} from "../../utils/errors";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
-import {StarredQuests} from "../quest/StarredQuests";
-import {SkillFilter, SkillsMap, SkillsRaw} from "../SkillFilter";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType} from "../types";
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {DiscussionLike} from "../discussion/DiscussionLike";
+import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
+import {QuestsStatistic} from "../quest/QuestsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -100,7 +112,7 @@ interface WorkExperience {
 }
 
 export interface AdditionalInfoWorker extends AdditionalInfo {
-  skills: string[];
+  skills: string[]; // TODO remove
   educations: Knowledge[] | null;
   workExperiences: WorkExperience[] | null;
 }
@@ -114,7 +126,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "createdAt", "updatedAt", "deletedAt", "locationPostGIS"]
+      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
     },
     include: [{
       model: Media.scope('urlOnly'),
@@ -123,9 +135,12 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     }, {
-      model: SkillFilter,
-      as: 'userSkillFilters',
-      attributes: ["category", "skill"]
+      model: UserSpecializationFilter,
+      as: 'userSpecializations',
+      attributes: ['path'],
+    }, {
+      model: QuestsStatistic,
+      as: 'questsStatistic',
     }]
   },
   withPassword: {
@@ -135,12 +150,19 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
+    attributes: ["id", "firstName", "lastName"],
+    include: [{
+      model: Media.scope('urlOnly'),
+      as: 'avatar'
+    }]
+  },
+  shortWithAdditionalInfo: {
     attributes: ["id", "firstName", "lastName", "additionalInfo"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
     }]
-  }
+  },
 }))
 @Table({ paranoid: true })
 export class User extends Model {
@@ -149,6 +171,16 @@ export class User extends Model {
   @ForeignKey(() => Media)
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
+  /** User profile */
+  @Column(DataType.STRING) firstName: string;
+  @Column(DataType.STRING) lastName: string;
+  @Column(DataType.JSONB) location: LocationType;
+  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  @Column({type: DataType.STRING, unique: true}) email: string;
+  @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
+  @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
+
+  /** User settings */
   @Column({
     type: DataType.STRING,
     set(value: string) {
@@ -165,45 +197,40 @@ export class User extends Model {
       return this.getDataValue("password");
     }
   }) password: string;
-
-  @Column(DataType.STRING) firstName: string;
-  @Column(DataType.STRING) lastName: string;
-  @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
-
-  @Column({type: DataType.STRING, unique: true}) email: string;
-  @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
+  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
+  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
-  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
-  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
+  /** UserRole.Worker: priority list for quests */
+  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
+  @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
-  @Column(DataType.JSONB) location: LocationType;
+  /** PostGIS */
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
-  @Column({
-    type: DataType.VIRTUAL,
-    get() {
-      const userSkillFilters: SkillsRaw[] = this.getDataValue('userSkillFilters');
-
-      return (userSkillFilters ? SkillFilter.toMapSkills(userSkillFilters) : undefined);
-    },
-    set (_) { }
-  }) skillFilters?: SkillsMap;
+  /** Statistic */
+  @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
+  @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
 
   @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
-  @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
-
-  @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Session) sessions: Session[];
+  @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
-  @HasMany(() => SkillFilter) userSkillFilters: SkillFilter[];
+  @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
   /** Aliases for query */
+  @HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
+  @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
+  @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
+  @HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
+  @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
+  @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
 
   async passwordCompare(pwd: string): Promise<boolean> {
     if (!this.password) {
@@ -225,73 +252,7 @@ export class User extends Model {
     });
   }
 
-  static async userMustExist(userId: string) {
-    if (!await User.findByPk(userId)) {
-      throw error(Errors.NotFound, "User does not exist", { userId });
-    }
-  }
-
-  static async usersMustExist(userIds: string[]) {
-    for (const id of userIds) {
-      await User.userMustExist(id);
-    }
-  }
-
-  mustHaveRole(role: UserRole) {
-    if (this.role !== role) {
-      throw error(Errors.InvalidRole, "User isn't match role", {
-        current: this.role,
-        mustHave: role
-      });
-    }
-  }
-
-  mustHaveActiveStatusTOTP(activeStatus: boolean) {
-    if (this.settings.security.TOTP.active !== activeStatus) {
-      throw error(Errors.InvalidActiveStatusTOTP,
-        `Active status TOTP is not ${activeStatus ? "enable" : "disable"}`, {});
-    }
-  }
-
   isTOTPEnabled(): boolean {
     return this.settings.security.TOTP.active;
   }
-
-  validateTOTP(TOTP: string) {
-    if (!totpValidate(TOTP, this.settings.security.TOTP.secret)) {
-      throw error(Errors.InvalidTOTP, "Invalid TOTP", {});
-    }
-  }
-}
-
-export function getDefaultAdditionalInfo(role: UserRole) {
-  let additionalInfo: object = {
-    description: null,
-    secondMobileNumber: null,
-    address: null,
-    socialNetwork: {
-      instagram: null,
-      twitter: null,
-      linkedin: null,
-      facebook: null
-    }
-  };
-
-  if (role === UserRole.Worker) {
-    additionalInfo = {
-      ...additionalInfo,
-      skills: [],
-      educations: [],
-      workExperiences: []
-    };
-  } else if (role === UserRole.Employer) {
-    additionalInfo = {
-      ...additionalInfo,
-      company: null,
-      CEO: null,
-      website: null
-    };
-  }
-
-  return additionalInfo;
 }

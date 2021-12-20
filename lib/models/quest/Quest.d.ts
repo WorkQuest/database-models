@@ -4,14 +4,8 @@ import { Media } from '../Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { SkillFilter, SkillsMap } from "../SkillFilter";
-import { LocationPostGISType, LocationType } from "../types";
-export declare enum QuestPriority {
-    AllPriority = 0,
-    Low = 1,
-    Normal = 2,
-    Urgent = 3
-}
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 export declare enum AdType {
     Free = 0,
     Paid = 1
@@ -25,20 +19,12 @@ export declare enum QuestStatus {
     WaitConfirm = 5,
     Done = 6
 }
-export declare enum QuestWorkPlace {
-    Distant = "distant",
-    Office = "office",
-    Both = "both"
-}
 export declare enum QuestEmployment {
     FullTime = "fullTime",
     PartTime = "partTime",
     FixedTerm = "fixedTerm"
 }
-export interface Location {
-    longitude: number;
-    latitude: number;
-}
+export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {
     id: string;
     userId: string;
@@ -46,28 +32,26 @@ export declare class Quest extends Model {
     title: string;
     description: string;
     status: QuestStatus;
-    workplace: QuestWorkPlace;
+    workplace: WorkPlace;
     employment: QuestEmployment;
-    priority: QuestPriority;
+    priority: Priority;
     category: string;
     locationPlaceName: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
     price: string;
     adType: AdType;
-    skillFilters?: SkillsMap;
     medias: Media[];
     user: User;
     assignedWorker: User;
     star: StarredQuests;
     response: QuestsResponse;
-    filterBySkillFilter: SkillFilter;
+    responded: QuestsResponse;
+    invited: QuestsResponse;
+    questIndustryForFiltering: QuestSpecializationFilter;
+    questSpecializationForFiltering: QuestSpecializationFilter;
+    questSpecializations: QuestSpecializationFilter[];
+    reviews: Review[];
     starredQuests: StarredQuests[];
     responses: QuestsResponse[];
-    reviews: Review[];
-    questSkillFilters: SkillFilter[];
-    updateFieldLocationPostGIS(): void;
-    mustHaveStatus(...statuses: QuestStatus[]): void;
-    mustBeAppointedOnQuest(workerId: string): void;
-    mustBeQuestCreator(userId: String): void;
 }

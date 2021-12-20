@@ -1,4 +1,5 @@
 import * as Joi from "joi";
+import {Priority, WorkPlace} from "../models";
 
 export const idSchema = Joi.string().uuid().example("fa0e2e4e-c53f-4af7-8906-1649daa0cce3").label("Id");
 export const urlSchema = Joi.string().example("http://example.com/v1/getVideo").label("URL");
@@ -16,9 +17,13 @@ export const offsetSchema = Joi.number().min(0).default(0).label("Offset");
 export const limitSchema = Joi.number().min(0).default(10).max(100).label('Limit');
 export const searchSchema = Joi.string().default(null).max(255).label('Search');
 export const starSchema = Joi.object().allow(null).label('Star');
+export const likeSchema = Joi.object().allow(null).label('Like');
 export const mobilePhoneSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).label('MobilePhone');
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
+
+export const timestampSchema = Joi.date().timestamp('unix').example(1631568392).label('timeStamp');
+export const blockNumberSchema = Joi.string().example("14382").label('BlockNumber');
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
@@ -55,3 +60,8 @@ export const jwtTokens = Joi.object({
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
 }).label("JwtTokensSchema");
+
+export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
+
+export const workPlaceSchema = Joi.string().valid(...Object.values(WorkPlace)).example(WorkPlace.Distant).label('WorkPlace');
+export const workPlacesSchema = Joi.array().items(workPlaceSchema).label('WorkPlaces');
