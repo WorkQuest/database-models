@@ -151,4 +151,4 @@ export * from "./proposal/ProposalParseBlock";
 export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
-export * from "./quest/QuestsResponse";
+export * from "./quest/QuestResponseMedia";
