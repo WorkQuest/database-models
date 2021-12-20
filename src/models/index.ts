@@ -42,6 +42,7 @@ import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
 import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
+
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging: logging ? console.log : logging,
