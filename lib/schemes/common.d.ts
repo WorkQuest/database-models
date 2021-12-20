@@ -20,7 +20,7 @@ export declare const mobilePhoneSchema: Joi.StringSchema;
 export declare const idsSchema: Joi.ArraySchema;
 export declare const timestampSchema: Joi.DateSchema;
 export declare const blockNumberSchema: Joi.StringSchema;
-export declare const outputOkSchema: (res: Joi.Schema<any>) => Joi.Schema<any>;
+export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
 export declare const paginationFields: {
     limit: Joi.NumberSchema;
     offset: Joi.NumberSchema;

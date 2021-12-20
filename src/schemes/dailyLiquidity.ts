@@ -5,12 +5,12 @@ export const poolSchema = Joi.string().example("281401").label("PoolSchema");
 
 export const dailyLiquiditySchema = Joi.object({
   id: idSchema,
-  timestamp: timestampSchema,
+  date: timestampSchema,
   blockNumber: blockNumberSchema,
   bnbPool: poolSchema,
   wqtPool: poolSchema,
   usdPriceBNB: poolSchema,
   usdPriceWQT: poolSchema,
-  liquidityPoolUSD: poolSchema,
+  reserveUSD: poolSchema,
 }).label('DailyLiquidity');
 
