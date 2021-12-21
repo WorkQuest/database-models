@@ -17,9 +17,10 @@ export declare const searchSchema: Joi.StringSchema;
 export declare const starSchema: Joi.ObjectSchema<any>;
 export declare const likeSchema: Joi.ObjectSchema<any>;
 export declare const mobilePhoneSchema: Joi.StringSchema;
-export declare const idsSchema: Joi.ArraySchema;
+export declare const addressWalletSchema: Joi.StringSchema;
+export declare const transactionHashSchema: Joi.StringSchema;
 export declare const timestampSchema: Joi.DateSchema;
-export declare const blockNumberSchema: Joi.StringSchema;
+export declare const idsSchema: Joi.ArraySchema;
 export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
 export declare const paginationFields: {
     limit: Joi.NumberSchema;

@@ -19,11 +19,11 @@ export const searchSchema = Joi.string().default(null).max(255).label('Search');
 export const starSchema = Joi.object().allow(null).label('Star');
 export const likeSchema = Joi.object().allow(null).label('Like');
 export const mobilePhoneSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).label('MobilePhone');
+export const addressWalletSchema = Joi.string().example('0xe7489ba661e0487669a685d76f4ee978e931dec9').label('AddressWallet');
+export const transactionHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqzxy88uq').label("TransactionHash");
+export const timestampSchema = Joi.date().timestamp('unix').example(1631568392).label('Timestamp');
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
-
-export const timestampSchema = Joi.date().timestamp('unix').example(1631568392).label('timeStamp');
-export const blockNumberSchema = Joi.string().example("14382").label('BlockNumber');
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
