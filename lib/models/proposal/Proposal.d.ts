@@ -12,9 +12,9 @@ export declare class Proposal extends Model {
     userId: string;
     title: string;
     description: string;
+    proposer: string;
     status: ProposalStatus;
     nonce: string;
-    proposer: string;
     proposalId: number;
     votingPeriod: number;
     minimumQuorum: number;
