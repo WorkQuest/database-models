@@ -3,6 +3,7 @@ import {ProposalStatus} from "./types";
 import {Media} from "../Media";
 import {User} from "../user/User";
 import {ProposalMedia} from "./ProposalMedia";
+import {Discussion} from "../discussion/Discussion"
 import {ProposalCreatedEvent} from "./ProposalCreatedEvent";
 import {ProposalVoteCastEvent} from "./ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./ProposalExecutedEvent";
@@ -38,6 +39,9 @@ export class Proposal extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
+  @ForeignKey(() => Discussion) /** Auto created Discussion when status ProposalStatus.Active */
+  @Column({type: DataType.STRING, allowNull: true}) discussionId: string;
+
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column({type: DataType.TEXT, allowNull: false}) description: string;
   @Column({type: DataType.STRING, allowNull: false}) proposer: string; // TODO: адрес кошелька User
@@ -52,5 +56,6 @@ export class Proposal extends Model {
   @HasMany(() => ProposalVoteCastEvent) voteCastEvents: ProposalVoteCastEvent[];
 
   @BelongsTo(() => User) author: User;
+  @BelongsTo(() => Discussion) discussion: Discussion;
   @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
 }
