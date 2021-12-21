@@ -10,8 +10,9 @@ import {
   DataType,
   BelongsTo,
   ForeignKey,
-  BelongsToMany,
+  BelongsToMany, HasOne,
 } from "sequelize-typescript";
+import {Discussion} from "../discussion/Discussion";
 
 export enum ProposalStatus {
   Pending = 0,      /** When pending on mempool */
@@ -39,6 +40,9 @@ export class Proposal extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
+  @ForeignKey(() => Discussion)
+  @Column({type: DataType.STRING, allowNull: true}) discussionId: string;
+
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column({type: DataType.TEXT, allowNull: false}) description: string;
   @Column({type: DataType.STRING, allowNull: false}) proposer: string; // TODO: адрес кошелька User
@@ -56,5 +60,6 @@ export class Proposal extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) txHash: string;
 
   @BelongsTo(() => User) author: User;
+  @BelongsTo(() => Discussion) discussion: Discussion;
   @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
 }
