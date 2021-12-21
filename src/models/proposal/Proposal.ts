@@ -1,24 +1,23 @@
 import {getUUID, getUUIDInt} from "../../utils";
+import {ProposalStatus} from "./types";
 import {Media} from "../Media";
 import {User} from "../user/User";
 import {ProposalMedia} from "./ProposalMedia";
+import {ProposalCreatedEvent} from "./ProposalCreatedEvent";
+import {ProposalVoteCastEvent} from "./ProposalVoteCastEvent";
+import {ProposalExecutedEvent} from "./ProposalExecutedEvent";
 import {
   Model,
   Table,
   Column,
   Scopes,
+  HasOne,
+  HasMany,
   DataType,
   BelongsTo,
   ForeignKey,
   BelongsToMany,
 } from "sequelize-typescript";
-
-export enum ProposalStatus {
-  Pending = 0,      /** When pending on mempool */
-  Active = 1,       /** On event created (see model ProposalCreatedEvent) */
-  Rejected = 2,     /** On event executed - not enough votes (see model ProposalExecutedEvent) */
-  Accepted = 3,     /** On event executed - voting passed (see model ProposalExecutedEvent) */
-}
 
 @Scopes(() => ({
   defaultScope: {
@@ -45,15 +44,12 @@ export class Proposal extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.Pending}) status: ProposalStatus;
 
-  /**  */
-  @Column({type: DataType.DECIMAL, defaultValue: () => getUUIDInt(), unique: true}) nonce: string;
+  /** Unique value for proposer */
+  @Column({unique: true, allowNull: false, type: DataType.DECIMAL, defaultValue: () => getUUIDInt() }) nonce: string;
 
-  /**  */
-  @Column({type: DataType.INTEGER, defaultValue: null}) proposalId: number;
-  @Column({type: DataType.INTEGER, defaultValue: null}) votingPeriod: number;
-  @Column({type: DataType.INTEGER, defaultValue: null}) minimumQuorum: number;
-  @Column({type: DataType.INTEGER, defaultValue: null}) timestamp: number;
-  @Column({type: DataType.STRING, defaultValue: null}) txHash: string;
+  @HasOne(() => ProposalCreatedEvent) createdEvent: ProposalCreatedEvent;
+  @HasOne(() => ProposalExecutedEvent) executedEvent: ProposalExecutedEvent;
+  @HasMany(() => ProposalVoteCastEvent) voteCastEvents: ProposalVoteCastEvent[];
 
   @BelongsTo(() => User) author: User;
   @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];

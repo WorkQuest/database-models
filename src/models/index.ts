@@ -109,7 +109,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
   return sequelize;
 }
 
-export * from "./types";
+/** Models */
 export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
@@ -153,3 +153,7 @@ export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
+
+/** Types */
+export * from "./types";
+export * from "./proposal/types";

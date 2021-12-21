@@ -1,6 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
 export declare function initDatabase(dbLink: string, logging?: boolean, sync?: boolean): Promise<Sequelize>;
-export * from "./types";
 export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
@@ -44,3 +43,5 @@ export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
+export * from "./types";
+export * from "./proposal/types";
