@@ -1,14 +1,7 @@
 import {Model, Column, DataType, Table, Scopes} from 'sequelize-typescript';
 import {BlockchainNetworks} from "../types";
 
-@Scopes(() => ({
-  defaultScope: {
-    attributes: {
-      exclude: ["id", "network", "event", "updatedAt", "createdAt", "deletedAt"]
-    }
-  }
-}))
-@Table
+@Table /** Contract event */
 export class ProposalCreatedEvent extends Model {
   @Column(DataType.STRING) transactionHash: string;
   @Column(DataType.INTEGER) proposalId: number;
