@@ -14,7 +14,7 @@ import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
 import {Review} from "../quest/Review";
-import {RatingStatistic} from "./RatingStatistic";
+import {RatingStatistic, RatingStatus} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
@@ -154,6 +154,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
+    }, {
+      model: RatingStatistic,
+      as: 'ratingStatistic'
     }]
   },
   shortWithAdditionalInfo: {
