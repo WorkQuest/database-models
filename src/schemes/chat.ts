@@ -129,7 +129,7 @@ export const chatQuerySchema = Joi.object({
 /** ChatStatistic */
 export const chatStatisticUnreadCountMessagesSchema = Joi.number().min(0).label('UnreadCountMessages');
 
-export const chatStatisticSchema = Joi.object({
+export const chatsStatisticSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   unreadMessages: chatStatisticUnreadCountMessagesSchema,
