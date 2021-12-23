@@ -19,6 +19,7 @@ import {
   mobilePhoneSchema,
   sortDirectionSchema,
 } from "./common";
+import {chatStatisticSchema} from "./chat";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -88,6 +89,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   questsStatistic: questsStatisticSchema,
+  chatStatistic: chatStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
 }).label("User");
 
