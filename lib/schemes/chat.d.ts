@@ -21,5 +21,3 @@ export declare const chatsSchema: Joi.ArraySchema;
 export declare const chatsForGetSchema: Joi.ArraySchema;
 export declare const chatsForGetWithCountSchema: Joi.ObjectSchema<any>;
 export declare const chatQuerySchema: Joi.ObjectSchema<any>;
-export declare const chatStatisticUnreadCountMessagesSchema: Joi.NumberSchema;
-export declare const chatsStatisticSchema: Joi.ObjectSchema<any>;

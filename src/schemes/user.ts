@@ -19,7 +19,7 @@ import {
   mobilePhoneSchema,
   sortDirectionSchema,
 } from "./common";
-import {chatsStatisticSchema} from "./chat";
+import {chatsStatisticSchema} from "./statistics";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
