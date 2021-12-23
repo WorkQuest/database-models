@@ -3,12 +3,13 @@ import {questsStatisticSchema} from "./questsStatistic";
 import {ratingStatisticSchema} from "./ratingStatistic";
 import {idSchema} from "./common";
 
+
 export const chatStatisticUnreadCountMessagesSchema = Joi.number().min(0).label('UnreadCountMessages');
 
 export const chatsStatisticSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
-  unreadMessages: chatStatisticUnreadCountMessagesSchema,
+  unreadChats: chatStatisticUnreadCountMessagesSchema,
 });
 
 export const userStatisticsSchema = Joi.object({

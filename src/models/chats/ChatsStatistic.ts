@@ -8,7 +8,7 @@ export class ChatsStatistic extends Model {
 
   @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: 0}) unreadMessages: number;
+  @Column({type: DataType.INTEGER, defaultValue: 0}) unreadChats: number;
 
   @BelongsTo(() => User) user: User;
 }

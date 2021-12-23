@@ -125,6 +125,3 @@ export const chatQuerySchema = Joi.object({
     lastMessageDate: sortDirectionSchema,
   }).default({ lastMessageDate: 'DESC' }).label('SortChats'),
 }).label('ChatsQuery');
-
-/** ChatStatistic */
-
