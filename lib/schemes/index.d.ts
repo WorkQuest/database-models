@@ -14,3 +14,4 @@ export * from "./discussion";
 export * from "./questsStatistic";
 export * from "./dailyLiquidity";
 export * from "./proposal";
+export * from "./statistics";
