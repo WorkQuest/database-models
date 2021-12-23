@@ -4,8 +4,8 @@ import {questsStatisticSchema} from "./questsStatistic";
 import {ratingStatisticSchema} from "./ratingStatistic";
 
 
-export const userStatistics = {
+export const userStatisticsSchema = Joi.object({
   chatsStatistic: chatsStatisticSchema,
   questsStatistic: questsStatisticSchema,
   ratingStatistic: ratingStatisticSchema
-}
+}).label('UserStatistics');
