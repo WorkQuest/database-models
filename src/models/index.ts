@@ -42,6 +42,7 @@ import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
 import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
+import {ChatsStatistic} from "./chats/ChatsStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -75,6 +76,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       MessageMedia,
       InfoMessage,
       StarredMessage,
+      ChatsStatistic,
       /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
@@ -153,3 +155,4 @@ export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
+export * from "./chats/ChatsStatistic";

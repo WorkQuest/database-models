@@ -22,6 +22,7 @@ import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
+import {ChatsStatistic} from "../chats/ChatsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -224,6 +225,7 @@ export class User extends Model {
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;
+  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
