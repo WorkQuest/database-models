@@ -173,7 +173,7 @@ export const workerQuerySchema = Joi.object({
   south: locationSchema,
   sort: userListSortSchema,
   priority: workerPrioritiesSchema.default([]),
-  ratingStatus: workerRatingStatusesSchema.default(null),
+  ratingStatus: workerRatingStatusesSchema.default([]),
   workplace: workPlacesSchema.unique().default(null),
   specialization: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
