@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {userShortSchema} from "./user";
+import {userShortSchema, reviewSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
 import {
   specializationsFilerSchema,
@@ -96,10 +96,10 @@ export const questQuerySchema = Joi.object({
   workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
   specializations: specializationsFilerSchema.unique().default(null),
-  responded: Joi.boolean().default(false), /** Only quests that worker answered (see QuestResponse and its type) */
-  invited: Joi.boolean().default(false), /** Only quests where worker invited (see QuestResponse and its type) */
-  performing: Joi.boolean().default(false), /** Only quests where worker performs (see Quest.assignedWorkerId) */
-  starred: Joi.boolean().default(false), /** Only quest with star (see StarredQuests) */
+  responded: Joi.boolean().default(false),                                  /** Only quests that worker answered (see QuestResponse and its type)   */
+  invited: Joi.boolean().default(false),                                    /** Only quests where worker invited (see QuestResponse and its type)   */
+  performing: Joi.boolean().default(false),                                 /** Only quests where worker performs (see Quest.assignedWorkerId)      */
+  starred: Joi.boolean().default(false),                                    /** Only quest with star (see StarredQuests)                            */
 }).label('QuestsQuery');
 
 // TODO Добавить в общее
@@ -161,15 +161,17 @@ export const questForGetSchema = Joi.object({
   description: questDescriptionSchema,
   price: questPriceSchema,
   adType: questAdTypeSchema,
+  createdAt: isoDateSchema,
+  /**  */
   user: userShortSchema,
   assignedWorker: userShortSchema,
-  star: starSchema,
-  invited: questsResponseSchema,
-  responded: questsResponseSchema,
-  response: questsResponseSchema.allow(null),
   medias: mediasUrlOnlySchema,
   questSpecializations: modelSpecializationsSchema,
-  createdAt: isoDateSchema,
+  yourReview: reviewSchema,                                 /**                                         */
+  star: starSchema,                                         /** If this user set star on this quest     */
+  invited: questsResponseSchema,                            /** If this user invited on this quest      */
+  responded: questsResponseSchema,                          /** If this user responded on this quest    */
+  response: questsResponseSchema.allow(null),
 }).label('QuestForGet');
 
 export const questsForGetSchema = Joi.array().items(questForGetSchema).label('QuestsForGet');

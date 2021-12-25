@@ -1,8 +1,21 @@
-import {BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Scopes, Table} from 'sequelize-typescript';
+import {
+  BelongsTo,
+  BelongsToMany,
+  Column,
+  DataType,
+  ForeignKey,
+  HasOne,
+  Model,
+  Scopes,
+  Table
+} from 'sequelize-typescript';
 import {User} from '../user/User';
 import {Quest} from './Quest';
 import {QuestChat} from "../chats/QuestChat";
 import {getUUID} from '../../utils';
+import {Media} from "../Media";
+import {QuestResponseMedia} from "./QuestResponseMedia";
+import {Chat} from "../chats/Chat";
 
 export enum QuestsResponseStatus {
   Rejected = -1,
@@ -24,6 +37,10 @@ export enum QuestsResponseType {
     include: [{
       model: User.scope('short'),
       as: 'worker'
+    }, {
+      model: Media.scope('urlOnly'),
+      as: 'medias',
+      through: { attributes: [] }
     }]
   }
 }))
@@ -41,6 +58,7 @@ export class QuestsResponse extends Model {
 
   @BelongsTo(() => User) worker: User;
   @BelongsTo(() => Quest) quest: Quest;
+  @BelongsToMany(() => Media, () => QuestResponseMedia) medias: Media[];
 
   @HasOne(() => QuestChat) questChat: QuestChat;
 }

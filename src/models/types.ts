@@ -2,6 +2,8 @@
 enum BlockchainNetworks {
   bscMainNetwork = 'bscMainNetwork',
   ethMainNetwork = 'ethMainNetwork',
+  rinkebyTestNetwork = 'rinkebyTestNetwork',
+  bscTestNetwork = 'bscTestNetwork',
 }
 
 type LocationType = {
