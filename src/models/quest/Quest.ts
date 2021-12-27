@@ -103,10 +103,11 @@ export class Quest extends Model {
 
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
-  @HasOne(() => QuestsResponse) responded: QuestsResponse; /** Alias for filter in get quests */
-  @HasOne(() => QuestsResponse) invited: QuestsResponse; /** Alias for filter get quests */
-  @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;
-  @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;
+  @HasOne(() => QuestsResponse) responded: QuestsResponse;                                              /** Alias for filter in get quests */
+  @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
+  @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */
+  @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
+  @HasOne(() => Review) yourReview: Review;                                                             /** Alias for get review from user when get all quest */
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => Review) reviews: Review[];
