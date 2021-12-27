@@ -17,7 +17,7 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   mobilePhoneSchema,
-  sortDirectionSchema, mobilePhoneWithoutCodeSchema,
+  sortDirectionSchema, mobilePhoneWithoutCountryCodeSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -32,7 +32,7 @@ export const workerRatingStatusesSchema = Joi.array().items(ratingStatusSchema).
 
 export const userPhoneSchema = Joi.object({
   codeRegion: Joi.string().default('+7').label('CodeRegion'),
-  phone: mobilePhoneWithoutCodeSchema,
+  phone: mobilePhoneWithoutCountryCodeSchema,
   fullPhone: mobilePhoneSchema
 }).label('UserPhoneSchema');
 
