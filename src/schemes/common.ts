@@ -19,7 +19,7 @@ export const searchSchema = Joi.string().default(null).max(255).label('Search');
 export const starSchema = Joi.object().allow(null).label('Star');
 export const likeSchema = Joi.object().allow(null).label('Like');
 export const mobilePhoneSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).example('+79998887766').label('MobilePhone');
-export const mobilePhoneWithoutCountryCodeSchema = Joi.string().pattern(/^\d{1,3}\d{10}$/).example('9998887766').label('MobilePhoneWithoutCountryCode');
+export const mobilePhoneWithoutCountryCodeSchema = Joi.string().example('9998887766').label('MobilePhoneWithoutCountryCode');
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
 
