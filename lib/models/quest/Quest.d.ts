@@ -6,6 +6,7 @@ import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
 import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
+import { QuestChat } from "../chats/QuestChat";
 export declare enum AdType {
     Free = 0,
     Paid = 1
@@ -45,6 +46,7 @@ export declare class Quest extends Model {
     user: User;
     assignedWorker: User;
     star: StarredQuests;
+    chat: QuestChat;
     response: QuestsResponse;
     responded: QuestsResponse;
     invited: QuestsResponse;
