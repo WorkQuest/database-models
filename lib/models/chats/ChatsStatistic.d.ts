@@ -3,6 +3,6 @@ import { User } from "../user/User";
 export declare class ChatsStatistic extends Model {
     id: string;
     userId: string;
-    unreadChats: number;
+    unreadCountChats: number;
     user: User;
 }

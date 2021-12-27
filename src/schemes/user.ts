@@ -1,8 +1,8 @@
 import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
 import {UserRole, UserStatus} from "../models";
-import {questsStatisticSchema} from "./questsStatistic";
-import {ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
+import {questsStatisticSchema} from "./statistics";
+import {ratingStatisticSchema, ratingStatusSchema} from "./statistics";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   idSchema,

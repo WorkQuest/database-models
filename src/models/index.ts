@@ -51,58 +51,81 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
     models: [
       /** User section */
       User,
-      Session,
       Review,
+      Session,
       Portfolio,
-      PortfolioMedia,
-      RatingStatistic,
-      UserSpecializationFilter,
+
+
       /** Admin section */
       Admin,
       AdminSession,
+
+
       /** Quest section */
       Quest,
-      QuestsResponse,
-      QuestResponseMedia,
-      QuestMedia,
+      QuestChat,
       StarredQuests,
-      QuestsStatistic,
-      QuestSpecializationFilter,
+      QuestsResponse,
+
+
       /** Chat section */
       Chat,
-      StarredChat,
-      ChatMember,
       Message,
-      MessageMedia,
+      ChatMember,
       InfoMessage,
+      StarredChat,
       StarredMessage,
-      ChatsStatistic,
+
+
       /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
+
+
       /** Daily pool liquidity section */
       DailyLiquidity,
+
+
       /** Discussion section */
       Discussion,
       DiscussionLike,
-      DiscussionMedia,
       DiscussionComment,
-      DiscussionCommentLike,
-      DiscussionCommentMedia,
       StarredDiscussion,
+      DiscussionCommentLike,
+
+
+
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
-      /** Proposal */
+      UserSpecializationFilter,
+      QuestSpecializationFilter,
+
+
+      /** Proposal section */
       Proposal,
-      ProposalMedia,
       ProposalParseBlock,
       ProposalCreatedEvent,
       ProposalVoteCastEvent,
       ProposalExecutedEvent,
-      /** Other */
+
+
+      /** Statistic */
+      ChatsStatistic,
+      RatingStatistic,
+      QuestsStatistic,
+
+
+      /** Media section */
       Media,
-      QuestChat,
+      QuestMedia,
+      MessageMedia,
+      ProposalMedia,
+      PortfolioMedia,
+      DiscussionMedia,
+      QuestResponseMedia,
+      DiscussionCommentMedia,
+
     ]
   });
   if (sync)
