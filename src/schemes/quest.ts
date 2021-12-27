@@ -27,6 +27,7 @@ import {
   workPlacesSchema,
   sortDirectionSchema,
 } from './common';
+import {chatSchema} from "./chat";
 
 /** Quests schemes */
 
@@ -172,6 +173,7 @@ export const questForGetSchema = Joi.object({
   invited: questsResponseSchema,                            /** If this user invited on this quest      */
   responded: questsResponseSchema,                          /** If this user responded on this quest    */
   response: questsResponseSchema.allow(null),
+  chat: chatSchema,
 }).label('QuestForGet');
 
 export const questsForGetSchema = Joi.array().items(questForGetSchema).label('QuestsForGet');
