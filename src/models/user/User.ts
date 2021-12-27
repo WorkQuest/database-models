@@ -94,7 +94,7 @@ interface SocialMediaNicknames {
 
 interface AdditionalInfo {
   description: string | null;
-  secondMobileNumber: string | null;
+  secondMobileNumber: UserPhone | null;
   address: string | null;
   socialNetwork: SocialMediaNicknames;
 }
@@ -109,6 +109,12 @@ interface WorkExperience {
   from: string;
   to: string;
   place: string;
+}
+
+interface UserPhone {
+  codeRegion: string,
+  phone: string,
+  fullPhone: string,
 }
 
 export interface AdditionalInfoWorker extends AdditionalInfo {
@@ -197,7 +203,7 @@ export class User extends Model {
       return this.getDataValue("password");
     }
   }) password: string;
-  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
+  @Column({type: DataType.JSONB, defaultValue: null}) phone: UserPhone;
   @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;

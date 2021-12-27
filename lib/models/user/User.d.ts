@@ -59,7 +59,7 @@ interface SocialMediaNicknames {
 }
 interface AdditionalInfo {
     description: string | null;
-    secondMobileNumber: string | null;
+    secondMobileNumber: UserPhone | null;
     address: string | null;
     socialNetwork: SocialMediaNicknames;
 }
@@ -72,6 +72,11 @@ interface WorkExperience {
     from: string;
     to: string;
     place: string;
+}
+interface UserPhone {
+    codeRegion: string;
+    phone: string;
+    fullPhone: string;
 }
 export interface AdditionalInfoWorker extends AdditionalInfo {
     skills: string[];
@@ -93,7 +98,7 @@ export declare class User extends Model {
     role: UserRole;
     additionalInfo: object;
     password: string;
-    phone: string;
+    phone: UserPhone;
     tempPhone: string;
     settings: UserSettings;
     status: UserStatus;
