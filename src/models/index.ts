@@ -42,7 +42,7 @@ import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
 import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
-import {ChatsStatistic} from "./chats/ChatsStatistic";
+import {Wallet} from "./wallet/Wallet";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -51,81 +51,58 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
     models: [
       /** User section */
       User,
+      Wallet,
       Review,
       Session,
       Portfolio,
-
-
+      PortfolioMedia,
+      RatingStatistic,
+      UserSpecializationFilter,
       /** Admin section */
       Admin,
       AdminSession,
-
-
       /** Quest section */
       Quest,
-      QuestChat,
-      StarredQuests,
       QuestsResponse,
-
-
+      QuestResponseMedia,
+      QuestMedia,
+      StarredQuests,
+      QuestsStatistic,
+      QuestSpecializationFilter,
       /** Chat section */
       Chat,
-      Message,
-      ChatMember,
-      InfoMessage,
       StarredChat,
+      ChatMember,
+      Message,
+      MessageMedia,
+      InfoMessage,
       StarredMessage,
-
-
       /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
-
-
       /** Daily pool liquidity section */
       DailyLiquidity,
-
-
       /** Discussion section */
       Discussion,
       DiscussionLike,
+      DiscussionMedia,
       DiscussionComment,
-      StarredDiscussion,
       DiscussionCommentLike,
-
-
-
+      DiscussionCommentMedia,
+      StarredDiscussion,
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
-      UserSpecializationFilter,
-      QuestSpecializationFilter,
-
-
-      /** Proposal section */
+      /** Proposal */
       Proposal,
+      ProposalMedia,
       ProposalParseBlock,
       ProposalCreatedEvent,
       ProposalVoteCastEvent,
       ProposalExecutedEvent,
-
-
-      /** Statistic */
-      ChatsStatistic,
-      RatingStatistic,
-      QuestsStatistic,
-
-
-      /** Media section */
+      /** Other */
       Media,
-      QuestMedia,
-      MessageMedia,
-      ProposalMedia,
-      PortfolioMedia,
-      DiscussionMedia,
-      QuestResponseMedia,
-      DiscussionCommentMedia,
-
+      QuestChat,
     ]
   });
   if (sync)
@@ -178,4 +155,4 @@ export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
-export * from "./chats/ChatsStatistic";
+export * from "./wallet/Wallet"

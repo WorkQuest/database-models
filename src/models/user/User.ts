@@ -22,6 +22,7 @@ import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
+import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
 
 export interface SocialInfo {
@@ -228,6 +229,9 @@ export class User extends Model {
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
+
+  /** Wallet */
+  @HasOne(() => Wallet) wallet: Wallet;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;

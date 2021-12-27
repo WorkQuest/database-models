@@ -10,7 +10,7 @@ import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
 import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
-import { ChatsStatistic } from "../chats/ChatsStatistic";
+import { Wallet } from "../wallet/Wallet";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -110,8 +110,8 @@ export declare class User extends Model {
     reviews: Review[];
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
+    wallet: Wallet;
     chatOfUser: Chat;
-    chatStatistic: ChatsStatistic;
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;

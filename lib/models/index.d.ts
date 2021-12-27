@@ -44,4 +44,4 @@ export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
-export * from "./chats/ChatsStatistic";
+export * from "./wallet/Wallet";
