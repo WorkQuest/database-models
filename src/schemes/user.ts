@@ -143,6 +143,7 @@ export const userShortWithAdditionalInfoSchema = Joi.object({
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   additionalInfo: userCommonAdditionalInfoSchema,
+  ratingStatistic: ratingStatisticSchema,
 }).label('UserShort');
 
 export const userListSortSchema = Joi.object({

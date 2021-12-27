@@ -164,6 +164,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
+    }, {
+      model: RatingStatistic,
+      as: 'ratingStatistic'
     }]
   },
 }))
