@@ -17,7 +17,7 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   mobilePhoneSchema,
-  sortDirectionSchema,
+  sortDirectionSchema, mobilePhoneWithoutCodeSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -29,9 +29,10 @@ export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).exa
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
 export const workerPrioritiesSchema = Joi.array().items(prioritySchema).label('WorkerPriorities');
 export const workerRatingStatusesSchema = Joi.array().items(ratingStatusSchema).label('WorkerRatingStatuses');
+
 export const userPhoneSchema = Joi.object({
   codeRegion: Joi.string().default('+7').label('CodeRegion'),
-  phone: mobilePhoneSchema,
+  phone: mobilePhoneWithoutCodeSchema,
   fullPhone: mobilePhoneSchema
 }).label('UserPhoneSchema');
 
