@@ -42,6 +42,7 @@ import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
 import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
+import {Wallet} from "./wallet/Wallet";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -50,8 +51,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
     models: [
       /** User section */
       User,
-      Session,
+      Wallet,
       Review,
+      Session,
       Portfolio,
       PortfolioMedia,
       RatingStatistic,
