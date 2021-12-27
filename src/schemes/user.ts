@@ -19,6 +19,7 @@ import {
   mobilePhoneSchema,
   sortDirectionSchema,
 } from "./common";
+import {walletAddressSchema} from "./wallet";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -189,6 +190,7 @@ export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
+  address: walletAddressSchema
 }).label("TokensWithStatus");
 
 /** Review */
