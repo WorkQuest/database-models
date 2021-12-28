@@ -14,6 +14,7 @@ import {Admin} from './admin/Admin'
 import {AdminSession} from "./admin/AdminSession";
 import {Chat} from "./chats/Chat";
 import {ChatMember} from "./chats/ChatMember";
+import {ChatsStatistic} from "./chats/ChatsStatistic";
 import {MessageMedia} from "./chats/MessageMedia";
 import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
@@ -76,6 +77,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Message,
       MessageMedia,
       InfoMessage,
+      ChatsStatistic,
       StarredMessage,
       /** Bridge section */
       BridgeParserBlockInfo,
@@ -134,6 +136,7 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
+export * from "./chats/ChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
 export * from "./bridge/BridgeParserBlockInfo";

@@ -23,6 +23,7 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
+export * from "./chats/ChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
 export * from "./bridge/BridgeParserBlockInfo";
