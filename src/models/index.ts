@@ -52,38 +52,53 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
     models: [
       /** User section */
       User,
-      Wallet,
+      Session,
       Review,
       Session,
       Portfolio,
       PortfolioMedia,
       RatingStatistic,
       UserSpecializationFilter,
+
+
       /** Admin section */
       Admin,
       AdminSession,
+
+
       /** Quest section */
       Quest,
       QuestsResponse,
       QuestResponseMedia,
       QuestMedia,
+      QuestChat,
       StarredQuests,
       QuestsStatistic,
       QuestSpecializationFilter,
+      QuestsResponse,
+
+
       /** Chat section */
       Chat,
       StarredChat,
       ChatMember,
       Message,
       MessageMedia,
+      ChatMember,
       InfoMessage,
-      ChatsStatistic,
+      StarredChat,
       StarredMessage,
+
+
       /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
+
+
       /** Daily pool liquidity section */
       DailyLiquidity,
+
+
       /** Discussion section */
       Discussion,
       DiscussionLike,
@@ -92,10 +107,18 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       DiscussionCommentLike,
       DiscussionCommentMedia,
       StarredDiscussion,
+      DiscussionCommentLike,
+
+
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
       /** Proposal */
+      UserSpecializationFilter,
+      QuestSpecializationFilter,
+
+
+      /** Proposal section */
       Proposal,
       ProposalMedia,
       ProposalParseBlock,
@@ -103,8 +126,28 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ProposalVoteCastEvent,
       ProposalExecutedEvent,
       /** Other */
+
+
+      /** Statistic */
+      ChatsStatistic,
+      RatingStatistic,
+      QuestsStatistic,
+
+
+      /** Media section */
       Media,
       QuestChat,
+      QuestMedia,
+      MessageMedia,
+      ProposalMedia,
+      PortfolioMedia,
+      DiscussionMedia,
+      QuestResponseMedia,
+      DiscussionCommentMedia,
+
+
+      /** Wallet */
+      Wallet,
     ]
   });
   if (sync)
