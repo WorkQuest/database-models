@@ -1,6 +1,8 @@
 import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
 import {UserRole, UserStatus} from "../models";
+import {walletAddressSchema} from "./wallet";
+import {chatsStatisticSchema} from "./statistics";
 import {questsStatisticSchema} from "./statistics";
 import {ratingStatisticSchema, ratingStatusSchema} from "./statistics";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
@@ -19,8 +21,6 @@ import {
   mobilePhoneSchema,
   sortDirectionSchema,
 } from "./common";
-import {walletAddressSchema} from "./wallet";
-import {chatsStatisticSchema} from "./statistics";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
