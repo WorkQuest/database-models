@@ -4,6 +4,7 @@ import {mediasUrlOnlySchema} from "./media";
 import {userShortSchema} from "./user";
 
 export const discussionCommentTextSchema = Joi.string().example('New Comment').label('DiscussionCommentText');
+export const discussionCommentLevel = Joi.number().example(0).label('DiscussionCommentLevel');
 
 export const discussionCommentSchema = Joi.object({
   id: idSchema,
@@ -13,6 +14,7 @@ export const discussionCommentSchema = Joi.object({
   text: discussionCommentTextSchema,
   amountLikes: countSchema,
   amountSubComments: countSchema,
+  level: discussionCommentLevel,
   author: userShortSchema,
   medias: mediasUrlOnlySchema,
   createdAt: isoDateSchema,
