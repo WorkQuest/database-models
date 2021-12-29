@@ -164,8 +164,9 @@ export const questForGetSchema = Joi.object({
   createdAt: isoDateSchema,
   /**  */
   user: userShortSchema,
-  assignedWorker: userShortSchema,
+  questChat: questChatSchema,
   medias: mediasUrlOnlySchema,
+  assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
   yourReview: reviewSchema,                                 /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */

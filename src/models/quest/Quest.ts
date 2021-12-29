@@ -1,3 +1,13 @@
+import {getUUID} from '../../utils';
+import {User} from "../user/User";
+import {Media} from '../Media';
+import {QuestMedia} from './QuestMedia';
+import {Review} from './Review';
+import {QuestsResponse} from "./QuestsResponse";
+import {StarredQuests} from './StarredQuests';
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {QuestSpecializationFilter} from './QuestSpecializationFilter';
+import {QuestChat} from "../chats/QuestChat";
 import {
   BelongsTo,
   HasMany,
@@ -10,15 +20,6 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
-import {getUUID} from '../../utils';
-import {User} from "../user/User";
-import {Media} from '../Media';
-import {QuestMedia} from './QuestMedia';
-import {Review} from './Review';
-import {QuestsResponse} from "./QuestsResponse";
-import {StarredQuests} from './StarredQuests';
-import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
-import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 
 export enum AdType {
   Free = 0,
@@ -96,11 +97,11 @@ export class Quest extends Model {
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
-  @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
-
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
+  @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
+  @HasOne(() => QuestChat) questChat: QuestChat;
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
   @HasOne(() => QuestsResponse) responded: QuestsResponse;                                              /** Alias for filter in get quests */
