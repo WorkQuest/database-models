@@ -14,7 +14,7 @@ import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
 import {Review} from "../quest/Review";
-import {RatingStatistic} from "./RatingStatistic";
+import {RatingStatistic, RatingStatus} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
@@ -22,6 +22,7 @@ import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
+import {Wallet} from "../wallet/Wallet";
 
 export interface SocialInfo {
   id: string;
@@ -154,6 +155,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
+    }, {
+      model: RatingStatistic,
+      as: 'ratingStatistic'
     }]
   },
   shortWithAdditionalInfo: {
@@ -161,6 +165,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
+    }, {
+      model: RatingStatistic,
+      as: 'ratingStatistic'
     }]
   },
 }))
@@ -221,6 +228,9 @@ export class User extends Model {
   @HasMany(() => Review, 'toUserId') reviews: Review[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
+
+  /** Wallet */
+  @HasOne(() => Wallet) wallet: Wallet;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;

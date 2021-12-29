@@ -19,6 +19,7 @@ import {
   mobilePhoneSchema,
   sortDirectionSchema,
 } from "./common";
+import {walletAddressSchema} from "./wallet";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -27,7 +28,8 @@ export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov"
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
-
+export const workerPrioritiesSchema = Joi.array().items(prioritySchema).label('WorkerPriorities');
+export const workerRatingStatusesSchema = Joi.array().items(ratingStatusSchema).label('WorkerRatingStatuses');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -133,6 +135,7 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+  ratingStatistic: ratingStatisticSchema,
 }).label('UserShort');
 
 export const userShortWithAdditionalInfoSchema = Joi.object({
@@ -142,6 +145,7 @@ export const userShortWithAdditionalInfoSchema = Joi.object({
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   additionalInfo: userCommonAdditionalInfoSchema,
+  ratingStatistic: ratingStatisticSchema,
 }).label('UserShort');
 
 export const userListSortSchema = Joi.object({
@@ -171,8 +175,8 @@ export const workerQuerySchema = Joi.object({
   north: locationSchema, // TODO in object
   south: locationSchema,
   sort: userListSortSchema,
-  priority: prioritySchema.default(null),
-  ratingStatus: ratingStatusSchema.default(null),
+  priority: workerPrioritiesSchema.default(null),
+  ratingStatus: workerRatingStatusesSchema.default(null),
   workplace: workPlacesSchema.unique().default(null),
   specialization: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
@@ -188,6 +192,7 @@ export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
+  address: walletAddressSchema
 }).label("TokensWithStatus");
 
 /** Review */
