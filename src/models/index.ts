@@ -117,7 +117,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Media section */
       Media,
-      QuestChat,
       QuestMedia,
       MessageMedia,
       ProposalMedia,
