@@ -98,13 +98,12 @@ export class Quest extends Model {
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
-  @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
-
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
+  @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
+  @HasOne(() => QuestChat) chat: QuestChat;
   @HasOne(() => StarredQuests) star: StarredQuests;
-  @HasOne(() => QuestChat ) chat: QuestChat;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
   @HasOne(() => QuestsResponse) responded: QuestsResponse;                                              /** Alias for filter in get quests */
   @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
