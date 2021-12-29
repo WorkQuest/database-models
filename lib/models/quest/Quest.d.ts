@@ -46,7 +46,7 @@ export declare class Quest extends Model {
     user: User;
     assignedWorker: User;
     star: StarredQuests;
-    chat: QuestChat;
+    questChat: QuestChat;
     response: QuestsResponse;
     responded: QuestsResponse;
     invited: QuestsResponse;

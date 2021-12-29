@@ -104,7 +104,7 @@ export class Quest extends Model {
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
 
   @HasOne(() => StarredQuests) star: StarredQuests;
-  @HasOne(() => QuestChat ) chat: QuestChat;
+  @HasOne(() => QuestChat ) questChat: QuestChat;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
   @HasOne(() => QuestsResponse) responded: QuestsResponse;                                              /** Alias for filter in get quests */
   @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
