@@ -1,4 +1,3 @@
-import { Model } from 'sequelize-typescript';
 import { User } from "../user/User";
 import { Media } from '../Media';
 import { Review } from './Review';
@@ -7,6 +6,7 @@ import { StarredQuests } from './StarredQuests';
 import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
+import { Model } from 'sequelize-typescript';
 export declare enum AdType {
     Free = 0,
     Paid = 1
