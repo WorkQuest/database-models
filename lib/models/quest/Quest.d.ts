@@ -42,11 +42,11 @@ export declare class Quest extends Model {
     locationPostGIS: LocationPostGISType;
     price: string;
     adType: AdType;
-    medias: Media[];
     user: User;
     assignedWorker: User;
-    star: StarredQuests;
+    medias: Media[];
     questChat: QuestChat;
+    star: StarredQuests;
     response: QuestsResponse;
     responded: QuestsResponse;
     invited: QuestsResponse;
