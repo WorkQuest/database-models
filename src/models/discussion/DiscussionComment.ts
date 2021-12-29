@@ -50,7 +50,6 @@ export class DiscussionComment extends Model {
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) amountSubComments: number;
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) level: number;
 
-
   @BelongsTo(() => User) author: User;
   @BelongsTo(() => Discussion) discussion: Discussion;
   @BelongsTo(() => DiscussionComment) rootComment: DiscussionComment;
