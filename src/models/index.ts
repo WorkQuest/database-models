@@ -54,11 +54,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       User,
       Session,
       Review,
-      Session,
       Portfolio,
-      PortfolioMedia,
-      RatingStatistic,
-      UserSpecializationFilter,
 
 
       /** Admin section */
@@ -68,22 +64,14 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Quest section */
       Quest,
-      QuestsResponse,
-      QuestResponseMedia,
-      QuestMedia,
       QuestChat,
       StarredQuests,
-      QuestsStatistic,
-      QuestSpecializationFilter,
       QuestsResponse,
 
 
       /** Chat section */
       Chat,
-      StarredChat,
-      ChatMember,
       Message,
-      MessageMedia,
       ChatMember,
       InfoMessage,
       StarredChat,
@@ -102,31 +90,24 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Discussion section */
       Discussion,
       DiscussionLike,
-      DiscussionMedia,
-      DiscussionComment,
-      DiscussionCommentLike,
-      DiscussionCommentMedia,
       StarredDiscussion,
+      DiscussionComment,
       DiscussionCommentLike,
 
 
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
-      /** Proposal */
       UserSpecializationFilter,
       QuestSpecializationFilter,
 
 
       /** Proposal section */
       Proposal,
-      ProposalMedia,
       ProposalParseBlock,
       ProposalCreatedEvent,
       ProposalVoteCastEvent,
       ProposalExecutedEvent,
-      /** Other */
-
 
       /** Statistic */
       ChatsStatistic,
