@@ -28,10 +28,8 @@ export enum QuestChatStatuses {
       attributes: ["title"] // TODO Add Quest short
     }]
   },
-  chatOnly: {
-    attributes: {
-      exclude: ["createdAt", "updatedAt", "employerId", "workerId", "responseId"]
-    },
+  idsOnly: {
+    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId']
   }
 }))
 @Table
