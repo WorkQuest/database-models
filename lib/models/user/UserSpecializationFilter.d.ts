@@ -1,7 +1,7 @@
 import { Model } from "sequelize-typescript";
+import { User } from "./User";
 import { IndustryFilter } from "../filtres/IndustryFilter";
 import { SpecializationFilter } from "../filtres/SpecializationFilter";
-import { User } from "./User";
 export declare class UserSpecializationFilter extends Model {
     id: string;
     userId: string;

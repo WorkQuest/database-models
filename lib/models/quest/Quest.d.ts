@@ -3,28 +3,11 @@ import { Media } from '../Media';
 import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
-import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { LocationPostGIS, Location, Priority, WorkPlace } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
+import { QuestStatus, QuestEmployment, AdType } from "./types";
 import { Model } from 'sequelize-typescript';
-export declare enum AdType {
-    Free = 0,
-    Paid = 1
-}
-export declare enum QuestStatus {
-    Created = 0,
-    Active = 1,
-    Closed = 2,
-    Dispute = 3,
-    WaitWorker = 4,
-    WaitConfirm = 5,
-    Done = 6
-}
-export declare enum QuestEmployment {
-    FullTime = "fullTime",
-    PartTime = "partTime",
-    FixedTerm = "fixedTerm"
-}
 export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {
     id: string;
@@ -38,8 +21,8 @@ export declare class Quest extends Model {
     priority: Priority;
     category: string;
     locationPlaceName: string;
-    location: LocationType;
-    locationPostGIS: LocationPostGISType;
+    location: Location;
+    locationPostGIS: LocationPostGIS;
     price: string;
     adType: AdType;
     user: User;

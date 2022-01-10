@@ -1,18 +1,9 @@
-import { Model } from 'sequelize-typescript';
 import { User } from '../user/User';
 import { Quest } from './Quest';
 import { QuestChat } from "../chats/QuestChat";
 import { Media } from "../Media";
-export declare enum QuestsResponseStatus {
-    Rejected = -1,
-    Open = 0,
-    Accepted = 1,
-    Closed = 2
-}
-export declare enum QuestsResponseType {
-    Response = 0,
-    Invite = 1
-}
+import { QuestsResponseStatus, QuestsResponseType } from "./types";
+import { Model } from 'sequelize-typescript';
 export declare class QuestsResponse extends Model {
     id: string;
     workerId: string;

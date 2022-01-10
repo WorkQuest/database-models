@@ -1,6 +1,6 @@
-import { Model } from 'sequelize-typescript';
 import { User } from './User';
 import { Media } from '../Media';
+import { Model } from 'sequelize-typescript';
 export declare class Portfolio extends Model {
     id: string;
     userId: string;
