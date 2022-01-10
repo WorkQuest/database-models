@@ -28,6 +28,20 @@ import {
   sortDirectionSchema,
 } from './common';
 
+/** Quest chat schemes */
+
+export const questChatStatusSchema = Joi.string().valid(...Object.values(QuestChatStatuses)).example(QuestChatStatuses.Open).label('QuestChatStatus');
+
+export const questChatSchema = Joi.object({
+  id: idSchema,
+  employerId: idSchema,
+  workerId: idSchema,
+  questId: idSchema,
+  responseId: idSchema,
+  chatId: idSchema,
+  status: questChatStatusSchema,
+}).label('QuestChat');
+
 /** Quests schemes */
 
 export const questCategorySchema = Joi.string().example('Retail').label('QuestCategory');
@@ -61,6 +75,7 @@ export const questSchema = Joi.object({
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
+  questChat: questChatSchema,
   questSpecializations: modelSpecializationsSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
@@ -113,17 +128,6 @@ export const locationForValidateSchema = Joi.object({
 export const questsResponseMessageSchema = Joi.string().example('Hello, I need this job').default('').label('QuestsResponseMessage');
 export const questsResponseStatusSchema = Joi.number().example(QuestsResponseStatus.Open).valid(...Object.keys(QuestsResponseStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).label('QuestsResponseStatus');
 export const questsResponseTypeSchema = Joi.number().example(QuestsResponseType.Response).valid(...Object.keys(QuestsResponseType).map(key => parseInt(key)).filter(key => !isNaN(key))).label('QuestsResponseType');
-export const questChatStatusSchema = Joi.string().valid(...Object.values(QuestChatStatuses)).example(QuestChatStatuses.Open).label('QuestChatStatus');
-
-export const questChatSchema = Joi.object({
-  id: idSchema,
-  employerId: idSchema,
-  workerId: idSchema,
-  questId: idSchema,
-  responseId: idSchema,
-  chatId: idSchema,
-  status: questChatStatusSchema
-}).label('QuestChat');
 
 export const questsResponseSchema = Joi.object({
   id: idSchema,
@@ -164,8 +168,9 @@ export const questForGetSchema = Joi.object({
   createdAt: isoDateSchema,
   /**  */
   user: userShortSchema,
-  assignedWorker: userShortSchema,
+  questChat: questChatSchema,
   medias: mediasUrlOnlySchema,
+  assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
   yourReview: reviewSchema,                                 /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */
