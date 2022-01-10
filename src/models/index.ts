@@ -185,4 +185,5 @@ export * from "./wallet/Wallet"
 
 /** Types */
 export * from "./types";
+export * from "./user/types";
 export * from "./proposal/types";

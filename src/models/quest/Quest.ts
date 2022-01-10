@@ -5,42 +5,26 @@ import {QuestMedia} from './QuestMedia';
 import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
-import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {LocationPostGIS, Location, Priority, WorkPlace} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {QuestChat} from "../chats/QuestChat";
+import {QuestStatus, QuestEmployment, AdType} from "./types";
 import {
-  BelongsTo,
-  HasMany,
-  BelongsToMany,
-  Column,
-  DataType,
-  ForeignKey,
   Model,
-  Scopes,
   Table,
-  HasOne
+  HasOne,
+  Column,
+  Scopes,
+  HasMany,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  BelongsToMany,
 } from 'sequelize-typescript';
 
-export enum AdType {
-  Free = 0,
-  Paid,
-}
-
-export enum QuestStatus {
-  Created = 0,
-  Active,
-  Closed,
-  Dispute,
-  WaitWorker,
-  WaitConfirm,
-  Done,
-}
-
-export enum QuestEmployment {
-  FullTime = 'fullTime',
-  PartTime = 'partTime',
-  FixedTerm = 'fixedTerm',
-}
+/**
+ *
+ */
 
 export const activeFlowStatuses = [
   QuestStatus.Created,
@@ -88,11 +72,13 @@ export class Quest extends Model {
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
+
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
+  /** Location */
   @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
-  @Column({type: DataType.JSONB, allowNull: false}) location: LocationType;
-  @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
+  @Column({type: DataType.JSONB, allowNull: false}) location: Location;
+  @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGIS;
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
@@ -101,6 +87,7 @@ export class Quest extends Model {
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
+  /** Aliases for query */
   @HasOne(() => QuestChat) questChat: QuestChat;
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;

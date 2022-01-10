@@ -1,11 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
-import { getUUID } from "../../utils";
 import { User } from "./User";
-
-export type UserLoginPlace = {
-  country: string | null;
-  city: string | null;
-}
+import { getUUID } from "../../utils";
+import {UserLoginPlace} from "./types";
 
 const defaultUserLoginPlace: UserLoginPlace = {
   country: null,
@@ -17,15 +13,14 @@ export class Session extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
 
-  @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: UserLoginPlace;
-
   @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
 
+  /** Metadata */
   @Column(DataType.STRING) ip: string;
-
   @Column(DataType.STRING) device: string;
-
   @Column(DataType.DATE) logoutAt: Date;
+
+  @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: UserLoginPlace;
 
   @BelongsTo(() => User) user: User;
 }

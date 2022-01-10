@@ -4,6 +4,16 @@ import {Quest} from "./Quest";
 import {SpecializationFilter} from "../filtres/SpecializationFilter";
 import {IndustryFilter} from "../filtres/IndustryFilter";
 
+/**
+ * Filtering for quests by specialization.
+ * Each quest has a specialization from one to n.
+ *
+ * See QuestSpecializationFilter.path contains industry and specialization keys (IndustryFilter.key, SpecializationFilter.key)
+ *    Format: { industryKey }.{ specializationKey }
+ *    Example: "1.100" (1 is industryKey, 100 is specializationKey)
+ *    Dot separates IndustryFilter.key and SpecializationFilter.key
+ */
+
 @Table
 export class QuestSpecializationFilter extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;

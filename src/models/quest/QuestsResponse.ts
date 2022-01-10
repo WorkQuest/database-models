@@ -1,33 +1,21 @@
-import {
-  BelongsTo,
-  BelongsToMany,
-  Column,
-  DataType,
-  ForeignKey,
-  HasOne,
-  Model,
-  Scopes,
-  Table
-} from 'sequelize-typescript';
 import {User} from '../user/User';
 import {Quest} from './Quest';
 import {QuestChat} from "../chats/QuestChat";
 import {getUUID} from '../../utils';
 import {Media} from "../Media";
 import {QuestResponseMedia} from "./QuestResponseMedia";
-import {Chat} from "../chats/Chat";
-
-export enum QuestsResponseStatus {
-  Rejected = -1,
-  Open = 0,
-  Accepted,
-  Closed,
-}
-
-export enum QuestsResponseType {
-  Response = 0,
-  Invite,
-}
+import {QuestsResponseStatus, QuestsResponseType} from "./types";
+import {
+  Model,
+  Table,
+  Column,
+  HasOne,
+  Scopes,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  BelongsToMany,
+} from 'sequelize-typescript';
 
 @Scopes(() => ({
   defaultScope: {

@@ -1,22 +1,11 @@
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  HasMany,
-  HasOne,
-  Model,
-  Scopes,
-  Table
-} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
 import {Review} from "../quest/Review";
-import {RatingStatistic, RatingStatus} from "./RatingStatistic";
+import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {LocationPostGIS, Location, Priority, WorkPlace} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
@@ -24,38 +13,18 @@ import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
-
-export interface SocialInfo {
-  id: string;
-  email: string;
-  last_name: string;
-  first_name: string;
-}
-
-export interface UserSocialSettings {
-  google?: SocialInfo;
-  facebook?: SocialInfo;
-  twitter?: SocialInfo;
-  linkedin?: SocialInfo;
-}
-
-export interface TOTP {
-  confirmCode: string | null;
-  active: boolean;
-  secret: string | null;
-}
-
-export interface Security {
-  TOTP: TOTP;
-}
-
-interface UserSettings {
-  restorePassword: string | null;
-  emailConfirm: string | null;
-  phoneConfirm: string | null;
-  social: UserSocialSettings;
-  security: Security;
-}
+import {UserRole, UserSettings, UserStatus, StatusKYC} from "./types";
+import {
+  Column,
+  Model,
+  Table,
+  Scopes,
+  HasOne,
+  HasMany,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+} from "sequelize-typescript";
 
 export const defaultUserSettings: UserSettings = {
   restorePassword: null,
@@ -69,60 +38,6 @@ export const defaultUserSettings: UserSettings = {
       secret: null,
     }
   }
-}
-
-export enum UserStatus {
-  Unconfirmed,
-  Confirmed,
-  NeedSetRole,
-}
-
-export enum UserRole {
-  Employer = "employer",
-  Worker = "worker",
-}
-
-export enum StatusKYC {
-  Unconfirmed = 0,
-  Confirmed,
-}
-
-interface SocialMediaNicknames {
-  instagram: string | null;
-  twitter: string | null;
-  linkedin: string | null;
-  facebook: string | null;
-}
-
-interface AdditionalInfo {
-  description: string | null;
-  secondMobileNumber: string | null;
-  address: string | null;
-  socialNetwork: SocialMediaNicknames;
-}
-
-interface Knowledge {
-  from: string;
-  to: string;
-  place: string;
-}
-
-interface WorkExperience {
-  from: string;
-  to: string;
-  place: string;
-}
-
-export interface AdditionalInfoWorker extends AdditionalInfo {
-  skills: string[]; // TODO remove
-  educations: Knowledge[] | null;
-  workExperiences: WorkExperience[] | null;
-}
-
-export interface AdditionalInfoEmployer extends AdditionalInfo {
-  company: string | null;
-  CEO: string | null;
-  website: string | null;
 }
 
 @Scopes(() => ({
@@ -182,7 +97,7 @@ export class User extends Model {
   /** User profile */
   @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
-  @Column(DataType.JSONB) location: LocationType;
+  @Column(DataType.JSONB) location: Location;
   // @Column(DataType.STRING) locationPlaceName: string; TODO
   @Column({type: DataType.STRING, unique: true}) email: string;
   @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
@@ -211,13 +126,13 @@ export class User extends Model {
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
-  /** UserRole.Worker: priority list for quests */
+  /** Worker: priority list for quests */
   @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
   /** PostGIS */
-  @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
+  @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGIS;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

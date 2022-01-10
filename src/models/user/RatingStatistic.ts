@@ -1,13 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from './User';
-
-export enum RatingStatus {
-  noStatus = "noStatus",
-  verified = "verified",
-  reliable = "reliable",
-  topRanked = "topRanked",
-}
+import {RatingStatus} from "./types";
 
 @Table
 export class RatingStatistic extends Model {

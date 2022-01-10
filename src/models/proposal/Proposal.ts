@@ -20,6 +20,21 @@ import {
   BelongsToMany,
 } from "sequelize-typescript";
 
+/**
+ *                  DAO Proposals
+ * Contract.
+ *
+ * Discussion auto created (One Proposal - One Discussion) when status ProposalStatus.Active.
+ *
+ * Nonce (Proposal.nonce) is unique value set when creating (this may not yet be on the BC of the contract)
+ *    Necessary to eliminate the conflict when creating multiple proposals on the contract while the transactions
+ *    is in the mempool.
+ *
+ * TODO: Proposer
+ *
+ * See events for Proposal.
+ */
+
 @Scopes(() => ({
   defaultScope: {
     attributes: {
@@ -32,7 +47,7 @@ import {
     }]
   },
 }))
-@Table({paranoid: true})
+@Table({ paranoid: true })
 export class Proposal extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
@@ -49,8 +64,9 @@ export class Proposal extends Model {
   @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.Pending}) status: ProposalStatus;
 
   /** Unique value for proposer */
-  @Column({unique: true, allowNull: false, type: DataType.DECIMAL, defaultValue: () => getUUIDInt() }) nonce: string;
+  @Column({unique: true, allowNull: false, type: DataType.DECIMAL, defaultValue: () => getUUIDInt()}) nonce: string;
 
+  /** Events */
   @HasOne(() => ProposalCreatedEvent) createdEvent: ProposalCreatedEvent;
   @HasOne(() => ProposalExecutedEvent) executedEvent: ProposalExecutedEvent;
   @HasMany(() => ProposalVoteCastEvent) voteCastEvents: ProposalVoteCastEvent[];

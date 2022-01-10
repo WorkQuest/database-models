@@ -1,17 +1,17 @@
+import {getUUID} from '../../utils';
+import {User} from './User';
+import {PortfolioMedia} from './PortfolioMedia';
+import {Media} from '../Media';
 import {
-  BelongsTo,
-  BelongsToMany,
   Column,
-  DataType,
-  ForeignKey,
   Model,
+  Table,
   Scopes,
-  Table
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  BelongsToMany,
 } from 'sequelize-typescript';
-import { getUUID } from '../../utils';
-import { User } from './User';
-import { PortfolioMedia } from './PortfolioMedia';
-import { Media } from '../Media';
 
 @Scopes(() => ({
   defaultScope: {

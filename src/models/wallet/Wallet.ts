@@ -22,7 +22,7 @@ export class Wallet extends Model {
             return converter('eth').toBech32(hexAddress);
         },
         set() {
-            throw Error('Can`t set this field');
+            throw Error('Model Wallet.bech32Address.set: can`t set this field');
         }
     }) bech32Address: string;
 
