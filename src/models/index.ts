@@ -14,6 +14,7 @@ import {Admin} from './admin/Admin'
 import {AdminSession} from "./admin/AdminSession";
 import {Chat} from "./chats/Chat";
 import {ChatMember} from "./chats/ChatMember";
+import {ChatsStatistic} from "./chats/ChatsStatistic";
 import {MessageMedia} from "./chats/MessageMedia";
 import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
@@ -42,6 +43,7 @@ import {ProposalCreatedEvent} from "./proposal/ProposalCreatedEvent";
 import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
+import {Wallet} from "./wallet/Wallet";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -53,54 +55,79 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Session,
       Review,
       Portfolio,
-      PortfolioMedia,
-      RatingStatistic,
-      UserSpecializationFilter,
+
+
       /** Admin section */
       Admin,
       AdminSession,
+
+
       /** Quest section */
       Quest,
-      QuestsResponse,
-      QuestResponseMedia,
-      QuestMedia,
+      QuestChat,
       StarredQuests,
-      QuestsStatistic,
-      QuestSpecializationFilter,
+      QuestsResponse,
+
+
       /** Chat section */
       Chat,
-      StarredChat,
-      ChatMember,
       Message,
-      MessageMedia,
+      ChatMember,
       InfoMessage,
+      StarredChat,
       StarredMessage,
+
+
       /** Bridge section */
       BridgeParserBlockInfo,
       BridgeSwapTokenEvent,
+
+
       /** Daily pool liquidity section */
       DailyLiquidity,
+
+
       /** Discussion section */
       Discussion,
       DiscussionLike,
-      DiscussionMedia,
+      StarredDiscussion,
       DiscussionComment,
       DiscussionCommentLike,
-      DiscussionCommentMedia,
-      StarredDiscussion,
+
+
       /** Filter section */
       IndustryFilter,
       SpecializationFilter,
-      /** Proposal */
+      UserSpecializationFilter,
+      QuestSpecializationFilter,
+
+
+      /** Proposal section */
       Proposal,
-      ProposalMedia,
       ProposalParseBlock,
       ProposalCreatedEvent,
       ProposalVoteCastEvent,
       ProposalExecutedEvent,
-      /** Other */
+
+      /** Statistic */
+      ChatsStatistic,
+      RatingStatistic,
+      QuestsStatistic,
+
+
+      /** Media section */
       Media,
-      QuestChat,
+      QuestMedia,
+      MessageMedia,
+      ProposalMedia,
+      PortfolioMedia,
+      DiscussionMedia,
+      QuestResponseMedia,
+      DiscussionCommentMedia,
+
+
+      /** Wallet */
+      Wallet,
     ]
   });
   if (sync)
@@ -132,6 +159,7 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
+export * from "./chats/ChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
 export * from "./bridge/BridgeParserBlockInfo";
@@ -153,6 +181,7 @@ export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
+export * from "./wallet/Wallet"
 
 /** Types */
 export * from "./types";

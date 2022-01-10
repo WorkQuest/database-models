@@ -1,11 +1,13 @@
-import { ProposalStatus } from "./types";
 import { Media } from "../Media";
 import { User } from "../user/User";
-import { Discussion } from "../discussion/Discussion";
-import { ProposalCreatedEvent } from "./ProposalCreatedEvent";
-import { ProposalVoteCastEvent } from "./ProposalVoteCastEvent";
-import { ProposalExecutedEvent } from "./ProposalExecutedEvent";
 import { Model } from "sequelize-typescript";
+import { Discussion } from "../discussion/Discussion";
+export declare enum ProposalStatus {
+    Pending = 0,
+    Active = 1,
+    Rejected = 2,
+    Accepted = 3
+}
 export declare class Proposal extends Model {
     id: string;
     userId: string;
@@ -15,9 +17,11 @@ export declare class Proposal extends Model {
     proposer: string;
     status: ProposalStatus;
     nonce: string;
-    createdEvent: ProposalCreatedEvent;
-    executedEvent: ProposalExecutedEvent;
-    voteCastEvents: ProposalVoteCastEvent[];
+    proposalId: number;
+    votingPeriod: number;
+    minimumQuorum: number;
+    timestamp: number;
+    txHash: string;
     author: User;
     discussion: Discussion;
     medias: Media[];

@@ -11,6 +11,7 @@ export declare class DiscussionComment extends Model {
     text: string;
     amountLikes: number;
     amountSubComments: number;
+    level: number;
     author: User;
     discussion: Discussion;
     rootComment: DiscussionComment;
