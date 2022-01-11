@@ -6,6 +6,7 @@ import {ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   idSchema,
+  phoneSchema,
   limitSchema,
   offsetSchema,
   searchSchema,
@@ -16,8 +17,7 @@ import {
   prioritySchema,
   workPlaceSchema,
   workPlacesSchema,
-  mobilePhoneSchema,
-  sortDirectionSchema, mobilePhoneWithoutCountryCodeSchema,
+  sortDirectionSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -29,12 +29,6 @@ export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).exa
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
 export const workerPrioritiesSchema = Joi.array().items(prioritySchema).label('WorkerPriorities');
 export const workerRatingStatusesSchema = Joi.array().items(ratingStatusSchema).label('WorkerRatingStatuses');
-
-export const userPhoneSchema = Joi.object({
-  codeRegion: Joi.string().default('+7').label('CodeRegion'),
-  phone: mobilePhoneWithoutCountryCodeSchema,
-  fullPhone: mobilePhoneSchema
-}).label('UserPhoneSchema');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -56,7 +50,7 @@ export const userWorkExperienceSchema = Joi.object({
 }).label('WorkExperience');
 
 export const userAdditionalInfoWorkerSchema = Joi.object({
-  secondMobileNumber: userPhoneSchema.allow(null),
+  secondMobileNumber: phoneSchema.allow(null),
   address: Joi.string().allow(null).label('Address'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   skills: Joi.array().items(Joi.string()).default([]).label('Skills'),
@@ -66,7 +60,7 @@ export const userAdditionalInfoWorkerSchema = Joi.object({
 }).label('AdditionalInfoWorker');
 
 export const userAdditionalInfoEmployerSchema = Joi.object({
-  secondMobileNumber: userPhoneSchema.allow(null),
+  secondMobileNumber: phoneSchema.allow(null),
   address: Joi.string().allow(null).label('Address'),
   socialNetwork: userSocialMediaNicknamesSchema.label('SocialNetwork'),
   description: Joi.string().allow(null).label("Description"),
@@ -85,8 +79,8 @@ export const userSchema = Joi.object({
   avatarId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-  phone: userPhoneSchema,
-  tempPhone: mobilePhoneSchema,
+  phone: phoneSchema,
+  tempPhone: phoneSchema,
   email: userEmailSchema,
   role: userRoleSchema,
   location: locationSchema,
@@ -103,8 +97,8 @@ export const userEmployerSchema = Joi.object({
   avatarId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-  phone: userPhoneSchema,
-  tempPhone: mobilePhoneSchema,
+  phone: phoneSchema,
+  tempPhone: phoneSchema,
   email: userEmailSchema,
   additionalInfo: userAdditionalInfoEmployerSchema,
   role: userRoleSchema,
@@ -119,8 +113,8 @@ export const userWorkerSchema = Joi.object({
   avatarId: idSchema,
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
-  phone: userPhoneSchema,
-  tempPhone: mobilePhoneSchema,
+  phone: phoneSchema,
+  tempPhone: phoneSchema,
   email: userEmailSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
   wagePerHour: workerWagePerHourSchema,

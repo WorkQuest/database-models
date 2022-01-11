@@ -16,7 +16,7 @@ import {Session} from "./Session";
 import {Review} from "../quest/Review";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
@@ -94,7 +94,7 @@ interface SocialMediaNicknames {
 
 interface AdditionalInfo {
   description: string | null;
-  secondMobileNumber: UserPhone | null;
+  secondMobileNumber: Phone | null;
   address: string | null;
   socialNetwork: SocialMediaNicknames;
 }
@@ -109,12 +109,6 @@ interface WorkExperience {
   from: string;
   to: string;
   place: string;
-}
-
-interface UserPhone {
-  codeRegion: string,
-  phone: string,
-  fullPhone: string,
 }
 
 export interface AdditionalInfoWorker extends AdditionalInfo {
@@ -203,8 +197,8 @@ export class User extends Model {
       return this.getDataValue("password");
     }
   }) password: string;
-  @Column({type: DataType.JSONB, defaultValue: null}) phone: UserPhone;
-  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
+  @Column({type: DataType.JSONB, defaultValue: null}) phone: Phone;
+  @Column({type: DataType.JSONB, defaultValue: null}) tempPhone: Phone;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;

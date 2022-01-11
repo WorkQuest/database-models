@@ -16,12 +16,12 @@ export declare const limitSchema: Joi.NumberSchema;
 export declare const searchSchema: Joi.StringSchema;
 export declare const starSchema: Joi.ObjectSchema<any>;
 export declare const likeSchema: Joi.ObjectSchema<any>;
-export declare const mobilePhoneSchema: Joi.StringSchema;
+export declare const mobilePhoneFullSchema: Joi.StringSchema;
 export declare const mobilePhoneWithoutCountryCodeSchema: Joi.StringSchema;
 export declare const idsSchema: Joi.ArraySchema;
 export declare const timestampSchema: Joi.DateSchema;
 export declare const blockNumberSchema: Joi.StringSchema;
-export declare const outputOkSchema: (res: Joi.Schema<any>) => Joi.Schema<any>;
+export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
 export declare const paginationFields: {
     limit: Joi.NumberSchema;
     offset: Joi.NumberSchema;
@@ -30,6 +30,7 @@ export declare function outputPaginationSchema(title: string, item: Joi.Schema):
 export declare const locationSchema: Joi.ObjectSchema<any>;
 export declare const emptyOkSchema: Joi.ObjectSchema<any>;
 export declare const jwtTokens: Joi.ObjectSchema<any>;
+export declare const phoneSchema: Joi.ObjectSchema<any>;
 export declare const prioritySchema: Joi.NumberSchema;
 export declare const workPlaceSchema: Joi.StringSchema;
 export declare const workPlacesSchema: Joi.ArraySchema;

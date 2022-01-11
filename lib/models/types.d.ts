@@ -1,14 +1,14 @@
-declare enum BlockchainNetworks {
+export declare enum BlockchainNetworks {
     bscMainNetwork = "bscMainNetwork",
     ethMainNetwork = "ethMainNetwork",
     rinkebyTestNetwork = "rinkebyTestNetwork",
     bscTestNetwork = "bscTestNetwork"
 }
-declare type LocationType = {
+export declare type LocationType = {
     longitude: number;
     latitude: number;
 };
-declare type LocationPostGISType = {
+export declare type LocationPostGISType = {
     type: "Point";
     coordinates: [number, number];
     crs: {
@@ -18,15 +18,19 @@ declare type LocationPostGISType = {
         };
     };
 };
-declare enum WorkPlace {
+export declare enum WorkPlace {
     Distant = "distant",
     Office = "office",
     Both = "both"
 }
-declare enum Priority {
+export declare enum Priority {
     AllPriority = 0,
     FixedDelivery = 1,
     ShortTerm = 2,
     Urgent = 3
 }
-export { Priority, WorkPlace, LocationType, BlockchainNetworks, LocationPostGISType, };
+export declare type Phone = {
+    codeRegion: string;
+    phone: string;
+    fullPhone: string;
+};

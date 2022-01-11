@@ -4,7 +4,7 @@ import { Session } from "./Session";
 import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
-import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone } from "../types";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
@@ -59,7 +59,7 @@ interface SocialMediaNicknames {
 }
 interface AdditionalInfo {
     description: string | null;
-    secondMobileNumber: UserPhone | null;
+    secondMobileNumber: Phone | null;
     address: string | null;
     socialNetwork: SocialMediaNicknames;
 }
@@ -72,11 +72,6 @@ interface WorkExperience {
     from: string;
     to: string;
     place: string;
-}
-interface UserPhone {
-    codeRegion: string;
-    phone: string;
-    fullPhone: string;
 }
 export interface AdditionalInfoWorker extends AdditionalInfo {
     skills: string[];
@@ -98,8 +93,8 @@ export declare class User extends Model {
     role: UserRole;
     additionalInfo: object;
     password: string;
-    phone: UserPhone;
-    tempPhone: string;
+    phone: Phone;
+    tempPhone: Phone;
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
