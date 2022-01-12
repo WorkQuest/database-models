@@ -31,5 +31,4 @@ export declare class QuestDispute extends Model {
     opponentUser: User;
     resolvedByAdmin: Admin;
     quest: Quest;
-    mustHaveStatus(status: DisputeStatus): void;
 }

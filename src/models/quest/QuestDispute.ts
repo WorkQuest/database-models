@@ -1,8 +1,7 @@
 import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
-import { getUUID, error } from '../../utils';
+import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import {Quest} from "./Quest";
-import {Errors} from "../../utils/errors";
 import {Admin} from "../admin/Admin";
 
 export enum DisputeStatus {
@@ -63,10 +62,4 @@ export class QuestDispute extends Model {
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
   @BelongsTo(() => Admin, 'resolvedByAdminId') resolvedByAdmin: Admin;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
-
-  mustHaveStatus(status: DisputeStatus) {
-    if (this.status !== status) {
-      throw error(Errors.InvalidStatus, 'Invalid status', {});
-    }
-  }
 }
