@@ -103,7 +103,7 @@ export class Quest extends Model {
 
   @HasOne(() => QuestChat) questChat: QuestChat;
   @HasOne(() => StarredQuests) star: StarredQuests;
-  @HasOne(() => QuestsResponse) response: QuestsResponse;
+  @HasOne(() => QuestsResponse) workerResponse: QuestsResponse; /** Alias for filter in getQuest for employer */
   @HasOne(() => QuestsResponse) responded: QuestsResponse;                                              /** Alias for filter in get quests */
   @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
   @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */

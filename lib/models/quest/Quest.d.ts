@@ -47,7 +47,7 @@ export declare class Quest extends Model {
     medias: Media[];
     questChat: QuestChat;
     star: StarredQuests;
-    response: QuestsResponse;
+    workerResponse: QuestsResponse;
     responded: QuestsResponse;
     invited: QuestsResponse;
     questIndustryForFiltering: QuestSpecializationFilter;
