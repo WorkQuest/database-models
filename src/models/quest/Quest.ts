@@ -1,3 +1,13 @@
+import {getUUID} from '../../utils';
+import {User} from "../user/User";
+import {Media} from '../Media';
+import {QuestMedia} from './QuestMedia';
+import {Review} from './Review';
+import {QuestsResponse} from "./QuestsResponse";
+import {StarredQuests} from './StarredQuests';
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {QuestSpecializationFilter} from './QuestSpecializationFilter';
+import {QuestChat} from "../chats/QuestChat";
 import {
   BelongsTo,
   HasMany,
@@ -10,23 +20,6 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
-import {getUUID} from '../../utils';
-import {User} from "../user/User";
-import {Media} from '../Media';
-import {QuestMedia} from './QuestMedia';
-import {Review} from './Review';
-import {QuestsResponse} from "./QuestsResponse";
-import {StarredQuests} from './StarredQuests';
-import {LocationPostGISType, LocationType} from "../types";
-import {QuestSpecializationFilter} from './QuestSpecializationFilter';
-import {Chat} from "../chats/Chat";
-
-export enum QuestPriority {
-  AllPriority = 0,
-  Low,
-  Normal,
-  Urgent,
-}
 
 export enum AdType {
   Free = 0,
@@ -43,17 +36,19 @@ export enum QuestStatus {
   Done,
 }
 
-export enum QuestWorkPlace {
-  Distant = "distant",
-  Office = "office",
-  Both = "both",
-}
-
 export enum QuestEmployment {
   FullTime = 'fullTime',
   PartTime = 'partTime',
   FixedTerm = 'fixedTerm',
 }
+
+export const activeFlowStatuses = [
+  QuestStatus.Created,
+  QuestStatus.Active,
+  QuestStatus.Dispute,
+  QuestStatus.WaitWorker,
+  QuestStatus.WaitConfirm,
+];
 
 @Scopes(() => ({
   defaultScope: {
@@ -90,9 +85,9 @@ export class Quest extends Model {
   @Column(DataType.TEXT) description: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
-  @Column({type: DataType.STRING, allowNull: false}) workplace: QuestWorkPlace;
+  @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
-  @Column({type: DataType.INTEGER, defaultValue: QuestPriority.AllPriority}) priority: QuestPriority;
+  @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
   @Column({type: DataType.STRING, allowNull: false}) category: string;
 
   @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
@@ -102,17 +97,18 @@ export class Quest extends Model {
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
-  @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
-
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
+  @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
+  @HasOne(() => QuestChat) questChat: QuestChat;
   @HasOne(() => StarredQuests) star: StarredQuests;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
-  @HasOne(() => QuestsResponse) responded: QuestsResponse; /** Alias for filter in get quests */
-  @HasOne(() => QuestsResponse) invited: QuestsResponse; /** Alias for filter get quests */
-  @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;
-  @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;
+  @HasOne(() => QuestsResponse) responded: QuestsResponse;                                              /** Alias for filter in get quests */
+  @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
+  @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */
+  @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
+  @HasOne(() => Review) yourReview: Review;                                                             /** Alias for get review from user when get all quest */
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => Review) reviews: Review[];

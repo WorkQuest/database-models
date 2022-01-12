@@ -2,7 +2,7 @@ import {
   BelongsTo,
   Column,
   DataType,
-  ForeignKey,
+  ForeignKey, HasOne,
   Model, Scopes,
   Table,
 } from "sequelize-typescript";
@@ -27,6 +27,9 @@ export enum QuestChatStatuses {
       as: 'quest',
       attributes: ["title"] // TODO Add Quest short
     }]
+  },
+  idsOnly: {
+    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId']
   }
 }))
 @Table
