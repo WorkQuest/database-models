@@ -66,7 +66,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Quest section */
       Quest,
       QuestChat,
-      QuestMedia,
       QuestDispute,
       StarredQuests,
       QuestsResponse,
