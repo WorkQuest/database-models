@@ -1,8 +1,8 @@
 import * as Joi from 'joi';
 import {adminSchema} from "./admin";
-import {questSchema } from "./quest";
+import {questSchema} from "./quest";
 import {userShortSchema} from "./user";
-import {DisputeReason, DisputeStatus, QuestDispute,} from "../models";
+import {DisputeReason, DisputeStatus, QuestDispute} from "../models";
 import {
   idSchema,
   countSchema,

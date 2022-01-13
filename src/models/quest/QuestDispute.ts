@@ -28,8 +28,6 @@ export enum DisputeReason {
       model: User.scope('short'),
       as: 'opponentUser'
     }, {
-
-    }, {
       model: Quest,
       as: 'quest'
     }]
