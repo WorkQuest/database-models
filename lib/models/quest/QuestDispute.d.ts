@@ -17,15 +17,15 @@ export declare enum DisputeReason {
 }
 export declare class QuestDispute extends Model {
     id: string;
-    disputeNumber: number;
+    questId: string;
     openDisputeUserId: string;
     opponentUserId: string;
     assignedAdminId: string;
-    questId: string;
+    disputeNumber: number;
     status: DisputeStatus;
     reason: DisputeReason;
-    problem: string;
-    decision: string;
+    problemDescription: string;
+    decisionDescription: string;
     resolveAt: Date;
     openDisputeUser: User;
     opponentUser: User;

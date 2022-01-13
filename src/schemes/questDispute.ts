@@ -1,41 +1,42 @@
 import * as Joi from 'joi';
-import {
-  idSchema, isoDateSchema, limitSchema, offsetSchema
-} from './common';
-import {DisputeReason, DisputeStatus,} from "../models";
-import { questSchema } from "./quest";
 import {adminSchema} from "./admin";
+import {questSchema } from "./quest";
 import {userShortSchema} from "./user";
+import {DisputeReason, DisputeStatus, QuestDispute,} from "../models";
+import {
+  idSchema,
+  countSchema,
+  isoDateSchema,
+} from './common';
 
-export const disputeStatusSchema = Joi.string().max(255).valid(...Object.values(DisputeStatus)).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatusSchema');
-export const disputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReasonSchema');
-export const problemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescriptionSchema');
-export const adminDecisionSchema = Joi.string().example('Decision is...').label('AdminDecisionSchema');
-export const disputeNumberSchema = Joi.number().example('123').label('DisputeNumberSchema');
+export const questDisputeNumberSchema = Joi.number().example('123').label('DisputeNumber');
+export const questDisputeStatusSchema = Joi.string().max(255).valid(...Object.values(DisputeStatus)).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatus');
+export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReason');
+export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
+export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
 
-export const disputeSchema = Joi.object({
+export const questDisputeSchema = Joi.object({
   id: idSchema,
-  disputeNumber: disputeNumberSchema,
+  questId: idSchema,
   openDisputeUserId: idSchema,
   opponentUserId: idSchema,
-  resolvedByAdminId: idSchema,
-  questId: idSchema,
+  assignedAdminId: idSchema,
+  disputeNumber: questDisputeNumberSchema,
+  status: questDisputeStatusSchema,
+  reason: questDisputeReasonSchema,
+  problemDescription: questDisputeProblemDescriptionSchema,
+  decisionDescription: questDisputeDecisionDescriptionSchema,
   openDisputeUser: userShortSchema,
   opponentUser: userShortSchema,
-  resolvedByAdmin: adminSchema,
+  assignedAdmin: adminSchema,
   quest: questSchema,
-  status: disputeStatusSchema,
-  reason: disputeReasonSchema,
-  problem: problemDescriptionSchema,
-  decision: adminDecisionSchema,
   resolveAt: isoDateSchema,
   createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
-}).label("DisputeSchema");
+}).label("QuestDispute");
 
-export const disputesSchema = Joi.array().items(disputeSchema).label('Disputes');
+export const disputesSchema = Joi.array().items(questDisputeSchema).label('QuestDisputes');
 
-export const disputesQuerySchema = Joi.object({
-  offset: offsetSchema,
-  limit: limitSchema,
-}).label('DisputesQuery');
+export const questDisputesWithCountSchema = Joi.object({
+  count: countSchema,
+  disputes: questDisputeSchema,
+}).label('QuestsForGetWithCount');

@@ -22,10 +22,10 @@ export enum DisputeReason {
 @Scopes(() => ({
   defaultScope: {
     include: [{
-      model: User,
+      model: User.scope('short'),
       as: 'openDisputeUser'
     }, {
-      model: User,
+      model: User.scope('short'),
       as: 'opponentUser'
     }, {
 
@@ -38,7 +38,9 @@ export enum DisputeReason {
 @Table({ paranoid: true })
 export class QuestDispute extends Model {
   @Column({type: DataType.STRING, defaultValue: getUUID, primaryKey: true}) id: string;
-  @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
+
+  @ForeignKey(() => Quest)
+  @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) openDisputeUserId: string;
@@ -49,14 +51,12 @@ export class QuestDispute extends Model {
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) assignedAdminId: string;
 
-  @ForeignKey(() => Quest)
-  @Column({type: DataType.STRING, allowNull: false}) questId: string;
-
+  @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
   @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
   @Column({type: DataType.STRING, defaultValue: DisputeReason.anotherReason}) reason: DisputeReason;
 
-  @Column({type: DataType.TEXT, allowNull: false}) problem: string;
-  @Column(DataType.TEXT) decision: string;
+  @Column({type: DataType.TEXT, allowNull: false}) problemDescription: string;
+  @Column(DataType.TEXT) decisionDescription: string;
 
   @Column(DataType.DATE) resolveAt: Date;
 

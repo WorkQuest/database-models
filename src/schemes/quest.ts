@@ -183,7 +183,7 @@ export const questsForGetSchema = Joi.array().items(questForGetSchema).label('Qu
 
 export const questsForGetWithCountSchema = Joi.object({
   count: countSchema,
-  responses: questsForGetSchema,
+  quests: questsForGetSchema,
 }).label('QuestsForGetWithCount');
 
 

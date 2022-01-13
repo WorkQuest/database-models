@@ -1,9 +1,9 @@
 import * as Joi from 'joi';
-export declare const disputeStatusSchema: Joi.StringSchema;
-export declare const disputeReasonSchema: Joi.StringSchema;
-export declare const problemDescriptionSchema: Joi.StringSchema;
-export declare const adminDecisionSchema: Joi.StringSchema;
-export declare const disputeNumberSchema: Joi.NumberSchema;
-export declare const disputeSchema: Joi.ObjectSchema<any>;
+export declare const questDisputeNumberSchema: Joi.NumberSchema;
+export declare const questDisputeStatusSchema: Joi.StringSchema;
+export declare const questDisputeReasonSchema: Joi.StringSchema;
+export declare const questDisputeProblemDescriptionSchema: Joi.StringSchema;
+export declare const questDisputeDecisionDescriptionSchema: Joi.StringSchema;
+export declare const questDisputeSchema: Joi.ObjectSchema<any>;
 export declare const disputesSchema: Joi.ArraySchema;
-export declare const disputesQuerySchema: Joi.ObjectSchema<any>;
+export declare const questDisputesWithCountSchema: Joi.ObjectSchema<any>;
