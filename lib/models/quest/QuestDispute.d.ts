@@ -20,7 +20,7 @@ export declare class QuestDispute extends Model {
     disputeNumber: number;
     openDisputeUserId: string;
     opponentUserId: string;
-    resolvedByAdminId: string;
+    assignedAdminId: string;
     questId: string;
     status: DisputeStatus;
     reason: DisputeReason;
@@ -29,6 +29,6 @@ export declare class QuestDispute extends Model {
     resolveAt: Date;
     openDisputeUser: User;
     opponentUser: User;
-    resolvedByAdmin: Admin;
+    assignedAdmin: Admin;
     quest: Quest;
 }

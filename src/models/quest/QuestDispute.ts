@@ -28,6 +28,8 @@ export enum DisputeReason {
       model: User,
       as: 'opponentUser'
     }, {
+
+    }, {
       model: Quest,
       as: 'quest'
     }]
@@ -45,7 +47,7 @@ export class QuestDispute extends Model {
   @Column({type: DataType.STRING, allowNull: false}) opponentUserId: string;
 
   @ForeignKey(() => Admin)
-  @Column(DataType.STRING) resolvedByAdminId: string;
+  @Column(DataType.STRING) assignedAdminId: string;
 
   @ForeignKey(() => Quest)
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
@@ -60,6 +62,6 @@ export class QuestDispute extends Model {
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
-  @BelongsTo(() => Admin, 'resolvedByAdminId') resolvedByAdmin: Admin;
+  @BelongsTo(() => Admin, 'assignedAdminId') assignedAdmin: Admin;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
 }
