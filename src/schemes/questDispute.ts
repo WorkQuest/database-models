@@ -1,7 +1,7 @@
 import * as Joi from 'joi';
 import {adminSchema} from "./admin";
-import {questSchema} from "./quest";
 import {userShortSchema} from "./user";
+import {questSchema, questStatusSchema} from "./quest";
 import {DisputeReason, DisputeStatus, QuestDispute} from "../models";
 import {
   idSchema,
@@ -23,6 +23,7 @@ export const questDisputeSchema = Joi.object({
   assignedAdminId: idSchema,
   disputeNumber: questDisputeNumberSchema,
   status: questDisputeStatusSchema,
+  openOnQuestStatus: questStatusSchema,
   reason: questDisputeReasonSchema,
   problemDescription: questDisputeProblemDescriptionSchema,
   decisionDescription: questDisputeDecisionDescriptionSchema,
