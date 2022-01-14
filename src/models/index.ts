@@ -45,6 +45,7 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
+import {QuestRaiseView} from "./quest/QuestRaiseView";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -68,8 +69,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestChat,
       QuestDispute,
       StarredQuests,
+      QuestRaiseView,
       QuestsResponse,
-
 
       /** Chat section */
       Chat,
