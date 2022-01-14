@@ -1,6 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { User } from "../user/User";
-import { Quest, QuestStatus } from "./Quest";
+import { Quest } from "./Quest";
 import { Admin } from "../admin/Admin";
 export declare enum DisputeStatus {
     pending = 0,
@@ -24,7 +24,6 @@ export declare class QuestDispute extends Model {
     disputeNumber: number;
     status: DisputeStatus;
     reason: DisputeReason;
-    openOnQuestStatus: QuestStatus;
     problemDescription: string;
     decisionDescription: string;
     resolveAt: Date;
