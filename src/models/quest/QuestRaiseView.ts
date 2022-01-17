@@ -6,6 +6,7 @@ import {User} from "../user/User";
 export enum QuestRaiseStatus {
   Paid,
   Unpaid,
+  Closed
 }
 
 export enum QuestRaiseDuration {
