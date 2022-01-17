@@ -45,6 +45,7 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
+import {SwapParser} from "./swapParser/SwapParser";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -116,6 +117,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       RatingStatistic,
       QuestsStatistic,
 
+      /** SwapParser */
+      SwapParser,
 
       /** Media section */
       Media,
@@ -184,4 +187,5 @@ export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
-export * from "./wallet/Wallet"
+export * from "./wallet/Wallet";
+export * from "./swapParser/SwapParser";
