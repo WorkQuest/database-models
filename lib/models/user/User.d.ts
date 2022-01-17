@@ -10,6 +10,8 @@ import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
 import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
+import { Wallet } from "../wallet/Wallet";
+import { ChatsStatistic } from "../chats/ChatsStatistic";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -41,7 +43,8 @@ export declare const defaultUserSettings: UserSettings;
 export declare enum UserStatus {
     Unconfirmed = 0,
     Confirmed = 1,
-    NeedSetRole = 2
+    NeedSetRole = 2,
+    Blocked = 3
 }
 export declare enum UserRole {
     Employer = "employer",
@@ -109,7 +112,9 @@ export declare class User extends Model {
     reviews: Review[];
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
+    wallet: Wallet;
     chatOfUser: Chat;
+    chatStatistic: ChatsStatistic;
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;

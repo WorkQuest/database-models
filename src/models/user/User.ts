@@ -14,7 +14,7 @@ import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
 import {Review} from "../quest/Review";
-import {RatingStatistic} from "./RatingStatistic";
+import {RatingStatistic, RatingStatus} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
@@ -22,6 +22,8 @@ import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
+import {Wallet} from "../wallet/Wallet";
+import {ChatsStatistic} from "../chats/ChatsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -73,6 +75,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
+  Blocked
 }
 
 export enum UserRole {
@@ -154,6 +157,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
+    }, {
+      model: RatingStatistic,
+      as: 'ratingStatistic'
     }]
   },
   shortWithAdditionalInfo: {
@@ -161,6 +167,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
+    }, {
+      model: RatingStatistic,
+      as: 'ratingStatistic'
     }]
   },
 }))
@@ -222,8 +231,12 @@ export class User extends Model {
   @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
+  /** Wallet */
+  @HasOne(() => Wallet) wallet: Wallet;
+
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;
+  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;

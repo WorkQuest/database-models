@@ -1,8 +1,10 @@
 import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
 import {UserRole, UserStatus} from "../models";
-import {questsStatisticSchema} from "./questsStatistic";
-import {ratingStatisticSchema, ratingStatusSchema} from "./ratingStatistic";
+import {walletAddressSchema} from "./wallet";
+import {chatsStatisticSchema} from "./statistics";
+import {questsStatisticSchema} from "./statistics";
+import {ratingStatisticSchema, ratingStatusSchema} from "./statistics";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   idSchema,
@@ -89,6 +91,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   questsStatistic: questsStatisticSchema,
+  chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
 }).label("User");
 
@@ -134,6 +137,7 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
+  ratingStatistic: ratingStatisticSchema,
 }).label('UserShort');
 
 export const userShortWithAdditionalInfoSchema = Joi.object({
@@ -143,6 +147,7 @@ export const userShortWithAdditionalInfoSchema = Joi.object({
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   additionalInfo: userCommonAdditionalInfoSchema,
+  ratingStatistic: ratingStatisticSchema,
 }).label('UserShort');
 
 export const userListSortSchema = Joi.object({
@@ -189,6 +194,7 @@ export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
+  address: walletAddressSchema
 }).label("TokensWithStatus");
 
 /** Review */
