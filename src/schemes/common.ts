@@ -18,7 +18,8 @@ export const limitSchema = Joi.number().min(0).default(10).max(100).label('Limit
 export const searchSchema = Joi.string().default(null).max(255).label('Search');
 export const starSchema = Joi.object().allow(null).label('Star');
 export const likeSchema = Joi.object().allow(null).label('Like');
-export const mobilePhoneSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).label('MobilePhone');
+export const mobilePhoneFullSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).example('+79998887766').label('MobilePhoneFull');
+export const mobilePhoneWithoutCountryCodeSchema = Joi.string().example('9998887766').label('MobilePhoneWithoutCountryCode');
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
 
@@ -60,6 +61,12 @@ export const jwtTokens = Joi.object({
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
 }).label("JwtTokensSchema");
+
+export const phoneSchema = Joi.object({
+  codeRegion: Joi.string().example('+7').label('CodeRegion'),
+  phone: mobilePhoneWithoutCountryCodeSchema,
+  fullPhone: mobilePhoneFullSchema
+}).label('UserPhoneSchema');
 
 export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
 

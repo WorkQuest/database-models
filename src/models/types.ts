@@ -1,39 +1,37 @@
 
-enum BlockchainNetworks {
+export enum BlockchainNetworks {
   bscMainNetwork = 'bscMainNetwork',
   ethMainNetwork = 'ethMainNetwork',
   rinkebyTestNetwork = 'rinkebyTestNetwork',
   bscTestNetwork = 'bscTestNetwork',
 }
 
-type LocationType = {
+export type LocationType = {
   longitude: number;
   latitude: number;
 }
 
-type LocationPostGISType = {
+export type LocationPostGISType = {
   type: "Point";
   coordinates: [number, number];
   crs: { type: "name", properties: { name: "EPSG:4326" } };
 }
 
-enum WorkPlace {
+export enum WorkPlace {
   Distant = "distant",
   Office = "office",
   Both = "both"
 }
 
-enum Priority {
+export enum Priority {
   AllPriority = 0,
   FixedDelivery,
   ShortTerm,
   Urgent,
 }
 
-export {
-  Priority,
-  WorkPlace,
-  LocationType,
-  BlockchainNetworks,
-  LocationPostGISType,
+export type Phone = {
+  codeRegion: string,
+  phone: string,
+  fullPhone: string,
 }

@@ -1,4 +1,4 @@
-import {Column, DataType, Model, Scopes, Table, ForeignKey, BelongsTo} from 'sequelize-typescript';
+import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import {Quest, QuestStatus} from "./Quest";
@@ -50,10 +50,9 @@ export class QuestDispute extends Model {
   @Column(DataType.STRING) assignedAdminId: string;
 
   @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
+  @Column({type: DataType.INTEGER, allowNull: false}) openOnQuestStatus: QuestStatus;
   @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
   @Column({type: DataType.STRING, defaultValue: DisputeReason.anotherReason}) reason: DisputeReason;
-
-  @Column({type: DataType.INTEGER, allowNull: false}) openOnQuestStatus: QuestStatus;
 
   @Column({type: DataType.TEXT, allowNull: false}) problemDescription: string;
   @Column(DataType.TEXT) decisionDescription: string;

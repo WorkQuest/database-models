@@ -22,9 +22,9 @@ export declare class QuestDispute extends Model {
     opponentUserId: string;
     assignedAdminId: string;
     disputeNumber: number;
+    openOnQuestStatus: QuestStatus;
     status: DisputeStatus;
     reason: DisputeReason;
-    openOnQuestStatus: QuestStatus;
     problemDescription: string;
     decisionDescription: string;
     resolveAt: Date;
