@@ -15,4 +15,4 @@ export * from "./statistics";
 export * from "./dailyLiquidity";
 export * from "./proposal";
 export * from "./wallet";
-export * from "./swapParser";
+export * from "./wqtWbnbSwapEvenSchema";
