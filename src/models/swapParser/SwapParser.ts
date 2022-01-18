@@ -5,6 +5,7 @@ import { getUUID } from "../../utils";
 export class SwapParser extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
+  @Column(DataType.STRING) blockNumber: string;
   @Column(DataType.STRING) totalUSD: string; /** In decimal */
   @Column(DataType.STRING) bnbAmount: string; /** In decimal */
   @Column(DataType.STRING) wqtAmount: string; /** In decimal */
