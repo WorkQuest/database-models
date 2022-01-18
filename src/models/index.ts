@@ -45,7 +45,7 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
-import {WqtWbnbSwapEven} from "./SwapEvent/WqtWbnbSwapEven";
+import {WqtWbnbSwapEven} from "./WqtWbnb/WqtWbnbSwapEven";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -188,4 +188,4 @@ export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
-export * from "./SwapEvent/WqtWbnbSwapEven";
+export * from "./WqtWbnb/WqtWbnbSwapEven";

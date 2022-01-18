@@ -3,8 +3,6 @@ import { getUUID } from "../../utils";
 
 @Table
 export class WqtWbnbSwapEven extends Model {
-  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-
   @Column(DataType.STRING) blockNumber: string;
   @Column(DataType.STRING) totalUSD: string; /** In decimal */
   @Column(DataType.STRING) bnbAmountIn: string; /** In decimal */
