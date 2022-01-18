@@ -1,5 +1,4 @@
 import {Column, DataType, Model, Table} from "sequelize-typescript";
-import { getUUID } from "../../utils";
 
 @Table
 export class WqtWbnbSwapEven extends Model {
