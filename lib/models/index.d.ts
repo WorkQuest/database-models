@@ -47,4 +47,4 @@ export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
-export * from "./SwapEvent/SwapEventWqtWbnb";
+export * from "./SwapEvent/WqtWbnbSwapEven";
