@@ -1,6 +1,6 @@
 import { Model } from "sequelize-typescript";
 export declare class WqtWbnbSwapEven extends Model {
-    blockNumber: string;
+    blockNumber: number;
     totalUSD: string;
     bnbAmountIn: string;
     bnbAmountOut: string;
