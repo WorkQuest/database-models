@@ -1,7 +1,7 @@
 import {Column, DataType, Model, Table} from "sequelize-typescript";
 
 @Table
-export class WqtWbnbSwapEven extends Model {
+export class WqtWbnbSwapEvent extends Model {
   @Column(DataType.INTEGER) blockNumber: number;
   @Column(DataType.STRING) totalUSD: string; /** In decimal */
   @Column(DataType.STRING) bnbAmountIn: string; /** In decimal */
