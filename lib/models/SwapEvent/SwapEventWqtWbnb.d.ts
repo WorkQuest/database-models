@@ -1,5 +1,5 @@
 import { Model } from "sequelize-typescript";
-export declare class SwapParser extends Model {
+export declare class SwapEventWqtWbnb extends Model {
     id: string;
     blockNumber: string;
     totalUSD: string;
