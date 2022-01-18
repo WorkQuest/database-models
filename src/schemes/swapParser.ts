@@ -8,8 +8,10 @@ export const swapParserSchema = Joi.object({
   id: idSchema,
   blockNumber: blockNumberSchema,
   totalUSD: coinAmountSchema,
-  bnbAmount: coinAmountSchema,
-  wqtAmount: coinAmountSchema,
+  bnbAmountIn: coinAmountSchema,
+  bnbAmountOut: coinAmountSchema,
+  wqtAmountIn: coinAmountSchema,
+  wqtAmountOut: coinAmountSchema,
   account: accountAddressSchema,
   timestamp: timestampSchema,
 }).label('SwapParser');

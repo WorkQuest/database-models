@@ -3,8 +3,10 @@ export declare class SwapParser extends Model {
     id: string;
     blockNumber: string;
     totalUSD: string;
-    bnbAmount: string;
-    wqtAmount: string;
+    bnbAmountIn: string;
+    bnbAmountOut: string;
+    wqtAmountIn: string;
+    wqtAmountOut: string;
     account: string;
     timestamp: string;
 }
