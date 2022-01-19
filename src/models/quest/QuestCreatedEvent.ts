@@ -1,5 +1,5 @@
 import {Column, DataType, Model, Table} from "sequelize-typescript";
-import {getUUID} from "../../utils";
+import {BlockchainNetworks} from "../types";
 
 @Table /** Contract event */
 export class QuestCreatedEvent extends Model {
@@ -8,4 +8,5 @@ export class QuestCreatedEvent extends Model {
   @Column(DataType.STRING) employerAddress: string;
   @Column(DataType.STRING) contractAddress: string
   @Column(DataType.STRING) transactionHash: string;
+  @Column(DataType.STRING) network: BlockchainNetworks;
 }
