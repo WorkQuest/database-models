@@ -6,7 +6,6 @@ import {
   modelSpecializationsSchema,
 } from "./specialization";
 import {
-  AdType,
   QuestStatus,
   QuestEmployment,
   QuestsResponseType,
@@ -49,7 +48,6 @@ export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).
 export const questTitleSchema = Joi.string().example('Title...').label('QuestTitle');
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('QuestDescription');
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
-export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('QuestAdType');
 export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceName');
 export const questEmploymentSchema = Joi.string().valid(...Object.values(QuestEmployment)).example(QuestEmployment.FullTime).label('QuestEmployment');
 
@@ -71,7 +69,6 @@ export const questSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questAdTypeSchema,
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
@@ -104,7 +101,6 @@ export const questQuerySchema = Joi.object({
   north: locationSchema,
   south: locationSchema,
   sort: questsListSortSchema,
-  adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
@@ -164,7 +160,6 @@ export const questForGetSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questAdTypeSchema,
   createdAt: isoDateSchema,
   /**  */
   user: userShortSchema,

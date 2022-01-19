@@ -21,11 +21,6 @@ import {
   HasOne
 } from 'sequelize-typescript';
 
-export enum AdType {
-  Free = 0,
-  Paid,
-}
-
 export enum QuestStatus {
   Created = 0,
   Active,

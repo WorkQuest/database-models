@@ -7,10 +7,6 @@ import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
 import { Model } from 'sequelize-typescript';
-export declare enum AdType {
-    Free = 0,
-    Paid = 1
-}
 export declare enum QuestStatus {
     Created = 0,
     Active = 1,
