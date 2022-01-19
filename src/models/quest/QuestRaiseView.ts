@@ -6,7 +6,7 @@ import {User} from "../user/User";
 export enum QuestRaiseStatus {
   Paid,
   Unpaid,
-  Closed
+  Closed,
 }
 
 export enum QuestRaiseDuration {
@@ -16,10 +16,10 @@ export enum QuestRaiseDuration {
 }
 
 export enum QuestRaiseType {
-  GoldPlus = 'goldPlusPackage',
-  Gold = 'goldPackage',
-  Silver = 'silverPackage',
-  Bronze = 'bronzePackage'
+  GoldPlus = 0,
+  Gold,
+  Silver ,
+  Bronze ,
 }
 
 @Table
@@ -31,7 +31,7 @@ export class QuestRaiseView extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: QuestRaiseStatus.Unpaid}) status: QuestRaiseStatus;
   @Column({type: DataType.INTEGER, defaultValue: null}) duration: QuestRaiseDuration;
-  @Column({type: DataType.STRING, defaultValue: null}) type: QuestRaiseType;
+  @Column({type: DataType.INTEGER, defaultValue: null}) type: QuestRaiseType;
 
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => User) user: User;

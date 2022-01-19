@@ -12,10 +12,10 @@ export declare enum QuestRaiseDuration {
     SevenDays = 7
 }
 export declare enum QuestRaiseType {
-    GoldPlus = "goldPlusPackage",
-    Gold = "goldPackage",
-    Silver = "silverPackage",
-    Bronze = "bronzePackage"
+    GoldPlus = 0,
+    Gold = 1,
+    Silver = 2,
+    Bronze = 3
 }
 export declare class QuestRaiseView extends Model {
     id: string;

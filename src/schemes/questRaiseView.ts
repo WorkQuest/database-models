@@ -6,7 +6,7 @@ import {userShortSchema} from "./user";
 
 export const questRaiseStatusSchema = Joi.number().valid(...Object.keys(QuestRaiseStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestRaiseStatus.Unpaid).label('QuestRaiseStatus');
 export const questRaiseDurationSchema = Joi.number().valid(...Object.keys(QuestRaiseDuration).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestRaiseDuration.OneDay).label('QuestRaiseDuration');
-export const questRaiseTypeScheme = Joi.string().valid(...Object.values(QuestRaiseType)).example(QuestRaiseType.GoldPlus).label('QuestRaiseType');
+export const questRaiseTypeScheme = Joi.number().valid(...Object.values(QuestRaiseType)).example(QuestRaiseType.GoldPlus).label('QuestRaiseType');
 
 export const questRaiseViewSchema = Joi.object({
   id: idSchema,
