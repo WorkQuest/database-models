@@ -30,8 +30,8 @@ export class QuestRaiseView extends Model {
   @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestRaiseStatus.Unpaid}) status: QuestRaiseStatus;
-  @Column({type: DataType.INTEGER, allowNull: false}) duration: QuestRaiseDuration;
-  @Column({type: DataType.STRING, allowNull: false}) type: QuestRaiseType;
+  @Column({type: DataType.INTEGER, defaultValue: null}) duration: QuestRaiseDuration;
+  @Column({type: DataType.STRING, defaultValue: null}) type: QuestRaiseType;
 
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => User) user: User;

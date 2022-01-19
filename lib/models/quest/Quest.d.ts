@@ -7,6 +7,7 @@ import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
 import { Model } from 'sequelize-typescript';
+import { QuestRaiseView } from "./QuestRaiseView";
 export declare enum QuestStatus {
     Created = 0,
     Active = 1,
@@ -48,6 +49,7 @@ export declare class Quest extends Model {
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
     yourReview: Review;
+    raiseView: QuestRaiseView;
     questSpecializations: QuestSpecializationFilter[];
     reviews: Review[];
     starredQuests: StarredQuests[];

@@ -20,6 +20,7 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
+import {QuestRaiseView} from "./QuestRaiseView";
 
 export enum QuestStatus {
   Created = 0,
@@ -103,6 +104,7 @@ export class Quest extends Model {
   @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */
   @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
   @HasOne(() => Review) yourReview: Review;                                                             /** Alias for get review from user when get all quest */
+  @HasOne(() => QuestRaiseView) raiseView: QuestRaiseView;                                                             /** Alias for get review from user when get all quest */
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => Review) reviews: Review[];
