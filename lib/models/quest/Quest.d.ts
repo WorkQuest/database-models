@@ -41,7 +41,6 @@ export declare class Quest extends Model {
     location: LocationType;
     locationPostGIS: LocationPostGISType;
     price: string;
-    adType: AdType;
     user: User;
     assignedWorker: User;
     medias: Media[];

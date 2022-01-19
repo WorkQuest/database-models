@@ -95,7 +95,6 @@ export class Quest extends Model {
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
-  @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
