@@ -172,6 +172,13 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       as: 'ratingStatistic'
     }]
   },
+  shortWithWallet: {
+    attributes: ["id", "firstName", "lastName"],
+    include: [{
+      model: Wallet,
+      as: 'wallet'
+    }]
+  }
 }))
 @Table({ paranoid: true })
 export class User extends Model {
