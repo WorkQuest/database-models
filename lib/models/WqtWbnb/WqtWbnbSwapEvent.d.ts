@@ -5,7 +5,8 @@ export declare class WqtWbnbSwapEvent extends Model {
     bnbAmountIn: string;
     bnbAmountOut: string;
     wqtAmountIn: string;
-    wqtAmountOut: string;
     account: string;
     timestamp: string;
+    wqtAmountOut: string;
+    transactionHash: string;
 }
