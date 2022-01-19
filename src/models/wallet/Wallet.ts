@@ -1,7 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import {User} from "../user/User";
-import converter from 'bech32-converting';
+import {converter} from "../../utils/bech32";
 
 @Table
 export class Wallet extends Model {
