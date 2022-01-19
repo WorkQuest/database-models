@@ -12,6 +12,6 @@ export class WqtWbnbSwapEvent extends Model {
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) wqtAmountOut: string;
   @Column(DataType.STRING) transactionHash: string;
-  @Column({type: DataType.STRING, defaultValue: BlockchainNetworks.ethMainNetwork}) network: BlockchainNetworks;
+  @Column(DataType.STRING) network: BlockchainNetworks;
 }
 
