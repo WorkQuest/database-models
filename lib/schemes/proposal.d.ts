@@ -3,7 +3,6 @@ export declare const proposalNumberSchema: Joi.NumberSchema;
 export declare const proposalTitleSchema: Joi.StringSchema;
 export declare const proposalDescriptionSchema: Joi.StringSchema;
 export declare const proposalStatus: Joi.NumberSchema;
-export declare const proposalTxHashSchema: Joi.StringSchema;
 export declare const proposerIdWalletSchema: Joi.StringSchema;
 export declare const proposerVotingPeriodSchema: Joi.StringSchema;
 export declare const proposalTimestampSchema: Joi.DateSchema;

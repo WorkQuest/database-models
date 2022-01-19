@@ -1,12 +1,11 @@
 import * as Joi from "joi";
-import {idSchema} from "./common";
+import {idSchema, transactionHashSchema} from "./common";
 import {ProposalStatus} from "../models";
 
 export const proposalNumberSchema = Joi.number().example(1).label('ProposalNumber');
 export const proposalTitleSchema = Joi.string().example('New post').label('ProposalTitle');
 export const proposalDescriptionSchema = Joi.string().example('Hello world').label('ProposalDescription');
 export const proposalStatus = Joi.number().valid(...Object.values(ProposalStatus)).example(ProposalStatus.Pending).label("ProposalStatus");
-export const proposalTxHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqzxy88uq').label("ProposalCreatorHash");
 export const proposerIdWalletSchema = Joi.string().example('0xe7489ba661e0487669a685d76f4ee978e931dec9').label('ContractAddress');
 export const proposerVotingPeriodSchema = Joi.string().example('1').label('ProposerVotingPeriod');
 export const proposalTimestampSchema = Joi.date().timestamp('unix').example(1631568392).label('ContractTimeStamp');
@@ -26,7 +25,7 @@ export const proposalSchema = Joi.object({
 
 export const proposalEventSchema = Joi.object({
   transId: proposalNumberSchema,
-  transactionHash: proposalTxHashSchema,
+  transactionHash: transactionHashSchema,
   timestamp: proposalTimestampSchema,
   blockNumber: proposalTimestampSchema,
   proposer: proposerIdWalletSchema,

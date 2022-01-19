@@ -21,6 +21,7 @@ export declare const mobilePhoneWithoutCountryCodeSchema: Joi.StringSchema;
 export declare const numericIdSchema: Joi.NumberSchema;
 export declare const idsSchema: Joi.ArraySchema;
 export declare const timestampSchema: Joi.DateSchema;
+export declare const transactionHashSchema: Joi.StringSchema;
 export declare const blockNumberSchema: Joi.NumberSchema;
 export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
 export declare const paginationFields: {
