@@ -49,3 +49,5 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./quest/QuestCreatedEvent";
+export * from "./quest/QuestBlockInfo";
