@@ -28,7 +28,7 @@ export const disputeSchema = Joi.object({
   reason: disputeReasonSchema,
   problem: problemDescriptionSchema,
   decision: adminDecisionSchema,
-  resolveAt: isoDateSchema,
+  resolvedAt: isoDateSchema,
   createdAt: isoDateSchema,
   updatedAt: isoDateSchema,
 }).label("DisputeSchema");
