@@ -32,6 +32,7 @@ export declare class Quest extends Model {
     assignedWorkerId: string;
     title: string;
     description: string;
+    nonce: string;
     status: QuestStatus;
     workplace: WorkPlace;
     employment: QuestEmployment;

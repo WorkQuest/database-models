@@ -1,4 +1,4 @@
-import {getUUID} from '../../utils';
+import {getUUID, getUUIDInt} from '../../utils';
 import {User} from "../user/User";
 import {Media} from '../Media';
 import {QuestMedia} from './QuestMedia';
@@ -83,6 +83,8 @@ export class Quest extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column(DataType.TEXT) description: string;
+
+  @Column({ type: DataType.DECIMAL, defaultValue: () => getUUIDInt(), unique: true }) nonce: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
