@@ -100,7 +100,6 @@ export declare class User extends Model {
     phone: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
-    changeRoleAt: Date;
     avatar: Media;
     ratingStatistic: RatingStatistic;
     blockReasons: UserBlockReason[];

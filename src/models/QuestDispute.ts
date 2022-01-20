@@ -1,14 +1,13 @@
 import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
-import { getUUID, error } from '../utils';
+import {getUUID} from '../utils';
 import {User} from "./user/User";
-import {Quest} from "./quest/Quest";
-import {Errors} from "../utils/errors";
+import {Quest, QuestStatus} from "./quest/Quest";
 import {Admin} from "./admin/Admin";
 
 export enum DisputeStatus {
   pending = 0,
   inProgress,
-  completed,
+  closed,
 }
 
 export enum DisputeReason {
@@ -23,10 +22,10 @@ export enum DisputeReason {
 @Scopes(() => ({
   defaultScope: {
     include: [{
-      model: User,
+      model: User.scope('short'),
       as: 'openDisputeUser'
     }, {
-      model: User,
+      model: User.scope('short'),
       as: 'opponentUser'
     }, {
       model: Quest,
@@ -37,7 +36,9 @@ export enum DisputeReason {
 @Table({ paranoid: true })
 export class QuestDispute extends Model {
   @Column({type: DataType.STRING, defaultValue: getUUID, primaryKey: true}) id: string;
-  @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
+
+  @ForeignKey(() => Quest)
+  @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) openDisputeUserId: string;
@@ -46,27 +47,20 @@ export class QuestDispute extends Model {
   @Column({type: DataType.STRING, allowNull: false}) opponentUserId: string;
 
   @ForeignKey(() => Admin)
-  @Column(DataType.STRING) resolvedByAdminId: string;
+  @Column(DataType.STRING) assignedAdminId: string;
 
-  @ForeignKey(() => Quest)
-  @Column({type: DataType.STRING, allowNull: false}) questId: string;
-
+  @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
+  @Column({type: DataType.INTEGER, allowNull: false}) openOnQuestStatus: QuestStatus;
   @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
   @Column({type: DataType.STRING, defaultValue: DisputeReason.anotherReason}) reason: DisputeReason;
 
-  @Column({type: DataType.TEXT, allowNull: false}) problem: string;
-  @Column(DataType.TEXT) decision: string;
+  @Column({type: DataType.TEXT, allowNull: false}) problemDescription: string;
+  @Column(DataType.TEXT) decisionDescription: string;
 
   @Column(DataType.DATE) resolveAt: Date;
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
-  @BelongsTo(() => Admin, 'resolvedByAdminId') resolvedByAdmin: Admin;
+  @BelongsTo(() => Admin, 'assignedAdminId') assignedAdmin: Admin;
   @BelongsTo(() => Quest, 'questId') quest: Quest;
-
-  mustHaveStatus(status: DisputeStatus) {
-    if (this.status !== status) {
-      throw error(Errors.InvalidStatus, 'Invalid status', {});
-    }
-  }
 }
