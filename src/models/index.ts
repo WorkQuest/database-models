@@ -49,6 +49,7 @@ import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {QuestCreatedEvent} from "./quest/QuestCreatedEvent";
 import {QuestBlockInfo} from "./quest/QuestBlockInfo";
+import {QuestFactoryBlockInfo} from "./quest/QuestFactoryBlockInfo";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -76,6 +77,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Quest contract events section */
       QuestBlockInfo,
       QuestCreatedEvent,
+      QuestFactoryBlockInfo,
 
 
       /** Chat section */
@@ -202,3 +204,4 @@ export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo"
 export * from "./quest/QuestCreatedEvent";
 export * from "./quest/QuestBlockInfo";
+export * from "./quest/QuestFactoryBlockInfo";

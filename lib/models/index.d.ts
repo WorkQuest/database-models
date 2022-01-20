@@ -51,3 +51,4 @@ export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./quest/QuestCreatedEvent";
 export * from "./quest/QuestBlockInfo";
+export * from "./quest/QuestFactoryBlockInfo";
