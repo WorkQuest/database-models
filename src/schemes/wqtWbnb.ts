@@ -11,11 +11,11 @@ export const wqtWbnbSwapEventSchema = Joi.object({
   id: numericIdSchema,
   blockNumber: blockNumberSchema,
   totalUSD: coinAmountSchema,
-  bnbAmountIn: coinAmountSchema,
-  bnbAmountOut: coinAmountSchema,
-  wqtAmountIn: coinAmountSchema,
-  wqtAmountOut: coinAmountSchema,
-  account: accountAddressSchema, // TODO in common
+  amount0In: coinAmountSchema,
+  amount0Out: coinAmountSchema,
+  amount1In: coinAmountSchema,
+  amount1Out: coinAmountSchema,
+  to: accountAddressSchema, // TODO in common
   timestamp: timestampSchema,
   transactionHash: transactionHashSchema,
   network: networkSchema,
