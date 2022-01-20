@@ -4,7 +4,7 @@ import {BlockchainNetworks} from "../types";
 @Table
 export class WqtWbnbSwapEvent extends Model {
   @Column(DataType.INTEGER) blockNumber: number;
-  @Column(DataType.STRING) totalUSD: string;
+  @Column(DataType.STRING) amountUSD: string;
   @Column(DataType.STRING) amount0In: string;
   @Column(DataType.STRING) amount0Out: string;
   @Column(DataType.STRING) amount1In: string;

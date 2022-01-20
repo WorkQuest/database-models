@@ -6,7 +6,7 @@ export const accountAddressSchema = Joi.string().example("0xke2083852Ccf274D48E1
 
 export const wqtWbnbSwapEventSchema = Joi.object({
   blockNumber: blockNumberSchema,
-  totalUSD: coinAmountSchema,
+  amountUSD: coinAmountSchema,
   amount0In: coinAmountSchema,
   amount0Out: coinAmountSchema,
   amount1In: coinAmountSchema,
