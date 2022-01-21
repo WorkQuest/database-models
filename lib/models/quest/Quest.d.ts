@@ -50,7 +50,6 @@ export declare class Quest extends Model {
     questSpecializationForFiltering: QuestSpecializationFilter;
     yourReview: Review;
     raiseView: QuestRaiseView;
-    subQueryRaiseView: QuestRaiseView;
     questSpecializations: QuestSpecializationFilter[];
     reviews: Review[];
     starredQuests: StarredQuests[];
