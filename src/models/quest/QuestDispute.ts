@@ -57,7 +57,7 @@ export class QuestDispute extends Model {
   @Column({type: DataType.TEXT, allowNull: false}) problemDescription: string;
   @Column(DataType.TEXT) decisionDescription: string;
 
-  @Column(DataType.DATE) resolveAt: Date;
+  @Column(DataType.DATE) resolvedAt: Date;
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
