@@ -20,6 +20,7 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
+import {QuestDispute} from "./QuestDispute";
 
 export enum AdType {
   Free = 0,
@@ -111,6 +112,7 @@ export class Quest extends Model {
   @HasOne(() => Review) yourReview: Review;                                                             /** Alias for get review from user when get all quest */
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
+  @HasMany(() => QuestDispute) questDisputes: QuestDispute[];
   @HasMany(() => Review) reviews: Review[];
   @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
