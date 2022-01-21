@@ -105,6 +105,7 @@ export class Quest extends Model {
   @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
   @HasOne(() => Review) yourReview: Review;                                                             /** Alias for get review from user when get all quest */
   @HasOne(() => QuestRaiseView) raiseView: QuestRaiseView;                                                             /** Alias for get review from user when get all quest */
+  @HasOne(() => QuestRaiseView) subQueryRaiseView: QuestRaiseView;                                                             /** Alias for get review from user when get all quest */
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => Review) reviews: Review[];
