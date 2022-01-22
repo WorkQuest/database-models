@@ -44,6 +44,7 @@ import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
+import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -106,6 +107,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestChat,
       //
       WqtWbnbSwapEvent,
+      WqtWbnbBlockInfo,
     ]
   });
   if (sync)
@@ -160,3 +162,4 @@ export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet"
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
+export * from "./WqtWbnb/WqtWbnbBlockInfo";
