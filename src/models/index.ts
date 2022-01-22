@@ -43,6 +43,7 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
+import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -103,6 +104,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Other */
       Media,
       QuestChat,
+      //
+      WqtWbnbSwapEvent,
     ]
   });
   if (sync)
@@ -156,3 +159,4 @@ export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet"
+export * from "./WqtWbnb/WqtWbnbSwapEvent";
