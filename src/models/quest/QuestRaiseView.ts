@@ -2,6 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-t
 import {getUUID} from '../../utils';
 import {Quest} from './Quest';
 import {User} from "../user/User";
+import {QuestRaiseType} from "./types";
 
 export enum QuestRaiseStatus {
   Paid,
@@ -13,13 +14,6 @@ export enum QuestRaiseDuration {
   OneDay = 1,
   FiveDays = 5,
   SevenDays = 7,
-}
-
-export enum QuestRaiseType {
-  GoldPlus = 0,
-  Gold,
-  Silver ,
-  Bronze ,
 }
 
 @Table

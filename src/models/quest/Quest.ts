@@ -6,6 +6,7 @@ import {Review} from './Review';
 import {QuestsResponse} from "./QuestsResponse";
 import {StarredQuests} from './StarredQuests';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {QuestRaiseType} from "./types"
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {QuestChat} from "../chats/QuestChat";
 import {
@@ -91,6 +92,7 @@ export class Quest extends Model {
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
 
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
+  @Column({type: DataType.INTEGER, defaultValue: null}) adType: QuestRaiseType;
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;

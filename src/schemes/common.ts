@@ -1,5 +1,6 @@
 import * as Joi from "joi";
 import {Priority, WorkPlace} from "../models";
+import {QuestRaiseType} from "../models/quest/types";
 
 export const idSchema = Joi.string().uuid().example("fa0e2e4e-c53f-4af7-8906-1649daa0cce3").label("Id");
 export const urlSchema = Joi.string().example("http://example.com/v1/getVideo").label("URL");
@@ -20,6 +21,7 @@ export const starSchema = Joi.object().allow(null).label('Star');
 export const likeSchema = Joi.object().allow(null).label('Like');
 export const mobilePhoneFullSchema = Joi.string().pattern(/^\+\d{1,4}\d{10}$/).example('+79998887766').label('MobilePhoneFull');
 export const mobilePhoneWithoutCountryCodeSchema = Joi.string().example('9998887766').label('MobilePhoneWithoutCountryCode');
+export const questRaiseTypeScheme = Joi.number().valid(...Object.values(QuestRaiseType)).example(QuestRaiseType.GoldPlus).label('QuestRaiseType');
 
 export const idsSchema = Joi.array().items(idSchema).label('Ids');
 

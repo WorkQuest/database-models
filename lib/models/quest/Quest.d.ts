@@ -4,6 +4,7 @@ import { Review } from './Review';
 import { QuestsResponse } from "./QuestsResponse";
 import { StarredQuests } from './StarredQuests';
 import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { QuestRaiseType } from "./types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
 import { Model } from 'sequelize-typescript';
@@ -38,6 +39,7 @@ export declare class Quest extends Model {
     location: LocationType;
     locationPostGIS: LocationPostGISType;
     price: string;
+    adType: QuestRaiseType;
     user: User;
     assignedWorker: User;
     medias: Media[];

@@ -18,6 +18,7 @@ export declare const starSchema: Joi.ObjectSchema<any>;
 export declare const likeSchema: Joi.ObjectSchema<any>;
 export declare const mobilePhoneFullSchema: Joi.StringSchema;
 export declare const mobilePhoneWithoutCountryCodeSchema: Joi.StringSchema;
+export declare const questRaiseTypeScheme: Joi.NumberSchema;
 export declare const idsSchema: Joi.ArraySchema;
 export declare const timestampSchema: Joi.DateSchema;
 export declare const blockNumberSchema: Joi.StringSchema;
