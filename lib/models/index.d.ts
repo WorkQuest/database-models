@@ -50,3 +50,7 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./pensionFund/PensionFundBlockInfo";
+export * from "./pensionFund/ClaimedEvent";
+export * from "./pensionFund/ReceivedEvent";
+export * from "./pensionFund/WithdrewEvent";
