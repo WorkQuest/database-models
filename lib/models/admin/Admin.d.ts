@@ -10,6 +10,7 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActive: boolean;
+    resolvedDisputes: number;
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;
