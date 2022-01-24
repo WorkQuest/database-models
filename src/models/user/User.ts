@@ -186,7 +186,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }]
   }
 }))
-@Table({ paranoid: true })
+@Table({paranoid: true})
 export class User extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
@@ -197,7 +197,7 @@ export class User extends Model {
   @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
   @Column(DataType.JSONB) location: LocationType;
-  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  @Column(DataType.STRING) locationPlaceName: string;
   @Column({type: DataType.STRING, unique: true}) email: string;
   @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
@@ -237,7 +237,7 @@ export class User extends Model {
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
 
-  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
+  @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasMany(() => Session) sessions: Session[];
   @HasMany(() => Review, 'toUserId') reviews: Review[];
@@ -267,7 +267,7 @@ export class User extends Model {
   }
 
   static async findWithEmail(email: string): Promise<User> {
-    return await User.scope("withPassword").findOne({ where: { ["email"]: email } });
+    return await User.scope("withPassword").findOne({where: {["email"]: email}});
   }
 
   static async findWithSocialId(network: string, id: string): Promise<User> {
