@@ -6,8 +6,4 @@ export declare const adminPasswordSchema: Joi.StringSchema;
 export declare const adminRoleSchema: Joi.StringSchema;
 export declare const isActiveSchema: Joi.BooleanSchema;
 export declare const adminSchema: Joi.ObjectSchema<any>;
-export declare const adminQuerySchema: {
-    limit: Joi.NumberSchema;
-    offset: Joi.NumberSchema;
-};
 export declare const adminWithSecretSchema: Joi.ObjectSchema<any>;

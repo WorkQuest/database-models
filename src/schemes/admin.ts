@@ -18,11 +18,6 @@ export const adminSchema = Joi.object({
   adminRole: adminRoleSchema,
 }).label('Admin');
 
-export const adminQuerySchema = {
-  limit: limitSchema,
-  offset: offsetSchema,
-}
-
 export const adminWithSecretSchema = Joi.object({
   admin: adminSchema,
   secret: Joi.string().max(255).example('HJRT4QCSGNHGSYLF'),
