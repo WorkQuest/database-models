@@ -22,6 +22,7 @@ import {
   sortDirectionSchema,
 } from "./common";
 
+export const userLocationPlaceNameSchema = Joi.string().min(0).max(100).example("Tomsk").label("locationPlaceName");
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
 export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan").label("UserFirstName");
@@ -86,6 +87,7 @@ export const userSchema = Joi.object({
   email: userEmailSchema,
   role: userRoleSchema,
   location: locationSchema,
+  locationPlaceName: userLocationPlaceNameSchema,
   wagePerHour: workerWagePerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
@@ -106,6 +108,7 @@ export const userEmployerSchema = Joi.object({
   additionalInfo: userAdditionalInfoEmployerSchema,
   role: userRoleSchema,
   location: locationSchema,
+  locationPlaceName: userLocationPlaceNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   questsStatistic: questsStatisticSchema,
@@ -125,6 +128,7 @@ export const userWorkerSchema = Joi.object({
   role: userRoleSchema,
   priority: prioritySchema,
   location: locationSchema,
+  locationPlaceName: userLocationPlaceNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
