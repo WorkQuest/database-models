@@ -185,6 +185,7 @@ export const workerQuerySchema = Joi.object({
   ratingStatus: workerRatingStatusesSchema.default(null),
   workplace: workPlacesSchema.unique().default(null),
   specialization: specializationsFilerSchema.default(null),
+  locationPlaceName: userLocationPlaceNameSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
 }).label('UserQuery');
 
