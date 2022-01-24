@@ -13,6 +13,7 @@ export declare enum AdType {
     Paid = 1
 }
 export declare enum QuestStatus {
+    Blocked = -1,
     Created = 0,
     Active = 1,
     Closed = 2,
@@ -54,6 +55,7 @@ export declare class Quest extends Model {
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
     yourReview: Review;
+    openDispute: QuestDispute;
     questSpecializations: QuestSpecializationFilter[];
     questDisputes: QuestDispute[];
     reviews: Review[];

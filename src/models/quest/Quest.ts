@@ -28,6 +28,7 @@ export enum AdType {
 }
 
 export enum QuestStatus {
+  Blocked = -1,
   Created = 0,
   Active,
   Closed,
@@ -110,6 +111,7 @@ export class Quest extends Model {
   @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */
   @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
   @HasOne(() => Review) yourReview: Review;                                                             /** Alias for get review from user when get all quest */
+  @HasOne(() => QuestDispute) openDispute: QuestDispute;
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => QuestDispute) questDisputes: QuestDispute[];
