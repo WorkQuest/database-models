@@ -12,6 +12,7 @@ export declare enum AdType {
     Paid = 1
 }
 export declare enum QuestStatus {
+    Blocked = -1,
     Created = 0,
     Active = 1,
     Closed = 2,
