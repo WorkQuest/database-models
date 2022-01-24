@@ -92,6 +92,7 @@ export declare class User extends Model {
     firstName: string;
     lastName: string;
     location: LocationType;
+    locationPlaceName: string;
     email: string;
     role: UserRole;
     additionalInfo: object;
