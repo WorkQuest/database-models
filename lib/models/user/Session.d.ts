@@ -1,13 +1,10 @@
 import { Model } from "sequelize-typescript";
 import { User } from "./User";
-export declare type UserLoginPlace = {
-    country: string | null;
-    city: string | null;
-};
+import { Place } from "../types";
 export declare class Session extends Model {
     id: string;
     userId: string;
-    place: UserLoginPlace;
+    place: Place;
     invalidating: boolean;
     ip: string;
     device: string;

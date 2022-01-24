@@ -3,27 +3,7 @@ import * as speakeasy from "speakeasy"
 import {Column, DataType, Model, Scopes, Table, HasMany} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {AdminSession} from "./AdminSession"
-
-export enum AdminRole {
-  main = "main",
-  dispute = "dispute",
-  advertising = "advertising",
-  kyc = "kyc",
-}
-
-export const AdminRoles = Object.values(AdminRole)
-
-export interface AdminTOTP {
-  secret: string;
-}
-
-export interface AdminSecurity {
-  TOTP: AdminTOTP;
-}
-
-export interface AdminAccountSettings {
-  security: AdminSecurity;
-}
+import {AdminRole, AdminAccountSettings} from "./types";
 
 @Scopes(() => ({
   defaultScope: {
@@ -61,6 +41,7 @@ export class Admin extends Model {
   @Column({type: DataType.STRING, allowNull: false}) role: AdminRole;
   @Column({ type: DataType.JSONB, allowNull: false }) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
+  @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedDisputes: number;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 
@@ -75,12 +56,6 @@ export class Admin extends Model {
       token: Number(TOTP)
     });
   }
-
-  // MustHaveAdminRole(role: AdminRole) {
-  //   if (this.role !== role) {
-  //     throw error(Errors.InvalidRole, 'Invalid admin type', {});
-  //   }
-  // }
 
   static async isEmailExist(email: string) {
     return await Admin.findOne({

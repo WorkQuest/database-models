@@ -6,6 +6,8 @@ import {DisputeReason, DisputeStatus, QuestDispute} from "../models";
 import {
   idSchema,
   countSchema,
+  limitSchema,
+  offsetSchema,
   isoDateSchema,
 } from './common';
 
@@ -14,6 +16,8 @@ export const questDisputeStatusSchema = Joi.string().max(255).valid(...Object.va
 export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReason');
 export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
 export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
+
+export const questDisputeStatusesSchema = Joi.array().items(questDisputeStatusSchema).label('QuestDisputeStatuses');
 
 export const questDisputeSchema = Joi.object({
   id: idSchema,
@@ -35,7 +39,13 @@ export const questDisputeSchema = Joi.object({
   createdAt: isoDateSchema,
 }).label("QuestDispute");
 
-export const disputesSchema = Joi.array().items(questDisputeSchema).label('QuestDisputes');
+export const questDisputeQuerySchema = Joi.object({
+  limit: limitSchema,
+  offset: offsetSchema,
+  statuses: questDisputeStatusesSchema.unique().default(null),
+}).label('disputeQuery')
+
+export const questDisputesSchema = Joi.array().items(questDisputeSchema).label('QuestDisputes');
 
 export const questDisputesWithCountSchema = Joi.object({
   count: countSchema,
