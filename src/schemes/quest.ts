@@ -77,6 +77,7 @@ export const questSchema = Joi.object({
   medias: mediasUrlOnlySchema,
   questChat: questChatSchema,
   questSpecializations: modelSpecializationsSchema,
+  startedAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
 
@@ -165,6 +166,7 @@ export const questForGetSchema = Joi.object({
   description: questDescriptionSchema,
   price: questPriceSchema,
   adType: questAdTypeSchema,
+  startedAt: isoDateSchema,
   createdAt: isoDateSchema,
   /**  */
   user: userShortSchema,
