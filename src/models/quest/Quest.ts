@@ -28,7 +28,8 @@ export enum AdType {
 }
 
 export enum QuestStatus {
-  Blocked = -1,
+  Pending = -2,
+  Blocked,
   Created,
   Active,
   Closed,
