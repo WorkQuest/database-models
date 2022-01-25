@@ -77,6 +77,7 @@ export const questSchema = Joi.object({
   medias: mediasUrlOnlySchema,
   questChat: questChatSchema,
   questSpecializations: modelSpecializationsSchema,
+  startedAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
 
