@@ -99,6 +99,9 @@ export class Quest extends Model {
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
+  @Column(DataType.DATE) startedAt: Date;
+
+
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
