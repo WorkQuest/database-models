@@ -1,6 +1,6 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
-import {Quest} from './Quest';
+import {Quest, QuestStatus} from './Quest';
 import {Admin} from "../admin/Admin";
 import {BlackListStatus} from "../types";
 
@@ -13,6 +13,7 @@ export class QuestBlackList extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) reason: string;
   @Column({type: DataType.INTEGER, defaultValue: BlackListStatus.Blocked}) status: BlackListStatus;
+  @Column({type: DataType.INTEGER, allowNull: false}) previousQuestStatus: QuestStatus;
 
 
   @BelongsTo(() => Admin, { constraints: false }) admin: Admin;
