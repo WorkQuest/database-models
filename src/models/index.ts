@@ -48,9 +48,9 @@ import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
-import {ClaimedEvent} from "./pensionFund/ClaimedEvent";
-import {ReceivedEvent} from "./pensionFund/ReceivedEvent";
-import {WithdrewEvent} from "./pensionFund/WithdrewEvent";
+import {PensionFundClaimedEvent} from "./pensionFund/PensionFundClaimedEvent";
+import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
+import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -145,9 +145,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Pension fund */
       PensionFundBlockInfo,
-      ClaimedEvent,
-      ReceivedEvent,
-      WithdrewEvent,
+      PensionFundClaimedEvent,
+      PensionFundReceivedEvent,
+      PensionFundWithdrewEvent,
     ]
   });
   if (sync)
@@ -208,6 +208,6 @@ export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./pensionFund/PensionFundBlockInfo";
-export * from "./pensionFund/ClaimedEvent";
-export * from "./pensionFund/ReceivedEvent";
-export * from "./pensionFund/WithdrewEvent";
+export * from "./pensionFund/PensionFundClaimedEvent";
+export * from "./pensionFund/PensionFundReceivedEvent";
+export * from "./pensionFund/PensionFundWithdrewEvent";
