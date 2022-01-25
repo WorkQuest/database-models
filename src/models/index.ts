@@ -47,6 +47,7 @@ import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
+import {QuestBlackList} from "./quest/QuestBlackList";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -71,6 +72,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestDispute,
       StarredQuests,
       QuestsResponse,
+      QuestBlackList,
 
 
       /** Chat section */
@@ -196,4 +198,5 @@ export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
-export * from "./WqtWbnb/WqtWbnbBlockInfo"
+export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./quest/QuestBlackList";
