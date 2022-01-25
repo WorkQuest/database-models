@@ -166,6 +166,7 @@ export const questForGetSchema = Joi.object({
   description: questDescriptionSchema,
   price: questPriceSchema,
   adType: questAdTypeSchema,
+  startedAt: isoDateSchema,
   createdAt: isoDateSchema,
   /**  */
   user: userShortSchema,

@@ -101,7 +101,6 @@ export class Quest extends Model {
 
   @Column(DataType.DATE) startedAt: Date;
 
-
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
