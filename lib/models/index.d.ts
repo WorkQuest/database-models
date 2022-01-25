@@ -50,3 +50,4 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./user/UserBlackList";
