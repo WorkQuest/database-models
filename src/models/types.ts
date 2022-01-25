@@ -36,3 +36,8 @@ export type Phone = {
   phone: string,
   fullPhone: string,
 }
+
+export type Place = {
+  country: string | null;
+  city: string | null;
+}

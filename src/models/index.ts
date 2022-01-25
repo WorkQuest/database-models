@@ -154,6 +154,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 }
 
 export * from "./types";
+export * from "./admin/types";
+
 export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
