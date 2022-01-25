@@ -1,6 +1,6 @@
 import * as speakeasy from "speakeasy";
 import {v4 as uuidv4} from "uuid";
-import uuidInt from "uuid-int";
+const uuidInt = require("uuid-int");
 
 export function getUUID(): string {
   return uuidv4();
