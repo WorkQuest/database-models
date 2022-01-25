@@ -50,6 +50,10 @@ import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {QuestCreatedEvent} from "./quest/QuestCreatedEvent";
 import {QuestBlockInfo} from "./quest/QuestBlockInfo";
 import {QuestFactoryBlockInfo} from "./quest/QuestFactoryBlockInfo";
+import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
+import {PensionFundClaimedEvent} from "./pensionFund/PensionFundClaimedEvent";
+import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
+import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -145,6 +149,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Wallet */
       Wallet,
+
+      /** Pension fund */
+      PensionFundBlockInfo,
+      PensionFundClaimedEvent,
+      PensionFundReceivedEvent,
+      PensionFundWithdrewEvent,
     ]
   });
   if (sync)
@@ -207,3 +217,8 @@ export * from "./WqtWbnb/WqtWbnbBlockInfo"
 export * from "./quest/QuestCreatedEvent";
 export * from "./quest/QuestBlockInfo";
 export * from "./quest/QuestFactoryBlockInfo";
+export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./pensionFund/PensionFundBlockInfo";
+export * from "./pensionFund/PensionFundClaimedEvent";
+export * from "./pensionFund/PensionFundReceivedEvent";
+export * from "./pensionFund/PensionFundWithdrewEvent";

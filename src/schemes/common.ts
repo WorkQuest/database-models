@@ -25,6 +25,7 @@ export const idsSchema = Joi.array().items(idSchema).label('Ids');
 export const timestampSchema = Joi.date().timestamp('unix').example(1631568392).label('timeStamp');
 export const transactionHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqzxy88uq').label("TransactionHash");
 export const blockNumberSchema = Joi.number().example(14382).label('BlockNumber');
+export const coinAmountSchema = Joi.string().example("281231").label("CoinAmount");
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
