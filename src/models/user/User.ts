@@ -153,7 +153,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
-    attributes: ["id", "firstName", "lastName"],
+    attributes: ["id", "firstName", "lastName", "avatarId"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -163,7 +163,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }]
   },
   shortWithAdditionalInfo: {
-    attributes: ["id", "firstName", "lastName", "additionalInfo"],
+    attributes: ["id", "firstName", "lastName", "additionalInfo", "avatarId"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -173,7 +173,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }]
   },
   shortWithWallet: {
-    attributes: ["id", "firstName", "lastName"],
+    attributes: ["id", "firstName", "lastName", "avatarId"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
