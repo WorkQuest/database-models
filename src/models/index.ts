@@ -51,6 +51,7 @@ import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
 import {PensionFundClaimedEvent} from "./pensionFund/PensionFundClaimedEvent";
 import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
 import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
+import {UserRaiseView} from "./user/UserRaiseView";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -62,7 +63,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Session,
       Review,
       Portfolio,
-
+      UserRaiseView,
 
       /** Admin section */
       Admin,
@@ -211,3 +212,4 @@ export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundClaimedEvent";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWithdrewEvent";
+export * from "./user/UserRaiseView";
