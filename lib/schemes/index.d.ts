@@ -16,4 +16,4 @@ export * from "./dailyLiquidity";
 export * from "./proposal";
 export * from "./wallet";
 export * from "./wqtWbnb";
-export * from "./user";
+export * from "./userRaiseView";
