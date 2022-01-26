@@ -1,10 +1,10 @@
 import * as Joi from "joi";
-import {idSchema, questRaiseTypeScheme} from "./common";
-import {QuestRaiseDuration, QuestRaiseStatus} from "../models";
+import {idSchema} from "./common";
+import {QuestRaiseDuration, QuestRaiseStatus, QuestRaiseType} from "../models";
 import {questSchema} from "./quest";
 import {userShortSchema} from "./user";
-import {QuestRaiseType} from "../models/quest/types";
 
+export const questRaiseTypeScheme = Joi.number().valid(...Object.values(QuestRaiseType)).example(QuestRaiseType.GoldPlus).label('QuestRaiseType');
 export const questRaiseStatusSchema = Joi.number().valid(...Object.keys(QuestRaiseStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestRaiseStatus.Unpaid).label('QuestRaiseStatus');
 export const questRaiseDurationSchema = Joi.number().valid(...Object.keys(QuestRaiseDuration).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestRaiseDuration.OneDay).label('QuestRaiseDuration');
 

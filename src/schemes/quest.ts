@@ -24,7 +24,7 @@ import {
   locationSchema,
   workPlaceSchema,
   workPlacesSchema,
-  sortDirectionSchema, questRaiseTypeScheme,
+  sortDirectionSchema,
 } from './common';
 
 /** Quest chat schemes */
@@ -69,7 +69,6 @@ export const questSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questRaiseTypeScheme,
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
@@ -161,7 +160,6 @@ export const questForGetSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questRaiseTypeScheme,
   createdAt: isoDateSchema,
   /**  */
   user: userShortSchema,
