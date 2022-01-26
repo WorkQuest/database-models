@@ -26,7 +26,7 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   sortDirectionSchema,
-  locationPlaceNameSchema,
+  locationPlaceNameSchema, searchByNorthAndSouthCoordinatesSchema,
 } from './common';
 
 /** Quest chat schemes */
@@ -101,8 +101,6 @@ export const questQuerySchema = Joi.object({
   q: searchSchema,
   limit: limitSchema,
   offset: offsetSchema,
-  north: locationSchema,
-  south: locationSchema,
   sort: questsListSortSchema,
   adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
@@ -111,10 +109,11 @@ export const questQuerySchema = Joi.object({
   workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
   specializations: specializationsFilerSchema.unique().default(null),
-  responded: Joi.boolean().default(false),                                  /** Only quests that worker answered (see QuestResponse and its type)   */
-  invited: Joi.boolean().default(false),                                    /** Only quests where worker invited (see QuestResponse and its type)   */
-  performing: Joi.boolean().default(false),                                 /** Only quests where worker performs (see Quest.assignedWorkerId)      */
-  starred: Joi.boolean().default(false),                                    /** Only quest with star (see StarredQuests)                            */
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
+  responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
+  invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
+  performing: Joi.boolean().default(false),                                             /** Only quests where worker performs (see Quest.assignedWorkerId)      */
+  starred: Joi.boolean().default(false),                                                /** Only quest with star (see StarredQuests)                            */
 }).label('QuestsQuery');
 
 /** QuestsResponse schemes */
