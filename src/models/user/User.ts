@@ -24,6 +24,7 @@ import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {UserRaiseType} from "./types";
 
 export interface SocialInfo {
   id: string;
@@ -220,6 +221,7 @@ export class User extends Model {
     }
   }) password: string;
   @Column({type: DataType.JSONB, defaultValue: null}) phone: Phone;
+  @Column({type: DataType.INTEGER, defaultValue: null}) adType: UserRaiseType;
   @Column({type: DataType.JSONB, defaultValue: null}) tempPhone: Phone;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
