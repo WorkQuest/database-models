@@ -1,5 +1,4 @@
 import * as Joi from "joi";
-export declare const userLocationPlaceNameSchema: Joi.StringSchema;
 export declare const userEmailSchema: Joi.StringSchema;
 export declare const userPasswordSchema: Joi.StringSchema;
 export declare const userFirstNameSchema: Joi.StringSchema;

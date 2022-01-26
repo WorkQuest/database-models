@@ -26,6 +26,7 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   sortDirectionSchema,
+  locationPlaceNameSchema,
 } from './common';
 
 /** Quest chat schemes */
@@ -50,7 +51,6 @@ export const questTitleSchema = Joi.string().example('Title...').label('QuestTit
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('QuestDescription');
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('QuestAdType');
-export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceName');
 export const questEmploymentSchema = Joi.string().valid(...Object.values(QuestEmployment)).example(QuestEmployment.FullTime).label('QuestEmployment');
 
 export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).label('QuestEmployments');
@@ -67,7 +67,7 @@ export const questSchema = Joi.object({
   employment: questEmploymentSchema,
   priority: prioritySchema,
   location: locationSchema,
-  locationPlaceName: questLocationPlaceNameSchema,
+  locationPlaceName: locationPlaceNameSchema,
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
@@ -117,12 +117,6 @@ export const questQuerySchema = Joi.object({
   starred: Joi.boolean().default(false),                                    /** Only quest with star (see StarredQuests)                            */
 }).label('QuestsQuery');
 
-// TODO Добавить в общее
-export const locationForValidateSchema = Joi.object({
-  location: locationSchema.required(),
-  locationPlaceName: questLocationPlaceNameSchema.required(),
-}).unknown(true).label('LocationForValidate');
-
 /** QuestsResponse schemes */
 
 export const questsResponseMessageSchema = Joi.string().example('Hello, I need this job').default('').label('QuestsResponseMessage');
@@ -159,7 +153,7 @@ export const questForGetSchema = Joi.object({
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
   priority: prioritySchema,
-  locationPlaceName: questLocationPlaceNameSchema,
+  locationPlaceName: locationPlaceNameSchema,
   location: locationSchema,
   title: questTitleSchema,
   description: questDescriptionSchema,

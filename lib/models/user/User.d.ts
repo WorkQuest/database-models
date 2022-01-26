@@ -1,4 +1,3 @@
-import { Model } from "sequelize-typescript";
 import { Media } from "../Media";
 import { Session } from "./Session";
 import { Review } from "../quest/Review";
@@ -12,6 +11,7 @@ import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
+import { Model } from "sequelize-typescript";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -89,10 +89,8 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
-    firstName: string;
     lastName: string;
-    location: LocationType;
-    locationPlaceName: string;
+    firstName: string;
     email: string;
     role: UserRole;
     additionalInfo: object;
@@ -105,6 +103,8 @@ export declare class User extends Model {
     wagePerHour: string;
     workplace: WorkPlace;
     priority: Priority;
+    location: LocationType;
+    locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;

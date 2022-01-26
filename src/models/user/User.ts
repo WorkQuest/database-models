@@ -1,3 +1,18 @@
+import {getUUID} from "../../utils";
+import * as bcrypt from "bcrypt";
+import {Media} from "../Media";
+import {Session} from "./Session";
+import {Review} from "../quest/Review";
+import {RatingStatistic} from "./RatingStatistic";
+import {ChatMember} from "../chats/ChatMember";
+import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
+import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {DiscussionLike} from "../discussion/DiscussionLike";
+import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
+import {QuestsStatistic} from "../quest/QuestsStatistic";
+import {Wallet} from "../wallet/Wallet";
+import {ChatsStatistic} from "../chats/ChatsStatistic";
 import {
   BelongsTo,
   Column,
@@ -9,21 +24,6 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {getUUID} from "../../utils";
-import * as bcrypt from "bcrypt";
-import {Media} from "../Media";
-import {Session} from "./Session";
-import {Review} from "../quest/Review";
-import {RatingStatistic, RatingStatus} from "./RatingStatistic";
-import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
-import {UserSpecializationFilter} from "./UserSpecializationFilter";
-import {DiscussionLike} from "../discussion/DiscussionLike";
-import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
-import {Chat} from "../chats/Chat";
-import {QuestsStatistic} from "../quest/QuestsStatistic";
-import {Wallet} from "../wallet/Wallet";
-import {ChatsStatistic} from "../chats/ChatsStatistic";
 
 export interface SocialInfo {
   id: string;
@@ -153,7 +153,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
-    attributes: ["id", "firstName", "lastName", "avatarId"],
+    attributes: ["id", "firstName", "lastName"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -163,7 +163,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }]
   },
   shortWithAdditionalInfo: {
-    attributes: ["id", "firstName", "lastName", "additionalInfo", "avatarId"],
+    attributes: ["id", "firstName", "lastName", "additionalInfo"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -173,7 +173,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }]
   },
   shortWithWallet: {
-    attributes: ["id", "firstName", "lastName", "avatarId"],
+    attributes: ["id", "firstName", "lastName"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -186,7 +186,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }]
   }
 }))
-@Table({paranoid: true})
+@Table({ paranoid: true })
 export class User extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
@@ -194,10 +194,8 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
   /** User profile */
-  @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
-  @Column(DataType.JSONB) location: LocationType;
-  @Column(DataType.STRING) locationPlaceName: string;
+  @Column(DataType.STRING) firstName: string;
   @Column({type: DataType.STRING, unique: true}) email: string;
   @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
@@ -230,7 +228,9 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
-  /** PostGIS */
+  /** Location fields and PostGIS */
+  @Column(DataType.JSONB) location: LocationType;
+  @Column(DataType.STRING) locationPlaceName: string;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
   /** Statistic */
