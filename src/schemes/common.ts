@@ -69,10 +69,15 @@ export const phoneSchema = Joi.object({
   fullPhone: mobilePhoneFullSchema
 }).label('UserPhoneSchema');
 
-export const locationForValidateSchema = Joi.object({
+export const locationFullForValidateSchema = Joi.object({
   location: locationSchema.required(),
   locationPlaceName: locationPlaceNameSchema.required(),
 }).unknown(true).label('LocationForValidate');
+
+export const locationFullSchema = Joi.object({
+  location: locationSchema.required(),
+  locationPlaceName: locationPlaceNameSchema.required(),
+}).label('LocationForValidate');
 
 export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
 
