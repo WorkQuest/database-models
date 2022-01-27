@@ -23,6 +23,7 @@ export declare const idsSchema: Joi.ArraySchema;
 export declare const timestampSchema: Joi.DateSchema;
 export declare const transactionHashSchema: Joi.StringSchema;
 export declare const blockNumberSchema: Joi.NumberSchema;
+export declare const locationPlaceNameSchema: Joi.StringSchema;
 export declare const coinAmountSchema: Joi.StringSchema;
 export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
 export declare const paginationFields: {
@@ -34,6 +35,9 @@ export declare const locationSchema: Joi.ObjectSchema<any>;
 export declare const emptyOkSchema: Joi.ObjectSchema<any>;
 export declare const jwtTokens: Joi.ObjectSchema<any>;
 export declare const phoneSchema: Joi.ObjectSchema<any>;
+export declare const locationFullSchema: Joi.ObjectSchema<any>;
+export declare const searchByNorthAndSouthCoordinatesSchema: Joi.ObjectSchema<any>;
 export declare const prioritySchema: Joi.NumberSchema;
+export declare const prioritiesSchema: Joi.ArraySchema;
 export declare const workPlaceSchema: Joi.StringSchema;
 export declare const workPlacesSchema: Joi.ArraySchema;
