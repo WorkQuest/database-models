@@ -51,6 +51,7 @@ import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
 import {PensionFundClaimedEvent} from "./pensionFund/PensionFundClaimedEvent";
 import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
 import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
+import {AdminChangeRole} from "./admin/AdminChangeRole";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -67,7 +68,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Admin section */
       Admin,
       AdminSession,
-
+      AdminChangeRole,
 
       /** Quest section */
       Quest,
@@ -158,6 +159,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
 export * from "./types";
 export * from "./admin/types";
+export * from "./admin/AdminChangeRole";
 
 export * from "./Media";
 export * from "./quest/Quest";
