@@ -72,6 +72,11 @@ export const activeFlowStatuses = [
       as: 'questSpecializations',
       attributes: ['path'],
     }]
+  },
+  shortQuestWithChangeRole: {
+    attributes: {
+     include: ["id", "userId","assignedWorkerId","status"]
+    }
   }
 }))
 @Table({paranoid: true})

@@ -25,6 +25,7 @@ import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
 import {AdminChangeRole} from "../admin/AdminChangeRole";
+import {Quest} from "../quest/Quest";
 
 export interface SocialInfo {
   id: string;
@@ -185,6 +186,13 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: Wallet,
       as: 'wallet'
     }]
+  },
+  shortWithChangeRole: {
+    attributes: ["id", "role", "additionalInfo", "status", "wagePerHour", "workplace", "createdAt"],
+    include: [{
+      model: Quest.scope('shortQuestWithChangeRole'),
+      as: 'userId' || 'assignedWorkerId'
+    }]
   }
 }))
 @Table({ paranoid: true })
@@ -247,6 +255,10 @@ export class User extends Model {
 
   /** Wallet */
   @HasOne(() => Wallet) wallet: Wallet;
+
+  /** AdminChangeRole */
+  @HasOne(() => Quest) userId: Quest;
+  @HasOne(() => Quest) assignedWorkerId: Quest;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;

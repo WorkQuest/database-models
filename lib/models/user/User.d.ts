@@ -13,6 +13,7 @@ import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
 import { AdminChangeRole } from "../admin/AdminChangeRole";
+import { Quest } from "../quest/Quest";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -114,6 +115,8 @@ export declare class User extends Model {
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
+    userId: Quest;
+    assignedWorkerId: Quest;
     chatOfUser: Chat;
     chatStatistic: ChatsStatistic;
     chatMember: ChatMember;
