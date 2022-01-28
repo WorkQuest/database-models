@@ -12,7 +12,6 @@ import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
-import { UserRaiseType } from "./types";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -98,7 +97,6 @@ export declare class User extends Model {
     additionalInfo: object;
     password: string;
     phone: Phone;
-    adType: UserRaiseType;
     tempPhone: Phone;
     settings: UserSettings;
     status: UserStatus;

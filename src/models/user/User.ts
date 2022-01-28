@@ -221,7 +221,6 @@ export class User extends Model {
     }
   }) password: string;
   @Column({type: DataType.JSONB, defaultValue: null}) phone: Phone;
-  @Column({type: DataType.INTEGER, defaultValue: null}) adType: UserRaiseType;
   @Column({type: DataType.JSONB, defaultValue: null}) tempPhone: Phone;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
