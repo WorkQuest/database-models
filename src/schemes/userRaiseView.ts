@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {idSchema, userRaiseTypeScheme} from "./common";
+import {idSchema, userRaiseTypeSchema} from "./common";
 import {UserRaiseDuration, UserRaiseStatus} from "../models";
 import {userShortSchema} from "./user";
 
@@ -12,6 +12,6 @@ export const userRaiseViewSchema = Joi.object({
   userId: idSchema,
   status: userRaiseStatusSchema,
   duration: userRaiseDurationSchema,
-  type: userRaiseTypeScheme,
+  type: userRaiseTypeSchema,
   user: userShortSchema,
 }).default({}).label('UserRaiseView');

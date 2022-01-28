@@ -27,7 +27,7 @@ export const timestampSchema = Joi.date().timestamp('unix').example(1631568392).
 export const transactionHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqzxy88uq').label("TransactionHash");
 export const blockNumberSchema = Joi.number().example(14382).label('BlockNumber');
 export const coinAmountSchema = Joi.string().example("281231").label("CoinAmount");
-export const userRaiseTypeScheme = Joi.number().valid(...Object.values(UserRaiseType)).example(UserRaiseType.GoldPlus).label('UserRaiseType');
+export const userRaiseTypeSchema = Joi.number().valid(...Object.values(UserRaiseType)).example(UserRaiseType.GoldPlus).label('UserRaiseType');
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
