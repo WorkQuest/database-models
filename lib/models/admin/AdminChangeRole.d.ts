@@ -6,7 +6,8 @@ export declare class AdminChangeRole extends Model {
     id: string;
     adminId: string;
     userId: string;
-    currentRole: UserRole;
+    oldRole: UserRole;
+    newRole: UserRole;
     additionalInfo: object;
     wagePerHour: string;
     workplace: WorkPlace;
