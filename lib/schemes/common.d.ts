@@ -26,7 +26,7 @@ export declare const blockNumberSchema: Joi.NumberSchema;
 export declare const locationPlaceNameSchema: Joi.StringSchema;
 export declare const coinAmountSchema: Joi.StringSchema;
 export declare const accountAddressSchema: Joi.StringSchema;
-export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
+export declare const outputOkSchema: (res: Joi.Schema<any>) => Joi.Schema<any>;
 export declare const paginationFields: {
     limit: Joi.NumberSchema;
     offset: Joi.NumberSchema;
