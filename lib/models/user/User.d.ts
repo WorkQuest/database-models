@@ -115,8 +115,7 @@ export declare class User extends Model {
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
-    userId: Quest;
-    assignedWorkerId: Quest;
+    user: Quest;
     chatOfUser: Chat;
     chatStatistic: ChatsStatistic;
     chatMember: ChatMember;
