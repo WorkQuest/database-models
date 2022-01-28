@@ -4,6 +4,7 @@ import {Column, DataType, Model, Scopes, Table, HasMany} from 'sequelize-typescr
 import {getUUID} from '../../utils';
 import {AdminSession} from "./AdminSession"
 import {AdminRole, AdminAccountSettings} from "./types";
+import {AdminChangeRole} from "./AdminChangeRole";
 
 @Scopes(() => ({
   defaultScope: {
@@ -44,6 +45,7 @@ export class Admin extends Model {
   @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedDisputes: number;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
+  @HasMany(() => AdminChangeRole) adminId: AdminChangeRole[];
 
   async passwordCompare(pwd: string) {
     return bcrypt.compareSync(pwd, this.password);
