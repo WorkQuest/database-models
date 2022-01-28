@@ -186,13 +186,6 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: Wallet,
       as: 'wallet'
     }]
-  },
-  shortWithChangeRole: {
-    attributes: ["id", "role", "additionalInfo", "status", "wagePerHour", "workplace", "createdAt"],
-    include: [{
-      model: Quest.scope('shortQuestWithChangeRole'),
-      as: 'user'
-    }]
   }
 }))
 @Table({ paranoid: true })
@@ -255,9 +248,6 @@ export class User extends Model {
 
   /** Wallet */
   @HasOne(() => Wallet) wallet: Wallet;
-
-  /** ChangeRole */
-  @HasOne(() => Quest) user: Quest;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;
