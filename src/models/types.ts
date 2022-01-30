@@ -41,8 +41,3 @@ export type Place = {
   country: string | null;
   city: string | null;
 }
-
-export enum BlackListStatus {
-  Blocked,
-  Unblocked
-}

@@ -39,7 +39,3 @@ export declare type Place = {
     country: string | null;
     city: string | null;
 };
-export declare enum BlackListStatus {
-    Blocked = 0,
-    Unblocked = 1
-}
