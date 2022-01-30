@@ -4,6 +4,7 @@ export enum BlockchainNetworks {
   ethMainNetwork = 'ethMainNetwork',
   rinkebyTestNetwork = 'rinkebyTestNetwork',
   bscTestNetwork = 'bscTestNetwork',
+  workQuestNetwork = 'workQuestNetwork',
 }
 
 export type LocationType = {

@@ -2,7 +2,7 @@ import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
 import {UserRole, UserStatus} from "../models";
 import {walletAddressSchema} from "./wallet";
-import {chatsStatisticSchema} from "./statistics";
+import {chatsStatisticSchema, ratingStatusesSchema} from "./statistics";
 import {questsStatisticSchema} from "./statistics";
 import {ratingStatisticSchema, ratingStatusSchema} from "./statistics";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
@@ -20,6 +20,8 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   sortDirectionSchema,
+  locationPlaceNameSchema,
+  searchByNorthAndSouthCoordinatesSchema, prioritiesSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -29,8 +31,6 @@ export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov"
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
-export const workerPrioritiesSchema = Joi.array().items(prioritySchema).label('WorkerPriorities');
-export const workerRatingStatusesSchema = Joi.array().items(ratingStatusSchema).label('WorkerRatingStatuses');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -86,6 +86,7 @@ export const userSchema = Joi.object({
   email: userEmailSchema,
   role: userRoleSchema,
   location: locationSchema,
+  locationPlaceName: locationPlaceNameSchema,
   wagePerHour: workerWagePerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
@@ -106,6 +107,7 @@ export const userEmployerSchema = Joi.object({
   additionalInfo: userAdditionalInfoEmployerSchema,
   role: userRoleSchema,
   location: locationSchema,
+  locationPlaceName: locationPlaceNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   questsStatistic: questsStatisticSchema,
@@ -125,6 +127,7 @@ export const userWorkerSchema = Joi.object({
   role: userRoleSchema,
   priority: prioritySchema,
   location: locationSchema,
+  locationPlaceName: locationPlaceNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
@@ -159,30 +162,27 @@ export const betweenWagePerHourSchema = Joi.object({
   to: workerWagePerHourSchema.required(),
 }).label('BetweenWagePerHour');
 
-// TODO "north" and "south" in object
 export const employerQuerySchema = Joi.object({
   q: searchSchema,
   limit: limitSchema,
   offset: offsetSchema,
-  north: locationSchema, // TODO in object
-  south: locationSchema,
   sort: userListSortSchema,
-  ratingStatus: ratingStatusSchema.default(null),
-}).label('UserQuery');
+  ratingStatuses: ratingStatusesSchema.default(null),
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
+}).label('EmployerQuery');
 
 export const workerQuerySchema = Joi.object({
   q: searchSchema,
   offset: offsetSchema,
   limit: limitSchema,
-  north: locationSchema, // TODO in object
-  south: locationSchema,
   sort: userListSortSchema,
-  priority: workerPrioritiesSchema.default(null),
-  ratingStatus: workerRatingStatusesSchema.default(null),
-  workplace: workPlacesSchema.unique().default(null),
-  specialization: specializationsFilerSchema.default(null),
+  priorities: prioritiesSchema.default(null),
+  ratingStatuses: ratingStatusesSchema.default(null),
+  workplaces: workPlacesSchema.unique().default(null),
+  specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
-}).label('UserQuery');
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
+}).label('WorkerQuery');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
