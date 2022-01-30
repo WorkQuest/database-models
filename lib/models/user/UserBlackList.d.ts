@@ -13,7 +13,7 @@ export declare class UserBlackList extends Model {
     reason: string;
     userStatusBeforeBlocking: UserStatus;
     status: UserBlackListStatus;
-    unlockedAt: Date;
+    unblockedAt: Date;
     quest: User;
     blockedByAdmin: Admin;
     unblockedByAdmin: Admin;

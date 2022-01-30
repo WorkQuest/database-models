@@ -26,7 +26,7 @@ export class UserBlackList extends Model {
   @Column({type: DataType.INTEGER, allowNull: false}) userStatusBeforeBlocking: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: UserBlackListStatus.Blocked}) status: UserBlackListStatus;
 
-  @Column(DataType.DATE) unlockedAt: Date;
+  @Column(DataType.DATE) unblockedAt: Date;
 
   @BelongsTo(() => User, { constraints: false }) quest: User;
   @BelongsTo(() => Admin, { constraints: false, foreignKey: 'blockedByAdminId' }) blockedByAdmin: Admin;
