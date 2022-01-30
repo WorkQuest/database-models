@@ -13,7 +13,10 @@ export class UserBlackList extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => Admin)
-  @Column({type: DataType.STRING, allowNull: false}) adminId: string;
+  @Column({type: DataType.STRING, allowNull: false}) blockedByAdminId: string;
+
+  @ForeignKey(() => Admin)
+  @Column(DataType.STRING) unblockedByAdminId: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
@@ -25,6 +28,7 @@ export class UserBlackList extends Model {
 
   @Column(DataType.DATE) unlockedAt: Date;
 
-  @BelongsTo(() => Admin, { constraints: false }) admin: Admin;
   @BelongsTo(() => User, { constraints: false }) quest: User;
+  @BelongsTo(() => Admin, { constraints: false, foreignKey: 'blockedByAdminId' }) blockedByAdmin: Admin;
+  @BelongsTo(() => Admin, { constraints: false, foreignKey: 'unblockedByAdminId' }) unblockedByAdmin: Admin;
 }

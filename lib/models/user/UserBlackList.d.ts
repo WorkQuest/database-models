@@ -7,12 +7,14 @@ export declare enum UserBlackListStatus {
 }
 export declare class UserBlackList extends Model {
     id: string;
-    adminId: string;
+    blockedByAdminId: string;
+    unblockedByAdminId: string;
     userId: string;
     reason: string;
     userStatusBeforeBlocking: UserStatus;
     status: UserBlackListStatus;
     unlockedAt: Date;
-    admin: Admin;
     quest: User;
+    blockedByAdmin: Admin;
+    unblockedByAdmin: Admin;
 }
