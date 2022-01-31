@@ -14,8 +14,7 @@ export class AdminChangeRole extends Model {
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
-  @Column({type: DataType.STRING, allowNull: false}) oldRole: UserRole;
-  @Column({type: DataType.STRING, allowNull: false}) newRole: UserRole;
+  @Column({type: DataType.STRING, allowNull: false}) role: UserRole;
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
 
   /** UserRole.Worker */
