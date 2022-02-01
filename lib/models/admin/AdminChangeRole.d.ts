@@ -1,5 +1,4 @@
 import { Model } from "sequelize-typescript";
-import { Admin } from "./Admin";
 import { User, UserRole } from "../user/User";
 import { Priority, WorkPlace } from "../types";
 export declare class AdminChangeRole extends Model {
@@ -11,6 +10,5 @@ export declare class AdminChangeRole extends Model {
     wagePerHour: string;
     workplace: WorkPlace;
     priority: Priority;
-    admin: Admin;
     userChangeRole: User;
 }
