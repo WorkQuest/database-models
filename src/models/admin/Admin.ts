@@ -45,7 +45,6 @@ export class Admin extends Model {
   @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedDisputes: number;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
-  // @HasMany(() => AdminChangeRole) adminId: AdminChangeRole[];
 
   async passwordCompare(pwd: string) {
     return bcrypt.compareSync(pwd, this.password);

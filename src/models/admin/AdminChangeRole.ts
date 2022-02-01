@@ -9,7 +9,6 @@ import {Priority, WorkPlace} from "../types";
 export class AdminChangeRole extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
-  // @ForeignKey(() => Admin)
   @Column({type: DataType.STRING, defaultValue: null}) adminId: string;                                           /** Fill if admin change user role */
 
   @ForeignKey(() => User)
@@ -22,6 +21,5 @@ export class AdminChangeRole extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
-  // @BelongsTo(() => Admin) admin: Admin;
   @BelongsTo(() => User) userChangeRole: User;
 }
