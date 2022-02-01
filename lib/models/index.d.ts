@@ -53,4 +53,4 @@ export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundClaimedEvent";
 export * from "./pensionFund/PensionFundReceivedEvent";
-export * from "./pensionFund/PensionFundWithdrewEvent";
+export * from "./pensionFund/PensionFundWalletUpdatedEvent";

@@ -6,5 +6,6 @@ export declare class PensionFundClaimedEvent extends Model {
     user: string;
     amount: string;
     timestamp: string;
+    event: string;
     network: BlockchainNetworks;
 }

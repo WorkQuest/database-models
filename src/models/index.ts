@@ -50,7 +50,7 @@ import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
 import {PensionFundClaimedEvent} from "./pensionFund/PensionFundClaimedEvent";
 import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
-import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
+import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -147,7 +147,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PensionFundBlockInfo,
       PensionFundClaimedEvent,
       PensionFundReceivedEvent,
-      PensionFundWithdrewEvent,
+      PensionFundWalletUpdatedEvent,
     ]
   });
   if (sync)
@@ -210,4 +210,4 @@ export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundClaimedEvent";
 export * from "./pensionFund/PensionFundReceivedEvent";
-export * from "./pensionFund/PensionFundWithdrewEvent";
+export * from "./pensionFund/PensionFundWalletUpdatedEvent";

@@ -1,10 +1,11 @@
 import { Model } from "sequelize-typescript";
 import { BlockchainNetworks } from "../types";
-export declare class PensionFundReceivedEvent extends Model {
+export declare class PensionFundWalletUpdatedEvent extends Model {
     blockNumber: number;
     transactionHash: string;
     user: string;
-    amount: string;
+    newFee: string;
+    unlockDate: string;
     timestamp: string;
     event: string;
     network: BlockchainNetworks;
