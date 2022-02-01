@@ -48,7 +48,7 @@ import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
-import {PensionFundWithdrawEvent} from "./pensionFund/PensionFundWithdrawEvent";
+import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
 import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
 import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
 
@@ -145,7 +145,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Pension fund */
       PensionFundBlockInfo,
-      PensionFundWithdrawEvent,
+      PensionFundWithdrewEvent,
       PensionFundReceivedEvent,
       PensionFundWalletUpdatedEvent,
     ]
@@ -208,6 +208,6 @@ export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./pensionFund/PensionFundBlockInfo";
-export * from "./pensionFund/PensionFundWithdrawEvent";
+export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
