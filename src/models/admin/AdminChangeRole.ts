@@ -1,6 +1,5 @@
 import {BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
-import {Admin} from "./Admin";
 import {User, UserRole} from "../user/User";
 import {Priority, WorkPlace} from "../types";
 
