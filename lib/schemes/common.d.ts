@@ -38,6 +38,7 @@ export declare const jwtTokens: Joi.ObjectSchema<any>;
 export declare const phoneSchema: Joi.ObjectSchema<any>;
 export declare const locationFullSchema: Joi.ObjectSchema<any>;
 export declare const searchByNorthAndSouthCoordinatesSchema: Joi.ObjectSchema<any>;
+export declare const sessionPlaceSchema: Joi.ObjectSchema<any>;
 export declare const prioritySchema: Joi.NumberSchema;
 export declare const prioritiesSchema: Joi.ArraySchema;
 export declare const workPlaceSchema: Joi.StringSchema;

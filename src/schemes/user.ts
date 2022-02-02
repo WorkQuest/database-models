@@ -20,6 +20,7 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   prioritiesSchema,
+  sessionPlaceSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
@@ -208,6 +209,22 @@ export const tokensWithStatus = Joi.object({
   refresh: jwtTokenRefresh,
   address: walletAddressSchema
 }).label("TokensWithStatus");
+
+/** Sessions */
+
+export const userSessionSchema = Joi.object({
+  id: idSchema,
+  userId: idSchema,
+  place: sessionPlaceSchema,
+  invalidating: Joi.boolean().label('UserSessionInvalidating'),
+  ip: Joi.string().label('UserSessionIp'),
+  device: Joi.string().label('UserSessionDevice'),
+  logoutAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+}).label('UserSession');
+
+export const userSessionsSchema = Joi.array().items(userSessionSchema).label('UserSessions');
 
 /** Review */
 
