@@ -8,15 +8,24 @@ import {BlackListStatus} from "../types";
 export class QuestBlackList extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @ForeignKey(() => Admin) @Column({type: DataType.STRING, allowNull: false}) adminId: string;
-  @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: false}) questId: string;
+  @ForeignKey(() => Admin)
+  @Column({type: DataType.STRING, allowNull: false}) blockedByAdminId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) reason: string;
+  @ForeignKey(() => Admin)
+  @Column(DataType.STRING) unblockedByAdminId: string;
+
+  @ForeignKey(() => Quest)
+  @Column({type: DataType.STRING, allowNull: false}) questId: string;
+
+  @Column({type: DataType.TEXT, allowNull: false}) reason: string;
+
+  @Column({type: DataType.INTEGER, allowNull: false}) questStatusBeforeBlocking: QuestStatus;
   @Column({type: DataType.INTEGER, defaultValue: BlackListStatus.Blocked}) status: BlackListStatus;
-  @Column({type: DataType.INTEGER, allowNull: false}) previousQuestStatus: QuestStatus;
 
+  @Column(DataType.DATE) unblockedAt: Date;
 
-  @BelongsTo(() => Admin, { constraints: false }) admin: Admin;
   @BelongsTo(() => Quest, { constraints: false }) quest: Quest;
+  @BelongsTo(() => Admin, { constraints: false, foreignKey: 'blockedByAdminId' }) blockedByAdmin: Admin;
+  @BelongsTo(() => Admin, { constraints: false, foreignKey: 'unblockedByAdminId' }) unblockedByAdmin: Admin;
 }
 

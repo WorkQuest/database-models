@@ -4,11 +4,14 @@ import { Admin } from "../admin/Admin";
 import { BlackListStatus } from "../types";
 export declare class QuestBlackList extends Model {
     id: string;
-    adminId: string;
+    blockedByAdminId: string;
+    unblockedByAdminId: string;
     questId: string;
     reason: string;
+    questStatusBeforeBlocking: QuestStatus;
     status: BlackListStatus;
-    previousQuestStatus: QuestStatus;
-    admin: Admin;
+    unblockedAt: Date;
     quest: Quest;
+    blockedByAdmin: Admin;
+    unblockedByAdmin: Admin;
 }

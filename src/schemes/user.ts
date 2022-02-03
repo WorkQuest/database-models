@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
-import {StatusKYC, UserBlackListStatus, UserRole, UserStatus} from "../models";
+import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {walletAddressSchema} from "./wallet";
 import {chatsStatisticSchema, ratingStatusesSchema} from "./statistics";
 import {questsStatisticSchema} from "./statistics";
@@ -250,7 +250,7 @@ export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');
 /** Black list */
 
 export const userBlackListReasonSchema = Joi.string().example('Reason...').label('UserBlackReason');
-export const userBlackListStatusSchema = Joi.number().valid(...Object.keys(UserBlackListStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserBlackListStatus.Blocked).label("UserBlackStatus");
+export const userBlackListStatusSchema = Joi.number().valid(...Object.keys(BlackListStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(BlackListStatus.Blocked).label("UserBlackStatus");
 
 export const userBlackListSchema = Joi.object({
   id: idSchema,

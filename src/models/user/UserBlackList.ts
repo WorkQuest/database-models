@@ -2,11 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-t
 import {getUUID} from '../../utils';
 import {Admin} from "../admin/Admin";
 import {UserStatus, User} from "./User";
-
-export enum UserBlackListStatus {
-  Blocked = 0,
-  Unblocked = 1,
-}
+import {BlackListStatus} from '../types';
 
 @Table
 export class UserBlackList extends Model {
@@ -24,7 +20,7 @@ export class UserBlackList extends Model {
   @Column({type: DataType.TEXT, allowNull: false}) reason: string;
 
   @Column({type: DataType.INTEGER, allowNull: false}) userStatusBeforeBlocking: UserStatus;
-  @Column({type: DataType.INTEGER, defaultValue: UserBlackListStatus.Blocked}) status: UserBlackListStatus;
+  @Column({type: DataType.INTEGER, defaultValue: BlackListStatus.Blocked}) status: BlackListStatus;
 
   @Column(DataType.DATE) unblockedAt: Date;
 
