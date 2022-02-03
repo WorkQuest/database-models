@@ -27,3 +27,6 @@ export declare const questForGetSchema: Joi.ObjectSchema<any>;
 export declare const questsForGetSchema: Joi.ArraySchema;
 export declare const questsForGetWithCountSchema: Joi.ObjectSchema<any>;
 export declare const questForAdminsGetSchema: Joi.ObjectSchema<any>;
+export declare const questBlackListReasonSchema: Joi.StringSchema;
+export declare const questBlackListStatusSchema: Joi.NumberSchema;
+export declare const questBlackListSchema: Joi.ObjectSchema<any>;

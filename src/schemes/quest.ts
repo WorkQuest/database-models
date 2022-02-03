@@ -11,7 +11,7 @@ import {
   QuestEmployment,
   QuestsResponseType,
   QuestsResponseStatus,
-  QuestChatStatuses,
+  QuestChatStatuses, BlackListStatus,
 } from '../models';
 import {
   idSchema,
@@ -29,6 +29,7 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from './common';
+import {QuestBlackList} from "../models/quest/QuestBlackList";
 
 /** Quest chat schemes */
 
@@ -210,5 +211,22 @@ export const questForAdminsGetSchema = Joi.object({
   openDispute: Joi.object().label('OpenDispute'),
   questSpecializations: modelSpecializationsSchema,
 }).label('QuestForAdminsGet');
+
+
+/** Black list */
+
+export const questBlackListReasonSchema = Joi.string().example('Quest was blocked').label('QuestBlackListReason');
+export const questBlackListStatusSchema = Joi.number().valid(...Object.keys(BlackListStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(BlackListStatus.Blocked).label('QuestBlackListStatus');
+
+export const questBlackListSchema = Joi.object({
+  id: idSchema,
+  blockedByAdminId: idSchema,
+  unblockedByAdminId: idSchema,
+  questId: idSchema,
+  reason: questBlackListReasonSchema,
+  questStatusBeforeBlocking: questStatusesSchema,
+  status: questBlackListStatusSchema,
+  unblockedAt: isoDateSchema,
+}).label('QuestBlackList');
 
 
