@@ -1,6 +1,5 @@
 import * as Joi from "joi";
 import {mediasUrlOnlySchema} from "./media";
-import {questDisputeSchema} from "./questDispute";
 import {userShortSchema, reviewSchema} from "./user";
 import {
   specializationsFilerSchema,
@@ -169,7 +168,7 @@ export const questForGetSchema = Joi.object({
   medias: mediasUrlOnlySchema,
   assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
-  openDispute: questDisputeSchema,                          /**                                         */
+  openDispute: Joi.object().label('OpenDispute'),     /**                                         */
   yourReview: reviewSchema,                                 /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */
   invited: questsResponseSchema,                            /** If this user invited on this quest      */
@@ -208,7 +207,7 @@ export const questForAdminsGetSchema = Joi.object({
   questChat: questChatSchema,
   medias: mediasUrlOnlySchema,
   assignedWorker: userShortSchema,
-  openDispute: questDisputeSchema,
+  openDispute: Joi.object().label('OpenDispute'),
   questSpecializations: modelSpecializationsSchema,
 }).label('QuestForAdminsGet');
 
