@@ -47,7 +47,11 @@ import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
-import {QuestBlackList} from "./quest/QuestBlackList";
+import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
+import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
+import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
+import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
+import {UserBlackList} from "./user/UserBlackList";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -59,6 +63,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Session,
       Review,
       Portfolio,
+      UserBlackList,
 
 
       /** Admin section */
@@ -72,7 +77,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestDispute,
       StarredQuests,
       QuestsResponse,
-      QuestBlackList,
 
 
       /** Chat section */
@@ -140,6 +144,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Wallet */
       Wallet,
+
+      /** Pension fund */
+      PensionFundBlockInfo,
+      PensionFundWithdrewEvent,
+      PensionFundReceivedEvent,
+      PensionFundWalletUpdatedEvent,
     ]
   });
   if (sync)
@@ -199,4 +209,8 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
-export * from "./quest/QuestBlackList";
+export * from "./pensionFund/PensionFundBlockInfo";
+export * from "./pensionFund/PensionFundReceivedEvent";
+export * from "./pensionFund/PensionFundWalletUpdatedEvent";
+export * from "./pensionFund/PensionFundWithdrewEvent";
+export * from  "./user/UserBlackList";

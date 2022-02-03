@@ -30,6 +30,8 @@ export const ratingStatisticReviewCountSchema = Joi.number().example(3).label('R
 export const ratingStatisticAverageMarkSchema = Joi.number().example(3.5).label('AverageMark');
 export const ratingStatusSchema = Joi.string().valid(...Object.values(RatingStatus)).example(RatingStatus.topRanked).label("RatingStatus");
 
+export const ratingStatusesSchema = Joi.array().items(ratingStatusSchema).label('RatingStatuses');
+
 export const ratingStatisticSchema = Joi.object({
   id: idSchema,
   userId: idSchema,

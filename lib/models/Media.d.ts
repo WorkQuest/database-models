@@ -10,6 +10,7 @@ export declare enum ContentType {
 export declare class Media extends Model {
     id: string;
     userId: string;
+    adminId: string;
     contentType: ContentType;
     url: string;
     hash: string;

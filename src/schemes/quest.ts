@@ -1,6 +1,6 @@
 import * as Joi from "joi";
-import {userShortSchema, reviewSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
+import {userShortSchema, reviewSchema} from "./user";
 import {
   specializationsFilerSchema,
   modelSpecializationsSchema,
@@ -26,6 +26,8 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   sortDirectionSchema,
+  locationPlaceNameSchema,
+  searchByNorthAndSouthCoordinatesSchema,
 } from './common';
 
 /** Quest chat schemes */
@@ -50,7 +52,6 @@ export const questTitleSchema = Joi.string().example('Title...').label('QuestTit
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('QuestDescription');
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
 export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('QuestAdType');
-export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceName');
 export const questEmploymentSchema = Joi.string().valid(...Object.values(QuestEmployment)).example(QuestEmployment.FullTime).label('QuestEmployment');
 
 export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).label('QuestEmployments');
@@ -67,7 +68,7 @@ export const questSchema = Joi.object({
   employment: questEmploymentSchema,
   priority: prioritySchema,
   location: locationSchema,
-  locationPlaceName: questLocationPlaceNameSchema,
+  locationPlaceName: locationPlaceNameSchema,
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
@@ -77,6 +78,7 @@ export const questSchema = Joi.object({
   medias: mediasUrlOnlySchema,
   questChat: questChatSchema,
   questSpecializations: modelSpecializationsSchema,
+  startedAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
 
@@ -101,8 +103,6 @@ export const questQuerySchema = Joi.object({
   q: searchSchema,
   limit: limitSchema,
   offset: offsetSchema,
-  north: locationSchema,
-  south: locationSchema,
   sort: questsListSortSchema,
   adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
@@ -111,17 +111,12 @@ export const questQuerySchema = Joi.object({
   workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
   specializations: specializationsFilerSchema.unique().default(null),
-  responded: Joi.boolean().default(false),                                  /** Only quests that worker answered (see QuestResponse and its type)   */
-  invited: Joi.boolean().default(false),                                    /** Only quests where worker invited (see QuestResponse and its type)   */
-  performing: Joi.boolean().default(false),                                 /** Only quests where worker performs (see Quest.assignedWorkerId)      */
-  starred: Joi.boolean().default(false),                                    /** Only quest with star (see StarredQuests)                            */
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
+  responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
+  invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
+  performing: Joi.boolean().default(false),                                             /** Only quests where worker performs (see Quest.assignedWorkerId)      */
+  starred: Joi.boolean().default(false),                                                /** Only quest with star (see StarredQuests)                            */
 }).label('QuestsQuery');
-
-// TODO Добавить в общее
-export const locationForValidateSchema = Joi.object({
-  location: locationSchema.required(),
-  locationPlaceName: questLocationPlaceNameSchema.required(),
-}).unknown(true).label('LocationForValidate');
 
 /** QuestsResponse schemes */
 
@@ -159,19 +154,21 @@ export const questForGetSchema = Joi.object({
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
   priority: prioritySchema,
-  locationPlaceName: questLocationPlaceNameSchema,
+  locationPlaceName: locationPlaceNameSchema,
   location: locationSchema,
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
   adType: questAdTypeSchema,
+  startedAt: isoDateSchema,
   createdAt: isoDateSchema,
-  /**  */
+  /** Aliases for include */
   user: userShortSchema,
   questChat: questChatSchema,
   medias: mediasUrlOnlySchema,
   assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
+  openDispute: Joi.object().label('OpenDispute'),     /**                                         */
   yourReview: reviewSchema,                                 /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */
   invited: questsResponseSchema,                            /** If this user invited on this quest      */
@@ -186,6 +183,32 @@ export const questsForGetWithCountSchema = Joi.object({
   quests: questsForGetSchema,
 }).label('QuestsForGetWithCount');
 
+/** Quest for admins panel */
 
+export const questForAdminsGetSchema = Joi.object({
+  id: idSchema,
+  userId: idSchema,
+  assignedWorkerId: idSchema,
+  category: questCategorySchema,
+  status: questStatusSchema,
+  workplace: workPlaceSchema,
+  employment: questEmploymentSchema,
+  priority: prioritySchema,
+  locationPlaceName: locationPlaceNameSchema,
+  location: locationSchema,
+  title: questTitleSchema,
+  description: questDescriptionSchema,
+  price: questPriceSchema,
+  adType: questAdTypeSchema,
+  startedAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  /** Aliases for include */
+  user: userShortSchema,
+  questChat: questChatSchema,
+  medias: mediasUrlOnlySchema,
+  assignedWorker: userShortSchema,
+  openDispute: Joi.object().label('OpenDispute'),
+  questSpecializations: modelSpecializationsSchema,
+}).label('QuestForAdminsGet');
 
 
