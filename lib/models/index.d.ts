@@ -51,6 +51,7 @@ export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./pensionFund/PensionFundBlockInfo";
-export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
+export * from "./pensionFund/PensionFundWithdrewEvent";
+export * from "./user/UserBlackList";

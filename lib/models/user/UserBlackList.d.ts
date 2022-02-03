@@ -14,7 +14,7 @@ export declare class UserBlackList extends Model {
     userStatusBeforeBlocking: UserStatus;
     status: UserBlackListStatus;
     unblockedAt: Date;
-    quest: User;
+    user: User;
     blockedByAdmin: Admin;
     unblockedByAdmin: Admin;
 }

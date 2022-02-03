@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
-import {StatusKYC, UserRole, UserStatus} from "../models";
+import {StatusKYC, UserBlackListStatus, UserRole, UserStatus} from "../models";
 import {walletAddressSchema} from "./wallet";
 import {chatsStatisticSchema, ratingStatusesSchema} from "./statistics";
 import {questsStatisticSchema} from "./statistics";
@@ -25,6 +25,7 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from "./common";
+import {adminSchema} from "./admin";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -245,3 +246,21 @@ export const reviewSchema = Joi.object({
 }).label('ReviewSchema');
 
 export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');
+
+/** Black list */
+
+export const userBlackReasonSchema = Joi.string().example('Reason...').label('UserBlackReason');
+export const userBlackStatusSchema = Joi.number().valid(...Object.keys(UserBlackListStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserBlackListStatus.Blocked).label("UserBlackStatus");
+
+export const userBlackListSchema = Joi.object({
+  id: idSchema,
+  blockedByAdminId: idSchema,
+  unblockedByAdminId: idSchema,
+  userId: idSchema,
+  reason: userBlackReasonSchema,
+  userStatusBeforeBlocking: userStatusSchema,
+  status: userBlackStatusSchema,
+  user: userSchema,
+  blockedByAdmin: adminSchema,
+  unblockedByAdmin: adminSchema,
+}).label('UserBlackList');

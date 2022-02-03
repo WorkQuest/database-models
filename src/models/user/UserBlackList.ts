@@ -28,7 +28,7 @@ export class UserBlackList extends Model {
 
   @Column(DataType.DATE) unblockedAt: Date;
 
-  @BelongsTo(() => User, { constraints: false }) quest: User;
+  @BelongsTo(() => User, { constraints: false }) user: User;
   @BelongsTo(() => Admin, { constraints: false, foreignKey: 'blockedByAdminId' }) blockedByAdmin: Admin;
   @BelongsTo(() => Admin, { constraints: false, foreignKey: 'unblockedByAdminId' }) unblockedByAdmin: Admin;
 }
