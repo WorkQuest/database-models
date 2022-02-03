@@ -81,6 +81,11 @@ export const searchByNorthAndSouthCoordinatesSchema = Joi.object({
   south: locationSchema.required(),
 }).label('SearchByNorthAndSouthCoordinates');
 
+export const sessionPlaceSchema = Joi.object({
+  city: Joi.string().label('SessionPlaceCity'),
+  country: Joi.string().label('SessionPlaceCountry'),
+}).label('SessionPlace');
+
 export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
 export const prioritiesSchema = Joi.array().items(prioritySchema).label('Priorities');
 

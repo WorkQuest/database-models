@@ -1,6 +1,6 @@
 import * as Joi from "joi";
-import {userShortSchema, reviewSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
+import {userShortSchema, reviewSchema} from "./user";
 import {
   specializationsFilerSchema,
   modelSpecializationsSchema,
@@ -26,7 +26,8 @@ import {
   workPlaceSchema,
   workPlacesSchema,
   sortDirectionSchema,
-  locationPlaceNameSchema, searchByNorthAndSouthCoordinatesSchema,
+  locationPlaceNameSchema,
+  searchByNorthAndSouthCoordinatesSchema,
 } from './common';
 
 /** Quest chat schemes */
@@ -161,12 +162,13 @@ export const questForGetSchema = Joi.object({
   adType: questAdTypeSchema,
   startedAt: isoDateSchema,
   createdAt: isoDateSchema,
-  /**  */
+  /** Aliases for include */
   user: userShortSchema,
   questChat: questChatSchema,
   medias: mediasUrlOnlySchema,
   assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
+  openDispute: Joi.object().label('OpenDispute'),     /**                                         */
   yourReview: reviewSchema,                                 /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */
   invited: questsResponseSchema,                            /** If this user invited on this quest      */
@@ -181,6 +183,32 @@ export const questsForGetWithCountSchema = Joi.object({
   quests: questsForGetSchema,
 }).label('QuestsForGetWithCount');
 
+/** Quest for admins panel */
 
+export const questForAdminsGetSchema = Joi.object({
+  id: idSchema,
+  userId: idSchema,
+  assignedWorkerId: idSchema,
+  category: questCategorySchema,
+  status: questStatusSchema,
+  workplace: workPlaceSchema,
+  employment: questEmploymentSchema,
+  priority: prioritySchema,
+  locationPlaceName: locationPlaceNameSchema,
+  location: locationSchema,
+  title: questTitleSchema,
+  description: questDescriptionSchema,
+  price: questPriceSchema,
+  adType: questAdTypeSchema,
+  startedAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  /** Aliases for include */
+  user: userShortSchema,
+  questChat: questChatSchema,
+  medias: mediasUrlOnlySchema,
+  assignedWorker: userShortSchema,
+  openDispute: Joi.object().label('OpenDispute'),
+  questSpecializations: modelSpecializationsSchema,
+}).label('QuestForAdminsGet');
 
 
