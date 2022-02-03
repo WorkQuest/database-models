@@ -34,6 +34,6 @@ export declare const reviewMessageSchema: Joi.StringSchema;
 export declare const reviewMarkSchema: Joi.NumberSchema;
 export declare const reviewSchema: Joi.ObjectSchema<any>;
 export declare const reviewsSchema: Joi.ArraySchema;
-export declare const userBlackReasonSchema: Joi.StringSchema;
-export declare const userBlackStatusSchema: Joi.NumberSchema;
+export declare const userBlackListReasonSchema: Joi.StringSchema;
+export declare const userBlackListStatusSchema: Joi.NumberSchema;
 export declare const userBlackListSchema: Joi.ObjectSchema<any>;

@@ -249,17 +249,17 @@ export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');
 
 /** Black list */
 
-export const userBlackReasonSchema = Joi.string().example('Reason...').label('UserBlackReason');
-export const userBlackStatusSchema = Joi.number().valid(...Object.keys(UserBlackListStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserBlackListStatus.Blocked).label("UserBlackStatus");
+export const userBlackListReasonSchema = Joi.string().example('Reason...').label('UserBlackReason');
+export const userBlackListStatusSchema = Joi.number().valid(...Object.keys(UserBlackListStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserBlackListStatus.Blocked).label("UserBlackStatus");
 
 export const userBlackListSchema = Joi.object({
   id: idSchema,
   blockedByAdminId: idSchema,
   unblockedByAdminId: idSchema,
   userId: idSchema,
-  reason: userBlackReasonSchema,
+  reason: userBlackListReasonSchema,
   userStatusBeforeBlocking: userStatusSchema,
-  status: userBlackStatusSchema,
+  status: userBlackListStatusSchema,
   user: userSchema,
   blockedByAdmin: adminSchema,
   unblockedByAdmin: adminSchema,
