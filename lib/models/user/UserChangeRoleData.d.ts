@@ -1,14 +1,14 @@
 import { Model } from "sequelize-typescript";
-import { User, UserRole } from "../user/User";
+import { User, UserRole } from "./User";
 import { Priority, WorkPlace } from "../types";
-export declare class AdminChangeRole extends Model {
+export declare class UserChangeRoleData extends Model {
     id: string;
-    adminId: string;
+    changedAdminId: string;
     userId: string;
-    role: UserRole;
+    movedFromRole: UserRole;
     additionalInfo: object;
     wagePerHour: string;
     workplace: WorkPlace;
     priority: Priority;
-    userChangeRole: User;
+    user: User;
 }

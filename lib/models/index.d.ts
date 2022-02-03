@@ -54,3 +54,4 @@ export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
+export * from "./user/UserChangeRoleData";
