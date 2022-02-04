@@ -23,9 +23,12 @@ import {
   sessionPlaceSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
-  searchByNorthAndSouthCoordinatesSchema,
+  searchByNorthAndSouthCoordinatesSchema, totpSchema,
 } from "./common";
 import {adminSchema} from "./admin";
+import { getEnumList } from '../utils';
+
+const USER_ROLE = getEnumList(UserRole);
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -36,6 +39,11 @@ export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).ma
 export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
+
+export const userChangeRoleSchema = Joi.object({
+  role: Joi.array().items(Joi.string().valid(...USER_ROLE)).optional(),
+  totp: totpSchema.required()
+}).label('UserChange')
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),

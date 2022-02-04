@@ -17,3 +17,5 @@ export function totpValidate(totp: string, secret: string): boolean{
     token: Number(totp)
   });
 }
+
+export const getEnumList = (enums) => Object.entries(enums).map(([number, word]) => word);
