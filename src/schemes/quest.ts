@@ -100,6 +100,8 @@ export const betweenPriceSchema = Joi.object({
   to: questPriceSchema.required(),
 }).label('BetweenPrice');
 
+
+// TODO общие фильтры questQuerySchema и questQueryForMapPointsSchema
 export const questQuerySchema = Joi.object({
   q: searchSchema,
   limit: limitSchema,
