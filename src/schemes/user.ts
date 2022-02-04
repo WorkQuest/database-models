@@ -26,6 +26,7 @@ import {
   searchByNorthAndSouthCoordinatesSchema,
 } from "./common";
 import {adminSchema} from "./admin";
+import {questQueryForMapPointsSchema} from "./quest";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -223,6 +224,16 @@ export const workerQuerySchema = Joi.object({
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
+
+export const workerQueryForMapPointsSchema = Joi.object({
+  q: searchSchema,
+  priorities: prioritiesSchema.default(null),
+  ratingStatuses: ratingStatusesSchema.default(null),
+  workplaces: workPlacesSchema.unique().default(null),
+  specializations: specializationsFilerSchema.default(null),
+  betweenWagePerHour: betweenWagePerHourSchema.default(null),
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
+}).label('WorkerQueryForMapPoints');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
