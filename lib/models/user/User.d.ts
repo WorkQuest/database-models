@@ -1,3 +1,4 @@
+import { Model } from "sequelize-typescript";
 import { Media } from "../Media";
 import { Session } from "./Session";
 import { Review } from "../quest/Review";
@@ -11,7 +12,7 @@ import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
-import { Model } from "sequelize-typescript";
+import { AdminChangeRole } from "../admin/AdminChangeRole";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -119,6 +120,7 @@ export declare class User extends Model {
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;
+    userChangeRole: AdminChangeRole;
     chatsOfUser: Chat[];
     chatMembers: ChatMember[];
     discussionLikes: DiscussionLike[];
