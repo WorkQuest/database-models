@@ -1,3 +1,14 @@
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  HasOne,
+  Model,
+  Scopes,
+  Table
+} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
@@ -13,17 +24,8 @@ import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  HasMany,
-  HasOne,
-  Model,
-  Scopes,
-  Table
-} from "sequelize-typescript";
+import {AdminChangeRole} from "../admin/AdminChangeRole";
+import {Quest} from "../quest/Quest";
 
 export interface SocialInfo {
   id: string;
@@ -75,7 +77,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
-  Blocked,
+  Blocked
 }
 
 export enum UserRole {
@@ -253,6 +255,7 @@ export class User extends Model {
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
+  @HasOne(() => AdminChangeRole) userChangeRole: AdminChangeRole;
   @HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];

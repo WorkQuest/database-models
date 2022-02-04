@@ -48,11 +48,12 @@ import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
-import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
 import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
-import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
+import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
+import {AdminChangeRole} from "./admin/AdminChangeRole";
 import {UserBlackList} from "./user/UserBlackList";
 import {QuestBlackList} from "./quest/QuestBlackList";
+import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -70,7 +71,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Admin section */
       Admin,
       AdminSession,
-
+      AdminChangeRole,
 
       /** Quest section */
       Quest,
@@ -162,6 +163,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
 export * from "./types";
 export * from "./admin/types";
+export * from "./admin/AdminChangeRole";
 
 export * from "./Media";
 export * from "./quest/Quest";

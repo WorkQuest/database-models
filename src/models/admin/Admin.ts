@@ -4,6 +4,7 @@ import {Column, DataType, Model, Scopes, Table, HasMany} from 'sequelize-typescr
 import {getUUID} from '../../utils';
 import {AdminSession} from "./AdminSession"
 import {AdminRole, AdminAccountSettings} from "./types";
+import {AdminChangeRole} from "./AdminChangeRole";
 
 @Scopes(() => ({
   defaultScope: {
