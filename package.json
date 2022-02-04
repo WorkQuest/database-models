@@ -15,7 +15,16 @@
     "sequelize": "6.6.2",
     "sequelize-typescript": "^2.0.0",
     "speakeasy": "^2.0.0",
+    "typescript": "^3.9.7",
     "uuid": "^8.3.2",
     "uuid-int": "^3.1.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "husky install",
+    "pre-commit": "npm run build"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4"
   }
 }
