@@ -232,7 +232,7 @@ export const workerQueryForMapPointsSchema = Joi.object({
   workplaces: workPlacesSchema.unique().default(null),
   specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
-  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
 }).label('WorkerQueryForMapPoints');
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
