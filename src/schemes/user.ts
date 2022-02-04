@@ -41,7 +41,7 @@ export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).exa
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
 
 export const userChangeRoleSchema = Joi.object({
-  role: Joi.array().items(Joi.string().valid(...USER_ROLE)).optional(),
+  role: Joi.string().valid(...USER_ROLE).required(),
   totp: totpSchema.required()
 }).label('UserChange')
 
