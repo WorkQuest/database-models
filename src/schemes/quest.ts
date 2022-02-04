@@ -102,8 +102,8 @@ export const betweenPriceSchema = Joi.object({
 
 export const questQuerySchema = Joi.object({
   q: searchSchema,
-  limit: limitSchema,
-  offset: offsetSchema,
+  limit: limitSchema.allow(null),
+  offset: offsetSchema.allow(null),
   sort: questsListSortSchema,
   adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
