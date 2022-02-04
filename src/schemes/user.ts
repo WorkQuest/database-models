@@ -31,6 +31,7 @@ export const userEmailSchema = Joi.string().email().max(1000).example("user@exam
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
 export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan").label("UserFirstName");
 export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov").label("UserLastName");
+export const userTotpIsActiveSchema = Joi.boolean().example(true).label('UserTotpIsActive')
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
@@ -103,6 +104,31 @@ export const userSchema = Joi.object({
   userSpecializations: modelSpecializationsSchema,
   createdAt: isoDateSchema,
 }).label("User");
+
+export const userMeSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: phoneSchema,
+  tempPhone: phoneSchema,
+  email: userEmailSchema,
+  role: userRoleSchema,
+  location: locationSchema,
+  priority: prioritySchema,
+  workplace: workPlaceSchema,
+  userStatusKyc: userStatusKycSchema,
+  locationPlaceName: locationPlaceNameSchema,
+  wagePerHour: workerWagePerHourSchema,
+  additionalInfo: userCommonAdditionalInfoSchema,
+  totpIsActive: userTotpIsActiveSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
+  chatStatistic: chatsStatisticSchema,
+  userSpecializations: modelSpecializationsSchema,
+  createdAt: isoDateSchema,
+}).label("UserMe");
 
 export const userEmployerSchema = Joi.object({
   id: idSchema,
