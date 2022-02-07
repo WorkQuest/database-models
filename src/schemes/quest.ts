@@ -100,6 +100,8 @@ export const betweenPriceSchema = Joi.object({
   to: questPriceSchema.required(),
 }).label('BetweenPrice');
 
+
+// TODO общие фильтры questQuerySchema и questQueryForMapPointsSchema
 export const questQuerySchema = Joi.object({
   q: searchSchema,
   limit: limitSchema,
@@ -118,6 +120,22 @@ export const questQuerySchema = Joi.object({
   performing: Joi.boolean().default(false),                                             /** Only quests where worker performs (see Quest.assignedWorkerId)      */
   starred: Joi.boolean().default(false),                                                /** Only quest with star (see StarredQuests)                            */
 }).label('QuestsQuery');
+
+export const questQueryForMapPointsSchema = Joi.object({
+  q: searchSchema,
+  adType: questAdTypeSchema.default(null),
+  priceBetween: betweenPriceSchema.default(null),
+  statuses: questStatusesSchema.unique().default(null),
+  priorities: questPrioritiesSchema.unique().default(null),
+  workplaces: workPlacesSchema.unique().default(null),
+  employments: questEmploymentsSchema.unique().default(null),
+  specializations: specializationsFilerSchema.unique().default(null),
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),                /**                                                                     */
+  responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
+  invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
+  performing: Joi.boolean().default(false),                                             /** Only quests where worker performs (see Quest.assignedWorkerId)      */
+  starred: Joi.boolean().default(false),                                                /** Only quest with star (see StarredQuests)                            */
+}).label('QuestQueryForMapPoints');
 
 /** QuestsResponse schemes */
 
