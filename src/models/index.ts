@@ -53,6 +53,8 @@ import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
 import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
 import {UserBlackList} from "./user/UserBlackList";
 import {QuestBlackList} from "./quest/QuestBlackList";
+import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
+import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -130,6 +132,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** WQT/WBNB liquidity */
       WqtWbnbSwapEvent,
       WqtWbnbBlockInfo,
+      WqtWbnbMintEvent,
+      WqtWbnbBurnEvent,
 
 
       /** Media section */
@@ -211,6 +215,8 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./WqtWbnb/WqtWbnbBurnEvent";
+export * from "./WqtWbnb/WqtWbnbMintEvent";
 export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
