@@ -45,6 +45,8 @@ import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
+import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
+import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -105,9 +107,11 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Other */
       Media,
       QuestChat,
-      //
+      /** WqtWbnb */
       WqtWbnbSwapEvent,
       WqtWbnbBlockInfo,
+      WqtWbnbBurnEvent,
+      WqtWbnbMintEvent
     ]
   });
   if (sync)
@@ -163,3 +167,5 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet"
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./WqtWbnb/WqtWbnbBurnEvent";
+export * from "./WqtWbnb/WqtWbnbMintEvent";
