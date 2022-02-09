@@ -52,6 +52,7 @@ export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
 export * from "./WqtWbnb/WqtWbnbMintEvent";
+export * from "./WqtWbnb/WqtWbnbSyncEvent";
 export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
