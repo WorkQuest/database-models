@@ -1,5 +1,5 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
 import {BlockchainNetworks} from "../types";
+import {Column, DataType, Model, Table} from "sequelize-typescript";
 
 @Table
 export class WqtWbnbBlockInfo extends Model {
