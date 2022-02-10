@@ -55,6 +55,7 @@ import {UserBlackList} from "./user/UserBlackList";
 import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
+import { ReviewAdmin } from './quest/ReviewAdmin';
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -65,6 +66,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       User,
       Session,
       Review,
+      ReviewAdmin,
       Portfolio,
       UserBlackList,
 
