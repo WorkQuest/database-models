@@ -58,3 +58,4 @@ export * from "./pensionFund/PensionFundWalletUpdatedEvent";
 export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
+export * from "./user/UserChangeRoleData";
