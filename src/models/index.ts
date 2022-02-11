@@ -56,6 +56,7 @@ import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import { ReviewAdmin } from './quest/ReviewAdmin';
+import {UserChangeRoleData} from "./user/UserChangeRoleData";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -69,6 +70,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ReviewAdmin,
       Portfolio,
       UserBlackList,
+      UserChangeRoleData,
 
 
       /** Admin section */
@@ -225,3 +227,5 @@ export * from "./pensionFund/PensionFundWalletUpdatedEvent";
 export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
+export * from "./user/UserChangeRoleData";
+export * from "./quest/ReviewAdmin";
