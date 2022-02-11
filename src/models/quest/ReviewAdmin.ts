@@ -7,7 +7,7 @@ import { getUUID } from '../../utils';
 @Table
 export class ReviewAdmin extends Model {
     @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-    @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: false}) questId: string;
+    @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: true}) questId: string;
     @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) fromUserId: string;
     @ForeignKey(() => Admin) @Column({type: DataType.STRING, allowNull: false}) toAdminId: string;
 
