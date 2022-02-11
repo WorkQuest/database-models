@@ -24,4 +24,5 @@ export class UserChangeRoleData extends Model {
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
   @BelongsTo(() => User) user: User;
+  @BelongsTo(() => Admin) changedAdmin: Admin;
 }
