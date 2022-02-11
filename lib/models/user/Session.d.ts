@@ -6,7 +6,6 @@ export declare class Session extends Model {
     userId: string;
     place: Place;
     invalidating: boolean;
-    isTotpPassed: boolean;
     ip: string;
     device: string;
     logoutAt: Date;

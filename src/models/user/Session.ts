@@ -16,7 +16,7 @@ export class Session extends Model {
   @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: Place;
 
   @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
-  @Column({type: DataType.BOOLEAN, allowNull: false}) isTotpPassed: boolean;
+  // @Column({type: DataType.BOOLEAN, allowNull: false}) isTotpPassed: boolean;
 
   @Column(DataType.STRING) ip: string;
 
