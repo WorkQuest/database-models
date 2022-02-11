@@ -11,7 +11,9 @@ import {
   QuestEmployment,
   QuestsResponseType,
   QuestsResponseStatus,
-  QuestChatStatuses, BlackListStatus,
+  QuestChatStatuses,
+  BlackListStatus,
+  QuestBlackList,
 } from '../models';
 import {
   idSchema,
@@ -29,7 +31,6 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from './common';
-import {QuestBlackList} from "../models/quest/QuestBlackList";
 
 /** Quest chat schemes */
 
