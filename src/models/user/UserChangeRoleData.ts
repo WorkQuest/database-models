@@ -2,12 +2,13 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-t
 import {getUUID} from "../../utils";
 import {User, UserRole} from "./User";
 import {Priority, WorkPlace} from "../types";
+import {Admin} from "../admin/Admin";
 
 @Table
 export class UserChangeRoleData extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => Admin)
   @Column(DataType.STRING) changedAdminId: string;                                                          /** Optional: if changed on admin panel */
 
   @ForeignKey(() => User)
