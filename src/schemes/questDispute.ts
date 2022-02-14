@@ -1,7 +1,7 @@
 import * as Joi from 'joi';
 import {adminSchema} from "./admin";
 import {questSchema, questStatusSchema} from "./quest";
-import {userShortSchema} from "./user";
+import {reviewMarkSchema, userShortSchema} from "./user";
 import {DisputeReason, DisputeStatus, QuestDispute} from "../models";
 import {
   idSchema,
@@ -10,6 +10,7 @@ import {
   offsetSchema,
   isoDateSchema,
 } from './common';
+import {messageTextSchema} from "./chat";
 
 export const questDisputeNumberSchema = Joi.number().example('123').label('DisputeNumber');
 export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(DisputeStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatus');
@@ -51,3 +52,17 @@ export const questDisputesWithCountSchema = Joi.object({
   count: countSchema,
   disputes: questDisputeSchema,
 }).label('QuestsForGetWithCount');
+
+export const questDisputeReviewSchema = Joi.object({
+  id: idSchema,
+  disputeId: idSchema,
+  fromUserId: idSchema,
+  toAdminId: idSchema,
+  message: messageTextSchema,
+  mark: reviewMarkSchema,
+  fromUser: userShortSchema,
+  toAdmin: adminSchema,
+  dispute: questDisputeSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+}).label("QuestDisputeReview");

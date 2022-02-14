@@ -9,3 +9,4 @@ export declare const questDisputeSchema: Joi.ObjectSchema<any>;
 export declare const questDisputeQuerySchema: Joi.ObjectSchema<any>;
 export declare const questDisputesSchema: Joi.ArraySchema;
 export declare const questDisputesWithCountSchema: Joi.ObjectSchema<any>;
+export declare const questDisputeReviewSchema: Joi.ObjectSchema<any>;
