@@ -11,18 +11,19 @@ import {
   sortDirectionSchema,
 } from "./common";
 import {userShortWithAdditionalInfoSchema} from "./user";
-import {ChatType, MessageType, SenderMessageStatus, MessageAction} from "../models";
+import {ChatType, MessageType, SenderMessageStatus, MessageAction, MemberRole} from "../models";
 
 /** Chat message */
 export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType)).example(MessageType.message).label("MessageType");
 export const messageSenderStatusSchema = Joi.string().valid(...Object.values(SenderMessageStatus)).example(SenderMessageStatus.unread).label("MessageSenderStatus");
 export const messageTextSchema = Joi.string().example("Hello world!").label('MessageText');
 export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
+export const chatMemberRoleSchema = Joi.string().valid(...Object.values(MemberRole)).example(MemberRole.User).label("ChatMemberRole");
 
 export const messageSchema = Joi.object({
   id: idSchema,
   number: messageNumberSchema,
-  senderUserId: idSchema,
+  senderMemberId: idSchema,
   chatId: idSchema,
   text: messageTextSchema,
   type: messageTypeSchema,
@@ -34,7 +35,7 @@ export const messageSchema = Joi.object({
 
 export const messageForGetSchema = Joi.object({
   id: idSchema,
-  senderUserId: idSchema,
+  senderMemberId: idSchema,
   chatId: idSchema,
   text: messageTextSchema,
   sender: userShortWithAdditionalInfoSchema,
@@ -61,7 +62,9 @@ export const chatMemberUnreadCountMessagesSchema = Joi.number().min(0).label('Un
 export const chatMemberSchema = Joi.object({
   id: idSchema,
   chatId: idSchema,
-  userId: idSchema,
+  memberId: idSchema,
+  adminId: idSchema,
+  role: chatMemberRoleSchema,
   lastReadMessageId: idSchema,
   unreadCountMessages: chatMemberUnreadCountMessagesSchema,
   lastReadMessageNumber: messageNumberSchema,
@@ -73,7 +76,7 @@ export const messageActionSchema = Joi.string().valid(...Object.values(MessageAc
 export const infoMessageSchema = Joi.object({
   id: idSchema,
   messageId: idSchema,
-  userId: idSchema,
+  memberId: idSchema,
   messageAction: messageActionSchema,
   message: messageSchema,
 }).label('InfoMessageSchema');
@@ -84,7 +87,7 @@ export const chatNameSchema = Joi.string().example('Chat name').label('ChatName'
 
 export const chatSchema = Joi.object({
   id: idSchema,
-  ownerUserId: idSchema,
+  ownerMemberId: idSchema,
   lastMessageId: idSchema,
   lastMessageDate: isoDateSchema,
   name: chatNameSchema.allow(null),
@@ -96,7 +99,7 @@ export const chatSchema = Joi.object({
 
 export const chatForGetSchema = Joi.object({
   id: idSchema,
-  ownerUserId: idSchema,
+  ownerMemberId: idSchema,
   lastMessageId: idSchema,
   lastMessageDate: isoDateSchema,
   name: chatNameSchema.allow(null),
