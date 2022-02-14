@@ -1,8 +1,14 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import { getUUID } from "../../utils";
-import { User } from "../user/User";
+import {User, UserRole} from "../user/User";
 import { Chat } from "./Chat";
 import {Message} from "./Message";
+import {Admin} from "../admin/Admin";
+
+export enum MemberRole {
+  Admin= "admin",
+  User = "user",
+}
 
 @Scopes(() => ({
   userOnly: {
@@ -36,6 +42,11 @@ export class ChatMember extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
+  @ForeignKey(() => Admin)
+  @Column({type: DataType.STRING, allowNull: false}) adminId: string;
+
+  @Column({type: DataType.STRING, defaultValue: null}) role: MemberRole;
+
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, }) lastReadMessageId: string;
 
@@ -44,5 +55,6 @@ export class ChatMember extends Model {
   @Column({type: DataType.INTEGER, }) lastReadMessageNumber: number;
 
   @BelongsTo(() => User) user: User;
+  @BelongsTo(() => Admin) admin: Admin;
   @BelongsTo(() => Chat) chat: Chat;
 }
