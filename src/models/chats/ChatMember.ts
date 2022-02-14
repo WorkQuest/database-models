@@ -1,9 +1,9 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import { getUUID } from "../../utils";
-import {User, UserRole} from "../user/User";
+import { User } from "../user/User";
 import { Chat } from "./Chat";
-import {Message} from "./Message";
-import {Admin} from "../admin/Admin";
+import { Message } from "./Message";
+import { Admin } from "../admin/Admin";
 
 export enum MemberRole {
   Admin= "admin",
