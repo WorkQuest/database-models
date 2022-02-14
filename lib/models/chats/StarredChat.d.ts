@@ -3,8 +3,8 @@ import { User } from '../user/User';
 import { Chat } from './Chat';
 export declare class StarredChat extends Model {
     id: string;
-    userId: string;
+    memberId: string;
     chatId: string;
-    user: User;
+    member: User;
     chat: Chat;
 }

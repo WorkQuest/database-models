@@ -24,7 +24,7 @@ export enum MessageAction {
     },
     include: [{
       model: User.scope('shortWithAdditionalInfo'),
-      as: 'user',
+      as: 'member',
     }],
   }
 }))
@@ -37,10 +37,10 @@ export class InfoMessage extends Model {
 
   /** Common relations user table: who was removed and etc */
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, defaultValue: null}) userId: string;
+  @Column({type: DataType.STRING, defaultValue: null}) memberId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) messageAction: MessageAction;
 
-  @BelongsTo(() => User) user: User;
+  @BelongsTo(() => User) member: User;
   @BelongsTo(() => Message) message: Message;
 }

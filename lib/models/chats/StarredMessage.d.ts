@@ -3,8 +3,8 @@ import { User } from '../user/User';
 import { Message } from "./Message";
 export declare class StarredMessage extends Model {
     id: string;
-    userId: string;
+    memberId: string;
     messageId: string;
-    user: User;
+    member: User;
     message: Message;
 }

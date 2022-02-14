@@ -11,7 +11,7 @@ export declare enum ChatType {
 }
 export declare class Chat extends Model {
     id: string;
-    ownerUserId: string;
+    ownerMemberId: string;
     lastMessageId: string;
     name: string;
     type: ChatType;

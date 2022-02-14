@@ -15,8 +15,8 @@ export declare enum MessageAction {
 export declare class InfoMessage extends Model {
     id: string;
     messageId: string;
-    userId: string;
+    memberId: string;
     messageAction: MessageAction;
-    user: User;
+    member: User;
     message: Message;
 }

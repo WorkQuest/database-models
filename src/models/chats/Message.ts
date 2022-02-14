@@ -55,7 +55,7 @@ export class Message extends Model {
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) senderUserId: string;
+  @Column({type: DataType.STRING, allowNull: false}) senderMemberId: string;
 
   @Column({type: DataType.STRING, defaultValue: SenderMessageStatus.unread}) senderStatus: SenderMessageStatus;
   @Column({type: DataType.STRING, allowNull: false}) type: MessageType;
@@ -66,6 +66,6 @@ export class Message extends Model {
   @HasOne(() => StarredMessage) star: StarredMessage;
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
-  @BelongsTo(() => User, 'senderUserId') sender: User;
+  @BelongsTo(() => User, 'senderMemberId') sender: User;
   @BelongsTo(() => Chat) chat: Chat;
 }

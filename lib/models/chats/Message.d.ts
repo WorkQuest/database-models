@@ -16,7 +16,7 @@ export declare class Message extends Model {
     id: string;
     number: number;
     chatId: string;
-    senderUserId: string;
+    senderMemberId: string;
     senderStatus: SenderMessageStatus;
     type: MessageType;
     text: string;
