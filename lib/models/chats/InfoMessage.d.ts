@@ -1,6 +1,6 @@
 import { Model } from "sequelize-typescript";
 import { Message } from "./Message";
-import { User } from "../user/User";
+import { ChatMember } from "./ChatMember";
 export declare enum MessageAction {
     groupChatCreate = "groupChatCreate",
     groupChatAddUser = "groupChatAddUser",
@@ -17,6 +17,6 @@ export declare class InfoMessage extends Model {
     messageId: string;
     memberId: string;
     messageAction: MessageAction;
-    member: User;
+    member: ChatMember;
     message: Message;
 }

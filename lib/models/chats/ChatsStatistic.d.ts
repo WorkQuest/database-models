@@ -1,8 +1,8 @@
 import { Model } from "sequelize-typescript";
-import { User } from "../user/User";
+import { ChatMember } from "./ChatMember";
 export declare class ChatsStatistic extends Model {
     id: string;
     memberId: string;
     unreadCountChats: number;
-    member: User;
+    member: ChatMember;
 }

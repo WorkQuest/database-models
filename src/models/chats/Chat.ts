@@ -6,7 +6,6 @@ import {
   Table,
   BelongsTo,
   HasMany,
-  BelongsToMany,
   Scopes, HasOne,
 } from "sequelize-typescript";
 import { Message } from "./Message";
@@ -28,15 +27,11 @@ export enum ChatType {
       exclude: ["messages", "updatedAt"]
     },
     include: [{
-      model: User.scope('shortWithAdditionalInfo'),
+      model: ChatMember.scope('memberOnly'),
       as: 'owner'
     }, {
       model: Message,
       as: 'lastMessage'
-    }, {
-      model: User.scope('shortWithAdditionalInfo'),
-      as: 'userMembers',
-      through: { attributes: [] }
     }, {
       model: QuestChat,
       as: 'questChat',
@@ -47,7 +42,7 @@ export enum ChatType {
 export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
-  @ForeignKey(() => User) /** If group chat */
+  @ForeignKey(() => ChatMember) /** If group chat */
   @Column({type: DataType.STRING, defaultValue: null}) ownerMemberId: string;
 
   @ForeignKey(() => Message)
@@ -57,12 +52,11 @@ export class Chat extends Model {
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
   @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
-  @BelongsToMany(() => User, () => ChatMember) userMembers: User[];
-  @BelongsTo(() => User) owner: User;
+  @BelongsTo(() => ChatMember) owner: ChatMember;
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
-  @HasMany(() => Message) members: ChatMember[];
+  @HasMany(() => ChatMember) members: ChatMember[];
   @HasOne(() => ChatMember) meMember: ChatMember;
   @HasOne(() => QuestChat) questChat: QuestChat;
 

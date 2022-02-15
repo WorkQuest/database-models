@@ -11,14 +11,17 @@ export enum MemberRole {
 }
 
 @Scopes(() => ({
-  userOnly: {
+  memberOnly: {
     attributes: {
       exclude: ['id', 'chatId','createdAt', 'updatedAt']
     },
     include: [{
       model: User.scope('shortWithAdditionalInfo'),
       as: 'user'
-    }]
+    }, {
+      model: Admin,
+      as: 'admin',
+    }],
   },
   userIdsOnly: {
     attributes: {
@@ -40,12 +43,12 @@ export class ChatMember extends Model {
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @Column(DataType.STRING) userId: string;
 
   @ForeignKey(() => Admin)
-  @Column({type: DataType.STRING, allowNull: false}) adminId: string;
+  @Column(DataType.STRING) adminId: string;
 
-  @Column({type: DataType.STRING, defaultValue: null}) role: MemberRole;
+  @Column({type: DataType.STRING, allowNull: false}) role: MemberRole;
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, }) lastReadMessageId: string;

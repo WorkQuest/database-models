@@ -10,7 +10,7 @@ import {getUUID} from "../../utils";
 import {Quest} from "../quest/Quest";
 import {QuestsResponse} from "../quest/QuestsResponse";
 import {Chat} from "./Chat";
-import {User} from "../user/User";
+import {ChatMember} from "./ChatMember";
 
 export enum QuestChatStatuses {
   Open = 0,
@@ -36,10 +36,10 @@ export enum QuestChatStatuses {
 export class QuestChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => ChatMember)
   @Column({type: DataType.STRING, allowNull: false}) employerId: string;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => ChatMember)
   @Column({type: DataType.STRING, allowNull: false}) workerId: string;
 
   @ForeignKey(() => Quest)
@@ -57,6 +57,6 @@ export class QuestChat extends Model {
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
 
-  @BelongsTo(() => User, 'workerId') worker: User;
-  @BelongsTo(() => User, 'employerId') employer: User;
+  @BelongsTo(() => ChatMember, 'workerId') worker: ChatMember;
+  @BelongsTo(() => ChatMember, 'employerId') employer: ChatMember;
 }

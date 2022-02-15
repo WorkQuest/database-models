@@ -1,7 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import {Message} from "./Message";
-import {User} from "../user/User";
+import {ChatMember} from "./ChatMember";
 
 export enum MessageAction {
   groupChatCreate = 'groupChatCreate',
@@ -23,7 +23,7 @@ export enum MessageAction {
       exclude: ["createdAt", "updatedAt"]
     },
     include: [{
-      model: User.scope('shortWithAdditionalInfo'),
+      model: ChatMember.scope('memberOnly'),
       as: 'member',
     }],
   }
@@ -36,11 +36,11 @@ export class InfoMessage extends Model {
   @Column({type: DataType.STRING, allowNull: false}) messageId: string;
 
   /** Common relations user table: who was removed and etc */
-  @ForeignKey(() => User)
+  @ForeignKey(() => ChatMember)
   @Column({type: DataType.STRING, defaultValue: null}) memberId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) messageAction: MessageAction;
 
-  @BelongsTo(() => User) member: User;
+  @BelongsTo(() => ChatMember) member: ChatMember;
   @BelongsTo(() => Message) message: Message;
 }

@@ -10,12 +10,12 @@ import {
   HasOne
 } from "sequelize-typescript";
 import { getUUID } from "../../utils";
-import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { MessageMedia } from "./MessageMedia";
 import { InfoMessage } from "./InfoMessage";
 import { StarredMessage } from "./StarredMessage";
+import {ChatMember} from "./ChatMember";
 
 export enum MessageType {
   info = 'info',
@@ -37,8 +37,8 @@ export enum SenderMessageStatus {
       as: 'medias',
       through: { attributes: [] }
     }, {
-      model: User.scope('shortWithAdditionalInfo'),
-      as: 'sender'
+      model: ChatMember,
+      as: 'memberOnly'
     }, {
       model: InfoMessage,
       as: 'infoMessage'
@@ -54,7 +54,7 @@ export class Message extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => ChatMember)
   @Column({type: DataType.STRING, allowNull: false}) senderMemberId: string;
 
   @Column({type: DataType.STRING, defaultValue: SenderMessageStatus.unread}) senderStatus: SenderMessageStatus;
@@ -66,6 +66,6 @@ export class Message extends Model {
   @HasOne(() => StarredMessage) star: StarredMessage;
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
-  @BelongsTo(() => User, 'senderMemberId') sender: User;
+  @BelongsTo(() => ChatMember, 'senderMemberId') sender: ChatMember;
   @BelongsTo(() => Chat) chat: Chat;
 }
