@@ -13,7 +13,6 @@ import { ChatMember } from "./ChatMember";
 import {StarredChat} from "./StarredChat";
 import { getUUID } from "../../utils";
 import {QuestChat} from "./QuestChat";
-import {User} from "../user/User";
 
 export enum ChatType {
   private = 'private',
@@ -42,8 +41,8 @@ export enum ChatType {
 export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
-  @ForeignKey(() => User) /** If group chat */
-  @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string; //TODO/////////////////
+  // @ForeignKey(() => User) /** If group chat */
+  // @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string; //TODO/////////////////
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
@@ -52,7 +51,6 @@ export class Chat extends Model {
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
   @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
-  @BelongsTo(() => User) owner: User;
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
