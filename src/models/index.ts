@@ -47,7 +47,7 @@ import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
-import {QuestCreatedEvent} from "./quest/QuestCreatedEvent";
+import {QuestFactoryCreatedEvent} from "./quest/QuestFactoryCreatedEvent";
 import {QuestBlockInfo} from "./quest/QuestBlockInfo";
 import {QuestFactoryBlockInfo} from "./quest/QuestFactoryBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
@@ -87,7 +87,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestsResponse,
       /** Quest contract events section */
       QuestBlockInfo,
-      QuestCreatedEvent,
+      QuestFactoryCreatedEvent,
       QuestFactoryBlockInfo,
 
 
@@ -224,7 +224,7 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo"
-export * from "./quest/QuestCreatedEvent";
+export * from "./quest/QuestFactoryCreatedEvent";
 export * from "./quest/QuestBlockInfo";
 export * from "./quest/QuestFactoryBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";

@@ -2,7 +2,7 @@ import {Column, DataType, Model, Table} from "sequelize-typescript";
 import {BlockchainNetworks} from "../types";
 
 @Table /** Contract event */
-export class QuestCreatedEvent extends Model {
+export class QuestFactoryCreatedEvent extends Model {
   @Column(DataType.DECIMAL) nonce: string;
   @Column(DataType.STRING) jobHash: string;
   @Column(DataType.STRING) employerAddress: string;

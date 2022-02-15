@@ -14,4 +14,3 @@ export class WqtWbnbSwapEvent extends Model {
   @Column(DataType.STRING) transactionHash: string;
   @Column(DataType.STRING) network: BlockchainNetworks;
 }
-
