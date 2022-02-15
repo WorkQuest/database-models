@@ -1,6 +1,5 @@
 import { Model } from "sequelize-typescript";
 import { User } from "../user/User";
-import { Chat } from "./Chat";
 import { Admin } from "../admin/Admin";
 export declare enum MemberRole {
     Admin = "admin",
@@ -17,5 +16,4 @@ export declare class ChatMember extends Model {
     lastReadMessageNumber: number;
     user: User;
     admin: Admin;
-    chat: Chat;
 }
