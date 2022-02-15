@@ -2,7 +2,6 @@ import { Media } from "../Media";
 import { Session } from "./Session";
 import { Review } from "../quest/Review";
 import { RatingStatistic } from "./RatingStatistic";
-import { ChatMember } from "../chats/ChatMember";
 import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone } from "../types";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
@@ -112,10 +111,8 @@ export declare class User extends Model {
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
-    chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;
-    chatMembers: ChatMember[];
     discussionLikes: DiscussionLike[];
     commentLikes: DiscussionCommentLike[];
     passwordCompare(pwd: string): Promise<boolean>;
