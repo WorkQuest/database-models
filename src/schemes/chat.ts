@@ -11,7 +11,7 @@ import {
   sortDirectionSchema,
 } from "./common";
 import {ChatType, MessageType, SenderMessageStatus, MessageAction, MemberRole} from "../models";
-import {userShortSchema, userShortWithAdditionalInfoSchema} from "./user";
+import {userShortWithAdditionalInfoSchema} from "./user";
 import {adminSchema} from "./admin";
 
 /** Chat message */
@@ -36,7 +36,6 @@ export const chatMemberSchema = Joi.object({
   lastReadMessageNumber: messageNumberSchema,
   user: userShortWithAdditionalInfoSchema,
   admin: adminSchema,
-
 }).label('ChatMember');
 
 /** Message */
