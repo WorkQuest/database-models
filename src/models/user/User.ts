@@ -9,8 +9,10 @@ import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
+import {ChatsStatistic} from "../chats/ChatsStatistic";
 import {
   BelongsTo,
   Column,
@@ -247,12 +249,12 @@ export class User extends Model {
 
   /** Aliases for query */
   //@HasOne(() => Chat) chatOfUser: Chat;
-  //@HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
-  //@HasOne(() => ChatMember) chatMember: ChatMember;
+  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
+  @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
   //@HasMany(() => Chat) chatsOfUser: Chat[];
-  //@HasMany(() => ChatMember) chatMembers: ChatMember[];
+  @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
   @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
 

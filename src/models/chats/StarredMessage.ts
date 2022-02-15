@@ -1,6 +1,5 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { getUUID } from '../../utils';
-import { User } from '../user/User';
 import {Message} from "./Message";
 import {ChatMember} from "./ChatMember";
 
@@ -14,7 +13,7 @@ export class StarredMessage extends Model {
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, allowNull: false}) messageId: string;
 
-  @BelongsTo(() => User, { constraints: false }) member: User;
+  @BelongsTo(() => ChatMember, { constraints: false }) member: ChatMember;
   @BelongsTo(() => Message, { constraints: false }) message: Message;
 }
 
