@@ -27,14 +27,14 @@ export enum ChatType {
       exclude: ["messages", "updatedAt"]
     },
     include: [{
-      model: ChatMember,
-      as: 'owner'
-    }, {
       model: Message,
       as: 'lastMessage'
     }, {
       model: QuestChat,
       as: 'questChat',
+    }, {
+      model: GroupChat,
+      as: 'groupChat'
     }]
   }
 }))
