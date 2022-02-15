@@ -249,7 +249,7 @@ export class User extends Model {
 
   /** Aliases for query */
   //@HasOne(() => Chat) chatOfUser: Chat;
-  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
+  //@HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
