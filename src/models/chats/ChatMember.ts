@@ -59,4 +59,5 @@ export class ChatMember extends Model {
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Admin) admin: Admin;
+  @BelongsTo(() => Chat) chat: Chat;
 }
