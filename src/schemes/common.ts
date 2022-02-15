@@ -27,6 +27,7 @@ export const transactionHashSchema = Joi.string().example('18vk40cc3er48fzs5ghqz
 export const blockNumberSchema = Joi.number().example(14382).label('BlockNumber');
 export const locationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('LocationPlaceName');
 export const coinAmountSchema = Joi.string().example("281231").label("CoinAmount");
+export const accountAddressSchema = Joi.string().example("0xke2083852Ccf274D48E149F99c80a5c742693418").label("AccountAddress");
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({
@@ -79,6 +80,11 @@ export const searchByNorthAndSouthCoordinatesSchema = Joi.object({
   north: locationSchema.required(),
   south: locationSchema.required(),
 }).label('SearchByNorthAndSouthCoordinates');
+
+export const sessionPlaceSchema = Joi.object({
+  city: Joi.string().label('SessionPlaceCity'),
+  country: Joi.string().label('SessionPlaceCountry'),
+}).label('SessionPlace');
 
 export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
 export const prioritiesSchema = Joi.array().items(prioritySchema).label('Priorities');

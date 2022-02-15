@@ -51,9 +51,14 @@ import {QuestCreatedEvent} from "./quest/QuestCreatedEvent";
 import {QuestBlockInfo} from "./quest/QuestBlockInfo";
 import {QuestFactoryBlockInfo} from "./quest/QuestFactoryBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
-import {PensionFundClaimedEvent} from "./pensionFund/PensionFundClaimedEvent";
-import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
 import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
+import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
+import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
+import {UserBlackList} from "./user/UserBlackList";
+import {QuestBlackList} from "./quest/QuestBlackList";
+import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
+import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
+import {UserChangeRoleData} from "./user/UserChangeRoleData";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -65,6 +70,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Session,
       Review,
       Portfolio,
+      UserBlackList,
+      UserChangeRoleData,
 
 
       /** Admin section */
@@ -134,6 +141,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** WQT/WBNB liquidity */
       WqtWbnbSwapEvent,
       WqtWbnbBlockInfo,
+      WqtWbnbMintEvent,
+      WqtWbnbBurnEvent,
 
 
       /** Media section */
@@ -142,6 +151,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       MessageMedia,
       ProposalMedia,
       PortfolioMedia,
+      QuestBlackList,
       DiscussionMedia,
       QuestResponseMedia,
       DiscussionCommentMedia,
@@ -152,9 +162,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Pension fund */
       PensionFundBlockInfo,
-      PensionFundClaimedEvent,
-      PensionFundReceivedEvent,
       PensionFundWithdrewEvent,
+      PensionFundReceivedEvent,
+      PensionFundWalletUpdatedEvent,
     ]
   });
   if (sync)
@@ -218,7 +228,12 @@ export * from "./quest/QuestCreatedEvent";
 export * from "./quest/QuestBlockInfo";
 export * from "./quest/QuestFactoryBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./WqtWbnb/WqtWbnbBurnEvent";
+export * from "./WqtWbnb/WqtWbnbMintEvent";
 export * from "./pensionFund/PensionFundBlockInfo";
-export * from "./pensionFund/PensionFundClaimedEvent";
 export * from "./pensionFund/PensionFundReceivedEvent";
+export * from "./pensionFund/PensionFundWalletUpdatedEvent";
 export * from "./pensionFund/PensionFundWithdrewEvent";
+export * from "./user/UserBlackList";
+export * from "./quest/QuestBlackList";
+export * from "./user/UserChangeRoleData";

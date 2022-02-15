@@ -75,7 +75,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
-  Blocked
+  Blocked,
 }
 
 export enum UserRole {
@@ -129,7 +129,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
+      exclude: ["password", "settings", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
     },
     include: [{
       model: Media.scope('urlOnly'),

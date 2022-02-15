@@ -1,6 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { getUUID } from '../utils';
 import { User } from './user/User';
+import {Admin} from "./admin/Admin";
 
 export enum ContentType {
   mp4 = 'video/mp4',
@@ -19,7 +20,12 @@ export enum ContentType {
 })
 export class Media extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-  @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) userId: string;
+
+  @ForeignKey(() => User)
+  @Column(DataType.STRING) userId: string;
+
+  @ForeignKey(() => Admin)
+  @Column(DataType.STRING) adminId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) contentType: ContentType;
   @Column({type: DataType.TEXT, allowNull: false}) url: string;

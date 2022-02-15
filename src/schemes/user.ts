@@ -1,10 +1,10 @@
 import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
-import {UserRole, UserStatus} from "../models";
+import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {walletAddressSchema} from "./wallet";
 import {chatsStatisticSchema, ratingStatusesSchema} from "./statistics";
 import {questsStatisticSchema} from "./statistics";
-import {ratingStatisticSchema, ratingStatusSchema} from "./statistics";
+import {ratingStatisticSchema} from "./statistics";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   idSchema,
@@ -19,16 +19,22 @@ import {
   prioritySchema,
   workPlaceSchema,
   workPlacesSchema,
+  prioritiesSchema,
+  sessionPlaceSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
-  searchByNorthAndSouthCoordinatesSchema, prioritiesSchema,
+  searchByNorthAndSouthCoordinatesSchema,
 } from "./common";
+import {adminSchema} from "./admin";
+import {questQueryForMapPointsSchema} from "./quest";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
 export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan").label("UserFirstName");
 export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov").label("UserLastName");
+export const userTotpIsActiveSchema = Joi.boolean().example(true).label('UserTotpIsActive')
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
+export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
 
@@ -86,6 +92,9 @@ export const userSchema = Joi.object({
   email: userEmailSchema,
   role: userRoleSchema,
   location: locationSchema,
+  priority: prioritySchema,
+  workplace: workPlaceSchema,
+  userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
   wagePerHour: workerWagePerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
@@ -94,7 +103,33 @@ export const userSchema = Joi.object({
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
+  createdAt: isoDateSchema,
 }).label("User");
+
+export const userMeSchema = Joi.object({
+  id: idSchema,
+  avatarId: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  phone: phoneSchema,
+  tempPhone: phoneSchema,
+  email: userEmailSchema,
+  role: userRoleSchema,
+  location: locationSchema,
+  priority: prioritySchema,
+  workplace: workPlaceSchema,
+  userStatusKyc: userStatusKycSchema,
+  locationPlaceName: locationPlaceNameSchema,
+  wagePerHour: workerWagePerHourSchema,
+  additionalInfo: userCommonAdditionalInfoSchema,
+  totpIsActive: userTotpIsActiveSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  ratingStatistic: ratingStatisticSchema,
+  questsStatistic: questsStatisticSchema,
+  chatStatistic: chatsStatisticSchema,
+  userSpecializations: modelSpecializationsSchema,
+  createdAt: isoDateSchema,
+}).label("UserMe");
 
 export const userEmployerSchema = Joi.object({
   id: idSchema,
@@ -104,6 +139,9 @@ export const userEmployerSchema = Joi.object({
   phone: phoneSchema,
   tempPhone: phoneSchema,
   email: userEmailSchema,
+  workplace: null, /** Only worker */
+  priority: null, /** Only worker */
+  userStatusKyc: userStatusKycSchema,
   additionalInfo: userAdditionalInfoEmployerSchema,
   role: userRoleSchema,
   location: locationSchema,
@@ -111,6 +149,7 @@ export const userEmployerSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: ratingStatisticSchema,
   questsStatistic: questsStatisticSchema,
+  createdAt: isoDateSchema,
 }).label("UserEmployer");
 
 export const userWorkerSchema = Joi.object({
@@ -121,6 +160,7 @@ export const userWorkerSchema = Joi.object({
   phone: phoneSchema,
   tempPhone: phoneSchema,
   email: userEmailSchema,
+  userStatusKyc: userStatusKycSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
   wagePerHour: workerWagePerHourSchema,
   workplace: workPlaceSchema,
@@ -132,6 +172,7 @@ export const userWorkerSchema = Joi.object({
   ratingStatistic: ratingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   questsStatistic: questsStatisticSchema,
+  createdAt: isoDateSchema,
 }).label("UserWorker");
 
 export const userShortSchema = Joi.object({
@@ -184,6 +225,16 @@ export const workerQuerySchema = Joi.object({
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
 
+export const workerQueryForMapPointsSchema = Joi.object({
+  q: searchSchema,
+  priorities: prioritiesSchema.default(null),
+  ratingStatuses: ratingStatusesSchema.default(null),
+  workplaces: workPlacesSchema.unique().default(null),
+  specializations: specializationsFilerSchema.default(null),
+  betweenWagePerHour: betweenWagePerHourSchema.default(null),
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
+}).label('WorkerQueryForMapPoints');
+
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
 export const userWorkersSchema = Joi.array().items(userWorkerSchema).label('UserWorkers');
@@ -196,6 +247,22 @@ export const tokensWithStatus = Joi.object({
   refresh: jwtTokenRefresh,
   address: walletAddressSchema
 }).label("TokensWithStatus");
+
+/** Sessions */
+
+export const userSessionSchema = Joi.object({
+  id: idSchema,
+  userId: idSchema,
+  place: sessionPlaceSchema,
+  invalidating: Joi.boolean().label('UserSessionInvalidating'),
+  ip: Joi.string().label('UserSessionIp'),
+  device: Joi.string().label('UserSessionDevice'),
+  logoutAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+}).label('UserSession');
+
+export const userSessionsSchema = Joi.array().items(userSessionSchema).label('UserSessions');
 
 /** Review */
 
@@ -216,3 +283,21 @@ export const reviewSchema = Joi.object({
 }).label('ReviewSchema');
 
 export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');
+
+/** Black list */
+
+export const userBlackListReasonSchema = Joi.string().example('Reason...').label('UserBlackReason');
+export const userBlackListStatusSchema = Joi.number().valid(...Object.keys(BlackListStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(BlackListStatus.Blocked).label("UserBlackStatus");
+
+export const userBlackListSchema = Joi.object({
+  id: idSchema,
+  blockedByAdminId: idSchema,
+  unblockedByAdminId: idSchema,
+  userId: idSchema,
+  reason: userBlackListReasonSchema,
+  userStatusBeforeBlocking: userStatusSchema,
+  status: userBlackListStatusSchema,
+  user: userSchema,
+  blockedByAdmin: adminSchema,
+  unblockedByAdmin: adminSchema,
+}).label('UserBlackList');
