@@ -26,7 +26,7 @@ export enum ChatType {
       exclude: ["messages", "updatedAt"]
     },
     include: [{
-      model: ChatMember.scope('memberOnly'),
+      model: ChatMember,
       as: 'owner'
     }, {
       model: Message,

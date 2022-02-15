@@ -38,7 +38,7 @@ export enum SenderMessageStatus {
       through: { attributes: [] }
     }, {
       model: ChatMember,
-      as: 'memberOnly'
+      as: 'sender'
     }, {
       model: InfoMessage,
       as: 'infoMessage'
