@@ -10,7 +10,6 @@ import {
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
-import { User } from "../user/User";
 import {StarredChat} from "./StarredChat";
 import { getUUID } from "../../utils";
 import {QuestChat} from "./QuestChat";
