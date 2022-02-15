@@ -28,7 +28,7 @@ import {ChatMember} from "./ChatMember";
   }
 }))
 @Table
-export class QuestChat extends Model {
+export class GroupChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
   @ForeignKey(() => ChatMember)
