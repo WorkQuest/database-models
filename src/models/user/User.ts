@@ -248,12 +248,12 @@ export class User extends Model {
   @HasOne(() => Wallet) wallet: Wallet;
 
   /** Aliases for query */
-  @HasOne(() => Chat) chatOfUser: Chat;
-  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
+  //@HasOne(() => Chat) chatOfUser: Chat;
+  //@HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
-  @HasMany(() => Chat) chatsOfUser: Chat[];
+  //@HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
   @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];

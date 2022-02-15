@@ -7,10 +7,8 @@ import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone } from ".
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
-import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
-import { ChatsStatistic } from "../chats/ChatsStatistic";
 import { Model } from "sequelize-typescript";
 export interface SocialInfo {
     id: string;
@@ -114,12 +112,9 @@ export declare class User extends Model {
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
-    chatOfUser: Chat;
-    chatStatistic: ChatsStatistic;
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;
-    chatsOfUser: Chat[];
     chatMembers: ChatMember[];
     discussionLikes: DiscussionLike[];
     commentLikes: DiscussionCommentLike[];
