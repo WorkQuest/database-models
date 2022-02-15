@@ -14,6 +14,8 @@ import {ChatMember} from "./ChatMember";
 export class GroupChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
+  @Column({type: DataType.STRING, defaultValue: null}) name: string; /** If group chat */
+
   @ForeignKey(() => ChatMember)
   @Column({type: DataType.STRING, allowNull: false}) ownerId: string;
 

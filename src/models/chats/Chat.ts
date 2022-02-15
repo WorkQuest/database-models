@@ -13,6 +13,7 @@ import { ChatMember } from "./ChatMember";
 import {StarredChat} from "./StarredChat";
 import { getUUID } from "../../utils";
 import {QuestChat} from "./QuestChat";
+import {GroupChat} from "./GroupChat";
 
 export enum ChatType {
   private = 'private',
@@ -47,7 +48,6 @@ export class Chat extends Model {
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
-  @Column({type: DataType.STRING, defaultValue: null}) name: string; /** If group chat */
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
   @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
@@ -57,6 +57,7 @@ export class Chat extends Model {
   @HasMany(() => ChatMember) members: ChatMember[];
   @HasOne(() => ChatMember) meMember: ChatMember;
   @HasOne(() => QuestChat) questChat: QuestChat;
+  @HasOne(() => GroupChat) groupChat: GroupChat;
 
   /** Aliases for Queries */
   @HasOne(() => StarredChat) star: StarredChat;
