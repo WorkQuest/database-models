@@ -2,7 +2,7 @@ import * as Joi from "joi";
 export declare const proposalNumberSchema: Joi.NumberSchema;
 export declare const proposalTitleSchema: Joi.StringSchema;
 export declare const proposalDescriptionSchema: Joi.StringSchema;
-export declare const proposalStatus: Joi.NumberSchema;
+export declare const proposalStatusSchema: Joi.NumberSchema;
 export declare const proposerIdWalletSchema: Joi.StringSchema;
 export declare const proposerVotingPeriodSchema: Joi.StringSchema;
 export declare const proposalTimestampSchema: Joi.DateSchema;
