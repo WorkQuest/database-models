@@ -8,7 +8,7 @@ export const adminEmailSchema = Joi.string().email().max(255).example('test@test
 export const adminPasswordSchema = Joi.string().min(8).max(255).label('AdminPassword'); // TODO: describe custom validator rule
 export const adminRoleSchema = Joi.string().valid(...Object.values(AdminRole)).default(AdminRole.main).example('main').label('AdminRole');
 export const isActiveSchema = Joi.boolean().example(true).label('AdminIsActive');
-
+export const adminActionRouteSchema = Joi.string().example('/v1/admin/change/name').label('AdminActionRoute');
 export const adminSchema = Joi.object({
   id: idSchema,
   email: adminEmailSchema,
@@ -23,3 +23,8 @@ export const adminWithSecretSchema = Joi.object({
   secret: Joi.string().max(255).example('HJRT4QCSGNHGSYLF'),
 }).label('RegisterAdminWithSecretSchema');
 
+export const adminActionSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  action: adminActionRouteSchema,
+}).label('AdminAction');
