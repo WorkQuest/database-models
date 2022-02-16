@@ -42,7 +42,7 @@ export const allProposalsSchema = Joi.object({
 }).label('AllProposals');
 
 export const proposalQuerySchema = Joi.object({
-  status: proposalStatusesSchema,
+  statuses: proposalStatusesSchema,
   limit: limitSchema,
   offset: offsetSchema,
 }).label('ProposalQuery');
