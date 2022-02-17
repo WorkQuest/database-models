@@ -87,8 +87,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestsResponse,
       /** Quest contract events section */
       QuestBlockInfo,
-      QuestFactoryCreatedEvent,
       QuestFactoryBlockInfo,
+      QuestFactoryCreatedEvent,
 
 
       /** Chat section */

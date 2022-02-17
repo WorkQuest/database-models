@@ -13,15 +13,15 @@ export declare enum AdType {
     Paid = 1
 }
 export declare enum QuestStatus {
-    Pending = -2,
+    Dispute = -2,
     Blocked = -1,
-    Created = 0,
-    Active = 1,
-    Closed = 2,
-    Dispute = 3,
-    WaitWorker = 4,
-    WaitConfirm = 5,
-    Done = 6
+    Pending = 0,
+    Recruitment = 1,
+    WaitingConfirmWorker = 2,
+    ExecutionOfWork = 3,
+    WaitingEmployerConfirm = 4,
+    Completed = 5,
+    Closed = 6
 }
 export declare enum QuestEmployment {
     FullTime = "fullTime",

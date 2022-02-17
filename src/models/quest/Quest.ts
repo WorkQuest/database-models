@@ -28,15 +28,15 @@ export enum AdType {
 }
 
 export enum QuestStatus {
-  Pending = -2,
-  Blocked,
-  Created,
-  Active,
+  Dispute = -2,
+  Blocked = -1,
+  Pending = 0,
+  Recruitment = 1, /** Created */
+  WaitingConfirmWorker = 2, /** WaitWorker */
+  ExecutionOfWork = 3, /** Active */
+  WaitingEmployerConfirm = 4,  /** WaitConfirm */
+  Completed = 5, /** Done */
   Closed,
-  Dispute,
-  WaitWorker,
-  WaitConfirm,
-  Done,
 }
 
 export enum QuestEmployment {
@@ -46,11 +46,12 @@ export enum QuestEmployment {
 }
 
 export const activeFlowStatuses = [
-  QuestStatus.Created,
-  QuestStatus.Active,
   QuestStatus.Dispute,
-  QuestStatus.WaitWorker,
-  QuestStatus.WaitConfirm,
+  QuestStatus.Pending,
+  QuestStatus.Recruitment,
+  QuestStatus.WaitingConfirmWorker,
+  QuestStatus.ExecutionOfWork,
+  QuestStatus.WaitingEmployerConfirm,
 ];
 
 @Scopes(() => ({
@@ -89,7 +90,7 @@ export class Quest extends Model {
 
   @Column({ type: DataType.DECIMAL, defaultValue: () => getUUIDInt(), unique: true }) nonce: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
+  @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Pending }) status: QuestStatus;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
