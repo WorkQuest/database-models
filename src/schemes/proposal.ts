@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {idSchema, limitSchema, offsetSchema, transactionHashSchema} from "./common";
+import {idSchema, limitSchema, offsetSchema, searchSchema, transactionHashSchema} from "./common";
 import {ProposalStatus} from "../models";
 
 export const proposalNumberSchema = Joi.number().example(1).label('ProposalNumber');
@@ -43,6 +43,7 @@ export const allProposalsSchema = Joi.object({
 
 export const proposalQuerySchema = Joi.object({
   statuses: proposalStatusesSchema,
+  q: searchSchema,
   limit: limitSchema,
   offset: offsetSchema,
 }).label('ProposalQuery');
