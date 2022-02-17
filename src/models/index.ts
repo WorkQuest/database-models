@@ -56,6 +56,7 @@ import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
+import {Referral} from "./referral/Referral";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -153,6 +154,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Wallet */
       Wallet,
 
+      /** Referral */
+      Referral,
+
       /** Pension fund */
       PensionFundBlockInfo,
       PensionFundWithdrewEvent,
@@ -226,3 +230,4 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
+export * from "./referral/Referral";

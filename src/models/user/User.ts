@@ -24,6 +24,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
+import {Referral} from "../referral/Referral";
 
 export interface SocialInfo {
   id: string;
@@ -246,6 +247,9 @@ export class User extends Model {
 
   /** Wallet */
   @HasOne(() => Wallet) wallet: Wallet;
+
+  /** Referral */
+  @HasOne(() => Referral) referrerUser: Referral;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;
