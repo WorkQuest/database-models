@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {idSchema, limitSchema, offsetSchema, searchSchema, transactionHashSchema} from "./common";
+import {idSchema, limitSchema, offsetSchema, searchSchema, sortDirectionSchema, transactionHashSchema} from "./common";
 import {ProposalStatus} from "../models";
 
 export const proposalNumberSchema = Joi.number().example(1).label('ProposalNumber');
@@ -32,7 +32,7 @@ export const proposalEventSchema = Joi.object({
   description: proposalDescriptionSchema,
   votingPeriod: proposerVotingPeriodSchema,
   minimumQuorum: proposerVotingPeriodSchema,
-})
+}).label('ProposalEvent')
 
 export const allProposalsDataSchema = Joi.array().items(proposalEventSchema).label('AllProposalsData');
 
@@ -41,9 +41,14 @@ export const allProposalsSchema = Joi.object({
   data: allProposalsDataSchema
 }).label('AllProposals');
 
+const proposalSortSchema = Joi.object({
+  createdAt: sortDirectionSchema,
+}).label('ProposalSort')
+
 export const proposalQuerySchema = Joi.object({
   statuses: proposalStatusesSchema,
   q: searchSchema,
+  sort: proposalSortSchema,
   limit: limitSchema,
   offset: offsetSchema,
 }).label('ProposalQuery');
