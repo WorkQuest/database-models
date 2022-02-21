@@ -210,7 +210,7 @@ export const questForGetSchema = Joi.object({
   assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
   openDispute: Joi.object().label('OpenDispute'),     /**                                         */
-  yourReview: questReviewSchema,                                 /**                                         */
+  yourReview: questReviewSchema,                            /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */
   invited: questsResponseSchema,                            /** If this user invited on this quest      */
   responded: questsResponseSchema,                          /** If this user responded on this quest    */
@@ -270,6 +270,7 @@ export const questBlackListSchema = Joi.object({
 }).label('QuestBlackList');
 
 /** QuestDispute */
+
 export const questDisputeNumberSchema = Joi.number().example('123').label('DisputeNumber');
 export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(DisputeStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatus');
 export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReason');
@@ -312,7 +313,7 @@ export const questDisputesSchema = Joi.array().items(questDisputeSchema).label('
 export const questDisputesWithCountSchema = Joi.object({
   count: countSchema,
   disputes: questDisputeSchema,
-}).label('QuestsForGetWithCount');
+}).label('QuestDisputesWithCount');
 
 export const questDisputeReviewSchema = Joi.object({
   id: idSchema,
