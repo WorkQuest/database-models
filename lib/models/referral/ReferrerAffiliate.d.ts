@@ -5,6 +5,6 @@ export declare class ReferrerAffiliate extends Model {
     id: string;
     affiliateId: string;
     userReferral: string;
-    workplace: AffiliateStatus;
+    status: AffiliateStatus;
     user: User;
 }

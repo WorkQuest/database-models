@@ -30,7 +30,7 @@ export class ReferrerAffiliate extends Model {
   @Column({type: DataType.STRING, allowNull: false}) affiliateId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) userReferral: string;
-  @Column({type: DataType.STRING, defaultValue: null}) workplace: AffiliateStatus;
+  @Column({type: DataType.STRING, defaultValue: null}) status: AffiliateStatus;
 
   @BelongsTo(() => User) user: User;
 }
