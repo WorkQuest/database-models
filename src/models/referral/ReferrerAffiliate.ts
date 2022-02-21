@@ -11,7 +11,6 @@ import {
 import {getUUID} from '../../utils';
 import {User} from '../user/User';
 import {AffiliateStatus} from "../types";
-import {Referral} from "./Referral";
 
 
 @Scopes(() => ({
@@ -30,8 +29,7 @@ export class ReferrerAffiliate extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) affiliateId: string;
   @Column({type: DataType.STRING, allowNull: false}) userReferral: string;
-  @Column({type: DataType.STRING, defaultValue: null}) affiliateStatus: AffiliateStatus;
+  @Column({type: DataType.STRING, defaultValue: null}) status: AffiliateStatus;
 
   @BelongsTo(() => User) user: User;
-  @BelongsTo(() => Referral) referralId: Referral;
 }
