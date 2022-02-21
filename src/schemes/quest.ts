@@ -1,6 +1,7 @@
 import * as Joi from "joi";
-import {mediasUrlOnlySchema} from "./media";
+import {adminSchema} from "./admin";
 import {userShortSchema} from "./user";
+import {mediasUrlOnlySchema} from "./media";
 import {
   specializationsFilerSchema,
   modelSpecializationsSchema,
@@ -13,7 +14,9 @@ import {
   QuestsResponseStatus,
   QuestChatStatuses,
   BlackListStatus,
-  QuestBlackList, DisputeStatus, DisputeReason,
+  QuestBlackList,
+  DisputeStatus,
+  DisputeReason,
 } from '../models';
 import {
   idSchema,
@@ -31,7 +34,6 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from './common';
-import {adminSchema} from "./admin";
 
 /** Quest chat schemes */
 
