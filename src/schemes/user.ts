@@ -266,7 +266,7 @@ export const userSessionsSchema = Joi.array().items(userSessionSchema).label('Us
 
 /** Review */
 
-export const reviewMessageSchema = Joi.string().example('Hello, I need this job').default('').label('Message');
+export const reviewMessageSchema = Joi.string().example('Hello, I need this job').label('Message');
 export const reviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
 
 export const reviewSchema = Joi.object({
