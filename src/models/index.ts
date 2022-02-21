@@ -5,9 +5,9 @@ import {Quest} from "./quest/Quest";
 import {QuestsResponse} from "./quest/QuestsResponse";
 import {Media} from "./Media";
 import {QuestMedia} from "./quest/QuestMedia";
-import {Review} from "./quest/Review";
+import {QuestsReview} from "./quest/QuestsReview";
 import {RatingStatistic} from "./user/RatingStatistic";
-import {StarredQuests} from './quest/StarredQuests';
+import {QuestsStarred} from './quest/QuestsStarred';
 import {PortfolioMedia} from './user/PortfolioMedia';
 import {Portfolio} from './user/Portfolio';
 import {Admin} from './admin/Admin'
@@ -67,7 +67,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** User section */
       User,
       Session,
-      Review,
+      QuestsReview,
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
@@ -83,7 +83,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Quest,
       QuestChat,
       QuestDispute,
-      StarredQuests,
+      QuestsStarred,
       QuestsResponse,
       QuestDisputeReview,
 
@@ -177,8 +177,8 @@ export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
 export * from "./quest/QuestMedia";
-export * from "./quest/Review";
-export * from "./quest/StarredQuests";
+export * from "./quest/QuestsReview";
+export * from "./quest/QuestsStarred";
 export * from "./quest/QuestsStatistic";
 export * from "./quest/QuestSpecializationFilter";
 export * from "./user/User";
