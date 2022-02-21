@@ -266,16 +266,16 @@ export const userSessionsSchema = Joi.array().items(userSessionSchema).label('Us
 
 /** Review */
 
-export const reviewMessageSchema = Joi.string().example('Hello, I need this job').label('Message');
-export const reviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
+export const questReviewMessageSchema = Joi.string().example('Hello, I need this job').label('Message');
+export const questReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
 
 export const reviewSchema = Joi.object({
   reviewId: idSchema,
   questId: idSchema,
   fromUserId: idSchema,
   toUserId: idSchema,
-  message: reviewMessageSchema,
-  mark: reviewMarkSchema,
+  message: questReviewMessageSchema,
+  mark: questReviewMarkSchema,
   fromUser: userShortSchema,
   toUser: userShortSchema,
   // quest: , TODO undefined schema
