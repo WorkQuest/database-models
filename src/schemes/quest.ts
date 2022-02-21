@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {mediasUrlOnlySchema} from "./media";
-import {userShortSchema, reviewSchema} from "./user";
+import {userShortSchema} from "./user";
 import {
   specializationsFilerSchema,
   modelSpecializationsSchema,
@@ -31,6 +31,8 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from './common';
+import {adminSchema} from "./admin";
+import {questDisputeMessageTextSchema, questDisputeReviewMarkSchema, questDisputeSchema} from "./questDispute";
 
 /** Quest chat schemes */
 
@@ -163,6 +165,26 @@ export const questsResponsesWithCountSchema = Joi.object({
   responses: questsResponsesSchema,
 }).label('QuestsResponsesWithCount');
 
+/** Quest Review */
+
+export const questReviewMessageSchema = Joi.string().example('Hello, I need this job').label('Message');
+export const questReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
+
+export const questReviewSchema = Joi.object({
+  reviewId: idSchema,
+  questId: idSchema,
+  fromUserId: idSchema,
+  toUserId: idSchema,
+  message: questReviewMessageSchema,
+  mark: questReviewMarkSchema,
+  fromUser: userShortSchema,
+  toUser: userShortSchema,
+  // quest: , TODO undefined schema
+  createdAt: isoDateSchema,
+}).label('Review');
+
+export const reviewsSchema = Joi.array().items(questReviewSchema).label('Reviews');
+
 /** Quest on route get quest/quests */
 
 export const questForGetSchema = Joi.object({
@@ -189,7 +211,7 @@ export const questForGetSchema = Joi.object({
   assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
   openDispute: Joi.object().label('OpenDispute'),     /**                                         */
-  yourReview: reviewSchema,                                 /**                                         */
+  yourReview: questReviewSchema,                                 /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */
   invited: questsResponseSchema,                            /** If this user invited on this quest      */
   responded: questsResponseSchema,                          /** If this user responded on this quest    */
@@ -247,5 +269,20 @@ export const questBlackListSchema = Joi.object({
   status: questBlackListStatusSchema,
   unblockedAt: isoDateSchema,
 }).label('QuestBlackList');
+
+/** QuestDispute Review */
+export const questDisputeReviewSchema = Joi.object({
+  id: idSchema,
+  disputeId: idSchema,
+  fromUserId: idSchema,
+  toAdminId: idSchema,
+  message: questDisputeMessageTextSchema,
+  mark: questDisputeReviewMarkSchema,
+  fromUser: userShortSchema,
+  toAdmin: adminSchema,
+  dispute: questDisputeSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+}).label("QuestDisputeReview");
 
 

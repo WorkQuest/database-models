@@ -10,7 +10,6 @@ import {
   offsetSchema,
   isoDateSchema,
 } from './common';
-import {messageTextSchema} from "./chat";
 
 export const questDisputeNumberSchema = Joi.number().example('123').label('DisputeNumber');
 export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(DisputeStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatus');
@@ -18,6 +17,7 @@ export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.va
 export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
 export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
 export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
+export const questDisputeMessageTextSchema = Joi.string().example("Hello world!").label('QuestDisputeMessageText');
 
 export const questDisputeStatusesSchema = Joi.array().items(questDisputeStatusSchema).label('QuestDisputeStatuses');
 
@@ -55,16 +55,3 @@ export const questDisputesWithCountSchema = Joi.object({
   disputes: questDisputeSchema,
 }).label('QuestsForGetWithCount');
 
-export const questDisputeReviewSchema = Joi.object({
-  id: idSchema,
-  disputeId: idSchema,
-  fromUserId: idSchema,
-  toAdminId: idSchema,
-  message: messageTextSchema,
-  mark: questDisputeReviewMarkSchema,
-  fromUser: userShortSchema,
-  toAdmin: adminSchema,
-  dispute: questDisputeSchema,
-  createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
-}).label("QuestDisputeReview");

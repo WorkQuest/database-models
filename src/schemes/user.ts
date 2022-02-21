@@ -264,26 +264,6 @@ export const userSessionSchema = Joi.object({
 
 export const userSessionsSchema = Joi.array().items(userSessionSchema).label('UserSessions');
 
-/** Review */
-
-export const questReviewMessageSchema = Joi.string().example('Hello, I need this job').label('Message');
-export const questReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
-
-export const reviewSchema = Joi.object({
-  reviewId: idSchema,
-  questId: idSchema,
-  fromUserId: idSchema,
-  toUserId: idSchema,
-  message: questReviewMessageSchema,
-  mark: questReviewMarkSchema,
-  fromUser: userShortSchema,
-  toUser: userShortSchema,
-  // quest: , TODO undefined schema
-  createdAt: isoDateSchema,
-}).label('ReviewSchema');
-
-export const reviewsSchema = Joi.array().items(reviewSchema).label('Reviews');
-
 /** Black list */
 
 export const userBlackListReasonSchema = Joi.string().example('Reason...').label('UserBlackReason');
