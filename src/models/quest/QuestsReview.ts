@@ -4,7 +4,7 @@ import { Quest } from './Quest';
 import { getUUID } from '../../utils';
 
 @Table
-export class Review extends Model {
+export class QuestsReview extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: false}) questId: string;
   @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) fromUserId: string;

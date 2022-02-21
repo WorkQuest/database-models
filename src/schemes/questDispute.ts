@@ -36,6 +36,7 @@ export const questDisputeSchema = Joi.object({
   opponentUser: userShortSchema,
   assignedAdmin: adminSchema,
   quest: questSchema,
+  acceptedAt: isoDateSchema,
   resolveAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label("QuestDispute");
