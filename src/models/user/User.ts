@@ -88,6 +88,19 @@ export enum StatusKYC {
   Confirmed,
 }
 
+export enum UserLanguage {
+  EN= 'en',
+  RU = 'ru',
+  BN = 'bn',
+  AR = 'ar',
+  FR = 'fr',
+  HI = 'hi',
+  ID = 'id',
+  PT = 'pt',
+  ES = 'es',
+  ZH = 'zh',
+}
+
 interface SocialMediaNicknames {
   instagram: string | null;
   twitter: string | null;
@@ -222,6 +235,7 @@ export class User extends Model {
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
+  @Column(DataType.STRING) language: UserLanguage;
 
   /** UserRole.Worker: priority list for quests */
   @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;

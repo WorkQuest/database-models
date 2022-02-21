@@ -54,6 +54,18 @@ export declare enum StatusKYC {
     Unconfirmed = 0,
     Confirmed = 1
 }
+export declare enum UserLanguage {
+    EN = "en",
+    RU = "ru",
+    BN = "bn",
+    AR = "ar",
+    FR = "fr",
+    HI = "hi",
+    ID = "id",
+    PT = "pt",
+    ES = "es",
+    ZH = "zh"
+}
 interface SocialMediaNicknames {
     instagram: string | null;
     twitter: string | null;
@@ -100,6 +112,7 @@ export declare class User extends Model {
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
+    language: UserLanguage;
     wagePerHour: string;
     workplace: WorkPlace;
     priority: Priority;
