@@ -166,7 +166,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
-    attributes: ["id", "firstName", "lastName"],
+    attributes: ["id", "firstName", "lastName", "language"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
