@@ -22,7 +22,8 @@ export enum DisputeReason {
 @Scopes(() => ({
   defaultScope: {
     include: [{
-      model: User.scope('short'),
+      model: User.unscoped(),
+      attributes: ["id", "firstName", "lastName", "language"],
       as: 'openDisputeUser'
     }, {
       model: User.scope('short'),
