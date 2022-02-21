@@ -11,21 +11,13 @@ import {
 import {getUUID} from '../../utils';
 import {User} from '../user/User';
 import {AffiliateStatus} from "../types";
-import {Media} from "../Media";
-import { PortfolioMedia } from '../user/PortfolioMedia';
 
 
 @Scopes(() => ({
   defaultScope: {
     include: [{
-      model: Media.scope('urlOnly'),
-      as: 'medias',
-      through: {
-        attributes: []
-      }
-    },{
       model: User.scope('shortWithWallet'),
-      as:'user'
+      as: 'user'
     }]
   },
 
@@ -41,5 +33,4 @@ export class ReferrerAffiliate extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) workplace: AffiliateStatus;
 
   @BelongsTo(() => User) user: User;
-  @BelongsToMany(() => Media, () => PortfolioMedia) medias: Media[];
 }
