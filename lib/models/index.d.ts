@@ -60,3 +60,4 @@ export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./referral/Referral";
+export * from "./referral/ReferrerAffiliate";

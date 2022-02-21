@@ -13,6 +13,7 @@ import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
 import { Model } from "sequelize-typescript";
 import { Referral } from "../referral/Referral";
+import { ReferrerAffiliate } from "../referral/ReferrerAffiliate";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -116,6 +117,7 @@ export declare class User extends Model {
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
     referrerUser: Referral;
+    affiliateUser: ReferrerAffiliate;
     chatOfUser: Chat;
     chatStatistic: ChatsStatistic;
     chatMember: ChatMember;

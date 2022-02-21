@@ -31,7 +31,7 @@ import { PortfolioMedia } from '../user/PortfolioMedia';
 
 }))
 @Table({paranoid: true})
-export class Affiliate extends Model {
+export class ReferrerAffiliate extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
