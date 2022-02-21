@@ -57,6 +57,7 @@ import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {Referral} from "./referral/Referral";
+import {Affiliate} from "./referral/Affiliate";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -156,6 +157,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Referral */
       Referral,
+      Affiliate,
 
       /** Pension fund */
       PensionFundBlockInfo,
@@ -231,3 +233,4 @@ export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./referral/Referral";
+export * from "./referral/Affiliate";

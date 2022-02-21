@@ -46,3 +46,9 @@ export enum BlackListStatus {
   Blocked,
   Unblocked
 }
+
+export enum AffiliateStatus {
+  New = "new",
+  Ready = "ready",
+  Received = "received"
+}

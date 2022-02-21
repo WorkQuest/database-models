@@ -1,8 +1,16 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import { User } from '../user/User';
 
-@Table
+
+
+@Table({
+  scopes: {
+    referral: {
+      attributes: ["userId", "referralId"]
+    }
+  }
+})
 export class Referral extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
