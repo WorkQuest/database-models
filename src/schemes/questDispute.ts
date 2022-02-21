@@ -1,7 +1,7 @@
 import * as Joi from 'joi';
 import {adminSchema} from "./admin";
 import {questSchema, questStatusSchema} from "./quest";
-import {questReviewMarkSchema, userShortSchema} from "./user";
+import {userShortSchema} from "./user";
 import {DisputeReason, DisputeStatus, QuestDispute} from "../models";
 import {
   idSchema,
@@ -17,6 +17,7 @@ export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(Disput
 export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReason');
 export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
 export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
+export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
 
 export const questDisputeStatusesSchema = Joi.array().items(questDisputeStatusSchema).label('QuestDisputeStatuses');
 
@@ -60,7 +61,7 @@ export const questDisputeReviewSchema = Joi.object({
   fromUserId: idSchema,
   toAdminId: idSchema,
   message: messageTextSchema,
-  mark: questReviewMarkSchema,
+  mark: questDisputeReviewMarkSchema,
   fromUser: userShortSchema,
   toAdmin: adminSchema,
   dispute: questDisputeSchema,
