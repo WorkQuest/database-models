@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {mediaUrlOnlySchema} from "./media";
-import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
+import {StatusKYC, BlackListStatus, UserRole, UserStatus, UserLanguage} from "../models";
 import {walletAddressSchema} from "./wallet";
 import {chatsStatisticSchema, ratingStatusesSchema} from "./statistics";
 import {questsStatisticSchema} from "./statistics";
@@ -37,6 +37,7 @@ export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).ma
 export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
+export const userLanguageSchema = Joi.string().valid(...Object.values(UserLanguage)).example(UserLanguage.EN).label("UserLanguage");
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -94,6 +95,7 @@ export const userSchema = Joi.object({
   location: locationSchema,
   priority: prioritySchema,
   workplace: workPlaceSchema,
+  language: userLanguageSchema,
   userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
   wagePerHour: workerWagePerHourSchema,
@@ -119,6 +121,7 @@ export const userMeSchema = Joi.object({
   priority: prioritySchema,
   workplace: workPlaceSchema,
   userStatusKyc: userStatusKycSchema,
+  language: userLanguageSchema,
   locationPlaceName: locationPlaceNameSchema,
   wagePerHour: workerWagePerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
