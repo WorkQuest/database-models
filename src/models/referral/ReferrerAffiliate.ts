@@ -29,7 +29,7 @@ export class ReferrerAffiliate extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) affiliateId: string;
   @Column({type: DataType.STRING, allowNull: false}) userReferral: string;
-  @Column({type: DataType.STRING, defaultValue: null}) status: AffiliateStatus;
+  @Column({type: DataType.STRING, defaultValue: AffiliateStatus.New}) status: AffiliateStatus;
 
   @BelongsTo(() => User) user: User;
 }
