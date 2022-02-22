@@ -4,7 +4,7 @@ import { AffiliateStatus } from "../types";
 export declare class ReferrerAffiliate extends Model {
     id: string;
     affiliateId: string;
-    userReferral: string;
+    userReferralId: string;
     status: AffiliateStatus;
     user: User;
 }
