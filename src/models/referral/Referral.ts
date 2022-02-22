@@ -1,7 +1,6 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
-import { User } from '../user/User';
-
+import {User} from '../user/User';
 
 
 @Table({
@@ -12,13 +11,13 @@ import { User } from '../user/User';
   }
 })
 export class Referral extends Model {
-  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+  @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
-  @Column({type: DataType.INTEGER, allowNull: false}) amountReward: number;
+  @Column({type: DataType.INTEGER, defaultValue: null}) amountReward: number;
   @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralId: string;
 
-  @BelongsTo(() => User, { constraints: false }) referrerId: User;
+  @BelongsTo(() => User, {constraints: false}) referrerId: User;
 }
 
