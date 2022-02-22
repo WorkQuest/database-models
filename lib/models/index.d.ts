@@ -59,3 +59,5 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
+export * from "./quest/QuestDisputeReview";
+export * from "./admin/AdminRatingStatistic";

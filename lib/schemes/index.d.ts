@@ -3,7 +3,6 @@ export * from "./media";
 export * from "./user";
 export * from "./portfolio";
 export * from "./quest";
-export * from './questDispute';
 export * from "./sumsub";
 export * from "./admin";
 export * from "./chat";
