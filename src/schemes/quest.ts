@@ -308,6 +308,7 @@ export const questDisputeSchema = Joi.object({
 export const questDisputeQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
+  q: searchSchema,
   languages: questDisputeLanguagesSchema.unique().default(null),
   statuses: questDisputeStatusesSchema.unique().default(null),
 }).label('disputeQuery')
