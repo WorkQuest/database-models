@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
-import {userShortSchema} from "./user";
+import {userLanguageSchema, userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
 import {
   specializationsFilerSchema,
@@ -282,6 +282,7 @@ export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Ma
 export const questDisputeReviewMessageTextSchema = Joi.string().example("Hello world!").label('QuestDisputeMessageText');
 
 export const questDisputeStatusesSchema = Joi.array().items(questDisputeStatusSchema).label('QuestDisputeStatuses');
+export const questDisputeLanguagesSchema = Joi.array().items(userLanguageSchema).label('QuestDisputeLanguages');
 
 export const questDisputeSchema = Joi.object({
   id: idSchema,
@@ -307,6 +308,7 @@ export const questDisputeSchema = Joi.object({
 export const questDisputeQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
+  languages: questDisputeLanguagesSchema.unique().default(null),
   statuses: questDisputeStatusesSchema.unique().default(null),
 }).label('disputeQuery')
 
