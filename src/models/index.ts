@@ -61,6 +61,7 @@ import {ReferrerAffiliate} from "./referral/ReferrerAffiliate";
 import {ReferralEventRewardClaimed} from "./referral/ReferralEventRewardClaimed";
 import {ReferralEventPaidReferral} from "./referral/ReferralEventPaidReferral";
 import {ReferralEventRegistredAffiliate} from "./referral/ReferralEventRegistredAffiliate";
+import {ReferralParseBlock} from "./referral/ReferralParseBlock";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -161,6 +162,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Referral */
       Referral,
       ReferrerAffiliate,
+      ReferralParseBlock,
       ReferralEventRewardClaimed,
       ReferralEventPaidReferral,
       ReferralEventRegistredAffiliate,
@@ -240,6 +242,7 @@ export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./referral/Referral";
 export * from "./referral/ReferrerAffiliate";
+export * from "./referral/ReferralParseBlock";
 export * from "./referral/ReferralEventRewardClaimed";
 export * from "./referral/ReferralEventPaidReferral";
 export * from "./referral/ReferralEventRegistredAffiliate";
