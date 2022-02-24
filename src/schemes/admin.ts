@@ -1,5 +1,5 @@
 import Joi = require("joi");
-import {idSchema, limitSchema, offsetSchema} from "./common";
+import {idSchema, isoDateSchema, limitSchema, offsetSchema} from "./common";
 import {AdminRole} from "../models";
 import {ratingStatisticAverageMarkSchema, ratingStatisticReviewCountSchema} from "./statistics";
 
@@ -9,6 +9,7 @@ export const adminEmailSchema = Joi.string().email().max(255).example('test@test
 export const adminPasswordSchema = Joi.string().min(8).max(255).label('AdminPassword'); // TODO: describe custom validator rule
 export const adminRoleSchema = Joi.string().valid(...Object.values(AdminRole)).default(AdminRole.main).example('main').label('AdminRole');
 export const isActiveSchema = Joi.boolean().example(true).label('AdminIsActive');
+export const resolvedDisputesSchema = Joi.number().example(5).label('ResolvedDisputes');
 
 export const adminSchema = Joi.object({
   id: idSchema,
@@ -31,4 +32,12 @@ export const adminWithSecretSchema = Joi.object({
   admin: adminSchema,
   secret: Joi.string().max(255).example('HJRT4QCSGNHGSYLF'),
 }).label('RegisterAdminWithSecretSchema');
+
+export const adminDisputesStatisticSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  resolvedDisputes: resolvedDisputesSchema,
+  averageResolutionTime: isoDateSchema, //TODO: change this field schema
+  admin: adminSchema,
+}).label('AdminDisputesStatistic');
 
