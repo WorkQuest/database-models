@@ -1,6 +1,6 @@
 import Joi = require("joi");
 import {idSchema, isoDateSchema, limitSchema, offsetSchema} from "./common";
-import {AdminRole} from "../models";
+import {AdminRole, AdminActionMethod} from "../models";
 import {ratingStatisticAverageMarkSchema, ratingStatisticReviewCountSchema} from "./statistics";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('AdminFirstName');
