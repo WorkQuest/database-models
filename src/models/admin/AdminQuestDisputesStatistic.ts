@@ -3,7 +3,7 @@ import {getUUID} from '../../utils';
 import {Admin} from './Admin';
 
 @Table
-export class AdminDisputesStatistic extends Model {
+export class AdminQuestDisputesStatistic extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => Admin) @Column({ type: DataType.STRING, allowNull: false }) adminId: string;
 

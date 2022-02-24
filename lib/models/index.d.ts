@@ -62,4 +62,4 @@ export * from "./user/UserChangeRoleData";
 export * from "./admin/AdminAction";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminRatingStatistic";
-export * from "./admin/AdminDisputesStatistic";
+export * from "./admin/AdminQuestDisputesStatistic";

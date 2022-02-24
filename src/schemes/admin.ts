@@ -11,7 +11,7 @@ export const adminRoleSchema = Joi.string().valid(...Object.values(AdminRole)).d
 export const isActiveSchema = Joi.boolean().example(true).label('AdminIsActive');
 export const adminActionMethodSchema = Joi.string().valid(...Object.values(AdminActionMethod)).example(AdminActionMethod.Post).label('AdminActionMethod');
 export const adminActionPathSchema = Joi.string().example('/v1/admin/change/name').label('AdminActionRoute');
-export const resolvedDisputesSchema = Joi.number().example(5).label('ResolvedDisputes');
+export const resolvedQuestDisputesSchema = Joi.number().example(5).label('ResolvedDisputes');
 
 export const adminSchema = Joi.object({
   id: idSchema,
@@ -41,11 +41,12 @@ export const adminActionSchema = Joi.object({
   method: adminActionMethodSchema,
   path: adminActionPathSchema,
 }).label('AdminAction');
-export const adminDisputesStatisticSchema = Joi.object({
+
+export const adminQuestDisputesStatisticSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
-  resolvedDisputes: resolvedDisputesSchema,
+  resolvedDisputes: resolvedQuestDisputesSchema,
   averageResolutionTime: isoDateSchema, //TODO: change this field schema
   admin: adminSchema,
-}).label('AdminDisputesStatistic');
+}).label('AdminQuestDisputesStatistic');
 
