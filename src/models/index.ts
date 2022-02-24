@@ -59,6 +59,7 @@ import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
 import {AdminAction} from "./admin/AdminAction";
+import {AdminDisputesStatistic} from "./admin/AdminDisputesStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -79,6 +80,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       AdminAction,
       AdminSession,
       AdminRatingStatistic,
+      AdminDisputesStatistic,
 
 
       /** Quest section */
