@@ -58,6 +58,7 @@ import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
+import {AdminAction} from "./admin/AdminAction";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -75,6 +76,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Admin section */
       Admin,
+      AdminAction,
       AdminSession,
       AdminRatingStatistic,
 
@@ -230,6 +232,7 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
+export * from "./admin/AdminAction";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminRatingStatistic";
 export * from "./admin/AdminDisputesStatistic"
