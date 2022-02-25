@@ -41,7 +41,6 @@ export declare class Quest extends Model {
     workplace: WorkPlace;
     employment: QuestEmployment;
     priority: Priority;
-    category: string;
     locationPlaceName: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
