@@ -17,11 +17,12 @@ export declare enum QuestStatus {
     Blocked = -1,
     Pending = 0,
     Recruitment = 1,
-    WaitingConfirmWorker = 2,
-    ExecutionOfWork = 3,
-    WaitingEmployerConfirm = 4,
-    Completed = 5,
-    Closed = 6
+    WaitingForConfirmFromWorkerOnAssign = 2,
+    WorkerAcceptedQuestAssignment = 3,
+    ExecutionOfWork = 4,
+    WaitingEmployerConfirm = 5,
+    Completed = 6,
+    Closed = 7
 }
 export declare enum QuestEmployment {
     FullTime = "fullTime",

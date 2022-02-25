@@ -30,13 +30,14 @@ export enum AdType {
 export enum QuestStatus {
   Dispute = -2,
   Blocked = -1,
-  Pending = 0,
-  Recruitment = 1, /** Created */
-  WaitingConfirmWorker = 2, /** WaitWorker */
-  ExecutionOfWork = 3, /** Active */
-  WaitingEmployerConfirm = 4,  /** WaitConfirm */
-  Completed = 5, /** Done */
-  Closed,
+  Pending = 0,                               /** The quest has been created. The event about creating the quest is expected on the side of the quest factory.                       */
+  Recruitment = 1,                           /** Recruitment of workers for the quest. See QuestResponse and flow response/invite on quest.                                         */
+  WaitingForConfirmFromWorkerOnAssign = 2,   /** The employer has selected a worker to complete the quest and is waiting for confirmation from the worker.                          */
+  WorkerAcceptedQuestAssignment = 3,         /** The worker accepted the quest assignment. The employer is expected to appoint an employee on the smart contract side of the quest. */
+  ExecutionOfWork = 4,                       /**  */
+  WaitingEmployerConfirm = 5,                /** WaitConfirm */
+  Completed = 6,                             /** Done */
+  Closed = 7,
 }
 
 export enum QuestEmployment {
@@ -49,7 +50,8 @@ export const activeFlowStatuses = [
   QuestStatus.Dispute,
   QuestStatus.Pending,
   QuestStatus.Recruitment,
-  QuestStatus.WaitingConfirmWorker,
+  QuestStatus.WaitingForConfirmFromWorkerOnAssign,
+  QuestStatus.WorkerAcceptedQuestAssignment,
   QuestStatus.ExecutionOfWork,
   QuestStatus.WaitingEmployerConfirm,
 ];
