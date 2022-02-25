@@ -19,6 +19,12 @@ import {AffiliateStatus} from "../types";
       as: 'user'
     }]
   },
+  shortAffiliate: {
+    attributes: {
+      include: ["affiliateId", "userReferralId", "status"],
+      exclude: ["createdAt", "updatedAt", "deletedAt"]
+    }
+  }
 }))
 @Table({paranoid: true})
 export class ReferrerAffiliate extends Model {
