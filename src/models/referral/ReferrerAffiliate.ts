@@ -12,7 +12,6 @@ import {getUUID} from '../../utils';
 import {User} from '../user/User';
 import {AffiliateStatus} from "../types";
 
-
 @Scopes(() => ({
   defaultScope: {
     include: [{
@@ -20,7 +19,6 @@ import {AffiliateStatus} from "../types";
       as: 'user'
     }]
   },
-
 }))
 @Table({paranoid: true})
 export class ReferrerAffiliate extends Model {
@@ -28,6 +26,7 @@ export class ReferrerAffiliate extends Model {
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) affiliateId: string;
+
   @Column({type: DataType.STRING, allowNull: false}) userReferralId: string;
   @Column({type: DataType.STRING, defaultValue: AffiliateStatus.New}) status: AffiliateStatus;
 

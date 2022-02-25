@@ -60,7 +60,7 @@ import {Referral} from "./referral/Referral";
 import {ReferrerAffiliate} from "./referral/ReferrerAffiliate";
 import {ReferralEventRewardClaimed} from "./referral/ReferralEventRewardClaimed";
 import {ReferralEventPaidReferral} from "./referral/ReferralEventPaidReferral";
-import {ReferralEventRegistredAffiliate} from "./referral/ReferralEventRegistredAffiliate";
+import {ReferralEventRegisteredAffiliate} from "./referral/ReferralEventRegisteredAffiliate";
 import {ReferralParseBlock} from "./referral/ReferralParseBlock";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -165,7 +165,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ReferralParseBlock,
       ReferralEventRewardClaimed,
       ReferralEventPaidReferral,
-      ReferralEventRegistredAffiliate,
+      ReferralEventRegisteredAffiliate,
 
       /** Pension fund */
       PensionFundBlockInfo,
@@ -245,4 +245,4 @@ export * from "./referral/ReferrerAffiliate";
 export * from "./referral/ReferralParseBlock";
 export * from "./referral/ReferralEventRewardClaimed";
 export * from "./referral/ReferralEventPaidReferral";
-export * from "./referral/ReferralEventRegistredAffiliate";
+export * from "./referral/ReferralEventRegisteredAffiliate";
