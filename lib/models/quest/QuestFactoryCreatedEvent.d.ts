@@ -1,5 +1,9 @@
-import { Model } from "sequelize-typescript";
 import { BlockchainNetworks } from "../types";
+import { Model } from "sequelize-typescript";
+export declare enum QuestFactoryStatus {
+    QuestEntityNotFound = -1,
+    Successfully = 0
+}
 export declare class QuestFactoryCreatedEvent extends Model {
     nonce: string;
     jobHash: string;
@@ -7,4 +11,5 @@ export declare class QuestFactoryCreatedEvent extends Model {
     contractAddress: string;
     transactionHash: string;
     network: BlockchainNetworks;
+    status: QuestFactoryStatus;
 }
