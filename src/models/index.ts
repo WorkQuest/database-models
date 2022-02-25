@@ -48,7 +48,6 @@ import {Wallet} from "./wallet/Wallet";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {QuestFactoryCreatedEvent} from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
-import {QuestBlockInfo} from "./quest/contract-quest/QuestBlockInfo";
 import {QuestFactoryBlockInfo} from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
 import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
@@ -61,6 +60,9 @@ import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
+import {QuestBlockInfo} from "./quest/contract-quest/QuestBlockInfo";
+import {QuestAssignedEvent} from "./quest/contract-quest/QuestAssignedEvent";
+import {QuestJobStartedEvent} from "./quest/contract-quest/QuestJobStartedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -89,10 +91,17 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestsStarred,
       QuestsResponse,
       QuestDisputeReview,
-      /** Quest contract events section */
-      QuestBlockInfo,
+
+
+      /** Quest factory contract events section */
       QuestFactoryBlockInfo,
       QuestFactoryCreatedEvent,
+
+
+      /** Quest contract events section */
+      QuestBlockInfo,
+      QuestAssignedEvent,
+      QuestJobStartedEvent,
 
 
       /** Chat section */
@@ -227,7 +236,6 @@ export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
-export * from "./quest/contract-quest/QuestBlockInfo";
 export * from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
@@ -242,3 +250,6 @@ export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminRatingStatistic";
+export * from "./quest/contract-quest/QuestBlockInfo";
+export * from "./quest/contract-quest/QuestAssignedEvent";
+export * from "./quest/contract-quest/QuestJobStartedEvent";
