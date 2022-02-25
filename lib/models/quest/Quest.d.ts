@@ -13,16 +13,15 @@ export declare enum AdType {
     Paid = 1
 }
 export declare enum QuestStatus {
+    Closed = -3,
     Dispute = -2,
     Blocked = -1,
     Pending = 0,
     Recruitment = 1,
     WaitingForConfirmFromWorkerOnAssign = 2,
-    WorkerAcceptedQuestAssignment = 3,
-    ExecutionOfWork = 4,
-    WaitingEmployerConfirm = 5,
-    Completed = 6,
-    Closed = 7
+    ExecutionOfWork = 3,
+    WaitingForEmployerConfirmationWork = 4,
+    Completed = 5
 }
 export declare enum QuestEmployment {
     FullTime = "fullTime",
@@ -34,18 +33,19 @@ export declare class Quest extends Model {
     id: string;
     userId: string;
     assignedWorkerId: string;
-    title: string;
-    description: string;
+    contractAddress: string;
     nonce: string;
     status: QuestStatus;
+    description: string;
+    title: string;
+    price: string;
     workplace: WorkPlace;
+    adType: AdType;
     employment: QuestEmployment;
     priority: Priority;
-    locationPlaceName: string;
     location: LocationType;
+    locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
-    price: string;
-    adType: AdType;
     startedAt: Date;
     user: User;
     assignedWorker: User;

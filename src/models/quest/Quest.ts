@@ -94,7 +94,6 @@ export class Quest extends Model {
   @Column(DataType.TEXT) description: string;
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
-  @Column({type: DataType.STRING, allowNull: false}) category: string;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
