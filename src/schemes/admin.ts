@@ -45,8 +45,8 @@ export const adminActionSchema = Joi.object({
 export const adminQuestDisputesStatisticSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
-  resolvedDisputes: resolvedQuestDisputesSchema,
-  averageResolutionTime: isoDateSchema, //TODO: change this field schema
+  resolvedQuestDisputes: resolvedQuestDisputesSchema,
+  averageResolutionTimeInMilliseconds: isoDateSchema, //TODO: change this field schema
   admin: adminSchema,
 }).label('AdminQuestDisputesStatistic');
 

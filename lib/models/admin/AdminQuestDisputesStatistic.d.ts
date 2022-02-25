@@ -3,7 +3,7 @@ import { Admin } from './Admin';
 export declare class AdminQuestDisputesStatistic extends Model {
     id: string;
     adminId: string;
-    resolvedDisputes: number;
-    averageResolutionTime: number;
+    resolvedQuestDisputes: number;
+    averageResolutionTimeInMilliseconds: number;
     admin: Admin;
 }
