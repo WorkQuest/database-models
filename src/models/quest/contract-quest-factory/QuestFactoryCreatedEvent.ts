@@ -1,4 +1,4 @@
-import {BlockchainNetworks} from "../types";
+import {BlockchainNetworks} from "../../types";
 import {Column, DataType, Model, Table} from "sequelize-typescript";
 
 export enum QuestFactoryStatus {
@@ -11,7 +11,9 @@ export class QuestFactoryCreatedEvent extends Model {
   @Column(DataType.DECIMAL) nonce: string;
   @Column(DataType.STRING) jobHash: string;
   @Column(DataType.STRING) employerAddress: string;
-  @Column(DataType.STRING) contractAddress: string
+  @Column(DataType.STRING) contractAddress: string;
+
+  @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) transactionHash: string;
 
   @Column({type: DataType.STRING, allowNull: false}) network: BlockchainNetworks;

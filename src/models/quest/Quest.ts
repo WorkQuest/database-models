@@ -28,16 +28,15 @@ export enum AdType {
 }
 
 export enum QuestStatus {
+  Closed = -3,
   Dispute = -2,
   Blocked = -1,
-  Pending = 0,                               /** The quest has been created. The event about creating the quest is expected on the side of the quest factory.                       */
-  Recruitment = 1,                           /** Recruitment of workers for the quest. See QuestResponse and flow response/invite on quest.                                         */
-  WaitingForConfirmFromWorkerOnAssign = 2,   /** The employer has selected a worker to complete the quest and is waiting for confirmation from the worker.                          */
-  WorkerAcceptedQuestAssignment = 3,         /** The worker accepted the quest assignment. The employer is expected to appoint an employee on the smart contract side of the quest. */
-  ExecutionOfWork = 4,                       /**  */
-  WaitingEmployerConfirm = 5,                /** WaitConfirm */
-  Completed = 6,                             /** Done */
-  Closed = 7,
+  Pending = 0,                               /** The quest has been created. The event about creating the quest is expected on the side of the quest factory.   */
+  Recruitment = 1,                           /** Recruitment of workers for the quest. See QuestResponse and flow response/invite on quest.                     */
+  WaitingForConfirmFromWorkerOnAssign = 2,   /** The employer has selected a worker to complete the quest and is waiting for confirmation from the worker.      */
+  ExecutionOfWork = 3,                       /**  */
+  WaitingForEmployerConfirmationWork = 4,    /** WaitConfirm */
+  Completed = 5,                             /** Done */
 }
 
 export enum QuestEmployment {
@@ -50,10 +49,9 @@ export const activeFlowStatuses = [
   QuestStatus.Dispute,
   QuestStatus.Pending,
   QuestStatus.Recruitment,
-  QuestStatus.WaitingForConfirmFromWorkerOnAssign,
-  QuestStatus.WorkerAcceptedQuestAssignment,
   QuestStatus.ExecutionOfWork,
-  QuestStatus.WaitingEmployerConfirm,
+  QuestStatus.WaitingForEmployerConfirmationWork,
+  QuestStatus.WaitingForConfirmFromWorkerOnAssign,
 ];
 
 @Scopes(() => ({
@@ -81,29 +79,30 @@ export const activeFlowStatuses = [
 @Table({paranoid: true})
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) title: string;
-  @Column(DataType.TEXT) description: string;
-
+  @Column(DataType.STRING) contractAddress: string;
   @Column({ type: DataType.DECIMAL, defaultValue: () => getUUIDInt(), unique: true }) nonce: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Pending }) status: QuestStatus;
+
+  @Column(DataType.TEXT) description: string;
+  @Column({type: DataType.STRING, allowNull: false}) title: string;
+  @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
+  @Column({type: DataType.STRING, allowNull: false}) category: string;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
+  @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
-  @Column({type: DataType.STRING, allowNull: false}) category: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
   @Column({type: DataType.JSONB, allowNull: false}) location: LocationType;
+  @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
-
-  @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
-  @Column({type: DataType.INTEGER, defaultValue: AdType.Free }) adType: AdType;
 
   @Column(DataType.DATE) startedAt: Date;
 
