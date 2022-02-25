@@ -1,5 +1,5 @@
 import Joi = require("joi");
-import {idSchema, isoDateSchema, limitSchema, offsetSchema} from "./common";
+import {idSchema, isoDateSchema, limitSchema, offsetSchema, timestampSchema} from "./common";
 import {AdminRole, AdminActionMethod} from "../models";
 import {ratingStatisticAverageMarkSchema, ratingStatisticReviewCountSchema} from "./statistics";
 
@@ -46,7 +46,7 @@ export const adminQuestDisputesStatisticSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
   resolvedQuestDisputes: resolvedQuestDisputesSchema,
-  averageResolutionTimeInMilliseconds: isoDateSchema, //TODO: change this field schema
+  averageResolutionTimeInSeconds: timestampSchema, //TODO: change this field schema
   admin: adminSchema,
 }).label('AdminQuestDisputesStatistic');
 

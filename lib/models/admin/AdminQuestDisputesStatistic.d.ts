@@ -4,6 +4,6 @@ export declare class AdminQuestDisputesStatistic extends Model {
     id: string;
     adminId: string;
     resolvedQuestDisputes: number;
-    averageResolutionTimeInMilliseconds: number;
+    averageResolutionTimeInSeconds: number;
     admin: Admin;
 }

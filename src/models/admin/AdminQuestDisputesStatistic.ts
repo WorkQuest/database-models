@@ -8,7 +8,7 @@ export class AdminQuestDisputesStatistic extends Model {
   @ForeignKey(() => Admin) @Column({ type: DataType.STRING, allowNull: false }) adminId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedQuestDisputes: number;
-  @Column({type: DataType.INTEGER, defaultValue: null }) averageResolutionTimeInMilliseconds: number; //in milliseconds
+  @Column({type: DataType.INTEGER, defaultValue: null }) averageResolutionTimeInSeconds: number;
 
   @BelongsTo(() => Admin) admin: Admin;
 }
