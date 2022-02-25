@@ -5,9 +5,9 @@ import {Quest} from "./quest/Quest";
 import {QuestsResponse} from "./quest/QuestsResponse";
 import {Media} from "./Media";
 import {QuestMedia} from "./quest/QuestMedia";
-import {Review} from "./quest/Review";
+import {QuestsReview} from "./quest/QuestsReview";
 import {RatingStatistic} from "./user/RatingStatistic";
-import {StarredQuests} from './quest/StarredQuests';
+import {QuestsStarred} from './quest/QuestsStarred';
 import {PortfolioMedia} from './user/PortfolioMedia';
 import {Portfolio} from './user/Portfolio';
 import {Admin} from './admin/Admin'
@@ -59,6 +59,8 @@ import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
+import {QuestDisputeReview} from "./quest/QuestDisputeReview";
+import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -68,7 +70,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** User section */
       User,
       Session,
-      Review,
+      QuestsReview,
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
@@ -77,14 +79,16 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Admin section */
       Admin,
       AdminSession,
+      AdminRatingStatistic,
 
 
       /** Quest section */
       Quest,
       QuestChat,
       QuestDispute,
-      StarredQuests,
+      QuestsStarred,
       QuestsResponse,
+      QuestDisputeReview,
       /** Quest contract events section */
       QuestBlockInfo,
       QuestFactoryBlockInfo,
@@ -180,8 +184,8 @@ export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
 export * from "./quest/QuestMedia";
-export * from "./quest/Review";
-export * from "./quest/StarredQuests";
+export * from "./quest/QuestsReview";
+export * from "./quest/QuestsStarred";
 export * from "./quest/QuestsStatistic";
 export * from "./quest/QuestSpecializationFilter";
 export * from "./user/User";
@@ -222,11 +226,10 @@ export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
-export * from "./WqtWbnb/WqtWbnbSwapEvent";
-export * from "./WqtWbnb/WqtWbnbBlockInfo"
 export * from "./quest/QuestFactoryCreatedEvent";
 export * from "./quest/QuestBlockInfo";
 export * from "./quest/QuestFactoryBlockInfo";
+export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
 export * from "./WqtWbnb/WqtWbnbMintEvent";
@@ -237,3 +240,5 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
+export * from "./quest/QuestDisputeReview";
+export * from "./admin/AdminRatingStatistic";

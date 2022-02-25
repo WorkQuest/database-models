@@ -6,4 +6,5 @@ export declare const adminPasswordSchema: Joi.StringSchema;
 export declare const adminRoleSchema: Joi.StringSchema;
 export declare const isActiveSchema: Joi.BooleanSchema;
 export declare const adminSchema: Joi.ObjectSchema<any>;
+export declare const adminRatingStatisticSchema: Joi.ObjectSchema<any>;
 export declare const adminWithSecretSchema: Joi.ObjectSchema<any>;

@@ -1,6 +1,7 @@
 import Joi = require("joi");
 import {idSchema, limitSchema, offsetSchema} from "./common";
 import {AdminRole} from "../models";
+import {ratingStatisticAverageMarkSchema, ratingStatisticReviewCountSchema} from "./statistics";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('AdminFirstName');
 export const adminLastNameSchema = Joi.string().max(255).example('Durov').label('AdminLastName');
@@ -17,6 +18,14 @@ export const adminSchema = Joi.object({
   isActive: isActiveSchema,
   adminRole: adminRoleSchema,
 }).label('Admin');
+
+export const adminRatingStatisticSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  reviewCount: ratingStatisticReviewCountSchema,
+  averageMark: ratingStatisticAverageMarkSchema,
+  admin: adminSchema,
+}).label('AdminRatingStatistic');
 
 export const adminWithSecretSchema = Joi.object({
   admin: adminSchema,

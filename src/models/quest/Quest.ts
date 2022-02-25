@@ -2,9 +2,9 @@ import {getUUID, getUUIDInt} from '../../utils';
 import {User} from "../user/User";
 import {Media} from '../Media';
 import {QuestMedia} from './QuestMedia';
-import {Review} from './Review';
+import {QuestsReview} from './QuestsReview';
 import {QuestsResponse} from "./QuestsResponse";
-import {StarredQuests} from './StarredQuests';
+import {QuestsStarred} from './QuestsStarred';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {QuestChat} from "../chats/QuestChat";
@@ -112,18 +112,18 @@ export class Quest extends Model {
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
   @HasOne(() => QuestChat) questChat: QuestChat;
-  @HasOne(() => StarredQuests) star: StarredQuests;
+  @HasOne(() => QuestsStarred) star: QuestsStarred;
   @HasOne(() => QuestsResponse) response: QuestsResponse;
   @HasOne(() => QuestsResponse) responded: QuestsResponse;                                              /** Alias for filter in get quests */
   @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
   @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */
   @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
-  @HasOne(() => Review) yourReview: Review;                                                             /** Alias for get review from user when get all quest */
+  @HasOne(() => QuestsReview) yourReview: QuestsReview;                                                             /** Alias for get review from user when get all quest */
   @HasOne(() => QuestDispute) openDispute: QuestDispute;
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => QuestDispute) questDisputes: QuestDispute[];
-  @HasMany(() => Review) reviews: Review[];
-  @HasMany(() => StarredQuests) starredQuests: StarredQuests[];
+  @HasMany(() => QuestsReview) reviews: QuestsReview[];
+  @HasMany(() => QuestsStarred) starredQuests: QuestsStarred[];
   @HasMany(() => QuestsResponse, 'questId') responses: QuestsResponse[];
 }
