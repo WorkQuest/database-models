@@ -19,6 +19,6 @@ export class Referral extends Model {
   @Column({type: DataType.INTEGER, defaultValue: null}) amountReward: number;
   @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralId: string;
 
-  @BelongsTo(() => User, {constraints: false}) referrerId: User;
+  @BelongsTo(() => User, {constraints: false}) referrer: User;
 }
 
