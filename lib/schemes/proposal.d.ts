@@ -12,4 +12,5 @@ export declare const proposalSchema: Joi.ObjectSchema<any>;
 export declare const proposalEventSchema: Joi.ObjectSchema<any>;
 export declare const allProposalsDataSchema: Joi.ArraySchema;
 export declare const allProposalsSchema: Joi.ObjectSchema<any>;
+export declare const proposalSortSchema: Joi.ObjectSchema<any>;
 export declare const proposalQuerySchema: Joi.ObjectSchema<any>;

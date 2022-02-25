@@ -41,7 +41,7 @@ export const allProposalsSchema = Joi.object({
   data: allProposalsDataSchema
 }).label('AllProposals');
 
-const proposalSortSchema = Joi.object({
+export const proposalSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).label('ProposalSort')
 
