@@ -8,6 +8,7 @@ export declare const isActiveSchema: Joi.BooleanSchema;
 export declare const adminActionMethodSchema: Joi.StringSchema;
 export declare const adminActionPathSchema: Joi.StringSchema;
 export declare const resolvedQuestDisputesSchema: Joi.NumberSchema;
+export declare const averageResolutionTimeInSecondsSchema: Joi.NumberSchema;
 export declare const adminSchema: Joi.ObjectSchema<any>;
 export declare const adminRatingStatisticSchema: Joi.ObjectSchema<any>;
 export declare const adminWithSecretSchema: Joi.ObjectSchema<any>;

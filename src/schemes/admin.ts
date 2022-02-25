@@ -1,5 +1,5 @@
 import Joi = require("joi");
-import {idSchema, isoDateSchema, limitSchema, offsetSchema, timestampSchema} from "./common";
+import {idSchema} from "./common";
 import {AdminRole, AdminActionMethod} from "../models";
 import {ratingStatisticAverageMarkSchema, ratingStatisticReviewCountSchema} from "./statistics";
 
@@ -12,6 +12,8 @@ export const isActiveSchema = Joi.boolean().example(true).label('AdminIsActive')
 export const adminActionMethodSchema = Joi.string().valid(...Object.values(AdminActionMethod)).example(AdminActionMethod.Post).label('AdminActionMethod');
 export const adminActionPathSchema = Joi.string().example('/v1/admin/change/name').label('AdminActionRoute');
 export const resolvedQuestDisputesSchema = Joi.number().example(5).label('ResolvedDisputes');
+export const averageResolutionTimeInSecondsSchema = Joi.number().example(2693675.445).label('AverageResolutionTimeInSeconds');
+
 
 export const adminSchema = Joi.object({
   id: idSchema,
@@ -46,7 +48,7 @@ export const adminQuestDisputesStatisticSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
   resolvedQuestDisputes: resolvedQuestDisputesSchema,
-  averageResolutionTimeInSeconds: timestampSchema, //TODO: change this field schema
+  averageResolutionTimeInSeconds: averageResolutionTimeInSecondsSchema,
   admin: adminSchema,
 }).label('AdminQuestDisputesStatistic');
 
