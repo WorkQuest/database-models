@@ -19,6 +19,12 @@ import {AffiliateStatus} from "../types";
       model: User.scope('shortWithWallet'),
       as: 'user'
     }]
+  },
+  shortAffiliate: {
+    attributes: {
+      include: ["affiliateId", "userReferralId", "status"],
+      exclude: ["createdAt", "updatedAt", "deletedAt"]
+    }
   }
 }))
 @Table({paranoid: true})
