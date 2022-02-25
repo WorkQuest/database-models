@@ -20,7 +20,9 @@ import {AffiliateStatus} from "../types";
       as: 'user'
     }]
   },
-
+  shortUser: {
+    include: ["affiliateId","userReferralId","status" ]
+  }
 }))
 @Table({paranoid: true})
 export class ReferrerAffiliate extends Model {
