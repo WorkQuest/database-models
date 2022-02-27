@@ -1,8 +1,8 @@
 import { User } from "../user/User";
 import { Media } from '../Media';
-import { Review } from './Review';
+import { QuestsReview } from './QuestsReview';
 import { QuestsResponse } from "./QuestsResponse";
-import { StarredQuests } from './StarredQuests';
+import { QuestsStarred } from './QuestsStarred';
 import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
@@ -38,7 +38,6 @@ export declare class Quest extends Model {
     workplace: WorkPlace;
     employment: QuestEmployment;
     priority: Priority;
-    category: string;
     locationPlaceName: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
@@ -49,17 +48,17 @@ export declare class Quest extends Model {
     assignedWorker: User;
     medias: Media[];
     questChat: QuestChat;
-    star: StarredQuests;
+    star: QuestsStarred;
     response: QuestsResponse;
     responded: QuestsResponse;
     invited: QuestsResponse;
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
-    yourReview: Review;
+    yourReview: QuestsReview;
     openDispute: QuestDispute;
     questSpecializations: QuestSpecializationFilter[];
     questDisputes: QuestDispute[];
-    reviews: Review[];
-    starredQuests: StarredQuests[];
+    reviews: QuestsReview[];
+    starredQuests: QuestsStarred[];
     responses: QuestsResponse[];
 }
