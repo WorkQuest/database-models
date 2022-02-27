@@ -4,9 +4,8 @@ export declare class ReferralEventPaidReferral extends Model {
     blockNumber: number;
     transactionHash: string;
     referral: string;
-    affiliat: string;
+    affiliate: string;
     amount: string;
     timestamp: string;
-    event: string;
     network: BlockchainNetworks;
 }

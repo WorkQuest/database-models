@@ -64,6 +64,6 @@ export * from "./referral/ReferrerAffiliate";
 export * from "./referral/ReferralParseBlock";
 export * from "./referral/ReferralEventRewardClaimed";
 export * from "./referral/ReferralEventPaidReferral";
-export * from "./referral/ReferralEventRegistredAffiliate";
+export * from "./referral/ReferralEventRegisteredAffiliate";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminRatingStatistic";

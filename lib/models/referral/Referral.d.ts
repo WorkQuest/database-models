@@ -5,5 +5,5 @@ export declare class Referral extends Model {
     userId: string;
     amountReward: number;
     referralId: string;
-    referrerId: User;
+    referrer: User;
 }
