@@ -1,6 +1,5 @@
 import {
   BelongsTo,
-  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -34,7 +33,7 @@ export class ReferrerAffiliate extends Model {
   @Column({type: DataType.STRING, allowNull: false}) affiliateId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) userReferralId: string;
-  @Column({type: DataType.STRING, defaultValue: AffiliateStatus.New}) status: AffiliateStatus;
+  @Column({type: DataType.STRING, defaultValue: AffiliateStatus.Registered}) status: AffiliateStatus;
 
   @BelongsTo(() => User) user: User;
 }

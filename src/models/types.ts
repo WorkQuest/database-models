@@ -1,4 +1,3 @@
-
 export enum BlockchainNetworks {
   bscMainNetwork = 'bscMainNetwork',
   ethMainNetwork = 'ethMainNetwork',
@@ -48,7 +47,7 @@ export enum BlackListStatus {
 }
 
 export enum AffiliateStatus {
-  New = "new",
-  Ready = "ready",
-  Received = "received"
+  Registered = "registered",
+  Claimed = "claimed",
+  Paid = "paid"
 }
