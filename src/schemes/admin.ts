@@ -1,5 +1,5 @@
 import Joi = require("joi");
-import {AdminActionMetadata, AdminRole} from "../models";
+import {AdminRole} from "../models";
 import {HTTPVerbSchema, idSchema} from "./common";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('AdminFirstName');
