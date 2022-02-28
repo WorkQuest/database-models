@@ -51,7 +51,6 @@ export const questChatSchema = Joi.object({
 
 /** Quests schemes */
 
-export const questCategorySchema = Joi.string().example('Retail').label('QuestCategory');
 export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestStatus.Created).label('QuestStatus');
 export const questTitleSchema = Joi.string().example('Title...').label('QuestTitle');
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('QuestDescription');
@@ -67,7 +66,6 @@ export const questSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   assignedWorkerId: idSchema,
-  category: questCategorySchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
@@ -192,7 +190,6 @@ export const questForGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   assignedWorkerId: idSchema,
-  category: questCategorySchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
@@ -232,7 +229,6 @@ export const questForAdminsGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   assignedWorkerId: idSchema,
-  category: questCategorySchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
@@ -253,7 +249,6 @@ export const questForAdminsGetSchema = Joi.object({
   openDispute: Joi.object().label('OpenDispute'),
   questSpecializations: modelSpecializationsSchema,
 }).label('QuestForAdminsGet');
-
 
 /** Black list */
 
