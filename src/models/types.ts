@@ -1,3 +1,4 @@
+
 export enum BlockchainNetworks {
   bscMainNetwork = 'bscMainNetwork',
   ethMainNetwork = 'ethMainNetwork',
@@ -46,3 +47,9 @@ export enum BlackListStatus {
   Unblocked
 }
 
+export enum HTTPVerb {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}

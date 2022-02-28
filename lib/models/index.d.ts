@@ -65,5 +65,6 @@ export * from "./referralProgram/ReferralParseBlock";
 export * from "./referralProgram/ReferralEventRewardClaimed";
 export * from "./referralProgram/ReferralEventPaidReferral";
 export * from "./referralProgram/ReferralEventRegisteredAffiliate";
+export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
-export * from "./admin/AdminRatingStatistic";
+export * from "./admin/AdminQuestDisputesStatistic";

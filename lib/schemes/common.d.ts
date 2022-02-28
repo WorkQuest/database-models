@@ -8,6 +8,7 @@ export declare const jwtTokenAccess: Joi.StringSchema;
 export declare const jwtTokenRefresh: Joi.StringSchema;
 export declare const sortDirectionSchema: Joi.StringSchema;
 export declare const isoDateSchema: Joi.StringSchema;
+export declare const timeInSecondSchema: Joi.NumberSchema;
 export declare const longitudeSchema: Joi.NumberSchema;
 export declare const latitudeSchema: Joi.NumberSchema;
 export declare const countSchema: Joi.NumberSchema;
@@ -26,7 +27,8 @@ export declare const blockNumberSchema: Joi.NumberSchema;
 export declare const locationPlaceNameSchema: Joi.StringSchema;
 export declare const coinAmountSchema: Joi.StringSchema;
 export declare const accountAddressSchema: Joi.StringSchema;
-export declare const outputOkSchema: (res: Joi.Schema<any>) => Joi.Schema<any>;
+export declare const HTTPVerbSchema: Joi.StringSchema;
+export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
 export declare const paginationFields: {
     limit: Joi.NumberSchema;
     offset: Joi.NumberSchema;

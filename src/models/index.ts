@@ -63,7 +63,8 @@ import {ReferralEventPaidReferral} from "./referralProgram/ReferralEventPaidRefe
 import {ReferralEventRegisteredAffiliate} from "./referralProgram/ReferralEventRegisteredAffiliate";
 import {ReferralParseBlock} from "./referralProgram/ReferralParseBlock";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
-import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
+import {AdminActionMetadata} from "./admin/AdminActionMetadata";
+import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -81,8 +82,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Admin section */
       Admin,
+      AdminActionMetadata,
       AdminSession,
-      AdminRatingStatistic,
+      AdminQuestDisputesStatistic,
 
 
       /** Quest section */
@@ -171,7 +173,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ReferralEventPaidReferral,
       ReferralEventRegisteredAffiliate,
 
-
       /** Pension fund */
       PensionFundBlockInfo,
       PensionFundWithdrewEvent,
@@ -251,5 +252,6 @@ export * from "./referralProgram/ReferralParseBlock";
 export * from "./referralProgram/ReferralEventRewardClaimed";
 export * from "./referralProgram/ReferralEventPaidReferral";
 export * from "./referralProgram/ReferralEventRegisteredAffiliate";
+export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
-export * from "./admin/AdminRatingStatistic";
+export * from "./admin/AdminQuestDisputesStatistic"
