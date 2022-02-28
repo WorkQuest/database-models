@@ -10,7 +10,6 @@ export declare const adminActionPathSchema: Joi.StringSchema;
 export declare const resolvedQuestDisputesSchema: Joi.NumberSchema;
 export declare const averageResolutionTimeInSecondsSchema: Joi.NumberSchema;
 export declare const adminSchema: Joi.ObjectSchema<any>;
-export declare const adminRatingStatisticSchema: Joi.ObjectSchema<any>;
 export declare const adminWithSecretSchema: Joi.ObjectSchema<any>;
 export declare const adminActionSchema: Joi.ObjectSchema<any>;
 export declare const adminQuestDisputesStatisticSchema: Joi.ObjectSchema<any>;

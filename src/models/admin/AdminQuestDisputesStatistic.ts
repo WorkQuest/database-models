@@ -7,8 +7,13 @@ export class AdminQuestDisputesStatistic extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => Admin) @Column({ type: DataType.STRING, allowNull: false }) adminId: string;
 
+  @Column({type: DataType.INTEGER, defaultValue: 0}) reviewCount: number;
+  @Column({type: DataType.DOUBLE, defaultValue: null }) averageMark: number;
+
   @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedQuestDisputes: number;
   @Column({type: DataType.DOUBLE, defaultValue: null }) averageResolutionTimeInSeconds: number;
 
   @BelongsTo(() => Admin) admin: Admin;
+
+  avgMark: number; /** Used for calculations */
 }

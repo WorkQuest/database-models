@@ -24,14 +24,6 @@ export const adminSchema = Joi.object({
   adminRole: adminRoleSchema,
 }).label('Admin');
 
-export const adminRatingStatisticSchema = Joi.object({
-  id: idSchema,
-  adminId: idSchema,
-  reviewCount: ratingStatisticReviewCountSchema,
-  averageMark: ratingStatisticAverageMarkSchema,
-  admin: adminSchema,
-}).label('AdminRatingStatistic');
-
 export const adminWithSecretSchema = Joi.object({
   admin: adminSchema,
   secret: Joi.string().max(255).example('HJRT4QCSGNHGSYLF'),
@@ -47,6 +39,8 @@ export const adminActionSchema = Joi.object({
 export const adminQuestDisputesStatisticSchema = Joi.object({
   id: idSchema,
   adminId: idSchema,
+  reviewCount: ratingStatisticReviewCountSchema,
+  averageMark: ratingStatisticAverageMarkSchema,
   resolvedQuestDisputes: resolvedQuestDisputesSchema,
   averageResolutionTimeInSeconds: averageResolutionTimeInSecondsSchema,
   admin: adminSchema,
