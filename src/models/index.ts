@@ -58,7 +58,7 @@ import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
-import {AdminAction} from "./admin/AdminAction";
+import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -77,7 +77,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Admin section */
       Admin,
-      AdminAction,
+      AdminActionMetadata,
       AdminSession,
       AdminRatingStatistic,
       AdminQuestDisputesStatistic,
@@ -161,6 +161,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Wallet */
       Wallet,
 
+
       /** Pension fund */
       PensionFundBlockInfo,
       PensionFundWithdrewEvent,
@@ -234,7 +235,7 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
-export * from "./admin/AdminAction";
+export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminRatingStatistic";
 export * from "./admin/AdminQuestDisputesStatistic"

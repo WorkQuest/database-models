@@ -1,6 +1,6 @@
 import Joi = require("joi");
 import {idSchema} from "./common";
-import {AdminRole, AdminActionMethod} from "../models";
+import {AdminRole, HTTPVerb} from "../models";
 import {ratingStatisticAverageMarkSchema, ratingStatisticReviewCountSchema} from "./statistics";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('AdminFirstName');
@@ -9,7 +9,7 @@ export const adminEmailSchema = Joi.string().email().max(255).example('test@test
 export const adminPasswordSchema = Joi.string().min(8).max(255).label('AdminPassword'); // TODO: describe custom validator rule
 export const adminRoleSchema = Joi.string().valid(...Object.values(AdminRole)).default(AdminRole.main).example('main').label('AdminRole');
 export const isActiveSchema = Joi.boolean().example(true).label('AdminIsActive');
-export const adminActionMethodSchema = Joi.string().valid(...Object.values(AdminActionMethod)).example(AdminActionMethod.Post).label('AdminActionMethod');
+export const adminActionMethodSchema = Joi.string().valid(...Object.values(HTTPVerb)).example(HTTPVerb.POST).label('AdminActionMethod');
 export const adminActionPathSchema = Joi.string().example('/v1/admin/change/name').label('AdminActionRoute');
 export const resolvedQuestDisputesSchema = Joi.number().example(5).label('ResolvedDisputes');
 export const averageResolutionTimeInSecondsSchema = Joi.number().example(2693675.445).label('AverageResolutionTimeInSeconds');
