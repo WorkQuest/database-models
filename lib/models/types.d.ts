@@ -43,9 +43,3 @@ export declare enum BlackListStatus {
     Blocked = 0,
     Unblocked = 1
 }
-export declare enum AffiliateStatus {
-    Created = "created",
-    Registered = "registered",
-    Claimed = "claimed",
-    Paid = "paid"
-}

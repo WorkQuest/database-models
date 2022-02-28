@@ -46,9 +46,3 @@ export enum BlackListStatus {
   Unblocked
 }
 
-export enum AffiliateStatus {
-  Created = "created",
-  Registered = "registered",
-  Claimed = "claimed",
-  Paid = "paid"
-}

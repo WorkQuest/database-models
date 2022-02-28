@@ -9,7 +9,14 @@ import {
 } from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from '../user/User';
-import {AffiliateStatus} from "../types";
+import {ReferralProgram} from "./ReferralProgram";
+
+export enum AffiliateStatus {
+  Created = "created",
+  Registered = "registered",
+  Claimed = "claimed",
+  Paid = "paid"
+}
 
 @Scopes(() => ({
   defaultScope: {
@@ -20,20 +27,22 @@ import {AffiliateStatus} from "../types";
   },
   shortAffiliate: {
     attributes: {
-      include: ["affiliateId", "userReferralId", "status"],
+      include: ["affiliateUserId", "referralId", "status"],
       exclude: ["createdAt", "updatedAt", "deletedAt"]
     }
   }
 }))
-@Table({paranoid: true})
-export class ReferrerAffiliate extends Model {
+@Table
+export class ReferrerAffiliateUser extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) affiliateId: string;
+  @Column({type: DataType.STRING, allowNull: false}) affiliateUserId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) userReferralId: string;
+  @ForeignKey(() => ReferralProgram)
+  @Column({type: DataType.STRING, allowNull: false}) referralId: string;
   @Column({type: DataType.STRING, defaultValue: AffiliateStatus.Registered}) status: AffiliateStatus;
 
   @BelongsTo(() => User) user: User;
+  @BelongsTo(() => ReferralProgram) refId: ReferralProgram;
 }

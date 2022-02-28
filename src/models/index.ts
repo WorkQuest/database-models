@@ -56,12 +56,12 @@ import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
-import {Referral} from "./referral/Referral";
-import {ReferrerAffiliate} from "./referral/ReferrerAffiliate";
-import {ReferralEventRewardClaimed} from "./referral/ReferralEventRewardClaimed";
-import {ReferralEventPaidReferral} from "./referral/ReferralEventPaidReferral";
-import {ReferralEventRegisteredAffiliate} from "./referral/ReferralEventRegisteredAffiliate";
-import {ReferralParseBlock} from "./referral/ReferralParseBlock";
+import {ReferralProgram} from "./referralProgram/ReferralProgram";
+import {ReferrerAffiliateUser} from "./referralProgram/ReferrerAffiliateUser";
+import {ReferralEventRewardClaimed} from "./referralProgram/ReferralEventRewardClaimed";
+import {ReferralEventPaidReferral} from "./referralProgram/ReferralEventPaidReferral";
+import {ReferralEventRegisteredAffiliate} from "./referralProgram/ReferralEventRegisteredAffiliate";
+import {ReferralParseBlock} from "./referralProgram/ReferralParseBlock";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
 
@@ -163,13 +163,14 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Wallet */
       Wallet,
 
-      /** Referral */
-      Referral,
-      ReferrerAffiliate,
+      /** ReferralProgram */
+      ReferralProgram,
+      ReferrerAffiliateUser,
       ReferralParseBlock,
       ReferralEventRewardClaimed,
       ReferralEventPaidReferral,
       ReferralEventRegisteredAffiliate,
+
 
       /** Pension fund */
       PensionFundBlockInfo,
@@ -244,11 +245,11 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
-export * from "./referral/Referral";
-export * from "./referral/ReferrerAffiliate";
-export * from "./referral/ReferralParseBlock";
-export * from "./referral/ReferralEventRewardClaimed";
-export * from "./referral/ReferralEventPaidReferral";
-export * from "./referral/ReferralEventRegisteredAffiliate";
+export * from "./referralProgram/ReferralProgram";
+export * from "./referralProgram/ReferrerAffiliateUser";
+export * from "./referralProgram/ReferralParseBlock";
+export * from "./referralProgram/ReferralEventRewardClaimed";
+export * from "./referralProgram/ReferralEventPaidReferral";
+export * from "./referralProgram/ReferralEventRegisteredAffiliate";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminRatingStatistic";
