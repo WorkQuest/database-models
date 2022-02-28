@@ -1,7 +1,6 @@
-import {BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Scopes, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from '../user/User';
-import {ReferrerAffiliateUser} from "./ReferrerAffiliateUser";
 
 @Table({
   scopes: {
@@ -20,7 +19,5 @@ export class ReferralProgram extends Model {
   @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralId: string;
 
   @BelongsTo(() => User, {constraints: false}) referrer: User;
-
-  @HasOne(() => ReferrerAffiliateUser) refId: ReferrerAffiliateUser;
 }
 

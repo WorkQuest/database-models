@@ -44,5 +44,4 @@ export class ReferrerAffiliateUser extends Model {
   @Column({type: DataType.STRING, defaultValue: AffiliateStatus.Registered}) status: AffiliateStatus;
 
   @BelongsTo(() => User) user: User;
-  @BelongsTo(() => ReferralProgram) refId: ReferralProgram;
 }

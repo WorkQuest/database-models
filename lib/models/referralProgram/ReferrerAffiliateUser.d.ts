@@ -1,6 +1,5 @@
 import { Model } from 'sequelize-typescript';
 import { User } from '../user/User';
-import { ReferralProgram } from "./ReferralProgram";
 export declare enum AffiliateStatus {
     Created = "created",
     Registered = "registered",
@@ -13,5 +12,4 @@ export declare class ReferrerAffiliateUser extends Model {
     referralId: string;
     status: AffiliateStatus;
     user: User;
-    refId: ReferralProgram;
 }
