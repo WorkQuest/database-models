@@ -90,7 +90,6 @@ export class Quest extends Model {
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
-  @Column({type: DataType.STRING, allowNull: false}) category: string;
 
   @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
   @Column({type: DataType.JSONB, allowNull: false}) location: LocationType;
