@@ -61,5 +61,4 @@ export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
-export * from "./admin/AdminRatingStatistic";
 export * from "./admin/AdminQuestDisputesStatistic";
