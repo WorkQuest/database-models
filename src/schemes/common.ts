@@ -29,6 +29,7 @@ export const blockNumberSchema = Joi.number().example(14382).label('BlockNumber'
 export const locationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('LocationPlaceName');
 export const coinAmountSchema = Joi.string().example("281231").label("CoinAmount");
 export const accountAddressSchema = Joi.string().example("0xke2083852Ccf274D48E149F99c80a5c742693418").label("AccountAddress");
+export const accountAddressesSchema = Joi.array().items(accountAddressSchema).label('AccountAddresses');
 export const HTTPVerbSchema = Joi.string().valid(...Object.values(HTTPVerb)).example(HTTPVerb.POST).label('HTTPVerb');
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
