@@ -1,15 +1,18 @@
 import { Model } from 'sequelize-typescript';
 import { User } from '../user/User';
-export declare enum AffiliateStatus {
+export declare enum ReferralStatus {
     Created = "created",
-    Registered = "registered",
-    Claimed = "claimed",
-    Paid = "paid"
+    Registered = "registered"
+}
+export declare enum RewardStatus {
+    Paid = "paid",
+    Claimed = "claimed"
 }
 export declare class ReferrerAffiliateUser extends Model {
     id: string;
     affiliateUserId: string;
     referralId: string;
-    status: AffiliateStatus;
+    referralStatus: ReferralStatus;
+    rewardStatus: RewardStatus;
     user: User;
 }

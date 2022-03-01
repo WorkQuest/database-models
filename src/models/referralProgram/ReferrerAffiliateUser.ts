@@ -11,11 +11,13 @@ import {getUUID} from '../../utils';
 import {User} from '../user/User';
 import {ReferralProgram} from "./ReferralProgram";
 
-export enum AffiliateStatus {
+export enum ReferralStatus {
   Created = "created",
   Registered = "registered",
+}
+export enum RewardStatus {
+  Paid = "paid",
   Claimed = "claimed",
-  Paid = "paid"
 }
 
 @Scopes(() => ({
@@ -41,7 +43,9 @@ export class ReferrerAffiliateUser extends Model {
 
   @ForeignKey(() => ReferralProgram)
   @Column({type: DataType.STRING, allowNull: false}) referralId: string;
-  @Column({type: DataType.STRING, defaultValue: AffiliateStatus.Registered}) status: AffiliateStatus;
+
+  @Column({type: DataType.STRING, defaultValue: ReferralStatus.Registered}) referralStatus: ReferralStatus;
+  @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;
 
   @BelongsTo(() => User) user: User;
 }
