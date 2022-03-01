@@ -15,6 +15,7 @@ export enum ReferralStatus {
   Created = "created",
   Registered = "registered",
 }
+
 export enum RewardStatus {
   Paid = "paid",
   Claimed = "claimed",
