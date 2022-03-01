@@ -60,7 +60,7 @@ export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./referralProgram/ReferralProgram";
-export * from "./referralProgram/ReferrerAffiliateUser";
+export * from "./referralProgram/ReferralProgramAffiliate";
 export * from "./referralProgram/ReferralParseBlock";
 export * from "./referralProgram/ReferralEventRewardClaimed";
 export * from "./referralProgram/ReferralEventPaidReferral";

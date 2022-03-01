@@ -25,7 +25,7 @@ import {
   Table
 } from "sequelize-typescript";
 import {ReferralProgram} from "../referralProgram/ReferralProgram";
-import {ReferrerAffiliateUser} from "../referralProgram/ReferrerAffiliateUser";
+import {ReferralProgramAffiliate} from "../referralProgram/ReferralProgramAffiliate";
 
 export interface SocialInfo {
   id: string;
@@ -251,7 +251,7 @@ export class User extends Model {
 
   /** ReferralProgram */
   @HasOne(() => ReferralProgram) referrerUser: ReferralProgram;
-  @HasOne(() => ReferrerAffiliateUser) affiliateUser: ReferrerAffiliateUser;
+  @HasOne(() => ReferralProgramAffiliate) affiliateUser: ReferralProgramAffiliate;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;

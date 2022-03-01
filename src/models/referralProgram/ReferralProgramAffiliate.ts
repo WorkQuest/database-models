@@ -35,7 +35,7 @@ export enum RewardStatus {
   }
 }))
 @Table
-export class ReferrerAffiliateUser extends Model {
+export class ReferralProgramAffiliate extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
