@@ -24,8 +24,8 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {ReferralProgram} from "../referralProgram/ReferralProgram";
-import {ReferralProgramAffiliate} from "../referralProgram/ReferralProgramAffiliate";
+import {ReferralProgram} from "../referral-program/ReferralProgram";
+import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 
 export interface SocialInfo {
   id: string;

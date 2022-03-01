@@ -12,8 +12,8 @@ import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
 import { Model } from "sequelize-typescript";
-import { ReferralProgram } from "../referralProgram/ReferralProgram";
-import { ReferralProgramAffiliate } from "../referralProgram/ReferralProgramAffiliate";
+import { ReferralProgram } from "../referral-program/ReferralProgram";
+import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 export interface SocialInfo {
     id: string;
     email: string;

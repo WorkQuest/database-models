@@ -1,3 +1,6 @@
+import {User} from '../user/User';
+import {getUUID} from '../../utils';
+import {ReferralProgram} from "./ReferralProgram";
 import {
   BelongsTo,
   Column,
@@ -7,9 +10,6 @@ import {
   Scopes,
   Table
 } from 'sequelize-typescript';
-import {getUUID} from '../../utils';
-import {User} from '../user/User';
-import {ReferralProgram} from "./ReferralProgram";
 
 export enum ReferralStatus {
   Created = "created",
@@ -31,7 +31,7 @@ export enum RewardStatus {
   shortAffiliate: {
     attributes: {
       include: ["affiliateUserId", "referralId", "status"],
-      exclude: ["createdAt", "updatedAt", "deletedAt"]
+      exclude: ["createdAt", "updatedAt"]
     }
   }
 }))
@@ -49,4 +49,5 @@ export class ReferralProgramAffiliate extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;
 
   @BelongsTo(() => User) user: User;
+  @BelongsTo(() => ReferralProgram) referral: ReferralProgram;
 }
