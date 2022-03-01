@@ -2,7 +2,7 @@ import {getUUID} from "../../utils";
 import * as bcrypt from "bcrypt";
 import {Media} from "../Media";
 import {Session} from "./Session";
-import {Review} from "../quest/Review";
+import {QuestsReview} from "../quest/QuestsReview";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
 import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
@@ -240,7 +240,7 @@ export class User extends Model {
   @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasMany(() => Session) sessions: Session[];
-  @HasMany(() => Review, 'toUserId') reviews: Review[];
+  @HasMany(() => QuestsReview, 'toUserId') reviews: QuestsReview[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 

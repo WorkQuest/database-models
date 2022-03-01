@@ -27,6 +27,7 @@ export declare class QuestDispute extends Model {
     reason: DisputeReason;
     problemDescription: string;
     decisionDescription: string;
+    acceptedAt: Date;
     resolvedAt: Date;
     openDisputeUser: User;
     opponentUser: User;

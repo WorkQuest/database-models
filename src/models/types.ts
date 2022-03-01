@@ -46,3 +46,10 @@ export enum BlackListStatus {
   Blocked,
   Unblocked
 }
+
+export enum HTTPVerb {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}

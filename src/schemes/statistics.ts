@@ -1,50 +1,57 @@
 import * as Joi from "joi";
-import {idSchema} from "./common";
 import {RatingStatus} from "../models";
+import {countSchema, idSchema, timeInSecondSchema} from "./common";
+
+export const statisticAverageMark = Joi.number().example(3.5).label('StatisticAverageMark');
+
 
 /** Chat Statistic */
-
-export const chatStatisticUnreadCountMessagesSchema = Joi.number().min(0).label('UnreadCountMessages');
 
 export const chatsStatisticSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
-  unreadCountChats: chatStatisticUnreadCountMessagesSchema,
+  unreadCountChats: countSchema,
 });
 
 
 /** Quest Statistic */
 
-export const completedSchema = Joi.number().example(25).label('CompletedQuests');
-export const openedSchema = Joi.number().example(27).label('OpenedQuests');
-
 export const questsStatisticSchema = Joi.object({
-  completed: completedSchema,
-  opened: openedSchema,
+  completed: countSchema,
+  opened: countSchema,
 }).label('QuestsStatistic');
 
 
 /** Rating Statistic */
 
-export const ratingStatisticReviewCountSchema = Joi.number().example(3).label('ReviewCount');
-export const ratingStatisticAverageMarkSchema = Joi.number().example(3.5).label('AverageMark');
-export const ratingStatusSchema = Joi.string().valid(...Object.values(RatingStatus)).example(RatingStatus.topRanked).label("RatingStatus");
+export const userRatingStatusSchema = Joi.string().valid(...Object.values(RatingStatus)).example(RatingStatus.topRanked).label("UserStatisticRatingStatus");
+export const userRatingStatusesSchema = Joi.array().items(userRatingStatusSchema).label('UserStatisticRatingStatuses');
 
-export const ratingStatusesSchema = Joi.array().items(ratingStatusSchema).label('RatingStatuses');
-
-export const ratingStatisticSchema = Joi.object({
+export const userRatingStatisticSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
-  reviewCount: ratingStatisticReviewCountSchema,
-  averageMark: ratingStatisticAverageMarkSchema,
-  status: ratingStatusSchema,
+  reviewCount: countSchema,
+  averageMark: statisticAverageMark,
+  status: userRatingStatusSchema,
 }).label('RatingStatistic');
 
 
-/** Common Statistic */
+/** Common User Statistic */
 
 export const userStatisticsSchema = Joi.object({
   chatsStatistic: chatsStatisticSchema,
   questsStatistic: questsStatisticSchema,
-  ratingStatistic: ratingStatisticSchema
+  ratingStatistic: userRatingStatisticSchema,
 }).label('UserStatistics');
+
+
+/** Admin Statistic */
+
+export const adminQuestDisputesStatisticSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  reviewCount: countSchema,
+  averageMark: statisticAverageMark,
+  resolvedQuestDisputes: countSchema,
+  averageResolutionTimeInSeconds: timeInSecondSchema,
+}).label('AdminQuestDisputesStatistic');
