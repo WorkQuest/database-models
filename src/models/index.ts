@@ -66,6 +66,9 @@ import {ReferralParseBlock} from "./referral-program/ReferralParseBlock";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
+import {ChatData} from "./chats/ChatData";
+import {ChatMemberData} from "./chats/ChatMemberData";
+import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -100,11 +103,14 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Chat section */
       Chat,
       Message,
+      ChatData,
       GroupChat,
       ChatMember,
       InfoMessage,
       StarredChat,
+      ChatMemberData,
       StarredMessage,
+      ChatMemberDeletionData,
 
 
       /** Bridge section */
@@ -262,3 +268,6 @@ export * from "./referral-program/ReferralEventRegisteredAffiliate";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic"
+export * from "./chats/ChatData";
+export * from "./chats/ChatMemberData";
+export * from "./chats/ChatMemberDeletionData";

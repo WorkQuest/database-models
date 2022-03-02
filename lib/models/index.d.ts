@@ -69,3 +69,6 @@ export * from "./referral-program/ReferralEventRegisteredAffiliate";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
+export * from "./chats/ChatData";
+export * from "./chats/ChatMemberData";
+export * from "./chats/ChatMemberDeletionData";
