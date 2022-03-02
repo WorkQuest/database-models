@@ -18,7 +18,11 @@ export class ChatMemberData extends Model {
   @Column({type: DataType.STRING, allowNull: false}) chatMemberId: string;
 
   @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, allowNull: false}) lastReadMessageId: string;
+  @Column({type: DataType.STRING, }) lastReadMessageId: string;
+
+  /** Metadata */
+  @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountMessages: number;
+  @Column({type: DataType.INTEGER, }) lastReadMessageNumber: number;
 
   @BelongsTo(() => Message) message: Message;
   @BelongsTo(() => ChatMember) member: ChatMember;

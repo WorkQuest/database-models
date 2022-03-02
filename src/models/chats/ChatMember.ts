@@ -58,13 +58,6 @@ export class ChatMember extends Model {
   @Column({type: DataType.STRING, allowNull: false}) type: MemberType;
   @Column({type: DataType.STRING, defaultValue: MemberStatus.Active}) status: MemberStatus;
 
-  @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, }) lastReadMessageId: string;
-
-  /** Metadata */
-  @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountMessages: number;
-  @Column({type: DataType.INTEGER, }) lastReadMessageNumber: number;
-
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Admin) admin: Admin;
   @BelongsTo(() => Chat) chat: Chat;
