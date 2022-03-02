@@ -16,8 +16,8 @@ export class ReferralProgram extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) referrerUserId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: null}) paidReward: number;
-  @Column({type: DataType.INTEGER, defaultValue: null}) claimReward: number;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) paidReward: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) claimReward: string;
 
   @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralId: string;
 
