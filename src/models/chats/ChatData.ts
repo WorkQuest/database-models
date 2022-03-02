@@ -4,11 +4,25 @@ import {
   ForeignKey,
   Model,
   Table,
-  BelongsTo,
+  BelongsTo, Scopes,
 } from "sequelize-typescript";
 import { Message } from "./Message";
 import { getUUID } from "../../utils";
 import {Chat} from "./Chat";
+import {QuestChat} from "./QuestChat";
+import {GroupChat} from "./GroupChat";
+
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ["messages", "updatedAt"]
+    },
+    include: [{
+      model: Message,
+      as: 'lastMessage'
+    }]
+  }
+}))
 
 @Table
 export class ChatData extends Model {

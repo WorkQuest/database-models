@@ -28,9 +28,6 @@ export enum ChatType {
       exclude: ["messages", "updatedAt"]
     },
     include: [{
-      model: Message,
-      as: 'lastMessage'
-    }, {
       model: QuestChat,
       as: 'questChat',
     }, {
