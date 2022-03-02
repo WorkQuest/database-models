@@ -10,7 +10,7 @@ import {
   isoDateSchema,
   sortDirectionSchema,
 } from "./common";
-import {ChatType, MessageType, SenderMessageStatus, MessageAction, MemberRole} from "../models";
+import {ChatType, MessageType, SenderMessageStatus, MessageAction, MemberType} from "../models";
 import {userShortWithAdditionalInfoSchema} from "./user";
 import {adminSchema} from "./admin";
 
@@ -19,7 +19,7 @@ export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType
 export const messageSenderStatusSchema = Joi.string().valid(...Object.values(SenderMessageStatus)).example(SenderMessageStatus.unread).label("MessageSenderStatus");
 export const messageTextSchema = Joi.string().example("Hello world!").label('MessageText');
 export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
-export const chatMemberRoleSchema = Joi.string().valid(...Object.values(MemberRole)).example(MemberRole.User).label("ChatMemberRole");
+export const chatMemberRoleSchema = Joi.string().valid(...Object.values(MemberType)).example(MemberType.User).label("ChatMemberRole");
 
 
 /** Chat member */

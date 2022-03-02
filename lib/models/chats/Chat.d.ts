@@ -4,6 +4,7 @@ import { ChatMember } from "./ChatMember";
 import { StarredChat } from "./StarredChat";
 import { QuestChat } from "./QuestChat";
 import { GroupChat } from "./GroupChat";
+import { ChatData } from "./ChatData";
 export declare enum ChatType {
     private = "private",
     group = "group",
@@ -11,15 +12,13 @@ export declare enum ChatType {
 }
 export declare class Chat extends Model {
     id: string;
-    lastMessageId: string;
     type: ChatType;
-    lastMessageDate: Date;
-    lastMessage: Message;
     messages: Message[];
     members: ChatMember[];
     meMember: ChatMember;
     questChat: QuestChat;
     groupChat: GroupChat;
+    chatData: ChatData;
     star: StarredChat;
     firstMemberInPrivateChat: ChatMember;
     secondMemberInPrivateChat: ChatMember;

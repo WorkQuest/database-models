@@ -1,13 +1,20 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Scopes, Table} from "sequelize-typescript";
 import { getUUID } from "../../utils";
 import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Message } from "./Message";
 import { Admin } from "../admin/Admin";
+import {ChatMemberDeletionData} from "./ChatMemberDeletionData";
+import {ChatMemberData} from "./ChatMemberData";
 
-export enum MemberRole {
+export enum MemberType {
   Admin= "admin",
   User = "user",
+}
+
+export enum MemberStatus {
+  Active= "active",
+  Deleted = "deleted",
 }
 
 @Scopes(() => ({
@@ -48,7 +55,8 @@ export class ChatMember extends Model {
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) adminId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) role: MemberRole;
+  @Column({type: DataType.STRING, allowNull: false}) role: MemberType;
+  @Column({type: DataType.STRING, defaultValue: MemberStatus.Active}) status: MemberStatus;
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, }) lastReadMessageId: string;
@@ -60,4 +68,7 @@ export class ChatMember extends Model {
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Admin) admin: Admin;
   @BelongsTo(() => Chat) chat: Chat;
+
+  @HasOne(() => ChatMemberDeletionData) chatMemberDeletionData: ChatMemberDeletionData;
+  @HasOne(() => ChatMemberData) chatMemberData: ChatMemberData;
 }

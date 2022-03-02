@@ -2,20 +2,29 @@ import { Model } from "sequelize-typescript";
 import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Admin } from "../admin/Admin";
-export declare enum MemberRole {
+import { ChatMemberDeletionData } from "./ChatMemberDeletionData";
+import { ChatMemberData } from "./ChatMemberData";
+export declare enum MemberType {
     Admin = "admin",
     User = "user"
+}
+export declare enum MemberStatus {
+    Active = "active",
+    Deleted = "deleted"
 }
 export declare class ChatMember extends Model {
     id: string;
     chatId: string;
     userId: string;
     adminId: string;
-    role: MemberRole;
+    role: MemberType;
+    status: MemberStatus;
     lastReadMessageId: string;
     unreadCountMessages: number;
     lastReadMessageNumber: number;
     user: User;
     admin: Admin;
     chat: Chat;
+    chatMemberDeletionData: ChatMemberDeletionData;
+    chatMemberData: ChatMemberData;
 }

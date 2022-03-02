@@ -14,6 +14,7 @@ import {StarredChat} from "./StarredChat";
 import { getUUID } from "../../utils";
 import {QuestChat} from "./QuestChat";
 import {GroupChat} from "./GroupChat";
+import {ChatData} from "./ChatData";
 
 export enum ChatType {
   private = 'private',
@@ -41,23 +42,23 @@ export enum ChatType {
 @Table
 export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
+  @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
 
   // @ForeignKey(() => User) /** If group chat */
   // @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string; //TODO/////////////////
 
-  @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
+  // @ForeignKey(() => Message)
+  // @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
+  // @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
-  @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
-  @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
-
-  @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
+  // @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) members: ChatMember[];
   @HasOne(() => ChatMember) meMember: ChatMember;
   @HasOne(() => QuestChat) questChat: QuestChat;
   @HasOne(() => GroupChat) groupChat: GroupChat;
+  @HasOne(() => ChatData) chatData: ChatData;
 
   /** Aliases for Queries */
   @HasOne(() => StarredChat) star: StarredChat;
