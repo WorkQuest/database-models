@@ -55,7 +55,7 @@ export class ChatMember extends Model {
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) adminId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) role: MemberType;
+  @Column({type: DataType.STRING, allowNull: false}) type: MemberType;
   @Column({type: DataType.STRING, defaultValue: MemberStatus.Active}) status: MemberStatus;
 
   @ForeignKey(() => Message)

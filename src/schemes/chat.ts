@@ -19,7 +19,7 @@ export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType
 export const messageSenderStatusSchema = Joi.string().valid(...Object.values(SenderMessageStatus)).example(SenderMessageStatus.unread).label("MessageSenderStatus");
 export const messageTextSchema = Joi.string().example("Hello world!").label('MessageText');
 export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
-export const chatMemberRoleSchema = Joi.string().valid(...Object.values(MemberType)).example(MemberType.User).label("ChatMemberRole");
+export const chatMemberTypeSchema = Joi.string().valid(...Object.values(MemberType)).example(MemberType.User).label("ChatMemberRole");
 
 
 /** Chat member */
@@ -30,7 +30,7 @@ export const chatMemberSchema = Joi.object({
   chatId: idSchema,
   memberId: idSchema,
   adminId: idSchema,
-  role: chatMemberRoleSchema,
+  type: chatMemberTypeSchema,
   lastReadMessageId: idSchema,
   unreadCountMessages: chatMemberUnreadCountMessagesSchema,
   lastReadMessageNumber: messageNumberSchema,
