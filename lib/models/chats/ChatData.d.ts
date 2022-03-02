@@ -5,6 +5,7 @@ export declare class ChatData extends Model {
     id: string;
     chatId: string;
     lastMessageId: string;
+    lastMessage: Message;
     chat: Chat;
     message: Message;
 }

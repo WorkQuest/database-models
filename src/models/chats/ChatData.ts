@@ -20,6 +20,8 @@ export class ChatData extends Model {
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
 
+  @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
+
   @BelongsTo(() => Chat) chat: Chat;
   @BelongsTo(() => Message) message: Message;
 }
