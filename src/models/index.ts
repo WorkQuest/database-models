@@ -57,6 +57,12 @@ import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {GroupChat} from "./chats/GroupChat";
+import {ReferralProgram} from "./referral-program/ReferralProgram";
+import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
+import {ReferralEventRewardClaimed} from "./referral-program/ReferralEventRewardClaimed";
+import {ReferralEventPaidReferral} from "./referral-program/ReferralEventPaidReferral";
+import {ReferralEventRegisteredAffiliate} from "./referral-program/ReferralEventRegisteredAffiliate";
+import {ReferralParseBlock} from "./referral-program/ReferralParseBlock";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
@@ -161,6 +167,17 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Wallet */
       Wallet,
 
+      /** Referral Program */
+      ReferralProgram,
+      ReferralProgramAffiliate,
+
+
+      /** Referral Program Contract */
+      ReferralParseBlock,
+      ReferralEventPaidReferral,
+      ReferralEventRewardClaimed,
+      ReferralEventRegisteredAffiliate,
+
 
       /** Pension fund */
       PensionFundBlockInfo,
@@ -236,6 +253,12 @@ export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./chats/GroupChat";
+export * from "./referral-program/ReferralProgram";
+export * from "./referral-program/ReferralProgramAffiliate";
+export * from "./referral-program/ReferralParseBlock";
+export * from "./referral-program/ReferralEventRewardClaimed";
+export * from "./referral-program/ReferralEventPaidReferral";
+export * from "./referral-program/ReferralEventRegisteredAffiliate";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic"
