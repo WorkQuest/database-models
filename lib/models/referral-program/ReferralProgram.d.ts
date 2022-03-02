@@ -4,8 +4,8 @@ import { ReferralProgramAffiliate } from "./ReferralProgramAffiliate";
 export declare class ReferralProgram extends Model {
     id: string;
     referrerUserId: string;
-    paidReward: number;
-    claimReward: number;
+    paidReward: string;
+    claimReward: string;
     referralId: string;
     referrer: User;
     affiliates: ReferralProgramAffiliate[];
