@@ -1,9 +1,9 @@
 import { Model } from "sequelize-typescript";
-import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { InfoMessage } from "./InfoMessage";
 import { StarredMessage } from "./StarredMessage";
 import { ChatMember } from "./ChatMember";
+import { ChatData } from "./ChatData";
 export declare enum MessageType {
     info = "info",
     message = "message"
@@ -24,5 +24,5 @@ export declare class Message extends Model {
     star: StarredMessage;
     medias: Media[];
     sender: ChatMember;
-    chat: Chat;
+    chatData: ChatData;
 }

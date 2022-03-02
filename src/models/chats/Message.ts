@@ -16,6 +16,7 @@ import { MessageMedia } from "./MessageMedia";
 import { InfoMessage } from "./InfoMessage";
 import { StarredMessage } from "./StarredMessage";
 import {ChatMember} from "./ChatMember";
+import {ChatData} from "./ChatData";
 
 export enum MessageType {
   info = 'info',
@@ -67,5 +68,5 @@ export class Message extends Model {
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => ChatMember, 'senderMemberId') sender: ChatMember;
-  @BelongsTo(() => Chat) chat: Chat;
+  @BelongsTo(() => ChatData) chatData: ChatData;
 }
