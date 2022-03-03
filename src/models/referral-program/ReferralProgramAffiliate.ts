@@ -30,9 +30,15 @@ export enum RewardStatus {
   },
   shortAffiliate: {
     attributes: {
-      include: ["affiliateUserId", "referralProgramId", "status"],
+      include: ["affiliateUserId", "referralProgramId", "referralStatus", "rewardStatus"],
       exclude: ["createdAt", "updatedAt"]
     }
+  },
+  shortReferralProgramAffiliates: {
+    include: [{
+      model: User.scope('short'),
+      as: 'user'
+    }]
   }
 }))
 @Table
