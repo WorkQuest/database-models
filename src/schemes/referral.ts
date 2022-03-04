@@ -4,10 +4,10 @@ import {
   accountAddressesSchema,
   coinAmountSchema,
   idSchema,
-  countSchema,
+  countSchema, transactionHashSchema, isoDateSchema, timestampSchema,
 } from "./common";
 import {ReferralStatus, RewardStatus} from "../models";
-import {userShortSchema} from "./user";
+import {userFirstNameSchema, userLastNameSchema, userShortSchema} from "./user";
 
 export const referralProgramReferralStatusSchema = Joi.string().valid(...Object.values(ReferralStatus)).example(ReferralStatus.Created).label('ReferralProgramReferralStatus');
 export const referralProgramRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralProgramRewardStatus');
@@ -36,5 +36,14 @@ export const referralUserAffiliatesSchema = Joi.object({
   affiliates: referralProgramAffiliatesShortScheme
 }).label('ReferralProgramAffiliateShort')
 
+export const referralProgramUserClaimedEventScheme = Joi.object({
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  userId: idSchema,
+  txHash: transactionHashSchema,
+  createdAt: timestampSchema,
+  amount: coinAmountSchema,
+  status: referralProgramRewardStatusSchema
+}).label('ReferralUserClaimedEvents')
 
-
+export const referralProgramUsersClaimedEventsScheme = Joi.array().items(referralProgramUserClaimedEventScheme).label('ReferralProgramUsersClaimedEvents');
