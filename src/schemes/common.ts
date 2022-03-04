@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {Priority, WorkPlace} from "../models";
+import {HTTPVerb, Priority, WorkPlace} from "../models";
 
 export const idSchema = Joi.string().uuid().example("fa0e2e4e-c53f-4af7-8906-1649daa0cce3").label("Id");
 export const urlSchema = Joi.string().example("http://example.com/v1/getVideo").label("URL");
@@ -10,6 +10,7 @@ export const jwtTokenAccess = Joi.string().example("access jwt token").label('Jw
 export const jwtTokenRefresh = Joi.string().example("refresh jwt token").label('JwtTokenRefresh');
 export const sortDirectionSchema = Joi.string().valid("ASC", "DESC", "asc", "desc").label('SortDirection');
 export const isoDateSchema = Joi.string().isoDate().example("2021-05-12T05:24:47.322Z").label('IsoDate');
+export const timeInSecondSchema = Joi.number().example(56443).label('TimeInSecond');
 export const longitudeSchema = Joi.number().min(-180).max(180).example(84.948846).label("Longitude");
 export const latitudeSchema = Joi.number().min(-90).max(90).example(56.48122).label("Latitude");
 export const countSchema = Joi.number().example(10).label('Count');
@@ -28,6 +29,8 @@ export const blockNumberSchema = Joi.number().example(14382).label('BlockNumber'
 export const locationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('LocationPlaceName');
 export const coinAmountSchema = Joi.string().example("281231").label("CoinAmount");
 export const accountAddressSchema = Joi.string().example("0xke2083852Ccf274D48E149F99c80a5c742693418").label("AccountAddress");
+export const accountAddressesSchema = Joi.array().items(accountAddressSchema).label('AccountAddresses');
+export const HTTPVerbSchema = Joi.string().valid(...Object.values(HTTPVerb)).example(HTTPVerb.POST).label('HTTPVerb');
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({

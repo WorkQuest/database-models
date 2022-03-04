@@ -1,11 +1,15 @@
 import * as Joi from "joi";
+import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
-import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {walletAddressSchema} from "./wallet";
-import {chatsStatisticSchema, ratingStatusesSchema} from "./statistics";
-import {questsStatisticSchema} from "./statistics";
-import {ratingStatisticSchema} from "./statistics";
+import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
+import {
+  chatsStatisticSchema,
+  questsStatisticSchema,
+  userRatingStatusesSchema,
+  userRatingStatisticSchema,
+} from "./statistics";
 import {
   idSchema,
   phoneSchema,
@@ -25,8 +29,6 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from "./common";
-import {adminSchema} from "./admin";
-import {questQueryForMapPointsSchema} from "./quest";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -99,7 +101,7 @@ export const userSchema = Joi.object({
   wagePerHour: workerWagePerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: userRatingStatisticSchema,
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
@@ -124,7 +126,7 @@ export const userMeSchema = Joi.object({
   additionalInfo: userCommonAdditionalInfoSchema,
   totpIsActive: userTotpIsActiveSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: userRatingStatisticSchema,
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
@@ -147,7 +149,7 @@ export const userEmployerSchema = Joi.object({
   location: locationSchema,
   locationPlaceName: locationPlaceNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: userRatingStatisticSchema,
   questsStatistic: questsStatisticSchema,
   createdAt: isoDateSchema,
 }).label("UserEmployer");
@@ -169,7 +171,7 @@ export const userWorkerSchema = Joi.object({
   location: locationSchema,
   locationPlaceName: locationPlaceNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: userRatingStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   questsStatistic: questsStatisticSchema,
   createdAt: isoDateSchema,
@@ -181,7 +183,7 @@ export const userShortSchema = Joi.object({
   firstName: userFirstNameSchema,
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: userRatingStatisticSchema,
 }).label('UserShort');
 
 export const userShortWithAdditionalInfoSchema = Joi.object({
@@ -191,7 +193,7 @@ export const userShortWithAdditionalInfoSchema = Joi.object({
   lastName: userLastNameSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   additionalInfo: userCommonAdditionalInfoSchema,
-  ratingStatistic: ratingStatisticSchema,
+  ratingStatistic: userRatingStatisticSchema,
 }).label('UserShort');
 
 export const userListSortSchema = Joi.object({
@@ -208,7 +210,7 @@ export const employerQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
   sort: userListSortSchema,
-  ratingStatuses: ratingStatusesSchema.default(null),
+  ratingStatuses: userRatingStatusesSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('EmployerQuery');
 
@@ -218,7 +220,7 @@ export const workerQuerySchema = Joi.object({
   limit: limitSchema,
   sort: userListSortSchema,
   priorities: prioritiesSchema.default(null),
-  ratingStatuses: ratingStatusesSchema.default(null),
+  ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
   specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
@@ -228,7 +230,7 @@ export const workerQuerySchema = Joi.object({
 export const workerQueryForMapPointsSchema = Joi.object({
   q: searchSchema,
   priorities: prioritiesSchema.default(null),
-  ratingStatuses: ratingStatusesSchema.default(null),
+  ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
   specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),

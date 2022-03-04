@@ -58,7 +58,15 @@ import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
+import {ReferralProgram} from "./referral-program/ReferralProgram";
+import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
+import {ReferralEventRewardClaimed} from "./referral-program/ReferralEventRewardClaimed";
+import {ReferralEventPaidReferral} from "./referral-program/ReferralEventPaidReferral";
+import {ReferralEventRegisteredAffiliate} from "./referral-program/ReferralEventRegisteredAffiliate";
+import {ReferralParseBlock} from "./referral-program/ReferralParseBlock";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
+import {AdminActionMetadata} from "./admin/AdminActionMetadata";
+import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 import {AdminRatingStatistic} from "./admin/AdminRatingStatistic";
 import {QuestBlockInfo} from "./quest/contract-quest/QuestBlockInfo";
 import {QuestAssignedEvent} from "./quest/contract-quest/QuestAssignedEvent";
@@ -81,7 +89,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Admin section */
       Admin,
       AdminSession,
-      AdminRatingStatistic,
+      AdminActionMetadata,
+      AdminQuestDisputesStatistic,
 
 
       /** Quest section */
@@ -173,6 +182,19 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Wallet */
       Wallet,
 
+
+      /** Referral Program */
+      ReferralProgram,
+      ReferralProgramAffiliate,
+
+
+      /** Referral Program Contract */
+      ReferralParseBlock,
+      ReferralEventPaidReferral,
+      ReferralEventRewardClaimed,
+      ReferralEventRegisteredAffiliate,
+
+
       /** Pension fund */
       PensionFundBlockInfo,
       PensionFundWithdrewEvent,
@@ -248,8 +270,16 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
+export * from "./referral-program/ReferralProgram";
+export * from "./referral-program/ReferralProgramAffiliate";
+export * from "./referral-program/ReferralParseBlock";
+export * from "./referral-program/ReferralEventRewardClaimed";
+export * from "./referral-program/ReferralEventPaidReferral";
+export * from "./referral-program/ReferralEventRegisteredAffiliate";
+export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminRatingStatistic";
 export * from "./quest/contract-quest/QuestBlockInfo";
 export * from "./quest/contract-quest/QuestAssignedEvent";
 export * from "./quest/contract-quest/QuestJobStartedEvent";
+export * from "./admin/AdminQuestDisputesStatistic"
