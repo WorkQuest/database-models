@@ -52,8 +52,6 @@ export class QuestsResponse extends Model {
   @ForeignKey(() => Quest) @Column(DataType.STRING) questId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: QuestsResponseType.Response }) type: QuestsResponseType;
-
-  @Column({type: DataType.INTEGER, defaultValue: null }) statusBeforeClosing: QuestsResponseStatus;
   @Column({type: DataType.INTEGER, defaultValue: QuestsResponseStatus.Open }) status: QuestsResponseStatus;
 
   @Column({type: DataType.TEXT }) message: string;
