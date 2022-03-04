@@ -15,3 +15,4 @@ export * from "./proposal";
 export * from "./wallet";
 export * from "./wqtWbnb";
 export * from "./pensionFund";
+export * from "./referral"
