@@ -5,21 +5,36 @@ import {
   coinAmountSchema,
   idSchema,
   countSchema,
-  idsSchema
 } from "./common";
+import {ReferralStatus, RewardStatus} from "../models";
+import {userShortSchema} from "./user";
 
-export const referralAddAffiliatesSchema = Joi.object({
+export const referralProgramReferralStatusSchema = Joi.string().valid(...Object.values(ReferralStatus)).example(ReferralStatus.Created).label('ReferralProgramReferralStatus');
+export const referralProgramRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralProgramRewardStatus');
+
+export const referralProgramUserAffiliatesScheme = Joi.object({
   v: accountAddressSchema,
   r: accountAddressSchema,
   s: accountAddressSchema,
   referral: accountAddressesSchema,
-}).label('ReferralAddAffiliates');
+}).label('ReferralUserAffiliates');
 
-export const referralProgramAffiliateShortSchema = Joi
+export const referralProgramAffiliateShortScheme = Joi.object({
+  affiliateUserId: idSchema,
+  referralProgramId: idSchema,
+  referralStatus: referralProgramReferralStatusSchema,
+  rewardStatus: referralProgramRewardStatusSchema,
+  user: userShortSchema
+}).label('ReferralProgramAffiliateShort')
 
-export const referralProgramAffiliateFullUserSchema = Joi.object({
+export const referralProgramAffiliatesShortScheme = Joi.array().items(referralProgramAffiliateShortScheme).label('ReferralProgramAffiliatesShort');
+
+export const referralUserAffiliatesSchema = Joi.object({
   paidRewards: coinAmountSchema,
   referralId: idSchema,
   count: countSchema,
-  // affiliates:
-})
+  affiliates: referralProgramAffiliatesShortScheme
+}).label('ReferralProgramAffiliateShort')
+
+
+
