@@ -40,7 +40,7 @@ export enum RewardStatus {
       as: 'user'
     }],
     attributes: {
-      include: ["affiliateUserId", "referralProgramId", "referralStatus", "rewardStatus"]
+      exclude: ["createdAt", "updatedAt"]
     }
   }
 }))
