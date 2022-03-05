@@ -58,5 +58,5 @@ export class ReferralProgramAffiliate extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;
 
   @BelongsTo(() => User) user: User;
-  @BelongsTo(() => ReferralProgram) referral: ReferralProgram;
+  @BelongsTo(() => ReferralProgram) referralProgram: ReferralProgram;
 }
