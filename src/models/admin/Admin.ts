@@ -41,7 +41,6 @@ export class Admin extends Model {
   @Column({type: DataType.STRING, allowNull: false}) role: AdminRole;
   @Column({type: DataType.JSONB, allowNull: false}) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
-  @Column({type: DataType.INTEGER, defaultValue: 0}) resolvedDisputes: number;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 

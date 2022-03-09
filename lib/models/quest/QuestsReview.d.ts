@@ -1,7 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { User } from '../user/User';
 import { Quest } from './Quest';
-export declare class Review extends Model {
+export declare class QuestsReview extends Model {
     id: string;
     questId: string;
     fromUserId: string;

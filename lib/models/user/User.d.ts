@@ -1,7 +1,6 @@
-import { Model } from "sequelize-typescript";
 import { Media } from "../Media";
 import { Session } from "./Session";
-import { Review } from "../quest/Review";
+import { QuestsReview } from "../quest/QuestsReview";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
 import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone } from "../types";
@@ -12,6 +11,9 @@ import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
+import { Model } from "sequelize-typescript";
+import { ReferralProgram } from "../referral-program/ReferralProgram";
+import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -89,9 +91,8 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
-    firstName: string;
     lastName: string;
-    location: LocationType;
+    firstName: string;
     email: string;
     role: UserRole;
     additionalInfo: object;
@@ -104,15 +105,19 @@ export declare class User extends Model {
     wagePerHour: string;
     workplace: WorkPlace;
     priority: Priority;
+    location: LocationType;
+    locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
     avatar: Media;
     sessions: Session[];
-    reviews: Review[];
+    reviews: QuestsReview[];
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
+    referrerUser: ReferralProgram;
+    affiliateUser: ReferralProgramAffiliate;
     chatOfUser: Chat;
     chatStatistic: ChatsStatistic;
     chatMember: ChatMember;

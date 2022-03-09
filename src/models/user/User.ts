@@ -1,3 +1,18 @@
+import {getUUID} from "../../utils";
+import * as bcrypt from "bcrypt";
+import {Media} from "../Media";
+import {Session} from "./Session";
+import {QuestsReview} from "../quest/QuestsReview";
+import {RatingStatistic} from "./RatingStatistic";
+import {ChatMember} from "../chats/ChatMember";
+import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
+import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {DiscussionLike} from "../discussion/DiscussionLike";
+import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
+import {QuestsStatistic} from "../quest/QuestsStatistic";
+import {Wallet} from "../wallet/Wallet";
+import {ChatsStatistic} from "../chats/ChatsStatistic";
 import {
   BelongsTo,
   Column,
@@ -9,21 +24,8 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {getUUID} from "../../utils";
-import * as bcrypt from "bcrypt";
-import {Media} from "../Media";
-import {Session} from "./Session";
-import {Review} from "../quest/Review";
-import {RatingStatistic, RatingStatus} from "./RatingStatistic";
-import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
-import {UserSpecializationFilter} from "./UserSpecializationFilter";
-import {DiscussionLike} from "../discussion/DiscussionLike";
-import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
-import {Chat} from "../chats/Chat";
-import {QuestsStatistic} from "../quest/QuestsStatistic";
-import {Wallet} from "../wallet/Wallet";
-import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {ReferralProgram} from "../referral-program/ReferralProgram";
+import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {UserRaiseType} from "./types";
 
 export interface SocialInfo {
@@ -76,7 +78,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
-  Blocked
+  Blocked,
 }
 
 export enum UserRole {
@@ -130,7 +132,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
+      exclude: ["password", "settings", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
     },
     include: [{
       model: Media.scope('urlOnly'),
@@ -195,10 +197,8 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
   /** User profile */
-  @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
-  @Column(DataType.JSONB) location: LocationType;
-  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  @Column(DataType.STRING) firstName: string;
   @Column({type: DataType.STRING, unique: true}) email: string;
   @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
@@ -231,22 +231,28 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
-  /** PostGIS */
+  /** Location fields and PostGIS */
+  @Column(DataType.JSONB) location: LocationType;
+  @Column(DataType.STRING) locationPlaceName: string;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
 
-  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
+  @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasMany(() => Session) sessions: Session[];
-  @HasMany(() => Review, 'toUserId') reviews: Review[];
+  @HasMany(() => QuestsReview, 'toUserId') reviews: QuestsReview[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
   /** Wallet */
   @HasOne(() => Wallet) wallet: Wallet;
+
+  /** ReferralProgram */
+  @HasOne(() => ReferralProgram) referrerUser: ReferralProgram;
+  @HasOne(() => ReferralProgramAffiliate) affiliateUser: ReferralProgramAffiliate;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;
@@ -268,7 +274,7 @@ export class User extends Model {
   }
 
   static async findWithEmail(email: string): Promise<User> {
-    return await User.scope("withPassword").findOne({ where: { ["email"]: email } });
+    return await User.scope("withPassword").findOne({where: {["email"]: email}});
   }
 
   static async findWithSocialId(network: string, id: string): Promise<User> {

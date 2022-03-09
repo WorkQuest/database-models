@@ -39,3 +39,13 @@ export declare type Place = {
     country: string | null;
     city: string | null;
 };
+export declare enum BlackListStatus {
+    Blocked = 0,
+    Unblocked = 1
+}
+export declare enum HTTPVerb {
+    GET = "GET",
+    POST = "POST",
+    PUT = "PUT",
+    DELETE = "DELETE"
+}

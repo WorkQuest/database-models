@@ -8,6 +8,7 @@ export class PensionFundReceivedEvent extends Model {
   @Column(DataType.STRING) user: string;
   @Column(DataType.STRING) amount: string;
   @Column(DataType.STRING) timestamp: string;
+  @Column(DataType.STRING) event: string;
   @Column(DataType.STRING) network: BlockchainNetworks;
 }
 
