@@ -1,62 +1,28 @@
-import {User} from '../user/User';
+import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
-import {ReferralProgram} from "./ReferralProgram";
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  Model,
-  Scopes,
-  Table
-} from 'sequelize-typescript';
+import {User} from '../user/User';
+import {ReferralProgramReferrals} from "./ReferralProgramReferral";
 
-export enum ReferralStatus {
-  Created = "created",
-  Registered = "registered",
-}
-
-export enum RewardStatus {
-  Paid = "paid",
-  Claimed = "claimed",
-}
-
-@Scopes(() => ({
-  defaultScope: {
-    include: [{
-      model: User.scope('shortWithWallet'),
-      as: 'user'
-    }]
-  },
-  shortAffiliate: {
-    attributes: {
-      include: ["affiliateUserId", "referralProgramId", "referralStatus", "rewardStatus"],
-      exclude: ["createdAt", "updatedAt"]
-    }
-  },
-  shortReferralProgramAffiliates: {
-    include: [{
-      model: User.scope('short'),
-      as: 'user'
-    }],
-    attributes: {
-      exclude: ["createdAt", "updatedAt"]
+@Table({
+  scopes: {
+    referral: {
+      attributes: ["userId", "referralId"]
     }
   }
-}))
-@Table
-export class ReferralProgramAffiliate extends Model {
+})
+export class ReferralProgramAffiliates extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) affiliateUserId: string;
 
-  @ForeignKey(() => ReferralProgram)
-  @Column({type: DataType.STRING, allowNull: false}) referralProgramId: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) paidReward: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) claimReward: string;
 
-  @Column({type: DataType.STRING, defaultValue: ReferralStatus.Registered}) referralStatus: ReferralStatus;
-  @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;
+  @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralCodeId: string;
 
-  @BelongsTo(() => User) user: User;
-  @BelongsTo(() => ReferralProgram) referralProgram: ReferralProgram;
+  @BelongsTo(() => User, {constraints: false}) affiliate: User;
+
+  @HasMany(() => ReferralProgramReferrals) referrals: ReferralProgramReferrals[]
 }
+

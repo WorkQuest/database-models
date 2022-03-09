@@ -56,8 +56,8 @@ import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
-import {ReferralProgram} from "./referral-program/ReferralProgram";
-import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
+import {ReferralProgramAffiliates} from "./referral-program/ReferralProgramAffiliate";
+import {ReferralProgramReferrals} from "./referral-program/ReferralProgramReferral";
 import {ReferralEventRewardClaimed} from "./referral-program/ReferralEventRewardClaimed";
 import {ReferralEventPaidReferral} from "./referral-program/ReferralEventPaidReferral";
 import {ReferralEventRegisteredAffiliate} from "./referral-program/ReferralEventRegisteredAffiliate";
@@ -166,8 +166,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Wallet,
 
       /** Referral Program */
-      ReferralProgram,
-      ReferralProgramAffiliate,
+      ReferralProgramReferrals,
+      ReferralProgramAffiliates,
 
 
       /** Referral Program Contract */
@@ -250,8 +250,8 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
-export * from "./referral-program/ReferralProgram";
 export * from "./referral-program/ReferralProgramAffiliate";
+export * from "./referral-program/ReferralProgramReferral";
 export * from "./referral-program/ReferralParseBlock";
 export * from "./referral-program/ReferralEventRewardClaimed";
 export * from "./referral-program/ReferralEventPaidReferral";
