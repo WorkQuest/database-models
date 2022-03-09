@@ -24,7 +24,7 @@ export const questsStatisticSchema = Joi.object({
 
 /** Rating Statistic */
 
-export const userRatingStatusSchema = Joi.string().valid(...Object.values(RatingStatus)).example(RatingStatus.topRanked).label("UserStatisticRatingStatus");
+export const userRatingStatusSchema = Joi.number().valid(...Object.values(RatingStatus)).example(RatingStatus.topRanked).label("UserStatisticRatingStatus");
 export const userRatingStatusesSchema = Joi.array().items(userRatingStatusSchema).label('UserStatisticRatingStatuses');
 
 export const userRatingStatisticSchema = Joi.object({
