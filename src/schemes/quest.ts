@@ -122,7 +122,6 @@ export const questQuerySchema = Joi.object({
 
 export const questQueryForMapPointsSchema = Joi.object({
   q: searchSchema,
-  adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
@@ -234,7 +233,6 @@ export const questForAdminsGetSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questAdTypeSchema,
   startedAt: isoDateSchema,
   createdAt: isoDateSchema,
   /** Aliases for include */

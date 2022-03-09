@@ -1,14 +1,16 @@
 import { User } from "../user/User";
 import { Media } from '../Media';
-import { Review } from './Review';
+import { QuestsReview } from './QuestsReview';
 import { QuestsResponse } from "./QuestsResponse";
-import { StarredQuests } from './StarredQuests';
+import { QuestsStarred } from './QuestsStarred';
 import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
 import { Model } from 'sequelize-typescript';
 import { QuestRaiseView } from "./QuestRaiseView";
+import { QuestDispute } from "./QuestDispute";
 export declare enum QuestStatus {
+    Blocked = -1,
     Created = 0,
     Active = 1,
     Closed = 2,
@@ -33,25 +35,27 @@ export declare class Quest extends Model {
     workplace: WorkPlace;
     employment: QuestEmployment;
     priority: Priority;
-    category: string;
     locationPlaceName: string;
     location: LocationType;
     locationPostGIS: LocationPostGISType;
     price: string;
+    startedAt: Date;
     user: User;
     assignedWorker: User;
     medias: Media[];
     questChat: QuestChat;
-    star: StarredQuests;
+    star: QuestsStarred;
     response: QuestsResponse;
     responded: QuestsResponse;
     invited: QuestsResponse;
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
-    yourReview: Review;
+    yourReview: QuestsReview;
+    openDispute: QuestDispute;
     raiseView: QuestRaiseView;
     questSpecializations: QuestSpecializationFilter[];
-    reviews: Review[];
-    starredQuests: StarredQuests[];
+    questDisputes: QuestDispute[];
+    reviews: QuestsReview[];
+    starredQuests: QuestsStarred[];
     responses: QuestsResponse[];
 }
