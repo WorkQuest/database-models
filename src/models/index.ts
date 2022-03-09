@@ -5,9 +5,9 @@ import {Quest} from "./quest/Quest";
 import {QuestsResponse} from "./quest/QuestsResponse";
 import {Media} from "./Media";
 import {QuestMedia} from "./quest/QuestMedia";
-import {Review} from "./quest/Review";
+import {QuestsReview} from "./quest/QuestsReview";
 import {RatingStatistic} from "./user/RatingStatistic";
-import {StarredQuests} from './quest/StarredQuests';
+import {QuestsStarred} from './quest/QuestsStarred';
 import {PortfolioMedia} from './user/PortfolioMedia';
 import {Portfolio} from './user/Portfolio';
 import {Admin} from './admin/Admin'
@@ -46,6 +46,26 @@ import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
 import {QuestRaiseView} from "./quest/QuestRaiseView";
+import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
+import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
+import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
+import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
+import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
+import {PensionFundWalletUpdatedEvent} from "./pensionFund/PensionFundWalletUpdatedEvent";
+import {UserBlackList} from "./user/UserBlackList";
+import {QuestBlackList} from "./quest/QuestBlackList";
+import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
+import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
+import {UserChangeRoleData} from "./user/UserChangeRoleData";
+import {ReferralProgram} from "./referral-program/ReferralProgram";
+import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
+import {ReferralEventRewardClaimed} from "./referral-program/ReferralEventRewardClaimed";
+import {ReferralEventPaidReferral} from "./referral-program/ReferralEventPaidReferral";
+import {ReferralEventRegisteredAffiliate} from "./referral-program/ReferralEventRegisteredAffiliate";
+import {ReferralParseBlock} from "./referral-program/ReferralParseBlock";
+import {QuestDisputeReview} from "./quest/QuestDisputeReview";
+import {AdminActionMetadata} from "./admin/AdminActionMetadata";
+import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -55,22 +75,27 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** User section */
       User,
       Session,
-      Review,
+      QuestsReview,
       Portfolio,
+      UserBlackList,
+      UserChangeRoleData,
 
 
       /** Admin section */
       Admin,
+      AdminActionMetadata,
       AdminSession,
+      AdminQuestDisputesStatistic,
 
 
       /** Quest section */
       Quest,
       QuestChat,
       QuestDispute,
-      StarredQuests,
       QuestRaiseView,
+      QuestsStarred,
       QuestsResponse,
+      QuestDisputeReview,
 
       /** Chat section */
       Chat,
@@ -112,10 +137,18 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       ProposalVoteCastEvent,
       ProposalExecutedEvent,
 
+
       /** Statistic */
       ChatsStatistic,
       RatingStatistic,
       QuestsStatistic,
+
+
+      /** WQT/WBNB liquidity */
+      WqtWbnbSwapEvent,
+      WqtWbnbBlockInfo,
+      WqtWbnbMintEvent,
+      WqtWbnbBurnEvent,
 
 
       /** Media section */
@@ -124,6 +157,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       MessageMedia,
       ProposalMedia,
       PortfolioMedia,
+      QuestBlackList,
       DiscussionMedia,
       QuestResponseMedia,
       DiscussionCommentMedia,
@@ -131,6 +165,24 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Wallet */
       Wallet,
+
+      /** Referral Program */
+      ReferralProgram,
+      ReferralProgramAffiliate,
+
+
+      /** Referral Program Contract */
+      ReferralParseBlock,
+      ReferralEventPaidReferral,
+      ReferralEventRewardClaimed,
+      ReferralEventRegisteredAffiliate,
+
+
+      /** Pension fund */
+      PensionFundBlockInfo,
+      PensionFundWithdrewEvent,
+      PensionFundReceivedEvent,
+      PensionFundWalletUpdatedEvent,
     ]
   });
   if (sync)
@@ -141,12 +193,14 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
 export * from "./types";
 export * from "./quest/types";
+export * from "./admin/types";
+
 export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
 export * from "./quest/QuestMedia";
-export * from "./quest/Review";
-export * from "./quest/StarredQuests";
+export * from "./quest/QuestsReview";
+export * from "./quest/QuestsStarred";
 export * from "./quest/QuestsStatistic";
 export * from "./quest/QuestSpecializationFilter";
 export * from "./user/User";
@@ -188,3 +242,24 @@ export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/QuestRaiseView";
+export * from "./wallet/Wallet";
+export * from "./WqtWbnb/WqtWbnbSwapEvent";
+export * from "./WqtWbnb/WqtWbnbBlockInfo";
+export * from "./WqtWbnb/WqtWbnbBurnEvent";
+export * from "./WqtWbnb/WqtWbnbMintEvent";
+export * from "./pensionFund/PensionFundBlockInfo";
+export * from "./pensionFund/PensionFundReceivedEvent";
+export * from "./pensionFund/PensionFundWalletUpdatedEvent";
+export * from "./pensionFund/PensionFundWithdrewEvent";
+export * from "./user/UserBlackList";
+export * from "./quest/QuestBlackList";
+export * from "./user/UserChangeRoleData";
+export * from "./referral-program/ReferralProgram";
+export * from "./referral-program/ReferralProgramAffiliate";
+export * from "./referral-program/ReferralParseBlock";
+export * from "./referral-program/ReferralEventRewardClaimed";
+export * from "./referral-program/ReferralEventPaidReferral";
+export * from "./referral-program/ReferralEventRegisteredAffiliate";
+export * from "./admin/AdminActionMetadata";
+export * from "./quest/QuestDisputeReview";
+export * from "./admin/AdminQuestDisputesStatistic"

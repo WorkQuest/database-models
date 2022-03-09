@@ -3,8 +3,6 @@ export * from "./media";
 export * from "./user";
 export * from "./portfolio";
 export * from "./quest";
-export * from './questDispute';
-export * from "./map";
 export * from "./sumsub";
 export * from "./admin";
 export * from "./chat";
@@ -14,5 +12,8 @@ export * from "./discussion";
 export * from "./statistics";
 export * from "./dailyLiquidity";
 export * from "./proposal";
+export * from "./wallet";
+export * from "./wqtWbnb";
+export * from "./pensionFund";
 export * from "./wallet"
 export * from "./questRaiseView";
