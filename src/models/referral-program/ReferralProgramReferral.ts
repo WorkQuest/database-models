@@ -1,6 +1,6 @@
 import {User} from '../user/User';
 import {getUUID} from '../../utils';
-import {ReferralProgramAffiliates} from "./ReferralProgramAffiliate";
+import {ReferralProgramAffiliate} from "./ReferralProgramAffiliate";
 import {
   BelongsTo,
   Column,
@@ -45,18 +45,18 @@ export enum RewardStatus {
   }
 }))
 @Table
-export class ReferralProgramReferrals extends Model {
+export class ReferralProgramReferral extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) referralUserId: string;
 
-  @ForeignKey(() => ReferralProgramAffiliates)
+  @ForeignKey(() => ReferralProgramAffiliate)
   @Column({type: DataType.STRING, allowNull: false}) referralProgramId: string;
 
   @Column({type: DataType.STRING, defaultValue: ReferralStatus.Registered}) referralStatus: ReferralStatus;
   @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;
 
   @BelongsTo(() => User) user: User;
-  @BelongsTo(() => ReferralProgramAffiliates) referralProgram: ReferralProgramAffiliates;
+  @BelongsTo(() => ReferralProgramAffiliate) referralProgram: ReferralProgramAffiliate;
 }

@@ -1,7 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from '../user/User';
-import {ReferralProgramReferrals} from "./ReferralProgramReferral";
+import {ReferralProgramReferral} from "./ReferralProgramReferral";
 
 @Table({
   scopes: {
@@ -10,7 +10,7 @@ import {ReferralProgramReferrals} from "./ReferralProgramReferral";
     }
   }
 })
-export class ReferralProgramAffiliates extends Model {
+export class ReferralProgramAffiliate extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
@@ -23,6 +23,6 @@ export class ReferralProgramAffiliates extends Model {
 
   @BelongsTo(() => User, {constraints: false}) affiliate: User;
 
-  @HasMany(() => ReferralProgramReferrals) referrals: ReferralProgramReferrals[]
+  @HasMany(() => ReferralProgramReferral) referrals: ReferralProgramReferral[]
 }
 

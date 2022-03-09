@@ -1,5 +1,5 @@
 import { User } from '../user/User';
-import { ReferralProgramAffiliates } from "./ReferralProgramAffiliate";
+import { ReferralProgramAffiliate } from "./ReferralProgramAffiliate";
 import { Model } from 'sequelize-typescript';
 export declare enum ReferralStatus {
     Created = "created",
@@ -9,12 +9,12 @@ export declare enum RewardStatus {
     Paid = "paid",
     Claimed = "claimed"
 }
-export declare class ReferralProgramReferrals extends Model {
+export declare class ReferralProgramReferral extends Model {
     id: string;
     referralUserId: string;
     referralProgramId: string;
     referralStatus: ReferralStatus;
     rewardStatus: RewardStatus;
     user: User;
-    referralProgram: ReferralProgramAffiliates;
+    referralProgram: ReferralProgramAffiliate;
 }

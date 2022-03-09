@@ -13,6 +13,8 @@ import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
+import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
   BelongsTo,
   Column,
@@ -24,8 +26,6 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {ReferralProgramAffiliates} from "../referral-program/ReferralProgramAffiliate";
-import {ReferralProgramReferrals} from "../referral-program/ReferralProgramReferral";
 
 export interface SocialInfo {
   id: string;
@@ -250,8 +250,8 @@ export class User extends Model {
   @HasOne(() => Wallet) wallet: Wallet;
 
   /** ReferralProgram */
-  @HasOne(() => ReferralProgramAffiliates) affiliateUser: ReferralProgramAffiliates;
-  @HasOne(() => ReferralProgramReferrals) referralUser: ReferralProgramReferrals;
+  @HasOne(() => ReferralProgramAffiliate) affiliateUser: ReferralProgramAffiliate;
+  @HasOne(() => ReferralProgramReferral) referralUser: ReferralProgramReferral;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;
