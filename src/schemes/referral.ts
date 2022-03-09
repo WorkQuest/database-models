@@ -12,12 +12,12 @@ import {userFirstNameSchema, userLastNameSchema, userShortSchema} from "./user";
 export const referralProgramReferralStatusSchema = Joi.string().valid(...Object.values(ReferralStatus)).example(ReferralStatus.Created).label('ReferralProgramReferralStatus');
 export const referralProgramRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralProgramRewardStatus');
 
-export const referralProgramUserAffiliatesScheme = Joi.object({
+export const referralProgramUserReferralsScheme = Joi.object({
   v: accountAddressSchema,
   r: accountAddressSchema,
   s: accountAddressSchema,
   referral: accountAddressesSchema,
-}).label('ReferralUserAffiliates');
+}).label('ReferralProgramUserReferrals');
 
 export const referralProgramAffiliateShortScheme = Joi.object({
   affiliateUserId: idSchema,
