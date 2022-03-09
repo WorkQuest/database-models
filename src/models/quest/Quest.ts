@@ -107,9 +107,9 @@ export class Quest extends Model {
   @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
   @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */
   @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
+  @HasOne(() => QuestRaiseView) raiseView: QuestRaiseView;                                                             /** Alias for get review from user when get all quest */   /** Alias for get review from user when get all quest */
   @HasOne(() => QuestsReview) yourReview: QuestsReview;                                                             /** Alias for get review from user when get all quest */
   @HasOne(() => QuestDispute) openDispute: QuestDispute;   /** Alias for get review from user when get all quest */
-  @HasOne(() => QuestRaiseView) raiseView: QuestRaiseView;                                                             /** Alias for get review from user when get all quest */   /** Alias for get review from user when get all quest */
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => QuestDispute) questDisputes: QuestDispute[];
