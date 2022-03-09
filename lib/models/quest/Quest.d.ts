@@ -50,9 +50,9 @@ export declare class Quest extends Model {
     invited: QuestsResponse;
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
+    raiseView: QuestRaiseView;
     yourReview: QuestsReview;
     openDispute: QuestDispute;
-    raiseView: QuestRaiseView;
     questSpecializations: QuestSpecializationFilter[];
     questDisputes: QuestDispute[];
     reviews: QuestsReview[];
