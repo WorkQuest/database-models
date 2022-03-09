@@ -4,6 +4,7 @@ export enum BlockchainNetworks {
   ethMainNetwork = 'ethMainNetwork',
   rinkebyTestNetwork = 'rinkebyTestNetwork',
   bscTestNetwork = 'bscTestNetwork',
+  workQuestNetwork = 'workQuestNetwork',
 }
 
 export type LocationType = {
@@ -34,4 +35,21 @@ export type Phone = {
   codeRegion: string,
   phone: string,
   fullPhone: string,
+}
+
+export type Place = {
+  country: string | null;
+  city: string | null;
+}
+
+export enum BlackListStatus {
+  Blocked,
+  Unblocked
+}
+
+export enum HTTPVerb {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }

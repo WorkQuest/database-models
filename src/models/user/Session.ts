@@ -1,13 +1,9 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { getUUID } from "../../utils";
 import { User } from "./User";
+import {Place} from "../types";
 
-export type UserLoginPlace = {
-  country: string | null;
-  city: string | null;
-}
-
-const defaultUserLoginPlace: UserLoginPlace = {
+const defaultUserLoginPlace: Place = {
   country: null,
   city: null,
 }
@@ -17,9 +13,10 @@ export class Session extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User) @Column(DataType.STRING) userId: string;
 
-  @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: UserLoginPlace;
+  @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: Place;
 
   @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
+  @Column({type: DataType.BOOLEAN, allowNull: false}) isTotpPassed: boolean;
 
   @Column(DataType.STRING) ip: string;
 
