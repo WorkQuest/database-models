@@ -37,7 +37,7 @@ export enum RewardStatus {
   shortReferralProgramReferrals: {
     include: [{
       model: User.scope('short'),
-      as: 'user'
+      as: 'userAffiliate'
     }],
     attributes: {
       exclude: ["createdAt", "updatedAt"]
