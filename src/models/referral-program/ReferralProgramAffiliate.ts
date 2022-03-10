@@ -2,6 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from 'se
 import {getUUID} from '../../utils';
 import {User} from '../user/User';
 import {ReferralProgramReferral} from "./ReferralProgramReferral";
+import {ReferralEventRewardClaimed} from "./ReferralEventRewardClaimed";
 
 @Table({
   scopes: {
@@ -23,5 +24,6 @@ export class ReferralProgramAffiliate extends Model {
   @BelongsTo(() => User, {constraints: false}) affiliateUser: User;
 
   @HasMany(() => ReferralProgramReferral) affiliate: ReferralProgramReferral[]
+  @HasMany(() => ReferralEventRewardClaimed) affiliateClaimedEvents: ReferralProgramReferral[]
 }
 
