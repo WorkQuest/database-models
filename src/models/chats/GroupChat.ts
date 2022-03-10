@@ -31,12 +31,12 @@ export class GroupChat extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) name: string; /** If group chat */
 
   @ForeignKey(() => ChatMember)
-  @Column({type: DataType.STRING, allowNull: false}) ownerId: string;
+  @Column({type: DataType.STRING, allowNull: false}) ownerMemberId: string;
 
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
   @BelongsTo(() => Chat) chat: Chat;
 
-  @BelongsTo(() => ChatMember, 'ownerId') owner: ChatMember;
+  @BelongsTo(() => ChatMember, 'ownerMemberId') owner: ChatMember;
 }

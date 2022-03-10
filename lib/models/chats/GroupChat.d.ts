@@ -4,7 +4,7 @@ import { ChatMember } from "./ChatMember";
 export declare class GroupChat extends Model {
     id: string;
     name: string;
-    ownerId: string;
+    ownerMemberId: string;
     chatId: string;
     chat: Chat;
     owner: ChatMember;
