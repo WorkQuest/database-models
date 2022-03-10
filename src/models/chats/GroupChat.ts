@@ -20,7 +20,7 @@ import {QuestChat} from "./QuestChat";
     },
     include: [{
       model: ChatMember,
-      as: 'owner'
+      as: 'ownerMember'
     }]
   }
 }))
