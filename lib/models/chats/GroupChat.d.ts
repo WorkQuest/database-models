@@ -7,5 +7,5 @@ export declare class GroupChat extends Model {
     ownerMemberId: string;
     chatId: string;
     chat: Chat;
-    owner: ChatMember;
+    ownerMember: ChatMember;
 }

@@ -7,6 +7,6 @@ export declare class ChatMemberData extends Model {
     lastReadMessageId: string;
     unreadCountMessages: number;
     lastReadMessageNumber: number;
-    message: Message;
-    member: ChatMember;
+    lastReadMessage: Message;
+    chatMember: ChatMember;
 }

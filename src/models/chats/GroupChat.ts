@@ -38,5 +38,5 @@ export class GroupChat extends Model {
 
   @BelongsTo(() => Chat) chat: Chat;
 
-  @BelongsTo(() => ChatMember, 'ownerMemberId') owner: ChatMember;
+  @BelongsTo(() => ChatMember, 'ownerMemberId') ownerMember: ChatMember;
 }

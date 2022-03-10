@@ -6,6 +6,6 @@ export declare class ChatMemberDeletionData extends Model {
     chatMemberId: string;
     beforeDeletionMessageId: string;
     beforeDeletionMessageNumber: string;
-    message: Message;
-    member: ChatMember;
+    beforeDeletionMessage: Message;
+    chatMember: ChatMember;
 }

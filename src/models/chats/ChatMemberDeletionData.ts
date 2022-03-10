@@ -22,6 +22,6 @@ export class ChatMemberDeletionData extends Model {
 
   @Column({type: DataType.INTEGER, allowNull: false}) beforeDeletionMessageNumber: string;
 
-  @BelongsTo(() => Message) message: Message;
-  @BelongsTo(() => ChatMember) member: ChatMember;
+  @BelongsTo(() => Message) beforeDeletionMessage: Message;
+  @BelongsTo(() => ChatMember) chatMember: ChatMember;
 }
