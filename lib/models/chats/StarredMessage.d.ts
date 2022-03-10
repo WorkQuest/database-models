@@ -1,10 +1,10 @@
 import { Model } from 'sequelize-typescript';
 import { Message } from "./Message";
-import { ChatMember } from "./ChatMember";
+import { User } from "../user/User";
 export declare class StarredMessage extends Model {
     id: string;
-    memberId: string;
+    userId: string;
     messageId: string;
-    member: ChatMember;
+    member: User;
     message: Message;
 }

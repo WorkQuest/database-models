@@ -1,19 +1,19 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { getUUID } from '../../utils';
 import { Chat } from './Chat';
-import {ChatMember} from "./ChatMember";
+import {User} from "../user/User";
 
 @Table
 export class StarredChat extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @ForeignKey(() => ChatMember)
-  @Column({type: DataType.STRING, allowNull: false}) memberId: string;
+  @ForeignKey(() => User)
+  @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @BelongsTo(() => ChatMember, { constraints: false }) member: ChatMember;
+  @BelongsTo(() => User) user: User;
   @BelongsTo(() => Chat, { constraints: false }) chat: Chat;
 }
 
