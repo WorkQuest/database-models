@@ -20,11 +20,12 @@ export const referralProgramUserReferralsScheme = Joi.object({
 }).label('ReferralProgramUserReferrals');
 
 export const referralProgramReferralShortScheme = Joi.object({
-  affiliateUserId: idSchema,
+  id: idSchema,
+  referralUserId: idSchema,
   referralProgramId: idSchema,
   referralStatus: referralProgramReferralStatusSchema,
   rewardStatus: referralProgramRewardStatusSchema,
-  user: userShortSchema
+  userAffiliate: userShortSchema
 }).label('ReferralProgramAffiliateShort')
 
 export const referralProgramReferralsShortScheme = Joi.array().items(referralProgramReferralShortScheme).label('ReferralProgramAffiliatesShort');

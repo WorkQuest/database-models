@@ -25,7 +25,7 @@ export enum RewardStatus {
   defaultScope: {
     include: [{
       model: User.scope('shortWithWallet'),
-      as: 'user'
+      as: 'userAffiliate'
     }]
   },
   shortReferral: {
