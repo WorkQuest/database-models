@@ -7,5 +7,4 @@ export declare class ChatData extends Model {
     lastMessageId: string;
     lastMessage: Message;
     chat: Chat;
-    message: Message;
 }

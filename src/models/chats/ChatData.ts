@@ -37,5 +37,4 @@ export class ChatData extends Model {
   @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
 
   @BelongsTo(() => Chat) chat: Chat;
-  @BelongsTo(() => Message) message: Message;
 }
