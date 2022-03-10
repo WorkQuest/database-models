@@ -1,21 +1,21 @@
-import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Scopes, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from '../user/User';
 import {ReferralProgramReferral} from "./ReferralProgramReferral";
 
-@Table({
-  scopes: {
-    defaultScope: {
-      include: [{
-        model: User.scope('shortWithWallet'),
-        as: 'affiliateUser'
-      }]
-    },
-    referral: {
-      attributes: ["userId", "referralId"]
-    }
+
+@Scopes(() => ({
+  defaultScope: {
+    include: [{
+      model: User.scope('shortWithWallet'),
+      as: 'affiliateUser'
+    }]
+  },
+  referral: {
+    attributes: ["userId", "referralId"]
   }
-})
+}))
+@Table
 export class ReferralProgramAffiliate extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
