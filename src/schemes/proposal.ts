@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import {idSchema, limitSchema, offsetSchema, searchSchema, sortDirectionSchema, transactionHashSchema} from "./common";
-import {ProposalStatus} from "../models";
+import {ProposalStatus} from "../models/proposal/types";
 
 export const proposalNumberSchema = Joi.number().example(1).label('ProposalNumber');
 export const proposalTitleSchema = Joi.string().example('New post').label('ProposalTitle');
