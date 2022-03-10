@@ -5,8 +5,7 @@ export declare class ReferralProgramAffiliate extends Model {
     id: string;
     affiliateUserId: string;
     paidReward: string;
-    claimReward: string;
     referralCodeId: string;
-    affiliate: User;
-    referrals: ReferralProgramReferral[];
+    affiliateUser: User;
+    affiliate: ReferralProgramReferral[];
 }

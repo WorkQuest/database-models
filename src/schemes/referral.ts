@@ -19,7 +19,7 @@ export const referralProgramUserReferralsScheme = Joi.object({
   referral: accountAddressesSchema,
 }).label('ReferralProgramUserReferrals');
 
-export const referralProgramAffiliateShortScheme = Joi.object({
+export const referralProgramReferralShortScheme = Joi.object({
   affiliateUserId: idSchema,
   referralProgramId: idSchema,
   referralStatus: referralProgramReferralStatusSchema,
@@ -27,13 +27,13 @@ export const referralProgramAffiliateShortScheme = Joi.object({
   user: userShortSchema
 }).label('ReferralProgramAffiliateShort')
 
-export const referralProgramAffiliatesShortScheme = Joi.array().items(referralProgramAffiliateShortScheme).label('ReferralProgramAffiliatesShort');
+export const referralProgramReferralsShortScheme = Joi.array().items(referralProgramReferralShortScheme).label('ReferralProgramAffiliatesShort');
 
-export const referralUserAffiliatesSchema = Joi.object({
+export const affiliateUserReferralsSchema = Joi.object({
   paidRewards: coinAmountSchema,
   referralId: idSchema,
   count: countSchema,
-  affiliates: referralProgramAffiliatesShortScheme
+  affiliates: referralProgramReferralsShortScheme
 }).label('ReferralProgramAffiliateShort')
 
 export const referralProgramUserClaimedEventScheme = Joi.object({

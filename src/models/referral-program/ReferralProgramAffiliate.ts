@@ -17,12 +17,11 @@ export class ReferralProgramAffiliate extends Model {
   @Column({type: DataType.STRING, allowNull: false}) affiliateUserId: string;
 
   @Column({type: DataType.DECIMAL, defaultValue: null}) paidReward: string;
-  @Column({type: DataType.DECIMAL, defaultValue: null}) claimReward: string;
 
   @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralCodeId: string;
 
-  @BelongsTo(() => User, {constraints: false}) affiliate: User;
+  @BelongsTo(() => User, {constraints: false}) affiliateUser: User;
 
-  @HasMany(() => ReferralProgramReferral) referrals: ReferralProgramReferral[]
+  @HasMany(() => ReferralProgramReferral) affiliate: ReferralProgramReferral[]
 }
 
