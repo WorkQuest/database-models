@@ -1,7 +1,7 @@
 import { BlockchainNetworks } from "../../types";
 import { Model } from "sequelize-typescript";
 export declare enum QuestAssignedEventStatus {
-    WorkerEntityNotFound = -1,
+    WorkerOrQuestEntityNotFound = -1,
     Successfully = 0
 }
 export declare class QuestAssignedEvent extends Model {
