@@ -24,6 +24,5 @@ export class ReferralProgramAffiliate extends Model {
   @BelongsTo(() => User, {constraints: false}) affiliateUser: User;
 
   @HasMany(() => ReferralProgramReferral) affiliate: ReferralProgramReferral[]
-  @HasMany(() => ReferralEventRewardClaimed) affiliateClaimedEvents: ReferralProgramReferral[]
 }
 

@@ -8,5 +8,4 @@ export declare class ReferralProgramAffiliate extends Model {
     referralCodeId: string;
     affiliateUser: User;
     affiliate: ReferralProgramReferral[];
-    affiliateClaimedEvents: ReferralProgramReferral[];
 }
