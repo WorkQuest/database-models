@@ -2,6 +2,7 @@ import {BlockchainNetworks} from "../../types";
 import {Column, DataType, Model, Table} from "sequelize-typescript";
 
 export enum QuestAssignedEventStatus {
+  QuestStatusDoesNotMatch = -2,
   WorkerOrQuestEntityNotFound = -1,
   Successfully = 0,
 }
