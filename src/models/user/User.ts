@@ -26,7 +26,6 @@ import {
 } from "sequelize-typescript";
 import {ReferralProgram} from "../referral-program/ReferralProgram";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
-import {UserRaiseType} from "./types";
 
 export interface SocialInfo {
   id: string;

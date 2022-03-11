@@ -1,6 +1,5 @@
 import * as Joi from "joi";
 import {HTTPVerb, Priority, WorkPlace} from "../models";
-import {UserRaiseType} from "../models/user/types";
 
 export const idSchema = Joi.string().uuid().example("fa0e2e4e-c53f-4af7-8906-1649daa0cce3").label("Id");
 export const urlSchema = Joi.string().example("http://example.com/v1/getVideo").label("URL");
@@ -32,7 +31,6 @@ export const coinAmountSchema = Joi.string().example("281231").label("CoinAmount
 export const accountAddressSchema = Joi.string().example("0xke2083852Ccf274D48E149F99c80a5c742693418").label("AccountAddress");
 export const accountAddressesSchema = Joi.array().items(accountAddressSchema).label('AccountAddresses');
 export const HTTPVerbSchema = Joi.string().valid(...Object.values(HTTPVerb)).example(HTTPVerb.POST).label('HTTPVerb');
-export const userRaiseTypeSchema = Joi.number().valid(...Object.values(UserRaiseType)).example(UserRaiseType.GoldPlus).label('UserRaiseType');
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({

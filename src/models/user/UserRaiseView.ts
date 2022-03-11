@@ -1,12 +1,11 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from "./User";
-import {UserRaiseType} from "./types";
 
 export enum UserRaiseStatus {
-  Paid,
-  Unpaid,
-  Closed,
+  Paid = 0,
+  Unpaid = 1,
+  Closed = 2,
 }
 
 export enum UserRaiseDuration {
@@ -15,11 +14,19 @@ export enum UserRaiseDuration {
   ThirtyOneDays = 31,
 }
 
+export enum UserRaiseType {
+  GoldPlus = 0,
+  Gold= 1,
+  Silver = 2,
+  Bronze = 3,
+}
+
 @Table
 export class UserRaiseView extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
-  @ForeignKey(() => User) @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @ForeignKey(() => User)
+  @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: UserRaiseStatus.Unpaid}) status: UserRaiseStatus;
   @Column({type: DataType.INTEGER, defaultValue: null}) duration: UserRaiseDuration;
