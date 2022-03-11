@@ -1,9 +1,9 @@
 import { Model } from 'sequelize-typescript';
 import { User } from './User';
 export declare enum RatingStatus {
-    verified = 0,
+    topRanked = 0,
     reliable = 1,
-    topRanked = 2,
+    verified = 2,
     noStatus = 3
 }
 export declare class RatingStatistic extends Model {

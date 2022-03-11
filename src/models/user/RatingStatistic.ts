@@ -2,10 +2,11 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-t
 import {getUUID} from '../../utils';
 import {User} from './User';
 
+/**Take a part into sorting inside a*/
 export enum RatingStatus {
-  verified = 0,
+  topRanked = 0,
   reliable = 1,
-  topRanked = 2,
+  verified = 2,
   noStatus = 3,
 }
 

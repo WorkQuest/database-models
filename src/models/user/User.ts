@@ -26,6 +26,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
+import {UserRaiseView} from "./UserRaiseView";
 
 
 export interface SocialInfo {
@@ -141,6 +142,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     }, {
+      model: UserRaiseView,
+      as: 'raiseView'
+    }, {
       model: UserSpecializationFilter,
       as: 'userSpecializations',
       attributes: ['path'],
@@ -163,6 +167,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithAdditionalInfo: {
@@ -173,6 +180,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithWallet: {
@@ -183,6 +193,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }, {
       model: Wallet,
       as: 'wallet'
@@ -239,6 +252,9 @@ export class User extends Model {
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
+
+  /** RaiseView */
+  @HasOne(() => UserRaiseView) raiseView: UserRaiseView;
 
   @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
