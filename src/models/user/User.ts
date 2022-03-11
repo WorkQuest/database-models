@@ -13,6 +13,8 @@ import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {ReferralProgram} from "../referral-program/ReferralProgram";
+import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {
   BelongsTo,
   Column,
@@ -24,8 +26,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {ReferralProgram} from "../referral-program/ReferralProgram";
-import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
+
 
 export interface SocialInfo {
   id: string;
