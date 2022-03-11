@@ -57,7 +57,6 @@ export class Proposal extends Model {
 
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column({type: DataType.TEXT, allowNull: false}) description: string;
-  @Column({type: DataType.STRING, allowNull: false}) proposer: string; // TODO: адрес кошелька User
 
   @Column({type: DataType.INTEGER, defaultValue: ProposalStatus.Pending}) status: ProposalStatus;
 

@@ -12,7 +12,6 @@ export declare class Proposal extends Model {
     discussionId: string;
     title: string;
     description: string;
-    proposer: string;
     status: ProposalStatus;
     nonce: string;
     createdEvent: ProposalCreatedEvent;
