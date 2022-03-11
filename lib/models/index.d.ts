@@ -72,3 +72,4 @@ export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./chats/ChatData";
 export * from "./chats/ChatMemberData";
 export * from "./chats/ChatMemberDeletionData";
+export * from "./user/UserRaiseView";
