@@ -6,15 +6,13 @@ import {ReferralProgramReferral} from "./ReferralProgramReferral";
 
 @Scopes(() => ({
   defaultScope: {
-    attributes: {
-      exclude: ["createdAt", "updatedAt"]
-    }
-  },
-  shortAffiliateWithWallet: {
     include: [{
       model: User.scope('shortWithWallet'),
       as: 'affiliateUser'
-    }]
+    }],
+    attributes: {
+      exclude: ["createdAt", "updatedAt"]
+    }
   }
 }))
 @Table
@@ -23,8 +21,6 @@ export class ReferralProgramAffiliate extends Model {
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) affiliateUserId: string;
-
-  @Column({type: DataType.DECIMAL, defaultValue: null}) paidReward: string;
 
   @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralCodeId: string;
 

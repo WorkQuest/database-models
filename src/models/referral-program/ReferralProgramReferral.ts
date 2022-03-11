@@ -23,22 +23,8 @@ export enum RewardStatus {
 
 @Scopes(() => ({
   defaultScope: {
-    attributes: {
-      exclude: ["createdAt", "updatedAt"]
-    }
-  },
-  shortReferralWithWallet: {
     include: [{
       model: User.scope('shortWithWallet'),
-      as: 'referralUser'
-    }],
-    attributes: {
-      exclude: ["createdAt", "updatedAt"]
-    }
-  },
-  shortReferralsMedia: {
-    include: [{
-      model: User.scope('short'),
       as: 'referralUser'
     }],
     attributes: {
