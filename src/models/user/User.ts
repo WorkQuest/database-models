@@ -13,6 +13,8 @@ import {Chat} from "../chats/Chat";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {ReferralProgram} from "../referral-program/ReferralProgram";
+import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {
   BelongsTo,
   Column,
@@ -24,8 +26,8 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {ReferralProgram} from "../referral-program/ReferralProgram";
-import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
+import {UserRaiseView} from "./UserRaiseView";
+
 
 export interface SocialInfo {
   id: string;
@@ -140,6 +142,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     }, {
+      model: UserRaiseView,
+      as: 'raiseView'
+    }, {
       model: UserSpecializationFilter,
       as: 'userSpecializations',
       attributes: ['path'],
@@ -162,6 +167,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithAdditionalInfo: {
@@ -172,6 +180,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithWallet: {
@@ -182,6 +193,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }, {
       model: Wallet,
       as: 'wallet'
@@ -238,6 +252,9 @@ export class User extends Model {
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
+
+  /** RaiseView */
+  @HasOne(() => UserRaiseView) raiseView: UserRaiseView;
 
   @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 

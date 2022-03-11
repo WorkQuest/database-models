@@ -30,7 +30,7 @@ export enum RewardStatus {
   },
   shortAffiliate: {
     attributes: {
-      include: ["affiliateUserId", "referralId", "status"],
+      include: ["affiliateUserId", "referralProgramId", "status"],
       exclude: ["createdAt", "updatedAt"]
     }
   }
@@ -43,7 +43,7 @@ export class ReferralProgramAffiliate extends Model {
   @Column({type: DataType.STRING, allowNull: false}) affiliateUserId: string;
 
   @ForeignKey(() => ReferralProgram)
-  @Column({type: DataType.STRING, allowNull: false}) referralId: string;
+  @Column({type: DataType.STRING, allowNull: false}) referralProgramId: string;
 
   @Column({type: DataType.STRING, defaultValue: ReferralStatus.Registered}) referralStatus: ReferralStatus;
   @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;

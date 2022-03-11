@@ -69,6 +69,7 @@ import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
+import {UserRaiseView} from "./user/UserRaiseView";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -82,6 +83,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
+      UserRaiseView,
 
 
       /** Admin section */
@@ -97,6 +99,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestDispute,
       QuestsStarred,
       QuestsResponse,
+      QuestBlackList,
       QuestDisputeReview,
 
 
@@ -164,7 +167,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       MessageMedia,
       ProposalMedia,
       PortfolioMedia,
-      QuestBlackList,
       DiscussionMedia,
       QuestResponseMedia,
       DiscussionCommentMedia,
@@ -271,3 +273,4 @@ export * from "./admin/AdminQuestDisputesStatistic"
 export * from "./chats/ChatData";
 export * from "./chats/ChatMemberData";
 export * from "./chats/ChatMemberDeletionData";
+export * from "./user/UserRaiseView";
