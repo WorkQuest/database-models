@@ -6,13 +6,15 @@ import {ReferralProgramReferral} from "./ReferralProgramReferral";
 
 @Scopes(() => ({
   defaultScope: {
+    attributes: {
+      exclude: ["createdAt", "updatedAt"]
+    }
+  },
+  shortAffiliateWithWallet: {
     include: [{
       model: User.scope('shortWithWallet'),
       as: 'affiliateUser'
     }]
-  },
-  referral: {
-    attributes: ["userId", "referralId"]
   }
 }))
 @Table
@@ -28,6 +30,6 @@ export class ReferralProgramAffiliate extends Model {
 
   @BelongsTo(() => User, {constraints: false}) affiliateUser: User;
 
-  @HasMany(() => ReferralProgramReferral) affiliate: ReferralProgramReferral[]
+  @HasMany(() => ReferralProgramReferral) referralProgramReferral: ReferralProgramReferral[]
 }
 

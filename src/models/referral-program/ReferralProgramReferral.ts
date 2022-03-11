@@ -23,21 +23,23 @@ export enum RewardStatus {
 
 @Scopes(() => ({
   defaultScope: {
-    include: [{
-      model: User.scope('shortWithWallet'),
-      as: 'userAffiliate'
-    }]
-  },
-  shortReferral: {
     attributes: {
-      include: ["affiliateUserId", "referralProgramId", "referralStatus", "rewardStatus"],
       exclude: ["createdAt", "updatedAt"]
     }
   },
-  shortReferralProgramReferrals: {
+  shortReferralWithWallet: {
+    include: [{
+      model: User.scope('shortWithWallet'),
+      as: 'referralUser'
+    }],
+    attributes: {
+      exclude: ["createdAt", "updatedAt"]
+    }
+  },
+  shortReferralsMedia: {
     include: [{
       model: User.scope('short'),
-      as: 'userAffiliate'
+      as: 'referralUser'
     }],
     attributes: {
       exclude: ["createdAt", "updatedAt"]
@@ -52,11 +54,11 @@ export class ReferralProgramReferral extends Model {
   @Column({type: DataType.STRING, allowNull: false}) referralUserId: string;
 
   @ForeignKey(() => ReferralProgramAffiliate)
-  @Column({type: DataType.STRING, allowNull: false}) referralProgramId: string;
+  @Column({type: DataType.STRING, allowNull: false}) affiliateId: string;
 
   @Column({type: DataType.STRING, defaultValue: ReferralStatus.Registered}) referralStatus: ReferralStatus;
   @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;
 
-  @BelongsTo(() => User) userAffiliate: User;
+  @BelongsTo(() => User) referralUser: User;
   @BelongsTo(() => ReferralProgramAffiliate) referralProgramAffiliate: ReferralProgramAffiliate;
 }
