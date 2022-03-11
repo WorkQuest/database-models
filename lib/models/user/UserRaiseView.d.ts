@@ -2,8 +2,7 @@ import { Model } from 'sequelize-typescript';
 import { User } from "./User";
 export declare enum UserRaiseStatus {
     Paid = 0,
-    Unpaid = 1,
-    Closed = 2
+    Closed = 1
 }
 export declare enum UserRaiseDuration {
     OneDay = 1,

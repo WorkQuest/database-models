@@ -4,8 +4,7 @@ import {User} from "./User";
 
 export enum UserRaiseStatus {
   Paid = 0,
-  Unpaid = 1,
-  Closed = 2,
+  Closed = 1,
 }
 
 export enum UserRaiseDuration {
@@ -28,7 +27,7 @@ export class UserRaiseView extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: UserRaiseStatus.Unpaid}) status: UserRaiseStatus;
+  @Column({type: DataType.INTEGER, defaultValue: UserRaiseStatus.Closed}) status: UserRaiseStatus;
   @Column({type: DataType.INTEGER, defaultValue: null}) duration: UserRaiseDuration;
   @Column({type: DataType.INTEGER, defaultValue: null}) type: UserRaiseType;
 
