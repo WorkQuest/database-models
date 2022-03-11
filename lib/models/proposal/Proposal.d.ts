@@ -8,7 +8,7 @@ import { ProposalVoteCastEvent } from "./ProposalVoteCastEvent";
 import { Model } from "sequelize-typescript";
 export declare class Proposal extends Model {
     id: string;
-    userId: string;
+    proposerUserId: string;
     discussionId: string;
     title: string;
     description: string;
@@ -17,7 +17,7 @@ export declare class Proposal extends Model {
     createdEvent: ProposalCreatedEvent;
     executedEvent: ProposalExecutedEvent;
     voteCastEvents: ProposalVoteCastEvent[];
-    author: User;
+    proposerUser: User;
     discussion: Discussion;
     medias: Media[];
 }

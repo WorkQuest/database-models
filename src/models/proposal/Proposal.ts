@@ -50,7 +50,7 @@ export class Proposal extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @Column({type: DataType.STRING, allowNull: false}) proposerUserId: string;
 
   @ForeignKey(() => Discussion) /** Auto created Discussion when status ProposalStatus.Active */
   @Column({type: DataType.STRING, allowNull: true}) discussionId: string;
@@ -68,7 +68,7 @@ export class Proposal extends Model {
   @HasOne(() => ProposalExecutedEvent) executedEvent: ProposalExecutedEvent;
   @HasMany(() => ProposalVoteCastEvent) voteCastEvents: ProposalVoteCastEvent[];
 
-  @BelongsTo(() => User) author: User;
+  @BelongsTo(() => User) proposerUser: User;
   @BelongsTo(() => Discussion) discussion: Discussion;
   @BelongsToMany(() => Media, () => ProposalMedia) medias: Media[];
 }
