@@ -9,6 +9,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bech32": "^2.0.0",
+    "bech32-converting": "^1.0.8",
     "crypto-addr-codec": "^0.1.7",
     "joi": "^17.4.0",
     "sequelize": "6.6.2",
