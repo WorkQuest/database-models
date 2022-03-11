@@ -11,9 +11,10 @@ import { Chat } from "../chats/Chat";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
-import { Model } from "sequelize-typescript";
 import { ReferralProgram } from "../referral-program/ReferralProgram";
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
+import { Model } from "sequelize-typescript";
+import { UserRaiseView } from "./UserRaiseView";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -110,6 +111,7 @@ export declare class User extends Model {
     locationPostGIS: LocationPostGISType;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
+    raiseView: UserRaiseView;
     avatar: Media;
     sessions: Session[];
     reviews: QuestsReview[];
