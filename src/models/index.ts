@@ -65,6 +65,7 @@ import {ReferralParseBlock} from "./referral-program/ReferralParseBlock";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
+import {UserRaiseView} from "./user/UserRaiseView";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -78,6 +79,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
+      UserRaiseView,
 
 
       /** Admin section */
@@ -93,6 +95,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestDispute,
       QuestsStarred,
       QuestsResponse,
+      QuestBlackList,
       QuestDisputeReview,
 
 
@@ -156,7 +159,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       MessageMedia,
       ProposalMedia,
       PortfolioMedia,
-      QuestBlackList,
       DiscussionMedia,
       QuestResponseMedia,
       DiscussionCommentMedia,
@@ -259,3 +261,4 @@ export * from "./referral-program/ReferralEventRegisteredAffiliate";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic"
+export * from "./user/UserRaiseView";
