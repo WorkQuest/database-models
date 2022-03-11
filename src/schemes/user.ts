@@ -1,7 +1,7 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
-import {walletAddressSchema} from "./wallet";
+import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
@@ -196,6 +196,15 @@ export const userShortWithAdditionalInfoSchema = Joi.object({
   ratingStatistic: userRatingStatisticSchema,
 }).label('UserShort');
 
+export const userShortWithWalletSchema = Joi.object({
+  id: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+  ratingStatistic: userRatingStatisticSchema,
+  wallet: walletAddressesSchema,
+}).label('UserShortWithWallet');
+
 export const userListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('UserListSort');
@@ -247,7 +256,7 @@ export const tokensWithStatus = Joi.object({
   userStatus: userStatusSchema,
   access: jwtTokenAccess,
   refresh: jwtTokenRefresh,
-  address: walletAddressSchema
+  address: walletAddressSchema,
 }).label("TokensWithStatus");
 
 /** Sessions */

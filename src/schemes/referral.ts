@@ -1,16 +1,37 @@
 import * as Joi from "joi";
-import {
-  accountAddressSchema,
-  accountAddressesSchema,
-  coinAmountSchema,
-  idSchema,
-  countSchema, transactionHashSchema, isoDateSchema, timestampSchema,
-} from "./common";
 import {ReferralStatus, RewardStatus} from "../models";
-import {userFirstNameSchema, userLastNameSchema, userShortSchema} from "./user";
+import {userFirstNameSchema, userLastNameSchema, userShortSchema, userShortWithWalletSchema} from "./user";
+import {
+  idSchema,
+  countSchema,
+  timestampSchema,
+  coinAmountSchema,
+  accountAddressSchema,
+  transactionHashSchema,
+  accountAddressesSchema,
+} from "./common";
 
 export const referralProgramReferralStatusSchema = Joi.string().valid(...Object.values(ReferralStatus)).example(ReferralStatus.Created).label('ReferralProgramReferralStatus');
-export const referralProgramRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralProgramRewardStatus');
+export const referralProgramReferralRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralProgramReferralRewardStatus');
+
+export const referralProgramAffiliateSchema = Joi.object({
+  id: idSchema,
+  affiliateUserId: idSchema,
+  paidReward: coinAmountSchema,
+  referralCodeId: idSchema,
+  affiliateUser: userShortWithWalletSchema,
+  // affiliate
+}).label('');
+
+export const referralProgramReferralSchema = Joi.object({
+  id: idSchema,
+  referralUserId:
+  referralProgramId
+  referralStatus
+  rewardStatus
+  userAffiliate: userShortWithWalletSchema,
+  referralProgramAffiliate
+}).label('');
 
 export const referralProgramUserReferralsScheme = Joi.object({
   v: accountAddressSchema,
@@ -24,7 +45,7 @@ export const referralProgramReferralShortScheme = Joi.object({
   referralUserId: idSchema,
   referralProgramId: idSchema,
   referralStatus: referralProgramReferralStatusSchema,
-  rewardStatus: referralProgramRewardStatusSchema,
+  rewardStatus: referralProgramReferralRewardStatusSchema,
   userAffiliate: userShortSchema
 }).label('ReferralProgramAffiliateShort')
 
