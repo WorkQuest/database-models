@@ -8,7 +8,7 @@ export class ProposalVoteCastEvent extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID()}) id: string;
 
   @ForeignKey(() => Proposal)
-  @Column({type: DataType.STRING, allowNull: false}) proposalId: string;
+  @Column(DataType.STRING) proposalId: string;
 
   @Column(DataType.STRING) network: BlockchainNetworks;
 
