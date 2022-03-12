@@ -1,49 +1,65 @@
 import * as Joi from "joi";
-import {idSchema, limitSchema, offsetSchema, searchSchema, sortDirectionSchema, transactionHashSchema} from "./common";
-import {ProposalStatus} from "../models/proposal/types";
+import {ProposalStatus} from "../models";
+import {
+  idSchema,
+  countSchema,
+  limitSchema,
+  offsetSchema,
+  searchSchema,
+  timestampSchema,
+  sortDirectionSchema,
+  accountAddressSchema,
+  transactionHashSchema,
+} from "./common";
 
-export const proposalNumberSchema = Joi.number().example(1).label('ProposalNumber');
 export const proposalTitleSchema = Joi.string().example('New post').label('ProposalTitle');
 export const proposalDescriptionSchema = Joi.string().example('Hello world').label('ProposalDescription');
 export const proposalStatusSchema = Joi.number().valid(...Object.keys(ProposalStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(ProposalStatus.Pending).label("ProposalStatus");
-export const proposerIdWalletSchema = Joi.string().example('0xe7489ba661e0487669a685d76f4ee978e931dec9').label('ContractAddress');
-export const proposerVotingPeriodSchema = Joi.string().example('1').label('ProposerVotingPeriod');
-export const proposalTimestampSchema = Joi.date().timestamp('unix').example(1631568392).label('ContractTimeStamp');
-export const nonceIdSchema = Joi.string().example("65464546452165556432245623").label('NonceId');
+export const proposalNonceIdSchema = Joi.string().example("65464546452165556432245623").label('ProposalNonceId');
+
+export const proposalVoteCastVotesSchema = Joi.string().example('Vote...').label('ProposalVoteCastVotes')
+export const proposalVoteCastSupportSchema = Joi.boolean().example(true).label('ProposalVoteCastSupport');
+
+export const proposalCreatedEvenVotingPeriodSchema = Joi.number().example(4).label('ProposalCreatedEvenVotingPeriod');
+export const proposalCreatedEvenMinimumQuorumSchema = Joi.number().example(2).label('ProposalCreatedEvenMinimumQuorum');
+
 export const proposalStatusesSchema = Joi.array().items(proposalStatusSchema).label('ProposalStatuses');
 
 export const proposalSchema = Joi.object({
   id: idSchema,
-  userId: idSchema,
-  proposer: proposerIdWalletSchema,
-  nonce: nonceIdSchema,
-  proposalId: proposalNumberSchema,
+  discussionId: idSchema,
+  proposerUserId: idSchema,
   title: proposalTitleSchema,
   description: proposalDescriptionSchema,
   status: proposalStatusSchema,
+  nonce: proposalNonceIdSchema,
 }).label('Proposal');
 
-export const proposalEventSchema = Joi.object({
-  transId: proposalNumberSchema,
+export const proposalVoteCastEventSchema = Joi.object({
+  proposalId: idSchema,
   transactionHash: transactionHashSchema,
-  timestamp: proposalTimestampSchema,
-  blockNumber: proposalTimestampSchema,
-  proposer: proposerIdWalletSchema,
+  voter: accountAddressSchema,
+  contractProposalId: countSchema,
+  support: proposalVoteCastSupportSchema,
+  votes: proposalVoteCastVotesSchema,
+  timestamp: timestampSchema,
+}).label('ProposalVoteCastEvent');
+
+export const proposalCreatedEventSchema = Joi.object({
+  proposalId: idSchema,
+  transactionHash: transactionHashSchema,
+  contractProposalId: countSchema,
+  nonce: proposalNonceIdSchema,
+  timestamp: timestampSchema,
+  proposer: accountAddressSchema,
   description: proposalDescriptionSchema,
-  votingPeriod: proposerVotingPeriodSchema,
-  minimumQuorum: proposerVotingPeriodSchema,
-}).label('ProposalEvent')
-
-export const allProposalsDataSchema = Joi.array().items(proposalEventSchema).label('AllProposalsData');
-
-export const allProposalsSchema = Joi.object({
-  count: proposalNumberSchema,
-  data: allProposalsDataSchema
-}).label('AllProposals');
+  votingPeriod: proposalCreatedEvenVotingPeriodSchema,
+  minimumQuorum: proposalCreatedEvenMinimumQuorumSchema,
+}).label('ProposalEvent');
 
 export const proposalSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
-}).label('ProposalSort')
+}).default({}).label('ProposalSort')
 
 export const proposalQuerySchema = Joi.object({
   statuses: proposalStatusesSchema,
