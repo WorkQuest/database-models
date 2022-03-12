@@ -13,3 +13,5 @@ export declare const proposalVoteCastEventSchema: Joi.ObjectSchema<any>;
 export declare const proposalCreatedEventSchema: Joi.ObjectSchema<any>;
 export declare const proposalSortSchema: Joi.ObjectSchema<any>;
 export declare const proposalQuerySchema: Joi.ObjectSchema<any>;
+export declare const proposalVoteCastEventSortSchema: Joi.ObjectSchema<any>;
+export declare const proposalVoteCastEventQuerySchema: Joi.ObjectSchema<any>;
