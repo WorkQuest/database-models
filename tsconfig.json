@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "declaration": true,
     "outDir": "lib",
     "rootDir": "src",

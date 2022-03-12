@@ -5,6 +5,7 @@ export declare class ProposalExecutedEvent extends Model {
     id: string;
     proposalId: string;
     network: BlockchainNetworks;
+    timestamp: string;
     transactionHash: string;
     contractProposalId: number;
     succeeded: boolean;
