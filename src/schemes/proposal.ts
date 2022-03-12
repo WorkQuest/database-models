@@ -62,11 +62,11 @@ export const proposalSortSchema = Joi.object({
 }).default({}).label('ProposalSort');
 
 export const proposalQuerySchema = Joi.object({
-  statuses: proposalStatusesSchema,
   q: searchSchema,
-  sort: proposalSortSchema,
   limit: limitSchema,
   offset: offsetSchema,
+  sort: proposalSortSchema,
+  statuses: proposalStatusesSchema.default(null),
 }).label('ProposalQuery');
 
 export const proposalVoteCastEventSortSchema = Joi.object({
@@ -78,5 +78,5 @@ export const proposalVoteCastEventQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
   sort: proposalVoteCastEventSortSchema,
-  support: proposalVoteCastSupportSchema,
+  support: proposalVoteCastSupportSchema.default(null),
 }).label('ProposalQuery');
