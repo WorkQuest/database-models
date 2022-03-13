@@ -1,11 +1,15 @@
 import { Model } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
+import { Proposal } from "./Proposal";
 export declare class ProposalVoteCastEvent extends Model {
+    id: string;
+    proposalId: string;
+    network: BlockchainNetworks;
     transactionHash: string;
     voter: string;
-    proposalId: number;
+    contractProposalId: number;
     support: boolean;
     votes: string;
     timestamp: string;
-    network: BlockchainNetworks;
+    proposal: Proposal;
 }

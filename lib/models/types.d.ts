@@ -3,6 +3,7 @@ export declare enum BlockchainNetworks {
     ethMainNetwork = "ethMainNetwork",
     rinkebyTestNetwork = "rinkebyTestNetwork",
     bscTestNetwork = "bscTestNetwork",
+    workQuestNetwork = "workQuestNetwork",
     workQuestDevNetwork = "workQuestDevNetwork"
 }
 export declare type LocationType = {

@@ -1,36 +1,15 @@
-import {User} from '../user/User';
+import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Scopes, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
-import {ReferralProgram} from "./ReferralProgram";
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey,
-  Model,
-  Scopes,
-  Table
-} from 'sequelize-typescript';
-
-export enum ReferralStatus {
-  Created = "created",
-  Registered = "registered",
-}
-
-export enum RewardStatus {
-  Paid = "paid",
-  Claimed = "claimed",
-}
+import {User} from '../user/User';
+import {ReferralProgramReferral} from "./ReferralProgramReferral";
 
 @Scopes(() => ({
   defaultScope: {
     include: [{
       model: User.scope('shortWithWallet'),
-      as: 'user'
-    }]
-  },
-  shortAffiliate: {
+      as: 'affiliateUser',
+    }],
     attributes: {
-      include: ["affiliateUserId", "referralProgramId", "status"],
       exclude: ["createdAt", "updatedAt"]
     }
   }
@@ -42,12 +21,10 @@ export class ReferralProgramAffiliate extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) affiliateUserId: string;
 
-  @ForeignKey(() => ReferralProgram)
-  @Column({type: DataType.STRING, allowNull: false}) referralProgramId: string;
+  @Column({type: DataType.STRING, defaultValue: () => getUUID()}) referralCodeId: string;
 
-  @Column({type: DataType.STRING, defaultValue: ReferralStatus.Registered}) referralStatus: ReferralStatus;
-  @Column({type: DataType.STRING, defaultValue: null}) rewardStatus: RewardStatus;
+  @BelongsTo(() => User, {constraints: false}) affiliateUser: User;
 
-  @BelongsTo(() => User) user: User;
-  @BelongsTo(() => ReferralProgram) referral: ReferralProgram;
+  @HasMany(() => ReferralProgramReferral) referralProgramReferral: ReferralProgramReferral[]
 }
+

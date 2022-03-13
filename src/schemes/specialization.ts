@@ -19,4 +19,3 @@ export const industryKeysSchema = Joi.array().items(industryKeySchema).label('In
 export const specializationKeysSchema = Joi.array().items(specializationKeySchema).label('SpecializationKeys');
 export const specializationsFilerSchema = Joi.array().items(specializationFilerSchema).label('SpecializationFilers');
 export const modelSpecializationsSchema =  Joi.array().items(modelSpecializationSchema).label('ModelSpecializations');
-

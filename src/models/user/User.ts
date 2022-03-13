@@ -10,9 +10,12 @@ import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
+import {UserRaiseView} from "./UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
+import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
   BelongsTo,
   Column,
@@ -24,8 +27,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {ReferralProgram} from "../referral-program/ReferralProgram";
-import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
+
 
 export interface SocialInfo {
   id: string;
@@ -140,6 +142,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     }, {
+      model: UserRaiseView,
+      as: 'raiseView'
+    }, {
       model: UserSpecializationFilter,
       as: 'userSpecializations',
       attributes: ['path'],
@@ -162,6 +167,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithAdditionalInfo: {
@@ -172,6 +180,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithWallet: {
@@ -182,6 +193,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }, {
       model: Wallet,
       as: 'wallet'
@@ -239,6 +253,9 @@ export class User extends Model {
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
 
+  /** RaiseView */
+  @HasOne(() => UserRaiseView) raiseView: UserRaiseView;
+
   @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasMany(() => Session) sessions: Session[];
@@ -250,8 +267,8 @@ export class User extends Model {
   @HasOne(() => Wallet) wallet: Wallet;
 
   /** ReferralProgram */
-  @HasOne(() => ReferralProgram) referrerUser: ReferralProgram;
   @HasOne(() => ReferralProgramAffiliate) affiliateUser: ReferralProgramAffiliate;
+  @HasOne(() => ReferralProgramReferral) referralUser: ReferralProgramReferral;
 
   /** Aliases for query */
   @HasOne(() => Chat) chatOfUser: Chat;
