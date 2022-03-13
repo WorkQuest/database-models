@@ -8,13 +8,13 @@ import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
 import { Chat } from "../chats/Chat";
+import { UserRaiseView } from "./UserRaiseView";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
-import { ReferralProgram } from "../referral-program/ReferralProgram";
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
+import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
 import { Model } from "sequelize-typescript";
-import { UserRaiseView } from "./UserRaiseView";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -118,8 +118,8 @@ export declare class User extends Model {
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
-    referrerUser: ReferralProgram;
     affiliateUser: ReferralProgramAffiliate;
+    referralUser: ReferralProgramReferral;
     chatOfUser: Chat;
     chatStatistic: ChatsStatistic;
     chatMember: ChatMember;

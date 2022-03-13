@@ -1,71 +1,44 @@
 import * as Joi from "joi";
 import {ReferralStatus, RewardStatus} from "../models";
-import {userFirstNameSchema, userLastNameSchema, userShortSchema, userShortWithWalletSchema} from "./user";
+import {
+  userLastNameSchema,
+  userFirstNameSchema,
+  userShortWithWalletSchema,
+} from "./user";
 import {
   idSchema,
-  countSchema,
   timestampSchema,
   coinAmountSchema,
+  blockNumberSchema,
   accountAddressSchema,
   transactionHashSchema,
-  accountAddressesSchema,
 } from "./common";
 
-export const referralProgramReferralStatusSchema = Joi.string().valid(...Object.values(ReferralStatus)).example(ReferralStatus.Created).label('ReferralProgramReferralStatus');
-export const referralProgramReferralRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralProgramReferralRewardStatus');
+export const referralStatusSchema = Joi.string().valid(...Object.values(ReferralStatus)).example(ReferralStatus.Created).label('ReferralStatus');
+export const referralRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralRewardStatus');
 
-export const referralProgramAffiliateSchema = Joi.object({
-  id: idSchema,
-  affiliateUserId: idSchema,
-  paidReward: coinAmountSchema,
-  referralCodeId: idSchema,
-  affiliateUser: userShortWithWalletSchema,
-  // affiliate
-}).label('');
-
-export const referralProgramReferralSchema = Joi.object({
-  id: idSchema,
-  referralUserId:
-  referralProgramId
-  referralStatus
-  rewardStatus
-  userAffiliate: userShortWithWalletSchema,
-  referralProgramAffiliate
-}).label('');
-
-export const referralProgramUserReferralsScheme = Joi.object({
-  v: accountAddressSchema,
-  r: accountAddressSchema,
-  s: accountAddressSchema,
-  referral: accountAddressesSchema,
-}).label('ReferralProgramUserReferrals');
-
-export const referralProgramReferralShortScheme = Joi.object({
+export const referralSchema = Joi.object({
   id: idSchema,
   referralUserId: idSchema,
-  referralProgramId: idSchema,
-  referralStatus: referralProgramReferralStatusSchema,
-  rewardStatus: referralProgramReferralRewardStatusSchema,
-  userAffiliate: userShortSchema
-}).label('ReferralProgramAffiliateShort')
+  affiliateId: idSchema,
+  referralStatus: referralStatusSchema,
+  rewardStatus: referralRewardStatusSchema,
+  referralUser: userShortWithWalletSchema,
+  // referralProgramAffiliate: ,
+}).label('Referral');
 
-export const referralProgramReferralsShortScheme = Joi.array().items(referralProgramReferralShortScheme).label('ReferralProgramAffiliatesShort');
+export const affiliateSchema = Joi.object({
+  id: idSchema,
+  affiliateUserId: idSchema,
+  referralCodeId: idSchema,
+  affiliateUser: userShortWithWalletSchema,
+  // referralProgramReferral: ,
+}).label('Affiliate');
 
-export const affiliateUserReferralsSchema = Joi.object({
-  paidRewards: coinAmountSchema,
-  referralId: idSchema,
-  count: countSchema,
-  affiliates: referralProgramReferralsShortScheme
-}).label('ReferralProgramAffiliateShort')
-
-export const referralProgramUserClaimedEventScheme = Joi.object({
-  firstName: userFirstNameSchema,
-  lastName: userLastNameSchema,
-  userId: idSchema,
-  txHash: transactionHashSchema,
-  createdAt: timestampSchema,
+export const referralProgramEventRewardClaimed = Joi.object({
+  blockNumber: blockNumberSchema,
+  transactionHash: transactionHashSchema,
+  affiliate: accountAddressSchema,
   amount: coinAmountSchema,
-  status: referralProgramRewardStatusSchema
-}).label('ReferralUserClaimedEvents')
-
-export const referralProgramUsersClaimedEventsScheme = Joi.array().items(referralProgramUserClaimedEventScheme).label('ReferralProgramUsersClaimedEvents');
+  timestamp: timestampSchema,
+}).label('ReferralProgramEventRewardClaimed');

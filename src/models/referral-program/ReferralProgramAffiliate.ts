@@ -3,12 +3,11 @@ import {getUUID} from '../../utils';
 import {User} from '../user/User';
 import {ReferralProgramReferral} from "./ReferralProgramReferral";
 
-
 @Scopes(() => ({
   defaultScope: {
     include: [{
       model: User.scope('shortWithWallet'),
-      as: 'affiliateUser'
+      as: 'affiliateUser',
     }],
     attributes: {
       exclude: ["createdAt", "updatedAt"]
