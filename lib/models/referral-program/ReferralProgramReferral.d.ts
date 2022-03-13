@@ -12,9 +12,9 @@ export declare enum RewardStatus {
 export declare class ReferralProgramReferral extends Model {
     id: string;
     referralUserId: string;
-    referralProgramId: string;
+    affiliateId: string;
     referralStatus: ReferralStatus;
     rewardStatus: RewardStatus;
-    userAffiliate: User;
+    referralUser: User;
     referralProgramAffiliate: ReferralProgramAffiliate;
 }
