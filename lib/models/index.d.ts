@@ -75,3 +75,5 @@ export * from "./quest/contract-quest/QuestAssignedEvent";
 export * from "./quest/contract-quest/QuestJobStartedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
+export * from "./quest/contract-quest/QuestJobDoneEvent";
+export * from "./quest/contract-quest/QuestJobFinishedEvent";
