@@ -9,6 +9,7 @@ export declare class QuestAssignedEvent extends Model {
     workerAddress: string;
     contractAddress: string;
     timestamp: string;
+    blockNumber: number;
     transactionHash: string;
     network: BlockchainNetworks;
     status: QuestAssignedEventStatus;

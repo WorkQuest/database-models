@@ -8,6 +8,7 @@ export declare enum QuestJobStartedEventStatus {
 export declare class QuestJobStartedEvent extends Model {
     contractAddress: string;
     timestamp: string;
+    blockNumber: number;
     transactionHash: string;
     network: BlockchainNetworks;
     status: QuestJobStartedEventStatus;
