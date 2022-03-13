@@ -271,6 +271,7 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
+export * from "./referral-program/ReferralProgramReferral";
 export * from "./referral-program/ReferralProgramAffiliate";
 export * from "./referral-program/ReferralProgramParseBlock";
 export * from "./referral-program/ReferralProgramEventRewardClaimed";
