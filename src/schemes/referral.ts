@@ -35,10 +35,14 @@ export const affiliateSchema = Joi.object({
   // referralProgramReferral: ,
 }).label('Affiliate');
 
-export const referralProgramEventRewardClaimed = Joi.object({
+export const referralProgramClaimedAndPaidEventNameSchema = Joi.string().valid('PaidReferral', 'RewardClaimed').example('RewardClaimed').label('ReferralProgramClaimedAndPaidEventName');
+
+export const referralProgramClaimedAndPaidEventSchema = Joi.object({
+  referral: idSchema,
+  affiliate: idSchema,
   blockNumber: blockNumberSchema,
   transactionHash: transactionHashSchema,
-  affiliate: accountAddressSchema,
   amount: coinAmountSchema,
   timestamp: timestampSchema,
-}).label('ReferralProgramEventRewardClaimed');
+  event: referralProgramClaimedAndPaidEventNameSchema
+}).label('ReferralProgramClaimedAndPaidEvent');
