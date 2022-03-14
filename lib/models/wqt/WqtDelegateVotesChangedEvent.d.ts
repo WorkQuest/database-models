@@ -3,13 +3,16 @@ import { User } from "../user/User";
 import { BlockchainNetworks } from "../types";
 export declare class WqtDelegateVotesChangedEvent extends Model {
     id: string;
-    userId: string;
+    delegatorUserId: string;
+    delegateeUserId: string;
     transactionHash: string;
-    delegateAddress: string;
+    delegatorAddress: string;
+    delegateeAddress: string;
     previousBalance: string;
     newBalance: string;
     blockNumber: number;
     timestamp: string;
     network: BlockchainNetworks;
-    user: User;
+    delegatorUser: User;
+    delegateeUser: User;
 }

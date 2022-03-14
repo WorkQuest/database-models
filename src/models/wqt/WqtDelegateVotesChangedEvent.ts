@@ -8,7 +8,10 @@ export class WqtDelegateVotesChangedEvent extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.STRING, allowNull: true }) userId: string;
+  @Column({ type: DataType.STRING, allowNull: true }) delegatorUserId: string;
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.STRING, allowNull: true }) delegateeUserId: string;
 
   @Column({
     type: DataType.STRING,
@@ -22,9 +25,17 @@ export class WqtDelegateVotesChangedEvent extends Model {
     type: DataType.STRING,
     allowNull: false,
     set(value: string) {
-      this.setDataValue('delegateAddress', value.toLowerCase());
+      this.setDataValue('delegatorAddress', value.toLowerCase());
     }
-  }) delegateAddress: string;
+  }) delegatorAddress: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    set(value: string) {
+      this.setDataValue('delegateeAddress', value.toLowerCase());
+    }
+  }) delegateeAddress: string;
 
   @Column(DataType.DECIMAL) previousBalance: string;
   @Column(DataType.DECIMAL) newBalance: string;
@@ -32,5 +43,6 @@ export class WqtDelegateVotesChangedEvent extends Model {
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) network: BlockchainNetworks;
 
-  @BelongsTo(() => User) user: User;
+  @BelongsTo(() => User) delegatorUser: User;
+  @BelongsTo(() => User) delegateeUser: User;
 }
