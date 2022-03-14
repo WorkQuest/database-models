@@ -1,5 +1,6 @@
 import { Model } from "sequelize-typescript";
 import { User } from "../user/User";
+import { BlockchainNetworks } from "../types";
 export declare class WqtDelegateVotesChangedEvent extends Model {
     id: string;
     userId: string;
@@ -9,5 +10,6 @@ export declare class WqtDelegateVotesChangedEvent extends Model {
     newBalance: string;
     blockNumber: number;
     timestamp: string;
+    network: BlockchainNetworks;
     user: User;
 }
