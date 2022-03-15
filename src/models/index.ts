@@ -66,6 +66,8 @@ import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 import {UserRaiseView} from "./user/UserRaiseView";
+import {WqtDelegateVotesChangedEvent} from "./wqt/WqtDelegateVotesChangedEvent";
+import {WqtParseBlock} from "./wqt/WqtParseBlock";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -163,6 +165,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestResponseMedia,
       DiscussionCommentMedia,
 
+      /** Wqt section */
+      WqtDelegateVotesChangedEvent,
+      WqtParseBlock,
 
       /** Wallet */
       Wallet,
@@ -263,3 +268,5 @@ export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic"
 export * from "./user/UserRaiseView";
+export * from "./wqt/WqtDelegateVotesChangedEvent";
+export * from "./wqt/WqtParseBlock";

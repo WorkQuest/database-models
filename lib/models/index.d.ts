@@ -70,3 +70,5 @@ export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
+export * from "./wqt/WqtDelegateVotesChangedEvent";
+export * from "./wqt/WqtParseBlock";
