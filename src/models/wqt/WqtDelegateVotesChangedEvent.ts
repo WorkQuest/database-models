@@ -11,7 +11,7 @@ export class WqtDelegateVotesChangedEvent extends Model {
   @Column({ type: DataType.STRING, allowNull: true }) delegatorUserId: string;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.STRING, allowNull: true }) delegateeUserId: string;
+  @Column({ type: DataType.STRING, allowNull: true }) delegateUserId: string;
 
   @Column({
     type: DataType.STRING,
@@ -35,7 +35,7 @@ export class WqtDelegateVotesChangedEvent extends Model {
     set(value: string) {
       this.setDataValue('delegatee', value.toLowerCase());
     }
-  }) delegatee: string;
+  }) delegate: string;
 
   @Column(DataType.DECIMAL) previousBalance: string;
   @Column(DataType.DECIMAL) newBalance: string;
@@ -44,5 +44,5 @@ export class WqtDelegateVotesChangedEvent extends Model {
   @Column(DataType.STRING) network: BlockchainNetworks;
 
   @BelongsTo(() => User) delegatorUser: User;
-  @BelongsTo(() => User) delegateeUser: User;
+  @BelongsTo(() => User) delegateUser: User;
 }
