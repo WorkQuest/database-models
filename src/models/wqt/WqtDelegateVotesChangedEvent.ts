@@ -33,7 +33,7 @@ export class WqtDelegateVotesChangedEvent extends Model {
     type: DataType.STRING,
     allowNull: false,
     set(value: string) {
-      this.setDataValue('delegatee', value.toLowerCase());
+      this.setDataValue('delegate', value.toLowerCase());
     }
   }) delegate: string;
 
