@@ -25,17 +25,17 @@ export class WqtDelegateVotesChangedEvent extends Model {
     type: DataType.STRING,
     allowNull: false,
     set(value: string) {
-      this.setDataValue('delegatorAddress', value.toLowerCase());
+      this.setDataValue('delegator', value.toLowerCase());
     }
-  }) delegatorAddress: string;
+  }) delegator: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
     set(value: string) {
-      this.setDataValue('delegateeAddress', value.toLowerCase());
+      this.setDataValue('delegatee', value.toLowerCase());
     }
-  }) delegateeAddress: string;
+  }) delegatee: string;
 
   @Column(DataType.DECIMAL) previousBalance: string;
   @Column(DataType.DECIMAL) newBalance: string;

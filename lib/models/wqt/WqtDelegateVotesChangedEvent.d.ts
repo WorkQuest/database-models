@@ -6,8 +6,8 @@ export declare class WqtDelegateVotesChangedEvent extends Model {
     delegatorUserId: string;
     delegateeUserId: string;
     transactionHash: string;
-    delegatorAddress: string;
-    delegateeAddress: string;
+    delegator: string;
+    delegatee: string;
     previousBalance: string;
     newBalance: string;
     blockNumber: number;
