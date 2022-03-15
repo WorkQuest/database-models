@@ -1,4 +1,5 @@
 import { Model } from "sequelize-typescript";
+import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { InfoMessage } from "./InfoMessage";
 import { StarredMessage } from "./StarredMessage";
@@ -23,4 +24,5 @@ export declare class Message extends Model {
     star: StarredMessage;
     medias: Media[];
     sender: ChatMember;
+    chat: Chat;
 }

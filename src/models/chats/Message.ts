@@ -68,4 +68,5 @@ export class Message extends Model {
 
   @BelongsToMany(() => Media, () => MessageMedia) medias: Media[];
   @BelongsTo(() => ChatMember, 'senderMemberId') sender: ChatMember;
+  @BelongsTo(() => Chat) chat: Chat;
 }
