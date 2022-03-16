@@ -56,8 +56,7 @@ export enum HTTPVerb {
 }
 
 export enum NetworkProfileVisibilityType {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
+  EveryoneOnThInternet = 0,
+  RegisteredUsers = 1,
+  SubmittingOffer = 2,
 }
