@@ -27,6 +27,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
+import {ProfileVisibilitySetting} from "./ProfileVisibilitySetting";
 
 
 export interface SocialInfo {
@@ -248,6 +249,9 @@ export class User extends Model {
   @Column(DataType.JSONB) location: LocationType;
   @Column(DataType.STRING) locationPlaceName: string;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
+
+  /** ProfileVisability */
+  @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

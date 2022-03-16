@@ -15,6 +15,7 @@ import { ChatsStatistic } from "../chats/ChatsStatistic";
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
 import { Model } from "sequelize-typescript";
+import { ProfileVisibilitySetting } from "./ProfileVisibilitySetting";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -109,6 +110,7 @@ export declare class User extends Model {
     location: LocationType;
     locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
+    profileVisibilitySetting: ProfileVisibilitySetting;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
     raiseView: UserRaiseView;
