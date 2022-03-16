@@ -183,7 +183,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestResponseMedia,
       DiscussionCommentMedia,
 
-
       /** Wallet */
       Wallet,
 
