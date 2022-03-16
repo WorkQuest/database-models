@@ -2,7 +2,7 @@ import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
 import {walletAddressesSchema, walletAddressSchema} from "./wallet";
-import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
+import {StatusKYC, BlackListStatus, UserRole, UserStatus, NetworkProfileVisibilityType, Priority} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   chatsStatisticSchema,
@@ -39,6 +39,8 @@ export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).ma
 export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
+export const networkProfileVisibilitySchema = Joi.number().valid(...Object.keys(NetworkProfileVisibilityType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibilityType.EveryoneOnTheInternet).label("NetworkProfileVisibility");
+export const jobPriorityProfileVisibilitySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label("JobPriorityProfileVisibility");
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),

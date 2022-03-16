@@ -51,7 +51,7 @@ export declare enum HTTPVerb {
     DELETE = "DELETE"
 }
 export declare enum NetworkProfileVisibilityType {
-    EveryoneOnThInternet = 0,
+    EveryoneOnTheInternet = 0,
     RegisteredUsers = 1,
     SubmittingOffer = 2
 }

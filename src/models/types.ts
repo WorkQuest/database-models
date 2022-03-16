@@ -56,7 +56,7 @@ export enum HTTPVerb {
 }
 
 export enum NetworkProfileVisibilityType {
-  EveryoneOnThInternet = 0,
+  EveryoneOnTheInternet = 0,
   RegisteredUsers = 1,
   SubmittingOffer = 2,
 }
