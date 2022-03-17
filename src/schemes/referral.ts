@@ -13,7 +13,6 @@ import {
   accountAddressSchema,
   transactionHashSchema,
 } from "./common";
-import {walletAddressSchema} from "./wallet";
 
 export const referralStatusSchema = Joi.string().valid(...Object.values(ReferralStatus)).example(ReferralStatus.Created).label('ReferralStatus');
 export const referralRewardStatusSchema = Joi.string().valid(...Object.values(RewardStatus)).example(RewardStatus.Paid).label('ReferralRewardStatus');

@@ -1,8 +1,9 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
-import {walletAddressesSchema, walletAddressSchema, walletOnlyHexAddressSchema} from "./wallet";
+import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
+import {affiliateOnlyIdSchema, walletOnlyHexAddressSchema} from "../../lib/schemes";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   chatsStatisticSchema,
@@ -29,7 +30,6 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from "./common";
-import {affiliateOnlyIdSchema} from "./referral";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
