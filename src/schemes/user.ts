@@ -1,7 +1,7 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
-import {walletAddressesSchema, walletAddressSchema} from "./wallet";
+import {walletAddressesSchema, walletAddressSchema, walletOnlyHexAddressSchema} from "./wallet";
 import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
@@ -29,6 +29,7 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from "./common";
+import {affiliateOnlyIdSchema} from "./referral";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
@@ -130,6 +131,8 @@ export const userMeSchema = Joi.object({
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
+  wallet: walletOnlyHexAddressSchema,
+  affiliateUser: affiliateOnlyIdSchema,
   createdAt: isoDateSchema,
 }).label("UserMe");
 
