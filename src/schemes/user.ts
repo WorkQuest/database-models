@@ -43,6 +43,11 @@ export const workerWagePerHourSchema = Joi.string().example("123").label('Worker
 export const networkProfileVisibilitySchema = Joi.number().valid(...Object.keys(NetworkProfileVisibility).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibility.EveryoneOnTheInternet).label("NetworkProfileVisibility");
 export const jobPriorityProfileVisibilitySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label("JobPriorityProfileVisibility");
 
+export const profileVisibilitySchema = Joi.object({
+  networkProfileVisibility: networkProfileVisibilitySchema.allow(null).required(),
+  jobPriorityProfileVisibility: jobPriorityProfileVisibilitySchema.allow(null).required(),
+}).label('ProfileVisibility');
+
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
   twitter: Joi.string().allow(null).label('Twitter'),
@@ -295,3 +300,5 @@ export const userBlackListSchema = Joi.object({
   blockedByAdmin: adminSchema,
   unblockedByAdmin: adminSchema,
 }).label('UserBlackList');
+
+

@@ -10,6 +10,7 @@ export declare const userRoleSchema: Joi.StringSchema;
 export declare const workerWagePerHourSchema: Joi.StringSchema;
 export declare const networkProfileVisibilitySchema: Joi.NumberSchema;
 export declare const jobPriorityProfileVisibilitySchema: Joi.NumberSchema;
+export declare const profileVisibilitySchema: Joi.ObjectSchema<any>;
 export declare const userSocialMediaNicknamesSchema: Joi.ObjectSchema<any>;
 export declare const userKnowledgeSchema: Joi.ObjectSchema<any>;
 export declare const userWorkExperienceSchema: Joi.ObjectSchema<any>;
