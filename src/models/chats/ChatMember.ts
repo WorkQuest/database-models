@@ -62,6 +62,6 @@ export class ChatMember extends Model {
   @BelongsTo(() => Admin) admin: Admin;
   @BelongsTo(() => Chat) chat: Chat;
 
-  @HasOne(() => ChatMemberDeletionData) chatMemberDeletionData: ChatMemberDeletionData;
   @HasOne(() => ChatMemberData) chatMemberData: ChatMemberData;
+  @HasOne(() => ChatMemberDeletionData) chatMemberDeletionData: ChatMemberDeletionData;
 }
