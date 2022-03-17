@@ -70,3 +70,4 @@ export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
+export * from "./user/ProfileVisibilitySetting";

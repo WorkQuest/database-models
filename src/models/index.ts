@@ -262,5 +262,6 @@ export * from "./referral-program/ReferralProgramEventPaidReferral";
 export * from "./referral-program/ReferralProgramEventRegisteredAffiliate";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
-export * from "./admin/AdminQuestDisputesStatistic"
+export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
+export * from "./user/ProfileVisibilitySetting";
