@@ -54,9 +54,3 @@ export enum HTTPVerb {
   PUT = 'PUT',
   DELETE = 'DELETE',
 }
-
-export enum NetworkProfileVisibilityType {
-  EveryoneOnTheInternet = 0,
-  RegisteredUsers = 1,
-  SubmittingOffer = 2,
-}
