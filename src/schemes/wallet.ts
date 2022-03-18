@@ -9,7 +9,3 @@ export const walletAddressesSchema = Joi.object({
   address: walletAddressSchema,
   bech32Address: walletBech32AddressSchema,
 }).label('WalletAddresses');
-
-export const walletOnlyHexAddressSchema = Joi.object({
-  address: walletAddressSchema
-}).label('WalletOnlyHexAddress');

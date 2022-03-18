@@ -5,4 +5,3 @@ export declare const referralSchema: Joi.ObjectSchema<any>;
 export declare const affiliateSchema: Joi.ObjectSchema<any>;
 export declare const referralProgramClaimedAndPaidEventNameSchema: Joi.StringSchema;
 export declare const referralProgramClaimedAndPaidEventSchema: Joi.ObjectSchema<any>;
-export declare const affiliateOnlyIdSchema: Joi.ObjectSchema<any>;

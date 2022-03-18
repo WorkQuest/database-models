@@ -1,16 +1,11 @@
 import * as Joi from "joi";
 import {ReferralStatus, RewardStatus} from "../models";
-import {
-  userLastNameSchema,
-  userFirstNameSchema,
-  userShortWithWalletSchema,
-} from "./user";
+import {userShortWithWalletSchema} from "./user";
 import {
   idSchema,
   timestampSchema,
   coinAmountSchema,
   blockNumberSchema,
-  accountAddressSchema,
   transactionHashSchema,
 } from "./common";
 
@@ -46,7 +41,3 @@ export const referralProgramClaimedAndPaidEventSchema = Joi.object({
   timestamp: timestampSchema,
   event: referralProgramClaimedAndPaidEventNameSchema
 }).label('ReferralProgramClaimedAndPaidEvent');
-
-export const affiliateOnlyIdSchema = Joi.object({
-  referralCodeId: idSchema
-}).label('AffiliateOnlyId');

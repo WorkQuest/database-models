@@ -1,9 +1,9 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
+import {affiliateSchema} from "./referral";
 import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
-import {affiliateOnlyIdSchema, walletOnlyHexAddressSchema} from "../../lib/schemes";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   chatsStatisticSchema,
@@ -131,8 +131,8 @@ export const userMeSchema = Joi.object({
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
-  wallet: walletOnlyHexAddressSchema,
-  affiliateUser: affiliateOnlyIdSchema,
+  wallet: walletAddressesSchema,
+  affiliateUser: affiliateSchema,
   createdAt: isoDateSchema,
 }).label("UserMe");
 
