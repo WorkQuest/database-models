@@ -7,12 +7,9 @@ import {
   limitSchema,
   offsetSchema,
   searchSchema,
-  isoDateSchema,
   sortDirectionSchema,
 } from "./common";
 import {ChatType, MessageType, SenderMessageStatus, MessageAction, MemberType, MemberStatus} from "../models";
-import {userShortSchema, userShortWithAdditionalInfoSchema} from "./user";
-import {adminSchema} from "./admin";
 import {questChatSchema} from "./quest";
 
 /** Chat message */
@@ -22,6 +19,9 @@ export const messageTextSchema = Joi.string().example("Hello world!").label('Mes
 export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
 
 /** Chat metadata */
+export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.private).label("ChatType");
+export const chatNameSchema = Joi.string().example('Chat name').label('ChatName');
+
 export const chatDataSchema = Joi.object({
   id: idSchema,
   chatId: idSchema,
@@ -29,11 +29,25 @@ export const chatDataSchema = Joi.object({
 }).label('ChatData');
 
 
-
 /** Chat member */
-export const chatMemberUnreadCountMessagesSchema = Joi.number().min(0).label('UnreadCountMessages');
+export const chatMemberDataUnreadCountMessagesSchema = Joi.number().min(0).example(19).label('UnreadCountMessages');
 export const chatMemberTypeSchema = Joi.string().valid(...Object.values(MemberType)).example(MemberType.User).label("ChatMemberType");
 export const chatMemberStatusSchema = Joi.string().valid(...Object.values(MemberStatus)).example(MemberStatus.Active).label("ChatMemberStatus");
+
+export const chatMemberDataSchema = Joi.object({
+  id: idSchema,
+  chatMemberId: idSchema,
+  lastReadMessageId: idSchema,
+  unreadCountMessages: chatMemberDataUnreadCountMessagesSchema,
+  lastReadMessageNumber: messageNumberSchema,
+}).label('ChatMemberData');
+
+export const chatMemberDeletionDataSchema = Joi.object({
+  id: idSchema,
+  chatMemberId: idsSchema,
+  beforeDeletionMessageId: idSchema,
+  beforeDeletionMessageNumber: messageNumberSchema,
+}).label('ChatMemberDeletionData');
 
 export const chatMemberSchema = Joi.object({
   id: idSchema,
@@ -94,11 +108,21 @@ export const infoMessageSchema = Joi.object({
   message: messageSchema,
 }).label('InfoMessageSchema');
 
-/** Chat */
-export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.private).label("ChatType");
-export const chatNameSchema = Joi.string().example('Chat name').label('ChatName');
+/** Group chat */
+export const groupChatSchema = Joi.object({
+  id: idSchema,
+  name: chatNameSchema,
+  ownerMemberId: idSchema,
+  chatId: idSchema
+}).label('GroupChat');
 
+/** Chat */
 export const chatSchema = Joi.object({
+  id: idSchema,
+  type: chatTypeSchema,
+}).label('Chat');
+
+export const chatForGetSchema = Joi.object({
   id: idSchema,
   type: chatTypeSchema,
   members: chatMemberSchema,
@@ -107,20 +131,6 @@ export const chatSchema = Joi.object({
   chatData: chatDataSchema,
   firstMemberInPrivateChat: chatMemberSchema,
   secondMemberInPrivateChat: chatMemberSchema,
-}).label('Chat');
-
-export const chatForGetSchema = Joi.object({
-  id: idSchema,
-  ownerMemberId: idSchema,
-  lastMessageId: idSchema,
-  lastMessageDate: isoDateSchema,
-  name: chatNameSchema.allow(null),
-  type: chatTypeSchema,
-  owner: chatMemberSchema,
-  lastMessage: messageSchema,
-  meMember: chatMemberSchema,
-  members: chatMemberSchema,
-  star: starSchema,
 }).label('ChatForGet');
 
 export const chatsSchema = Joi.array().items(chatSchema).label('Chats');

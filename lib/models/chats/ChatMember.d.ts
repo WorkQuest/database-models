@@ -22,6 +22,6 @@ export declare class ChatMember extends Model {
     user: User;
     admin: Admin;
     chat: Chat;
-    chatMemberDeletionData: ChatMemberDeletionData;
     chatMemberData: ChatMemberData;
+    chatMemberDeletionData: ChatMemberDeletionData;
 }
