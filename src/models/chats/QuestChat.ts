@@ -29,7 +29,7 @@ export enum QuestChatStatuses {
     }]
   },
   idsOnly: {
-    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId']
+    attributes: ['employerMemberId', 'workerMemberId', 'questId', 'responseId', 'chatId']
   }
 }))
 @Table
@@ -37,10 +37,10 @@ export class QuestChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
   @ForeignKey(() => ChatMember)
-  @Column({type: DataType.STRING, allowNull: false}) employerId: string;
+  @Column({type: DataType.STRING, allowNull: false}) employerMemberId: string;
 
   @ForeignKey(() => ChatMember)
-  @Column({type: DataType.STRING, allowNull: false}) workerId: string;
+  @Column({type: DataType.STRING, allowNull: false}) workerMemberId: string;
 
   @ForeignKey(() => Quest)
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
@@ -57,6 +57,6 @@ export class QuestChat extends Model {
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
 
-  @BelongsTo(() => ChatMember, 'workerId') worker: ChatMember;
-  @BelongsTo(() => ChatMember, 'employerId') employer: ChatMember;
+  @BelongsTo(() => ChatMember, 'workerMemberId') worker: ChatMember;
+  @BelongsTo(() => ChatMember, 'employerMemberId') employer: ChatMember;
 }
