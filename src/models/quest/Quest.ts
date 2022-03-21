@@ -6,7 +6,6 @@ import {QuestsReview} from './QuestsReview';
 import {QuestsResponse} from "./QuestsResponse";
 import {QuestsStarred} from './QuestsStarred';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
-import {QuestRaiseType} from "./types"
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {QuestChat} from "../chats/QuestChat";
 import {

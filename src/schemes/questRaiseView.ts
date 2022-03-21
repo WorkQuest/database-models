@@ -12,7 +12,6 @@ export const questRaisePayAmountSchema = Joi.number().example(10).label('QuestRa
 export const questRaiseViewSchema = Joi.object({
   id: idSchema,
   questId: idSchema,
-  userId: idSchema,
   status: questRaiseStatusSchema,
   duration: questRaiseDurationSchema,
   type: questRaiseTypeScheme,

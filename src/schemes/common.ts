@@ -1,6 +1,5 @@
 import * as Joi from "joi";
 import {HTTPVerb, Priority, WorkPlace} from "../models";
-import {QuestRaiseType} from "../models/quest/types";
 
 export const idSchema = Joi.string().uuid().example("fa0e2e4e-c53f-4af7-8906-1649daa0cce3").label("Id");
 export const urlSchema = Joi.string().example("http://example.com/v1/getVideo").label("URL");
