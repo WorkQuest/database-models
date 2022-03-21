@@ -3,8 +3,7 @@ import { Quest } from './Quest';
 import { User } from "../user/User";
 export declare enum QuestRaiseStatus {
     Paid = 0,
-    Unpaid = 1,
-    Closed = 2
+    Closed = 1
 }
 export declare enum QuestRaiseDuration {
     OneDay = 1,

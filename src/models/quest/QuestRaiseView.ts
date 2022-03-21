@@ -5,7 +5,6 @@ import {User} from "../user/User";
 
 export enum QuestRaiseStatus {
   Paid,
-  Unpaid,
   Closed,
 }
 
@@ -28,7 +27,7 @@ export class QuestRaiseView extends Model {
 
   @ForeignKey(() => Quest) @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: QuestRaiseStatus.Unpaid}) status: QuestRaiseStatus;
+  @Column({type: DataType.INTEGER, defaultValue: QuestRaiseStatus.Closed}) status: QuestRaiseStatus;
   @Column({type: DataType.INTEGER, defaultValue: null}) duration: QuestRaiseDuration;
   @Column({type: DataType.INTEGER, defaultValue: null}) type: QuestRaiseType;
 
