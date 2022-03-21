@@ -32,5 +32,4 @@ export class QuestRaiseView extends Model {
   @Column({type: DataType.INTEGER, defaultValue: null}) type: QuestRaiseType;
 
   @BelongsTo(() => Quest) quest: Quest;
-  @BelongsTo(() => User) user: User;
 }

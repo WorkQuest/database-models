@@ -1,6 +1,5 @@
 import { Model } from 'sequelize-typescript';
 import { Quest } from './Quest';
-import { User } from "../user/User";
 export declare enum QuestRaiseStatus {
     Paid = 0,
     Closed = 1
@@ -23,5 +22,4 @@ export declare class QuestRaiseView extends Model {
     duration: QuestRaiseDuration;
     type: QuestRaiseType;
     quest: Quest;
-    user: User;
 }
