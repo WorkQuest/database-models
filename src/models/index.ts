@@ -263,7 +263,6 @@ export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
 export * from "./chats/GroupChat";
-export * from "./referral-program/ReferralProgram";
 export * from "./referral-program/ReferralProgramAffiliate";
 export * from "./referral-program/ReferralProgramReferral";
 export * from "./referral-program/ReferralProgramParseBlock";
