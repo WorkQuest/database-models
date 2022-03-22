@@ -8,7 +8,7 @@ export class BorrowingBorrowedEvent extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => Borrowing)
-  @Column({ type: DataType.STRING, allowNull: false }) borrowingId: string;
+  @Column(DataType.STRING) borrowingId: string;
 
   @Column(DataType.STRING) network: BlockchainNetworks;
 
