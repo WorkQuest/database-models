@@ -3,6 +3,7 @@ export declare function initDatabase(dbLink: string, logging?: boolean, sync?: b
 export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
+export * from "./borrowing/types";
 export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
@@ -70,3 +71,6 @@ export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
+export * from "./borrowing/Borrowing";
+export * from "./borrowing/BorrowingBorrowedEvent";
+export * from "./borrowing/BorrowingParseBlock";
