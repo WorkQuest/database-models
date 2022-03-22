@@ -12,7 +12,7 @@ export class Borrowing extends Model {
 
   @Column({ type: DataType.DECIMAL, unique: true }) nonce: string;
 
-  @Column(DataType.SMALLINT) status: BorrowingStatus;
+  @Column({ type: DataType.SMALLINT, defaultValue: BorrowingStatus.Pending }) status: BorrowingStatus;
 
   @Column(DataType.DECIMAL) collateral: string;
   @Column(DataType.DECIMAL) creditAmount: string;
