@@ -1,6 +1,7 @@
 import * as Joi from "joi";
 import {RatingStatus} from "../models";
 import {countSchema, idSchema, timeInSecondSchema} from "./common";
+import {chatMemberTypeSchema} from "./chat";
 
 export const statisticAverageMark = Joi.number().example(3.5).label('StatisticAverageMark');
 
@@ -10,6 +11,8 @@ export const statisticAverageMark = Joi.number().example(3.5).label('StatisticAv
 export const chatsStatisticSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  adminId: idSchema,
+  type: chatMemberTypeSchema,
   unreadCountChats: countSchema,
 });
 
