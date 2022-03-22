@@ -66,6 +66,7 @@ import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 import {UserRaiseView} from "./user/UserRaiseView";
+import { BorrowingParseBlock } from "./borrowing/BorrowingParseBlock";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -183,6 +184,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PensionFundWithdrewEvent,
       PensionFundReceivedEvent,
       PensionFundWalletUpdatedEvent,
+
+      /** Borrowing */
+      BorrowingParseBlock,
     ]
   });
   if (sync)
