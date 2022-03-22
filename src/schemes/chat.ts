@@ -21,7 +21,6 @@ export const messageNumberSchema = Joi.number().example(123).label('MessageNumbe
 /** Chat metadata */
 export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.private).label("ChatType");
 export const chatNameSchema = Joi.string().example('Chat name').label('ChatName');
-export const unreadCountChatsSchema = Joi.number().example(123).label('UnreadCountChats');
 
 export const chatDataSchema = Joi.object({
   id: idSchema,
@@ -152,11 +151,3 @@ export const chatQuerySchema = Joi.object({
   }).default({ lastMessageDate: 'DESC' }).label('SortChats'),
 }).label('ChatsQuery');
 
-/** Chat Statistic */
-export const chatStatisticSchema = Joi.object({
-  id: idSchema,
-  userId: idSchema,
-  adminId: idSchema,
-  type: chatMemberTypeSchema,
-  unreadCountChats: unreadCountChatsSchema,
-}).label('ChatStatistic');
