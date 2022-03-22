@@ -252,7 +252,7 @@ export class User extends Model {
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
-
+  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
   /** RaiseView */
   @HasOne(() => UserRaiseView) raiseView: UserRaiseView;
 
@@ -272,7 +272,6 @@ export class User extends Model {
 
   /** Aliases for query */
   //@HasOne(() => Chat) chatOfUser: Chat;
-  //@HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;

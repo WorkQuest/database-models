@@ -54,3 +54,8 @@ export enum HTTPVerb {
   PUT = 'PUT',
   DELETE = 'DELETE',
 }
+
+export enum MemberType {
+  Admin= "admin",
+  User = "user",
+}

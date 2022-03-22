@@ -4,10 +4,7 @@ import { Chat } from "./Chat";
 import { Admin } from "../admin/Admin";
 import { ChatMemberDeletionData } from "./ChatMemberDeletionData";
 import { ChatMemberData } from "./ChatMemberData";
-export declare enum MemberType {
-    Admin = "admin",
-    User = "user"
-}
+import { MemberType } from "../types";
 export declare enum MemberStatus {
     Active = "active",
     Deleted = "deleted"

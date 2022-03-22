@@ -1,9 +1,10 @@
 import * as bcrypt from 'bcrypt';
 import * as speakeasy from "speakeasy"
-import {Column, DataType, Model, Scopes, Table, HasMany} from 'sequelize-typescript';
+import {Column, DataType, Model, Scopes, Table, HasMany, HasOne} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {AdminSession} from "./AdminSession"
 import {AdminRole, AdminAccountSettings} from "./types";
+import {ChatsStatistic} from "../chats/ChatsStatistic";
 
 @Scopes(() => ({
   defaultScope: {
@@ -41,6 +42,8 @@ export class Admin extends Model {
   @Column({type: DataType.STRING, allowNull: false}) role: AdminRole;
   @Column({type: DataType.JSONB, allowNull: false}) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
+
+  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 

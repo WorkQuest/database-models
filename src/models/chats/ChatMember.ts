@@ -2,15 +2,11 @@ import {BelongsTo, Column, DataType, ForeignKey, HasOne, Model, Scopes, Table} f
 import { getUUID } from "../../utils";
 import { User } from "../user/User";
 import { Chat } from "./Chat";
-import { Message } from "./Message";
 import { Admin } from "../admin/Admin";
 import {ChatMemberDeletionData} from "./ChatMemberDeletionData";
 import {ChatMemberData} from "./ChatMemberData";
+import {MemberType} from "../types";
 
-export enum MemberType {
-  Admin= "admin",
-  User = "user",
-}
 
 export enum MemberStatus {
   Active= "active",

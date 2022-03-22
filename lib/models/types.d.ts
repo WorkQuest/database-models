@@ -50,3 +50,7 @@ export declare enum HTTPVerb {
     PUT = "PUT",
     DELETE = "DELETE"
 }
+export declare enum MemberType {
+    Admin = "admin",
+    User = "user"
+}
