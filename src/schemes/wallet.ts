@@ -7,5 +7,5 @@ export const walletSignatureSchema = Joi.string().label('WalletSignature').examp
 
 export const walletAddressesSchema = Joi.object({
   address: walletAddressSchema,
-  bech32Address: walletBech32AddressSchema
+  bech32Address: walletBech32AddressSchema,
 }).label('WalletAddresses');

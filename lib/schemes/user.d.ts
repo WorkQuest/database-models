@@ -20,6 +20,7 @@ export declare const userEmployerSchema: Joi.ObjectSchema<any>;
 export declare const userWorkerSchema: Joi.ObjectSchema<any>;
 export declare const userShortSchema: Joi.ObjectSchema<any>;
 export declare const userShortWithAdditionalInfoSchema: Joi.ObjectSchema<any>;
+export declare const userShortWithWalletSchema: Joi.ObjectSchema<any>;
 export declare const userListSortSchema: Joi.ObjectSchema<any>;
 export declare const betweenWagePerHourSchema: Joi.ObjectSchema<any>;
 export declare const employerQuerySchema: Joi.ObjectSchema<any>;

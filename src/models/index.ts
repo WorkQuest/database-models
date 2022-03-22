@@ -57,12 +57,12 @@ import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {GroupChat} from "./chats/GroupChat";
-import {ReferralProgram} from "./referral-program/ReferralProgram";
 import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
-import {ReferralEventRewardClaimed} from "./referral-program/ReferralEventRewardClaimed";
-import {ReferralEventPaidReferral} from "./referral-program/ReferralEventPaidReferral";
-import {ReferralEventRegisteredAffiliate} from "./referral-program/ReferralEventRegisteredAffiliate";
-import {ReferralParseBlock} from "./referral-program/ReferralParseBlock";
+import {ReferralProgramReferral} from "./referral-program/ReferralProgramReferral";
+import {ReferralProgramEventRewardClaimed} from "./referral-program/ReferralProgramEventRewardClaimed";
+import {ReferralProgramEventPaidReferral} from "./referral-program/ReferralProgramEventPaidReferral";
+import {ReferralProgramEventRegisteredAffiliate} from "./referral-program/ReferralProgramEventRegisteredAffiliate";
+import {ReferralProgramParseBlock} from "./referral-program/ReferralProgramParseBlock";
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
@@ -175,16 +175,17 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Wallet */
       Wallet,
 
+
       /** Referral Program */
-      ReferralProgram,
+      ReferralProgramReferral,
       ReferralProgramAffiliate,
 
 
       /** Referral Program Contract */
-      ReferralParseBlock,
-      ReferralEventPaidReferral,
-      ReferralEventRewardClaimed,
-      ReferralEventRegisteredAffiliate,
+      ReferralProgramParseBlock,
+      ReferralProgramEventPaidReferral,
+      ReferralProgramEventRewardClaimed,
+      ReferralProgramEventRegisteredAffiliate,
 
 
       /** Pension fund */
@@ -202,6 +203,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
 export * from "./types";
 export * from "./admin/types";
+export * from "./proposal/types";
 
 export * from "./Media";
 export * from "./quest/Quest";
@@ -263,10 +265,11 @@ export * from "./user/UserChangeRoleData";
 export * from "./chats/GroupChat";
 export * from "./referral-program/ReferralProgram";
 export * from "./referral-program/ReferralProgramAffiliate";
-export * from "./referral-program/ReferralParseBlock";
-export * from "./referral-program/ReferralEventRewardClaimed";
-export * from "./referral-program/ReferralEventPaidReferral";
-export * from "./referral-program/ReferralEventRegisteredAffiliate";
+export * from "./referral-program/ReferralProgramReferral";
+export * from "./referral-program/ReferralProgramParseBlock";
+export * from "./referral-program/ReferralProgramEventRewardClaimed";
+export * from "./referral-program/ReferralProgramEventPaidReferral";
+export * from "./referral-program/ReferralProgramEventRegisteredAffiliate";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic"

@@ -10,11 +10,12 @@ import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
+import {UserRaiseView} from "./UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
-import {ReferralProgram} from "../referral-program/ReferralProgram";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
+import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
   BelongsTo,
   Column,
@@ -26,7 +27,6 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {UserRaiseView} from "./UserRaiseView";
 
 
 export interface SocialInfo {
@@ -267,8 +267,8 @@ export class User extends Model {
   @HasOne(() => Wallet) wallet: Wallet;
 
   /** ReferralProgram */
-  @HasOne(() => ReferralProgram) referrerUser: ReferralProgram;
   @HasOne(() => ReferralProgramAffiliate) affiliateUser: ReferralProgramAffiliate;
+  @HasOne(() => ReferralProgramReferral) referralUser: ReferralProgramReferral;
 
   /** Aliases for query */
   //@HasOne(() => Chat) chatOfUser: Chat;
