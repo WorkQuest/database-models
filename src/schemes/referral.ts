@@ -1,16 +1,11 @@
 import * as Joi from "joi";
 import {ReferralStatus, RewardStatus} from "../models";
-import {
-  userLastNameSchema,
-  userFirstNameSchema,
-  userShortWithWalletSchema,
-} from "./user";
+import {userShortWithWalletSchema} from "./user";
 import {
   idSchema,
   timestampSchema,
   coinAmountSchema,
   blockNumberSchema,
-  accountAddressSchema,
   transactionHashSchema,
 } from "./common";
 

@@ -1,6 +1,7 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
+import {affiliateSchema} from "./referral";
 import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
@@ -130,6 +131,10 @@ export const userMeSchema = Joi.object({
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
+  wallet: walletAddressesSchema,
+  affiliateUser: Joi.object({
+    referralCodeId: idSchema,
+  }).label('AffiliateMe'),
   createdAt: isoDateSchema,
 }).label("UserMe");
 
