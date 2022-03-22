@@ -102,6 +102,9 @@ export const betweenPriceSchema = Joi.object({
   to: questPriceSchema.required(),
 }).label('BetweenPrice');
 
+export const questsPayloadSchema = Joi.object({
+  specializations: specializationsFilerSchema.unique().default(null),
+}).label('QuestsPayload');
 
 // TODO общие фильтры questQuerySchema и questQueryForMapPointsSchema
 export const questQuerySchema = Joi.object({
@@ -115,7 +118,6 @@ export const questQuerySchema = Joi.object({
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
-  specializations: specializationsFilerSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
@@ -131,7 +133,6 @@ export const questQueryForMapPointsSchema = Joi.object({
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
-  specializations: specializationsFilerSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),                /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
