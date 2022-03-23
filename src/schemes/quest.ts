@@ -34,6 +34,7 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from './common';
+import {contractAddressSchema} from "./liquidity";
 
 /** Quest chat schemes */
 
@@ -62,10 +63,14 @@ export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).l
 export const questPrioritiesSchema = Joi.array().items(prioritySchema).label('QuestPriorities');
 export const questStatusesSchema = Joi.array().items(questStatusSchema).label('QuestStatuses');
 
+export const questNonceSchema = Joi.string().default(idSchema).example('fa0e2e4e-c53f-4af7-8906-1649daa0cce3').label('QuestNonce');
+
 export const questSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   assignedWorkerId: idSchema,
+  contractAddress: contractAddressSchema,
+  nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
@@ -191,6 +196,8 @@ export const questForGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   assignedWorkerId: idSchema,
+  contractAddress: contractAddressSchema,
+  nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
@@ -230,6 +237,8 @@ export const questForAdminsGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
   assignedWorkerId: idSchema,
+  contractAddress: contractAddressSchema,
+  nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,

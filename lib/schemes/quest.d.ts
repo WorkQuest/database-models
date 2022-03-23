@@ -10,6 +10,7 @@ export declare const questEmploymentSchema: Joi.StringSchema;
 export declare const questEmploymentsSchema: Joi.ArraySchema;
 export declare const questPrioritiesSchema: Joi.ArraySchema;
 export declare const questStatusesSchema: Joi.ArraySchema;
+export declare const questNonceSchema: Joi.StringSchema;
 export declare const questSchema: Joi.ObjectSchema<any>;
 export declare const questsSchema: Joi.ArraySchema;
 export declare const questsWithCountSchema: Joi.ObjectSchema<any>;
