@@ -66,9 +66,10 @@ import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 import {UserRaiseView} from "./user/UserRaiseView";
-import { BorrowingParseBlock } from "./borrowing/BorrowingParseBlock";
-import { Borrowing } from "./borrowing/Borrowing";
-import { BorrowingBorrowedEvent } from "./borrowing/BorrowingBorrowedEvent";
+import {BorrowingParseBlock} from "./borrowing/BorrowingParseBlock";
+import {Borrowing} from "./borrowing/Borrowing";
+import {BorrowingBorrowedEvent} from "./borrowing/BorrowingBorrowedEvent";
+import {BorrowingRefundedEvent} from "./borrowing/BorrowingRefundedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -191,6 +192,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Borrowing,
       BorrowingParseBlock,
       BorrowingBorrowedEvent,
+      BorrowingRefundedEvent,
     ]
   });
   if (sync)
@@ -273,4 +275,5 @@ export * from "./admin/AdminQuestDisputesStatistic"
 export * from "./user/UserRaiseView";
 export * from "./borrowing/Borrowing";
 export * from "./borrowing/BorrowingBorrowedEvent";
+export * from "./borrowing/BorrowingRefundedEvent";
 export * from "./borrowing/BorrowingParseBlock";

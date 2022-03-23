@@ -73,4 +73,5 @@ export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
 export * from "./borrowing/Borrowing";
 export * from "./borrowing/BorrowingBorrowedEvent";
+export * from "./borrowing/BorrowingRefundedEvent";
 export * from "./borrowing/BorrowingParseBlock";
