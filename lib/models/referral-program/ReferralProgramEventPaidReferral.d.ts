@@ -1,6 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
-export declare class ReferralEventPaidReferral extends Model {
+export declare class ReferralProgramEventPaidReferral extends Model {
     blockNumber: number;
     transactionHash: string;
     referral: string;

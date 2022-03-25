@@ -1,7 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import {User} from "../user/User";
-import {converter} from "../../utils/bech32";
+import converter from 'bech32-converting';
 
 @Table
 export class Wallet extends Model {
@@ -19,7 +19,7 @@ export class Wallet extends Model {
         get() {
             const hexAddress = this.getDataValue('address');
 
-            return converter('eth').toBech32(hexAddress);
+            return converter('wq').toBech32(hexAddress);
         },
         set() {
             throw Error('Can`t set this field');

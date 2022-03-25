@@ -3,7 +3,8 @@ export declare enum BlockchainNetworks {
     ethMainNetwork = "ethMainNetwork",
     rinkebyTestNetwork = "rinkebyTestNetwork",
     bscTestNetwork = "bscTestNetwork",
-    workQuestNetwork = "workQuestNetwork"
+    workQuestNetwork = "workQuestNetwork",
+    workQuestDevNetwork = "workQuestDevNetwork"
 }
 export declare type LocationType = {
     longitude: number;

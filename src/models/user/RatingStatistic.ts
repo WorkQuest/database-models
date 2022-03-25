@@ -2,11 +2,12 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-t
 import {getUUID} from '../../utils';
 import {User} from './User';
 
+/**Take a part into sorting inside a*/
 export enum RatingStatus {
-  noStatus = "noStatus",
-  verified = "verified",
-  reliable = "reliable",
-  topRanked = "topRanked",
+  topRanked = 0,
+  reliable = 1,
+  verified = 2,
+  noStatus = 3,
 }
 
 @Table
@@ -17,7 +18,7 @@ export class RatingStatistic extends Model {
   @Column({type: DataType.INTEGER, defaultValue: 0 }) reviewCount: number;
   @Column({type: DataType.DOUBLE, defaultValue: null }) averageMark: number;
 
-  @Column({type: DataType.STRING, defaultValue: RatingStatus.noStatus }) status: RatingStatus;
+  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.noStatus }) status: RatingStatus;
 
   @BelongsTo(() => User) user: User;
 }
