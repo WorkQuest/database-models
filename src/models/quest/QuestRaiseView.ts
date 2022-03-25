@@ -29,6 +29,7 @@ export class QuestRaiseView extends Model {
   @Column({type: DataType.INTEGER, defaultValue: QuestRaiseStatus.Closed}) status: QuestRaiseStatus;
   @Column({type: DataType.INTEGER, defaultValue: null}) duration: QuestRaiseDuration;
   @Column({type: DataType.INTEGER, defaultValue: null}) type: QuestRaiseType;
+  @Column({type: DataType.DATE, defaultValue: null}) endedAt: Date;
 
   @BelongsTo(() => Quest) quest: Quest;
 }

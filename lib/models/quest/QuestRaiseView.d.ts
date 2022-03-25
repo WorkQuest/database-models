@@ -21,5 +21,6 @@ export declare class QuestRaiseView extends Model {
     status: QuestRaiseStatus;
     duration: QuestRaiseDuration;
     type: QuestRaiseType;
+    endedAt: Date;
     quest: Quest;
 }
