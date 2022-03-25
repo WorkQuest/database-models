@@ -2,6 +2,7 @@ import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
+import {questRaiseViewSchema} from "./questRaiseView";
 import {
   specializationsFilerSchema,
   modelSpecializationsSchema,
@@ -79,6 +80,7 @@ export const questSchema = Joi.object({
   medias: mediasUrlOnlySchema,
   questChat: questChatSchema,
   questSpecializations: modelSpecializationsSchema,
+  raiseView: questRaiseViewSchema,
   startedAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
@@ -203,6 +205,7 @@ export const questForGetSchema = Joi.object({
   medias: mediasUrlOnlySchema,
   assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
+  raiseView: questRaiseViewSchema,
   openDispute: Joi.object().label('OpenDispute'),     /**                                         */
   yourReview: questReviewSchema,                            /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */

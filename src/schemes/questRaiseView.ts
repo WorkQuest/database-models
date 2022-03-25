@@ -1,7 +1,5 @@
 import * as Joi from "joi";
 import {idSchema} from "./common";
-import {questSchema} from "./quest";
-import {userShortSchema} from "./user";
 import {
   QuestRaiseType,
   QuestRaiseStatus,
@@ -19,6 +17,4 @@ export const questRaiseViewSchema = Joi.object({
   status: questRaiseStatusSchema,
   duration: questRaiseDurationSchema,
   type: questRaiseTypeScheme,
-  quest: questSchema,
-  user: userShortSchema,
 }).label('QuestRaiseView');

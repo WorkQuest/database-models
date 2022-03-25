@@ -67,6 +67,10 @@ export const activeFlowStatuses = [
       model: QuestSpecializationFilter,
       as: 'questSpecializations',
       attributes: ['path'],
+    }, {
+      model: QuestRaiseView,
+      as: "raiseView",
+      attributes: ['status', 'duration', 'type'],
     }]
   }
 }))
