@@ -1,7 +1,6 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
-import {getUUID} from '../../utils';
 import {Quest} from './Quest';
-import {User} from "../user/User";
+import {getUUID} from '../../utils';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 
 export enum QuestRaiseStatus {
   Paid,

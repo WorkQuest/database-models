@@ -3,12 +3,12 @@ import { Media } from '../Media';
 import { QuestsReview } from './QuestsReview';
 import { QuestsResponse } from "./QuestsResponse";
 import { QuestsStarred } from './QuestsStarred';
-import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
-import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
-import { Model } from 'sequelize-typescript';
 import { QuestRaiseView } from "./QuestRaiseView";
 import { QuestDispute } from "./QuestDispute";
+import { QuestSpecializationFilter } from './QuestSpecializationFilter';
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { Model } from 'sequelize-typescript';
 export declare enum QuestStatus {
     Blocked = -1,
     Created = 0,

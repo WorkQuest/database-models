@@ -5,9 +5,11 @@ import {QuestMedia} from './QuestMedia';
 import {QuestsReview} from './QuestsReview';
 import {QuestsResponse} from "./QuestsResponse";
 import {QuestsStarred} from './QuestsStarred';
-import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
-import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {QuestChat} from "../chats/QuestChat";
+import {QuestRaiseView} from "./QuestRaiseView";
+import {QuestDispute} from "./QuestDispute";
+import {QuestSpecializationFilter} from './QuestSpecializationFilter';
+import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {
   BelongsTo,
   HasMany,
@@ -20,8 +22,6 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
-import {QuestRaiseView} from "./QuestRaiseView";
-import {QuestDispute} from "./QuestDispute";
 
 export enum QuestStatus {
   Blocked = -1,
@@ -106,9 +106,9 @@ export class Quest extends Model {
   @HasOne(() => QuestsResponse) invited: QuestsResponse;                                                /** Alias for filter get quests */
   @HasOne(() => QuestSpecializationFilter) questIndustryForFiltering: QuestSpecializationFilter;        /** */
   @HasOne(() => QuestSpecializationFilter) questSpecializationForFiltering: QuestSpecializationFilter;  /** */
-  @HasOne(() => QuestRaiseView) raiseView: QuestRaiseView;                                                             /** Alias for get review from user when get all quest */   /** Alias for get review from user when get all quest */
-  @HasOne(() => QuestsReview) yourReview: QuestsReview;                                                             /** Alias for get review from user when get all quest */
-  @HasOne(() => QuestDispute) openDispute: QuestDispute;   /** Alias for get review from user when get all quest */
+  @HasOne(() => QuestRaiseView) raiseView: QuestRaiseView;                                              /** Alias for get review from user when get all quest */
+  @HasOne(() => QuestsReview) yourReview: QuestsReview;                                                 /** Alias for get review from user when get all quest */
+  @HasOne(() => QuestDispute) openDispute: QuestDispute;                                                /** Alias for get review from user when get all quest */
 
   @HasMany(() => QuestSpecializationFilter) questSpecializations: QuestSpecializationFilter[];
   @HasMany(() => QuestDispute) questDisputes: QuestDispute[];

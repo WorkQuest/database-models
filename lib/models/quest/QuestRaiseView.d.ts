@@ -1,5 +1,5 @@
-import { Model } from 'sequelize-typescript';
 import { Quest } from './Quest';
+import { Model } from 'sequelize-typescript';
 export declare enum QuestRaiseStatus {
     Paid = 0,
     Closed = 1
