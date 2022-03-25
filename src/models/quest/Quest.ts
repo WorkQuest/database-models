@@ -70,7 +70,7 @@ export const activeFlowStatuses = [
     }, {
       model: QuestRaiseView,
       as: "raiseView",
-      attributes: ['status', 'duration', 'type'],
+      attributes: ['status', 'duration', 'type', 'endedAt'],
     }]
   }
 }))
