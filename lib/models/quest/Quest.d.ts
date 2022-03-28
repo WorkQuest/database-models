@@ -3,15 +3,12 @@ import { Media } from '../Media';
 import { QuestsReview } from './QuestsReview';
 import { QuestsResponse } from "./QuestsResponse";
 import { QuestsStarred } from './QuestsStarred';
-import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
-import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
-import { Model } from 'sequelize-typescript';
+import { QuestRaiseView } from "./QuestRaiseView";
 import { QuestDispute } from "./QuestDispute";
-export declare enum AdType {
-    Free = 0,
-    Paid = 1
-}
+import { QuestSpecializationFilter } from './QuestSpecializationFilter';
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { Model } from 'sequelize-typescript';
 export declare enum QuestStatus {
     Blocked = -1,
     Created = 0,
@@ -42,7 +39,6 @@ export declare class Quest extends Model {
     location: LocationType;
     locationPostGIS: LocationPostGISType;
     price: string;
-    adType: AdType;
     startedAt: Date;
     user: User;
     assignedWorker: User;
@@ -54,6 +50,7 @@ export declare class Quest extends Model {
     invited: QuestsResponse;
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
+    raiseView: QuestRaiseView;
     yourReview: QuestsReview;
     openDispute: QuestDispute;
     questSpecializations: QuestSpecializationFilter[];

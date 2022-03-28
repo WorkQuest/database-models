@@ -45,6 +45,7 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
+import {QuestRaiseView} from "./quest/QuestRaiseView";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
@@ -95,6 +96,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Quest,
       QuestChat,
       QuestDispute,
+      QuestRaiseView,
       QuestsStarred,
       QuestsResponse,
       QuestBlackList,
@@ -243,6 +245,7 @@ export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
+export * from "./quest/QuestRaiseView";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";

@@ -137,6 +137,10 @@ export const userMeSchema = Joi.object({
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
+  wallet: walletAddressesSchema,
+  affiliateUser: Joi.object({
+    referralCodeId: idSchema,
+  }).label('AffiliateMe'),
   createdAt: isoDateSchema,
 }).label("UserMe");
 
