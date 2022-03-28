@@ -11,9 +11,8 @@ import { User } from './User';
 import { Priority } from "../types";
 
 export enum NetworkProfileVisibility {
-  EveryoneOnTheInternet = 0,
-  RegisteredUsers = 1,
-  SubmittingOffer = 2,
+  AllUsers = 0,
+  SubmittingOffer = 1,
 }
 
 @Table
@@ -23,7 +22,7 @@ export class ProfileVisibilitySetting extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: NetworkProfileVisibility.EveryoneOnTheInternet }) networkProfileVisibility: NetworkProfileVisibility;
+  @Column({type: DataType.INTEGER, defaultValue: NetworkProfileVisibility.AllUsers }) networkProfileVisibility: NetworkProfileVisibility;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority }) jobPriorityProfileVisibility: Priority;
 
   @BelongsTo(() => User) user: User;
