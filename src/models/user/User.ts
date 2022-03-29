@@ -29,6 +29,7 @@ import {
 } from "sequelize-typescript";
 import {ProfileVisibilitySetting} from "./ProfileVisibilitySetting";
 import {QuestsResponse} from "../quest/QuestsResponse";
+import {Quest} from "../quest/Quest";
 
 
 export interface SocialInfo {
@@ -253,6 +254,9 @@ export class User extends Model {
 
   /** Worker */
   @HasMany(() => QuestsResponse) questsResponses: QuestsResponse[];
+
+  /** Employer */
+  @HasMany(() => Quest) quest: Quest[];
 
   /** ProfileVisability */
   @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
