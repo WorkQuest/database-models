@@ -16,8 +16,6 @@ import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAff
 import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
 import { Model } from "sequelize-typescript";
 import { ProfileVisibilitySetting } from "./ProfileVisibilitySetting";
-import { QuestsResponse } from "../quest/QuestsResponse";
-import { Quest } from "../quest/Quest";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -112,8 +110,6 @@ export declare class User extends Model {
     location: LocationType;
     locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
-    questsResponses: QuestsResponse[];
-    quests: Quest[];
     profileVisibilitySetting: ProfileVisibilitySetting;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;

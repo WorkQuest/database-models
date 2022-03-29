@@ -252,12 +252,6 @@ export class User extends Model {
   @Column(DataType.STRING) locationPlaceName: string;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
-  /** Worker */
-  @HasMany(() => QuestsResponse) questsResponses: QuestsResponse[];
-
-  /** Employer */
-  @HasMany(() => Quest) quests: Quest[];
-
   /** ProfileVisability */
   @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
 
