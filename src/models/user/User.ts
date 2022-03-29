@@ -256,7 +256,7 @@ export class User extends Model {
   @HasMany(() => QuestsResponse) questsResponses: QuestsResponse[];
 
   /** Employer */
-  @HasMany(() => Quest) quest: Quest[];
+  @HasMany(() => Quest) quests: Quest[];
 
   /** ProfileVisability */
   @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;

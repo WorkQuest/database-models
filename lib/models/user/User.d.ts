@@ -113,7 +113,7 @@ export declare class User extends Model {
     locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
     questsResponses: QuestsResponse[];
-    quest: Quest[];
+    quests: Quest[];
     profileVisibilitySetting: ProfileVisibilitySetting;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
