@@ -17,8 +17,8 @@ export class StarredChat extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @BelongsTo(() => User) admin: User;
-  @BelongsTo(() => Admin) user: Admin;
+  @BelongsTo(() => User) user: User;
+  @BelongsTo(() => Admin) admin: Admin;
   @BelongsTo(() => Chat, { constraints: false }) chat: Chat;
 }
 

@@ -7,7 +7,7 @@ export declare class StarredChat extends Model {
     userId: string;
     adminId: string;
     chatId: string;
-    admin: User;
-    user: Admin;
+    user: User;
+    admin: Admin;
     chat: Chat;
 }
