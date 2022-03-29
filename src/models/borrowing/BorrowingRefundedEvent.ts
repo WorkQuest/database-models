@@ -16,6 +16,7 @@ export class BorrowingRefundedEvent extends Model {
   @Column(DataType.DECIMAL) nonce: string;
   @Column(DataType.STRING) borrower: string;
   @Column(DataType.DECIMAL) amount: string;
+  @Column(DataType.DECIMAL) timestamp: string;
 
   @BelongsTo(() => Borrowing) borrowing: Borrowing;
 }

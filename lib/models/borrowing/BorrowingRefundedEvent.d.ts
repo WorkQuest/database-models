@@ -9,5 +9,6 @@ export declare class BorrowingRefundedEvent extends Model {
     nonce: string;
     borrower: string;
     amount: string;
+    timestamp: string;
     borrowing: Borrowing;
 }
