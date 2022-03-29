@@ -1,7 +1,9 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, Table } from "sequelize-typescript";
 import { BorrowingStatus } from "./types";
 import { getUUID, getUUIDInt } from "../../utils";
 import { User } from "../user/User";
+import { BorrowingBorrowedEvent } from "./BorrowingBorrowedEvent";
+import { BorrowingRefundedEvent } from "./BorrowingRefundedEvent";
 
 @Table
 export class Borrowing extends Model {
@@ -19,6 +21,10 @@ export class Borrowing extends Model {
   @Column(DataType.DECIMAL) creditAmount: string;
   @Column(DataType.DECIMAL) remainingCredit: string;
   @Column(DataType.STRING) symbol: string;
+
+  /** Events */
+  @HasOne(() => BorrowingBorrowedEvent) borrowedEvent: BorrowingBorrowedEvent;
+  @HasMany(() => BorrowingRefundedEvent) refundedEvents: BorrowingRefundedEvent[];
 
   @BelongsTo(() => User) user: User;
 }
