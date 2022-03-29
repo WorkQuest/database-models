@@ -5,4 +5,8 @@ export declare const borrowingCreditSchema: Joi.StringSchema;
 export declare const borrowingSymbolSchema: Joi.StringSchema;
 export declare const borrowingNonceIdSchema: Joi.StringSchema;
 export declare const borrowingStatusSchema: Joi.NumberSchema;
+export declare const borrowingRefundedEventShortSchema: Joi.ObjectSchema<any>;
+export declare const borrowingRefundedEventShortArray: Joi.ArraySchema;
+export declare const borrowingBorrowedOnlyTimestampSchema: Joi.ObjectSchema<any>;
 export declare const borrowingSchema: Joi.ObjectSchema<any>;
+export declare const borrowingSchemaWithEvents: Joi.ObjectSchema<any>;
