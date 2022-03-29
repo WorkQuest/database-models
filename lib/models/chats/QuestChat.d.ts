@@ -11,6 +11,7 @@ export declare class QuestChat extends Model {
     id: string;
     employerMemberId: string;
     workerMemberId: string;
+    adminMemberId: string;
     questId: string;
     responseId: string;
     chatId: string;
@@ -20,4 +21,5 @@ export declare class QuestChat extends Model {
     response: QuestsResponse;
     worker: ChatMember;
     employer: ChatMember;
+    admin: ChatMember;
 }

@@ -42,6 +42,9 @@ export class QuestChat extends Model {
   @ForeignKey(() => ChatMember)
   @Column({type: DataType.STRING, allowNull: false}) workerMemberId: string;
 
+  @ForeignKey(() => ChatMember)
+  @Column(DataType.STRING) adminMemberId: string; /** if dispute */
+
   @ForeignKey(() => Quest)
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
@@ -59,4 +62,5 @@ export class QuestChat extends Model {
 
   @BelongsTo(() => ChatMember, 'workerMemberId') worker: ChatMember;
   @BelongsTo(() => ChatMember, 'employerMemberId') employer: ChatMember;
+  @BelongsTo(() => ChatMember, 'adminMemberId') admin: ChatMember;
 }
