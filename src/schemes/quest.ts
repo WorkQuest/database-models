@@ -2,12 +2,12 @@ import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {userShortSchema} from "./user";
 import {mediasUrlOnlySchema} from "./media";
+import {questRaiseViewSchema} from "./questRaiseView";
 import {
   specializationsFilerSchema,
   modelSpecializationsSchema,
 } from "./specialization";
 import {
-  AdType,
   QuestStatus,
   QuestEmployment,
   QuestsResponseType,
@@ -55,7 +55,7 @@ export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).
 export const questTitleSchema = Joi.string().example('Title...').label('QuestTitle');
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('QuestDescription');
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
-export const questAdTypeSchema = Joi.number().valid(...Object.keys(AdType).map(key => parseInt(key)).filter(key => !isNaN(key))).example(AdType.Free).label('QuestAdType');
+export const questLocationPlaceNameSchema = Joi.string().max(255).example('Tomsk').label('QuestLocationPlaceName');
 export const questEmploymentSchema = Joi.string().valid(...Object.values(QuestEmployment)).example(QuestEmployment.FullTime).label('QuestEmployment');
 
 export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).label('QuestEmployments');
@@ -75,12 +75,12 @@ export const questSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questAdTypeSchema,
   user: userShortSchema,
   assignedWorker: userShortSchema,
   medias: mediasUrlOnlySchema,
   questChat: questChatSchema,
   questSpecializations: modelSpecializationsSchema,
+  raiseView: questRaiseViewSchema,
   startedAt: isoDateSchema,
   createdAt: isoDateSchema,
 }).label("Quest");
@@ -95,7 +95,7 @@ export const questsWithCountSchema = Joi.object({
 export const questsListSortSchema = Joi.object({
   price: sortDirectionSchema,
   createdAt: sortDirectionSchema,
-}).default({}).label('QuestsListSort');
+}).default({createdAt: 'asc'}).label('QuestsListSort');
 
 export const betweenPriceSchema = Joi.object({
   from: questPriceSchema.required(),
@@ -109,7 +109,6 @@ export const questQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
   sort: questsListSortSchema,
-  adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
@@ -125,7 +124,6 @@ export const questQuerySchema = Joi.object({
 
 export const questQueryForMapPointsSchema = Joi.object({
   q: searchSchema,
-  adType: questAdTypeSchema.default(null),
   priceBetween: betweenPriceSchema.default(null),
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
@@ -199,7 +197,6 @@ export const questForGetSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questAdTypeSchema,
   startedAt: isoDateSchema,
   createdAt: isoDateSchema,
   /** Aliases for include */
@@ -208,6 +205,7 @@ export const questForGetSchema = Joi.object({
   medias: mediasUrlOnlySchema,
   assignedWorker: userShortSchema,
   questSpecializations: modelSpecializationsSchema,
+  raiseView: questRaiseViewSchema,
   openDispute: Joi.object().label('OpenDispute'),     /**                                         */
   yourReview: questReviewSchema,                            /**                                         */
   star: starSchema,                                         /** If this user set star on this quest     */
@@ -238,7 +236,6 @@ export const questForAdminsGetSchema = Joi.object({
   title: questTitleSchema,
   description: questDescriptionSchema,
   price: questPriceSchema,
-  adType: questAdTypeSchema,
   startedAt: isoDateSchema,
   createdAt: isoDateSchema,
   /** Aliases for include */

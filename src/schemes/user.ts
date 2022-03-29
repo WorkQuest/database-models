@@ -1,7 +1,6 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
-import {affiliateSchema} from "./referral";
 import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";

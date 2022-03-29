@@ -30,6 +30,7 @@ export class UserRaiseView extends Model {
   @Column({type: DataType.INTEGER, defaultValue: UserRaiseStatus.Closed}) status: UserRaiseStatus;
   @Column({type: DataType.INTEGER, defaultValue: null}) duration: UserRaiseDuration;
   @Column({type: DataType.INTEGER, defaultValue: null}) type: UserRaiseType;
+  @Column({type: DataType.DATE, defaultValue: null}) endedAt: Date;
 
   @BelongsTo(() => User) user: User;
 }

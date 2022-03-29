@@ -21,5 +21,6 @@ export declare class UserRaiseView extends Model {
     status: UserRaiseStatus;
     duration: UserRaiseDuration;
     type: UserRaiseType;
+    endedAt: Date;
     user: User;
 }
