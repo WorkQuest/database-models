@@ -6,6 +6,7 @@ export declare class Borrowing extends Model {
     userId: string;
     nonce: string;
     status: BorrowingStatus;
+    term: number;
     collateral: string;
     creditAmount: string;
     remainingCredit: string;

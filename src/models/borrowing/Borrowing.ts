@@ -14,6 +14,8 @@ export class Borrowing extends Model {
 
   @Column({ type: DataType.SMALLINT, defaultValue: BorrowingStatus.Pending }) status: BorrowingStatus;
 
+  @Column(DataType.INTEGER) term: number;
+
   @Column(DataType.DECIMAL) collateral: string;
   @Column(DataType.DECIMAL) creditAmount: string;
   @Column(DataType.DECIMAL) remainingCredit: string;
