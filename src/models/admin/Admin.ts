@@ -4,7 +4,7 @@ import {Column, DataType, Model, Scopes, Table, HasMany, HasOne} from 'sequelize
 import {getUUID} from '../../utils';
 import {AdminSession} from "./AdminSession"
 import {AdminRole, AdminAccountSettings} from "./types";
-import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {AdminChatStatistic} from "../chats/AdminChatStatistic";
 
 @Scopes(() => ({
   defaultScope: {
@@ -43,7 +43,7 @@ export class Admin extends Model {
   @Column({type: DataType.JSONB, allowNull: false}) settings: AdminAccountSettings;
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
 
-  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
+  @HasOne(() => AdminChatStatistic) chatStatistic: AdminChatStatistic;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
 

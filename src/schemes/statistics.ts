@@ -7,10 +7,16 @@ export const chatsStatisticTypeSchema = Joi.string().valid(...Object.values(Memb
 
 /** Chat Statistic */
 
-export const chatsStatisticSchema = Joi.object({
+export const adminChatsStatisticSchema = Joi.object({
+  id: idSchema,
+  adminId: idSchema,
+  type: chatsStatisticTypeSchema,
+  unreadCountChats: countSchema,
+});
+
+export const userChatsStatisticSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
-  adminId: idSchema,
   type: chatsStatisticTypeSchema,
   unreadCountChats: countSchema,
 });
@@ -41,7 +47,7 @@ export const userRatingStatisticSchema = Joi.object({
 /** Common User Statistic */
 
 export const userStatisticsSchema = Joi.object({
-  chatsStatistic: chatsStatisticSchema,
+  chatsStatistic: userChatsStatisticSchema,
   questsStatistic: questsStatisticSchema,
   ratingStatistic: userRatingStatisticSchema,
 }).label('UserStatistics');

@@ -10,7 +10,7 @@ import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
 import { UserRaiseView } from "./UserRaiseView";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
-import { ChatsStatistic } from "../chats/ChatsStatistic";
+import { UserChatsStatistic } from "../chats/UserChatsStatistic";
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
 import { Model } from "sequelize-typescript";
@@ -110,7 +110,7 @@ export declare class User extends Model {
     locationPostGIS: LocationPostGISType;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
-    chatStatistic: ChatsStatistic;
+    chatStatistic: UserChatsStatistic;
     raiseView: UserRaiseView;
     avatar: Media;
     sessions: Session[];

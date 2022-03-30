@@ -13,7 +13,7 @@ import {Chat} from "../chats/Chat";
 import {UserRaiseView} from "./UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
-import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {UserChatsStatistic} from "../chats/UserChatsStatistic";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
@@ -252,7 +252,7 @@ export class User extends Model {
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
-  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
+  @HasOne(() => UserChatsStatistic) chatStatistic: UserChatsStatistic;
   /** RaiseView */
   @HasOne(() => UserRaiseView) raiseView: UserRaiseView;
 

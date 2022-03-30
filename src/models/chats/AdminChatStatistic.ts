@@ -1,16 +1,12 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import { getUUID } from "../../utils";
-import {User} from "../user/User";
 import {Admin} from "../admin/Admin";
 import {MemberType} from "../types";
 
 
 @Table
-export class ChatsStatistic extends Model {
+export class AdminChatStatistic extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
-
-  @ForeignKey(() => User)
-  @Column(DataType.STRING) userId: string;
 
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) adminId: string;
@@ -19,6 +15,5 @@ export class ChatsStatistic extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountChats: number;
 
-  @BelongsTo(() => User) user: User;
   @BelongsTo(() => Admin) admin: Admin;
 }

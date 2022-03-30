@@ -14,7 +14,7 @@ import {Admin} from './admin/Admin'
 import {AdminSession} from "./admin/AdminSession";
 import {Chat} from "./chats/Chat";
 import {ChatMember} from "./chats/ChatMember";
-import {ChatsStatistic} from "./chats/ChatsStatistic";
+import {UserChatsStatistic} from "./chats/UserChatsStatistic";
 import {MessageMedia} from "./chats/MessageMedia";
 import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
@@ -71,6 +71,7 @@ import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
 import {UserRaiseView} from "./user/UserRaiseView";
+import {AdminChatStatistic} from "./chats/AdminChatStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -151,9 +152,10 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
 
       /** Statistic */
-      ChatsStatistic,
       RatingStatistic,
       QuestsStatistic,
+      UserChatsStatistic,
+      AdminChatStatistic,
 
 
       /** WQT/WBNB liquidity */
@@ -229,7 +231,7 @@ export * from "./chats/Message";
 export * from "./chats/MessageMedia";
 export * from "./chats/InfoMessage";
 export * from "./chats/StarredMessage";
-export * from "./chats/ChatsStatistic";
+export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
 export * from "./quest/QuestDispute";
@@ -279,3 +281,4 @@ export * from "./chats/ChatData";
 export * from "./chats/ChatMemberData";
 export * from "./chats/ChatMemberDeletionData";
 export * from "./user/UserRaiseView";
+export * from "./chats/AdminChatStatistic";

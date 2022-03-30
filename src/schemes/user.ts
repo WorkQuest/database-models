@@ -5,7 +5,7 @@ import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
-  chatsStatisticSchema,
+  userChatsStatisticSchema,
   questsStatisticSchema,
   userRatingStatusesSchema,
   userRatingStatisticSchema,
@@ -103,7 +103,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
   questsStatistic: questsStatisticSchema,
-  chatStatistic: chatsStatisticSchema,
+  chatStatistic: userChatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   createdAt: isoDateSchema,
 }).label("User");
@@ -128,7 +128,7 @@ export const userMeSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
   questsStatistic: questsStatisticSchema,
-  chatStatistic: chatsStatisticSchema,
+  chatStatistic: userChatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   wallet: walletAddressesSchema,
   affiliateUser: Joi.object({
