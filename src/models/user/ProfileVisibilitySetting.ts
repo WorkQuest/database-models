@@ -8,7 +8,7 @@ import {
 } from 'sequelize-typescript';
 import { getUUID } from '../../utils';
 import { User } from './User';
-import { Priority } from "../types";
+import {RatingStatus} from "../types";
 
 export enum NetworkProfileVisibility {
   AllUsers = 0,
@@ -23,7 +23,7 @@ export class ProfileVisibilitySetting extends Model {
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: NetworkProfileVisibility.AllUsers }) networkProfileVisibility: NetworkProfileVisibility;
-  @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority }) jobPriorityProfileVisibility: Priority;
+  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.AllStatuses }) statusProfileVisibility: RatingStatus;
 
   @BelongsTo(() => User) user: User;
 }

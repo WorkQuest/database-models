@@ -1,14 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from './User';
-
-/**Take a part into sorting inside a*/
-export enum RatingStatus {
-  topRanked = 0,
-  reliable = 1,
-  verified = 2,
-  noStatus = 3,
-}
+import {RatingStatus} from "../types";
 
 @Table
 export class RatingStatistic extends Model {
