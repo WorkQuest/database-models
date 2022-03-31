@@ -52,7 +52,7 @@ export const statusProfileVisibilitySchema = Joi.number().valid(...Object.keys(R
 
 export const profileVisibilitySchema = Joi.object({
   networkProfileVisibility: networkProfileVisibilitySchema.allow(null).required(),
-  jobPriorityProfileVisibility: statusProfileVisibilitySchema.allow(null).required(),
+  statusProfileVisibility: statusProfileVisibilitySchema.allow(null).required(),
 }).label('ProfileVisibility');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
