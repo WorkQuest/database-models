@@ -80,6 +80,9 @@ export class Quest extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
+  @ForeignKey(() => Media)
+  @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
+
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
