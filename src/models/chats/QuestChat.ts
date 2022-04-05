@@ -59,6 +59,7 @@ export class QuestChat extends Model {
 
   @BelongsTo(() => Chat) chat: Chat;
   @BelongsTo(() => Quest) quest: Quest;
+  @BelongsTo(() => QuestDispute) dispute: QuestDispute;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
 
   @BelongsTo(() => User, 'workerId') worker: User;
