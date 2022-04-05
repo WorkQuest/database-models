@@ -82,6 +82,12 @@ export const activeFlowStatuses = [
       'title',
     ],
     include: [{
+      model: User.scope('short'),
+      as: 'user'
+    }, {
+      model: User.scope('short'),
+      as: 'assignedWorker'
+    }, {
       model: QuestDispute.unscoped(),
       as: 'openDispute',
       required: false,
