@@ -8,7 +8,7 @@ export declare enum NetworkProfileVisibility {
 export declare class ProfileVisibilitySetting extends Model {
     id: string;
     userId: string;
-    networkProfileVisibility: NetworkProfileVisibility;
-    statusProfileVisibility: RatingStatus;
+    network: NetworkProfileVisibility;
+    status: RatingStatus;
     user: User;
 }

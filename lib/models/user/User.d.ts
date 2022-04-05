@@ -12,10 +12,10 @@ import { UserRaiseView } from "./UserRaiseView";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";
+import { ProfileVisibilitySetting } from "./ProfileVisibilitySetting";
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
 import { Model } from "sequelize-typescript";
-import { ProfileVisibilitySetting } from "./ProfileVisibilitySetting";
 export interface SocialInfo {
     id: string;
     email: string;
