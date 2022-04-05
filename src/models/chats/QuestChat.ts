@@ -30,7 +30,7 @@ export enum QuestChatStatuses {
     }]
   },
   idsOnly: {
-    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId']
+    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId', 'disputeId']
   }
 }))
 @Table
