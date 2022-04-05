@@ -13,6 +13,7 @@ export declare class QuestChat extends Model {
     workerId: string;
     questId: string;
     responseId: string;
+    disputeId: string;
     chatId: string;
     status: QuestChatStatuses;
     chat: Chat;

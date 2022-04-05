@@ -45,6 +45,7 @@ export const questChatSchema = Joi.object({
   workerId: idSchema,
   questId: idSchema,
   responseId: idSchema,
+  disputeId: idSchema,
   chatId: idSchema,
   status: questChatStatusSchema,
 }).label('QuestChat');
