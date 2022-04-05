@@ -43,6 +43,7 @@ export declare class Quest extends Model {
     startedAt: Date;
     user: User;
     assignedWorker: User;
+    avatar: Media;
     medias: Media[];
     questChat: QuestChat;
     star: QuestsStarred;

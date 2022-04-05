@@ -104,6 +104,8 @@ export class Quest extends Model {
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
+  @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
+
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
   @HasOne(() => QuestChat) questChat: QuestChat;
