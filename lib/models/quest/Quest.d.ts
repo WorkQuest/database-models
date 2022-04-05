@@ -28,6 +28,7 @@ export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {
     id: string;
     userId: string;
+    avatarId: string;
     assignedWorkerId: string;
     title: string;
     description: string;
@@ -42,6 +43,7 @@ export declare class Quest extends Model {
     startedAt: Date;
     user: User;
     assignedWorker: User;
+    avatar: Media;
     medias: Media[];
     questChat: QuestChat;
     star: QuestsStarred;
