@@ -2,7 +2,7 @@ import {
   BelongsTo,
   Column,
   DataType,
-  ForeignKey, HasOne,
+  ForeignKey,
   Model, Scopes,
   Table,
 } from "sequelize-typescript";
@@ -11,7 +11,6 @@ import {Quest} from "../quest/Quest";
 import {QuestsResponse} from "../quest/QuestsResponse";
 import {Chat} from "./Chat";
 import {User} from "../user/User";
-import { QuestDispute } from "../quest/QuestDispute";
 
 export enum QuestChatStatuses {
   Open = 0,
@@ -30,7 +29,7 @@ export enum QuestChatStatuses {
     }]
   },
   idsOnly: {
-    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId', 'disputeId']
+    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId']
   }
 }))
 @Table
@@ -49,9 +48,6 @@ export class QuestChat extends Model {
   @ForeignKey(() => QuestsResponse)
   @Column({type: DataType.STRING, allowNull: false}) responseId: string;
 
-  @ForeignKey(() => QuestDispute)
-  @Column(DataType.STRING) disputeId: string; /** When dispute */
-
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
@@ -59,7 +55,6 @@ export class QuestChat extends Model {
 
   @BelongsTo(() => Chat) chat: Chat;
   @BelongsTo(() => Quest) quest: Quest;
-  @BelongsTo(() => QuestDispute) dispute: QuestDispute;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
 
   @BelongsTo(() => User, 'workerId') worker: User;
