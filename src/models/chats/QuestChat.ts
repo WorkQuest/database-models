@@ -1,16 +1,11 @@
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  ForeignKey, HasOne,
-  Model, Scopes,
-  Table,
-} from "sequelize-typescript";
-import {getUUID} from "../../utils";
-import {Quest} from "../quest/Quest";
-import {QuestsResponse} from "../quest/QuestsResponse";
-import {Chat} from "./Chat";
-import {User} from "../user/User";
+import { BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table, } from "sequelize-typescript";
+import { Op } from "sequelize";
+import { getUUID } from "../../utils";
+import { Quest } from "../quest/Quest";
+import { QuestsResponse } from "../quest/QuestsResponse";
+import { Chat } from "./Chat";
+import { User } from "../user/User";
+import { DisputeStatus, QuestDispute } from "../quest/QuestDispute";
 
 export enum QuestChatStatuses {
   Open = 0,
@@ -20,16 +15,15 @@ export enum QuestChatStatuses {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["createdAt", "updatedAt"]
+      exclude: ['createdAt', 'updatedAt'],
     },
     include: [{
-      model: Quest,
+      model: Quest.scope('short'),
       as: 'quest',
-      attributes: ["title"] // TODO Add Quest short
-    }]
+    }],
   },
   idsOnly: {
-    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId']
+    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId'],
   }
 }))
 @Table

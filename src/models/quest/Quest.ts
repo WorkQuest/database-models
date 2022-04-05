@@ -7,7 +7,7 @@ import {QuestsResponse} from "./QuestsResponse";
 import {QuestsStarred} from './QuestsStarred';
 import {QuestChat} from "../chats/QuestChat";
 import {QuestRaiseView} from "./QuestRaiseView";
-import {QuestDispute} from "./QuestDispute";
+import { DisputeStatus, QuestDispute } from "./QuestDispute";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {
@@ -22,6 +22,7 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
+import { Op } from "sequelize";
 
 export enum QuestStatus {
   Blocked = -1,
@@ -74,8 +75,43 @@ export const activeFlowStatuses = [
       model: QuestRaiseView,
       as: "raiseView",
       attributes: ['status', 'duration', 'type', 'endedAt'],
-    }]
+    }],
+  },
+  short: {
+    attributes: [
+      'id',
+      'userId',
+      'assignedWorkerId',
+      'title',
+    ],
+    include: [{
+      model: User.scope('short'),
+      as: 'user'
+    }, {
+      model: User.scope('short'),
+      as: 'assignedWorker'
+    }, {
+      model: QuestDispute.unscoped(),
+      as: 'openDispute',
+      required: false,
+      attributes: [
+        'id',
+        'openDisputeUserId',
+        'opponentUserId',
+        'assignedAdminId',
+        'status',
+      ],
+      where: {
+        status: {
+          [Op.or]: [
+            DisputeStatus.pending,
+            DisputeStatus.inProgress,
+          ],
+        },
+      },
+    }],
   }
+
 }))
 @Table({paranoid: true})
 export class Quest extends Model {
