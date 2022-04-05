@@ -23,7 +23,7 @@ export class ProfileVisibilitySetting extends Model {
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @Column({type: DataType.INTEGER, defaultValue: NetworkProfileVisibility.AllUsers }) network: NetworkProfileVisibility;
-  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.AllStatuses }) status: RatingStatus;
+  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.AllStatuses }) ratingStatus: RatingStatus;
 
   @BelongsTo(() => User) user: User;
 }

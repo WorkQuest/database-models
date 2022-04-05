@@ -9,6 +9,6 @@ export declare class ProfileVisibilitySetting extends Model {
     id: string;
     userId: string;
     network: NetworkProfileVisibility;
-    status: RatingStatus;
+    ratingStatus: RatingStatus;
     user: User;
 }
