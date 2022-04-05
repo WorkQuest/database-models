@@ -75,17 +75,31 @@ export const activeFlowStatuses = [
     }]
   },
   short: {
-    attributes: ["id", "userId", "assignedWorkerId", "title"],
+    attributes: [
+      'id',
+      'userId',
+      'assignedWorkerId',
+      'title',
+    ],
     include: [{
       model: QuestDispute.unscoped(),
       as: 'openDispute',
+      required: false,
+      attributes: [
+        'id',
+        'openDisputeUserId',
+        'opponentUserId',
+        'assignedAdminId',
+        'status',
+      ],
       where: {
         status: {
-          [Op.or]: [ DisputeStatus.pending, DisputeStatus.inProgress ]
-        }
+          [Op.or]: [
+            DisputeStatus.pending,
+            DisputeStatus.inProgress
+          ],
+        },
       },
-      attributes: ["id", "openDisputeUserId", "opponentUserId", "assignedAdminId", "status", "problemDescription"],
-      required: false,
     }],
   }
 
