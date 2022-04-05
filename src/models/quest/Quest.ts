@@ -77,13 +77,14 @@ export const activeFlowStatuses = [
   short: {
     attributes: ["id", "userId", "assignedWorkerId", "title"],
     include: [{
-      model: QuestDispute,
+      model: QuestDispute.unscoped(),
       as: 'openDispute',
       where: {
         status: {
           [Op.or]: [ DisputeStatus.pending, DisputeStatus.inProgress ]
         }
       },
+      attributes: ["id", "openDisputeUserId", "opponentUserId", "assignedAdminId", "status", "problemDescription"],
       required: false,
     }],
   }
