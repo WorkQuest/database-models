@@ -84,6 +84,7 @@ export const activeFlowStatuses = [
           [Op.or]: [ DisputeStatus.pending, DisputeStatus.inProgress ]
         }
       },
+      required: false,
     }],
   }
 
