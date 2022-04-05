@@ -55,6 +55,9 @@ export const activeFlowStatuses = [
     },
     include: [{
       model: Media.scope('urlOnly'),
+      as: 'avatar',
+    }, {
+      model: Media.scope('urlOnly'),
       as: 'medias',
       through: { attributes: [] }
     }, {
