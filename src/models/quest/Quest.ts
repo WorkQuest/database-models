@@ -7,7 +7,7 @@ import {QuestsResponse} from "./QuestsResponse";
 import {QuestsStarred} from './QuestsStarred';
 import {QuestChat} from "../chats/QuestChat";
 import {QuestRaiseView} from "./QuestRaiseView";
-import {QuestDispute} from "./QuestDispute";
+import { DisputeStatus, QuestDispute } from "./QuestDispute";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {
@@ -22,6 +22,7 @@ import {
   Table,
   HasOne
 } from 'sequelize-typescript';
+import { Op } from "sequelize";
 
 export enum QuestStatus {
   Blocked = -1,
@@ -55,6 +56,9 @@ export const activeFlowStatuses = [
     },
     include: [{
       model: Media.scope('urlOnly'),
+      as: 'avatar',
+    }, {
+      model: Media.scope('urlOnly'),
       as: 'medias',
       through: { attributes: [] }
     }, {
@@ -71,14 +75,52 @@ export const activeFlowStatuses = [
       model: QuestRaiseView,
       as: "raiseView",
       attributes: ['status', 'duration', 'type', 'endedAt'],
-    }]
+    }],
+  },
+  short: {
+    attributes: [
+      'id',
+      'userId',
+      'assignedWorkerId',
+      'title',
+    ],
+    include: [{
+      model: User.scope('short'),
+      as: 'user'
+    }, {
+      model: User.scope('short'),
+      as: 'assignedWorker'
+    }, {
+      model: QuestDispute.unscoped(),
+      as: 'openDispute',
+      required: false,
+      attributes: [
+        'id',
+        'openDisputeUserId',
+        'opponentUserId',
+        'assignedAdminId',
+        'status',
+      ],
+      where: {
+        status: {
+          [Op.or]: [
+            DisputeStatus.pending,
+            DisputeStatus.inProgress,
+          ],
+        },
+      },
+    }],
   }
+
 }))
 @Table({paranoid: true})
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
+
+  @ForeignKey(() => Media)
+  @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
@@ -101,6 +143,8 @@ export class Quest extends Model {
 
   @BelongsTo(() => User, 'userId') user: User;
   @BelongsTo(() => User, 'assignedWorkerId') assignedWorker: User;
+  @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
+
   @BelongsToMany(() => Media, () => QuestMedia) medias: Media[];
 
   @HasOne(() => QuestChat) questChat: QuestChat;

@@ -65,6 +65,7 @@ export const questStatusesSchema = Joi.array().items(questStatusSchema).label('Q
 export const questSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  avatarId: idSchema,
   assignedWorkerId: idSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
@@ -187,6 +188,7 @@ export const reviewsSchema = Joi.array().items(questReviewSchema).label('Reviews
 export const questForGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  avatarId: idSchema,
   assignedWorkerId: idSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
@@ -226,6 +228,7 @@ export const questsForGetWithCountSchema = Joi.object({
 export const questForAdminsGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  avatarId: idSchema,
   assignedWorkerId: idSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
