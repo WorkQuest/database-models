@@ -72,7 +72,7 @@ export const activeFlowStatuses = [
       model: QuestRaiseView,
       as: "raiseView",
       attributes: ['status', 'duration', 'type', 'endedAt'],
-    }]
+    }],
   },
   short: {
     attributes: [
@@ -102,7 +102,7 @@ export const activeFlowStatuses = [
         status: {
           [Op.or]: [
             DisputeStatus.pending,
-            DisputeStatus.inProgress
+            DisputeStatus.inProgress,
           ],
         },
       },

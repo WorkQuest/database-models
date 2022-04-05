@@ -15,15 +15,15 @@ export enum QuestChatStatuses {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["createdAt", "updatedAt"]
+      exclude: ['createdAt', 'updatedAt'],
     },
     include: [{
       model: Quest.scope('short'),
       as: 'quest',
-    }]
+    }],
   },
   idsOnly: {
-    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId']
+    attributes: ['employerId', 'workerId', 'questId', 'responseId', 'chatId'],
   }
 }))
 @Table
