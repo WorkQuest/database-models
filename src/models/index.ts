@@ -67,7 +67,7 @@ import {ReferralProgramParseBlock} from "./referral-program/ReferralProgramParse
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
-import {UserRaiseView} from "./user/UserRaiseView";
+import {UserRaiseView} from "./raiseView/UserRaiseView";
 import {QuestBlockInfo} from "./quest/contract-quest/QuestBlockInfo";
 import {QuestAssignedEvent} from "./quest/contract-quest/QuestAssignedEvent";
 import {QuestJobStartedEvent} from "./quest/contract-quest/QuestJobStartedEvent";
@@ -286,6 +286,6 @@ export * from "./quest/contract-quest/QuestBlockInfo";
 export * from "./quest/contract-quest/QuestAssignedEvent";
 export * from "./quest/contract-quest/QuestJobStartedEvent";
 export * from "./admin/AdminQuestDisputesStatistic"
-export * from "./user/UserRaiseView";
+export * from "./raiseView/UserRaiseView";
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
