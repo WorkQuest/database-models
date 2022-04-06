@@ -291,3 +291,4 @@ export * from "./admin/AdminQuestDisputesStatistic"
 export * from "./user/UserRaiseView";
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
+export * from "./quest/contract-quest/QuestJobCancelledEvent";
