@@ -1,10 +1,17 @@
 import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
-import {affiliateSchema} from "./referral";
 import {walletAddressesSchema, walletAddressSchema} from "./wallet";
-import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
+import {
+  UserRole,
+  Priority,
+  StatusKYC,
+  UserStatus,
+  RatingStatus,
+  BlackListStatus,
+  NetworkProfileVisibility,
+} from "../models";
 import {
   chatsStatisticSchema,
   questsStatisticSchema,
@@ -264,6 +271,16 @@ export const tokensWithStatus = Joi.object({
   address: walletAddressSchema,
 }).label("TokensWithStatus");
 
+/** Visibility settings */
+
+export const profileVisibilityStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label("ProfileVisibilityStatus");
+export const profileVisibilityNetworkSchema = Joi.number().valid(...Object.keys(NetworkProfileVisibility).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibility.AllUsers).label("ProfileVisibilityNetwork");
+
+export const profileVisibilitySettingsSchema = Joi.object({
+  network: profileVisibilityStatusSchema.allow(null).required(),
+  ratingStatus: profileVisibilityNetworkSchema.allow(null).required(),
+}).label('ProfileVisibilitySettings');
+
 /** Sessions */
 
 export const userSessionSchema = Joi.object({
@@ -297,3 +314,5 @@ export const userBlackListSchema = Joi.object({
   blockedByAdmin: adminSchema,
   unblockedByAdmin: adminSchema,
 }).label('UserBlackList');
+
+

@@ -14,6 +14,7 @@ import {UserRaiseView} from "../raiseView/UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {ProfileVisibilitySetting} from "./ProfileVisibilitySetting";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
@@ -248,6 +249,9 @@ export class User extends Model {
   @Column(DataType.JSONB) location: LocationType;
   @Column(DataType.STRING) locationPlaceName: string;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
+
+  /** Profile visibility settings */
+  @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
