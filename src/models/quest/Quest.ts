@@ -6,7 +6,7 @@ import {QuestsReview} from './QuestsReview';
 import {QuestsResponse} from "./QuestsResponse";
 import {QuestsStarred} from './QuestsStarred';
 import {QuestChat} from "../chats/QuestChat";
-import {QuestRaiseView} from "./QuestRaiseView";
+import {QuestRaiseView} from "../raiseView/QuestRaiseView";
 import { DisputeStatus, QuestDispute } from "./QuestDispute";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";

@@ -45,7 +45,7 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
-import {QuestRaiseView} from "./quest/QuestRaiseView";
+import {QuestRaiseView} from "./raiseView/QuestRaiseView";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {QuestFactoryCreatedEvent} from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
@@ -68,13 +68,15 @@ import {ReferralProgramParseBlock} from "./referral-program/ReferralProgramParse
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
-import {UserRaiseView} from "./user/UserRaiseView";
+import {UserRaiseView} from "./raiseView/UserRaiseView";
 import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
 import {QuestBlockInfo} from "./quest/contract-quest/QuestBlockInfo";
 import {QuestAssignedEvent} from "./quest/contract-quest/QuestAssignedEvent";
 import {QuestJobStartedEvent} from "./quest/contract-quest/QuestJobStartedEvent";
 import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
+import { RaiseViewBlockInfo } from "./raiseView/RaiseViewBlockInfo";
+import { RaiseViewEvent } from "./raiseView/RaiseViewEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -88,7 +90,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
-      UserRaiseView,
       ProfileVisibilitySetting,
 
 
@@ -103,7 +104,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Quest,
       QuestChat,
       QuestDispute,
-      QuestRaiseView,
       QuestsStarred,
       QuestsResponse,
       QuestBlackList,
@@ -207,6 +207,13 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PensionFundWithdrewEvent,
       PensionFundReceivedEvent,
       PensionFundWalletUpdatedEvent,
+
+
+      /** Raise view */
+      UserRaiseView,
+      RaiseViewEvent,
+      QuestRaiseView,
+      RaiseViewBlockInfo,
     ]
   });
   if (sync)
@@ -267,7 +274,7 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
 export * from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
-export * from "./quest/QuestRaiseView";
+export * from "./raiseView/QuestRaiseView";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
@@ -296,3 +303,5 @@ export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/ProfileVisibilitySetting";
+export * from "./raiseView/RaiseViewEvent";
+export * from "./raiseView/RaiseViewBlockInfo";

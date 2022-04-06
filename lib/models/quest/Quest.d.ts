@@ -3,15 +3,12 @@ import { Media } from '../Media';
 import { QuestsReview } from './QuestsReview';
 import { QuestsResponse } from "./QuestsResponse";
 import { QuestsStarred } from './QuestsStarred';
-import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
-import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { QuestChat } from "../chats/QuestChat";
-import { Model } from 'sequelize-typescript';
+import { QuestRaiseView } from "../raiseView/QuestRaiseView";
 import { QuestDispute } from "./QuestDispute";
-export declare enum AdType {
-    Free = 0,
-    Paid = 1
-}
+import { QuestSpecializationFilter } from './QuestSpecializationFilter';
+import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { Model } from 'sequelize-typescript';
 export declare enum QuestStatus {
     Closed = -3,
     Dispute = -2,
@@ -32,6 +29,7 @@ export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {
     id: string;
     userId: string;
+    avatarId: string;
     assignedWorkerId: string;
     contractAddress: string;
     nonce: string;
@@ -40,7 +38,6 @@ export declare class Quest extends Model {
     title: string;
     price: string;
     workplace: WorkPlace;
-    adType: AdType;
     employment: QuestEmployment;
     priority: Priority;
     location: LocationType;
@@ -49,6 +46,7 @@ export declare class Quest extends Model {
     startedAt: Date;
     user: User;
     assignedWorker: User;
+    avatar: Media;
     medias: Media[];
     questChat: QuestChat;
     star: QuestsStarred;
@@ -57,6 +55,7 @@ export declare class Quest extends Model {
     invited: QuestsResponse;
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
+    raiseView: QuestRaiseView;
     yourReview: QuestsReview;
     openDispute: QuestDispute;
     questSpecializations: QuestSpecializationFilter[];

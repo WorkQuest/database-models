@@ -1,4 +1,4 @@
-import {Quest} from './Quest';
+import {Quest} from '../quest/Quest';
 import {getUUID} from '../../utils';
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 
