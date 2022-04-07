@@ -80,5 +80,5 @@ export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/ProfileVisibilitySetting";
-export * from "./raiseView/RaiseViewEvent";
+export * from "./raiseView/RaiseViewPromotedUserEvent";
 export * from "./raiseView/RaiseViewBlockInfo";

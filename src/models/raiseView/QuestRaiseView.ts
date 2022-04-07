@@ -1,24 +1,7 @@
 import {Quest} from '../quest/Quest';
 import {getUUID} from '../../utils';
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
-
-export enum QuestRaiseStatus {
-  Paid,
-  Closed,
-}
-
-export enum QuestRaiseDuration {
-  OneDay = 1,
-  FiveDays = 5,
-  SevenDays = 7,
-}
-
-export enum QuestRaiseType {
-  GoldPlus = 0,
-  Gold,
-  Silver ,
-  Bronze ,
-}
+import { QuestRaiseDuration, QuestRaiseStatus, QuestRaiseType } from "./types";
 
 @Table
 export class QuestRaiseView extends Model {

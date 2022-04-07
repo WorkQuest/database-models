@@ -76,7 +76,7 @@ import {QuestJobStartedEvent} from "./quest/contract-quest/QuestJobStartedEvent"
 import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
 import { RaiseViewBlockInfo } from "./raiseView/RaiseViewBlockInfo";
-import { RaiseViewEvent } from "./raiseView/RaiseViewEvent";
+import { RaiseViewPromotedUserEvent } from "./raiseView/RaiseViewPromotedUserEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -211,7 +211,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Raise view */
       UserRaiseView,
-      RaiseViewEvent,
+      RaiseViewPromotedUserEvent,
       QuestRaiseView,
       RaiseViewBlockInfo,
     ]
@@ -303,5 +303,5 @@ export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/ProfileVisibilitySetting";
-export * from "./raiseView/RaiseViewEvent";
+export * from "./raiseView/RaiseViewPromotedUserEvent";
 export * from "./raiseView/RaiseViewBlockInfo";
