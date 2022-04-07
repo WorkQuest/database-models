@@ -227,6 +227,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
+export * from "./raiseView/types";
 
 export * from "./Media";
 export * from "./quest/Quest";
@@ -276,7 +277,6 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
 export * from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
-export * from "./raiseView/QuestRaiseView";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
@@ -300,7 +300,6 @@ export * from "./quest/contract-quest/QuestBlockInfo";
 export * from "./quest/contract-quest/QuestAssignedEvent";
 export * from "./quest/contract-quest/QuestJobStartedEvent";
 export * from "./admin/AdminQuestDisputesStatistic"
-export * from "./raiseView/UserRaiseView";
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
@@ -308,3 +307,6 @@ export * from "./user/ProfileVisibilitySetting";
 export * from "./raiseView/RaiseViewPromotedUserEvent";
 export * from "./raiseView/RaiseViewPromotedQuestEvent";
 export * from "./raiseView/RaiseViewBlockInfo";
+export * from "./raiseView/QuestRaiseView";
+export * from "./raiseView/UserRaiseView";
+
