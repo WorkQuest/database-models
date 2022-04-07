@@ -77,6 +77,7 @@ import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
 import { RaiseViewBlockInfo } from "./raiseView/RaiseViewBlockInfo";
 import { RaiseViewPromotedUserEvent } from "./raiseView/RaiseViewPromotedUserEvent";
+import { RaiseViewPromotedQuestEvent } from "./raiseView/RaiseViewPromotedQuestEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -212,6 +213,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Raise view */
       UserRaiseView,
       RaiseViewPromotedUserEvent,
+      RaiseViewPromotedQuestEvent,
       QuestRaiseView,
       RaiseViewBlockInfo,
     ]
