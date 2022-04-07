@@ -74,6 +74,7 @@ import {QuestJobStartedEvent} from "./quest/contract-quest/QuestJobStartedEvent"
 import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
 import {QuestJobCancelledEvent} from "./quest/contract-quest/QuestJobCancelledEvent";
+import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -119,6 +120,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestJobDoneEvent,
       QuestJobFinishedEvent,
       QuestJobCancelledEvent,
+      QuestJobEditedEvent,
 
 
       /** Chat section */
@@ -292,3 +294,4 @@ export * from "./user/UserRaiseView";
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./quest/contract-quest/QuestJobCancelledEvent";
+export * from "./quest/contract-quest/QuestJobEditedEvent";

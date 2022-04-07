@@ -78,3 +78,4 @@ export * from "./user/UserRaiseView";
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./quest/contract-quest/QuestJobCancelledEvent";
+export * from "./quest/contract-quest/QuestJobEditedEvent";
