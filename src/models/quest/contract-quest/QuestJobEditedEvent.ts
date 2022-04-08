@@ -9,14 +9,14 @@ export enum QuestJobEditedStatus {
 
 @Table
 export class QuestJobEditedEvent extends Model {
-   @Column(DataType.STRING) contractAddress: string;
+ @Column(DataType.STRING) contractAddress: string;
 
-   @Column(DataType.DECIMAL) cost: string;
+  @Column(DataType.DECIMAL) cost: string;
 
-    @Column(DataType.STRING) timestamp: string;
-    @Column(DataType.STRING) blockNumber: number;
-    @Column(DataType.STRING) transactionHash: string;
+  @Column(DataType.STRING) timestamp: string;
+  @Column(DataType.STRING) blockNumber: number;
+  @Column(DataType.STRING) transactionHash: string;
 
-    @Column({type: DataType.STRING, allowNull: false}) network: BlockchainNetworks;
-    @Column({type: DataType.INTEGER, allowNull: false}) status: QuestJobEditedStatus;
+  @Column({type: DataType.STRING, allowNull: false}) network: BlockchainNetworks;
+  @Column({type: DataType.INTEGER, allowNull: false}) status: QuestJobEditedStatus;
 }
