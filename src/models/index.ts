@@ -45,6 +45,7 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
+import {QuestRaiseView} from "./quest/QuestRaiseView";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {QuestFactoryCreatedEvent} from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
@@ -75,6 +76,7 @@ import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
 import {QuestJobCancelledEvent} from "./quest/contract-quest/QuestJobCancelledEvent";
 import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
+import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -89,6 +91,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       UserBlackList,
       UserChangeRoleData,
       UserRaiseView,
+      ProfileVisibilitySetting,
 
 
       /** Admin section */
@@ -102,6 +105,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Quest,
       QuestChat,
       QuestDispute,
+      QuestRaiseView,
       QuestsStarred,
       QuestsResponse,
       QuestBlackList,
@@ -265,6 +269,7 @@ export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
+export * from "./quest/QuestRaiseView";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
 export * from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
@@ -290,8 +295,10 @@ export * from "./quest/contract-quest/QuestBlockInfo";
 export * from "./quest/contract-quest/QuestAssignedEvent";
 export * from "./quest/contract-quest/QuestJobStartedEvent";
 export * from "./admin/AdminQuestDisputesStatistic"
+export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./quest/contract-quest/QuestJobCancelledEvent";
 export * from "./quest/contract-quest/QuestJobEditedEvent";
+export * from "./user/ProfileVisibilitySetting";

@@ -50,3 +50,10 @@ export declare enum HTTPVerb {
     PUT = "PUT",
     DELETE = "DELETE"
 }
+export declare enum RatingStatus {
+    topRanked = 0,
+    reliable = 1,
+    verified = 2,
+    noStatus = 3,
+    AllStatuses = 4
+}
