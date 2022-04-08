@@ -1,23 +1,24 @@
-import { User } from "../user/User";
 import { Media } from '../Media';
+import { User } from "../user/User";
 import { QuestsReview } from './QuestsReview';
-import { QuestsResponse } from "./QuestsResponse";
-import { QuestsStarred } from './QuestsStarred';
 import { QuestChat } from "../chats/QuestChat";
+import { QuestsStarred } from './QuestsStarred';
+import { QuestsResponse } from "./QuestsResponse";
 import { QuestRaiseView } from "./QuestRaiseView";
 import { QuestDispute } from "./QuestDispute";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
 import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
 import { Model } from 'sequelize-typescript';
 export declare enum QuestStatus {
+    Closed = -3,
+    Dispute = -2,
     Blocked = -1,
-    Created = 0,
-    Active = 1,
-    Closed = 2,
-    Dispute = 3,
-    WaitWorker = 4,
-    WaitConfirm = 5,
-    Done = 6
+    Pending = 0,
+    Recruitment = 1,
+    WaitingForConfirmFromWorkerOnAssign = 2,
+    ExecutionOfWork = 3,
+    WaitingForEmployerConfirmationWork = 4,
+    Completed = 5
 }
 export declare enum QuestEmployment {
     FullTime = "fullTime",
@@ -30,16 +31,18 @@ export declare class Quest extends Model {
     userId: string;
     avatarId: string;
     assignedWorkerId: string;
+    contractAddress: string;
+    nonce: string;
+    status: QuestStatus;
     title: string;
     description: string;
-    status: QuestStatus;
+    price: string;
     workplace: WorkPlace;
     employment: QuestEmployment;
     priority: Priority;
-    locationPlaceName: string;
     location: LocationType;
+    locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
-    price: string;
     startedAt: Date;
     user: User;
     assignedWorker: User;

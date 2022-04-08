@@ -1,27 +1,27 @@
-import {getUUID, getUUIDInt} from '../../utils';
-import {User} from "../user/User";
 import { Op } from "sequelize";
 import {Media} from '../Media';
+import {User} from "../user/User";
 import {QuestMedia} from './QuestMedia';
 import {QuestsReview} from './QuestsReview';
-import {QuestsResponse} from "./QuestsResponse";
-import {QuestsStarred} from './QuestsStarred';
 import {QuestChat} from "../chats/QuestChat";
+import {QuestsStarred} from './QuestsStarred';
+import {QuestsResponse} from "./QuestsResponse";
+import {getUUID, getUUIDInt} from '../../utils';
 import {QuestRaiseView} from "./QuestRaiseView";
 import { DisputeStatus, QuestDispute } from "./QuestDispute";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {
-  BelongsTo,
-  HasMany,
-  BelongsToMany,
-  Column,
-  DataType,
-  ForeignKey,
   Model,
-  Scopes,
   Table,
-  HasOne
+  HasOne,
+  Scopes,
+  Column,
+  HasMany,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  BelongsToMany,
 } from 'sequelize-typescript';
 
 export enum QuestStatus {
@@ -114,7 +114,7 @@ export const activeFlowStatuses = [
     }],
   }
 }))
-@Table({paranoid: true})
+@Table({ paranoid: true })
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
@@ -132,8 +132,8 @@ export class Quest extends Model {
 
   @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Pending }) status: QuestStatus;
 
-  @Column(DataType.TEXT) description: string;
   @Column({type: DataType.STRING, allowNull: false}) title: string;
+  @Column({type: DataType.TEXT, allowNull: false}) description: string;
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
