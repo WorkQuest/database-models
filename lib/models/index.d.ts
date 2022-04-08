@@ -77,6 +77,8 @@ export * from "./quest/contract-quest/QuestJobStartedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
+export * from "./quest/contract-quest/QuestJobCancelledEvent";
+export * from "./quest/contract-quest/QuestJobEditedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/ProfileVisibilitySetting";
 export * from "./raiseView/RaiseViewPromotedUserEvent";
