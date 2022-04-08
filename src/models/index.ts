@@ -75,6 +75,8 @@ import {QuestAssignedEvent} from "./quest/contract-quest/QuestAssignedEvent";
 import {QuestJobStartedEvent} from "./quest/contract-quest/QuestJobStartedEvent";
 import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
+import {QuestJobCancelledEvent} from "./quest/contract-quest/QuestJobCancelledEvent";
+import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
 import { RaiseViewBlockInfo } from "./raiseView/RaiseViewBlockInfo";
 import { RaiseViewPromotedUserEvent } from "./raiseView/RaiseViewPromotedUserEvent";
 import { RaiseViewPromotedQuestEvent } from "./raiseView/RaiseViewPromotedQuestEvent";
@@ -122,6 +124,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestJobStartedEvent,
       QuestJobDoneEvent,
       QuestJobFinishedEvent,
+      QuestJobCancelledEvent,
+      QuestJobEditedEvent,
 
 
       /** Chat section */
@@ -302,6 +306,8 @@ export * from "./quest/contract-quest/QuestJobStartedEvent";
 export * from "./admin/AdminQuestDisputesStatistic"
 export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
+export * from "./quest/contract-quest/QuestJobCancelledEvent";
+export * from "./quest/contract-quest/QuestJobEditedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/ProfileVisibilitySetting";
 export * from "./raiseView/RaiseViewPromotedUserEvent";
