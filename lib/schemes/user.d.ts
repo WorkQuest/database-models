@@ -26,6 +26,7 @@ export declare const betweenWagePerHourSchema: Joi.ObjectSchema<any>;
 export declare const employerQuerySchema: Joi.ObjectSchema<any>;
 export declare const workerQuerySchema: Joi.ObjectSchema<any>;
 export declare const workerQueryForMapPointsSchema: Joi.ObjectSchema<any>;
+export declare const workerPayloadSchema: Joi.ObjectSchema<any>;
 export declare const usersSchema: Joi.ArraySchema;
 export declare const userEmployersSchema: Joi.ArraySchema;
 export declare const userWorkersSchema: Joi.ArraySchema;

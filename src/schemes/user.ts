@@ -243,7 +243,6 @@ export const workerQuerySchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
@@ -253,10 +252,13 @@ export const workerQueryForMapPointsSchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
 }).label('WorkerQueryForMapPoints');
+
+export const workerPayloadSchema = Joi.object({
+  specializations: specializationsFilerSchema.default(null),
+}).label('WorkerPayload')
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
