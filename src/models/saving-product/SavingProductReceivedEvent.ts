@@ -2,7 +2,7 @@ import { Column, DataType, Model, Table } from "sequelize-typescript";
 import { BlockchainNetworks } from "../types";
 
 @Table
-export class SavingsReceivedEvent extends Model {
+export class SavingProductReceivedEvent extends Model {
   @Column(DataType.INTEGER) blockNumber: number;
   @Column(DataType.STRING) transactionHash: string;
   @Column(DataType.STRING) user: string;
