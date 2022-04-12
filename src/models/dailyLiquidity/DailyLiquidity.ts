@@ -3,7 +3,7 @@ import { getUUID } from "../../utils";
 
 @Table
 export class DailyLiquidity extends Model {
-  @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+  @Column({ primaryKey: true, type: DataType.STRING }) daySinceEpochBeginning: string;
 
   @Column(DataType.STRING) date: string;
   @Column(DataType.STRING) blockNumber: string;

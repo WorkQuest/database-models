@@ -8,6 +8,5 @@ export class WqtWbnbSyncEvent extends Model {
   @Column(DataType.STRING) reserve1: string;
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) transactionHash: string;
-  @Column(DataType.STRING) network: BlockchainNetworks;
 }
 
