@@ -1,9 +1,8 @@
 import {Column, DataType, Model, Table} from "sequelize-typescript";
-import { getUUID } from "../../utils";
 
 @Table
 export class DailyLiquidity extends Model {
-  @Column({ primaryKey: true, type: DataType.STRING }) daySinceEpochBeginning: string;
+  @Column({ primaryKey: true, type: DataType.INTEGER }) daySinceEpochBeginning: string;
 
   @Column(DataType.STRING) date: string;
   @Column(DataType.STRING) blockNumber: string;
