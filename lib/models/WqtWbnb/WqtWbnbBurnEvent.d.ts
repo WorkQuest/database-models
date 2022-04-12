@@ -1,5 +1,4 @@
 import { Model } from "sequelize-typescript";
-import { BlockchainNetworks } from "../types";
 export declare class WqtWbnbBurnEvent extends Model {
     blockNumber: number;
     amount0: string;
@@ -8,5 +7,4 @@ export declare class WqtWbnbBurnEvent extends Model {
     to: string;
     timestamp: string;
     transactionHash: string;
-    network: BlockchainNetworks;
 }
