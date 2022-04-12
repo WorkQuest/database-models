@@ -72,3 +72,4 @@ export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
 export * from "./user/ProfileVisibilitySetting";
+export * from "./WqtWbnb/WqtWbnbSyncEvent";

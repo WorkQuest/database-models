@@ -68,6 +68,7 @@ import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 import {UserRaiseView} from "./user/UserRaiseView";
 import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
+import {WqtWbnbSyncEvent} from "./WqtWbnb/WqtWbnbSyncEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -155,6 +156,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       WqtWbnbBlockInfo,
       WqtWbnbMintEvent,
       WqtWbnbBurnEvent,
+      WqtWbnbSyncEvent,
 
 
       /** Media section */
@@ -268,3 +270,4 @@ export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
 export * from "./user/ProfileVisibilitySetting";
+export * from "./WqtWbnb/WqtWbnbSyncEvent";
