@@ -68,6 +68,11 @@ import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
 import {UserRaiseView} from "./user/UserRaiseView";
 import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
+import {SavingsParseBlock} from "./savings/SavingsParseBlock";
+import {SavingsBorrowedEvent} from "./savings/SavingsBorrowedEvent";
+import {SavingsClaimedEvent} from "./savings/SavingsClaimedEvent";
+import {SavingsReceivedEvent} from "./savings/SavingsReceivedEvent";
+import {SavingsRefundedEvent} from "./savings/SavingsRefundedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -187,6 +192,13 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PensionFundWithdrewEvent,
       PensionFundReceivedEvent,
       PensionFundWalletUpdatedEvent,
+
+      /** Savings */
+      SavingsParseBlock,
+      SavingsBorrowedEvent,
+      SavingsClaimedEvent,
+      SavingsReceivedEvent,
+      SavingsRefundedEvent
     ]
   });
   if (sync)
@@ -268,3 +280,8 @@ export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
 export * from "./user/ProfileVisibilitySetting";
+export * from "./savings/SavingsParseBlock";
+export * from "./savings/SavingsBorrowedEvent";
+export * from "./savings/SavingsRefundedEvent";
+export * from "./savings/SavingsReceivedEvent";
+export * from "./savings/SavingsClaimedEvent";

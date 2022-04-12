@@ -72,3 +72,8 @@ export * from "./quest/QuestDisputeReview";
 export * from "./admin/AdminQuestDisputesStatistic";
 export * from "./user/UserRaiseView";
 export * from "./user/ProfileVisibilitySetting";
+export * from "./savings/SavingsParseBlock";
+export * from "./savings/SavingsBorrowedEvent";
+export * from "./savings/SavingsRefundedEvent";
+export * from "./savings/SavingsReceivedEvent";
+export * from "./savings/SavingsClaimedEvent";
