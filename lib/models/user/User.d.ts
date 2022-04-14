@@ -8,7 +8,7 @@ import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
 import { Chat } from "../chats/Chat";
-import { UserRaiseView } from "./UserRaiseView";
+import { UserRaiseView } from "../raiseView/UserRaiseView";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { ChatsStatistic } from "../chats/ChatsStatistic";

@@ -1,24 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
-import {User} from "./User";
-
-export enum UserRaiseStatus {
-  Paid = 0,
-  Closed = 1,
-}
-
-export enum UserRaiseDuration {
-  OneDay = 1,
-  SevenDays = 7,
-  ThirtyOneDays = 31,
-}
-
-export enum UserRaiseType {
-  GoldPlus = 0,
-  Gold= 1,
-  Silver = 2,
-  Bronze = 3,
-}
+import {User} from "../user/User";
+import { UserRaiseDuration, UserRaiseStatus, UserRaiseType } from "./types";
 
 @Table
 export class UserRaiseView extends Model {
