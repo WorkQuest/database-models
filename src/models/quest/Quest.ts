@@ -4,7 +4,7 @@ import {User} from "../user/User";
 import {QuestMedia} from './QuestMedia';
 import {QuestsReview} from './QuestsReview';
 import {QuestChat} from "../chats/QuestChat";
-import {QuestRaiseView} from "../raiseView/QuestRaiseView";
+import {QuestRaiseView} from "../raise-view/QuestRaiseView";
 import {QuestsStarred} from './QuestsStarred';
 import {QuestsResponse} from "./QuestsResponse";
 import {getUUID, getUUIDInt} from '../../utils';
