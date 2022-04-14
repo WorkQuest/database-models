@@ -56,6 +56,7 @@ import {UserBlackList} from "./user/UserBlackList";
 import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
+import {WqtWbnbSyncEvent} from "./WqtWbnb/WqtWbnbSyncEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "./referral-program/ReferralProgramReferral";
@@ -160,6 +161,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       WqtWbnbBlockInfo,
       WqtWbnbMintEvent,
       WqtWbnbBurnEvent,
+      WqtWbnbSyncEvent,
 
 
       /** Media section */
@@ -262,6 +264,7 @@ export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
 export * from "./WqtWbnb/WqtWbnbMintEvent";
+export * from "./WqtWbnb/WqtWbnbSyncEvent";
 export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
