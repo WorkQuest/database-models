@@ -58,6 +58,7 @@ import {UserBlackList} from "./user/UserBlackList";
 import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
+import {WqtWbnbSyncEvent} from "./WqtWbnb/WqtWbnbSyncEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "./referral-program/ReferralProgramReferral";
@@ -77,6 +78,11 @@ import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEven
 import {QuestJobCancelledEvent} from "./quest/contract-quest/QuestJobCancelledEvent";
 import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
 import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
+import {SavingProductParseBlock} from "./saving-product/SavingProductParseBlock";
+import {SavingProductBorrowedEvent} from "./saving-product/SavingProductBorrowedEvent";
+import {SavingProductClaimedEvent} from "./saving-product/SavingProductClaimedEvent";
+import {SavingProductReceivedEvent} from "./saving-product/SavingProductReceivedEvent";
+import {SavingProductRefundedEvent} from "./saving-product/SavingProductRefundedEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -179,6 +185,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       WqtWbnbBlockInfo,
       WqtWbnbMintEvent,
       WqtWbnbBurnEvent,
+      WqtWbnbSyncEvent,
 
 
       /** Media section */
@@ -211,6 +218,13 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PensionFundWithdrewEvent,
       PensionFundReceivedEvent,
       PensionFundWalletUpdatedEvent,
+
+      /** Saving Product */
+      SavingProductParseBlock,
+      SavingProductBorrowedEvent,
+      SavingProductClaimedEvent,
+      SavingProductReceivedEvent,
+      SavingProductRefundedEvent
     ]
   });
   if (sync)
@@ -276,6 +290,7 @@ export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
 export * from "./WqtWbnb/WqtWbnbMintEvent";
+export * from "./WqtWbnb/WqtWbnbSyncEvent";
 export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
@@ -302,3 +317,8 @@ export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./quest/contract-quest/QuestJobCancelledEvent";
 export * from "./quest/contract-quest/QuestJobEditedEvent";
 export * from "./user/ProfileVisibilitySetting";
+export * from "./saving-product/SavingProductParseBlock";
+export * from "./saving-product/SavingProductBorrowedEvent";
+export * from "./saving-product/SavingProductRefundedEvent";
+export * from "./saving-product/SavingProductReceivedEvent";
+export * from "./saving-product/SavingProductClaimedEvent";

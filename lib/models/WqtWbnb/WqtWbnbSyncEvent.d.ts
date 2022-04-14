@@ -1,9 +1,8 @@
 import { Model } from "sequelize-typescript";
-export declare class WqtWbnbMintEvent extends Model {
+export declare class WqtWbnbSyncEvent extends Model {
     blockNumber: number;
-    amount0: string;
-    amount1: string;
-    sender: string;
+    reserve0: string;
+    reserve1: string;
     timestamp: string;
     transactionHash: string;
 }

@@ -83,6 +83,7 @@ export const activeFlowStatuses = [
     attributes: [
       'id',
       'userId',
+      'status',
       'assignedWorkerId',
       'title',
     ],
