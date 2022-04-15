@@ -34,6 +34,7 @@ import {
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
 } from './common';
+import {contractAddressSchema} from "./liquidity";
 
 /** Quest chat schemes */
 
@@ -51,7 +52,7 @@ export const questChatSchema = Joi.object({
 
 /** Quests schemes */
 
-export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestStatus.Created).label('QuestStatus');
+export const questStatusSchema = Joi.number().valid(...Object.keys(QuestStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestStatus.Pending).label('QuestStatus');
 export const questTitleSchema = Joi.string().example('Title...').label('QuestTitle');
 export const questDescriptionSchema = Joi.string().example('Description quest...').label('QuestDescription');
 export const questPriceSchema = Joi.string().example("500").label('QuestPrice');
@@ -62,10 +63,15 @@ export const questEmploymentsSchema = Joi.array().items(questEmploymentSchema).l
 export const questPrioritiesSchema = Joi.array().items(prioritySchema).label('QuestPriorities');
 export const questStatusesSchema = Joi.array().items(questStatusSchema).label('QuestStatuses');
 
+export const questNonceSchema = Joi.string().default(idSchema).example('fa0e2e4e-c53f-4af7-8906-1649daa0cce3').label('QuestNonce');
+
 export const questSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  avatarId: idSchema,
   assignedWorkerId: idSchema,
+  contractAddress: contractAddressSchema,
+  nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
@@ -102,6 +108,9 @@ export const betweenPriceSchema = Joi.object({
   to: questPriceSchema.required(),
 }).label('BetweenPrice');
 
+export const questsPayloadSchema = Joi.object({
+  specializations: specializationsFilerSchema.unique().default(null),
+}).label('QuestsPayload');
 
 // TODO общие фильтры questQuerySchema и questQueryForMapPointsSchema
 export const questQuerySchema = Joi.object({
@@ -114,13 +123,25 @@ export const questQuerySchema = Joi.object({
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
-  specializations: specializationsFilerSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
   performing: Joi.boolean().default(false),                                             /** Only quests where worker performs (see Quest.assignedWorkerId)      */
   starred: Joi.boolean().default(false),                                                /** Only quest with star (see StarredQuests)                            */
 }).label('QuestsQuery');
+
+export const questQueryForGetWorkersSchema = Joi.object({
+  q: searchSchema,
+  limit: limitSchema,
+  offset: offsetSchema,
+  sort: questsListSortSchema,
+  priceBetween: betweenPriceSchema.default(null),
+  statuses: questStatusesSchema.unique().default(null),
+  priorities: questPrioritiesSchema.unique().default(null),
+  workplaces: workPlacesSchema.unique().default(null),
+  employments: questEmploymentsSchema.unique().default(null),
+  northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
+}).label('QuestQueryForGetWorkers');
 
 export const questQueryForMapPointsSchema = Joi.object({
   q: searchSchema,
@@ -129,7 +150,6 @@ export const questQueryForMapPointsSchema = Joi.object({
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
   employments: questEmploymentsSchema.unique().default(null),
-  specializations: specializationsFilerSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),                /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
@@ -187,7 +207,10 @@ export const reviewsSchema = Joi.array().items(questReviewSchema).label('Reviews
 export const questForGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  avatarId: idSchema,
   assignedWorkerId: idSchema,
+  contractAddress: contractAddressSchema,
+  nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,
@@ -226,7 +249,10 @@ export const questsForGetWithCountSchema = Joi.object({
 export const questForAdminsGetSchema = Joi.object({
   id: idSchema,
   userId: idSchema,
+  avatarId: idSchema,
   assignedWorkerId: idSchema,
+  contractAddress: contractAddressSchema,
+  nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
   employment: questEmploymentSchema,

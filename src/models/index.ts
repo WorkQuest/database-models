@@ -36,7 +36,7 @@ import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
 import {QuestDispute} from "./quest/QuestDispute";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
-import {DailyLiquidity} from "./dailyLiquidity/DailyLiquidity";
+import {DailyLiquidity} from "./daily-liquidity/DailyLiquidity";
 import {Proposal} from "./proposal/Proposal";
 import {ProposalMedia} from "./proposal/ProposalMedia";
 import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
@@ -45,9 +45,11 @@ import {ProposalVoteCastEvent} from "./proposal/ProposalVoteCastEvent";
 import {ProposalExecutedEvent} from "./proposal/ProposalExecutedEvent";
 import {QuestResponseMedia} from "./quest/QuestResponseMedia";
 import {Wallet} from "./wallet/Wallet";
-import {QuestRaiseView} from "./quest/QuestRaiseView";
+import {QuestRaiseView} from "./raise-view/QuestRaiseView";
 import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
+import {QuestFactoryCreatedEvent} from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
+import {QuestFactoryBlockInfo} from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
 import {PensionFundBlockInfo} from "./pensionFund/PensionFundBlockInfo";
 import {PensionFundWithdrewEvent} from "./pensionFund/PensionFundWithdrewEvent";
 import {PensionFundReceivedEvent} from "./pensionFund/PensionFundReceivedEvent";
@@ -56,6 +58,7 @@ import {UserBlackList} from "./user/UserBlackList";
 import {QuestBlackList} from "./quest/QuestBlackList";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
+import {WqtWbnbSyncEvent} from "./WqtWbnb/WqtWbnbSyncEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
 import {GroupChat} from "./chats/GroupChat";
 import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
@@ -67,6 +70,23 @@ import {ReferralProgramParseBlock} from "./referral-program/ReferralProgramParse
 import {QuestDisputeReview} from "./quest/QuestDisputeReview";
 import {AdminActionMetadata} from "./admin/AdminActionMetadata";
 import {AdminQuestDisputesStatistic} from "./admin/AdminQuestDisputesStatistic";
+import {UserRaiseView} from "./raise-view/UserRaiseView";
+import {QuestBlockInfo} from "./quest/contract-quest/QuestBlockInfo";
+import {QuestAssignedEvent} from "./quest/contract-quest/QuestAssignedEvent";
+import {QuestJobStartedEvent} from "./quest/contract-quest/QuestJobStartedEvent";
+import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
+import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
+import {QuestJobCancelledEvent} from "./quest/contract-quest/QuestJobCancelledEvent";
+import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
+import { RaiseViewBlockInfo } from "./raise-view/RaiseViewBlockInfo";
+import { RaiseViewPromotedUserEvent } from "./raise-view/RaiseViewPromotedUserEvent";
+import { RaiseViewPromotedQuestEvent } from "./raise-view/RaiseViewPromotedQuestEvent";
+import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
+import {SavingProductParseBlock} from "./saving-product/SavingProductParseBlock";
+import {SavingProductBorrowedEvent} from "./saving-product/SavingProductBorrowedEvent";
+import {SavingProductClaimedEvent} from "./saving-product/SavingProductClaimedEvent";
+import {SavingProductReceivedEvent} from "./saving-product/SavingProductReceivedEvent";
+import {SavingProductRefundedEvent} from "./saving-product/SavingProductRefundedEvent";
 import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
@@ -85,13 +105,13 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
-      UserRaiseView,
+      ProfileVisibilitySetting,
 
 
       /** Admin section */
       Admin,
-      AdminActionMetadata,
       AdminSession,
+      AdminActionMetadata,
       AdminQuestDisputesStatistic,
 
 
@@ -99,11 +119,25 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Quest,
       QuestChat,
       QuestDispute,
-      QuestRaiseView,
       QuestsStarred,
       QuestsResponse,
       QuestBlackList,
       QuestDisputeReview,
+
+
+      /** Quest factory contract events section */
+      QuestFactoryBlockInfo,
+      QuestFactoryCreatedEvent,
+
+
+      /** Quest contract events section */
+      QuestBlockInfo,
+      QuestAssignedEvent,
+      QuestJobStartedEvent,
+      QuestJobDoneEvent,
+      QuestJobFinishedEvent,
+      QuestJobCancelledEvent,
+      QuestJobEditedEvent,
 
 
       /** Chat section */
@@ -163,6 +197,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       WqtWbnbBlockInfo,
       WqtWbnbMintEvent,
       WqtWbnbBurnEvent,
+      WqtWbnbSyncEvent,
 
 
       /** Media section */
@@ -197,6 +232,21 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       PensionFundWithdrewEvent,
       PensionFundReceivedEvent,
       PensionFundWalletUpdatedEvent,
+
+      /** Saving Product */
+      SavingProductParseBlock,
+      SavingProductBorrowedEvent,
+      SavingProductClaimedEvent,
+      SavingProductReceivedEvent,
+      SavingProductRefundedEvent,
+
+
+      /** Raise view */
+      UserRaiseView,
+      RaiseViewPromotedUserEvent,
+      RaiseViewPromotedQuestEvent,
+      QuestRaiseView,
+      RaiseViewBlockInfo,
     ]
   });
   if (sync)
@@ -208,6 +258,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
+export * from "./raise-view/types";
 
 export * from "./Media";
 export * from "./quest/Quest";
@@ -246,7 +297,7 @@ export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./discussion/StarredDiscussion";
-export * from "./dailyLiquidity/DailyLiquidity";
+export * from "./daily-liquidity/DailyLiquidity";
 export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock";
@@ -255,11 +306,13 @@ export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
-export * from "./quest/QuestRaiseView";
+export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
+export * from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
 export * from "./WqtWbnb/WqtWbnbMintEvent";
+export * from "./WqtWbnb/WqtWbnbSyncEvent";
 export * from "./pensionFund/PensionFundBlockInfo";
 export * from "./pensionFund/PensionFundReceivedEvent";
 export * from "./pensionFund/PensionFundWalletUpdatedEvent";
@@ -270,13 +323,36 @@ export * from "./user/UserChangeRoleData";
 export * from "./chats/GroupChat";
 export * from "./referral-program/ReferralProgramAffiliate";
 export * from "./referral-program/ReferralProgramReferral";
+export * from "./referral-program/ReferralProgramAffiliate";
 export * from "./referral-program/ReferralProgramParseBlock";
 export * from "./referral-program/ReferralProgramEventRewardClaimed";
 export * from "./referral-program/ReferralProgramEventPaidReferral";
 export * from "./referral-program/ReferralProgramEventRegisteredAffiliate";
 export * from "./admin/AdminActionMetadata";
 export * from "./quest/QuestDisputeReview";
+export * from "./quest/contract-quest/QuestBlockInfo";
+export * from "./quest/contract-quest/QuestAssignedEvent";
+export * from "./quest/contract-quest/QuestJobStartedEvent";
 export * from "./admin/AdminQuestDisputesStatistic"
+export * from "./admin/AdminQuestDisputesStatistic";
+export * from "./quest/contract-quest/QuestJobDoneEvent";
+export * from "./quest/contract-quest/QuestJobFinishedEvent";
+export * from "./quest/contract-quest/QuestJobCancelledEvent";
+export * from "./quest/contract-quest/QuestJobEditedEvent";
+export * from "./user/ProfileVisibilitySetting";
+export * from "./saving-product/SavingProductParseBlock";
+export * from "./saving-product/SavingProductBorrowedEvent";
+export * from "./saving-product/SavingProductRefundedEvent";
+export * from "./saving-product/SavingProductReceivedEvent";
+export * from "./saving-product/SavingProductClaimedEvent";
+export * from "./admin/AdminQuestDisputesStatistic";
+export * from "./user/ProfileVisibilitySetting";
+export * from "./raise-view/RaiseViewPromotedUserEvent";
+export * from "./raise-view/RaiseViewPromotedQuestEvent";
+export * from "./raise-view/RaiseViewBlockInfo";
+export * from "./raise-view/QuestRaiseView";
+export * from "./raise-view/UserRaiseView";
+
 export * from "./chats/ChatData";
 export * from "./chats/ChatMemberData";
 export * from "./chats/ChatMemberDeletionData";

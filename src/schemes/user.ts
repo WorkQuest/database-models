@@ -2,8 +2,16 @@ import * as Joi from "joi";
 import {adminSchema} from "./admin";
 import {mediaUrlOnlySchema} from "./media";
 import {walletAddressesSchema, walletAddressSchema} from "./wallet";
-import {StatusKYC, BlackListStatus, UserRole, UserStatus} from "../models";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
+import {
+  UserRole,
+  Priority,
+  StatusKYC,
+  UserStatus,
+  RatingStatus,
+  BlackListStatus,
+  NetworkProfileVisibility,
+} from "../models";
 import {
   userChatsStatisticSchema,
   questsStatisticSchema,
@@ -235,7 +243,6 @@ export const workerQuerySchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
@@ -245,10 +252,13 @@ export const workerQueryForMapPointsSchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  specializations: specializationsFilerSchema.default(null),
   betweenWagePerHour: betweenWagePerHourSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
 }).label('WorkerQueryForMapPoints');
+
+export const workerPayloadSchema = Joi.object({
+  specializations: specializationsFilerSchema.default(null),
+}).label('WorkerPayload')
 
 export const usersSchema = Joi.array().items(userSchema).label('Users');
 export const userEmployersSchema = Joi.array().items(userEmployerSchema).label('UserEmployers');
@@ -262,6 +272,16 @@ export const tokensWithStatus = Joi.object({
   refresh: jwtTokenRefresh,
   address: walletAddressSchema,
 }).label("TokensWithStatus");
+
+/** Visibility settings */
+
+export const profileVisibilityStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label("ProfileVisibilityStatus");
+export const profileVisibilityNetworkSchema = Joi.number().valid(...Object.keys(NetworkProfileVisibility).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibility.AllUsers).label("ProfileVisibilityNetwork");
+
+export const profileVisibilitySettingsSchema = Joi.object({
+  network: profileVisibilityStatusSchema.required(),
+  ratingStatus: profileVisibilityNetworkSchema.required(),
+}).label('ProfileVisibilitySettings');
 
 /** Sessions */
 
@@ -296,3 +316,5 @@ export const userBlackListSchema = Joi.object({
   blockedByAdmin: adminSchema,
   unblockedByAdmin: adminSchema,
 }).label('UserBlackList');
+
+

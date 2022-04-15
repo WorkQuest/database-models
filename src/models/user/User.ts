@@ -10,10 +10,11 @@ import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
 import {Chat} from "../chats/Chat";
-import {UserRaiseView} from "./UserRaiseView";
+import {UserRaiseView} from "../raise-view/UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {UserChatsStatistic} from "../chats/UserChatsStatistic";
+import {ProfileVisibilitySetting} from "./ProfileVisibilitySetting";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
@@ -248,6 +249,9 @@ export class User extends Model {
   @Column(DataType.JSONB) location: LocationType;
   @Column(DataType.STRING) locationPlaceName: string;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
+
+  /** Profile visibility settings */
+  @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

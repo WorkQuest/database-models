@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {MemberType, RatingStatus} from "../models";
+import {MemberType, RatingStatus, Priority} from "../models";
 import {countSchema, idSchema, timeInSecondSchema} from "./common";
 
 export const statisticAverageMark = Joi.number().example(3.5).label('StatisticAverageMark');
@@ -32,7 +32,7 @@ export const questsStatisticSchema = Joi.object({
 
 /** Rating Statistic */
 
-export const userRatingStatusSchema = Joi.number().valid(...Object.values(RatingStatus)).example(RatingStatus.topRanked).label("UserStatisticRatingStatus");
+export const userRatingStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.noStatus).label('RatingStatus');
 export const userRatingStatusesSchema = Joi.array().items(userRatingStatusSchema).label('UserStatisticRatingStatuses');
 
 export const userRatingStatisticSchema = Joi.object({

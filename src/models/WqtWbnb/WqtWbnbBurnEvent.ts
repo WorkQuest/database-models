@@ -10,5 +10,4 @@ export class WqtWbnbBurnEvent extends Model {
   @Column(DataType.STRING) to: string;
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) transactionHash: string;
-  @Column(DataType.STRING) network: BlockchainNetworks;
 }
