@@ -94,3 +94,8 @@ export * from "./raise-view/RaiseViewPromotedQuestEvent";
 export * from "./raise-view/RaiseViewBlockInfo";
 export * from "./raise-view/QuestRaiseView";
 export * from "./raise-view/UserRaiseView";
+export * from "./WqtWeth/WqtWethSwapEvent";
+export * from "./WqtWeth/WqtWethBlockInfo";
+export * from "./WqtWeth/WqtWethBurnEvent";
+export * from "./WqtWeth/WqtWethMintEvent";
+export * from "./WqtWeth/WqtWethSyncEvent";

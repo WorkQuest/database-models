@@ -86,6 +86,11 @@ import {SavingProductBorrowedEvent} from "./saving-product/SavingProductBorrowed
 import {SavingProductClaimedEvent} from "./saving-product/SavingProductClaimedEvent";
 import {SavingProductReceivedEvent} from "./saving-product/SavingProductReceivedEvent";
 import {SavingProductRefundedEvent} from "./saving-product/SavingProductRefundedEvent";
+import { WqtWethSwapEvent } from "./WqtWeth/WqtWethSwapEvent";
+import { WqtWethBlockInfo } from "./WqtWeth/WqtWethBlockInfo";
+import { WqtWethMintEvent } from "./WqtWeth/WqtWethMintEvent";
+import { WqtWethBurnEvent } from "./WqtWeth/WqtWethBurnEvent";
+import { WqtWethSyncEvent } from "./WqtWeth/WqtWethSyncEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -234,6 +239,14 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       RaiseViewPromotedQuestEvent,
       QuestRaiseView,
       RaiseViewBlockInfo,
+
+
+      /** WQT/WETH liquidity */
+      WqtWethSwapEvent,
+      WqtWethBlockInfo,
+      WqtWethMintEvent,
+      WqtWethBurnEvent,
+      WqtWethSyncEvent,
     ]
   });
   if (sync)
@@ -337,4 +350,8 @@ export * from "./raise-view/RaiseViewPromotedQuestEvent";
 export * from "./raise-view/RaiseViewBlockInfo";
 export * from "./raise-view/QuestRaiseView";
 export * from "./raise-view/UserRaiseView";
-
+export * from "./WqtWeth/WqtWethSwapEvent";
+export * from "./WqtWeth/WqtWethBlockInfo";
+export * from "./WqtWeth/WqtWethBurnEvent";
+export * from "./WqtWeth/WqtWethMintEvent";
+export * from "./WqtWeth/WqtWethSyncEvent";
