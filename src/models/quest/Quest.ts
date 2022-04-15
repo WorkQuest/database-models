@@ -1,38 +1,39 @@
-import {getUUID} from '../../utils';
-import {User} from "../user/User";
+import { Op } from "sequelize";
 import {Media} from '../Media';
+import {User} from "../user/User";
 import {QuestMedia} from './QuestMedia';
 import {QuestsReview} from './QuestsReview';
-import {QuestsResponse} from "./QuestsResponse";
-import {QuestsStarred} from './QuestsStarred';
 import {QuestChat} from "../chats/QuestChat";
-import {QuestRaiseView} from "./QuestRaiseView";
+import {QuestRaiseView} from "../raise-view/QuestRaiseView";
+import {QuestsStarred} from './QuestsStarred';
+import {QuestsResponse} from "./QuestsResponse";
+import {getUUID, getUUIDInt} from '../../utils';
 import { DisputeStatus, QuestDispute } from "./QuestDispute";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
 import {
-  BelongsTo,
-  HasMany,
-  BelongsToMany,
-  Column,
-  DataType,
-  ForeignKey,
   Model,
-  Scopes,
   Table,
-  HasOne
+  HasOne,
+  Scopes,
+  Column,
+  HasMany,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+  BelongsToMany,
 } from 'sequelize-typescript';
-import { Op } from "sequelize";
 
 export enum QuestStatus {
+  Closed = -3,
+  Dispute = -2,
   Blocked = -1,
-  Created = 0,
-  Active,
-  Closed,
-  Dispute,
-  WaitWorker,
-  WaitConfirm,
-  Done,
+  Pending = 0,                               /** The quest has been created. The event about creating the quest is expected on the side of the quest factory.   */
+  Recruitment = 1,                           /** Recruitment of workers for the quest. See QuestResponse and flow response/invite on quest.                     */
+  WaitingForConfirmFromWorkerOnAssign = 2,   /** The employer has selected a worker to complete the quest and is waiting for confirmation from the worker.      */
+  ExecutionOfWork = 3,                       /**  */
+  WaitingForEmployerConfirmationWork = 4,    /** WaitConfirm */
+  Completed = 5,
 }
 
 export enum QuestEmployment {
@@ -42,11 +43,12 @@ export enum QuestEmployment {
 }
 
 export const activeFlowStatuses = [
-  QuestStatus.Created,
-  QuestStatus.Active,
   QuestStatus.Dispute,
-  QuestStatus.WaitWorker,
-  QuestStatus.WaitConfirm,
+  QuestStatus.Pending,
+  QuestStatus.Recruitment,
+  QuestStatus.ExecutionOfWork,
+  QuestStatus.WaitingForEmployerConfirmationWork,
+  QuestStatus.WaitingForConfirmFromWorkerOnAssign,
 ];
 
 @Scopes(() => ({
@@ -112,11 +114,11 @@ export const activeFlowStatuses = [
       },
     }],
   }
-
 }))
-@Table({paranoid: true})
+@Table({ paranoid: true })
 export class Quest extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
@@ -126,19 +128,21 @@ export class Quest extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, defaultValue: null}) assignedWorkerId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) title: string;
-  @Column(DataType.TEXT) description: string;
+  @Column(DataType.STRING) contractAddress: string;
+  @Column({ type: DataType.DECIMAL, defaultValue: () => getUUIDInt(), unique: true }) nonce: string;
 
-  @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Created }) status: QuestStatus;
+  @Column({type: DataType.INTEGER, defaultValue: QuestStatus.Pending }) status: QuestStatus;
+
+  @Column({type: DataType.STRING, allowNull: false}) title: string;
+  @Column({type: DataType.TEXT, allowNull: false}) description: string;
+  @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
   @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
-  @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
   @Column({type: DataType.JSONB, allowNull: false}) location: LocationType;
+  @Column({type: DataType.STRING, allowNull: false}) locationPlaceName: string;
   @Column({type: DataType.GEOMETRY('POINT', 4326)}) locationPostGIS: LocationPostGISType;
-
-  @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
 
   @Column(DataType.DATE) startedAt: Date;
 
