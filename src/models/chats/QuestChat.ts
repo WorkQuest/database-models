@@ -35,9 +35,6 @@ export enum QuestChatStatuses {
 export class QuestChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
-  @ForeignKey(() => ChatMember)
-  @Column(DataType.STRING) adminMemberId: string; /** if dispute */
-
   @ForeignKey(() => Quest)
   @Column({type: DataType.STRING, allowNull: false}) questId: string;
 
@@ -53,7 +50,5 @@ export class QuestChat extends Model {
   @BelongsTo(() => Quest) quest: Quest;
   @BelongsTo(() => QuestsResponse) response: QuestsResponse;
 
-  @BelongsTo(() => ChatMember, 'workerMemberId') worker: ChatMember;
-  @BelongsTo(() => ChatMember, 'employerMemberId') employer: ChatMember;
   @BelongsTo(() => ChatMember, 'adminMemberId') admin: ChatMember;
 }
