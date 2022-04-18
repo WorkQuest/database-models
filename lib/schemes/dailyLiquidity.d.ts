@@ -1,3 +1,4 @@
 import Joi = require("joi");
 export declare const poolSchema: Joi.StringSchema;
-export declare const dailyLiquiditySchema: Joi.ObjectSchema<any>;
+export declare const dailyLiquidityWqtWbnbSchema: Joi.ObjectSchema<any>;
+export declare const dailyLiquidityWqtWethSchema: Joi.ObjectSchema<any>;
