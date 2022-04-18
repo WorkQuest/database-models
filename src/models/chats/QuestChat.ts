@@ -36,12 +36,6 @@ export class QuestChat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
   @ForeignKey(() => ChatMember)
-  @Column({type: DataType.STRING, allowNull: false}) employerMemberId: string;
-
-  @ForeignKey(() => ChatMember)
-  @Column({type: DataType.STRING, allowNull: false}) workerMemberId: string;
-
-  @ForeignKey(() => ChatMember)
   @Column(DataType.STRING) adminMemberId: string; /** if dispute */
 
   @ForeignKey(() => Quest)

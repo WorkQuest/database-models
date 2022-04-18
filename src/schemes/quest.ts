@@ -42,8 +42,6 @@ export const questChatStatusSchema = Joi.string().valid(...Object.values(QuestCh
 
 export const questChatSchema = Joi.object({
   id: idSchema,
-  employerMemberId: idSchema,
-  workerMemberId: idSchema,
   questId: idSchema,
   responseId: idSchema,
   chatId: idSchema,

@@ -9,8 +9,6 @@ export declare enum QuestChatStatuses {
 }
 export declare class QuestChat extends Model {
     id: string;
-    employerMemberId: string;
-    workerMemberId: string;
     adminMemberId: string;
     questId: string;
     responseId: string;
