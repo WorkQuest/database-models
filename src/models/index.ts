@@ -36,7 +36,6 @@ import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
 import {QuestDispute} from "./quest/QuestDispute";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
-import {DailyLiquidity} from "./daily-liquidity/DailyLiquidity";
 import {Proposal} from "./proposal/Proposal";
 import {ProposalMedia} from "./proposal/ProposalMedia";
 import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
@@ -91,6 +90,8 @@ import { WqtWethBlockInfo } from "./WqtWeth/WqtWethBlockInfo";
 import { WqtWethMintEvent } from "./WqtWeth/WqtWethMintEvent";
 import { WqtWethBurnEvent } from "./WqtWeth/WqtWethBurnEvent";
 import { WqtWethSyncEvent } from "./WqtWeth/WqtWethSyncEvent";
+import { DailyLiquidityWqtWbnb } from "./WqtWbnb/DailyLiquidityWqtWbnb";
+import { DailyLiquidityWqtWeth } from "./WqtWeth/DailyLiquidityWqtWeth";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -153,10 +154,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       BridgeSwapTokenEvent,
 
 
-      /** Daily pool liquidity section */
-      DailyLiquidity,
-
-
       /** Discussion section */
       Discussion,
       DiscussionLike,
@@ -187,11 +184,21 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
 
       /** WQT/WBNB liquidity */
+      DailyLiquidityWqtWbnb,
       WqtWbnbSwapEvent,
       WqtWbnbBlockInfo,
       WqtWbnbMintEvent,
       WqtWbnbBurnEvent,
       WqtWbnbSyncEvent,
+
+
+      /** WQT/WETH liquidity */
+      DailyLiquidityWqtWeth,
+      WqtWethSwapEvent,
+      WqtWethBlockInfo,
+      WqtWethMintEvent,
+      WqtWethBurnEvent,
+      WqtWethSyncEvent,
 
 
       /** Media section */
@@ -239,14 +246,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       RaiseViewPromotedQuestEvent,
       QuestRaiseView,
       RaiseViewBlockInfo,
-
-
-      /** WQT/WETH liquidity */
-      WqtWethSwapEvent,
-      WqtWethBlockInfo,
-      WqtWethMintEvent,
-      WqtWethBurnEvent,
-      WqtWethSyncEvent,
     ]
   });
   if (sync)
@@ -297,7 +296,6 @@ export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./discussion/StarredDiscussion";
-export * from "./daily-liquidity/DailyLiquidity";
 export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock";
@@ -308,6 +306,7 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
 export * from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
+export * from "./WqtWbnb/DailyLiquidityWqtWbnb";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
@@ -350,6 +349,7 @@ export * from "./raise-view/RaiseViewPromotedQuestEvent";
 export * from "./raise-view/RaiseViewBlockInfo";
 export * from "./raise-view/QuestRaiseView";
 export * from "./raise-view/UserRaiseView";
+export * from "./WqtWeth/DailyLiquidityWqtWeth";
 export * from "./WqtWeth/WqtWethSwapEvent";
 export * from "./WqtWeth/WqtWethBlockInfo";
 export * from "./WqtWeth/WqtWethBurnEvent";
