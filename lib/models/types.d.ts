@@ -54,3 +54,10 @@ export declare enum MemberType {
     Admin = "admin",
     User = "user"
 }
+export declare enum RatingStatus {
+    topRanked = 0,
+    reliable = 1,
+    verified = 2,
+    noStatus = 3,
+    AllStatuses = 4
+}

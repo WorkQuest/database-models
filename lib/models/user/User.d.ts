@@ -7,10 +7,11 @@ import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone } from ".
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
-import { UserRaiseView } from "./UserRaiseView";
+import { UserRaiseView } from "../raise-view/UserRaiseView";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
 import { UserChatsStatistic } from "../chats/UserChatsStatistic";
+import { ProfileVisibilitySetting } from "./ProfileVisibilitySetting";
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
 import { Model } from "sequelize-typescript";
@@ -108,6 +109,7 @@ export declare class User extends Model {
     location: LocationType;
     locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
+    profileVisibilitySetting: ProfileVisibilitySetting;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
     chatStatistic: UserChatsStatistic;

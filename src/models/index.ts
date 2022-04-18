@@ -90,7 +90,6 @@ import {SavingProductRefundedEvent} from "./saving-product/SavingProductRefunded
 import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
-import {UserRaiseView} from "./user/UserRaiseView";
 import {AdminChatStatistic} from "./chats/AdminChatStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -356,5 +355,4 @@ export * from "./raise-view/UserRaiseView";
 export * from "./chats/ChatData";
 export * from "./chats/ChatMemberData";
 export * from "./chats/ChatMemberDeletionData";
-export * from "./user/UserRaiseView";
 export * from "./chats/AdminChatStatistic";
