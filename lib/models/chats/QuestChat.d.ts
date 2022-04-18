@@ -2,13 +2,17 @@ import { Model } from "sequelize-typescript";
 import { Quest } from "../quest/Quest";
 import { QuestsResponse } from "../quest/QuestsResponse";
 import { Chat } from "./Chat";
-import { ChatMember } from "./ChatMember";
+import { User } from "../user/User";
+import { Admin } from "../admin/Admin";
 export declare enum QuestChatStatuses {
     Open = 0,
     Close = 1
 }
 export declare class QuestChat extends Model {
     id: string;
+    employerId: string;
+    workerId: string;
+    disputeAdminId: string;
     questId: string;
     responseId: string;
     chatId: string;
@@ -16,5 +20,7 @@ export declare class QuestChat extends Model {
     chat: Chat;
     quest: Quest;
     response: QuestsResponse;
-    admin: ChatMember;
+    worker: User;
+    employer: User;
+    admin: Admin;
 }
