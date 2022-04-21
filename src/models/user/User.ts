@@ -28,6 +28,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
+import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
 
 
 export interface SocialInfo {
@@ -251,7 +252,8 @@ export class User extends Model {
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
   /** Profile visibility settings */
-  @HasOne(() => WorkerProfileVisibilitySetting) profileVisibilitySetting: WorkerProfileVisibilitySetting;
+  @HasOne(() => EmployerProfileVisibilitySetting) employerProfileVisibilitySetting: EmployerProfileVisibilitySetting;
+  @HasOne(() => WorkerProfileVisibilitySetting) workerProfileVisibilitySetting: WorkerProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

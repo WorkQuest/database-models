@@ -16,6 +16,7 @@ import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
 import { Model } from "sequelize-typescript";
+import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -110,7 +111,8 @@ export declare class User extends Model {
     location: LocationType;
     locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
-    profileVisibilitySetting: WorkerProfileVisibilitySetting;
+    employerProfileVisibilitySetting: EmployerProfileVisibilitySetting;
+    workerProfileVisibilitySetting: WorkerProfileVisibilitySetting;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
     raiseView: UserRaiseView;
