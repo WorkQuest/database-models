@@ -14,7 +14,7 @@ import {UserRaiseView} from "../raise-view/UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
-import {ProfileVisibilitySetting} from "./ProfileVisibilitySetting";
+import {WorkerProfileVisibilitySetting} from "./WorkerProfileVisibilitySetting";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
@@ -251,7 +251,7 @@ export class User extends Model {
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
   /** Profile visibility settings */
-  @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
+  @HasOne(() => WorkerProfileVisibilitySetting) profileVisibilitySetting: WorkerProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
