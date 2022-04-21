@@ -5,7 +5,6 @@ import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   UserRole,
-  Priority,
   StatusKYC,
   UserStatus,
   RatingStatus,
@@ -274,9 +273,9 @@ export const tokensWithStatus = Joi.object({
 
 /** Visibility settings */
 
-export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("ProfileVisibilityNetwork");
-export const ratingStatusCanRespondOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("ProfileVisibilityStatus");
-export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("ProfileVisibilityNetwork");
+export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
+export const ratingStatusCanRespondOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondOnQuest");
+export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
 
 export const workerProfileVisibilitySettingsSchema = Joi.object({
   ratingStatusCanInviteMeOnQuest: ratingStatusCanInviteMeOnQuestSchema.allow(null).required(),
