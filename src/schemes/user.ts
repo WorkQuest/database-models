@@ -10,7 +10,6 @@ import {
   UserStatus,
   RatingStatus,
   BlackListStatus,
-  NetworkProfileVisibility,
 } from "../models";
 import {
   chatsStatisticSchema,
@@ -275,13 +274,19 @@ export const tokensWithStatus = Joi.object({
 
 /** Visibility settings */
 
-export const profileVisibilityStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label("ProfileVisibilityStatus");
-export const profileVisibilityNetworkSchema = Joi.number().valid(...Object.keys(NetworkProfileVisibility).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibility.AllUsers).label("ProfileVisibilityNetwork");
+export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("ProfileVisibilityNetwork");
+export const ratingStatusCanRespondOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("ProfileVisibilityStatus");
+export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("ProfileVisibilityNetwork");
 
-export const profileVisibilitySettingsSchema = Joi.object({
-  network: profileVisibilityNetworkSchema.allow(null).required(),
-  ratingStatus: profileVisibilityStatusSchema.allow(null).required(),
-}).label('ProfileVisibilitySettings');
+export const workerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanInviteMeOnQuest: ratingStatusCanInviteMeOnQuestSchema.allow(null).required(),
+  ratingStatusInMySearch: ratingStatusInMySearchSchema.allow(null).required(),
+}).label('WorkerProfileVisibilitySettings');
+
+export const employerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanRespondOnQuest: ratingStatusCanRespondOnQuestSchema.allow(null).required(),
+  ratingStatusInMySearch: ratingStatusInMySearchSchema.allow(null).required(),
+}).label('EmployerProfileVisibilitySettings');
 
 /** Sessions */
 
