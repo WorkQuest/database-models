@@ -274,17 +274,22 @@ export const tokensWithStatus = Joi.object({
 /** Visibility settings */
 
 export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
+export const ratingStatusesCanInviteMeOnQuestSchema = Joi.array().items(ratingStatusCanInviteMeOnQuestSchema).label('RatingStatusesCanInviteMeOnQuest');
+
 export const ratingStatusCanRespondOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondOnQuest");
+export const ratingStatusesCanRespondOnQuestSchema = Joi.array().items(ratingStatusCanRespondOnQuestSchema).label('RatingStatusesInMySearch');
+
 export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
+export const ratingStatusesInMySearchSchema = Joi.array().items(ratingStatusInMySearchSchema).label('RatingStatusesCanRespondOnQuest');
 
 export const workerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanInviteMeOnQuest: ratingStatusCanInviteMeOnQuestSchema.allow(null).required(),
-  ratingStatusInMySearch: ratingStatusInMySearchSchema.allow(null).required(),
+  ratingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.allow(null).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.allow(null).required(),
 }).label('WorkerProfileVisibilitySettings');
 
 export const employerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanRespondOnQuest: ratingStatusCanRespondOnQuestSchema.allow(null).required(),
-  ratingStatusInMySearch: ratingStatusInMySearchSchema.allow(null).required(),
+  ratingStatusCanRespondOnQuest: ratingStatusesCanRespondOnQuestSchema.allow(null).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.allow(null).required(),
 }).label('EmployerProfileVisibilitySettings');
 
 /** Sessions */
