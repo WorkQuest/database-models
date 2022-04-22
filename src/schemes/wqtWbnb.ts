@@ -7,7 +7,7 @@ import {
   transactionHashSchema,
 } from "./common";
 
-export const wqtWbnbSwapEventSchema = Joi.object({
+export const wqtSwapEventSchema = Joi.object({
   blockNumber: blockNumberSchema,
   amountUSD: coinAmountSchema,
   amount0In: coinAmountSchema,
@@ -19,4 +19,4 @@ export const wqtWbnbSwapEventSchema = Joi.object({
   transactionHash: transactionHashSchema,
 }).label('WqtWbnbSwapEvent');
 
-export const wqtWbnbSwapEventsSchema = Joi.array().items(wqtWbnbSwapEventSchema).label('WqtWbnbSwapEvents');
+export const wqtSwapEventsSchema = Joi.array().items(wqtSwapEventSchema).label('WqtWbnbSwapEvents');
