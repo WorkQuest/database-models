@@ -18,7 +18,7 @@ export class WorkerProfileVisibilitySetting extends Model {
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
   @Column({type: DataType.ARRAY(DataType.INTEGER), defaultValue: RatingStatus.AllStatuses }) ratingStatusCanInviteMeOnQuest: RatingStatus[];
-  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.AllStatuses }) ratingStatusInMySearch: RatingStatus;
+  @Column({type: DataType.ARRAY(DataType.INTEGER), defaultValue: RatingStatus.AllStatuses }) ratingStatusInMySearch: RatingStatus[];
 
   @BelongsTo(() => User) user: User;
 }
