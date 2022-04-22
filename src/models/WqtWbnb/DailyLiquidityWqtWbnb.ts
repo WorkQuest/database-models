@@ -3,6 +3,7 @@ import {Column, DataType, Model, Table} from "sequelize-typescript";
 @Table({
   modelName: 'DailyLiquidityWqtWbnb',
   tableName: 'DailyLiquidityWqtWbnb',
+  freezeTableName: true,
 })
 export class DailyLiquidityWqtWbnb extends Model {
   @Column({ primaryKey: true, type: DataType.INTEGER }) daySinceEpochBeginning: string;
