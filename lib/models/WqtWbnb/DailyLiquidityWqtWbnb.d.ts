@@ -1,7 +1,7 @@
 import { Model } from "sequelize-typescript";
 export declare class DailyLiquidityWqtWbnb extends Model {
     daySinceEpochBeginning: string;
-    date: string;
+    date: number;
     blockNumber: string;
     bnbPool: string;
     wqtPool: string;

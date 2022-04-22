@@ -4,7 +4,7 @@ import {Column, DataType, Model, Table} from "sequelize-typescript";
 export class DailyLiquidityWqtWeth extends Model {
   @Column({ primaryKey: true, type: DataType.INTEGER }) daySinceEpochBeginning: string;
 
-  @Column(DataType.INTEGER) date: string;
+  @Column(DataType.INTEGER) date: number;
   @Column(DataType.STRING) blockNumber: string;
   @Column(DataType.STRING) ethPool: string;
   @Column(DataType.STRING) wqtPool: string;

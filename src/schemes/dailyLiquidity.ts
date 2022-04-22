@@ -1,10 +1,11 @@
 import Joi = require("joi");
 import {blockNumberSchema, idSchema, timestampSchema} from "./common";
 
-export const poolSchema = Joi.string().example("281401").label("PoolSchema");
+export const daySinceEpochBeginningSchema = Joi.string().example('2456').label('DaySinceEpochBeginning');
+export const poolSchema = Joi.string().example("281401").label("Pools");
 
 export const dailyLiquidityWqtWbnbSchema = Joi.object({
-  id: idSchema,
+  daySinceEpochBeginning: daySinceEpochBeginningSchema,
   date: timestampSchema,
   blockNumber: blockNumberSchema,
   bnbPool: poolSchema,
@@ -12,10 +13,10 @@ export const dailyLiquidityWqtWbnbSchema = Joi.object({
   usdPriceBNB: poolSchema,
   usdPriceWQT: poolSchema,
   reserveUSD: poolSchema,
-}).label('DailyLiquidity');
+}).label('DailyLiquidityWqtWbnb');
 
 export const dailyLiquidityWqtWethSchema = Joi.object({
-  id: idSchema,
+  daySinceEpochBeginning: daySinceEpochBeginningSchema,
   date: timestampSchema,
   blockNumber: blockNumberSchema,
   ethPool: poolSchema,
@@ -23,5 +24,5 @@ export const dailyLiquidityWqtWethSchema = Joi.object({
   usdPriceBNB: poolSchema,
   usdPriceWQT: poolSchema,
   reserveUSD: poolSchema,
-}).label('DailyLiquidity');
+}).label('DailyLiquidityWqtWeth');
 
