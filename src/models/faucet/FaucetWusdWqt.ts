@@ -2,7 +2,7 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import {BlockchainNetworks} from "../types";
 
 export enum FaucetAmount {
-  WUSD = '1000000000000000000000' ,
+  WUSD = '1000000000000000000000',
   WQT = '100000000000000000000',
 }
 

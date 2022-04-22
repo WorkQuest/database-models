@@ -3,9 +3,9 @@ import { transactionHashSchema } from "./common";
 
 export const faucetStatusSchemas = Joi.string().example('true').label('FaucetStatus');
 
-export const faucetSendWusdResponseSchemas = Joi.object({
+export const faucetSendWusdWqtResponseSchemas = Joi.object({
   txHash: transactionHashSchema,
   status: faucetStatusSchemas,
-}).label('FaucetSendWusd');
+}).label('FaucetSendWusdWqt');
 
 
