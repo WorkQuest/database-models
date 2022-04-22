@@ -1,6 +1,11 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import {BlockchainNetworks} from "../types";
 
+export enum FaucetAmount {
+  WUSD = '1000000000000000000000' ,
+  WQT = '100000000000000000000',
+}
+
 @Table
 export class FaucetWusdWqt extends Model {
   @Column({ type: DataType.STRING, allowNull: false }) userId: string;
