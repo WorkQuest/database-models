@@ -94,3 +94,4 @@ export * from "./raise-view/RaiseViewPromotedQuestEvent";
 export * from "./raise-view/RaiseViewBlockInfo";
 export * from "./raise-view/QuestRaiseView";
 export * from "./raise-view/UserRaiseView";
+export * from "./faucet/FaucetWusdWqt";

@@ -1,5 +1,5 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { BlockchainNetworks } from "../../../lib/models";
+import {BlockchainNetworks} from "../types";
 
 @Table
 export class FaucetWusdWqt extends Model {
