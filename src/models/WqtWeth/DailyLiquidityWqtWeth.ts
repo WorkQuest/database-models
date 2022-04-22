@@ -2,7 +2,7 @@ import {Column, DataType, Model, Table} from "sequelize-typescript";
 
 @Table({
   modelName: 'DailyLiquidityWqtWeth',
-  tableName: 'DailyLiquidityWqtWbnb',
+  tableName: 'DailyLiquidityWqtWeth',
   freezeTableName: true,
 })
 export class DailyLiquidityWqtWeth extends Model {
