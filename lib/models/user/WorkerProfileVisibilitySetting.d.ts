@@ -1,9 +1,10 @@
 import { Model } from 'sequelize-typescript';
 import { User } from './User';
+import { RatingStatus } from "../types";
 export declare class WorkerProfileVisibilitySetting extends Model {
     id: string;
     userId: string;
-    ratingStatusCanInviteMeOnQuest: number[];
-    ratingStatusInMySearch: number[];
+    ratingStatusCanInviteMeOnQuest: RatingStatus;
+    ratingStatusInMySearch: RatingStatus;
     user: User;
 }
