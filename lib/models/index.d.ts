@@ -100,3 +100,4 @@ export * from "./WqtWeth/WqtWethBlockInfo";
 export * from "./WqtWeth/WqtWethBurnEvent";
 export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
+export * from "./faucet/FaucetWusdWqt";
