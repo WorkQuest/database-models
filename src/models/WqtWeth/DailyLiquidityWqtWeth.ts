@@ -1,6 +1,8 @@
 import {Column, DataType, Model, Table} from "sequelize-typescript";
 
-@Table
+@Table({
+  modelName: 'DailyLiquidityWqtWeth',
+})
 export class DailyLiquidityWqtWeth extends Model {
   @Column({ primaryKey: true, type: DataType.INTEGER }) daySinceEpochBeginning: string;
 
