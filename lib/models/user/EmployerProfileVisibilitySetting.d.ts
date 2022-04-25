@@ -3,7 +3,7 @@ import { User } from './User';
 export declare class EmployerProfileVisibilitySetting extends Model {
     id: string;
     userId: string;
-    ratingStatusCanRespondOnQuest: number[];
+    ratingStatusCanRespondToQuest: number[];
     ratingStatusInMySearch: number[];
     user: User;
 }

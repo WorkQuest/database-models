@@ -276,8 +276,8 @@ export const tokensWithStatus = Joi.object({
 export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
 export const ratingStatusesCanInviteMeOnQuestSchema = Joi.array().items(ratingStatusCanInviteMeOnQuestSchema).label('RatingStatusesCanInviteMeOnQuest');
 
-export const ratingStatusCanRespondOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondOnQuest");
-export const ratingStatusesCanRespondOnQuestSchema = Joi.array().items(ratingStatusCanRespondOnQuestSchema).label('RatingStatusesInMySearch');
+export const ratingStatusCanRespondToQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondToQuest");
+export const ratingStatusesCanRespondToQuestSchema = Joi.array().items(ratingStatusCanRespondToQuestSchema).label('RatingStatusesInMySearch');
 
 export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
 export const ratingStatusesInMySearchSchema = Joi.array().items(ratingStatusInMySearchSchema).label('RatingStatusesCanRespondOnQuest');
@@ -288,7 +288,7 @@ export const workerProfileVisibilitySettingsSchema = Joi.object({
 }).label('WorkerProfileVisibilitySettings');
 
 export const employerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanRespondOnQuest: ratingStatusesCanRespondOnQuestSchema.allow(null).required(),
+  ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.allow(null).required(),
   ratingStatusInMySearch: ratingStatusesInMySearchSchema.allow(null).required(),
 }).label('EmployerProfileVisibilitySettings');
 
