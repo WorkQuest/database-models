@@ -2,7 +2,9 @@ declare enum BlockchainNetworks {
     bscMainNetwork = "bscMainNetwork",
     ethMainNetwork = "ethMainNetwork",
     rinkebyTestNetwork = "rinkebyTestNetwork",
-    bscTestNetwork = "bscTestNetwork"
+    bscTestNetwork = "bscTestNetwork",
+    workQuestNetwork = "workQuestNetwork",
+    workQuestDevNetwork = "workQuestDevNetwork"
 }
 declare type LocationType = {
     longitude: number;
