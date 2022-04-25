@@ -92,7 +92,6 @@ import { WqtWethBurnEvent } from "./WqtWeth/WqtWethBurnEvent";
 import { WqtWethSyncEvent } from "./WqtWeth/WqtWethSyncEvent";
 import { DailyLiquidityWqtWbnb } from "./WqtWbnb/DailyLiquidityWqtWbnb";
 import { DailyLiquidityWqtWeth } from "./WqtWeth/DailyLiquidityWqtWeth";
-import { FaucetWusdWqt } from "./faucet/FaucetWusdWqt";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -247,9 +246,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       RaiseViewPromotedQuestEvent,
       QuestRaiseView,
       RaiseViewBlockInfo,
-
-      /** Faucet Wqt & Wusd */
-      FaucetWusdWqt
     ]
   });
   if (sync)
@@ -359,5 +355,4 @@ export * from "./WqtWeth/WqtWethBlockInfo";
 export * from "./WqtWeth/WqtWethBurnEvent";
 export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
-export * from "./faucet/FaucetWusdWqt";
 
