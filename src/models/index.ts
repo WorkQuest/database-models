@@ -47,6 +47,7 @@ import {WqtWbnbSwapEvent} from "./WqtWbnb/WqtWbnbSwapEvent";
 import {WqtWbnbBlockInfo} from "./WqtWbnb/WqtWbnbBlockInfo";
 import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
+import { FaucetWusdWqt } from "./faucet/faucetWusdWqt";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -111,7 +112,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       WqtWbnbSwapEvent,
       WqtWbnbBlockInfo,
       WqtWbnbBurnEvent,
-      WqtWbnbMintEvent
+      WqtWbnbMintEvent,
+      /** FaucetWusdWqt */
+      FaucetWusdWqt
     ]
   });
   if (sync)
@@ -169,3 +172,4 @@ export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
 export * from "./WqtWbnb/WqtWbnbMintEvent";
+export * from "./faucet/faucetWusdWqt";

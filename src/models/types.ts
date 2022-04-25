@@ -4,6 +4,8 @@ enum BlockchainNetworks {
   ethMainNetwork = 'ethMainNetwork',
   rinkebyTestNetwork = 'rinkebyTestNetwork',
   bscTestNetwork = 'bscTestNetwork',
+  workQuestNetwork = 'workQuestNetwork',        // TODO remove because legacy
+  workQuestDevNetwork = 'workQuestDevNetwork',
 }
 
 type LocationType = {
