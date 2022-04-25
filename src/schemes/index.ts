@@ -15,3 +15,4 @@ export * from "./questsStatistic";
 export * from "./dailyLiquidity";
 export * from "./proposal";
 export * from "./wallet"
+export * from "./faucet"
