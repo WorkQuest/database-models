@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 export const bridgeSymbolSchema = Joi.string().example('WQT').valid('WQT', 'USDT', 'BNB', 'ETH').example('BridgeSymbol');
+
 export const swapSchema = Joi.object({
   canRedeemed: Joi.boolean().label('CanRedeemed'),
   blockNumber: Joi.number().label('BlockNumber'),
@@ -16,4 +17,4 @@ export const swapSchema = Joi.object({
   signData: Joi.array().items(Joi.string()).label('SignData'),
 }).label('Swap');
 
-const swapsSchema = Joi.array().items(swapSchema).label('Swaps');
+export const swapsSchema = Joi.array().items(swapSchema).label('Swaps');
