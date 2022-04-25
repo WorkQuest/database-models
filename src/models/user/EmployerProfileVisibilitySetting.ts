@@ -17,8 +17,8 @@ export class EmployerProfileVisibilitySetting extends Model {
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
-  @Column({ type: DataType.ARRAY(DataType.INTEGER), defaultValue: [RatingStatus.AllStatuses] }) ratingStatusCanRespondOnQuest: RatingStatus;
-  @Column({type: DataType.ARRAY(DataType.INTEGER), defaultValue: [RatingStatus.AllStatuses] }) ratingStatusInMySearch: RatingStatus;
+  @Column({ type: DataType.ARRAY(DataType.INTEGER), defaultValue: [RatingStatus.AllStatuses] }) ratingStatusCanRespondOnQuest: number[];
+  @Column({ type: DataType.ARRAY(DataType.INTEGER), defaultValue: [RatingStatus.AllStatuses] }) ratingStatusInMySearch: number[];
 
   @BelongsTo(() => User) user: User;
 }
