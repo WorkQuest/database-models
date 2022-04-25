@@ -19,7 +19,7 @@ export class Wallet extends Model {
         get() {
             const hexAddress = this.getDataValue('address');
 
-            return converter('eth').toBech32(hexAddress);
+            return converter('wq').toBech32(hexAddress);
         },
         set() {
             throw Error('Can`t set this field');

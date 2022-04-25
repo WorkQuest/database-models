@@ -49,3 +49,4 @@ export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
 export * from "./WqtWbnb/WqtWbnbMintEvent";
+export * from "./faucet/faucetWusdWqt";
