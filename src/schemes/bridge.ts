@@ -24,4 +24,4 @@ export const bridgeSwapEventSchema = Joi.object({
   signData: Joi.array().items(Joi.string()).label('BridgeSwapEventSignData'),
 }).label('BridgeSwapEvent');
 
-export const swapsSchema = Joi.array().items(bridgeSwapEventSchema).label('Swaps');
+export const bridgeSwapEventsSchema = Joi.array().items(bridgeSwapEventSchema).label('BridgeSwapEvents');
