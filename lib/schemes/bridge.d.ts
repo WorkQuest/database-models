@@ -1,4 +1,4 @@
 import Joi from "joi";
-export declare const bridgeSymbolSchema: Joi.StringSchema;
-export declare const swapSchema: Joi.ObjectSchema<any>;
+export declare const bridgeSwapEventSymbolSchema: Joi.StringSchema;
+export declare const bridgeSwapEventSchema: Joi.ObjectSchema<any>;
 export declare const swapsSchema: Joi.ArraySchema;
