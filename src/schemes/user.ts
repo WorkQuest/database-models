@@ -275,14 +275,21 @@ export const tokensWithStatus = Joi.object({
 
 /** Visibility settings */
 
-export const profileVisibilityStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label("ProfileVisibilityStatus");
-export const profileVisibilityNetworkSchema = Joi.number().valid(...Object.keys(NetworkProfileVisibility).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibility.AllUsers).label("ProfileVisibilityNetwork");
+export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
 
-export const profileVisibilitySettingsSchema = Joi.object({
-  network: profileVisibilityNetworkSchema.allow(null).required(),
-  ratingStatus: profileVisibilityStatusSchema.allow(null).required(),
-}).label('ProfileVisibilitySettings');
+export const ratingStatusCanRespondToQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondToQuest");
 
+export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
+
+export const workerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanInviteMeOnQuest: ratingStatusCanInviteMeOnQuestSchema.required(),
+  ratingStatusInMySearch: ratingStatusInMySearchSchema.required(),
+}).label('WorkerProfileVisibilitySettings');
+
+export const employerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanRespondToQuest: ratingStatusCanRespondToQuestSchema.required(),
+  ratingStatusInMySearch: ratingStatusInMySearchSchema.required(),
+}).label('EmployerProfileVisibilitySettings');
 /** Sessions */
 
 export const userSessionSchema = Joi.object({

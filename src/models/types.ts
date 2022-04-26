@@ -56,9 +56,12 @@ export enum HTTPVerb {
 }
 
 export enum RatingStatus {
-  topRanked = 0,
-  reliable = 1,
-  verified = 2,
-  noStatus = 3,
-  AllStatuses = 4, //need for ProfileSettingsVisibility
+  None = 0,
+
+  topRanked = 1 << 0,
+  reliable = 1 << 1,
+  verified = 1 << 2,
+  noStatus = 1 << 3,
+
+  AllStatuses = ~(~0 << 4), //need for ProfileSettingsVisibility ~(10000) = 01111
 }
