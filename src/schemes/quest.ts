@@ -126,7 +126,6 @@ export const questQuerySchema = Joi.object({
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
-  performing: Joi.boolean().default(false),                                             /** Only quests where worker performs (see Quest.assignedWorkerId)      */
   starred: Joi.boolean().default(false),                                                /** Only quest with star (see StarredQuests)                            */
 }).label('QuestsQuery');
 
@@ -153,7 +152,6 @@ export const questQueryForMapPointsSchema = Joi.object({
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),                /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
-  performing: Joi.boolean().default(false),                                             /** Only quests where worker performs (see Quest.assignedWorkerId)      */
   starred: Joi.boolean().default(false),                                                /** Only quest with star (see StarredQuests)                            */
 }).label('QuestQueryForMapPoints');
 
