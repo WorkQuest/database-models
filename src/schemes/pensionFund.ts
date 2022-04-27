@@ -7,6 +7,7 @@ import {
   transactionHashSchema,
 } from "./common";
 
+// TODO pensionFundEventsScheme
 export const pensionFundEventsScheme = Joi.object({
   blockNumber: blockNumberSchema,
   transactionHash: transactionHashSchema,

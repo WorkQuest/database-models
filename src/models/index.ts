@@ -36,7 +36,6 @@ import {StarredChat} from "./chats/StarredChat";
 import {QuestChat} from "./chats/QuestChat";
 import {QuestDispute} from "./quest/QuestDispute";
 import {QuestsStatistic} from "./quest/QuestsStatistic";
-import {DailyLiquidity} from "./daily-liquidity/DailyLiquidity";
 import {Proposal} from "./proposal/Proposal";
 import {ProposalMedia} from "./proposal/ProposalMedia";
 import {ProposalParseBlock} from "./proposal/ProposalParseBlock";
@@ -87,6 +86,13 @@ import {SavingProductBorrowedEvent} from "./saving-product/SavingProductBorrowed
 import {SavingProductClaimedEvent} from "./saving-product/SavingProductClaimedEvent";
 import {SavingProductReceivedEvent} from "./saving-product/SavingProductReceivedEvent";
 import {SavingProductRefundedEvent} from "./saving-product/SavingProductRefundedEvent";
+import { WqtWethSwapEvent } from "./WqtWeth/WqtWethSwapEvent";
+import { WqtWethBlockInfo } from "./WqtWeth/WqtWethBlockInfo";
+import { WqtWethMintEvent } from "./WqtWeth/WqtWethMintEvent";
+import { WqtWethBurnEvent } from "./WqtWeth/WqtWethBurnEvent";
+import { WqtWethSyncEvent } from "./WqtWeth/WqtWethSyncEvent";
+import { DailyLiquidityWqtWbnb } from "./WqtWbnb/DailyLiquidityWqtWbnb";
+import { DailyLiquidityWqtWeth } from "./WqtWeth/DailyLiquidityWqtWeth";
 import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
@@ -157,10 +163,6 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       BridgeSwapTokenEvent,
 
 
-      /** Daily pool liquidity section */
-      DailyLiquidity,
-
-
       /** Discussion section */
       Discussion,
       DiscussionLike,
@@ -192,11 +194,21 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
 
       /** WQT/WBNB liquidity */
+      DailyLiquidityWqtWbnb,
       WqtWbnbSwapEvent,
       WqtWbnbBlockInfo,
       WqtWbnbMintEvent,
       WqtWbnbBurnEvent,
       WqtWbnbSyncEvent,
+
+
+      /** WQT/WETH liquidity */
+      DailyLiquidityWqtWeth,
+      WqtWethSwapEvent,
+      WqtWethBlockInfo,
+      WqtWethMintEvent,
+      WqtWethBurnEvent,
+      WqtWethSyncEvent,
 
 
       /** Media section */
@@ -275,15 +287,6 @@ export * from "./user/Session";
 export * from "./user/UserSpecializationFilter";
 export * from "./admin/Admin";
 export * from "./admin/AdminSession";
-export * from "./chats/Chat";
-export * from "./chats/ChatMember";
-export * from "./chats/Message";
-export * from "./chats/MessageMedia";
-export * from "./chats/InfoMessage";
-export * from "./chats/StarredMessage";
-export * from "./chats/UserChatsStatistic";
-export * from "./chats/StarredChat";
-export * from "./chats/QuestChat";
 export * from "./quest/QuestDispute";
 export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
@@ -296,7 +299,6 @@ export * from "./discussion/Discussion";
 export * from "./discussion/DiscussionLike";
 export * from "./discussion/DiscussionMedia";
 export * from "./discussion/StarredDiscussion";
-export * from "./daily-liquidity/DailyLiquidity";
 export * from "./proposal/Proposal";
 export * from "./proposal/ProposalMedia";
 export * from "./proposal/ProposalParseBlock";
@@ -307,6 +309,7 @@ export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
 export * from "./quest/contract-quest-factory/QuestFactoryBlockInfo";
+export * from "./WqtWbnb/DailyLiquidityWqtWbnb";
 export * from "./WqtWbnb/WqtWbnbSwapEvent";
 export * from "./WqtWbnb/WqtWbnbBlockInfo";
 export * from "./WqtWbnb/WqtWbnbBurnEvent";
@@ -319,7 +322,6 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
-export * from "./chats/GroupChat";
 export * from "./referral-program/ReferralProgramAffiliate";
 export * from "./referral-program/ReferralProgramReferral";
 export * from "./referral-program/ReferralProgramAffiliate";
@@ -351,8 +353,24 @@ export * from "./raise-view/RaiseViewPromotedQuestEvent";
 export * from "./raise-view/RaiseViewBlockInfo";
 export * from "./raise-view/QuestRaiseView";
 export * from "./raise-view/UserRaiseView";
+export * from "./WqtWeth/DailyLiquidityWqtWeth";
+export * from "./WqtWeth/WqtWethSwapEvent";
+export * from "./WqtWeth/WqtWethBlockInfo";
+export * from "./WqtWeth/WqtWethBurnEvent";
+export * from "./WqtWeth/WqtWethMintEvent";
+export * from "./WqtWeth/WqtWethSyncEvent";
 
+export * from "./chats/GroupChat";
 export * from "./chats/ChatData";
 export * from "./chats/ChatMemberData";
 export * from "./chats/ChatMemberDeletionData";
 export * from "./chats/AdminChatStatistic";
+export * from "./chats/Chat";
+export * from "./chats/ChatMember";
+export * from "./chats/Message";
+export * from "./chats/MessageMedia";
+export * from "./chats/InfoMessage";
+export * from "./chats/StarredMessage";
+export * from "./chats/UserChatsStatistic";
+export * from "./chats/StarredChat";
+export * from "./chats/QuestChat";

@@ -279,8 +279,8 @@ export const profileVisibilityStatusSchema = Joi.number().valid(...Object.keys(R
 export const profileVisibilityNetworkSchema = Joi.number().valid(...Object.keys(NetworkProfileVisibility).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibility.AllUsers).label("ProfileVisibilityNetwork");
 
 export const profileVisibilitySettingsSchema = Joi.object({
-  network: profileVisibilityStatusSchema.required(),
-  ratingStatus: profileVisibilityNetworkSchema.required(),
+  network: profileVisibilityNetworkSchema.allow(null).required(),
+  ratingStatus: profileVisibilityStatusSchema.allow(null).required(),
 }).label('ProfileVisibilitySettings');
 
 /** Sessions */

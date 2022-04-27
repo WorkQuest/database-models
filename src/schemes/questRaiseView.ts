@@ -4,7 +4,7 @@ import {
   QuestRaiseType,
   QuestRaiseStatus,
   QuestRaiseDuration,
-} from "../models/raise-view/types";
+} from "../models";
 
 export const questRaiseTypeScheme = Joi.number().valid(...Object.values(QuestRaiseType)).example(QuestRaiseType.GoldPlus).label('QuestRaiseType');
 export const questRaiseStatusSchema = Joi.number().valid(...Object.keys(QuestRaiseStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestRaiseStatus.Paid).label('QuestRaiseStatus');

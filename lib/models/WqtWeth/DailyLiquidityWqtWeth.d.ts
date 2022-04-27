@@ -1,11 +1,11 @@
 import { Model } from "sequelize-typescript";
-export declare class DailyLiquidity extends Model {
+export declare class DailyLiquidityWqtWeth extends Model {
     daySinceEpochBeginning: string;
-    date: string;
+    date: number;
     blockNumber: string;
-    bnbPool: string;
+    ethPool: string;
     wqtPool: string;
-    usdPriceBNB: string;
+    usdPriceETH: string;
     usdPriceWQT: string;
     reserveUSD: string;
 }
