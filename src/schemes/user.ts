@@ -10,7 +10,6 @@ import {
   UserStatus,
   RatingStatus,
   BlackListStatus,
-  NetworkProfileVisibility,
 } from "../models";
 import {
   chatsStatisticSchema,
