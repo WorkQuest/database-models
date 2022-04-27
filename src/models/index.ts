@@ -92,6 +92,8 @@ import { WqtWethBurnEvent } from "./WqtWeth/WqtWethBurnEvent";
 import { WqtWethSyncEvent } from "./WqtWeth/WqtWethSyncEvent";
 import { DailyLiquidityWqtWbnb } from "./WqtWbnb/DailyLiquidityWqtWbnb";
 import { DailyLiquidityWqtWeth } from "./WqtWeth/DailyLiquidityWqtWeth";
+import { EmployerProfileVisibilitySetting } from "./user/EmployerProfileVisibilitySetting";
+import { WorkerProfileVisibilitySetting } from "./user/WorkerProfileVisibilitySetting";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -105,7 +107,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
-      ProfileVisibilitySetting,
+      WorkerProfileVisibilitySetting,
+      EmployerProfileVisibilitySetting,
 
 
       /** Admin section */
@@ -355,4 +358,6 @@ export * from "./WqtWeth/WqtWethBlockInfo";
 export * from "./WqtWeth/WqtWethBurnEvent";
 export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
+export * from "./user/EmployerProfileVisibilitySetting";
+export * from "./user/WorkerProfileVisibilitySetting";
 
