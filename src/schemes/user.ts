@@ -275,19 +275,22 @@ export const tokensWithStatus = Joi.object({
 /** Visibility settings */
 
 export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
+export const ratingStatusesCanInviteMeOnQuestSchema = Joi.array().items(ratingStatusCanInviteMeOnQuestSchema).label("RatingStatusesCanInviteMeOnQuest");
 
 export const ratingStatusCanRespondToQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondToQuest");
+export const ratingStatusesCanRespondToQuestSchema = Joi.array().items(ratingStatusCanRespondToQuestSchema).label("RatingStatusesCanRespondToQuest");
 
 export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
+export const ratingStatusesInMySearchSchema = Joi.array().items(ratingStatusInMySearchSchema).label("RatingStatusesInMySearch");
 
 export const workerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanInviteMeOnQuest: ratingStatusCanInviteMeOnQuestSchema.required(),
-  ratingStatusInMySearch: ratingStatusInMySearchSchema.required(),
+  ratingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.required(),
 }).label('WorkerProfileVisibilitySettings');
 
 export const employerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanRespondToQuest: ratingStatusCanRespondToQuestSchema.required(),
-  ratingStatusInMySearch: ratingStatusInMySearchSchema.required(),
+  ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.required(),
 }).label('EmployerProfileVisibilitySettings');
 /** Sessions */
 
