@@ -22,7 +22,16 @@ import {QuestChat} from "./QuestChat";
       model: ChatMember,
       as: 'ownerMember'
     }]
-  }
+  },
+  forChat: {
+    attributes: {
+      exclude: ['chatId', 'createdAt', 'updatedAt'],
+    },
+    include: [{
+      model: ChatMember.scope('forGroupChat'),
+      as: 'ownerMember',
+    }],
+  },
 }))
 @Table
 export class GroupChat extends Model {

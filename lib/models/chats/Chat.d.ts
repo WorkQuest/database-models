@@ -1,10 +1,9 @@
-import { Model } from "sequelize-typescript";
-import { Message } from "./Message";
+import { ChatData } from "./ChatData";
+import { GroupChat } from "./GroupChat";
+import { QuestChat } from "./QuestChat";
 import { ChatMember } from "./ChatMember";
 import { StarredChat } from "./StarredChat";
-import { QuestChat } from "./QuestChat";
-import { GroupChat } from "./GroupChat";
-import { ChatData } from "./ChatData";
+import { Model } from "sequelize-typescript";
 export declare enum ChatType {
     private = "private",
     group = "group",
@@ -13,13 +12,14 @@ export declare enum ChatType {
 export declare class Chat extends Model {
     id: string;
     type: ChatType;
-    messages: Message[];
     members: ChatMember[];
     meMember: ChatMember;
     questChat: QuestChat;
     groupChat: GroupChat;
     chatData: ChatData;
     star: StarredChat;
+    senderInPrivateChat: ChatMember;
+    recipientInPrivateChat: ChatMember;
     firstMemberInPrivateChat: ChatMember;
     secondMemberInPrivateChat: ChatMember;
 }

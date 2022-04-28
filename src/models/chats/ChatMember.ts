@@ -22,7 +22,43 @@ export enum MemberStatus {
       model: User.scope('shortWithAdditionalInfo'),
       as: 'user'
     }, {
-      model: Admin,
+      model: Admin.scope(''),
+      as: 'admin',
+    }],
+  },
+  forChatData: {
+    attributes: [
+      'id',
+      'userId',
+      'adminId',
+      'type',
+      'status',
+      'user',
+      'admin',
+    ],
+    include: [{
+      model: User.scope('shortWithAdditionalInfo'),
+      as: 'user',
+    }, {
+      model: Admin.scope('short'),
+      as: 'admin',
+    }],
+  },
+  forGroupChat: {
+    attributes: [
+      'id',
+      'userId',
+      'adminId',
+      'type',
+      'status',
+      'user',
+      'admin',
+    ],
+    include: [{
+      model: User.scope('short'),
+      as: 'user',
+    }, {
+      model: Admin.scope('short'),
       as: 'admin',
     }],
   },
@@ -36,7 +72,7 @@ export enum MemberStatus {
         'unreadCountMessages',
       ]
     },
-  }
+  },
 }))
 @Table
 export class ChatMember extends Model {

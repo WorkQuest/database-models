@@ -44,6 +44,19 @@ export enum SenderMessageStatus {
       model: InfoMessage,
       as: 'infoMessage'
     }]
+  },
+  forChatData: {
+    attributes: [
+      'id',
+      'senderMemberId',
+      'text',
+      'type',
+      'sender',
+    ],
+    include: [{
+      model: ChatMember.scope('forChatData'),
+      as: 'sender',
+    }],
   }
 }))
 @Table

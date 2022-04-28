@@ -15,12 +15,12 @@ import {GroupChat} from "./GroupChat";
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["messages", "updatedAt"]
+      exclude: ['chatId', "createdAt", "updatedAt"],
     },
     include: [{
-      model: Message,
-      as: 'lastMessage'
-    }]
+      model: Message.scope('forChatData'),
+      as: 'lastMessage',
+    }],
   }
 }))
 

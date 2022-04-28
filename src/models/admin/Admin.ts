@@ -12,6 +12,13 @@ import {AdminChatStatistic} from "../chats/AdminChatStatistic";
       exclude: ["password", "settings", "createdAt", "updatedAt", "deletedAt"],
     },
   },
+  short: {
+    attributes: [
+      'id',
+      'firstName',
+      'lastName',
+    ],
+  },
   withPassword: {
     attributes: {
       include: ["password", "settings"],

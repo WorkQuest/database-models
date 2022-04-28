@@ -28,6 +28,39 @@ export enum QuestChatStatuses {
       as: 'quest',
     }],
   },
+  forChat: {
+    attributes: {
+      exclude: ['chatId', 'createdAt', 'updatedAt'],
+    },
+    include: [{
+      model: Quest.unscoped(),
+      as: 'quest',
+      attributes: [
+        'id',
+        'title',
+        'status',
+      ],
+    }, {
+      model: QuestsResponse.unscoped(),
+      as: "response",
+      attributes: [
+        "id",
+        "workerId",
+        "questId",
+        "type",
+        "status",
+      ],
+    }, {
+      model: User.scope('short'),
+      as: 'worker',
+    }, {
+      model: User.scope('short'),
+      as: 'employer',
+    }, {
+      model: Admin.scope('short'),
+      as: 'admin',
+    }],
+  },
   idsOnly: {
     attributes: ['employerMemberId', 'workerMemberId', 'questId', 'responseId', 'chatId']
   }
