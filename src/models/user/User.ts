@@ -241,7 +241,7 @@ export class User extends Model {
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
   /** UserRole.Worker: priority list for quests */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) costPerHour: string;
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 

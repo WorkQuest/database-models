@@ -46,7 +46,7 @@ export const userTotpIsActiveSchema = Joi.boolean().example(true).label('UserTot
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
-export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
+export const workerCostPerHourSchema = Joi.string().example("123").label('WorkerCostPerHour');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -106,7 +106,7 @@ export const userSchema = Joi.object({
   workplace: workPlaceSchema,
   userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
-  wagePerHour: workerWagePerHourSchema,
+  costPerHour: workerCostPerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
@@ -130,7 +130,7 @@ export const userMeSchema = Joi.object({
   workplace: workPlaceSchema,
   userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
-  wagePerHour: workerWagePerHourSchema,
+  costPerHour: workerCostPerHourSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   totpIsActive: userTotpIsActiveSchema,
   avatar: mediaUrlOnlySchema.allow(null),
@@ -176,7 +176,7 @@ export const userWorkerSchema = Joi.object({
   email: userEmailSchema,
   userStatusKyc: userStatusKycSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
-  wagePerHour: workerWagePerHourSchema,
+  costPerHour: workerCostPerHourSchema,
   workplace: workPlaceSchema,
   role: userRoleSchema,
   priority: prioritySchema,
@@ -221,10 +221,10 @@ export const userListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('UserListSort');
 
-export const betweenWagePerHourSchema = Joi.object({
-  from: workerWagePerHourSchema.required(),
-  to: workerWagePerHourSchema.required(),
-}).label('BetweenWagePerHour');
+export const betweenCostPerHourSchema = Joi.object({
+  from: workerCostPerHourSchema.required(),
+  to: workerCostPerHourSchema.required(),
+}).label('BetweenCostPerHour');
 
 export const employerQuerySchema = Joi.object({
   q: searchSchema,
@@ -243,7 +243,7 @@ export const workerQuerySchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  betweenWagePerHour: betweenWagePerHourSchema.default(null),
+  betweenCostPerHour: betweenCostPerHourSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
 
@@ -252,7 +252,7 @@ export const workerQueryForMapPointsSchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  betweenWagePerHour: betweenWagePerHourSchema.default(null),
+  betweenCostPerHour: betweenCostPerHourSchema.default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
 }).label('WorkerQueryForMapPoints');
 

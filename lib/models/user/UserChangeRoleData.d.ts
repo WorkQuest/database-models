@@ -8,7 +8,7 @@ export declare class UserChangeRoleData extends Model {
     userId: string;
     movedFromRole: UserRole;
     additionalInfo: object;
-    wagePerHour: string;
+    costPerHour: string;
     workplace: WorkPlace;
     priority: Priority;
     user: User;

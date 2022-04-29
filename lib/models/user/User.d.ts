@@ -104,7 +104,7 @@ export declare class User extends Model {
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
-    wagePerHour: string;
+    costPerHour: string;
     workplace: WorkPlace;
     priority: Priority;
     location: LocationType;

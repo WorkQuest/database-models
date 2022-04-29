@@ -20,9 +20,9 @@ export type LocationPostGISType = {
 }
 
 export enum WorkPlace {
-  Distant = "distant",
-  Office = "office",
-  Both = "both"
+  Remote = "remote",
+  InOffice = "inOffice",
+  Hybrid = "hybrid"
 }
 
 export enum Priority {

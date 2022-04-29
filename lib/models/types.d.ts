@@ -21,9 +21,9 @@ export declare type LocationPostGISType = {
     };
 };
 export declare enum WorkPlace {
-    Distant = "distant",
-    Office = "office",
-    Both = "both"
+    Remote = "remote",
+    InOffice = "inOffice",
+    Hybrid = "hybrid"
 }
 export declare enum Priority {
     AllPriority = 0,

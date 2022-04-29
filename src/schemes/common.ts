@@ -93,5 +93,5 @@ export const sessionPlaceSchema = Joi.object({
 export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
 export const prioritiesSchema = Joi.array().items(prioritySchema).label('Priorities');
 
-export const workPlaceSchema = Joi.string().valid(...Object.values(WorkPlace)).example(WorkPlace.Distant).label('WorkPlace');
+export const workPlaceSchema = Joi.string().valid(...Object.values(WorkPlace)).example(WorkPlace.Remote).label('WorkPlace');
 export const workPlacesSchema = Joi.array().items(workPlaceSchema).label('WorkPlaces');
