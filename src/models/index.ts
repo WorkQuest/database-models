@@ -76,22 +76,26 @@ import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
 import {QuestJobCancelledEvent} from "./quest/contract-quest/QuestJobCancelledEvent";
 import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
-import { RaiseViewBlockInfo } from "./raise-view/RaiseViewBlockInfo";
-import { RaiseViewPromotedUserEvent } from "./raise-view/RaiseViewPromotedUserEvent";
-import { RaiseViewPromotedQuestEvent } from "./raise-view/RaiseViewPromotedQuestEvent";
+import {RaiseViewBlockInfo} from "./raise-view/RaiseViewBlockInfo";
+import {RaiseViewPromotedUserEvent} from "./raise-view/RaiseViewPromotedUserEvent";
+import {RaiseViewPromotedQuestEvent} from "./raise-view/RaiseViewPromotedQuestEvent";
 import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
 import {SavingProductParseBlock} from "./saving-product/SavingProductParseBlock";
 import {SavingProductBorrowedEvent} from "./saving-product/SavingProductBorrowedEvent";
 import {SavingProductClaimedEvent} from "./saving-product/SavingProductClaimedEvent";
 import {SavingProductReceivedEvent} from "./saving-product/SavingProductReceivedEvent";
 import {SavingProductRefundedEvent} from "./saving-product/SavingProductRefundedEvent";
-import { WqtWethSwapEvent } from "./WqtWeth/WqtWethSwapEvent";
-import { WqtWethBlockInfo } from "./WqtWeth/WqtWethBlockInfo";
-import { WqtWethMintEvent } from "./WqtWeth/WqtWethMintEvent";
-import { WqtWethBurnEvent } from "./WqtWeth/WqtWethBurnEvent";
-import { WqtWethSyncEvent } from "./WqtWeth/WqtWethSyncEvent";
-import { DailyLiquidityWqtWbnb } from "./WqtWbnb/DailyLiquidityWqtWbnb";
-import { DailyLiquidityWqtWeth } from "./WqtWeth/DailyLiquidityWqtWeth";
+import {WqtWethSwapEvent} from "./WqtWeth/WqtWethSwapEvent";
+import {WqtWethBlockInfo} from "./WqtWeth/WqtWethBlockInfo";
+import {WqtWethMintEvent} from "./WqtWeth/WqtWethMintEvent";
+import {WqtWethBurnEvent} from "./WqtWeth/WqtWethBurnEvent";
+import {WqtWethSyncEvent} from "./WqtWeth/WqtWethSyncEvent";
+import {DailyLiquidityWqtWbnb} from "./WqtWbnb/DailyLiquidityWqtWbnb";
+import {DailyLiquidityWqtWeth} from "./WqtWeth/DailyLiquidityWqtWeth";
+import {QuestArbitrationRejectWorkEvent} from "./quest/contract-quest/QuestArbitrationRejectWorkEvent";
+import {QuestArbitrationAcceptWorkEvent} from "./quest/contract-quest/QuestArbitrationAcceptWorkEvent";
+import {QuestArbitrationStartedEvent} from "./quest/contract-quest/QuestArbitrationStartedEvent";
+import {QuestArbitrationReworkEvent} from "./quest/contract-quest/QuestArbitrationReworkEvent";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -123,6 +127,10 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestsResponse,
       QuestBlackList,
       QuestDisputeReview,
+      QuestArbitrationReworkEvent,
+      QuestArbitrationStartedEvent,
+      QuestArbitrationAcceptWorkEvent,
+      QuestArbitrationRejectWorkEvent,
 
 
       /** Quest factory contract events section */
