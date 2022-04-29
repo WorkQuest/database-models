@@ -3,17 +3,17 @@ import { User } from "../user/User";
 import { Quest, QuestStatus } from "./Quest";
 import { Admin } from "../admin/Admin";
 export declare enum DisputeStatus {
-    pending = 0,
-    inProgress = 1,
-    closed = 2
+    Pending = 0,
+    InProgress = 1,
+    Closed = 2
 }
 export declare enum DisputeReason {
-    noAnswer = "noAnswer",
-    poorlyDoneJob = "poorlyDoneJob",
-    additionalRequirement = "additionalRequirement",
-    requirementDoesNotMatch = "requirementDoesNotMatch",
-    noConfirmationOfComplete = "noConfirmationOfComplete",
-    anotherReason = "anotherReason"
+    NoAnswer = "noAnswer",
+    PoorlyDoneJob = "poorlyDoneJob",
+    AdditionalRequirement = "additionalRequirement",
+    RequirementDoesNotMatch = "requirementDoesNotMatch",
+    NoConfirmationOfComplete = "noConfirmationOfComplete",
+    AnotherReason = "anotherReason"
 }
 export declare class QuestDispute extends Model {
     id: string;
@@ -27,6 +27,7 @@ export declare class QuestDispute extends Model {
     reason: DisputeReason;
     problemDescription: string;
     decisionDescription: string;
+    contractDecision: string;
     acceptedAt: Date;
     resolvedAt: Date;
     openDisputeUser: User;

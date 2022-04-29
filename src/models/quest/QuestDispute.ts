@@ -5,18 +5,18 @@ import {Quest, QuestStatus} from "./Quest";
 import {Admin} from "../admin/Admin";
 
 export enum DisputeStatus {
-  pending = 0,
-  inProgress,
-  closed,
+  Pending = 0,
+  InProgress,
+  Closed,
 }
 
 export enum DisputeReason {
-  noAnswer = "noAnswer",
-  poorlyDoneJob = "poorlyDoneJob",
-  additionalRequirement = "additionalRequirement",
-  requirementDoesNotMatch = "requirementDoesNotMatch",
-  noConfirmationOfComplete = "noConfirmationOfComplete",
-  anotherReason = "anotherReason",
+  NoAnswer = "noAnswer",
+  PoorlyDoneJob = "poorlyDoneJob",
+  AdditionalRequirement = "additionalRequirement",
+  RequirementDoesNotMatch = "requirementDoesNotMatch",
+  NoConfirmationOfComplete = "noConfirmationOfComplete",
+  AnotherReason = "anotherReason",
 }
 
 @Scopes(() => ({
@@ -35,27 +35,28 @@ export enum DisputeReason {
 }))
 @Table({ paranoid: true })
 export class QuestDispute extends Model {
-  @Column({type: DataType.STRING, defaultValue: getUUID, primaryKey: true}) id: string;
+  @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
   @ForeignKey(() => Quest)
-  @Column({type: DataType.STRING, allowNull: false}) questId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) questId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) openDisputeUserId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) openDisputeUserId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) opponentUserId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) opponentUserId: string;
 
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) assignedAdminId: string;
 
-  @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
-  @Column({type: DataType.INTEGER, allowNull: false}) openOnQuestStatus: QuestStatus;
-  @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
-  @Column({type: DataType.STRING, defaultValue: DisputeReason.anotherReason}) reason: DisputeReason;
+  @Column({ type: DataType.INTEGER, autoIncrement: true }) disputeNumber: number;
+  @Column({ type: DataType.INTEGER, allowNull: false }) openOnQuestStatus: QuestStatus;
+  @Column({ type: DataType.INTEGER, defaultValue: DisputeStatus.Pending }) status: DisputeStatus;
+  @Column({ type: DataType.STRING, defaultValue: DisputeReason.AnotherReason }) reason: DisputeReason;
 
-  @Column({type: DataType.TEXT, allowNull: false}) problemDescription: string;
+  @Column({ type: DataType.TEXT, allowNull: false }) problemDescription: string;
   @Column(DataType.TEXT) decisionDescription: string;
+  @Column(DataType.STRING) contractDecision: string;
 
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;

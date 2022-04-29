@@ -107,8 +107,8 @@ export const activeFlowStatuses = [
       where: {
         status: {
           [Op.or]: [
-            DisputeStatus.pending,
-            DisputeStatus.inProgress,
+            DisputeStatus.Pending,
+            DisputeStatus.InProgress,
           ],
         },
       },

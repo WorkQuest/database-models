@@ -290,8 +290,8 @@ export const questBlackListSchema = Joi.object({
 /** QuestDispute */
 
 export const questDisputeNumberSchema = Joi.number().example('123').label('DisputeNumber');
-export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(DisputeStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).default(DisputeStatus.pending).example(DisputeStatus.pending).label('DisputeStatus');
-export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.anotherReason).example(DisputeReason.anotherReason).label('DisputeReason');
+export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(DisputeStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).default(DisputeStatus.Pending).example(DisputeStatus.Pending).label('DisputeStatus');
+export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.AnotherReason).example(DisputeReason.AnotherReason).label('DisputeReason');
 export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
 export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
 export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
