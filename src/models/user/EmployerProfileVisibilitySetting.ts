@@ -1,14 +1,14 @@
+import { User } from './User';
+import { getUUID } from '../../utils';
+import { RatingStatus } from "../types";
 import {
-  BelongsTo,
+  Table,
+  Model,
   Column,
   DataType,
+  BelongsTo,
   ForeignKey,
-  Model,
-  Table
 } from 'sequelize-typescript';
-import { getUUID } from '../../utils';
-import { User } from './User';
-import { RatingStatus } from "../types";
 
 @Table
 export class EmployerProfileVisibilitySetting extends Model {

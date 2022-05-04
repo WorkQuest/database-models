@@ -51,10 +51,9 @@ export declare enum HTTPVerb {
     DELETE = "DELETE"
 }
 export declare enum RatingStatus {
-    None = 0,
-    topRanked = 1,
-    reliable = 2,
-    verified = 4,
-    noStatus = 8,
-    AllStatuses = 15
+    NoStatus = 0,
+    Verified = 1,
+    Reliable = 2,
+    TopRanked = 4,
+    AllStatuses = 7
 }
