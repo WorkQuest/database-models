@@ -14,6 +14,18 @@ export enum MemberStatus {
 }
 
 @Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ['updatedAt',]
+    },
+    include: [{
+      model: User.scope('short'),
+      as: 'user',
+    }, {
+      model: Admin.scope('short'),
+      as: 'admin',
+    }],
+  },
   memberOnly: {
     attributes: {
       exclude: ['id', 'chatId','createdAt', 'updatedAt']
@@ -33,6 +45,7 @@ export enum MemberStatus {
       'adminId',
       'type',
       'status',
+      'createdAt',
       'user',
       'admin',
     ],
@@ -51,6 +64,7 @@ export enum MemberStatus {
       'adminId',
       'type',
       'status',
+      'createdAt',
       'user',
       'admin',
     ],
@@ -67,7 +81,6 @@ export enum MemberStatus {
       exclude: [
         'id',
         'chatId',
-        'createdAt',
         'updatedAt',
         'unreadCountMessages',
       ]
