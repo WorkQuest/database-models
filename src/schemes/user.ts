@@ -35,7 +35,9 @@ import {
   sessionPlaceSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
-  searchByNorthAndSouthCoordinatesSchema, payPeriodSchema, payPeriodsSchema,
+  searchByNorthAndSouthCoordinatesSchema,
+  payPeriodSchema,
+  payPeriodsSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -247,7 +249,7 @@ export const workerQuerySchema = Joi.object({
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
   betweenCostPerHour: betweenCostPerHourSchema.default(null),
-  payPeriods: payPeriodsSchema,
+  payPeriods: payPeriodsSchema.unique().min(1).max(11).default(null), /** 11 is length of PayPeriod enum */
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
 
@@ -257,7 +259,7 @@ export const workerQueryForMapPointsSchema = Joi.object({
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
   betweenCostPerHour: betweenCostPerHourSchema.default(null),
-  payPeriods: payPeriodsSchema,
+  payPeriods: payPeriodsSchema.unique().min(1).max(11).default(null), /** 11 is length of PayPeriod enum */
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
 }).label('WorkerQueryForMapPoints');
 
