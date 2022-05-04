@@ -284,13 +284,13 @@ export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(Ra
 export const ratingStatusesInMySearchSchema = Joi.array().items(ratingStatusInMySearchSchema).label("RatingStatusesInMySearch");
 
 export const workerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.required(),
-  ratingStatusInMySearch: ratingStatusesInMySearchSchema.required(),
+  ratingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.unique().min(1).max(4).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
 }).label('WorkerProfileVisibilitySettings');
 
 export const employerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.required(),
-  ratingStatusInMySearch: ratingStatusesInMySearchSchema.required(),
+  ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.unique().min(1).max(4).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
 }).label('EmployerProfileVisibilitySettings');
 /** Sessions */
 
