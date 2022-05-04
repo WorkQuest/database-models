@@ -4,11 +4,9 @@ import {User} from "../user/User";
 import { UserRaiseDuration, UserRaiseStatus, UserRaiseType } from "./types";
 
 @Scopes(() => ({
-  defaultScope: {
-    attributes: {
-      exclude: ["id", "userId", "createdAt", "updatedAt"]
-    }
-  },
+  forMeUser: {
+    attributes: ["status", "duration", "type", "endedAt"]
+  }
 }))
 @Table
 export class UserRaiseView extends Model {
