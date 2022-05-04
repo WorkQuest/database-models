@@ -10,9 +10,7 @@ import { UserRaiseDuration, UserRaiseStatus, UserRaiseType } from "./types";
     }
   },
   forUserMe: {
-    attributes: {
-      exclude: ["id", "userId", "createdAt", "updatedAt"]
-    }
+    attributes: ["status", "duration", "type", "endedAt"]
   }
 }))
 @Table
