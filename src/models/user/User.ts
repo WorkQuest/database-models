@@ -144,7 +144,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: RatingStatistic,
       as: 'ratingStatistic'
     }, {
-      model: UserRaiseView,
+      model: UserRaiseView.scope('forMeUser'),
       as: 'raiseView'
     }, {
       model: UserSpecializationFilter,

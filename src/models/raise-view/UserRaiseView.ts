@@ -4,9 +4,9 @@ import {User} from "../user/User";
 import { UserRaiseDuration, UserRaiseStatus, UserRaiseType } from "./types";
 
 @Scopes(() => ({
-  defaultScope: {
+  forMeUser: {
     attributes: {
-      exclude: ["id", "userId"]
+      exclude: ["id", "userId", "createdAt", "updatedAt"]
     }
   }
 }))
