@@ -5,7 +5,6 @@ import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   UserRole,
-  Priority,
   StatusKYC,
   UserStatus,
   RatingStatus,
@@ -292,6 +291,7 @@ export const employerProfileVisibilitySettingsSchema = Joi.object({
   ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.unique().min(1).max(4).required(),
   ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
 }).label('EmployerProfileVisibilitySettings');
+
 /** Sessions */
 
 export const userSessionSchema = Joi.object({
