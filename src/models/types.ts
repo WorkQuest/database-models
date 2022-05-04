@@ -62,3 +62,17 @@ export enum RatingStatus {
   noStatus = 3,
   AllStatuses = 4, //need for ProfileSettingsVisibility
 }
+
+export enum PayPeriod {
+  Hourly = 'hourly',
+  Daily = 'daily',
+  Weekly = 'weekly',
+  BiWeekly = 'biWeekly',
+  SemiMonthly = 'semiMonthly',
+  Monthly = 'monthly',
+  Quarterly = 'quarterly',
+  SemiAnnually = 'semiAnnually',
+  Annually = 'annually',
+  FixedPeriod = 'fixedPeriod',
+  ByAgreement = 'byAgreement',
+}

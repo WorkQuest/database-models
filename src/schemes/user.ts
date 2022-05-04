@@ -35,7 +35,7 @@ import {
   sessionPlaceSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
-  searchByNorthAndSouthCoordinatesSchema,
+  searchByNorthAndSouthCoordinatesSchema, payPeriodSchema, payPeriodsSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -107,6 +107,7 @@ export const userSchema = Joi.object({
   userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
   costPerHour: workerCostPerHourSchema,
+  payPeriod: payPeriodSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
@@ -131,6 +132,7 @@ export const userMeSchema = Joi.object({
   userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
   costPerHour: workerCostPerHourSchema,
+  payPeriod: payPeriodSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   totpIsActive: userTotpIsActiveSchema,
   avatar: mediaUrlOnlySchema.allow(null),
@@ -177,6 +179,7 @@ export const userWorkerSchema = Joi.object({
   userStatusKyc: userStatusKycSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
   costPerHour: workerCostPerHourSchema,
+  payPeriod: payPeriodSchema,
   workplace: workPlaceSchema,
   role: userRoleSchema,
   priority: prioritySchema,
@@ -244,6 +247,7 @@ export const workerQuerySchema = Joi.object({
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
   betweenCostPerHour: betweenCostPerHourSchema.default(null),
+  payPeriods: payPeriodsSchema,
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
 
@@ -253,6 +257,7 @@ export const workerQueryForMapPointsSchema = Joi.object({
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
   betweenCostPerHour: betweenCostPerHourSchema.default(null),
+  payPeriods: payPeriodsSchema,
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
 }).label('WorkerQueryForMapPoints');
 
