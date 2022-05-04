@@ -57,3 +57,4 @@ export declare enum RatingStatus {
     TopRanked = 4,
     AllStatuses = 7
 }
+export declare const RatingStatuses: RatingStatus[];

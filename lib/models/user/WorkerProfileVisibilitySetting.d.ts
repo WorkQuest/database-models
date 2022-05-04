@@ -5,5 +5,7 @@ export declare class WorkerProfileVisibilitySetting extends Model {
     userId: string;
     ratingStatusCanInviteMeOnQuest: number;
     ratingStatusInMySearch: number;
+    arrayRatingStatusCanInviteMeOnQuest: number[];
+    arrayRatingStatusInMySearch: number[];
     user: User;
 }
