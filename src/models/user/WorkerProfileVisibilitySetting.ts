@@ -1,6 +1,6 @@
 import { User } from './User';
 import { getUUID } from '../../utils';
-import { RatingStatus } from "../types";
+import { RatingStatus, RatingStatuses } from "../types";
 import {
   Table,
   Model,
@@ -19,6 +19,32 @@ export class WorkerProfileVisibilitySetting extends Model {
 
   @Column({ type: DataType.INTEGER, defaultValue: RatingStatus.AllStatuses }) ratingStatusCanInviteMeOnQuest: number;
   @Column({ type: DataType.INTEGER, defaultValue: RatingStatus.AllStatuses }) ratingStatusInMySearch: number;
+
+  @Column({ type: DataType.VIRTUAL,
+    get() {
+      const ratingStatusCanInviteMeOnQuest = this.getDataValue('ratingStatusCanInviteMeOnQuest');
+
+      return RatingStatuses.filter((status) =>
+        ((status & ratingStatusCanInviteMeOnQuest) != 0)
+      );
+    },
+    set() {
+      throw Error("Can't set this field");
+    },
+  }) arrayRatingStatusCanInviteMeOnQuest: number[];
+
+  @Column({ type: DataType.VIRTUAL,
+    get() {
+      const ratingStatusInMySearch = this.getDataValue('ratingStatusInMySearch');
+
+      return RatingStatuses.filter((status) =>
+        ((status & ratingStatusInMySearch) != 0)
+      );
+    },
+    set() {
+      throw Error("Can't set this field");
+    },
+  }) arrayRatingStatusInMySearch: number[];
 
   @BelongsTo(() => User) user: User;
 }

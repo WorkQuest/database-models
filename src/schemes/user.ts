@@ -53,6 +53,37 @@ export const userSocialMediaNicknamesSchema = Joi.object({
   facebook: Joi.string().allow(null).label('Facebook'),
 }).label('SocialMediaNicknames');
 
+/** Visibility settings */
+
+export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
+export const ratingStatusesCanInviteMeOnQuestSchema = Joi.array().items(ratingStatusCanInviteMeOnQuestSchema).label("RatingStatusesCanInviteMeOnQuest");
+
+export const ratingStatusCanRespondToQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondToQuest");
+export const ratingStatusesCanRespondToQuestSchema = Joi.array().items(ratingStatusCanRespondToQuestSchema).label("RatingStatusesCanRespondToQuest");
+
+export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
+export const ratingStatusesInMySearchSchema = Joi.array().items(ratingStatusInMySearchSchema).label("RatingStatusesInMySearch");
+
+export const workerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.unique().min(1).max(4).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('WorkerProfileVisibilitySettings');
+
+export const employerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.unique().min(1).max(4).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('EmployerProfileVisibilitySettings');
+
+export const workerProfileVisibilitySettingsForGetMeSchema = Joi.object({
+  arrayRatingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.unique().min(1).max(4).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('WorkerProfileVisibilitySettings');
+
+export const employerProfileVisibilitySettingsForGetMeSchema = Joi.object({
+  arrayRatingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.unique().min(1).max(4).required(),
+  arrayRatingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('EmployerProfileVisibilitySettings');
+
 export const userKnowledgeSchema = Joi.object({
   from: Joi.string().label('From'),
   to: Joi.string().label('To'),
@@ -133,10 +164,13 @@ export const userMeSchema = Joi.object({
   totpIsActive: userTotpIsActiveSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
+  employerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,
+  workerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,
   questsStatistic: questsStatisticSchema,
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   wallet: walletAddressesSchema,
+
   affiliateUser: Joi.object({
     referralCodeId: idSchema,
   }).label('AffiliateMe'),
@@ -270,27 +304,6 @@ export const tokensWithStatus = Joi.object({
   refresh: jwtTokenRefresh,
   address: walletAddressSchema,
 }).label("TokensWithStatus");
-
-/** Visibility settings */
-
-export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
-export const ratingStatusesCanInviteMeOnQuestSchema = Joi.array().items(ratingStatusCanInviteMeOnQuestSchema).label("RatingStatusesCanInviteMeOnQuest");
-
-export const ratingStatusCanRespondToQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondToQuest");
-export const ratingStatusesCanRespondToQuestSchema = Joi.array().items(ratingStatusCanRespondToQuestSchema).label("RatingStatusesCanRespondToQuest");
-
-export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
-export const ratingStatusesInMySearchSchema = Joi.array().items(ratingStatusInMySearchSchema).label("RatingStatusesInMySearch");
-
-export const workerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.unique().min(1).max(4).required(),
-  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
-}).label('WorkerProfileVisibilitySettings');
-
-export const employerProfileVisibilitySettingsSchema = Joi.object({
-  ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.unique().min(1).max(4).required(),
-  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
-}).label('EmployerProfileVisibilitySettings');
 
 /** Sessions */
 

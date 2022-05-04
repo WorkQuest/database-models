@@ -64,3 +64,9 @@ export enum RatingStatus {
 
   AllStatuses = RatingStatus.TopRanked | RatingStatus.Reliable | RatingStatus.Verified
 }
+
+export const RatingStatuses = [
+  RatingStatus.Verified,
+  RatingStatus.Reliable,
+  RatingStatus.TopRanked,
+]
