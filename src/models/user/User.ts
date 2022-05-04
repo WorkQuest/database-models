@@ -14,7 +14,6 @@ import {UserRaiseView} from "../raise-view/UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {ChatsStatistic} from "../chats/ChatsStatistic";
-import {ProfileVisibilitySetting} from "./ProfileVisibilitySetting";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
 import {
@@ -28,6 +27,8 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
+import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting";
+import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
 
 
 export interface SocialInfo {
@@ -252,7 +253,8 @@ export class User extends Model {
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
   /** Profile visibility settings */
-  @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
+  @HasOne(() => WorkerProfileVisibilitySetting) workerProfileVisibilitySetting: WorkerProfileVisibilitySetting;
+  @HasOne(() => EmployerProfileVisibilitySetting) employerProfileVisibilitySetting: EmployerProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

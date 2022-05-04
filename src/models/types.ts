@@ -56,12 +56,20 @@ export enum HTTPVerb {
 }
 
 export enum RatingStatus {
-  topRanked = 0,
-  reliable = 1,
-  verified = 2,
-  noStatus = 3,
-  AllStatuses = 4, //need for ProfileSettingsVisibility
+  NoStatus = 0,
+
+  Verified = 1 << 0,
+  Reliable = 1 << 1,
+  TopRanked = 1 << 2,
+
+  AllStatuses = RatingStatus.TopRanked | RatingStatus.Reliable | RatingStatus.Verified
 }
+
+export const RatingStatuses = [
+  RatingStatus.Verified,
+  RatingStatus.Reliable,
+  RatingStatus.TopRanked,
+]
 
 export enum PayPeriod {
   Hourly = 'hourly',
