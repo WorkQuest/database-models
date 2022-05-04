@@ -170,6 +170,7 @@ export const userMeSchema = Joi.object({
   chatStatistic: chatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   wallet: walletAddressesSchema,
+
   affiliateUser: Joi.object({
     referralCodeId: idSchema,
   }).label('AffiliateMe'),

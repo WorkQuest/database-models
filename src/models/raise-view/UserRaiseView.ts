@@ -1,8 +1,15 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import { UserRaiseDuration, UserRaiseStatus, UserRaiseType } from "./types";
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ["id", "userId"]
+    }
+  }
+}))
 @Table
 export class UserRaiseView extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
