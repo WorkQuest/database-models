@@ -74,7 +74,7 @@ export const questSchema = Joi.object({
   nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
-  employment: questEmploymentSchema,
+  typeOfEmployment: questEmploymentSchema,
   priority: prioritySchema,
   location: locationSchema,
   locationPlaceName: locationPlaceNameSchema,
@@ -122,7 +122,7 @@ export const questQuerySchema = Joi.object({
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  employments: questEmploymentsSchema.unique().default(null),
+  typeOfEmployments: questEmploymentsSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
@@ -138,7 +138,7 @@ export const questQueryForGetWorkersSchema = Joi.object({
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  employments: questEmploymentsSchema.unique().default(null),
+  typeOfEmployments: questEmploymentsSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
 }).label('QuestQueryForGetWorkers');
 
@@ -148,7 +148,7 @@ export const questQueryForMapPointsSchema = Joi.object({
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  employments: questEmploymentsSchema.unique().default(null),
+  typeOfEmployments: questEmploymentsSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),                /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
   invited: Joi.boolean().default(false),                                                /** Only quests where worker invited (see QuestResponse and its type)   */
@@ -211,7 +211,7 @@ export const questForGetSchema = Joi.object({
   nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
-  employment: questEmploymentSchema,
+  typeOfEmployment: questEmploymentSchema,
   priority: prioritySchema,
   locationPlaceName: locationPlaceNameSchema,
   location: locationSchema,
@@ -253,7 +253,7 @@ export const questForAdminsGetSchema = Joi.object({
   nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
-  employment: questEmploymentSchema,
+  typeOfEmployment: questEmploymentSchema,
   priority: prioritySchema,
   locationPlaceName: locationPlaceNameSchema,
   location: locationSchema,
