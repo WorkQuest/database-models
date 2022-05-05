@@ -32,7 +32,7 @@ import {
   workPlacesSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
-  searchByNorthAndSouthCoordinatesSchema,
+  searchByNorthAndSouthCoordinatesSchema, payPeriodSchema, payPeriodsSchema,
 } from './common';
 import {contractAddressSchema} from "./liquidity";
 
@@ -74,6 +74,7 @@ export const questSchema = Joi.object({
   nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
+  payPeriod: payPeriodSchema,
   typeOfEmployment: questEmploymentSchema,
   priority: prioritySchema,
   location: locationSchema,
@@ -122,6 +123,7 @@ export const questQuerySchema = Joi.object({
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
+  payPeriods: payPeriodsSchema.unique().min(1).max(11).default(null),          /** 11 is length of PayPeriod enum */
   typeOfEmployments: questEmploymentsSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
@@ -138,6 +140,7 @@ export const questQueryForGetWorkersSchema = Joi.object({
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
+  payPeriods: payPeriodsSchema.unique().min(1).max(11).default(null),          /** 11 is length of PayPeriod enum */
   typeOfEmployments: questEmploymentsSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),       /**                                                                     */
 }).label('QuestQueryForGetWorkers');
@@ -148,6 +151,7 @@ export const questQueryForMapPointsSchema = Joi.object({
   statuses: questStatusesSchema.unique().default(null),
   priorities: questPrioritiesSchema.unique().default(null),
   workplaces: workPlacesSchema.unique().default(null),
+  payPeriods: payPeriodsSchema.unique().min(1).max(11).default(null),          /** 11 is length of PayPeriod enum */
   typeOfEmployments: questEmploymentsSchema.unique().default(null),
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),                /**                                                                     */
   responded: Joi.boolean().default(false),                                              /** Only quests that worker answered (see QuestResponse and its type)   */
@@ -211,6 +215,7 @@ export const questForGetSchema = Joi.object({
   nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
+  payPeriod: payPeriodSchema,
   typeOfEmployment: questEmploymentSchema,
   priority: prioritySchema,
   locationPlaceName: locationPlaceNameSchema,
@@ -253,6 +258,7 @@ export const questForAdminsGetSchema = Joi.object({
   nonce: questNonceSchema,
   status: questStatusSchema,
   workplace: workPlaceSchema,
+  payPeriod: payPeriodSchema,
   typeOfEmployment: questEmploymentSchema,
   priority: prioritySchema,
   locationPlaceName: locationPlaceNameSchema,
