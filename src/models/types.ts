@@ -56,14 +56,16 @@ export enum HTTPVerb {
 }
 
 export enum RatingStatus {
-  NoStatus = 0,
+  None = 0,
 
-  Verified = 1 << 0,
-  Reliable = 1 << 1,
-  TopRanked = 1 << 2,
+  NoStatus = 1 << 0,
+  Verified = 1 << 1,
+  Reliable = 1 << 2,
+  TopRanked = 1 << 3,
 
-  AllStatuses = RatingStatus.TopRanked | RatingStatus.Reliable | RatingStatus.Verified
+  AllStatuses = RatingStatus.TopRanked | RatingStatus.Reliable | RatingStatus.Verified | RatingStatus.NoStatus
 }
+
 
 export const RatingStatuses = [
   RatingStatus.Verified,
