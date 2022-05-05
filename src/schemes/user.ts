@@ -78,7 +78,7 @@ export const employerProfileVisibilitySettingsSchema = Joi.object({
 
 export const workerProfileVisibilitySettingsForGetMeSchema = Joi.object({
   arrayRatingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.unique().min(1).max(4).required(),
-  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+  arrayRatingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
 }).label('WorkerProfileVisibilitySettings');
 
 export const employerProfileVisibilitySettingsForGetMeSchema = Joi.object({
