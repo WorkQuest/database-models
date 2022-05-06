@@ -68,6 +68,7 @@ export enum RatingStatus {
 
 
 export const RatingStatuses = [
+  RatingStatus.NoStatus,
   RatingStatus.Verified,
   RatingStatus.Reliable,
   RatingStatus.TopRanked,
