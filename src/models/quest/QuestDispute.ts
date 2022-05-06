@@ -6,6 +6,7 @@ import {Admin} from "../admin/Admin";
 
 export enum DisputeStatus {
   Pending = 0,
+  Created,
   InProgress,
   Closed,
 }

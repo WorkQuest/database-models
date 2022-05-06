@@ -4,8 +4,9 @@ import { Quest, QuestStatus } from "./Quest";
 import { Admin } from "../admin/Admin";
 export declare enum DisputeStatus {
     Pending = 0,
-    InProgress = 1,
-    Closed = 2
+    Created = 1,
+    InProgress = 2,
+    Closed = 3
 }
 export declare enum DisputeReason {
     NoAnswer = "noAnswer",
