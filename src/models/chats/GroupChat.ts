@@ -14,22 +14,22 @@ import {Message} from "./Message";
 import {QuestChat} from "./QuestChat";
 
 @Scopes(() => ({
-  defaultScope: {
+  forChatsList: {
     attributes: {
-      exclude: ["updatedAt"]
+      exclude: ['id', 'chatId', 'createdAt', 'updatedAt'],
     },
     include: [{
-      model: ChatMember,
-      as: 'ownerMember'
-    }]
+      model: ChatMember.scope('forChatsList'),
+      as: 'ownerMember',
+    }],
   },
   forChat: {
     attributes: {
-      exclude: ['chatId', 'createdAt', 'updatedAt'],
+      exclude: ['id', 'chatId', 'updatedAt', 'createdAt'],
     },
     include: [{
-      model: ChatMember.scope('forGroupChat'),
-      as: 'ownerMember',
+      model: ChatMember.scope('forChat'),
+      as: 'ownerMember'
     }],
   },
 }))

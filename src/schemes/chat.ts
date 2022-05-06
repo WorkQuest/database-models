@@ -13,13 +13,13 @@ import {ChatType, MessageType, SenderMessageStatus, MessageAction, MemberType, M
 import {questChatSchema} from "./quest";
 
 /** Chat message */
-export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType)).example(MessageType.message).label("MessageType");
-export const messageSenderStatusSchema = Joi.string().valid(...Object.values(SenderMessageStatus)).example(SenderMessageStatus.unread).label("MessageSenderStatus");
+export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType)).example(MessageType.Message).label("MessageType");
+export const messageSenderStatusSchema = Joi.string().valid(...Object.values(SenderMessageStatus)).example(SenderMessageStatus.Unread).label("MessageSenderStatus");
 export const messageTextSchema = Joi.string().example("Hello world!").label('MessageText');
 export const messageNumberSchema = Joi.number().example(123).label('MessageNumber');
 
 /** Chat metadata */
-export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.private).label("ChatType");
+export const chatTypeSchema = Joi.string().valid(...Object.values(ChatType)).example(ChatType.Private).label("ChatType");
 export const chatNameSchema = Joi.string().example('Chat name').label('ChatName');
 
 export const chatDataSchema = Joi.object({

@@ -1,14 +1,19 @@
+import { Message } from "./Message";
+import { getUUID } from "../../utils";
+import { ChatMember } from "./ChatMember";
 import {
-  Column,
-  DataType,
-  ForeignKey,
   Model,
   Table,
-  HasOne, BelongsTo,
+  Column,
+  DataType,
+  BelongsTo,
+  ForeignKey,
 } from "sequelize-typescript";
-import { Message } from "./Message";
-import { ChatMember } from "./ChatMember";
-import { getUUID } from "../../utils";
+
+export enum ReasonForRemovingFromChat {
+  Left = 'Left',
+  Removed = 'Removed',
+}
 
 @Table
 export class ChatMemberDeletionData extends Model {
@@ -20,8 +25,10 @@ export class ChatMemberDeletionData extends Model {
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, allowNull: false}) beforeDeletionMessageId: string;
 
+  @Column({type: DataType.STRING, allowNull: false}) reason: ReasonForRemovingFromChat;
+
   @Column({type: DataType.INTEGER, allowNull: false}) beforeDeletionMessageNumber: string;
 
-  @BelongsTo(() => Message) beforeDeletionMessage: Message;
   @BelongsTo(() => ChatMember) chatMember: ChatMember;
+  @BelongsTo(() => Message) beforeDeletionMessage: Message;
 }

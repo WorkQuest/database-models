@@ -19,33 +19,17 @@ import {ChatMember} from "./ChatMember";
 import {ChatData} from "./ChatData";
 
 export enum MessageType {
-  info = 'info',
-  message = 'message',
+  Info = 'Info',
+  Message = 'Message',
 }
 
 export enum SenderMessageStatus {
-  unread = 'unread',
-  read = 'read',
+  Unread = 'Unread',
+  Read = 'Read',
 }
 
 @Scopes(() => ({
-  defaultScope: {
-    attributes: {
-      exclude: ["updatedAt"]
-    },
-    include: [{
-      model: Media,
-      as: 'medias',
-      through: { attributes: [] }
-    }, {
-      model: ChatMember,
-      as: 'sender'
-    }, {
-      model: InfoMessage,
-      as: 'infoMessage'
-    }]
-  },
-  forChatData: {
+  forChatsList: {
     attributes: [
       'id',
       'senderMemberId',
@@ -54,10 +38,23 @@ export enum SenderMessageStatus {
       'sender',
     ],
     include: [{
-      model: ChatMember.scope('forChatData'),
+      model: ChatMember.scope('forChatsList'),
       as: 'sender',
     }],
-  }
+  },
+  forChat: {
+    attributes: [
+      'id',
+      'senderMemberId',
+      'text',
+      'type',
+      'sender',
+    ],
+    include: [{
+      model: ChatMember.scope('forChat'),
+      as: 'sender',
+    }],
+  },
 }))
 @Table
 export class Message extends Model {
@@ -71,7 +68,7 @@ export class Message extends Model {
   @ForeignKey(() => ChatMember)
   @Column({type: DataType.STRING, allowNull: false}) senderMemberId: string;
 
-  @Column({type: DataType.STRING, defaultValue: SenderMessageStatus.unread}) senderStatus: SenderMessageStatus;
+  @Column({type: DataType.STRING, defaultValue: SenderMessageStatus.Unread}) senderStatus: SenderMessageStatus;
   @Column({type: DataType.STRING, allowNull: false}) type: MessageType;
 
   @Column(DataType.TEXT) text: string;

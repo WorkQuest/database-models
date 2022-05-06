@@ -5,12 +5,12 @@ import { InfoMessage } from "./InfoMessage";
 import { StarredMessage } from "./StarredMessage";
 import { ChatMember } from "./ChatMember";
 export declare enum MessageType {
-    info = "info",
-    message = "message"
+    Info = "Info",
+    Message = "Message"
 }
 export declare enum SenderMessageStatus {
-    unread = "unread",
-    read = "read"
+    Unread = "Unread",
+    Read = "Read"
 }
 export declare class Message extends Model {
     id: string;

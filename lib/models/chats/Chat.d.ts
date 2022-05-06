@@ -5,9 +5,9 @@ import { ChatMember } from "./ChatMember";
 import { StarredChat } from "./StarredChat";
 import { Model } from "sequelize-typescript";
 export declare enum ChatType {
-    private = "private",
-    group = "group",
-    quest = "quest"
+    Private = "Private",
+    Group = "Group",
+    Quest = "Quest"
 }
 export declare class Chat extends Model {
     id: string;

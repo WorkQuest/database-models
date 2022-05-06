@@ -13,15 +13,24 @@ import {QuestChat} from "./QuestChat";
 import {GroupChat} from "./GroupChat";
 
 @Scopes(() => ({
-  defaultScope: {
+  forChatsList: {
     attributes: {
-      exclude: ['chatId', "createdAt", "updatedAt"],
+      exclude: ['id', 'chatId', "createdAt", "updatedAt"],
     },
     include: [{
-      model: Message.scope('forChatData'),
+      model: Message.scope('forChatsList'),
       as: 'lastMessage',
     }],
-  }
+  },
+  forChat: {
+    attributes: {
+      exclude: ['id', 'chatId', "createdAt", "updatedAt"],
+    },
+    include: [{
+      model: Message.scope('forChat'),
+      as: 'lastMessage',
+    }],
+  },
 }))
 
 @Table

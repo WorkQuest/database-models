@@ -6,8 +6,8 @@ import { ChatMemberDeletionData } from "./ChatMemberDeletionData";
 import { ChatMemberData } from "./ChatMemberData";
 import { MemberType } from "../types";
 export declare enum MemberStatus {
-    Active = "active",
-    Deleted = "deleted"
+    Deleted = -1,
+    Active = 0
 }
 export declare class ChatMember extends Model {
     id: string;

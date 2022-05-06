@@ -15,9 +15,9 @@ import {
 } from "sequelize-typescript";
 
 export enum ChatType {
-  private = 'private',
-  group = 'group',
-  quest = 'quest'
+  Private = 'Private',
+  Group = 'Group',
+  Quest = 'Quest'
 }
 
 @Scopes(() => ({
@@ -26,13 +26,13 @@ export enum ChatType {
       exclude: ["updatedAt"],
     },
     include: [{
-      model: GroupChat.scope('forChat'),
+      model: GroupChat.scope('forChatsList'),
       as: 'groupChat',
     }, {
-      model: QuestChat.scope('forChat'),
+      model: QuestChat.scope('forChatsList'),
       as: 'questChat',
     }, {
-      model: ChatData,
+      model: ChatData.scope('forChatsList'),
       as: 'chatData',
     }],
   },
@@ -43,6 +43,9 @@ export enum ChatType {
     include: [{
       model: GroupChat.scope('forChat'),
       as: 'groupChat',
+    }, {
+      model: ChatData.scope('forChat'),
+      as: 'chatData',
     }],
   },
   questChat: {
@@ -53,7 +56,7 @@ export enum ChatType {
       model: QuestChat.scope('forChat'),
       as: 'questChat',
     }, {
-      model: ChatData,
+      model: ChatData.scope('forChat'),
       as: 'chatData',
     }],
   },
@@ -62,7 +65,7 @@ export enum ChatType {
       exclude: ["updatedAt"],
     },
     include: [{
-      model: ChatData,
+      model: ChatData.scope('forChat'),
       as: 'chatData',
     }],
   },

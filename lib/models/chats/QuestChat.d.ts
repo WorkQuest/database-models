@@ -4,9 +4,9 @@ import { QuestsResponse } from "../quest/QuestsResponse";
 import { Chat } from "./Chat";
 import { User } from "../user/User";
 import { Admin } from "../admin/Admin";
-export declare enum QuestChatStatuses {
-    Open = 0,
-    Close = 1
+export declare enum QuestChatStatus {
+    Close = -1,
+    Open = 0
 }
 export declare class QuestChat extends Model {
     id: string;
@@ -16,11 +16,11 @@ export declare class QuestChat extends Model {
     questId: string;
     responseId: string;
     chatId: string;
-    status: QuestChatStatuses;
+    status: QuestChatStatus;
     chat: Chat;
     quest: Quest;
     response: QuestsResponse;
     worker: User;
     employer: User;
-    admin: Admin;
+    disputeAdmin: Admin;
 }

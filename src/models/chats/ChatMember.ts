@@ -9,36 +9,12 @@ import {MemberType} from "../types";
 
 
 export enum MemberStatus {
-  Active= "active",
-  Deleted = "deleted",
+  Deleted = -1,
+  Active = 0,
 }
 
 @Scopes(() => ({
-  defaultScope: {
-    attributes: {
-      exclude: ['updatedAt',]
-    },
-    include: [{
-      model: User.scope('short'),
-      as: 'user',
-    }, {
-      model: Admin.scope('short'),
-      as: 'admin',
-    }],
-  },
-  memberOnly: {
-    attributes: {
-      exclude: ['id', 'chatId','createdAt', 'updatedAt']
-    },
-    include: [{
-      model: User.scope('shortWithAdditionalInfo'),
-      as: 'user'
-    }, {
-      model: Admin.scope(''),
-      as: 'admin',
-    }],
-  },
-  forChatData: {
+  forChatsList: {
     attributes: [
       'id',
       'userId',
@@ -57,7 +33,7 @@ export enum MemberStatus {
       as: 'admin',
     }],
   },
-  forGroupChat: {
+  forChat: {
     attributes: [
       'id',
       'userId',
@@ -75,16 +51,6 @@ export enum MemberStatus {
       model: Admin.scope('short'),
       as: 'admin',
     }],
-  },
-  userIdsOnly: {
-    attributes: {
-      exclude: [
-        'id',
-        'chatId',
-        'updatedAt',
-        'unreadCountMessages',
-      ]
-    },
   },
 }))
 @Table
@@ -101,7 +67,7 @@ export class ChatMember extends Model {
   @Column(DataType.STRING) adminId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) type: MemberType;
-  @Column({type: DataType.STRING, defaultValue: MemberStatus.Active}) status: MemberStatus;
+  @Column({type: DataType.INTEGER, defaultValue: MemberStatus.Active}) status: MemberStatus;
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Admin) admin: Admin;
