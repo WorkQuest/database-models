@@ -98,7 +98,7 @@ export const messagesForGetWithCountSchema = Joi.object({
 }).label("MessagesWithCount");
 
 /** Info message */
-export const messageActionSchema = Joi.string().valid(...Object.values(MessageAction)).example(MessageAction.groupChatAddUser).label("MessageAction");
+export const messageActionSchema = Joi.string().valid(...Object.values(MessageAction)).example(MessageAction.GroupChatAddMember).label("MessageAction");
 
 export const infoMessageSchema = Joi.object({
   id: idSchema,

@@ -4,17 +4,18 @@ import {Message} from "./Message";
 import {ChatMember} from "./ChatMember";
 
 export enum MessageAction {
-  groupChatCreate = 'groupChatCreate',
-  groupChatAddUser = 'groupChatAddUser',
-  groupChatDeleteUser = 'groupChatDeleteUser',
-  groupChatLeaveUser = 'groupChatLeaveUser',
+  GroupChatCreate = 'GroupChatCreate',
+  GroupChatAddMember = 'GroupChatAddMember',
+  GroupChatMemberRestored = 'GroupChatMemberRestored',
+  GroupChatDeleteMember = 'GroupChatDeleteMember',
+  GroupChatLeaveMember = 'GroupChatLeaveMember',
   /** Quest flow */
-  workerResponseOnQuest = 'workerResponseOnQuest',
-  employerRejectResponseOnQuest = 'employerRejectResponseOnQuest',
+  WorkerResponseOnQuest = 'WorkerResponseOnQuest',
+  EmployerRejectResponseOnQuest = 'EmployerRejectResponseOnQuest',
 
-  employerInviteOnQuest = 'employerInviteOnQuest',
-  workerRejectInviteOnQuest = 'workerRejectInviteOnQuest',
-  workerAcceptInviteOnQuest = 'workerAcceptInviteOnQuest',
+  EmployerInviteOnQuest = 'EmployerInviteOnQuest',
+  WorkerRejectInviteOnQuest = 'WorkerRejectInviteOnQuest',
+  WorkerAcceptInviteOnQuest = 'WorkerAcceptInviteOnQuest',
 }
 
 @Scopes(() => ({
