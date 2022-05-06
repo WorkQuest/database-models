@@ -16,6 +16,11 @@ export declare enum DisputeReason {
     NoConfirmationOfComplete = "noConfirmationOfComplete",
     AnotherReason = "anotherReason"
 }
+export declare enum DisputeDecision {
+    AcceptWork = 0,
+    RejectWork = 1,
+    Rework = 2
+}
 export declare class QuestDispute extends Model {
     id: string;
     questId: string;
@@ -28,7 +33,7 @@ export declare class QuestDispute extends Model {
     reason: DisputeReason;
     problemDescription: string;
     decisionDescription: string;
-    contractDecision: string;
+    decision: DisputeDecision;
     acceptedAt: Date;
     resolvedAt: Date;
     openDisputeUser: User;

@@ -20,6 +20,12 @@ export enum DisputeReason {
   AnotherReason = "anotherReason",
 }
 
+export enum DisputeDecision {
+  AcceptWork = 0,
+  RejectWork,
+  Rework
+}
+
 @Scopes(() => ({
   defaultScope: {
     include: [{
@@ -57,7 +63,7 @@ export class QuestDispute extends Model {
 
   @Column({ type: DataType.TEXT, allowNull: false }) problemDescription: string;
   @Column(DataType.TEXT) decisionDescription: string;
-  @Column(DataType.STRING) contractDecision: string;
+  @Column(DataType.SMALLINT) decision: DisputeDecision;
 
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;
