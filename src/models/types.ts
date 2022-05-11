@@ -56,9 +56,20 @@ export enum HTTPVerb {
 }
 
 export enum RatingStatus {
-  topRanked = 0,
-  reliable = 1,
-  verified = 2,
-  noStatus = 3,
-  AllStatuses = 4, //need for ProfileSettingsVisibility
+  None = 0,
+
+  NoStatus = 1 << 0,
+  Verified = 1 << 1,
+  Reliable = 1 << 2,
+  TopRanked = 1 << 3,
+
+  AllStatuses = RatingStatus.TopRanked | RatingStatus.Reliable | RatingStatus.Verified | RatingStatus.NoStatus
 }
+
+
+export const RatingStatuses = [
+  RatingStatus.NoStatus,
+  RatingStatus.Verified,
+  RatingStatus.Reliable,
+  RatingStatus.TopRanked,
+]

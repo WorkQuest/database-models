@@ -79,7 +79,6 @@ import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
 import {RaiseViewBlockInfo} from "./raise-view/RaiseViewBlockInfo";
 import {RaiseViewPromotedUserEvent} from "./raise-view/RaiseViewPromotedUserEvent";
 import {RaiseViewPromotedQuestEvent} from "./raise-view/RaiseViewPromotedQuestEvent";
-import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
 import {SavingProductParseBlock} from "./saving-product/SavingProductParseBlock";
 import {SavingProductBorrowedEvent} from "./saving-product/SavingProductBorrowedEvent";
 import {SavingProductClaimedEvent} from "./saving-product/SavingProductClaimedEvent";
@@ -96,6 +95,8 @@ import {QuestArbitrationRejectWorkEvent} from "./quest/contract-quest/QuestArbit
 import {QuestArbitrationAcceptWorkEvent} from "./quest/contract-quest/QuestArbitrationAcceptWorkEvent";
 import {QuestArbitrationStartedEvent} from "./quest/contract-quest/QuestArbitrationStartedEvent";
 import {QuestArbitrationReworkEvent} from "./quest/contract-quest/QuestArbitrationReworkEvent";
+import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibilitySetting";
+import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -109,7 +110,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
-      ProfileVisibilitySetting,
+      WorkerProfileVisibilitySetting,
+      EmployerProfileVisibilitySetting,
 
 
       /** Admin section */
@@ -348,14 +350,12 @@ export * from "./quest/contract-quest/QuestArbitrationRejectWorkEvent";
 export * from "./quest/contract-quest/QuestArbitrationAcceptWorkEvent";
 export * from "./quest/contract-quest/QuestArbitrationStartedEvent";
 export * from "./quest/contract-quest/QuestArbitrationReworkEvent";
-export * from "./user/ProfileVisibilitySetting";
 export * from "./saving-product/SavingProductParseBlock";
 export * from "./saving-product/SavingProductBorrowedEvent";
 export * from "./saving-product/SavingProductRefundedEvent";
 export * from "./saving-product/SavingProductReceivedEvent";
 export * from "./saving-product/SavingProductClaimedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
-export * from "./user/ProfileVisibilitySetting";
 export * from "./raise-view/RaiseViewPromotedUserEvent";
 export * from "./raise-view/RaiseViewPromotedQuestEvent";
 export * from "./raise-view/RaiseViewBlockInfo";
@@ -367,4 +367,6 @@ export * from "./WqtWeth/WqtWethBlockInfo";
 export * from "./WqtWeth/WqtWethBurnEvent";
 export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
+export * from "./user/EmployerProfileVisibilitySetting";
+export * from "./user/WorkerProfileVisibilitySetting";
 

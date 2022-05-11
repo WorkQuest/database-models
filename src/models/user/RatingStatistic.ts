@@ -11,7 +11,7 @@ export class RatingStatistic extends Model {
   @Column({type: DataType.INTEGER, defaultValue: 0 }) reviewCount: number;
   @Column({type: DataType.DOUBLE, defaultValue: null }) averageMark: number;
 
-  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.noStatus }) status: RatingStatus;
+  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.NoStatus }) status: RatingStatus;
 
   @BelongsTo(() => User) user: User;
 }
