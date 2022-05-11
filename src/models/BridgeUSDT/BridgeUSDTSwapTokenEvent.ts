@@ -14,7 +14,6 @@ export class BridgeUSDTSwapTokenEvent extends Model {
   @Column(DataType.STRING) event: SwapEventsUSDT;
   @Column(DataType.INTEGER) nonce: number;
   @Column(DataType.STRING) timestamp: string;
-  @Column(DataType.STRING) initiator: string;
   @Column(DataType.STRING) recipient: string;
   @Column(DataType.DECIMAL) amount: string;
   @Column(DataType.INTEGER) chainTo: number;

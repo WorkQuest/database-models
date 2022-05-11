@@ -11,7 +11,6 @@ export declare class BridgeUSDTSwapTokenEvent extends Model {
     event: SwapEventsUSDT;
     nonce: number;
     timestamp: string;
-    initiator: string;
     recipient: string;
     amount: string;
     chainTo: number;
