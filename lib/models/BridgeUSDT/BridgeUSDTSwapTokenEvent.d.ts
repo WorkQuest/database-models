@@ -5,6 +5,7 @@ export declare enum SwapEventsUSDT {
 }
 export declare class BridgeUSDTSwapTokenEvent extends Model {
     transactionHash: string;
+    userId: string;
     blockNumber: number;
     network: BlockchainNetworks;
     event: SwapEventsUSDT;
