@@ -8,7 +8,7 @@ import { QuestDispute } from "./QuestDispute";
   defaultScope: {
     attributes: { exclude: ['updatedAt'] },
     include: [{
-      model: User,
+      model: User.scope('short'),
       as: 'fromUser',
     }, {
       model: Admin,
