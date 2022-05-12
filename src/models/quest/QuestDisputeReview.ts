@@ -9,10 +9,10 @@ import { QuestDispute } from "./QuestDispute";
     attributes: { exclude: ['updatedAt'] },
     include: [{
       model: User,
-      as: 'user',
+      as: 'fromUser',
     }, {
       model: Admin,
-      as: 'admin'
+      as: 'toAdmin'
     }, {
       model: QuestDispute,
       as: 'dispute'
