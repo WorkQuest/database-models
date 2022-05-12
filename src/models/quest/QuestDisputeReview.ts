@@ -1,15 +1,14 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table } from 'sequelize-typescript';
 import { User } from '../user/User';
 import { Admin } from '../admin/Admin';
 import { getUUID } from '../../utils';
 import { QuestDispute } from "./QuestDispute";
 
-@Table({
+@Scopes(() => ({
   defaultScope: {
-    attributes: { exclude: ['updatedAt'] },
     include: [{
       model: User.scope('short'),
-      as: 'fromUser',
+      as: 'fromUser'
     }, {
       model: Admin,
       as: 'toAdmin'
@@ -18,7 +17,8 @@ import { QuestDispute } from "./QuestDispute";
       as: 'dispute'
     }]
   }
-})
+}))
+@Table
 export class QuestDisputeReview extends Model {
   @Column({ primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
 
