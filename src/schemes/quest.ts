@@ -16,7 +16,7 @@ import {
   BlackListStatus,
   QuestBlackList,
   DisputeStatus,
-  DisputeReason,
+  DisputeReason, DisputeDecision,
 } from '../models';
 import {
   idSchema,
@@ -49,6 +49,14 @@ export const questChatSchema = Joi.object({
   chatId: idSchema,
   status: questChatStatusSchema,
 }).label('QuestChat');
+
+export const questChatOnlyIdsSchema = Joi.object({
+  employerId: idSchema,
+  workerId: idSchema,
+  questId: idSchema,
+  responseId: idSchema,
+  chatId: idSchema
+}).label('QuestChatOnlyIds');
 
 /** Quests schemes */
 
@@ -287,13 +295,14 @@ export const questBlackListSchema = Joi.object({
   unblockedAt: isoDateSchema,
 }).label('QuestBlackList');
 
-/** QuestDispute */
+/** Quest Dispute */
 
 export const questDisputeNumberSchema = Joi.number().example('123').label('DisputeNumber');
 export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(DisputeStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).default(DisputeStatus.Pending).example(DisputeStatus.Pending).label('DisputeStatus');
 export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.AnotherReason).example(DisputeReason.AnotherReason).label('DisputeReason');
 export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
 export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
+export const questDisputeDecisionSchema = Joi.number().valid(...Object.keys(DisputeDecision).map(key => parseInt(key)).filter(key => !isNaN(key))).example(DisputeDecision.AcceptWork).label('DisputeDecision');
 export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
 export const questDisputeReviewMessageTextSchema = Joi.string().example("Hello world!").label('QuestDisputeMessageText');
 
@@ -306,19 +315,26 @@ export const questDisputeSchema = Joi.object({
   opponentUserId: idSchema,
   assignedAdminId: idSchema,
   disputeNumber: questDisputeNumberSchema,
+  openOnQuestStatus: questStatusSchema,
   status: questDisputeStatusSchema,
   reason: questDisputeReasonSchema,
-  openOnQuestStatus: questStatusSchema,
   problemDescription: questDisputeProblemDescriptionSchema,
   decisionDescription: questDisputeDecisionDescriptionSchema,
+  decision: questDisputeDecisionSchema,
+  acceptedAt: isoDateSchema,
+  resolvedAt: isoDateSchema,
+  createdAt: isoDateSchema,
+  /** Include */
   openDisputeUser: userShortSchema,
   opponentUser: userShortSchema,
-  assignedAdmin: adminSchema,
-  quest: questSchema,
-  acceptedAt: isoDateSchema,
-  resolveAt: isoDateSchema,
-  createdAt: isoDateSchema,
+  quest: questSchema
 }).label("QuestDispute");
+
+export const questDisputeWIthChatSchema = questDisputeSchema.keys({
+  quest: questSchema.keys({
+    questChat: questChatOnlyIdsSchema
+  }),
+}).label('QuestDisputeWithChat');
 
 export const questDisputeQuerySchema = Joi.object({
   limit: limitSchema,
@@ -340,11 +356,12 @@ export const questDisputeReviewSchema = Joi.object({
   toAdminId: idSchema,
   message: questDisputeReviewMessageTextSchema,
   mark: questDisputeReviewMarkSchema,
+  createdAt: isoDateSchema,
+  updatedAt: isoDateSchema,
+  /** Includes */
   fromUser: userShortSchema,
   toAdmin: adminSchema,
   dispute: questDisputeSchema,
-  createdAt: isoDateSchema,
-  updatedAt: isoDateSchema,
 }).label("QuestDisputeReview");
 
 
