@@ -9,5 +9,5 @@ export class WqtWbnbBurnEvent extends Model {
   @Column(DataType.STRING) sender: string;
   @Column(DataType.STRING) to: string;
   @Column(DataType.STRING) timestamp: string;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
 }

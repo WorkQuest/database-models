@@ -6,7 +6,7 @@ import { QuestRaiseType } from "./types";
 export class RaiseViewPromotedQuestEvent extends Model {
   @Column(DataType.INTEGER) blockNumber: number;
   @Column(DataType.STRING) timestamp: string;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
   @Column({type: DataType.STRING, allowNull: false}) network: BlockchainNetworks;
 
   @Column({type: DataType.STRING, allowNull: false}) quest: string;

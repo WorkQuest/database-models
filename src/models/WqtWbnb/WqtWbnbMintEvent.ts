@@ -8,5 +8,5 @@ export class WqtWbnbMintEvent extends Model {
   @Column(DataType.STRING) amount1: string;
   @Column(DataType.STRING) sender: string;
   @Column(DataType.STRING) timestamp: string;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
 }

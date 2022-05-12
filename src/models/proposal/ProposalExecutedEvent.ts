@@ -14,7 +14,7 @@ export class ProposalExecutedEvent extends Model {
 
   /** Event on contract (see contract) */
   @Column(DataType.DECIMAL) timestamp: string;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
   @Column(DataType.INTEGER) contractProposalId: number;
   @Column(DataType.BOOLEAN) succeeded: boolean;
   @Column(DataType.BOOLEAN) defeated: boolean;

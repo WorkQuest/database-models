@@ -4,7 +4,7 @@ import {BlockchainNetworks} from "../types";
 @Table
 export class PensionFundWithdrewEvent extends Model {
   @Column(DataType.INTEGER) blockNumber: number;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
   @Column(DataType.STRING) user: string;
   @Column(DataType.STRING) amount: string;
   @Column(DataType.STRING) timestamp: string;
