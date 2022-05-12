@@ -14,7 +14,7 @@ export class QuestAssignedEvent extends Model {
 
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) blockNumber: number;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
 
   @Column({type: DataType.STRING, allowNull: false}) network: BlockchainNetworks;
   @Column({type: DataType.INTEGER, allowNull: false}) status: QuestAssignedEventStatus;

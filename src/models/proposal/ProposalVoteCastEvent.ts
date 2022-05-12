@@ -12,7 +12,7 @@ export class ProposalVoteCastEvent extends Model {
 
   @Column(DataType.STRING) network: BlockchainNetworks;
 
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
   @Column(DataType.STRING) voter: string;
   @Column(DataType.INTEGER) contractProposalId: number;
   @Column(DataType.BOOLEAN) support: boolean;

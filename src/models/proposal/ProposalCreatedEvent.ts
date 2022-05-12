@@ -12,7 +12,7 @@ export class ProposalCreatedEvent extends Model {
 
   @Column(DataType.STRING) network: BlockchainNetworks;
 
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
   @Column(DataType.INTEGER) contractProposalId: number;
   @Column(DataType.DECIMAL) nonce: string;
   @Column(DataType.STRING) proposer: string;

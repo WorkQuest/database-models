@@ -7,6 +7,6 @@ export class WqtWbnbSyncEvent extends Model {
   @Column(DataType.STRING) reserve0: string;
   @Column(DataType.STRING) reserve1: string;
   @Column(DataType.STRING) timestamp: string;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
 }
 

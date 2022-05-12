@@ -11,5 +11,5 @@ export class WqtWbnbSwapEvent extends Model {
   @Column(DataType.STRING) to: string;
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) amount1Out: string;
-  @Column(DataType.STRING) transactionHash: string;
+  @Column({ type: DataType.STRING, primaryKey: true }) transactionHash: string;
 }
