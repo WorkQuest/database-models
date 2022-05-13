@@ -100,5 +100,6 @@ export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
 export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
-export * from "./BridgeUSDT/BridgeUSDTParserBlockInfo";
-export * from "./BridgeUSDT/BridgeUSDTSwapTokenEvent";
+export * from "./SwapUsdtWqt/SwapUsdtParserBlockInfo";
+export * from "./SwapUsdtWqt/SwapUsdtSwapTokenEvent";
+export * from "./Commission";

@@ -93,8 +93,9 @@ import { DailyLiquidityWqtWbnb } from "./WqtWbnb/DailyLiquidityWqtWbnb";
 import { DailyLiquidityWqtWeth } from "./WqtWeth/DailyLiquidityWqtWeth";
 import { EmployerProfileVisibilitySetting } from "./user/EmployerProfileVisibilitySetting";
 import { WorkerProfileVisibilitySetting } from "./user/WorkerProfileVisibilitySetting";
-import { BridgeUSDTSwapTokenEvent } from "./BridgeUSDT/BridgeUSDTSwapTokenEvent";
-import { BridgeUSDTParserBlockInfo } from "./BridgeUSDT/BridgeUSDTParserBlockInfo";
+import { SwapUsdtSwapTokenEvent } from "./SwapUsdtWqt/SwapUsdtSwapTokenEvent";
+import { SwapUsdtParserBlockInfo } from "./SwapUsdtWqt/SwapUsdtParserBlockInfo";
+import { Commission } from "./Commission";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -252,8 +253,11 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       RaiseViewBlockInfo,
 
       /** Bridge USDT */
-      BridgeUSDTParserBlockInfo,
-      BridgeUSDTSwapTokenEvent,
+      SwapUsdtParserBlockInfo,
+      SwapUsdtSwapTokenEvent,
+
+      /** Commissions of list */
+      Commission
     ]
   });
   if (sync)
@@ -363,6 +367,7 @@ export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
 export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
-export * from "./BridgeUSDT/BridgeUSDTParserBlockInfo";
-export * from "./BridgeUSDT/BridgeUSDTSwapTokenEvent";
+export * from "./SwapUsdtWqt/SwapUsdtParserBlockInfo";
+export * from "./SwapUsdtWqt/SwapUsdtSwapTokenEvent";
+export * from "./Commission"
 
