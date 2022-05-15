@@ -1,14 +1,14 @@
 import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
-import {getUUID} from '../../utils';
+import {getUUID, getUUIDInt} from '../../utils';
 import {User} from "../user/User";
 import {Quest, QuestStatus} from "./Quest";
 import {Admin} from "../admin/Admin";
 
 export enum DisputeStatus {
   Pending = 0,
-  Created,
-  InProgress,
-  Closed,
+  Created = 1,
+  InProgress = 2,
+  Closed = 3,
 }
 
 export enum DisputeReason {
@@ -22,8 +22,8 @@ export enum DisputeReason {
 
 export enum DisputeDecision {
   AcceptWork = 0,
-  RejectWork,
-  Rework
+  RejectWork = 1,
+  Rework = 2,
 }
 
 @Scopes(() => ({
@@ -56,7 +56,7 @@ export class QuestDispute extends Model {
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) assignedAdminId: string;
 
-  @Column({ type: DataType.INTEGER, autoIncrement: true }) disputeNumber: number;
+  @Column({ type: DataType.INTEGER, autoIncrement: true }) number: number;
   @Column({ type: DataType.INTEGER, allowNull: false }) openOnQuestStatus: QuestStatus;
   @Column({ type: DataType.INTEGER, defaultValue: DisputeStatus.Pending }) status: DisputeStatus;
   @Column({ type: DataType.STRING, defaultValue: DisputeReason.AnotherReason }) reason: DisputeReason;

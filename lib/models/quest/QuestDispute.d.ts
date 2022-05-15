@@ -27,7 +27,7 @@ export declare class QuestDispute extends Model {
     openDisputeUserId: string;
     opponentUserId: string;
     assignedAdminId: string;
-    disputeNumber: number;
+    number: number;
     openOnQuestStatus: QuestStatus;
     status: DisputeStatus;
     reason: DisputeReason;
