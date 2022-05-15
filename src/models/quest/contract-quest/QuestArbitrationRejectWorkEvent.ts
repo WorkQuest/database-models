@@ -2,7 +2,8 @@ import { Column, DataType, Model, Table } from "sequelize-typescript";
 import { BlockchainNetworks } from "../../types";
 
 export enum QuestArbitrationRejectWorkStatus {
-  DisputeStatusDoesNotMatch = -2,
+  DisputeStatusDoesNotMatch = -3,
+  QuestNotFound = -2,
   DisputeNotFound = -1,
   Successfully = 0,
 }

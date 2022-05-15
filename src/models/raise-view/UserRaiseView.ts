@@ -1,7 +1,9 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
+import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import { UserRaiseDuration, UserRaiseStatus, UserRaiseType } from "./types";
+
+//TODO: scope without id and userId
 
 @Table
 export class UserRaiseView extends Model {

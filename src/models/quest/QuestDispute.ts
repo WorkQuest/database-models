@@ -6,6 +6,7 @@ import {Admin} from "../admin/Admin";
 
 export enum DisputeStatus {
   Pending = 0,
+  Created,
   InProgress,
   Closed,
 }
@@ -17,6 +18,12 @@ export enum DisputeReason {
   AdditionalRequirement = "AdditionalRequirement",
   RequirementDoesNotMatch = "RequirementDoesNotMatch",
   NoConfirmationOfComplete = "NoConfirmationOfComplete",
+}
+
+export enum DisputeDecision {
+  AcceptWork = 0,
+  RejectWork,
+  Rework
 }
 
 @Scopes(() => ({
@@ -56,7 +63,7 @@ export class QuestDispute extends Model {
 
   @Column({ type: DataType.TEXT, allowNull: false }) problemDescription: string;
   @Column(DataType.TEXT) decisionDescription: string;
-  @Column(DataType.STRING) contractDecision: string;
+  @Column(DataType.SMALLINT) decision: DisputeDecision;
 
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;

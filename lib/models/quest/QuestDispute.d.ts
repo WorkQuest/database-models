@@ -4,8 +4,9 @@ import { Quest, QuestStatus } from "./Quest";
 import { Admin } from "../admin/Admin";
 export declare enum DisputeStatus {
     Pending = 0,
-    InProgress = 1,
-    Closed = 2
+    Created = 1,
+    InProgress = 2,
+    Closed = 3
 }
 export declare enum DisputeReason {
     NoAnswer = "NoAnswer",
@@ -14,6 +15,11 @@ export declare enum DisputeReason {
     AdditionalRequirement = "AdditionalRequirement",
     RequirementDoesNotMatch = "RequirementDoesNotMatch",
     NoConfirmationOfComplete = "NoConfirmationOfComplete"
+}
+export declare enum DisputeDecision {
+    AcceptWork = 0,
+    RejectWork = 1,
+    Rework = 2
 }
 export declare class QuestDispute extends Model {
     id: string;
@@ -27,7 +33,7 @@ export declare class QuestDispute extends Model {
     reason: DisputeReason;
     problemDescription: string;
     decisionDescription: string;
-    contractDecision: string;
+    decision: DisputeDecision;
     acceptedAt: Date;
     resolvedAt: Date;
     openDisputeUser: User;

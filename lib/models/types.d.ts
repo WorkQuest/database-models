@@ -51,9 +51,11 @@ export declare enum HTTPVerb {
     DELETE = "DELETE"
 }
 export declare enum RatingStatus {
-    topRanked = 0,
-    reliable = 1,
-    verified = 2,
-    noStatus = 3,
-    AllStatuses = 4
+    None = 0,
+    NoStatus = 1,
+    Verified = 2,
+    Reliable = 4,
+    TopRanked = 8,
+    AllStatuses = 15
 }
+export declare const RatingStatuses: RatingStatus[];
