@@ -11,12 +11,12 @@ export enum DisputeStatus {
 }
 
 export enum DisputeReason {
-  NoAnswer = "noAnswer",
-  PoorlyDoneJob = "poorlyDoneJob",
-  AdditionalRequirement = "additionalRequirement",
-  RequirementDoesNotMatch = "requirementDoesNotMatch",
-  NoConfirmationOfComplete = "noConfirmationOfComplete",
-  AnotherReason = "anotherReason",
+  NoAnswer = "NoAnswer",
+  AnotherReason = "AnotherReason",
+  PoorlyDoneJob = "PoorlyDoneJob",
+  AdditionalRequirement = "AdditionalRequirement",
+  RequirementDoesNotMatch = "RequirementDoesNotMatch",
+  NoConfirmationOfComplete = "NoConfirmationOfComplete",
 }
 
 @Scopes(() => ({
@@ -29,7 +29,7 @@ export enum DisputeReason {
       as: 'opponentUser'
     }, {
       model: Quest,
-      as: 'quest'
+      as: 'quest',
     }]
   }
 }))

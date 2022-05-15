@@ -104,14 +104,7 @@ export const activeFlowStatuses = [
         'assignedAdminId',
         'status',
       ],
-      where: {
-        status: {
-          [Op.or]: [
-            DisputeStatus.Pending,
-            DisputeStatus.InProgress,
-          ],
-        },
-      },
+      where: { status: DisputeStatus.Pending },
     }],
   }
 }))

@@ -8,12 +8,12 @@ export declare enum DisputeStatus {
     Closed = 2
 }
 export declare enum DisputeReason {
-    NoAnswer = "noAnswer",
-    PoorlyDoneJob = "poorlyDoneJob",
-    AdditionalRequirement = "additionalRequirement",
-    RequirementDoesNotMatch = "requirementDoesNotMatch",
-    NoConfirmationOfComplete = "noConfirmationOfComplete",
-    AnotherReason = "anotherReason"
+    NoAnswer = "NoAnswer",
+    AnotherReason = "AnotherReason",
+    PoorlyDoneJob = "PoorlyDoneJob",
+    AdditionalRequirement = "AdditionalRequirement",
+    RequirementDoesNotMatch = "RequirementDoesNotMatch",
+    NoConfirmationOfComplete = "NoConfirmationOfComplete"
 }
 export declare class QuestDispute extends Model {
     id: string;
