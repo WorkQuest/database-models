@@ -10,11 +10,11 @@ import {QuestRaiseView} from "../raise-view/QuestRaiseView";
 import { DisputeStatus, QuestDispute } from "./QuestDispute";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
 import {
-  LocationPostGISType,
-  LocationType,
-  PayPeriod,
   Priority,
-  WorkPlace
+  WorkPlace,
+  PayPeriod,
+  LocationType,
+  LocationPostGISType,
 } from "../types";
 import {
   Model,
@@ -42,11 +42,11 @@ export enum QuestStatus {
 }
 
 export enum QuestEmployment {
-  FullTime = 'fullTime',
-  PartTime = 'partTime',
-  FixedTerm = 'fixedTerm',
-  EmploymentContract = 'employmentContract',
-  RemoteWork = 'remoteWork'
+  FullTime = 'FullTime',
+  PartTime = 'PartTime',
+  FixedTerm = 'FixedTerm',
+  RemoteWork = 'RemoteWork',
+  EmploymentContract = 'EmploymentContract',
 }
 
 export const activeFlowStatuses = [

@@ -20,9 +20,9 @@ export type LocationPostGISType = {
 }
 
 export enum WorkPlace {
-  Remote = "remote",
-  InOffice = "inOffice",
-  Hybrid = "hybrid"
+  Remote = "Remote",
+  InOffice = "InOffice",
+  Hybrid = "Hybrid",
 }
 
 export enum Priority {
@@ -75,15 +75,15 @@ export const RatingStatuses = [
 ]
 
 export enum PayPeriod {
-  Hourly = 'hourly',
-  Daily = 'daily',
-  Weekly = 'weekly',
-  BiWeekly = 'biWeekly',
-  SemiMonthly = 'semiMonthly',
-  Monthly = 'monthly',
-  Quarterly = 'quarterly',
-  SemiAnnually = 'semiAnnually',
-  Annually = 'annually',
-  FixedPeriod = 'fixedPeriod',
-  ByAgreement = 'byAgreement',
+  Hourly = 'Hourly',
+  Daily = 'Daily',
+  Weekly = 'Weekly',
+  BiWeekly = 'BiWeekly',
+  SemiMonthly = 'SemiMonthly',
+  Monthly = 'Monthly',
+  Quarterly = 'Quarterly',
+  SemiAnnually = 'SemiAnnually',
+  Annually = 'Annually',
+  FixedPeriod = 'FixedPeriod',
+  ByAgreement = 'ByAgreement',
 }

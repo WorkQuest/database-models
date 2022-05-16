@@ -7,7 +7,7 @@ import { QuestsResponse } from "./QuestsResponse";
 import { QuestRaiseView } from "../raise-view/QuestRaiseView";
 import { QuestDispute } from "./QuestDispute";
 import { QuestSpecializationFilter } from './QuestSpecializationFilter';
-import { LocationPostGISType, LocationType, PayPeriod, Priority, WorkPlace } from "../types";
+import { Priority, WorkPlace, PayPeriod, LocationType, LocationPostGISType } from "../types";
 import { Model } from 'sequelize-typescript';
 export declare enum QuestStatus {
     Closed = -3,
@@ -21,11 +21,11 @@ export declare enum QuestStatus {
     Completed = 5
 }
 export declare enum QuestEmployment {
-    FullTime = "fullTime",
-    PartTime = "partTime",
-    FixedTerm = "fixedTerm",
-    EmploymentContract = "employmentContract",
-    RemoteWork = "remoteWork"
+    FullTime = "FullTime",
+    PartTime = "PartTime",
+    FixedTerm = "FixedTerm",
+    RemoteWork = "RemoteWork",
+    EmploymentContract = "EmploymentContract"
 }
 export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {

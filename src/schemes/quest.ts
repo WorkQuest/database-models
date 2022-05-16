@@ -16,7 +16,8 @@ import {
   BlackListStatus,
   QuestBlackList,
   DisputeStatus,
-  DisputeReason, DisputeDecision,
+  DisputeReason,
+  DisputeDecision,
 } from '../models';
 import {
   idSchema,
@@ -29,10 +30,13 @@ import {
   prioritySchema,
   locationSchema,
   workPlaceSchema,
+  payPeriodSchema,
+  payPeriodsSchema,
   workPlacesSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
-  searchByNorthAndSouthCoordinatesSchema, payPeriodSchema, payPeriodsSchema,
+  searchByNorthAndSouthCoordinatesSchema,
+
 } from './common';
 import {contractAddressSchema} from "./liquidity";
 
