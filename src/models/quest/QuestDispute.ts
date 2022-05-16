@@ -1,22 +1,29 @@
 import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
-import {getUUID} from '../../utils';
+import {getUUID, getUUIDInt} from '../../utils';
 import {User} from "../user/User";
 import {Quest, QuestStatus} from "./Quest";
 import {Admin} from "../admin/Admin";
 
 export enum DisputeStatus {
-  pending = 0,
-  inProgress,
-  closed,
+  Pending = 0,
+  Created = 1,
+  InProgress = 2,
+  Closed = 3,
 }
 
 export enum DisputeReason {
-  noAnswer = "noAnswer",
-  poorlyDoneJob = "poorlyDoneJob",
-  additionalRequirement = "additionalRequirement",
-  requirementDoesNotMatch = "requirementDoesNotMatch",
-  noConfirmationOfComplete = "noConfirmationOfComplete",
-  anotherReason = "anotherReason",
+  NoAnswer = "NoAnswer",
+  AnotherReason = "AnotherReason",
+  PoorlyDoneJob = "PoorlyDoneJob",
+  AdditionalRequirement = "AdditionalRequirement",
+  RequirementDoesNotMatch = "RequirementDoesNotMatch",
+  NoConfirmationOfComplete = "NoConfirmationOfComplete",
+}
+
+export enum DisputeDecision {
+  AcceptWork = 0,
+  RejectWork = 1,
+  Rework = 2,
 }
 
 @Scopes(() => ({
@@ -29,33 +36,34 @@ export enum DisputeReason {
       as: 'opponentUser'
     }, {
       model: Quest,
-      as: 'quest'
+      as: 'quest',
     }]
   }
 }))
 @Table({ paranoid: true })
 export class QuestDispute extends Model {
-  @Column({type: DataType.STRING, defaultValue: getUUID, primaryKey: true}) id: string;
+  @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
   @ForeignKey(() => Quest)
-  @Column({type: DataType.STRING, allowNull: false}) questId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) questId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) openDisputeUserId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) openDisputeUserId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) opponentUserId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) opponentUserId: string;
 
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) assignedAdminId: string;
 
-  @Column({type: DataType.INTEGER, autoIncrement: true}) disputeNumber: number;
-  @Column({type: DataType.INTEGER, allowNull: false}) openOnQuestStatus: QuestStatus;
-  @Column({type: DataType.INTEGER, defaultValue: DisputeStatus.pending}) status: DisputeStatus;
-  @Column({type: DataType.STRING, defaultValue: DisputeReason.anotherReason}) reason: DisputeReason;
+  @Column({ type: DataType.INTEGER, autoIncrement: true }) number: number;
+  @Column({ type: DataType.INTEGER, allowNull: false }) openOnQuestStatus: QuestStatus;
+  @Column({ type: DataType.INTEGER, defaultValue: DisputeStatus.Pending }) status: DisputeStatus;
+  @Column({ type: DataType.STRING, defaultValue: DisputeReason.AnotherReason }) reason: DisputeReason;
 
-  @Column({type: DataType.TEXT, allowNull: false}) problemDescription: string;
+  @Column({ type: DataType.TEXT, allowNull: false }) problemDescription: string;
   @Column(DataType.TEXT) decisionDescription: string;
+  @Column(DataType.SMALLINT) decision: DisputeDecision;
 
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;
