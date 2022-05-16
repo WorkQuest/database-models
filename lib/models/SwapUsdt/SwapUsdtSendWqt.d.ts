@@ -1,14 +1,9 @@
 import { Model } from 'sequelize-typescript';
+import { SwapUsdtSwapTokenEvent } from "./SwapUsdtSwapTokenEvent";
 import { BlockchainNetworks } from "../types";
-export declare enum swapUsdtStatus {
-    SwapCreated = "SwapCreated",
-    SwapActive = "SwapActive",
-    SwapProcessed = "SwapProcessed",
-    SwapCompleted = "SwapCompleted",
-    SwapError = "SwapError"
-}
+import { swapUsdtStatus } from "./types";
 export declare class SwapUsdtSendWqt extends Model {
-    txHash: string;
+    transactionHash: string;
     txHashSwapInitialized: string;
     userId: string;
     blockNumber: number;
@@ -17,4 +12,5 @@ export declare class SwapUsdtSendWqt extends Model {
     status: swapUsdtStatus;
     amount: string;
     gasUsed: string;
+    txHashSwap: SwapUsdtSwapTokenEvent;
 }

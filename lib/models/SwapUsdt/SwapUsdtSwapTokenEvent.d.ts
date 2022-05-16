@@ -1,8 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
-export declare enum SwapUsdtEvents {
-    swapInitialized = "SwapInitialized"
-}
+import { SwapUsdtEvents } from "./types";
 export declare class SwapUsdtSwapTokenEvent extends Model {
     transactionHash: string;
     userId: string;
