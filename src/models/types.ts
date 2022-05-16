@@ -6,6 +6,8 @@ export enum BlockchainNetworks {
   bscTestNetwork = 'bscTestNetwork',
   workQuestNetwork = 'workQuestNetwork',        // TODO remove because legacy
   workQuestDevNetwork = 'workQuestDevNetwork',
+  polygonMainNetwork = "polygonMainNetwork",
+  mumbaiTestNetwork =  "mumbaiTestNetwork"
 }
 
 export type LocationType = {
