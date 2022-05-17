@@ -9,7 +9,13 @@ import {getUUID, getUUIDInt} from '../../utils';
 import {QuestRaiseView} from "../raise-view/QuestRaiseView";
 import { DisputeStatus, QuestDispute } from "./QuestDispute";
 import {QuestSpecializationFilter} from './QuestSpecializationFilter';
-import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
+import {
+  Priority,
+  WorkPlace,
+  PayPeriod,
+  LocationType,
+  LocationPostGISType,
+} from "../types";
 import {
   Model,
   Table,
@@ -36,9 +42,11 @@ export enum QuestStatus {
 }
 
 export enum QuestEmployment {
-  FullTime = 'fullTime',
-  PartTime = 'partTime',
-  FixedTerm = 'fixedTerm',
+  FullTime = 'FullTime',
+  PartTime = 'PartTime',
+  FixedTerm = 'FixedTerm',
+  RemoteWork = 'RemoteWork',
+  EmploymentContract = 'EmploymentContract',
 }
 
 export const activeFlowStatuses = [
@@ -128,8 +136,9 @@ export class Quest extends Model {
   @Column({type: DataType.STRING, allowNull: false}) title: string;
   @Column({type: DataType.TEXT, allowNull: false}) description: string;
   @Column({type: DataType.DECIMAL, allowNull: false}) price: string;
+  @Column({type: DataType.STRING, allowNull: false}) payPeriod: PayPeriod;
   @Column({type: DataType.STRING, allowNull: false}) workplace: WorkPlace;
-  @Column({type: DataType.STRING, allowNull: false}) employment: QuestEmployment;
+  @Column({type: DataType.STRING, allowNull: false}) typeOfEmployment: QuestEmployment;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
   @Column({type: DataType.JSONB, allowNull: false}) location: LocationType;

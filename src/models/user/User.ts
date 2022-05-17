@@ -5,7 +5,7 @@ import {Session} from "./Session";
 import {QuestsReview} from "../quest/QuestsReview";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone, PayPeriod } from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
@@ -242,7 +242,8 @@ export class User extends Model {
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
   /** UserRole.Worker: priority list for quests */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) costPerHour: string;
+  @Column({type: DataType.STRING, defaultValue: null}) payPeriod: PayPeriod;
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 

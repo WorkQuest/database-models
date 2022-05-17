@@ -47,3 +47,5 @@ export declare const prioritySchema: Joi.NumberSchema;
 export declare const prioritiesSchema: Joi.ArraySchema;
 export declare const workPlaceSchema: Joi.StringSchema;
 export declare const workPlacesSchema: Joi.ArraySchema;
+export declare const payPeriodSchema: Joi.StringSchema;
+export declare const payPeriodsSchema: Joi.ArraySchema;

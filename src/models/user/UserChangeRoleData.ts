@@ -19,7 +19,7 @@ export class UserChangeRoleData extends Model {
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
 
   /** Metadata for UserRole.Worker */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) costPerHour: string;
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 

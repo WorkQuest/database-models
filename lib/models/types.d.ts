@@ -21,9 +21,9 @@ export declare type LocationPostGISType = {
     };
 };
 export declare enum WorkPlace {
-    Distant = "distant",
-    Office = "office",
-    Both = "both"
+    Remote = "Remote",
+    InOffice = "InOffice",
+    Hybrid = "Hybrid"
 }
 export declare enum Priority {
     AllPriority = 0,
@@ -59,3 +59,16 @@ export declare enum RatingStatus {
     AllStatuses = 15
 }
 export declare const RatingStatuses: RatingStatus[];
+export declare enum PayPeriod {
+    Hourly = "Hourly",
+    Daily = "Daily",
+    Weekly = "Weekly",
+    BiWeekly = "BiWeekly",
+    SemiMonthly = "SemiMonthly",
+    Monthly = "Monthly",
+    Quarterly = "Quarterly",
+    SemiAnnually = "SemiAnnually",
+    Annually = "Annually",
+    FixedPeriod = "FixedPeriod",
+    ByAgreement = "ByAgreement"
+}

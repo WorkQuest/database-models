@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import {HTTPVerb, Priority, WorkPlace} from "../models";
+import { HTTPVerb, PayPeriod, Priority, WorkPlace } from "../models";
 
 export const idSchema = Joi.string().uuid().example("fa0e2e4e-c53f-4af7-8906-1649daa0cce3").label("Id");
 export const urlSchema = Joi.string().example("http://example.com/v1/getVideo").label("URL");
@@ -93,5 +93,8 @@ export const sessionPlaceSchema = Joi.object({
 export const prioritySchema = Joi.number().valid(...Object.keys(Priority).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label('Priority');
 export const prioritiesSchema = Joi.array().items(prioritySchema).label('Priorities');
 
-export const workPlaceSchema = Joi.string().valid(...Object.values(WorkPlace)).example(WorkPlace.Distant).label('WorkPlace');
+export const workPlaceSchema = Joi.string().valid(...Object.values(WorkPlace)).example(WorkPlace.Remote).label('WorkPlace');
 export const workPlacesSchema = Joi.array().items(workPlaceSchema).label('WorkPlaces');
+export const payPeriodSchema = Joi.string().valid(...Object.values(PayPeriod)).example(PayPeriod.FixedPeriod).label('PayPeriod');
+export const payPeriodsSchema = Joi.array().items(payPeriodSchema).label('PayPeriods');
+
