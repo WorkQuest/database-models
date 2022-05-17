@@ -103,172 +103,174 @@ import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
 import {AdminChatStatistic} from "./chats/AdminChatStatistic";
 
+export const models = [
+  /** User section */
+  User,
+  Session,
+  QuestsReview,
+  Portfolio,
+  UserBlackList,
+  UserChangeRoleData,
+  WorkerProfileVisibilitySetting,
+  EmployerProfileVisibilitySetting,
+
+
+  /** Admin section */
+  Admin,
+  AdminSession,
+  AdminActionMetadata,
+  AdminQuestDisputesStatistic,
+
+
+  /** Quest section */
+  Quest,
+  QuestChat,
+  QuestDispute,
+  QuestsStarred,
+  QuestsResponse,
+  QuestBlackList,
+  QuestDisputeReview,
+  QuestArbitrationReworkEvent,
+  QuestArbitrationStartedEvent,
+  QuestArbitrationAcceptWorkEvent,
+  QuestArbitrationRejectWorkEvent,
+
+
+  /** Quest factory contract events section */
+  QuestFactoryBlockInfo,
+  QuestFactoryCreatedEvent,
+
+
+  /** Quest contract events section */
+  QuestBlockInfo,
+  QuestAssignedEvent,
+  QuestJobStartedEvent,
+  QuestJobDoneEvent,
+  QuestJobFinishedEvent,
+  QuestJobCancelledEvent,
+  QuestJobEditedEvent,
+
+
+  /** Chat section */
+  Chat,
+  Message,
+  ChatData,
+  GroupChat,
+  ChatMember,
+  InfoMessage,
+  StarredChat,
+  ChatMemberData,
+  StarredMessage,
+  ChatMemberDeletionData,
+
+
+  /** Bridge section */
+  BridgeParserBlockInfo,
+  BridgeSwapTokenEvent,
+
+
+  /** Discussion section */
+  Discussion,
+  DiscussionLike,
+  StarredDiscussion,
+  DiscussionComment,
+  DiscussionCommentLike,
+
+
+  /** Filter section */
+  IndustryFilter,
+  SpecializationFilter,
+  UserSpecializationFilter,
+  QuestSpecializationFilter,
+
+
+  /** Proposal section */
+  Proposal,
+  ProposalParseBlock,
+  ProposalCreatedEvent,
+  ProposalVoteCastEvent,
+  ProposalExecutedEvent,
+
+
+  /** Statistic */
+  RatingStatistic,
+  QuestsStatistic,
+  UserChatsStatistic,
+  AdminChatStatistic,
+
+
+  /** WQT/WBNB liquidity */
+  DailyLiquidityWqtWbnb,
+  WqtWbnbSwapEvent,
+  WqtWbnbBlockInfo,
+  WqtWbnbMintEvent,
+  WqtWbnbBurnEvent,
+  WqtWbnbSyncEvent,
+
+
+  /** WQT/WETH liquidity */
+  DailyLiquidityWqtWeth,
+  WqtWethSwapEvent,
+  WqtWethBlockInfo,
+  WqtWethMintEvent,
+  WqtWethBurnEvent,
+  WqtWethSyncEvent,
+
+
+  /** Media section */
+  Media,
+  QuestMedia,
+  MessageMedia,
+  ProposalMedia,
+  PortfolioMedia,
+  DiscussionMedia,
+  QuestResponseMedia,
+  DiscussionCommentMedia,
+
+
+  /** Wallet */
+  Wallet,
+
+
+  /** Referral Program */
+  ReferralProgramReferral,
+  ReferralProgramAffiliate,
+
+
+  /** Referral Program Contract */
+  ReferralProgramParseBlock,
+  ReferralProgramEventPaidReferral,
+  ReferralProgramEventRewardClaimed,
+  ReferralProgramEventRegisteredAffiliate,
+
+
+  /** Pension fund */
+  PensionFundBlockInfo,
+  PensionFundWithdrewEvent,
+  PensionFundReceivedEvent,
+  PensionFundWalletUpdatedEvent,
+
+  /** Saving Product */
+  SavingProductParseBlock,
+  SavingProductBorrowedEvent,
+  SavingProductClaimedEvent,
+  SavingProductReceivedEvent,
+  SavingProductRefundedEvent,
+
+
+  /** Raise view */
+  UserRaiseView,
+  RaiseViewPromotedUserEvent,
+  RaiseViewPromotedQuestEvent,
+  QuestRaiseView,
+  RaiseViewBlockInfo,
+] as const;
+
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging: logging ? console.log : logging,
     dialect: "postgres",
-    models: [
-      /** User section */
-      User,
-      Session,
-      QuestsReview,
-      Portfolio,
-      UserBlackList,
-      UserChangeRoleData,
-      WorkerProfileVisibilitySetting,
-      EmployerProfileVisibilitySetting,
-
-
-      /** Admin section */
-      Admin,
-      AdminSession,
-      AdminActionMetadata,
-      AdminQuestDisputesStatistic,
-
-
-      /** Quest section */
-      Quest,
-      QuestChat,
-      QuestDispute,
-      QuestsStarred,
-      QuestsResponse,
-      QuestBlackList,
-      QuestDisputeReview,
-      QuestArbitrationReworkEvent,
-      QuestArbitrationStartedEvent,
-      QuestArbitrationAcceptWorkEvent,
-      QuestArbitrationRejectWorkEvent,
-
-
-      /** Quest factory contract events section */
-      QuestFactoryBlockInfo,
-      QuestFactoryCreatedEvent,
-
-
-      /** Quest contract events section */
-      QuestBlockInfo,
-      QuestAssignedEvent,
-      QuestJobStartedEvent,
-      QuestJobDoneEvent,
-      QuestJobFinishedEvent,
-      QuestJobCancelledEvent,
-      QuestJobEditedEvent,
-
-
-      /** Chat section */
-      Chat,
-      Message,
-      ChatData,
-      GroupChat,
-      ChatMember,
-      InfoMessage,
-      StarredChat,
-      ChatMemberData,
-      StarredMessage,
-      ChatMemberDeletionData,
-
-
-      /** Bridge section */
-      BridgeParserBlockInfo,
-      BridgeSwapTokenEvent,
-
-
-      /** Discussion section */
-      Discussion,
-      DiscussionLike,
-      StarredDiscussion,
-      DiscussionComment,
-      DiscussionCommentLike,
-
-
-      /** Filter section */
-      IndustryFilter,
-      SpecializationFilter,
-      UserSpecializationFilter,
-      QuestSpecializationFilter,
-
-
-      /** Proposal section */
-      Proposal,
-      ProposalParseBlock,
-      ProposalCreatedEvent,
-      ProposalVoteCastEvent,
-      ProposalExecutedEvent,
-
-
-      /** Statistic */
-      RatingStatistic,
-      QuestsStatistic,
-      UserChatsStatistic,
-      AdminChatStatistic,
-
-
-      /** WQT/WBNB liquidity */
-      DailyLiquidityWqtWbnb,
-      WqtWbnbSwapEvent,
-      WqtWbnbBlockInfo,
-      WqtWbnbMintEvent,
-      WqtWbnbBurnEvent,
-      WqtWbnbSyncEvent,
-
-
-      /** WQT/WETH liquidity */
-      DailyLiquidityWqtWeth,
-      WqtWethSwapEvent,
-      WqtWethBlockInfo,
-      WqtWethMintEvent,
-      WqtWethBurnEvent,
-      WqtWethSyncEvent,
-
-
-      /** Media section */
-      Media,
-      QuestMedia,
-      MessageMedia,
-      ProposalMedia,
-      PortfolioMedia,
-      DiscussionMedia,
-      QuestResponseMedia,
-      DiscussionCommentMedia,
-
-
-      /** Wallet */
-      Wallet,
-
-
-      /** Referral Program */
-      ReferralProgramReferral,
-      ReferralProgramAffiliate,
-
-
-      /** Referral Program Contract */
-      ReferralProgramParseBlock,
-      ReferralProgramEventPaidReferral,
-      ReferralProgramEventRewardClaimed,
-      ReferralProgramEventRegisteredAffiliate,
-
-
-      /** Pension fund */
-      PensionFundBlockInfo,
-      PensionFundWithdrewEvent,
-      PensionFundReceivedEvent,
-      PensionFundWalletUpdatedEvent,
-
-      /** Saving Product */
-      SavingProductParseBlock,
-      SavingProductBorrowedEvent,
-      SavingProductClaimedEvent,
-      SavingProductReceivedEvent,
-      SavingProductRefundedEvent,
-
-
-      /** Raise view */
-      UserRaiseView,
-      RaiseViewPromotedUserEvent,
-      RaiseViewPromotedQuestEvent,
-      QuestRaiseView,
-      RaiseViewBlockInfo,
-    ]
+    models: [...models],
   });
   if (sync)
     await sequelize.sync();
