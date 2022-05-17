@@ -48,6 +48,8 @@ export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
 export const workerCostPerHourSchema = Joi.string().example("123").label('WorkerCostPerHour');
 
+export const userStatusesSchema = Joi.array().items(userStatusSchema).label('UserStatuses');
+
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
   twitter: Joi.string().allow(null).label('Twitter'),
