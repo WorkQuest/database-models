@@ -6,7 +6,7 @@ import { swapUsdtStatus } from "./types";
 
 @Table
 export class SwapUsdtSendWqt extends Model {
-  @Column({ primaryKey: true, type: DataType.STRING}) transactionHash: string;
+  @Column(DataType.STRING) transactionHash: string;
 
   @ForeignKey(() => SwapUsdtSwapTokenEvent)
   @Column(DataType.STRING) txHashSwapInitialized: string;
