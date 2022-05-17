@@ -4,7 +4,6 @@ import { QuestsReview } from "./quest/QuestsReview";
 import { Portfolio } from "./user/Portfolio";
 import { UserBlackList } from "./user/UserBlackList";
 import { UserChangeRoleData } from "./user/UserChangeRoleData";
-import { ProfileVisibilitySetting } from "./user/ProfileVisibilitySetting";
 import { Admin } from "./admin/Admin";
 import { AdminSession } from "./admin/AdminSession";
 import { AdminActionMetadata } from "./admin/AdminActionMetadata";
@@ -96,6 +95,8 @@ import { RaiseViewPromotedUserEvent } from "./raise-view/RaiseViewPromotedUserEv
 import { RaiseViewPromotedQuestEvent } from "./raise-view/RaiseViewPromotedQuestEvent";
 import { QuestRaiseView } from "./raise-view/QuestRaiseView";
 import { RaiseViewBlockInfo } from "./raise-view/RaiseViewBlockInfo";
+import { EmployerProfileVisibilitySetting } from "./user/EmployerProfileVisibilitySetting";
+import { WorkerProfileVisibilitySetting } from "./user/WorkerProfileVisibilitySetting";
 
 
 export default [
@@ -106,7 +107,8 @@ export default [
   Portfolio,
   UserBlackList,
   UserChangeRoleData,
-  ProfileVisibilitySetting,
+  WorkerProfileVisibilitySetting,
+  EmployerProfileVisibilitySetting,
 
 
   /** Admin section */
