@@ -8,6 +8,7 @@ export declare const userStatusSchema: Joi.NumberSchema;
 export declare const userStatusKycSchema: Joi.NumberSchema;
 export declare const userRoleSchema: Joi.StringSchema;
 export declare const workerCostPerHourSchema: Joi.StringSchema;
+export declare const userStatusesSchema: Joi.ArraySchema;
 export declare const userSocialMediaNicknamesSchema: Joi.ObjectSchema<any>;
 export declare const ratingStatusCanInviteMeOnQuestSchema: Joi.NumberSchema;
 export declare const ratingStatusesCanInviteMeOnQuestSchema: Joi.ArraySchema;
