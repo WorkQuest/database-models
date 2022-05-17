@@ -12,8 +12,6 @@ export const userRaiseViewDurationSchema = Joi.number().valid(...Object.keys(Use
 export const userRaiseViewTypeSchema = Joi.number().valid(...Object.values(UserRaiseType)).example(UserRaiseType.GoldPlus).label('UserRaiseViewType');
 
 export const userRaiseViewSchema = Joi.object({
-  id: idSchema,
-  userId: idSchema,
   status: userRaiseViewStatusSchema,
   duration: userRaiseViewDurationSchema,
   type: userRaiseViewTypeSchema,

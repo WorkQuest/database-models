@@ -20,9 +20,9 @@ export type LocationPostGISType = {
 }
 
 export enum WorkPlace {
-  Distant = "distant",
-  Office = "office",
-  Both = "both"
+  Remote = "Remote",
+  InOffice = "InOffice",
+  Hybrid = "Hybrid",
 }
 
 export enum Priority {
@@ -61,9 +61,34 @@ export enum MemberType {
 }
 
 export enum RatingStatus {
-  topRanked = 0,
-  reliable = 1,
-  verified = 2,
-  noStatus = 3,
-  AllStatuses = 4, //need for ProfileSettingsVisibility
+  None = 0,
+
+  NoStatus = 1 << 0,
+  Verified = 1 << 1,
+  Reliable = 1 << 2,
+  TopRanked = 1 << 3,
+
+  AllStatuses = RatingStatus.TopRanked | RatingStatus.Reliable | RatingStatus.Verified | RatingStatus.NoStatus
+}
+
+
+export const RatingStatuses = [
+  RatingStatus.NoStatus,
+  RatingStatus.Verified,
+  RatingStatus.Reliable,
+  RatingStatus.TopRanked,
+]
+
+export enum PayPeriod {
+  Hourly = 'Hourly',
+  Daily = 'Daily',
+  Weekly = 'Weekly',
+  BiWeekly = 'BiWeekly',
+  SemiMonthly = 'SemiMonthly',
+  Monthly = 'Monthly',
+  Quarterly = 'Quarterly',
+  SemiAnnually = 'SemiAnnually',
+  Annually = 'Annually',
+  FixedPeriod = 'FixedPeriod',
+  ByAgreement = 'ByAgreement',
 }

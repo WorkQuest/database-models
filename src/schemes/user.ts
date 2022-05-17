@@ -5,12 +5,10 @@ import {walletAddressesSchema, walletAddressSchema} from "./wallet";
 import {specializationsFilerSchema, modelSpecializationsSchema} from "./specialization";
 import {
   UserRole,
-  Priority,
   StatusKYC,
   UserStatus,
   RatingStatus,
   BlackListStatus,
-  NetworkProfileVisibility,
 } from "../models";
 import {
   userChatsStatisticSchema,
@@ -36,6 +34,8 @@ import {
   sortDirectionSchema,
   locationPlaceNameSchema,
   searchByNorthAndSouthCoordinatesSchema,
+  payPeriodSchema,
+  payPeriodsSchema,
 } from "./common";
 
 export const userEmailSchema = Joi.string().email().max(1000).example("user@example.com").label("UserEmail");
@@ -46,7 +46,7 @@ export const userTotpIsActiveSchema = Joi.boolean().example(true).label('UserTot
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
-export const workerWagePerHourSchema = Joi.string().example("123").label('WorkerWagePerHour');
+export const workerCostPerHourSchema = Joi.string().example("123").label('WorkerCostPerHour');
 
 export const userSocialMediaNicknamesSchema = Joi.object({
   instagram: Joi.string().allow(null).label('Instagram'),
@@ -54,6 +54,37 @@ export const userSocialMediaNicknamesSchema = Joi.object({
   linkedin: Joi.string().allow(null).label('Linkedin'),
   facebook: Joi.string().allow(null).label('Facebook'),
 }).label('SocialMediaNicknames');
+
+/** Visibility settings */
+
+export const ratingStatusCanInviteMeOnQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanInviteMeOnQuest");
+export const ratingStatusesCanInviteMeOnQuestSchema = Joi.array().items(ratingStatusCanInviteMeOnQuestSchema).label("RatingStatusesCanInviteMeOnQuest");
+
+export const ratingStatusCanRespondToQuestSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusCanRespondToQuest");
+export const ratingStatusesCanRespondToQuestSchema = Joi.array().items(ratingStatusCanRespondToQuestSchema).label("RatingStatusesCanRespondToQuest");
+
+export const ratingStatusInMySearchSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.AllStatuses).label("RatingStatusInMySearch");
+export const ratingStatusesInMySearchSchema = Joi.array().items(ratingStatusInMySearchSchema).label("RatingStatusesInMySearch");
+
+export const workerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.unique().min(1).max(4).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('WorkerProfileVisibilitySettings');
+
+export const employerProfileVisibilitySettingsSchema = Joi.object({
+  ratingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.unique().min(1).max(4).required(),
+  ratingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('EmployerProfileVisibilitySettings');
+
+export const workerProfileVisibilitySettingsForGetMeSchema = Joi.object({
+  arrayRatingStatusCanInviteMeOnQuest: ratingStatusesCanInviteMeOnQuestSchema.unique().min(1).max(4).required(),
+  arrayRatingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('WorkerProfileVisibilitySettings');
+
+export const employerProfileVisibilitySettingsForGetMeSchema = Joi.object({
+  arrayRatingStatusCanRespondToQuest: ratingStatusesCanRespondToQuestSchema.unique().min(1).max(4).required(),
+  arrayRatingStatusInMySearch: ratingStatusesInMySearchSchema.unique().min(1).max(4).required(),
+}).label('EmployerProfileVisibilitySettings');
 
 export const userKnowledgeSchema = Joi.object({
   from: Joi.string().label('From'),
@@ -106,7 +137,8 @@ export const userSchema = Joi.object({
   workplace: workPlaceSchema,
   userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
-  wagePerHour: workerWagePerHourSchema,
+  costPerHour: workerCostPerHourSchema,
+  payPeriod: payPeriodSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
@@ -130,15 +162,19 @@ export const userMeSchema = Joi.object({
   workplace: workPlaceSchema,
   userStatusKyc: userStatusKycSchema,
   locationPlaceName: locationPlaceNameSchema,
-  wagePerHour: workerWagePerHourSchema,
+  costPerHour: workerCostPerHourSchema,
+  payPeriod: payPeriodSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   totpIsActive: userTotpIsActiveSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
+  employerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,
+  workerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,
   questsStatistic: questsStatisticSchema,
   chatStatistic: userChatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   wallet: walletAddressesSchema,
+
   affiliateUser: Joi.object({
     referralCodeId: idSchema,
   }).label('AffiliateMe'),
@@ -176,7 +212,8 @@ export const userWorkerSchema = Joi.object({
   email: userEmailSchema,
   userStatusKyc: userStatusKycSchema,
   additionalInfo: userAdditionalInfoWorkerSchema,
-  wagePerHour: workerWagePerHourSchema,
+  costPerHour: workerCostPerHourSchema,
+  payPeriod: payPeriodSchema,
   workplace: workPlaceSchema,
   role: userRoleSchema,
   priority: prioritySchema,
@@ -221,10 +258,10 @@ export const userListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('UserListSort');
 
-export const betweenWagePerHourSchema = Joi.object({
-  from: workerWagePerHourSchema.required(),
-  to: workerWagePerHourSchema.required(),
-}).label('BetweenWagePerHour');
+export const betweenCostPerHourSchema = Joi.object({
+  from: workerCostPerHourSchema.required(),
+  to: workerCostPerHourSchema.required(),
+}).label('BetweenCostPerHour');
 
 export const employerQuerySchema = Joi.object({
   q: searchSchema,
@@ -243,7 +280,8 @@ export const workerQuerySchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  betweenWagePerHour: betweenWagePerHourSchema.default(null),
+  betweenCostPerHour: betweenCostPerHourSchema.default(null),
+  payPeriods: payPeriodsSchema.unique().min(1).max(11).default(null), /** 11 is length of PayPeriod enum */
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.default(null),
 }).label('WorkerQuery');
 
@@ -252,7 +290,8 @@ export const workerQueryForMapPointsSchema = Joi.object({
   priorities: prioritiesSchema.default(null),
   ratingStatuses: userRatingStatusesSchema.default(null),
   workplaces: workPlacesSchema.unique().default(null),
-  betweenWagePerHour: betweenWagePerHourSchema.default(null),
+  betweenCostPerHour: betweenCostPerHourSchema.default(null),
+  payPeriods: payPeriodsSchema.unique().min(1).max(11).default(null), /** 11 is length of PayPeriod enum */
   northAndSouthCoordinates: searchByNorthAndSouthCoordinatesSchema.required(),
 }).label('WorkerQueryForMapPoints');
 
@@ -272,16 +311,6 @@ export const tokensWithStatus = Joi.object({
   refresh: jwtTokenRefresh,
   address: walletAddressSchema,
 }).label("TokensWithStatus");
-
-/** Visibility settings */
-
-export const profileVisibilityStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(Priority.AllPriority).label("ProfileVisibilityStatus");
-export const profileVisibilityNetworkSchema = Joi.number().valid(...Object.keys(NetworkProfileVisibility).map(key => parseInt(key)).filter(key => !isNaN(key))).example(NetworkProfileVisibility.AllUsers).label("ProfileVisibilityNetwork");
-
-export const profileVisibilitySettingsSchema = Joi.object({
-  network: profileVisibilityNetworkSchema.allow(null).required(),
-  ratingStatus: profileVisibilityStatusSchema.allow(null).required(),
-}).label('ProfileVisibilitySettings');
 
 /** Sessions */
 

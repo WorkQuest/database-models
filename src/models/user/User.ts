@@ -5,7 +5,7 @@ import {Session} from "./Session";
 import {QuestsReview} from "../quest/QuestsReview";
 import {RatingStatistic} from "./RatingStatistic";
 import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, Priority, WorkPlace, Phone} from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone, PayPeriod } from "../types";
 import {UserSpecializationFilter} from "./UserSpecializationFilter";
 import {DiscussionLike} from "../discussion/DiscussionLike";
 import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
@@ -14,9 +14,10 @@ import {UserRaiseView} from "../raise-view/UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
 import {UserChatsStatistic} from "../chats/UserChatsStatistic";
-import {ProfileVisibilitySetting} from "./ProfileVisibilitySetting";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
+import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting";
+import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
 import {
   BelongsTo,
   Column,
@@ -241,7 +242,8 @@ export class User extends Model {
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
   /** UserRole.Worker: priority list for quests */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) costPerHour: string;
+  @Column({type: DataType.STRING, defaultValue: null}) payPeriod: PayPeriod;
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
@@ -251,7 +253,8 @@ export class User extends Model {
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
 
   /** Profile visibility settings */
-  @HasOne(() => ProfileVisibilitySetting) profileVisibilitySetting: ProfileVisibilitySetting;
+  @HasOne(() => WorkerProfileVisibilitySetting) workerProfileVisibilitySetting: WorkerProfileVisibilitySetting;
+  @HasOne(() => EmployerProfileVisibilitySetting) employerProfileVisibilitySetting: EmployerProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;

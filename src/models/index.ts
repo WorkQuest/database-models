@@ -77,22 +77,27 @@ import {QuestJobDoneEvent} from "./quest/contract-quest/QuestJobDoneEvent";
 import {QuestJobFinishedEvent} from "./quest/contract-quest/QuestJobFinishedEvent";
 import {QuestJobCancelledEvent} from "./quest/contract-quest/QuestJobCancelledEvent";
 import {QuestJobEditedEvent} from "./quest/contract-quest/QuestJobEditedEvent";
-import { RaiseViewBlockInfo } from "./raise-view/RaiseViewBlockInfo";
-import { RaiseViewPromotedUserEvent } from "./raise-view/RaiseViewPromotedUserEvent";
-import { RaiseViewPromotedQuestEvent } from "./raise-view/RaiseViewPromotedQuestEvent";
-import {ProfileVisibilitySetting} from "./user/ProfileVisibilitySetting";
+import {RaiseViewBlockInfo} from "./raise-view/RaiseViewBlockInfo";
+import {RaiseViewPromotedUserEvent} from "./raise-view/RaiseViewPromotedUserEvent";
+import {RaiseViewPromotedQuestEvent} from "./raise-view/RaiseViewPromotedQuestEvent";
 import {SavingProductParseBlock} from "./saving-product/SavingProductParseBlock";
 import {SavingProductBorrowedEvent} from "./saving-product/SavingProductBorrowedEvent";
 import {SavingProductClaimedEvent} from "./saving-product/SavingProductClaimedEvent";
 import {SavingProductReceivedEvent} from "./saving-product/SavingProductReceivedEvent";
 import {SavingProductRefundedEvent} from "./saving-product/SavingProductRefundedEvent";
-import { WqtWethSwapEvent } from "./WqtWeth/WqtWethSwapEvent";
-import { WqtWethBlockInfo } from "./WqtWeth/WqtWethBlockInfo";
-import { WqtWethMintEvent } from "./WqtWeth/WqtWethMintEvent";
-import { WqtWethBurnEvent } from "./WqtWeth/WqtWethBurnEvent";
-import { WqtWethSyncEvent } from "./WqtWeth/WqtWethSyncEvent";
-import { DailyLiquidityWqtWbnb } from "./WqtWbnb/DailyLiquidityWqtWbnb";
-import { DailyLiquidityWqtWeth } from "./WqtWeth/DailyLiquidityWqtWeth";
+import {WqtWethSwapEvent} from "./WqtWeth/WqtWethSwapEvent";
+import {WqtWethBlockInfo} from "./WqtWeth/WqtWethBlockInfo";
+import {WqtWethMintEvent} from "./WqtWeth/WqtWethMintEvent";
+import {WqtWethBurnEvent} from "./WqtWeth/WqtWethBurnEvent";
+import {WqtWethSyncEvent} from "./WqtWeth/WqtWethSyncEvent";
+import {DailyLiquidityWqtWbnb} from "./WqtWbnb/DailyLiquidityWqtWbnb";
+import {DailyLiquidityWqtWeth} from "./WqtWeth/DailyLiquidityWqtWeth";
+import {QuestArbitrationRejectWorkEvent} from "./quest/contract-quest/QuestArbitrationRejectWorkEvent";
+import {QuestArbitrationAcceptWorkEvent} from "./quest/contract-quest/QuestArbitrationAcceptWorkEvent";
+import {QuestArbitrationStartedEvent} from "./quest/contract-quest/QuestArbitrationStartedEvent";
+import {QuestArbitrationReworkEvent} from "./quest/contract-quest/QuestArbitrationReworkEvent";
+import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibilitySetting";
+import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
 import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
@@ -110,7 +115,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       Portfolio,
       UserBlackList,
       UserChangeRoleData,
-      ProfileVisibilitySetting,
+      WorkerProfileVisibilitySetting,
+      EmployerProfileVisibilitySetting,
 
 
       /** Admin section */
@@ -128,6 +134,10 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       QuestsResponse,
       QuestBlackList,
       QuestDisputeReview,
+      QuestArbitrationReworkEvent,
+      QuestArbitrationStartedEvent,
+      QuestArbitrationAcceptWorkEvent,
+      QuestArbitrationRejectWorkEvent,
 
 
       /** Quest factory contract events section */
@@ -322,7 +332,6 @@ export * from "./pensionFund/PensionFundWithdrewEvent";
 export * from "./user/UserBlackList";
 export * from "./quest/QuestBlackList";
 export * from "./user/UserChangeRoleData";
-export * from "./referral-program/ReferralProgramAffiliate";
 export * from "./referral-program/ReferralProgramReferral";
 export * from "./referral-program/ReferralProgramAffiliate";
 export * from "./referral-program/ReferralProgramParseBlock";
@@ -340,14 +349,16 @@ export * from "./quest/contract-quest/QuestJobDoneEvent";
 export * from "./quest/contract-quest/QuestJobFinishedEvent";
 export * from "./quest/contract-quest/QuestJobCancelledEvent";
 export * from "./quest/contract-quest/QuestJobEditedEvent";
-export * from "./user/ProfileVisibilitySetting";
+export * from "./quest/contract-quest/QuestArbitrationRejectWorkEvent";
+export * from "./quest/contract-quest/QuestArbitrationAcceptWorkEvent";
+export * from "./quest/contract-quest/QuestArbitrationStartedEvent";
+export * from "./quest/contract-quest/QuestArbitrationReworkEvent";
 export * from "./saving-product/SavingProductParseBlock";
 export * from "./saving-product/SavingProductBorrowedEvent";
 export * from "./saving-product/SavingProductRefundedEvent";
 export * from "./saving-product/SavingProductReceivedEvent";
 export * from "./saving-product/SavingProductClaimedEvent";
 export * from "./admin/AdminQuestDisputesStatistic";
-export * from "./user/ProfileVisibilitySetting";
 export * from "./raise-view/RaiseViewPromotedUserEvent";
 export * from "./raise-view/RaiseViewPromotedQuestEvent";
 export * from "./raise-view/RaiseViewBlockInfo";
@@ -359,6 +370,8 @@ export * from "./WqtWeth/WqtWethBlockInfo";
 export * from "./WqtWeth/WqtWethBurnEvent";
 export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
+export * from "./user/EmployerProfileVisibilitySetting";
+export * from "./user/WorkerProfileVisibilitySetting";
 
 export * from "./chats/GroupChat";
 export * from "./chats/ChatData";

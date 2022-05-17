@@ -32,7 +32,7 @@ export const questsStatisticSchema = Joi.object({
 
 /** Rating Statistic */
 
-export const userRatingStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.noStatus).label('RatingStatus');
+export const userRatingStatusSchema = Joi.number().valid(...Object.keys(RatingStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(RatingStatus.NoStatus).label('RatingStatus');
 export const userRatingStatusesSchema = Joi.array().items(userRatingStatusSchema).label('UserStatisticRatingStatuses');
 
 export const userRatingStatisticSchema = Joi.object({
