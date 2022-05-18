@@ -3,7 +3,6 @@ export declare enum SwapUsdtEvents {
 }
 export declare enum swapUsdtStatus {
     SwapCreated = "SwapCreated",
-    SwapActive = "SwapActive",
     SwapProcessed = "SwapProcessed",
     SwapCompleted = "SwapCompleted",
     SwapError = "SwapError"
