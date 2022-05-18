@@ -24,7 +24,7 @@ export enum MessageAction {
       exclude: ["createdAt", "updatedAt"]
     },
     include: [{
-      model: ChatMember.scope('memberOnly'),
+      model: ChatMember,//.scope('memberOnly'),
       as: 'member',
     }],
   }
