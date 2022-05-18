@@ -51,8 +51,8 @@ export declare enum HTTPVerb {
     DELETE = "DELETE"
 }
 export declare enum MemberType {
-    Admin = "admin",
-    User = "user"
+    Admin = "Admin",
+    User = "User"
 }
 export declare enum RatingStatus {
     None = 0,
