@@ -51,7 +51,7 @@ export enum SenderMessageStatus {
       'sender',
     ],
     include: [{
-      model: ChatMember.scope('forChat'),
+      model: ChatMember,//.scope('forChat'),
       as: 'sender',
     }],
   },

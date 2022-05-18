@@ -41,10 +41,10 @@ export enum ChatType {
       exclude: ["updatedAt"]
     },
     include: [{
-      model: GroupChat.scope('forChat'),
+      model: GroupChat,//.scope('forChat'),
       as: 'groupChat',
     }, {
-      model: ChatData.scope('forChat'),
+      model: ChatData,//.scope('forChat'),
       as: 'chatData',
     }],
   },
@@ -53,10 +53,10 @@ export enum ChatType {
       exclude: ["updatedAt"]
     },
     include: [{
-      model: QuestChat.scope('forChat'),
+      model: QuestChat,//.scope('forChat'),
       as: 'questChat',
     }, {
-      model: ChatData.scope('forChat'),
+      model: ChatData,//.scope('forChat'),
       as: 'chatData',
     }],
   },
@@ -65,7 +65,7 @@ export enum ChatType {
       exclude: ["updatedAt"],
     },
     include: [{
-      model: ChatData.scope('forChat'),
+      model: ChatData,//.scope('forChat'),
       as: 'chatData',
     }],
   },
