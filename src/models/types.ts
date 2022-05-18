@@ -56,8 +56,8 @@ export enum HTTPVerb {
 }
 
 export enum MemberType {
-  Admin= "admin",
-  User = "user",
+  Admin = "Admin",
+  User = "User",
 }
 
 export enum RatingStatus {
