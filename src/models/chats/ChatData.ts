@@ -18,7 +18,7 @@ import {GroupChat} from "./GroupChat";
       exclude: ['id', 'chatId', "createdAt", "updatedAt"],
     },
     include: [{
-      model: Message.scope('forChatsList'),
+      model: Message,//.scope('forChatsList'),
       as: 'lastMessage',
     }],
   },

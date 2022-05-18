@@ -19,7 +19,7 @@ import {QuestChat} from "./QuestChat";
       exclude: ['id', 'chatId', 'createdAt', 'updatedAt'],
     },
     include: [{
-      model: ChatMember.scope('forChatsList'),
+      model: ChatMember,//.scope('forChatsList'),
       as: 'ownerMember',
     }],
   },

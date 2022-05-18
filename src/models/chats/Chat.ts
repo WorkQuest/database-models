@@ -26,13 +26,13 @@ export enum ChatType {
       exclude: ["updatedAt"],
     },
     include: [{
-      model: GroupChat.scope('forChatsList'),
+      model: GroupChat,//.scope('forChatsList'),
       as: 'groupChat',
     }, {
-      model: QuestChat.scope('forChatsList'),
+      model: QuestChat,//.scope('forChatsList'),
       as: 'questChat',
     }, {
-      model: ChatData.scope('forChatsList'),
+      model: ChatData,//.scope('forChatsList'),
       as: 'chatData',
     }],
   },
