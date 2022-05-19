@@ -3,7 +3,7 @@ import { Session } from "./Session";
 import { QuestsReview } from "../quest/QuestsReview";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
-import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone } from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone, PayPeriod } from "../types";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
@@ -105,7 +105,8 @@ export declare class User extends Model {
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
-    wagePerHour: string;
+    costPerHour: string;
+    payPeriod: PayPeriod;
     workplace: WorkPlace;
     priority: Priority;
     location: LocationType;
