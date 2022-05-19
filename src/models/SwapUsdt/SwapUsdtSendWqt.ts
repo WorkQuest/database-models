@@ -16,6 +16,7 @@ export class SwapUsdtSendWqt extends Model {
   @Column(DataType.INTEGER) ratio: number;
   @Column(DataType.STRING) network: BlockchainNetworks;
   @Column(DataType.STRING) status: swapUsdtStatus;
+  @Column(DataType.TEXT) statusMessage: string;
   @Column(DataType.DECIMAL) amount: string;
   @Column(DataType.DECIMAL) gasUsed: string;
 

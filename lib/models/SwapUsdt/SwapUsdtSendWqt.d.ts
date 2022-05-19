@@ -10,6 +10,7 @@ export declare class SwapUsdtSendWqt extends Model {
     ratio: number;
     network: BlockchainNetworks;
     status: swapUsdtStatus;
+    statusMessage: string;
     amount: string;
     gasUsed: string;
     txHashSwap: SwapUsdtSwapTokenEvent;
