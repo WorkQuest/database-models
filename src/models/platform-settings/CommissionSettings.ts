@@ -18,7 +18,7 @@ export interface CommissionList {
 }
 
 @Table
-export class Commission extends Model {
+export class CommissionSettings extends Model {
   @Column({ primaryKey: true, type: DataType.STRING}) title: CommissionTitle;
   @Column({ type: DataType.JSONB, defaultValue: {} }) commission: CommissionList;
 }

@@ -99,7 +99,7 @@ import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibility
 import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
 import { BridgeSwapUsdtTokenEvent } from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 import { BridgeSwapUsdtParserBlockInfo } from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
-import { Commission } from "./platform-settings/Commission";
+import { CommissionSettings } from "./platform-settings/CommissionSettings";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -265,7 +265,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       BridgeSwapUsdtTokenEvent,
 
       /** Commissions of list */
-      Commission
+      CommissionSettings
     ]
   });
   if (sync)
@@ -381,5 +381,5 @@ export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
 export * from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
 export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
-export * from "./platform-settings/Commission"
+export * from "./platform-settings/CommissionSettings"
 
