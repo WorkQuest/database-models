@@ -1,9 +1,12 @@
 import { Model, Column, DataType, Table } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
-import { SwapUsdtEvents } from "./types";
+
+export enum SwapUsdtEvents {
+  swapInitialized = "SwapInitialized",
+}
 
 @Table
-export class SwapUsdtSwapTokenEvent extends Model {
+export class BridgeSwapUsdtTokenEvent extends Model {
   @Column({ primaryKey: true, type: DataType.STRING}) transactionHash: string;
   @Column(DataType.STRING) userId: string;
   @Column(DataType.INTEGER) blockNumber: number;

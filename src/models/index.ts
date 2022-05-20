@@ -97,10 +97,9 @@ import {QuestArbitrationStartedEvent} from "./quest/contract-quest/QuestArbitrat
 import {QuestArbitrationReworkEvent} from "./quest/contract-quest/QuestArbitrationReworkEvent";
 import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibilitySetting";
 import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
-import { SwapUsdtSwapTokenEvent } from "./SwapUsdt/SwapUsdtSwapTokenEvent";
-import { SwapUsdtParserBlockInfo } from "./SwapUsdt/SwapUsdtParserBlockInfo";
+import { BridgeSwapUsdtTokenEvent } from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
+import { BridgeSwapUsdtParserBlockInfo } from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
 import { Commission } from "./platform-settings/Commission";
-import { SwapUsdtSendWqt } from "./SwapUsdt/SwapUsdtSendWqt";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -262,9 +261,8 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       RaiseViewBlockInfo,
 
       /** Swap USDT */
-      SwapUsdtParserBlockInfo,
-      SwapUsdtSwapTokenEvent,
-      SwapUsdtSendWqt,
+      BridgeSwapUsdtParserBlockInfo,
+      BridgeSwapUsdtTokenEvent,
 
       /** Commissions of list */
       Commission
@@ -381,8 +379,7 @@ export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
 export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
-export * from "./SwapUsdt/SwapUsdtParserBlockInfo";
-export * from "./SwapUsdt/SwapUsdtSwapTokenEvent";
-export * from "./SwapUsdt/SwapUsdtSendWqt";
+export * from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
+export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/Commission"
 

@@ -10,10 +10,10 @@ export declare enum CommissionCurrency {
     Percent = "%"
 }
 export interface CommissionList {
-    title: CommissionTitle;
     currency: CommissionCurrency;
     value: number | null;
 }
 export declare class Commission extends Model {
+    title: CommissionTitle;
     commission: CommissionList;
 }
