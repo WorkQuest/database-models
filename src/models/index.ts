@@ -97,6 +97,7 @@ import {QuestArbitrationStartedEvent} from "./quest/contract-quest/QuestArbitrat
 import {QuestArbitrationReworkEvent} from "./quest/contract-quest/QuestArbitrationReworkEvent";
 import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibilitySetting";
 import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
+import {AdminWallet} from "./wallet/AdminWallet";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -223,6 +224,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Wallet */
       Wallet,
+      AdminWallet,
 
       /** Referral Program */
       ReferralProgramReferral,
@@ -369,4 +371,5 @@ export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
 export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
+export * from "./wallet/AdminWallet";
 

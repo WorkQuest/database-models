@@ -104,3 +104,4 @@ export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
 export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
+export * from "./wallet/AdminWallet";
