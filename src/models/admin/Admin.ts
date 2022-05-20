@@ -1,9 +1,10 @@
 import * as bcrypt from 'bcrypt';
 import * as speakeasy from "speakeasy"
-import {Column, DataType, Model, Scopes, Table, HasMany} from 'sequelize-typescript';
+import { Column, DataType, Model, Scopes, Table, HasMany, HasOne } from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {AdminSession} from "./AdminSession"
 import {AdminRole, AdminAccountSettings} from "./types";
+import { AdminWallet } from "../wallet/AdminWallet";
 
 @Scopes(() => ({
   defaultScope: {
@@ -17,7 +18,7 @@ import {AdminRole, AdminAccountSettings} from "./types";
     },
   },
 }))
-@Table({paranoid: true})
+@Table({ paranoid: true })
 export class Admin extends Model {
   @Column({ type: DataType.STRING, defaultValue: getUUID, primaryKey: true }) id: string;
 
@@ -43,6 +44,8 @@ export class Admin extends Model {
   @Column({type: DataType.BOOLEAN, defaultValue: false}) isActive: boolean;
 
   @HasMany(() => AdminSession) sessions: AdminSession[];
+
+  @HasOne(() => AdminWallet) wallet: AdminWallet;
 
   async passwordCompare(pwd: string) {
     return bcrypt.compareSync(pwd, this.password);
