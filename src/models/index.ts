@@ -100,6 +100,8 @@ import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySett
 import { BridgeSwapUsdtTokenEvent } from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 import { BridgeSwapUsdtParserBlockInfo } from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
 import { CommissionSettings } from "./platform-settings/CommissionSettings";
+import { FirstWqtTransmissionData } from "./transaction-features/first-wqt/FirstWqtTransmissionData";
+import { Transaction } from "./transaction-features/Transaction";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -264,8 +266,12 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       BridgeSwapUsdtParserBlockInfo,
       BridgeSwapUsdtTokenEvent,
 
-      /** Commissions of list */
-      CommissionSettings
+      /** Platform settings */
+      CommissionSettings,
+
+      /** Transaction features */
+      Transaction,
+      FirstWqtTransmissionData,
     ]
   });
   if (sync)
@@ -382,4 +388,6 @@ export * from "./user/WorkerProfileVisibilitySetting";
 export * from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
 export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
+export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
+export * from "./transaction-features/Transaction";
 
