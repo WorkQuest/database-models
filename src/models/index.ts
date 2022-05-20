@@ -99,7 +99,7 @@ import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibility
 import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
 import { SwapUsdtSwapTokenEvent } from "./SwapUsdt/SwapUsdtSwapTokenEvent";
 import { SwapUsdtParserBlockInfo } from "./SwapUsdt/SwapUsdtParserBlockInfo";
-import { Commission } from "./Commission";
+import { Commission } from "./platform-settings/Commission";
 import { SwapUsdtSendWqt } from "./SwapUsdt/SwapUsdtSendWqt";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -384,5 +384,5 @@ export * from "./user/WorkerProfileVisibilitySetting";
 export * from "./SwapUsdt/SwapUsdtParserBlockInfo";
 export * from "./SwapUsdt/SwapUsdtSwapTokenEvent";
 export * from "./SwapUsdt/SwapUsdtSendWqt";
-export * from "./Commission"
+export * from "./platform-settings/Commission"
 

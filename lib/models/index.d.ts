@@ -107,4 +107,4 @@ export * from "./user/WorkerProfileVisibilitySetting";
 export * from "./SwapUsdt/SwapUsdtParserBlockInfo";
 export * from "./SwapUsdt/SwapUsdtSwapTokenEvent";
 export * from "./SwapUsdt/SwapUsdtSendWqt";
-export * from "./Commission";
+export * from "./platform-settings/Commission";
