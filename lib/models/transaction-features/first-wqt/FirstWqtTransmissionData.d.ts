@@ -6,7 +6,8 @@ export declare enum TransmissionStatusFirstWqt {
     BroadcastError = -2,
     TransactionError = -1,
     Pending = 0,
-    Success = 1
+    InProcess = 1,
+    Success = 2
 }
 export declare class FirstWqtTransmissionData extends Model {
     transactionHashTransmissionWqt: string;

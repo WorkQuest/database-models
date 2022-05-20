@@ -16,7 +16,8 @@ export enum TransmissionStatusFirstWqt {
   TransactionError = -1,
 
   Pending = 0,
-  Success = 1,
+  InProcess = 1,
+  Success = 2,
 }
 
 @Table
