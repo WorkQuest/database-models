@@ -9,3 +9,4 @@ export declare const adminActionPathSchema: Joi.StringSchema;
 export declare const adminSchema: Joi.ObjectSchema<any>;
 export declare const adminWithSecretSchema: Joi.ObjectSchema<any>;
 export declare const adminActionMetadataSchema: Joi.ObjectSchema<any>;
+export declare const tokensWithWalletSchema: Joi.ObjectSchema<any>;
