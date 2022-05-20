@@ -1,3 +1,5 @@
+import { Transaction } from "../Transaction";
+import { BridgeSwapUsdtTokenEvent } from "../../bridge-usdt/BridgeSwapUsdtTokenEvent";
 import { Model } from "sequelize-typescript";
 export declare enum TransmissionStatusFirstWqt {
     UnknownError = -3,
@@ -11,4 +13,6 @@ export declare class FirstWqtTransmissionData extends Model {
     txHashSwapInitialized: string;
     status: TransmissionStatusFirstWqt;
     error: string;
+    tx: Transaction;
+    bridgeEvent: BridgeSwapUsdtTokenEvent;
 }

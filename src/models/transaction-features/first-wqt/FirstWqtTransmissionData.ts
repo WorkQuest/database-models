@@ -1,5 +1,13 @@
-import {Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {Transaction} from "../Transaction";
 import {BridgeSwapUsdtTokenEvent} from "../../bridge-usdt/BridgeSwapUsdtTokenEvent";
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  ForeignKey,
+  HasOne,
+} from "sequelize-typescript";
 
 
 export enum TransmissionStatusFirstWqt {
@@ -13,6 +21,7 @@ export enum TransmissionStatusFirstWqt {
 
 @Table
 export class FirstWqtTransmissionData extends Model {
+  @ForeignKey(() => Transaction)
   @Column(DataType.STRING) transactionHashTransmissionWqt: string;
 
   @ForeignKey(() => BridgeSwapUsdtTokenEvent)
@@ -21,4 +30,7 @@ export class FirstWqtTransmissionData extends Model {
   @Column({ type: DataType.STRING, allowNull: false }) status: TransmissionStatusFirstWqt;
 
   @Column(DataType.STRING) error: string;
+
+  @HasOne(() => Transaction) tx: Transaction;
+  @HasOne(() => BridgeSwapUsdtTokenEvent) bridgeEvent: BridgeSwapUsdtTokenEvent;
 }

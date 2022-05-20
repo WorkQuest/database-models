@@ -1,5 +1,12 @@
 import {BlockchainNetworks} from "../types";
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {
+  Table,
+  Model,
+  Column,
+  DataType,
+  BelongsTo,
+} from "sequelize-typescript";
+import {FirstWqtTransmissionData} from "./first-wqt/FirstWqtTransmissionData";
 
 @Table
 export class Transaction extends Model {
@@ -17,4 +24,6 @@ export class Transaction extends Model {
 
   @Column(DataType.STRING) error: string;
   @Column({ type: DataType.STRING, allowNull: false }) network: BlockchainNetworks;
+
+  @BelongsTo(() => FirstWqtTransmissionData) firstWqtTransmissionData: FirstWqtTransmissionData;
 }

@@ -1,5 +1,6 @@
-import { Model, Column, DataType, Table } from 'sequelize-typescript';
+import {Model, Column, DataType, Table, BelongsTo} from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
+import {FirstWqtTransmissionData} from "../transaction-features/first-wqt/FirstWqtTransmissionData";
 
 export enum SwapUsdtEvents {
   SwapInitialized = "SwapInitialized",
@@ -19,4 +20,6 @@ export class BridgeSwapUsdtTokenEvent extends Model {
   @Column(DataType.INTEGER) chainTo: number;
   @Column(DataType.INTEGER) chainFrom: number;
   @Column(DataType.STRING) symbol: string;
+
+  @BelongsTo(() => FirstWqtTransmissionData) firstWqtTransmissionData: FirstWqtTransmissionData;
 }

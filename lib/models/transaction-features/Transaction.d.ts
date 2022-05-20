@@ -1,5 +1,6 @@
 import { BlockchainNetworks } from "../types";
 import { Model } from "sequelize-typescript";
+import { FirstWqtTransmissionData } from "./first-wqt/FirstWqtTransmissionData";
 export declare class Transaction extends Model {
     hash: string;
     from: string;
@@ -10,4 +11,5 @@ export declare class Transaction extends Model {
     gasUsed: string;
     error: string;
     network: BlockchainNetworks;
+    firstWqtTransmissionData: FirstWqtTransmissionData;
 }
