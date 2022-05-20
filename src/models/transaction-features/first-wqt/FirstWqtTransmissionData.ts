@@ -3,6 +3,7 @@ import {SwapUsdtSwapTokenEvent} from "../../SwapUsdt/SwapUsdtSwapTokenEvent";
 
 
 export enum TransmissionStatusFirstWqt {
+  UnknownError = -3,
   BroadcastError = -2,
   TransactionError = -1,
 
