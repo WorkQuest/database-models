@@ -1,5 +1,7 @@
 import Joi = require("joi");
-import {HTTPVerbSchema, idSchema} from "./common";
+import { AdminRole } from "../models";
+import { HTTPVerbSchema, idSchema, jwtTokenAccess, jwtTokenRefresh } from "./common";
+import { walletAddressSchema } from "./wallet";
 
 export const adminFirstNameSchema = Joi.string().max(255).example('Pavel').label('AdminFirstName');
 export const adminLastNameSchema = Joi.string().max(255).example('Durov').label('AdminLastName');
@@ -29,4 +31,10 @@ export const adminActionMetadataSchema = Joi.object({
   HTTPVerb: HTTPVerbSchema,
   path: adminActionPathSchema,
 }).label('AdminAction');
+
+export const tokensWithWalletSchema = Joi.object({
+  access: jwtTokenAccess,
+  refresh: jwtTokenRefresh,
+  address: walletAddressSchema,
+}).label('TokensWithWalletSchema');
 
