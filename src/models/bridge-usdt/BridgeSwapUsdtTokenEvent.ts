@@ -7,7 +7,7 @@ export enum SwapUsdtEvents {
 
 @Table
 export class BridgeSwapUsdtTokenEvent extends Model {
-  @Column({ primaryKey: true, type: DataType.STRING,  unique: true}) transactionHash: string;
+  @Column({ primaryKey: true, type: DataType.STRING, unique: true }) transactionHash: string;
   @Column(DataType.STRING) userId: string;
   @Column(DataType.INTEGER) blockNumber: number;
   @Column(DataType.STRING) network: BlockchainNetworks;
