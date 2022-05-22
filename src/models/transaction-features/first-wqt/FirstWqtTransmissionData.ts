@@ -28,6 +28,10 @@ export class FirstWqtTransmissionData extends Model {
   @ForeignKey(() => BridgeSwapUsdtTokenEvent)
   @Column(DataType.STRING) txHashSwapInitialized: string;
 
+  @Column(DataType.INTEGER) gasPriceAtMoment: string;
+  @Column({ type: DataType.DECIMAL, allowNull: false }) amount: string;
+  @Column({ type: DataType.DOUBLE, allowNull: false }) platformCommissionCoefficient: number;
+
   @Column({ type: DataType.STRING, allowNull: false }) status: TransmissionStatusFirstWqt;
 
   @Column(DataType.STRING) error: string;
