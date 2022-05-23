@@ -69,6 +69,18 @@ export enum ChatType {
       as: 'chatData',
     }],
   },
+  forGetChat: {
+    include: [{
+      model: QuestChat,
+      as: 'questChat',
+    }, {
+      model: GroupChat,
+      as: 'groupChat'
+    }, {
+      model: ChatData,
+      as: 'chatData',
+    }]
+  }
 }))
 @Table
 export class Chat extends Model {
