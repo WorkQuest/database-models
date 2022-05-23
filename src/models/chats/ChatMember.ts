@@ -50,6 +50,9 @@ export enum MemberStatus {
     }, {
       model: Admin.scope('short'),
       as: 'admin',
+    }, {
+      model: ChatMemberDeletionData,
+      as: 'chatMemberDeletionData',
     }],
   },
 }))
