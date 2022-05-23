@@ -56,6 +56,7 @@ export enum MemberStatus {
     attributes: [
       'id',
       'userId',
+      'chatId',
       'adminId',
       'type',
       'status',
