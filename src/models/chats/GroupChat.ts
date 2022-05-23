@@ -10,8 +10,6 @@ import {
 import {getUUID} from "../../utils";
 import {Chat} from "./Chat";
 import {ChatMember} from "./ChatMember";
-import {Message} from "./Message";
-import {QuestChat} from "./QuestChat";
 
 @Scopes(() => ({
   forChatsList: {

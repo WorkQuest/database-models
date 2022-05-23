@@ -79,6 +79,9 @@ export enum ChatType {
     }, {
       model: ChatData,
       as: 'chatData',
+    }, {
+      model: ChatMember,
+      as: 'members',
     }]
   }
 }))
