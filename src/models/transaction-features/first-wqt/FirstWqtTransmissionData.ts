@@ -6,7 +6,7 @@ import {
   Column,
   DataType,
   ForeignKey,
-  HasOne, BelongsTo,
+  BelongsTo,
 } from "sequelize-typescript";
 
 
@@ -33,7 +33,7 @@ export class FirstWqtTransmissionData extends Model {
   @Column(DataType.DECIMAL) amount: string;
   @Column(DataType.DOUBLE) platformCommissionCoefficient: number;
 
-  @Column({ type: DataType.STRING, allowNull: false }) status: TransmissionStatusFirstWqt;
+  @Column({ type: DataType.INTEGER, allowNull: false }) status: TransmissionStatusFirstWqt;
 
   @Column(DataType.STRING) error: string;
 
