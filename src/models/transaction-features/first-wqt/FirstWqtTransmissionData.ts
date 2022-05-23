@@ -11,7 +11,7 @@ import {
 
 
 export enum TransmissionStatusFirstWqt {
-  NoPriceWqtForMoment = -4,
+  NoPriceWqtAtMoment = -4,
   UnknownError = -3,
   BroadcastError = -2,
   TransactionError = -1,
@@ -30,8 +30,8 @@ export class FirstWqtTransmissionData extends Model {
   @Column(DataType.STRING) txHashSwapInitialized: string;
 
   @Column(DataType.INTEGER) gasPriceAtMoment: string;
-  @Column({ type: DataType.DECIMAL, allowNull: false }) amount: string;
-  @Column({ type: DataType.DOUBLE, allowNull: false }) platformCommissionCoefficient: number;
+  @Column(DataType.DECIMAL) amount: string;
+  @Column(DataType.DOUBLE) platformCommissionCoefficient: number;
 
   @Column({ type: DataType.STRING, allowNull: false }) status: TransmissionStatusFirstWqt;
 
