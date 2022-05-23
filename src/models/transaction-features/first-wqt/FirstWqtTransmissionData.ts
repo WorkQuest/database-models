@@ -11,6 +11,7 @@ import {
 
 
 export enum TransmissionStatusFirstWqt {
+  NoPriceWqtForMoment = -4,
   UnknownError = -3,
   BroadcastError = -2,
   TransactionError = -1,
