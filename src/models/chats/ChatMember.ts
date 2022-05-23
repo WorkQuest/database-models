@@ -50,11 +50,28 @@ export enum MemberStatus {
     }, {
       model: Admin.scope('short'),
       as: 'admin',
+    }],
+  },
+  forGetChat: {
+    attributes: [
+      'id',
+      'userId',
+      'adminId',
+      'type',
+      'status',
+      'createdAt',
+    ],
+    include: [{
+      model: User.scope('short'),
+      as: 'user',
+    }, {
+      model: Admin.scope('short'),
+      as: 'admin',
     }, {
       model: ChatMemberDeletionData,
       as: 'chatMemberDeletionData',
     }],
-  },
+  }
 }))
 @Table
 export class ChatMember extends Model {
