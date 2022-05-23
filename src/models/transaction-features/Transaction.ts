@@ -4,7 +4,7 @@ import {
   Model,
   Column,
   DataType,
-  BelongsTo,
+  BelongsTo, HasOne,
 } from "sequelize-typescript";
 import {FirstWqtTransmissionData} from "./first-wqt/FirstWqtTransmissionData";
 
@@ -25,5 +25,5 @@ export class Transaction extends Model {
   @Column(DataType.STRING) error: string;
   @Column({ type: DataType.STRING, allowNull: false }) network: BlockchainNetworks;
 
-  @BelongsTo(() => FirstWqtTransmissionData) firstWqtTransmissionData: FirstWqtTransmissionData;
+  @HasOne(() => FirstWqtTransmissionData) tx: FirstWqtTransmissionData;
 }

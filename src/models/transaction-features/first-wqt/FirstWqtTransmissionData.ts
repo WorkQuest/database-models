@@ -6,7 +6,7 @@ import {
   Column,
   DataType,
   ForeignKey,
-  HasOne,
+  HasOne, BelongsTo,
 } from "sequelize-typescript";
 
 
@@ -37,6 +37,6 @@ export class FirstWqtTransmissionData extends Model {
 
   @Column(DataType.STRING) error: string;
 
-  @HasOne(() => Transaction) tx: Transaction;
-  @HasOne(() => BridgeSwapUsdtTokenEvent) bridgeEvent: BridgeSwapUsdtTokenEvent;
+  @BelongsTo(() => Transaction) tx: Transaction;
+  @BelongsTo(() => BridgeSwapUsdtTokenEvent) bridgeEvent: BridgeSwapUsdtTokenEvent;
 }

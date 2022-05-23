@@ -1,4 +1,4 @@
-import {Model, Column, DataType, Table, BelongsTo} from 'sequelize-typescript';
+import { Model, Column, DataType, Table, BelongsTo, HasOne } from 'sequelize-typescript';
 import { BlockchainNetworks } from "../types";
 import {FirstWqtTransmissionData} from "../transaction-features/first-wqt/FirstWqtTransmissionData";
 
@@ -21,5 +21,5 @@ export class BridgeSwapUsdtTokenEvent extends Model {
   @Column(DataType.INTEGER) chainFrom: number;
   @Column(DataType.STRING) symbol: string;
 
-  @BelongsTo(() => FirstWqtTransmissionData) firstWqtTransmissionData: FirstWqtTransmissionData;
+  @HasOne(() => FirstWqtTransmissionData) bridgeEvent: FirstWqtTransmissionData;
 }

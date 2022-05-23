@@ -11,5 +11,5 @@ export declare class Transaction extends Model {
     gasUsed: string;
     error: string;
     network: BlockchainNetworks;
-    firstWqtTransmissionData: FirstWqtTransmissionData;
+    tx: FirstWqtTransmissionData;
 }

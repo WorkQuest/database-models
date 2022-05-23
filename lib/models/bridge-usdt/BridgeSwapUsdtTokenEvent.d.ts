@@ -17,5 +17,5 @@ export declare class BridgeSwapUsdtTokenEvent extends Model {
     chainTo: number;
     chainFrom: number;
     symbol: string;
-    firstWqtTransmissionData: FirstWqtTransmissionData;
+    bridgeEvent: FirstWqtTransmissionData;
 }
