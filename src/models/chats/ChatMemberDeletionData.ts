@@ -7,14 +7,30 @@ import {
   Column,
   DataType,
   BelongsTo,
-  ForeignKey,
+  ForeignKey, Scopes,
 } from "sequelize-typescript";
+import { Media } from "../Media";
+import { RatingStatistic } from "../user/RatingStatistic";
+import { UserRaiseView } from "../raise-view/UserRaiseView";
+import { UserSpecializationFilter } from "../user/UserSpecializationFilter";
+import { QuestsStatistic } from "../quest/QuestsStatistic";
 
 export enum ReasonForRemovingFromChat {
   Left = 'Left',
   Removed = 'Removed',
 }
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: []
+    },
+    include: [{
+      model: Message,
+      as: 'beforeDeletionMessage'
+    }]
+  },
+}))
 @Table
 export class ChatMemberDeletionData extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
