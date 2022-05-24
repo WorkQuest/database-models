@@ -104,3 +104,8 @@ export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
 export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
+export * from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
+export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
+export * from "./platform-settings/CommissionSettings";
+export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
+export * from "./transaction-features/Transaction";
