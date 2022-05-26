@@ -11,8 +11,6 @@ export class AdminChatStatistic extends Model {
   @ForeignKey(() => Admin)
   @Column(DataType.STRING) adminId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) type: MemberType;
-
   @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountChats: number;
 
   @BelongsTo(() => Admin) admin: Admin;

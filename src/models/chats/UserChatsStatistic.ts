@@ -11,8 +11,6 @@ export class UserChatsStatistic extends Model {
   @ForeignKey(() => User)
   @Column(DataType.STRING) userId: string;
 
-  @Column({type: DataType.STRING, allowNull: false}) type: MemberType;
-
   @Column({type: DataType.INTEGER, defaultValue: 0}) unreadCountChats: number;
 
   @BelongsTo(() => User) user: User;
