@@ -97,11 +97,13 @@ import {QuestArbitrationStartedEvent} from "./quest/contract-quest/QuestArbitrat
 import {QuestArbitrationReworkEvent} from "./quest/contract-quest/QuestArbitrationReworkEvent";
 import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibilitySetting";
 import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
-import { BridgeSwapUsdtTokenEvent } from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
-import { BridgeSwapUsdtParserBlockInfo } from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
-import { CommissionSettings } from "./platform-settings/CommissionSettings";
-import { FirstWqtTransmissionData } from "./transaction-features/first-wqt/FirstWqtTransmissionData";
-import { Transaction } from "./transaction-features/Transaction";
+import {BridgeSwapUsdtTokenEvent} from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
+import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
+import {CommissionSettings} from "./platform-settings/CommissionSettings";
+import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
+import {Transaction} from "./transaction-features/Transaction";
+import {Report} from "./report/Report";
+import {ReportMedia} from "./report/ReportMedia";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -219,6 +221,7 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Media section */
       Media,
       QuestMedia,
+      ReportMedia,
       MessageMedia,
       ProposalMedia,
       PortfolioMedia,
@@ -272,6 +275,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Transaction features */
       Transaction,
       FirstWqtTransmissionData,
+
+      /** Reports */
+      Report,
     ]
   });
   if (sync)
@@ -390,4 +396,6 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
+export * from "./report/Report";
+export * from "./report/ReportMedia";
 
