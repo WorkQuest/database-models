@@ -5,7 +5,7 @@ import { Report } from "./Report";
 
 @Table
 export class ReportMedia extends Model {
-  @Column({ type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+  @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => Media)
   @Column({ type: DataType.STRING, allowNull: false }) mediaId: string;

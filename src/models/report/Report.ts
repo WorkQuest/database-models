@@ -19,7 +19,7 @@ export enum ReportEntityType {
 
 @Table
 export class Report extends Model {
-  @Column({ type: DataType.STRING, defaultValue: () => getUUID() }) id: string;
+  @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
   @Column({ type: DataType.STRING, allowNull: false }) reportAuthor: string;

@@ -109,3 +109,5 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings";
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
+export * from "./report/Report";
+export * from "./report/ReportMedia";
