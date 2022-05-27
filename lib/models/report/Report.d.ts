@@ -14,7 +14,7 @@ export declare enum ReportEntityType {
 }
 export declare class Report extends Model {
     id: string;
-    reportAuthor: string;
+    authorId: string;
     resolvedByAdminId: string;
     title: string;
     description: string;

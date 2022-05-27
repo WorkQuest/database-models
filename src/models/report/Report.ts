@@ -22,7 +22,7 @@ export class Report extends Model {
   @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => getUUID() }) id: string;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.STRING, allowNull: false }) reportAuthor: string;
+  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
 
   @ForeignKey(() => Admin)
   @Column({ type: DataType.STRING }) resolvedByAdminId: string;
