@@ -8,7 +8,7 @@ export declare enum SupportStatus {
     Decided = 2
 }
 export declare enum AdminSupportResolved {
-    Expected = "Expected",
+    Waiting = "Waiting",
     AnsweredByMail = "AnsweredByMail",
     RepliedToPrivateMessages = "RepliedToPrivateMessages",
     Decided = "Decided"
@@ -16,13 +16,13 @@ export declare enum AdminSupportResolved {
 export declare class Support extends Model {
     id: string;
     supportTicket: number;
-    supportAuthor: string;
+    authorId: string;
     resolvedByAdminId: string;
     email: string;
     title: string;
     description: string;
     status: SupportStatus;
-    resolvedStatus: AdminSupportResolved;
+    decision: AdminSupportResolved;
     completionAt: Date;
     user: User;
     admin: Admin;

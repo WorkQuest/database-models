@@ -11,7 +11,7 @@ export enum SupportStatus {
 }
 
 export enum AdminSupportResolved {
-  Expected = 'Expected',
+  Waiting = 'Waiting',
   AnsweredByMail = 'AnsweredByMail',
   RepliedToPrivateMessages = 'RepliedToPrivateMessages',
   Decided = 'Decided'
@@ -24,7 +24,7 @@ export class Support extends Model {
   @Column({ type: DataType.INTEGER, autoIncrement: true, allowNull: false }) supportTicket: number;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.STRING, allowNull: false }) supportAuthor: string;
+  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
 
   @ForeignKey(() => Admin)
   @Column({ type: DataType.STRING }) resolvedByAdminId: string;
@@ -33,7 +33,7 @@ export class Support extends Model {
   @Column({ type: DataType.STRING, allowNull: false }) title: string;
   @Column({ type: DataType.TEXT, allowNull: false }) description: string;
   @Column({ type: DataType.SMALLINT, allowNull: false }) status: SupportStatus;
-  @Column({ type: DataType.STRING, allowNull: false }) resolvedStatus: AdminSupportResolved;
+  @Column({ type: DataType.STRING, allowNull: false }) decision: AdminSupportResolved;
 
   @Column({ type: DataType.DATE }) completionAt: Date;
 
