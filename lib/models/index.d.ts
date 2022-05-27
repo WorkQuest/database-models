@@ -111,3 +111,4 @@ export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
 export * from "./report/Report";
 export * from "./report/ReportMedia";
+export * from "./support/Support";

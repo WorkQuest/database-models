@@ -104,6 +104,7 @@ import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWq
 import {Transaction} from "./transaction-features/Transaction";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
+import { Support } from "./support/Support";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -278,6 +279,9 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
 
       /** Reports */
       Report,
+
+      /** Help & Support */
+      Support,
     ]
   });
   if (sync)
@@ -398,4 +402,5 @@ export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
 export * from "./report/Report";
 export * from "./report/ReportMedia";
+export * from "./support/Support";
 
