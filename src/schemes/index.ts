@@ -20,3 +20,4 @@ export * from "./referral";
 export * from "./questRaiseView";
 export * from "./savingProduct";
 export * from "./bridge";
+export * from "./support";
