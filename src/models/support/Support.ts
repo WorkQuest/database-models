@@ -1,4 +1,4 @@
-import { Table, Model, Column, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Table, Model, Column, DataType, ForeignKey, BelongsTo, Scopes } from 'sequelize-typescript';
 import { getUUID } from '../../utils';
 import { Admin } from '../admin/Admin';
 import { User } from '../user/User';
@@ -17,6 +17,16 @@ export enum AdminSupportResolved {
   Decided = 'Decided'
 }
 
+@Scopes(() => ({
+  defaultScope: {
+    attributes: {
+      exclude: ["createdAt", "updatedAt"]
+    },
+    short: {
+      attributes: ["supportTicket", "authorId", "email", "title", "description", "status", "decision"]
+    }
+  }
+}))
 @Table
 export class Support extends Model {
   @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => getUUID() }) id: string;
