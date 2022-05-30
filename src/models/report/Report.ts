@@ -4,6 +4,8 @@ import { Admin } from '../admin/Admin';
 import { User } from '../user/User';
 import { ReportMedia } from "./ReportMedia";
 import { Media } from "../Media";
+import { Quest } from "../quest/Quest";
+import { DiscussionComment } from "../discussion/DiscussionComment";
 
 export enum ReportStatus {
   Rejected = -1,
@@ -38,6 +40,10 @@ export class Report extends Model {
 
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Admin) admin: Admin;
+
+  @BelongsTo(() => User) entityUser: User;
+  @BelongsTo(() => Quest) entityQuest: Quest;
+  @BelongsTo(() => DiscussionComment) entityComment: DiscussionComment;
 
   @BelongsToMany(() => Media, () => ReportMedia) medias: Media[];
 }
