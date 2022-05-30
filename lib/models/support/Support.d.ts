@@ -1,6 +1,6 @@
-import { Model } from 'sequelize-typescript';
-import { Admin } from '../admin/Admin';
 import { User } from '../user/User';
+import { Admin } from '../admin/Admin';
+import { Model } from 'sequelize-typescript';
 export declare enum SupportStatus {
     Rejected = -1,
     Created = 0,

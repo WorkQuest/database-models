@@ -1,7 +1,7 @@
-import { Table, Model, Column, DataType, ForeignKey, BelongsTo, Scopes } from 'sequelize-typescript';
+import { User } from '../user/User';
 import { getUUID } from '../../utils';
 import { Admin } from '../admin/Admin';
-import { User } from '../user/User';
+import { Table, Model, Column, DataType, ForeignKey, BelongsTo, Scopes } from 'sequelize-typescript';
 
 export enum SupportStatus {
   Rejected = -1,
