@@ -2,6 +2,8 @@ import { Model } from 'sequelize-typescript';
 import { Admin } from '../admin/Admin';
 import { User } from '../user/User';
 import { Media } from "../Media";
+import { Quest } from "../quest/Quest";
+import { DiscussionComment } from "../discussion/DiscussionComment";
 export declare enum ReportStatus {
     Rejected = -1,
     Created = 0,
@@ -14,7 +16,7 @@ export declare enum ReportEntityType {
 }
 export declare class Report extends Model {
     id: string;
-    reportAuthor: string;
+    authorId: string;
     resolvedByAdminId: string;
     title: string;
     description: string;
@@ -24,5 +26,8 @@ export declare class Report extends Model {
     resolvedAt: Date;
     user: User;
     admin: Admin;
+    entityUser: User;
+    entityQuest: Quest;
+    entityComment: DiscussionComment;
     medias: Media[];
 }
