@@ -5,9 +5,9 @@ import { User } from '../user/User';
 
 export enum SupportStatus {
   Rejected = -1,
-  Created = 0,
-  Waiting = 1,
-  Decided = 2
+  Created,
+  Waiting,
+  Decided
 }
 
 export enum AdminSupportResolved {
