@@ -41,9 +41,18 @@ export class Report extends Model {
   @BelongsTo(() => User) user: User;
   @BelongsTo(() => Admin) admin: Admin;
 
-  @BelongsTo(() => User) entityUser: User;
-  @BelongsTo(() => Quest) entityQuest: Quest;
-  @BelongsTo(() => DiscussionComment) entityComment: DiscussionComment;
+  @BelongsTo(() => User, {
+    foreignKey: 'entityId',
+    targetKey: 'id'
+  }) entityUser: User;
+  @BelongsTo(() => Quest, {
+    foreignKey: 'entityId',
+    targetKey: 'id'
+  }) entityQuest: Quest;
+  @BelongsTo(() => DiscussionComment, {
+    foreignKey: 'entityId',
+    targetKey: 'id'
+  }) entityComment: DiscussionComment;
 
   @BelongsToMany(() => Media, () => ReportMedia) medias: Media[];
 }
