@@ -107,15 +107,12 @@ import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserB
 import {CommissionSettings} from "./platform-settings/CommissionSettings";
 import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import {Transaction} from "./transaction-features/Transaction";
-import { CommissionSettings } from "./platform-settings/CommissionSettings";
-import { FirstWqtTransmissionData } from "./transaction-features/first-wqt/FirstWqtTransmissionData";
-import { Transaction } from "./transaction-features/Transaction";
-import { RaiseViewsPlatformStatistic } from "./platform-statistics/RaiseViewsPlatformStatistic";
-import { DisputesPlatformStatistic } from "./platform-statistics/DisputesPlatformStatistic";
-import { ReportsPlatformStatistic } from "./platform-statistics/ReportsPlatformStatistic";
-import { UsersPlatformStatistic } from "./platform-statistics/UsersPlatformStatistic";
-import { DaoPlatformStatistic } from "./platform-statistics/DaoPlatformStatistic";
-import { QuestsPlatformStatistic } from "./platform-statistics/QuestsPlatformStatistic";
+import {RaiseViewsPlatformStatistic} from "./platform-statistics/RaiseViewsPlatformStatistic";
+import {DisputesPlatformStatistic} from "./platform-statistics/DisputesPlatformStatistic";
+import {ReportsPlatformStatistic} from "./platform-statistics/ReportsPlatformStatistic";
+import {UsersPlatformStatistic} from "./platform-statistics/UsersPlatformStatistic";
+import {DaoPlatformStatistic} from "./platform-statistics/DaoPlatformStatistic";
+import {QuestsPlatformStatistic} from "./platform-statistics/QuestsPlatformStatistic";
 
 export const models = [
   /** User section */
