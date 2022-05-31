@@ -18,6 +18,7 @@ import { QuestsStatistic } from "../quest/QuestsStatistic";
 export enum ReasonForRemovingFromChat {
   Left = 'Left',
   Removed = 'Removed',
+  ResolvedDispute = 'ResolvedDispute',
 }
 
 @Scopes(() => ({
