@@ -1,9 +1,9 @@
 import { Model } from 'sequelize-typescript';
+import { DiscussionComment, DiscussionCommentStatus } from "../discussion/DiscussionComment";
+import { Quest, QuestStatus } from "../quest/Quest";
+import { User, UserStatus } from '../user/User';
 import { Admin } from '../admin/Admin';
-import { User } from '../user/User';
 import { Media } from "../Media";
-import { Quest } from "../quest/Quest";
-import { DiscussionComment } from "../discussion/DiscussionComment";
 export declare enum ReportStatus {
     Rejected = -1,
     Created = 0,
@@ -14,6 +14,20 @@ export declare enum ReportEntityType {
     Quest = "Quest",
     Comment = "Comment"
 }
+export declare const reportEntities: {
+    User: {
+        entity: typeof User;
+        statuses: typeof UserStatus;
+    };
+    Quest: {
+        entity: typeof Quest;
+        statuses: typeof QuestStatus;
+    };
+    Comment: {
+        entity: typeof DiscussionComment;
+        statuses: typeof DiscussionCommentStatus;
+    };
+};
 export declare class Report extends Model {
     id: string;
     authorId: string;

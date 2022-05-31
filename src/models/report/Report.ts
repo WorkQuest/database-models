@@ -1,11 +1,11 @@
-import { Table, Model, Column, DataType, ForeignKey, BelongsTo, HasMany, BelongsToMany } from 'sequelize-typescript';
-import { getUUID } from '../../utils';
-import { Admin } from '../admin/Admin';
-import { User } from '../user/User';
+import { Table, Model, Column, DataType, ForeignKey, BelongsTo, BelongsToMany } from 'sequelize-typescript';
+import { DiscussionComment, DiscussionCommentStatus } from "../discussion/DiscussionComment";
+import { Quest, QuestStatus } from "../quest/Quest";
+import { User, UserStatus } from '../user/User';
 import { ReportMedia } from "./ReportMedia";
+import { Admin } from '../admin/Admin';
+import { getUUID } from '../../utils';
 import { Media } from "../Media";
-import { Quest } from "../quest/Quest";
-import { DiscussionComment } from "../discussion/DiscussionComment";
 
 export enum ReportStatus {
   Rejected = -1,
@@ -17,6 +17,12 @@ export enum ReportEntityType {
   User = 'User',
   Quest = 'Quest',
   Comment = 'Comment'
+}
+
+export const reportEntities = {
+  User: { entity: User, statuses: UserStatus },
+  Quest: { entity: Quest, statuses: QuestStatus },
+  Comment: { entity: DiscussionComment, statuses: DiscussionCommentStatus }
 }
 
 @Table
