@@ -3,7 +3,8 @@ import { ChatMember } from "./ChatMember";
 import { Model } from "sequelize-typescript";
 export declare enum ReasonForRemovingFromChat {
     Left = "Left",
-    Removed = "Removed"
+    Removed = "Removed",
+    ResolvedDispute = "ResolvedDispute"
 }
 export declare class ChatMemberDeletionData extends Model {
     id: string;

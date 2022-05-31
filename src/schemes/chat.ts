@@ -41,7 +41,7 @@ export const chatDataSchema = Joi.object({
 export const chatMemberDataUnreadCountMessagesSchema = Joi.number().min(0).example(19).label('UnreadCountMessages');
 export const chatMemberTypeSchema = Joi.string().valid(...Object.values(MemberType)).example(MemberType.User).label("ChatMemberType");
 export const chatMemberStatusSchema = Joi.valid(...Object.keys(MemberStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(MemberStatus.Active).label("ChatMemberStatus");
-export const removingFromChatReasonSchema = Joi.string().valid(...Object.values(ReasonForRemovingFromChat)).example(ReasonForRemovingFromChat).label("DeletionReason");
+export const removingFromChatReasonSchema = Joi.string().valid(...Object.values(ReasonForRemovingFromChat)).example(ReasonForRemovingFromChat.Left).label("DeletionReason");
 
 export const chatMemberDataSchema = Joi.object({
   id: idSchema,
