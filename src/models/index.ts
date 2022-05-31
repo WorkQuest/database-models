@@ -102,6 +102,11 @@ import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
 import {AdminChatStatistic} from "./chats/AdminChatStatistic";
+import { BridgeSwapUsdtTokenEvent } from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
+import { BridgeSwapUsdtParserBlockInfo } from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
+import { CommissionSettings } from "./platform-settings/CommissionSettings";
+import { FirstWqtTransmissionData } from "./transaction-features/first-wqt/FirstWqtTransmissionData";
+import { Transaction } from "./transaction-features/Transaction";
 
 export const models = [
   /** User section */
@@ -115,11 +120,11 @@ export const models = [
   EmployerProfileVisibilitySetting,
 
 
-  /** Admin section */
-  Admin,
-  AdminSession,
-  AdminActionMetadata,
-  AdminQuestDisputesStatistic,
+      /** Admin section */
+      Admin,
+      AdminSession,
+      AdminActionMetadata,
+      AdminQuestDisputesStatistic,
 
 
   /** Quest section */
@@ -264,6 +269,17 @@ export const models = [
   RaiseViewPromotedQuestEvent,
   QuestRaiseView,
   RaiseViewBlockInfo,
+
+  /** Swap USDT */
+  BridgeSwapUsdtParserBlockInfo,
+  BridgeSwapUsdtTokenEvent,
+
+  /** Platform settings */
+  CommissionSettings,
+
+  /** Transaction features */
+  Transaction,
+  FirstWqtTransmissionData,
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -374,6 +390,11 @@ export * from "./WqtWeth/WqtWethMintEvent";
 export * from "./WqtWeth/WqtWethSyncEvent";
 export * from "./user/EmployerProfileVisibilitySetting";
 export * from "./user/WorkerProfileVisibilitySetting";
+export * from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
+export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
+export * from "./platform-settings/CommissionSettings"
+export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
+export * from "./transaction-features/Transaction";
 
 export * from "./chats/GroupChat";
 export * from "./chats/ChatData";
