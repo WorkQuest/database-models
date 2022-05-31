@@ -107,6 +107,7 @@ import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserB
 import {CommissionSettings} from "./platform-settings/CommissionSettings";
 import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import {Transaction} from "./transaction-features/Transaction";
+import { SupportUser } from "./support-user/SupportUser";
 
 export const models = [
   /** User section */
@@ -280,6 +281,9 @@ export const models = [
   /** Transaction features */
   Transaction,
   FirstWqtTransmissionData,
+
+  /** Support & Helps */
+  SupportUser
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -298,7 +302,6 @@ export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
 export * from "./raise-view/types";
-
 export * from "./Media";
 export * from "./quest/Quest";
 export * from "./quest/QuestsResponse";
@@ -395,7 +398,6 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
-
 export * from "./chats/GroupChat";
 export * from "./chats/ChatData";
 export * from "./chats/ChatMemberData";
@@ -410,3 +412,4 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
+export * from "./support-user/SupportUser";

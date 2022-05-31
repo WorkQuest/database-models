@@ -21,4 +21,3 @@ export * from "./questRaiseView";
 export * from "./savingProduct";
 export * from "./bridge";
 export * from "./support";
-export * from "./report";
