@@ -102,29 +102,29 @@ import {ChatData} from "./chats/ChatData";
 import {ChatMemberData} from "./chats/ChatMemberData";
 import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
 import {AdminChatStatistic} from "./chats/AdminChatStatistic";
-import { BridgeSwapUsdtTokenEvent } from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
-import { BridgeSwapUsdtParserBlockInfo } from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
-import { CommissionSettings } from "./platform-settings/CommissionSettings";
-import { FirstWqtTransmissionData } from "./transaction-features/first-wqt/FirstWqtTransmissionData";
-import { Transaction } from "./transaction-features/Transaction";
+import {BridgeSwapUsdtTokenEvent} from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
+import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
+import {CommissionSettings} from "./platform-settings/CommissionSettings";
+import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
+import {Transaction} from "./transaction-features/Transaction";
 
 export const models = [
   /** User section */
   User,
   Session,
-  QuestsReview,
   Portfolio,
+  QuestsReview,
   UserBlackList,
   UserChangeRoleData,
   WorkerProfileVisibilitySetting,
   EmployerProfileVisibilitySetting,
 
 
-      /** Admin section */
-      Admin,
-      AdminSession,
-      AdminActionMetadata,
-      AdminQuestDisputesStatistic,
+  /** Admin section */
+  Admin,
+  AdminSession,
+  AdminActionMetadata,
+  AdminQuestDisputesStatistic,
 
 
   /** Quest section */
