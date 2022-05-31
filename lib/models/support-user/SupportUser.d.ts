@@ -14,7 +14,7 @@ export declare enum AdminSupportResolved {
 }
 export declare class SupportUser extends Model {
     id: string;
-    supportTicket: number;
+    number: number;
     authorUserId: string;
     resolvedByAdminId: string;
     email: string;

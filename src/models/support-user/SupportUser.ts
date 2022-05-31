@@ -22,7 +22,7 @@ export enum AdminSupportResolved {
       exclude: ["createdAt", "updatedAt"]
     },
     short: {
-      attributes: ["supportTicket", "authorUserId", "email", "title", "description", "status", "decision"]
+      attributes: ["number", "authorUserId", "email", "title", "description", "status", "decision"]
     }
   }
 }))
@@ -30,7 +30,7 @@ export enum AdminSupportResolved {
 export class SupportUser extends Model {
   @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => getUUID() }) id: string;
 
-  @Column({ type: DataType.INTEGER, autoIncrement: true, allowNull: false }) supportTicket: number;
+  @Column({ type: DataType.INTEGER, autoIncrement: true, allowNull: false }) number: number;
 
   @ForeignKey(() => User)
   @Column({ type: DataType.STRING, allowNull: false }) authorUserId: string;
