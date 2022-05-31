@@ -7,16 +7,15 @@ import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone, PayPerio
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
-import { Chat } from "../chats/Chat";
 import { UserRaiseView } from "../raise-view/UserRaiseView";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
-import { ChatsStatistic } from "../chats/ChatsStatistic";
+import { UserChatsStatistic } from "../chats/UserChatsStatistic";
 import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
 import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
-import { Model } from "sequelize-typescript";
 import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting";
 import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
+import { Model } from "sequelize-typescript";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -116,6 +115,7 @@ export declare class User extends Model {
     employerProfileVisibilitySetting: EmployerProfileVisibilitySetting;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
+    chatStatistic: UserChatsStatistic;
     raiseView: UserRaiseView;
     avatar: Media;
     sessions: Session[];
@@ -125,12 +125,9 @@ export declare class User extends Model {
     wallet: Wallet;
     affiliateUser: ReferralProgramAffiliate;
     referralUser: ReferralProgramReferral;
-    chatOfUser: Chat;
-    chatStatistic: ChatsStatistic;
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;
-    chatsOfUser: Chat[];
     chatMembers: ChatMember[];
     discussionLikes: DiscussionLike[];
     commentLikes: DiscussionCommentLike[];

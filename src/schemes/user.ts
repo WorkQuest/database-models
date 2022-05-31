@@ -11,7 +11,7 @@ import {
   BlackListStatus,
 } from "../models";
 import {
-  chatsStatisticSchema,
+  userChatsStatisticSchema,
   questsStatisticSchema,
   userRatingStatusesSchema,
   userRatingStatisticSchema,
@@ -145,7 +145,7 @@ export const userSchema = Joi.object({
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
   questsStatistic: questsStatisticSchema,
-  chatStatistic: chatsStatisticSchema,
+  chatStatistic: userChatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   createdAt: isoDateSchema,
 }).label("User");
@@ -173,7 +173,7 @@ export const userMeSchema = Joi.object({
   employerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,
   workerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,
   questsStatistic: questsStatisticSchema,
-  chatStatistic: chatsStatisticSchema,
+  chatStatistic: userChatsStatisticSchema,
   userSpecializations: modelSpecializationsSchema,
   wallet: walletAddressesSchema,
 

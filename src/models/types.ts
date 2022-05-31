@@ -57,6 +57,11 @@ export enum HTTPVerb {
   DELETE = 'DELETE',
 }
 
+export enum MemberType {
+  Admin = "Admin",
+  User = "User",
+}
+
 export enum RatingStatus {
   None = 0,
 

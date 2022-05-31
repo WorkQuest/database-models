@@ -14,7 +14,7 @@ import {Admin} from './admin/Admin'
 import {AdminSession} from "./admin/AdminSession";
 import {Chat} from "./chats/Chat";
 import {ChatMember} from "./chats/ChatMember";
-import {ChatsStatistic} from "./chats/ChatsStatistic";
+import {UserChatsStatistic} from "./chats/UserChatsStatistic";
 import {MessageMedia} from "./chats/MessageMedia";
 import {Message} from "./chats/Message";
 import {InfoMessage} from "./chats/InfoMessage";
@@ -59,6 +59,7 @@ import {WqtWbnbBurnEvent} from "./WqtWbnb/WqtWbnbBurnEvent";
 import {WqtWbnbMintEvent} from "./WqtWbnb/WqtWbnbMintEvent";
 import {WqtWbnbSyncEvent} from "./WqtWbnb/WqtWbnbSyncEvent";
 import {UserChangeRoleData} from "./user/UserChangeRoleData";
+import {GroupChat} from "./chats/GroupChat";
 import {ReferralProgramAffiliate} from "./referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "./referral-program/ReferralProgramReferral";
 import {ReferralProgramEventRewardClaimed} from "./referral-program/ReferralProgramEventRewardClaimed";
@@ -97,192 +98,195 @@ import {QuestArbitrationStartedEvent} from "./quest/contract-quest/QuestArbitrat
 import {QuestArbitrationReworkEvent} from "./quest/contract-quest/QuestArbitrationReworkEvent";
 import {EmployerProfileVisibilitySetting} from "./user/EmployerProfileVisibilitySetting";
 import {WorkerProfileVisibilitySetting} from "./user/WorkerProfileVisibilitySetting";
+import {ChatData} from "./chats/ChatData";
+import {ChatMemberData} from "./chats/ChatMemberData";
+import {ChatMemberDeletionData} from "./chats/ChatMemberDeletionData";
+import {AdminChatStatistic} from "./chats/AdminChatStatistic";
 import {BridgeSwapUsdtTokenEvent} from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserBlockInfo";
 import {CommissionSettings} from "./platform-settings/CommissionSettings";
 import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import {Transaction} from "./transaction-features/Transaction";
-import {Report} from "./report/Report";
-import {ReportMedia} from "./report/ReportMedia";
-import { SupportUser } from "./support-user/SupportUser";
+
+export const models = [
+  /** User section */
+  User,
+  Session,
+  Portfolio,
+  QuestsReview,
+  UserBlackList,
+  UserChangeRoleData,
+  WorkerProfileVisibilitySetting,
+  EmployerProfileVisibilitySetting,
+
+
+  /** Admin section */
+  Admin,
+  AdminSession,
+  AdminActionMetadata,
+  AdminQuestDisputesStatistic,
+
+
+  /** Quest section */
+  Quest,
+  QuestChat,
+  QuestDispute,
+  QuestsStarred,
+  QuestsResponse,
+  QuestBlackList,
+  QuestDisputeReview,
+  QuestArbitrationReworkEvent,
+  QuestArbitrationStartedEvent,
+  QuestArbitrationAcceptWorkEvent,
+  QuestArbitrationRejectWorkEvent,
+
+
+  /** Quest factory contract events section */
+  QuestFactoryBlockInfo,
+  QuestFactoryCreatedEvent,
+
+
+  /** Quest contract events section */
+  QuestBlockInfo,
+  QuestAssignedEvent,
+  QuestJobStartedEvent,
+  QuestJobDoneEvent,
+  QuestJobFinishedEvent,
+  QuestJobCancelledEvent,
+  QuestJobEditedEvent,
+
+
+  /** Chat section */
+  Chat,
+  Message,
+  ChatData,
+  GroupChat,
+  ChatMember,
+  InfoMessage,
+  StarredChat,
+  ChatMemberData,
+  StarredMessage,
+  ChatMemberDeletionData,
+
+
+  /** Bridge section */
+  BridgeParserBlockInfo,
+  BridgeSwapTokenEvent,
+
+
+  /** Discussion section */
+  Discussion,
+  DiscussionLike,
+  StarredDiscussion,
+  DiscussionComment,
+  DiscussionCommentLike,
+
+
+  /** Filter section */
+  IndustryFilter,
+  SpecializationFilter,
+  UserSpecializationFilter,
+  QuestSpecializationFilter,
+
+
+  /** Proposal section */
+  Proposal,
+  ProposalParseBlock,
+  ProposalCreatedEvent,
+  ProposalVoteCastEvent,
+  ProposalExecutedEvent,
+
+
+  /** Statistic */
+  RatingStatistic,
+  QuestsStatistic,
+  UserChatsStatistic,
+  AdminChatStatistic,
+
+
+  /** WQT/WBNB liquidity */
+  DailyLiquidityWqtWbnb,
+  WqtWbnbSwapEvent,
+  WqtWbnbBlockInfo,
+  WqtWbnbMintEvent,
+  WqtWbnbBurnEvent,
+  WqtWbnbSyncEvent,
+
+
+  /** WQT/WETH liquidity */
+  DailyLiquidityWqtWeth,
+  WqtWethSwapEvent,
+  WqtWethBlockInfo,
+  WqtWethMintEvent,
+  WqtWethBurnEvent,
+  WqtWethSyncEvent,
+
+
+  /** Media section */
+  Media,
+  QuestMedia,
+  MessageMedia,
+  ProposalMedia,
+  PortfolioMedia,
+  DiscussionMedia,
+  QuestResponseMedia,
+  DiscussionCommentMedia,
+
+
+  /** Wallet */
+  Wallet,
+
+
+  /** Referral Program */
+  ReferralProgramReferral,
+  ReferralProgramAffiliate,
+
+
+  /** Referral Program Contract */
+  ReferralProgramParseBlock,
+  ReferralProgramEventPaidReferral,
+  ReferralProgramEventRewardClaimed,
+  ReferralProgramEventRegisteredAffiliate,
+
+
+  /** Pension fund */
+  PensionFundBlockInfo,
+  PensionFundWithdrewEvent,
+  PensionFundReceivedEvent,
+  PensionFundWalletUpdatedEvent,
+
+  /** Saving Product */
+  SavingProductParseBlock,
+  SavingProductBorrowedEvent,
+  SavingProductClaimedEvent,
+  SavingProductReceivedEvent,
+  SavingProductRefundedEvent,
+
+
+  /** Raise view */
+  UserRaiseView,
+  RaiseViewPromotedUserEvent,
+  RaiseViewPromotedQuestEvent,
+  QuestRaiseView,
+  RaiseViewBlockInfo,
+
+  /** Swap USDT */
+  BridgeSwapUsdtParserBlockInfo,
+  BridgeSwapUsdtTokenEvent,
+
+  /** Platform settings */
+  CommissionSettings,
+
+  /** Transaction features */
+  Transaction,
+  FirstWqtTransmissionData,
+] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
     logging: logging ? console.log : logging,
     dialect: "postgres",
-    models: [
-      /** User section */
-      User,
-      Session,
-      QuestsReview,
-      Portfolio,
-      UserBlackList,
-      UserChangeRoleData,
-      WorkerProfileVisibilitySetting,
-      EmployerProfileVisibilitySetting,
-
-
-      /** Admin section */
-      Admin,
-      AdminSession,
-      AdminActionMetadata,
-      AdminQuestDisputesStatistic,
-
-
-      /** Quest section */
-      Quest,
-      QuestChat,
-      QuestDispute,
-      QuestsStarred,
-      QuestsResponse,
-      QuestBlackList,
-      QuestDisputeReview,
-      QuestArbitrationReworkEvent,
-      QuestArbitrationStartedEvent,
-      QuestArbitrationAcceptWorkEvent,
-      QuestArbitrationRejectWorkEvent,
-
-
-      /** Quest factory contract events section */
-      QuestFactoryBlockInfo,
-      QuestFactoryCreatedEvent,
-
-
-      /** Quest contract events section */
-      QuestBlockInfo,
-      QuestAssignedEvent,
-      QuestJobStartedEvent,
-      QuestJobDoneEvent,
-      QuestJobFinishedEvent,
-      QuestJobCancelledEvent,
-      QuestJobEditedEvent,
-
-
-      /** Chat section */
-      Chat,
-      Message,
-      ChatMember,
-      InfoMessage,
-      StarredChat,
-      StarredMessage,
-
-
-      /** Bridge section */
-      BridgeParserBlockInfo,
-      BridgeSwapTokenEvent,
-
-
-      /** Discussion section */
-      Discussion,
-      DiscussionLike,
-      StarredDiscussion,
-      DiscussionComment,
-      DiscussionCommentLike,
-
-
-      /** Filter section */
-      IndustryFilter,
-      SpecializationFilter,
-      UserSpecializationFilter,
-      QuestSpecializationFilter,
-
-
-      /** Proposal section */
-      Proposal,
-      ProposalParseBlock,
-      ProposalCreatedEvent,
-      ProposalVoteCastEvent,
-      ProposalExecutedEvent,
-
-
-      /** Statistic */
-      ChatsStatistic,
-      RatingStatistic,
-      QuestsStatistic,
-
-
-      /** WQT/WBNB liquidity */
-      DailyLiquidityWqtWbnb,
-      WqtWbnbSwapEvent,
-      WqtWbnbBlockInfo,
-      WqtWbnbMintEvent,
-      WqtWbnbBurnEvent,
-      WqtWbnbSyncEvent,
-
-
-      /** WQT/WETH liquidity */
-      DailyLiquidityWqtWeth,
-      WqtWethSwapEvent,
-      WqtWethBlockInfo,
-      WqtWethMintEvent,
-      WqtWethBurnEvent,
-      WqtWethSyncEvent,
-
-
-      /** Media section */
-      Media,
-      QuestMedia,
-      ReportMedia,
-      MessageMedia,
-      ProposalMedia,
-      PortfolioMedia,
-      DiscussionMedia,
-      QuestResponseMedia,
-      DiscussionCommentMedia,
-
-      /** Wallet */
-      Wallet,
-
-      /** Referral Program */
-      ReferralProgramReferral,
-      ReferralProgramAffiliate,
-
-
-      /** Referral Program Contract */
-      ReferralProgramParseBlock,
-      ReferralProgramEventPaidReferral,
-      ReferralProgramEventRewardClaimed,
-      ReferralProgramEventRegisteredAffiliate,
-
-
-      /** Pension fund */
-      PensionFundBlockInfo,
-      PensionFundWithdrewEvent,
-      PensionFundReceivedEvent,
-      PensionFundWalletUpdatedEvent,
-
-      /** Saving Product */
-      SavingProductParseBlock,
-      SavingProductBorrowedEvent,
-      SavingProductClaimedEvent,
-      SavingProductReceivedEvent,
-      SavingProductRefundedEvent,
-
-
-      /** Raise view */
-      UserRaiseView,
-      RaiseViewPromotedUserEvent,
-      RaiseViewPromotedQuestEvent,
-      QuestRaiseView,
-      RaiseViewBlockInfo,
-
-      /** Swap USDT */
-      BridgeSwapUsdtParserBlockInfo,
-      BridgeSwapUsdtTokenEvent,
-
-      /** Platform settings */
-      CommissionSettings,
-
-      /** Transaction features */
-      Transaction,
-      FirstWqtTransmissionData,
-
-      /** Reports */
-      Report,
-
-      /** Help & Support */
-      SupportUser,
-    ]
+    models: [...models],
   });
   if (sync)
     await sequelize.sync();
@@ -311,15 +315,6 @@ export * from "./user/Session";
 export * from "./user/UserSpecializationFilter";
 export * from "./admin/Admin";
 export * from "./admin/AdminSession";
-export * from "./chats/Chat";
-export * from "./chats/ChatMember";
-export * from "./chats/Message";
-export * from "./chats/MessageMedia";
-export * from "./chats/InfoMessage";
-export * from "./chats/StarredMessage";
-export * from "./chats/ChatsStatistic";
-export * from "./chats/StarredChat";
-export * from "./chats/QuestChat";
 export * from "./quest/QuestDispute";
 export * from "./bridge/BridgeParserBlockInfo";
 export * from "./bridge/BridgeSwapTokenEvent";
@@ -400,7 +395,18 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
-export * from "./report/Report";
-export * from "./report/ReportMedia";
-export * from "./support-user/SupportUser";
 
+export * from "./chats/GroupChat";
+export * from "./chats/ChatData";
+export * from "./chats/ChatMemberData";
+export * from "./chats/ChatMemberDeletionData";
+export * from "./chats/AdminChatStatistic";
+export * from "./chats/Chat";
+export * from "./chats/ChatMember";
+export * from "./chats/Message";
+export * from "./chats/MessageMedia";
+export * from "./chats/InfoMessage";
+export * from "./chats/StarredMessage";
+export * from "./chats/UserChatsStatistic";
+export * from "./chats/StarredChat";
+export * from "./chats/QuestChat";
