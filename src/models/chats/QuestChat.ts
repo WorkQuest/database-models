@@ -84,7 +84,7 @@ export enum QuestChatStatus {
       as: 'employer',
     }, {
       model: Admin.scope('short'),
-      as: 'admin',
+      as: 'disputeAdmin',
     }],
   }
 }))
