@@ -13,9 +13,11 @@ import {Chat} from "../chats/Chat";
 import {UserRaiseView} from "../raise-view/UserRaiseView";
 import {QuestsStatistic} from "../quest/QuestsStatistic";
 import {Wallet} from "../wallet/Wallet";
-import {ChatsStatistic} from "../chats/ChatsStatistic";
+import {UserChatsStatistic} from "../chats/UserChatsStatistic";
 import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
 import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
+import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting";
+import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
 import {
   BelongsTo,
   Column,
@@ -27,8 +29,6 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting";
-import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
 
 
 export interface SocialInfo {
@@ -259,7 +259,7 @@ export class User extends Model {
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
-
+  @HasOne(() => UserChatsStatistic) chatStatistic: UserChatsStatistic;
   /** RaiseView */
   @HasOne(() => UserRaiseView) raiseView: UserRaiseView;
 
@@ -278,12 +278,11 @@ export class User extends Model {
   @HasOne(() => ReferralProgramReferral) referralUser: ReferralProgramReferral;
 
   /** Aliases for query */
-  @HasOne(() => Chat) chatOfUser: Chat;
-  @HasOne(() => ChatsStatistic) chatStatistic: ChatsStatistic;
+  //@HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
-  @HasMany(() => Chat) chatsOfUser: Chat[];
+  //@HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
   @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
