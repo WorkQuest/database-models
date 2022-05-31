@@ -102,6 +102,12 @@ import { BridgeSwapUsdtParserBlockInfo } from "./bridge-usdt/BridgeSwapUsdtParse
 import { CommissionSettings } from "./platform-settings/CommissionSettings";
 import { FirstWqtTransmissionData } from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import { Transaction } from "./transaction-features/Transaction";
+import { RaiseViewsPlatformStatistic } from "./platform-statistics/RaiseViewsPlatformStatistic";
+import { DisputesPlatformStatistic } from "./platform-statistics/DisputesPlatformStatistic";
+import { ReportsPlatformStatistic } from "./platform-statistics/ReportsPlatformStatistic";
+import { UsersPlatformStatistic } from "./platform-statistics/UsersPlatformStatistic";
+import { DaoPlatformStatistic } from "./platform-statistics/DaoPlatformStatistic";
+import { QuestsPlatformStatistic } from "./platform-statistics/QuestsPlatformStatistic";
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
   const sequelize = new Sequelize(dbLink, {
@@ -272,6 +278,14 @@ export async function initDatabase(dbLink: string, logging = false, sync = false
       /** Transaction features */
       Transaction,
       FirstWqtTransmissionData,
+
+      /** Platform Statistics */
+      RaiseViewsPlatformStatistic,
+      DisputesPlatformStatistic,
+      ReportsPlatformStatistic,
+      QuestsPlatformStatistic,
+      UsersPlatformStatistic,
+      DaoPlatformStatistic,
     ]
   });
   if (sync)
@@ -390,4 +404,10 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
+export * from "./platform-statistics/RaiseViewsPlatformStatistic"
+export * from "./platform-statistics/DisputesPlatformStatistic"
+export * from "./platform-statistics/ReportsPlatformStatistic"
+export * from "./platform-statistics/QuestsPlatformStatistic"
+export * from "./platform-statistics/UsersPlatformStatistic"
+export * from "./platform-statistics/DaoPlatformStatistic"
 
