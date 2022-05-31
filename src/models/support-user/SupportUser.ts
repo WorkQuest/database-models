@@ -5,13 +5,12 @@ import { Table, Model, Column, DataType, ForeignKey, BelongsTo, Scopes } from 's
 
 export enum SupportStatus {
   Rejected = -1,
-  Created,
-  Waiting,
+  Pending,
   Decided
 }
 
 export enum AdminSupportResolved {
-  Waiting = 'Waiting',
+  Pending = 'Pending',
   AnsweredByMail = 'AnsweredByMail',
   RepliedToPrivateMessages = 'RepliedToPrivateMessages',
   Decided = 'Decided'
@@ -23,18 +22,18 @@ export enum AdminSupportResolved {
       exclude: ["createdAt", "updatedAt"]
     },
     short: {
-      attributes: ["supportTicket", "authorId", "email", "title", "description", "status", "decision"]
+      attributes: ["supportTicket", "authorUserId", "email", "title", "description", "status", "decision"]
     }
   }
 }))
 @Table
-export class Support extends Model {
+export class SupportUser extends Model {
   @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => getUUID() }) id: string;
 
   @Column({ type: DataType.INTEGER, autoIncrement: true, allowNull: false }) supportTicket: number;
 
   @ForeignKey(() => User)
-  @Column({ type: DataType.STRING, allowNull: false }) authorId: string;
+  @Column({ type: DataType.STRING, allowNull: false }) authorUserId: string;
 
   @ForeignKey(() => Admin)
   @Column({ type: DataType.STRING }) resolvedByAdminId: string;
