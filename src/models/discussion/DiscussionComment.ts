@@ -16,6 +16,11 @@ import {
   BelongsToMany,
 } from "sequelize-typescript";
 
+export enum DiscussionCommentStatus {
+  Blocked = -1,
+  Created = 0
+}
+
 @Scopes(() => ({
   defaultScope: {
     include: [{
@@ -49,6 +54,7 @@ export class DiscussionComment extends Model {
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) amountLikes: number;
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) amountSubComments: number;
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) level: number;
+  @Column({ type: DataType.SMALLINT, defaultValue: DiscussionCommentStatus.Created }) status: DiscussionCommentStatus;
 
   @BelongsTo(() => User) author: User;
   @BelongsTo(() => Discussion) discussion: Discussion;
