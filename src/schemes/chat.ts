@@ -9,7 +9,15 @@ import {
   searchSchema,
   sortDirectionSchema,
 } from "./common";
-import {ChatType, MessageType, SenderMessageStatus, MessageAction, MemberType, MemberStatus} from "../models";
+import {
+  ChatType,
+  MessageType,
+  SenderMessageStatus,
+  MessageAction,
+  MemberType,
+  MemberStatus,
+  QuestStatus, ReasonForRemovingFromChat
+} from "../models";
 import {questChatSchema} from "./quest";
 
 /** Chat message */
@@ -32,7 +40,8 @@ export const chatDataSchema = Joi.object({
 /** Chat member */
 export const chatMemberDataUnreadCountMessagesSchema = Joi.number().min(0).example(19).label('UnreadCountMessages');
 export const chatMemberTypeSchema = Joi.string().valid(...Object.values(MemberType)).example(MemberType.User).label("ChatMemberType");
-export const chatMemberStatusSchema = Joi.string().valid(...Object.values(MemberStatus)).example(MemberStatus.Active).label("ChatMemberStatus");
+export const chatMemberStatusSchema = Joi.valid(...Object.keys(MemberStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(MemberStatus.Active).label("ChatMemberStatus");
+export const removingFromChatReasonSchema = Joi.string().valid(...Object.values(ReasonForRemovingFromChat)).example(ReasonForRemovingFromChat).label("DeletionReason");
 
 export const chatMemberDataSchema = Joi.object({
   id: idSchema,
@@ -46,6 +55,7 @@ export const chatMemberDeletionDataSchema = Joi.object({
   id: idSchema,
   chatMemberId: idsSchema,
   beforeDeletionMessageId: idSchema,
+  reason: removingFromChatReasonSchema,
   beforeDeletionMessageNumber: messageNumberSchema,
 }).label('ChatMemberDeletionData');
 
