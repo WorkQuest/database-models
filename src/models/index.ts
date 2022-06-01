@@ -107,6 +107,8 @@ import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserB
 import {CommissionSettings} from "./platform-settings/CommissionSettings";
 import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import {Transaction} from "./transaction-features/Transaction";
+import {Report} from "./report/Report";
+import {ReportMedia} from "./report/ReportMedia";
 
 export const models = [
   /** User section */
@@ -280,6 +282,10 @@ export const models = [
   /** Transaction features */
   Transaction,
   FirstWqtTransmissionData,
+
+  /** Reports */
+  Report,
+  ReportMedia,
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -395,6 +401,8 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
+export * from "./report/Report";
+export * from "./report/ReportMedia";
 
 export * from "./chats/GroupChat";
 export * from "./chats/ChatData";
