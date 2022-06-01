@@ -1,8 +1,9 @@
+
 export enum AdminRole {
-  main = "main",
-  dispute = "dispute",
-  advertising = "advertising",
-  kyc = "kyc",
+  Main = "Main",
+  Dispute = "Dispute",
+  Support = "Support",
+  Advertising = "Advertising",
 }
 
 export interface AdminTOTP {
