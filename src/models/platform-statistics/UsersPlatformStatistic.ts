@@ -19,9 +19,9 @@ export class UsersPlatformStatistic extends Model {
 
   // Verification region
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) smsPassed: number;
-  @Column({ type: DataType.INTEGER, defaultValue: 0 }) smsFailed: number;
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) smsNotPassed: number;
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) kycPassed: number;
-  @Column({ type: DataType.INTEGER, defaultValue: 0 }) kycFailed: number;
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) kycNotPassed: number;
 
   // Session region
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) useWeb: number;

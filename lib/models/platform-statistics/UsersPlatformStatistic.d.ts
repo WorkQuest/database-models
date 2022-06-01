@@ -10,9 +10,9 @@ export declare class UsersPlatformStatistic extends Model {
     facebook: number;
     google: number;
     smsPassed: number;
-    smsFailed: number;
+    smsNotPassed: number;
     kycPassed: number;
-    kycFailed: number;
+    kycNotPassed: number;
     useWeb: number;
     useApp: number;
     useWallet: number;
