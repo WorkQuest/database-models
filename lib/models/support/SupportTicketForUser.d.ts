@@ -6,11 +6,9 @@ export declare enum TicketStatus {
     Pending = 0,
     Decided = 1
 }
-export declare enum TicketDecision {
-    Pending = "Pending",
-    AnsweredByMail = "AnsweredByMail",
-    RepliedToPrivateMessages = "RepliedToPrivateMessages",
-    Decided = "Decided"
+export declare enum PostedDecision {
+    OnEmailWithTheAuthor = "OnEmailWithTheAuthor",
+    OnPrivateMessageWithAuthor = "OnPrivateMessageWithAuthor"
 }
 export declare class SupportTicketForUser extends Model {
     id: string;
@@ -21,7 +19,7 @@ export declare class SupportTicketForUser extends Model {
     title: string;
     description: string;
     status: TicketStatus;
-    decision: TicketDecision;
+    decisionPostedIn: PostedDecision;
     completionAt: Date;
     authorUser: User;
     resolvedByAdmin: Admin;
