@@ -1,5 +1,6 @@
 import {Transaction} from "../Transaction";
 import {TransactionStatus} from "../types";
+import {QuestDispute} from "../../quest/QuestDispute";
 import {
   Model,
   Table,
@@ -16,6 +17,9 @@ export enum QuestDisputeDecision {
 
 @Table
 export class QuestDisputeDecisionData extends Model {
+  @ForeignKey(() => QuestDispute)
+  @Column({ type: DataType.STRING, allowNull: false }) disputeId: string;
+
   @ForeignKey(() => Transaction)
   @Column(DataType.STRING) transactionHashDisputeResolution: string;
 
