@@ -108,7 +108,7 @@ import {CommissionSettings} from "./platform-settings/CommissionSettings";
 import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import {Transaction} from "./transaction-features/Transaction";
 import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/QuestDisputeDecisionData"
-import { SupportUser } from "./support-user/SupportUser";
+import { SupportTicketForUser } from "./support/SupportTicketForUser";
 
 export const models = [
   /** User section */
@@ -285,7 +285,7 @@ export const models = [
   QuestDisputeDecisionData,
 
   /** Help & support */
-  SupportUser,
+  SupportTicketForUser,
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -418,4 +418,4 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
-export * from "./support-user/SupportUser";
+export * from "./support/SupportTicketForUser";

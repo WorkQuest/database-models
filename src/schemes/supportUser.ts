@@ -1,45 +1,29 @@
 import * as Joi from "joi";
-import { userEmailSchema } from "./user";
-import { idSchema, limitSchema, offsetSchema, timestampSchema } from "./common";
-import { AdminSupportResolved, SupportStatus } from "../models";
+import {userEmailSchema} from "./user";
+import {TicketDecision, TicketStatus} from "../models";
+import {idSchema, isoDateSchema} from "./common";
 
-export const titleSupportSchema = Joi.string().example('New support post').label('TitleSupport');
-export const descriptionSupportSchema = Joi.string().example('New support description in the post').label('DescriptionSupport');
-export const supportTicketSchema = Joi.number().example(725212).label('SupportTicket')
-export const supportPostStatusSchema = Joi.number().valid(...Object.values(SupportStatus)).example(SupportStatus.Pending).label("SupportPostStatus");
-export const supportPostDecisionSchema = Joi.string().valid(...Object.values(AdminSupportResolved)).example(AdminSupportResolved.Pending).label("SupportPostDecision");
+export const numberSupportTicketSchema = Joi.number().example(725212).label('NumberSupportTicket');
+export const titleSupportTicketSchema = Joi.string().example('New support post').label('TitleSupportTicket');
+export const descriptionSupportTicketSchema = Joi.string().example('New support description in the post').label('DescriptionSupportTicket');
+export const statusSupportTicketSchema = Joi.number().valid(...Object.values(TicketStatus)).example(TicketStatus.Pending).label("StatusSupportTicket");
+export const decisionSupportTicketSchema = Joi.string().valid(...Object.values(TicketDecision)).example(TicketDecision.Pending).label("DecisionSupportTicket");
 
-export const supportCreateSchema = Joi.object({
-  email: userEmailSchema,
-  title: titleSupportSchema,
-  description: descriptionSupportSchema,
-}).label('SupportCreate');
-
-export const supportPostResponseSchema = Joi.object({
-  supportTicket: supportTicketSchema,
-  authorId: idSchema,
-  email: userEmailSchema,
-  title: titleSupportSchema,
-  description: descriptionSupportSchema,
-  status: supportPostStatusSchema,
-  decision: supportPostDecisionSchema
-}).label('SupportPostResponse');
-
-export const supportQuerySchema = Joi.object({
-  status: supportPostStatusSchema,
-  limit: limitSchema,
-  offset: offsetSchema,
-})
-
-export const GetUserSupportTicketsResponseSchema = Joi.object({
+export const supportTicketSchema = Joi.object({
   id: idSchema,
-  number: supportTicketSchema,
-  authorUserId: idSchema,
-  resolvedByAdminId: idSchema,
-  email: userEmailSchema,
-  title: titleSupportSchema,
-  description: descriptionSupportSchema,
-  status: supportPostStatusSchema,
-  decision: supportPostDecisionSchema,
-  completionAt: timestampSchema
-})
+  number: numberSupportTicketSchema,
+  authorId: idSchema,
+  replyToMail: userEmailSchema,
+  title: titleSupportTicketSchema,
+  description: descriptionSupportTicketSchema,
+  status: statusSupportTicketSchema,
+  decision: decisionSupportTicketSchema,
+  completionAt: isoDateSchema,
+}).label('SupportTicket');
+
+// export const supportQuerySchema = Joi.object({
+//   status: statusSupportTicketSchema,
+//   limit: limitSchema,
+//   offset: offsetSchema,
+// })
+

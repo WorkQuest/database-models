@@ -3,31 +3,43 @@ import { getUUID } from '../../utils';
 import { Admin } from '../admin/Admin';
 import { Table, Model, Column, DataType, ForeignKey, BelongsTo, Scopes } from 'sequelize-typescript';
 
-export enum SupportStatus {
+export enum TicketStatus {
   Rejected = -1,
-  Pending,
-  Decided
+  Pending = 0,
+  Decided = 1,
 }
 
-export enum AdminSupportResolved {
+export enum TicketDecision {
   Pending = 'Pending',
   AnsweredByMail = 'AnsweredByMail',
   RepliedToPrivateMessages = 'RepliedToPrivateMessages',
-  Decided = 'Decided'
+  Decided = 'Decided',
 }
 
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["createdAt", "updatedAt"]
+      exclude: ["createdAt"]
     },
     short: {
-      attributes: ["number", "authorUserId", "email", "title", "description", "status", "decision"]
+      attributes: [
+        "title",
+        "number",
+        "status",
+        "authorUserId",
+      ],
+      include: [{
+        model: Admin.scope('short'),
+        as: "resolvedByAdmin",
+      }, {
+        model: User.scope('short'),
+        as: "authorUser",
+      }],
     }
   }
 }))
 @Table
-export class SupportUser extends Model {
+export class SupportTicketForUser extends Model {
   @Column({ type: DataType.STRING, primaryKey: true, defaultValue: () => getUUID() }) id: string;
 
   @Column({ type: DataType.INTEGER, autoIncrement: true, allowNull: false }) number: number;
@@ -38,14 +50,14 @@ export class SupportUser extends Model {
   @ForeignKey(() => Admin)
   @Column({ type: DataType.STRING }) resolvedByAdminId: string;
 
-  @Column({ type: DataType.STRING }) email: string;
+  @Column({ type: DataType.STRING }) replyToMail: string;
   @Column({ type: DataType.STRING, allowNull: false }) title: string;
   @Column({ type: DataType.TEXT, allowNull: false }) description: string;
-  @Column({ type: DataType.SMALLINT, allowNull: false }) status: SupportStatus;
-  @Column({ type: DataType.STRING, allowNull: false }) decision: AdminSupportResolved;
+  @Column({ type: DataType.SMALLINT, allowNull: false }) status: TicketStatus;
+  @Column({ type: DataType.STRING, allowNull: false }) decision: TicketDecision;
 
   @Column({ type: DataType.DATE }) completionAt: Date;
 
-  @BelongsTo(() => User) user: User;
-  @BelongsTo(() => Admin) admin: Admin;
+  @BelongsTo(() => User) authorUser: User;
+  @BelongsTo(() => Admin) resolvedByAdmin: Admin;
 }
