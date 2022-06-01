@@ -6,3 +6,4 @@ export declare const supportPostStatusSchema: Joi.StringSchema;
 export declare const supportPostDecisionSchema: Joi.StringSchema;
 export declare const supportCreateSchema: Joi.ObjectSchema<any>;
 export declare const supportPostResponseSchema: Joi.ObjectSchema<any>;
+export declare const supportQuerySchema: Joi.ObjectSchema<any>;
