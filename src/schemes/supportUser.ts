@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import { userEmailSchema } from "./user";
-import { idSchema, limitSchema, offsetSchema } from "./common";
+import { idSchema, limitSchema, offsetSchema, timestampSchema } from "./common";
 import { AdminSupportResolved, SupportStatus } from "../models";
 
 export const titleSupportSchema = Joi.string().example('New support post').label('TitleSupport');
@@ -29,4 +29,17 @@ export const supportQuerySchema = Joi.object({
   status: supportPostStatusSchema,
   limit: limitSchema,
   offset: offsetSchema,
+})
+
+export const GetUserSupportTicketsResponseSchema = Joi.object({
+  id: idSchema,
+  number: supportTicketSchema,
+  authorUserId: idSchema,
+  resolvedByAdminId: idSchema,
+  email: userEmailSchema,
+  title: titleSupportSchema,
+  description: descriptionSupportSchema,
+  status: supportPostStatusSchema,
+  decision: supportPostDecisionSchema,
+  completionAt: timestampSchema
 })
