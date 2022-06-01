@@ -2,7 +2,7 @@ import {ChatData} from "./ChatData";
 import {GroupChat} from "./GroupChat";
 import {QuestChat} from "./QuestChat";
 import { getUUID } from "../../utils";
-import { ChatMember } from "./ChatMember";
+import { ChatMember, MemberStatus } from "./ChatMember";
 import {StarredChat} from "./StarredChat";
 import {
   Model,
@@ -89,6 +89,9 @@ export enum ChatType {
     }, {
       model: ChatMember,
       as: 'members',
+      where: {
+        status:  MemberStatus.Active
+      },
       include: [{
         model: User,
         as: 'user',
