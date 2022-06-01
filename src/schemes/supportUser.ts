@@ -6,8 +6,8 @@ import { AdminSupportResolved, SupportStatus } from "../models";
 export const titleSupportSchema = Joi.string().example('New support post').label('TitleSupport');
 export const descriptionSupportSchema = Joi.string().example('New support description in the post').label('DescriptionSupport');
 export const supportTicketSchema = Joi.number().example(725212).label('SupportTicket')
-export const supportPostStatusSchema = Joi.string().valid(...Object.values(SupportStatus)).example(SupportStatus).label("SupportPostStatus");
-export const supportPostDecisionSchema = Joi.string().valid(...Object.values(AdminSupportResolved)).example(AdminSupportResolved).label("SupportPostDecision");
+export const supportPostStatusSchema = Joi.number().valid(...Object.values(SupportStatus)).example(SupportStatus.Pending).label("SupportPostStatus");
+export const supportPostDecisionSchema = Joi.string().valid(...Object.values(AdminSupportResolved)).example(AdminSupportResolved.Pending).label("SupportPostDecision");
 
 export const supportCreateSchema = Joi.object({
   email: userEmailSchema,
