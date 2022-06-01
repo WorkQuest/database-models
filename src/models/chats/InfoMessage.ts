@@ -16,6 +16,9 @@ export enum MessageAction {
   EmployerInviteOnQuest = 'EmployerInviteOnQuest',
   WorkerRejectInviteOnQuest = 'WorkerRejectInviteOnQuest',
   WorkerAcceptInviteOnQuest = 'WorkerAcceptInviteOnQuest',
+
+  QuestChatAddDisputeAdmin = 'QuestChatAddDisputeAdmin',
+  QuestChatLeaveDisputeAdmin = 'QuestChatLeaveDisputeAdmin',
 }
 
 @Scopes(() => ({
