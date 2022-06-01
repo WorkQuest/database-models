@@ -93,7 +93,7 @@ export enum ChatType {
         status:  MemberStatus.Active
       },
       include: [{
-        model: User,
+        model: User.unscoped(),
         as: 'user',
         attributes: ["firstName", "lastName", "avatarId"],
         include: [{
