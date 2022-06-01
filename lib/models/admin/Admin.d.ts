@@ -1,6 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { AdminSession } from "./AdminSession";
 import { AdminRole, AdminAccountSettings } from "./types";
+import { AdminChatStatistic } from "../chats/AdminChatStatistic";
 export declare class Admin extends Model {
     id: string;
     email: string;
@@ -10,6 +11,7 @@ export declare class Admin extends Model {
     role: AdminRole;
     settings: AdminAccountSettings;
     isActive: boolean;
+    chatStatistic: AdminChatStatistic;
     sessions: AdminSession[];
     passwordCompare(pwd: string): Promise<any>;
     validateTOTP(TOTP: string): any;

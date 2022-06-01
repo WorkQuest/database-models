@@ -12,7 +12,7 @@ import {
   QuestEmployment,
   QuestsResponseType,
   QuestsResponseStatus,
-  QuestChatStatuses,
+  QuestChatStatus,
   BlackListStatus,
   QuestBlackList,
   DisputeStatus,
@@ -42,12 +42,13 @@ import {contractAddressSchema} from "./liquidity";
 
 /** Quest chat schemes */
 
-export const questChatStatusSchema = Joi.string().valid(...Object.values(QuestChatStatuses)).example(QuestChatStatuses.Open).label('QuestChatStatus');
+export const questChatStatusSchema = Joi.string().valid(...Object.values(QuestChatStatus)).example(QuestChatStatus.Open).label('QuestChatStatus');
 
 export const questChatSchema = Joi.object({
   id: idSchema,
   employerId: idSchema,
   workerId: idSchema,
+  disputeAdminId: idSchema,
   questId: idSchema,
   responseId: idSchema,
   chatId: idSchema,
