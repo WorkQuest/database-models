@@ -11,7 +11,9 @@ export declare enum MessageAction {
     EmployerRejectResponseOnQuest = "EmployerRejectResponseOnQuest",
     EmployerInviteOnQuest = "EmployerInviteOnQuest",
     WorkerRejectInviteOnQuest = "WorkerRejectInviteOnQuest",
-    WorkerAcceptInviteOnQuest = "WorkerAcceptInviteOnQuest"
+    WorkerAcceptInviteOnQuest = "WorkerAcceptInviteOnQuest",
+    QuestChatAddDisputeAdmin = "QuestChatAddDisputeAdmin",
+    QuestChatLeaveDisputeAdmin = "QuestChatLeaveDisputeAdmin"
 }
 export declare class InfoMessage extends Model {
     id: string;
