@@ -113,6 +113,8 @@ import {ReportsPlatformStatistic} from "./platform-statistics/ReportsPlatformSta
 import {UsersPlatformStatistic} from "./platform-statistics/UsersPlatformStatistic";
 import {DaoPlatformStatistic} from "./platform-statistics/DaoPlatformStatistic";
 import {QuestsPlatformStatistic} from "./platform-statistics/QuestsPlatformStatistic";
+import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/QuestDisputeDecisionData"
+import { SupportTicketForUser } from "./support/SupportTicketForUser";
 
 export const models = [
   /** User section */
@@ -286,6 +288,10 @@ export const models = [
   /** Transaction features */
   Transaction,
   FirstWqtTransmissionData,
+  QuestDisputeDecisionData,
+
+  /** Help & support */
+  SupportTicketForUser,
 
   /** Platform Statistics */
   RaiseViewsPlatformStatistic,
@@ -312,6 +318,7 @@ export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
 export * from "./raise-view/types";
+export * from "./transaction-features/types";
 
 export * from "./Media";
 export * from "./quest/Quest";
@@ -409,6 +416,7 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
+export * from "./transaction-features/quest-dispute/QuestDisputeDecisionData";
 export * from "./platform-statistics/RaiseViewsPlatformStatistic"
 export * from "./platform-statistics/DisputesPlatformStatistic"
 export * from "./platform-statistics/ReportsPlatformStatistic"
@@ -430,3 +438,4 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
+export * from "./support/SupportTicketForUser";

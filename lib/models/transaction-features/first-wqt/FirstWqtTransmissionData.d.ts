@@ -1,14 +1,9 @@
 import { Transaction } from "../Transaction";
+import { TransactionStatus } from "../types";
 import { BridgeSwapUsdtTokenEvent } from "../../bridge-usdt/BridgeSwapUsdtTokenEvent";
 import { Model } from "sequelize-typescript";
 export declare enum TransmissionStatusFirstWqt {
-    NoPriceWqtAtMoment = -4,
-    UnknownError = -3,
-    BroadcastError = -2,
-    TransactionError = -1,
-    Pending = 0,
-    InProcess = 1,
-    Success = 2
+    NoPriceWqtAtMoment = -4
 }
 export declare class FirstWqtTransmissionData extends Model {
     transactionHashTransmissionWqt: string;
@@ -16,7 +11,7 @@ export declare class FirstWqtTransmissionData extends Model {
     gasPriceAtMoment: string;
     amount: string;
     platformCommissionCoefficient: number;
-    status: TransmissionStatusFirstWqt;
+    status: TransmissionStatusFirstWqt | TransactionStatus;
     error: string;
     tx: Transaction;
     bridgeEvent: BridgeSwapUsdtTokenEvent;
