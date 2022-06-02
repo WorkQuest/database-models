@@ -156,6 +156,7 @@ export const chatQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
   q: searchSchema,
+  type: chatTypeSchema,
   sort: Joi.object({
     lastMessageDate: sortDirectionSchema,
   }).default({ lastMessageDate: 'DESC' }).label('SortChats'),
