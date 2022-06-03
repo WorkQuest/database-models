@@ -107,6 +107,8 @@ import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserB
 import {CommissionSettings} from "./platform-settings/CommissionSettings";
 import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import {Transaction} from "./transaction-features/Transaction";
+import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/QuestDisputeDecisionData"
+import { SupportTicketForUser } from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
 
@@ -272,16 +274,25 @@ export const models = [
   QuestRaiseView,
   RaiseViewBlockInfo,
 
+
   /** Swap USDT */
   BridgeSwapUsdtParserBlockInfo,
   BridgeSwapUsdtTokenEvent,
 
+
   /** Platform settings */
   CommissionSettings,
+
 
   /** Transaction features */
   Transaction,
   FirstWqtTransmissionData,
+  QuestDisputeDecisionData,
+
+
+  /** Help & support */
+  SupportTicketForUser,
+
 
   /** Reports */
   Report,
@@ -304,6 +315,7 @@ export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
 export * from "./raise-view/types";
+export * from "./transaction-features/types";
 
 export * from "./Media";
 export * from "./quest/Quest";
@@ -401,8 +413,10 @@ export * from "./bridge-usdt/BridgeSwapUsdtTokenEvent";
 export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
+export * from "./transaction-features/quest-dispute/QuestDisputeDecisionData";
 export * from "./report/Report";
 export * from "./report/ReportMedia";
+export * from "./support/SupportTicketForUser";
 
 export * from "./chats/GroupChat";
 export * from "./chats/ChatData";
