@@ -109,6 +109,8 @@ import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWq
 import {Transaction} from "./transaction-features/Transaction";
 import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/QuestDisputeDecisionData"
 import { SupportTicketForUser } from "./support/SupportTicketForUser";
+import {Report} from "./report/Report";
+import {ReportMedia} from "./report/ReportMedia";
 
 export const models = [
   /** User section */
@@ -272,20 +274,29 @@ export const models = [
   QuestRaiseView,
   RaiseViewBlockInfo,
 
+
   /** Swap USDT */
   BridgeSwapUsdtParserBlockInfo,
   BridgeSwapUsdtTokenEvent,
 
+
   /** Platform settings */
   CommissionSettings,
+
 
   /** Transaction features */
   Transaction,
   FirstWqtTransmissionData,
   QuestDisputeDecisionData,
 
+
   /** Help & support */
   SupportTicketForUser,
+
+
+  /** Reports */
+  Report,
+  ReportMedia,
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -403,6 +414,9 @@ export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
 export * from "./transaction-features/quest-dispute/QuestDisputeDecisionData";
+export * from "./report/Report";
+export * from "./report/ReportMedia";
+export * from "./support/SupportTicketForUser";
 
 export * from "./chats/GroupChat";
 export * from "./chats/ChatData";
@@ -418,4 +432,3 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
-export * from "./support/SupportTicketForUser";
