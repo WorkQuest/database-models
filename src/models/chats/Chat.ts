@@ -2,7 +2,7 @@ import {ChatData} from "./ChatData";
 import {GroupChat} from "./GroupChat";
 import {QuestChat} from "./QuestChat";
 import { getUUID } from "../../utils";
-import { ChatMember } from "./ChatMember";
+import { ChatMember, MemberStatus } from "./ChatMember";
 import {StarredChat} from "./StarredChat";
 import {
   Model,
@@ -13,6 +13,9 @@ import {
   HasMany,
   DataType,
 } from "sequelize-typescript";
+import { Message } from "./Message";
+import { User } from "../user/User";
+import { Media } from "../Media";
 
 export enum ChatType {
   Private = 'Private',
@@ -79,9 +82,25 @@ export enum ChatType {
     }, {
       model: ChatData,
       as: 'chatData',
+      include: [{
+        model: Message,
+        as: 'lastMessage'
+      }]
     }, {
       model: ChatMember,
       as: 'members',
+      where: {
+        status:  MemberStatus.Active
+      },
+      include: [{
+        model: User.unscoped(),
+        as: 'user',
+        attributes: ["firstName", "lastName", "avatarId"],
+        include: [{
+          model: Media,
+          as: 'avatar',
+        }]
+      }]
     }]
   }
 }))
