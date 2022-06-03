@@ -18,7 +18,7 @@ import {
 
 export enum DiscussionCommentStatus {
   Blocked = -1,
-  Created = 0
+  Created = 0,
 }
 
 @Scopes(() => ({
