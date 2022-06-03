@@ -12,7 +12,7 @@ export declare enum ReportStatus {
 export declare enum ReportEntityType {
     User = "User",
     Quest = "Quest",
-    Comment = "Comment"
+    DiscussionComment = "DiscussionComment"
 }
 export declare const reportEntities: {
     User: {
@@ -23,7 +23,7 @@ export declare const reportEntities: {
         entity: typeof Quest;
         statuses: typeof QuestStatus;
     };
-    Comment: {
+    DiscussionComment: {
         entity: typeof DiscussionComment;
         statuses: typeof DiscussionCommentStatus;
     };

@@ -16,13 +16,13 @@ export enum ReportStatus {
 export enum ReportEntityType {
   User = 'User',
   Quest = 'Quest',
-  Comment = 'Comment'
+  DiscussionComment = 'DiscussionComment'
 }
 
 export const reportEntities = {
   User: { entity: User, statuses: UserStatus },
   Quest: { entity: Quest, statuses: QuestStatus },
-  Comment: { entity: DiscussionComment, statuses: DiscussionCommentStatus }
+  DiscussionComment: { entity: DiscussionComment, statuses: DiscussionCommentStatus }
 }
 
 @Table
