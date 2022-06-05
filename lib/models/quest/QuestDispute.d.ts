@@ -6,7 +6,8 @@ export declare enum DisputeStatus {
     Pending = 0,
     Created = 1,
     InProgress = 2,
-    Closed = 3
+    PendingClosed = 3,
+    Closed = 4
 }
 export declare enum DisputeReason {
     NoAnswer = "NoAnswer",
