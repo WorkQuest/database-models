@@ -20,8 +20,8 @@ export const supportTicketSchema = Joi.object({
   status: statusSupportTicketSchema,
   decisionPostedIn: postedDecisionSupportTicketSchema,
   decisionDescription: descriptionSupportTicketSchema,
-  completionAt: isoDateSchema,
-  acceptedAt: isoDateSchema,
+  takenAt: isoDateSchema,
+  decidedAt: isoDateSchema,
   authorUser: userShortSchema,
   resolvedByAdmin: adminSchema,
 }).label('UserSupportTicket');
