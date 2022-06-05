@@ -42,7 +42,7 @@ import {contractAddressSchema} from "./liquidity";
 
 /** Quest chat schemes */
 
-export const questChatStatusSchema = Joi.string().valid(...Object.values(QuestChatStatus)).example(QuestChatStatus.Open).label('QuestChatStatus');
+export const questChatStatusSchema = Joi.number().valid(...Object.keys(QuestChatStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestChatStatus.Open).label('QuestChatStatus');
 
 export const questChatSchema = Joi.object({
   id: idSchema,

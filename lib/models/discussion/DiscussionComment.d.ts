@@ -3,6 +3,10 @@ import { User } from "../user/User";
 import { Discussion } from "./Discussion";
 import { DiscussionCommentLike } from "./DiscussionCommentLike";
 import { Model } from "sequelize-typescript";
+export declare enum DiscussionCommentStatus {
+    Blocked = -1,
+    Created = 0
+}
 export declare class DiscussionComment extends Model {
     id: string;
     authorId: string;
@@ -12,6 +16,7 @@ export declare class DiscussionComment extends Model {
     amountLikes: number;
     amountSubComments: number;
     level: number;
+    status: DiscussionCommentStatus;
     author: User;
     discussion: Discussion;
     rootComment: DiscussionComment;
