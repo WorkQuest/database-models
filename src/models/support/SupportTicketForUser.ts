@@ -56,7 +56,7 @@ export class SupportTicketForUser extends Model {
   @Column({ type: DataType.TEXT }) decisionDescription: string;
 
   @Column({ type: DataType.DATE }) acceptedAt: Date;
-  @Column({ type: DataType.DATE }) completionAt: Date;
+  @Column({ type: DataType.DATE }) completedAt: Date;
 
   @BelongsTo(() => User) authorUser: User;
   @BelongsTo(() => Admin) resolvedByAdmin: Admin;
