@@ -26,24 +26,8 @@ export const supportTicketSchema = Joi.object({
   resolvedByAdmin: adminSchema,
 }).label('UserSupportTicket');
 
-export const supportOnlyTicketSchema = Joi.object({
-  id: idSchema,
-  number: numberSupportTicketSchema,
-  authorId: idSchema,
-  replyToMail: userEmailSchema,
-  title: titleSupportTicketSchema,
-  description: descriptionSupportTicketSchema,
-  status: statusSupportTicketSchema,
-  decisionPostedIn: postedDecisionSupportTicketSchema,
-  decisionDescription: descriptionSupportTicketSchema,
-  completionAt: isoDateSchema,
-  acceptedAt: isoDateSchema,
-}).label('UserSupportTicket');
-
 export const supportTicketQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
   status: statusSupportTicketSchema,
 }).label('SupportTicketQuery')
-
-export const supportTicketsForGetSchema = Joi.array().items(supportTicketSchema).label('SupportTicketForGet');
