@@ -313,7 +313,7 @@ export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(Disput
 export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.AnotherReason).example(DisputeReason.AnotherReason).label('DisputeReason');
 export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
 export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
-export const questDisputeDecisionSchema = Joi.number().valid(...Object.keys(DisputeDecision).map(key => parseInt(key)).filter(key => !isNaN(key))).example(DisputeDecision.AcceptWork).label('DisputeDecision');
+export const questDisputeDecisionSchema = Joi.string().valid(...Object.values(DisputeDecision)).example(DisputeDecision.AcceptWork).label("DisputeDecision");
 export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
 export const questDisputeReviewMessageTextSchema = Joi.string().example("Hello world!").label('QuestDisputeMessageText');
 
