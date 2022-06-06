@@ -79,7 +79,7 @@ export enum ChatType {
       as: 'questChat',
       include: [{
         model: Quest.unscoped(),
-        as: 'quest'
+        as: 'quest',
         attributes: ["id", "title"]
       }],
     }, {
