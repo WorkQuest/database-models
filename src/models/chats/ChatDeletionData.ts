@@ -9,6 +9,7 @@ import {
   BelongsTo,
   ForeignKey, Scopes,
 } from "sequelize-typescript";
+import { Chat } from "./Chat";
 
 @Scopes(() => ({
   defaultScope: {
@@ -25,6 +26,9 @@ import {
 export class ChatDeletionData extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
 
+  @ForeignKey(() => Chat)
+  @Column({type: DataType.STRING, allowNull: false}) chatId: string;
+
   @ForeignKey(() => User)
   @Column({type: DataType.STRING, allowNull: false}) userId: string;
 
@@ -33,6 +37,7 @@ export class ChatDeletionData extends Model {
 
   @Column({type: DataType.INTEGER, allowNull: false}) beforeDeletionMessageNumber: string;
 
-  @BelongsTo(() => User) chatMember: User;
+  @BelongsTo(() => Chat) chat: Chat;
+  @BelongsTo(() => User) user: User;
   @BelongsTo(() => Message) beforeDeletionMessage: Message;
 }
