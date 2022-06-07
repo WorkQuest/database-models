@@ -10,6 +10,8 @@ export const descriptionSupportTicketSchema = Joi.string().example('New support 
 export const statusSupportTicketSchema = Joi.number().valid(...Object.values(TicketStatus)).example(TicketStatus.Pending).label("StatusSupportTicket");
 export const postedDecisionSupportTicketSchema = Joi.string().valid(...Object.values(PostedDecision)).example(PostedDecision.OnEmailWithTheAuthor).label("PostedDecisionSupportTicket");
 
+export const supportTicketStatusesSchema = Joi.array().items(statusSupportTicketSchema).label('SupportTicketStatuses');
+
 export const supportTicketSchema = Joi.object({
   id: idSchema,
   number: numberSupportTicketSchema,
@@ -29,5 +31,5 @@ export const supportTicketSchema = Joi.object({
 export const supportTicketQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
-  status: statusSupportTicketSchema,
+  statuses: supportTicketStatusesSchema,
 }).label('SupportTicketQuery')

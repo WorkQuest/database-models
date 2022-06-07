@@ -35,6 +35,7 @@ export declare class Report extends Model {
     title: string;
     description: string;
     status: ReportStatus;
+    number: number;
     entityType: ReportEntityType;
     entityId: string;
     resolvedAt: Date;

@@ -16,6 +16,7 @@ import {
 import { Message } from "./Message";
 import { User } from "../user/User";
 import { Media } from "../Media";
+import { Quest } from "../quest/Quest";
 
 export enum ChatType {
   Private = 'Private',
@@ -76,15 +77,33 @@ export enum ChatType {
     include: [{
       model: QuestChat,
       as: 'questChat',
+      include: [{
+        model: Quest.unscoped(),
+        as: 'quest',
+        attributes: ["id", "title"]
+      }],
     }, {
       model: GroupChat,
-      as: 'groupChat'
+      as: 'groupChat',
     }, {
       model: ChatData,
       as: 'chatData',
       include: [{
         model: Message,
-        as: 'lastMessage'
+        as: 'lastMessage',
+        include: [{
+          model: ChatMember,
+          as: 'sender',
+          include: [{
+            model: User.unscoped(),
+            as: 'user',
+            attributes: ["id", "avatarId", "firstName", "lastName"],
+            include: [{
+              model: Media,
+              as: 'avatar',
+            }],
+          }],
+        }]
       }]
     }, {
       model: ChatMember,

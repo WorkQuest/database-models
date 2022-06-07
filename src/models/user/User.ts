@@ -162,7 +162,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
-    attributes: ["id", "firstName", "lastName"],
+    attributes: ["id", "firstName", "lastName", "role"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
@@ -175,7 +175,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }]
   },
   shortWithAdditionalInfo: {
-    attributes: ["id", "firstName", "lastName", "additionalInfo"],
+    attributes: ["id", "firstName", "lastName", "additionalInfo", "role"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
