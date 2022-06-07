@@ -62,9 +62,9 @@ export declare enum UsersPlatformStatisticFields {
     UseWallet = "useWallet",
     Use2FA = "use2FA"
 }
-export declare const daoPlatformStatisticFieldsArray: DaoPlatformStatisticFields[];
-export declare const disputesPlatformStatisticFieldsArray: DisputesPlatformStatisticFields[];
-export declare const questsPlatformStatisticFieldsArray: QuestsPlatformStatisticFields[];
-export declare const raiseViewsPlatformStatisticFieldsArray: RaiseViewsPlatformStatisticFields[];
-export declare const reportsPlatformStatisticFieldsArray: ReportsPlatformStatisticFields[];
-export declare const usersPlatformStatisticFieldsArray: UsersPlatformStatisticFields[];
+export declare const daoPlatformStatisticFieldsArray: string[];
+export declare const disputesPlatformStatisticFieldsArray: string[];
+export declare const questsPlatformStatisticFieldsArray: string[];
+export declare const raiseViewsPlatformStatisticFieldsArray: string[];
+export declare const reportsPlatformStatisticFieldsArray: string[];
+export declare const usersPlatformStatisticFieldsArray: string[];

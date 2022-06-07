@@ -68,9 +68,9 @@ export enum UsersPlatformStatisticFields {
   Use2FA = 'use2FA',
 }
 
-export const daoPlatformStatisticFieldsArray = Object.values(DaoPlatformStatisticFields);
-export const disputesPlatformStatisticFieldsArray = Object.values(DisputesPlatformStatisticFields);
-export const questsPlatformStatisticFieldsArray = Object.values(QuestsPlatformStatisticFields);
-export const raiseViewsPlatformStatisticFieldsArray = Object.values(RaiseViewsPlatformStatisticFields);
-export const reportsPlatformStatisticFieldsArray = Object.values(ReportsPlatformStatisticFields);
-export const usersPlatformStatisticFieldsArray = Object.values(UsersPlatformStatisticFields);
+export const daoPlatformStatisticFieldsArray = Object.values(DaoPlatformStatisticFields) as string[];
+export const disputesPlatformStatisticFieldsArray = Object.values(DisputesPlatformStatisticFields) as string[];
+export const questsPlatformStatisticFieldsArray = Object.values(QuestsPlatformStatisticFields) as string[];
+export const raiseViewsPlatformStatisticFieldsArray = Object.values(RaiseViewsPlatformStatisticFields) as string[];
+export const reportsPlatformStatisticFieldsArray = Object.values(ReportsPlatformStatisticFields) as string[];
+export const usersPlatformStatisticFieldsArray = Object.values(UsersPlatformStatisticFields) as string[];
