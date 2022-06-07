@@ -122,6 +122,11 @@ export const betweenPriceSchema = Joi.object({
   to: questPriceSchema.required(),
 }).label('BetweenPrice');
 
+export const createdBetweenSchema = Joi.object({
+  from: isoDateSchema.required(),
+  to: isoDateSchema.required(),
+}).label('CreatedBetween');
+
 export const questsPayloadSchema = Joi.object({
   specializations: specializationsFilerSchema.unique().default(null),
 }).label('QuestsPayload');
