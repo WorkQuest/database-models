@@ -39,6 +39,8 @@ export class Report extends Model {
   @Column({ type: DataType.TEXT, allowNull: false }) description: string;
   @Column({ type: DataType.SMALLINT, defaultValue: ReportStatus.Created }) status: ReportStatus;
 
+  @Column({ type: DataType.INTEGER, autoIncrement: true }) number: number;
+
   @Column({ type: DataType.STRING, allowNull: false }) entityType: ReportEntityType;
   @Column({ type: DataType.STRING, allowNull: false }) entityId: string;
 
