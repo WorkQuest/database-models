@@ -127,6 +127,11 @@ export const createdBetweenSchema = Joi.object({
   to: timestampSchema.required(),
 }).label('CreatedBetween');
 
+export const updatedBetweenSchema = Joi.object({
+  from: timestampSchema.required(),
+  to: timestampSchema.required(),
+}).label('UpdatedBetween');
+
 export const questsPayloadSchema = Joi.object({
   specializations: specializationsFilerSchema.unique().default(null),
 }).label('QuestsPayload');
