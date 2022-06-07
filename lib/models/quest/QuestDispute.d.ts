@@ -6,7 +6,8 @@ export declare enum DisputeStatus {
     Pending = 0,
     Created = 1,
     InProgress = 2,
-    Closed = 3
+    PendingClosed = 3,
+    Closed = 4
 }
 export declare enum DisputeReason {
     NoAnswer = "NoAnswer",
@@ -17,9 +18,9 @@ export declare enum DisputeReason {
     NoConfirmationOfComplete = "NoConfirmationOfComplete"
 }
 export declare enum DisputeDecision {
-    AcceptWork = 0,
-    RejectWork = 1,
-    Rework = 2
+    Rework = "Rework",
+    AcceptWork = "AcceptWork",
+    RejectWork = "RejectWork"
 }
 export declare class QuestDispute extends Model {
     id: string;

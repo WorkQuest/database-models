@@ -52,9 +52,11 @@ export class SupportTicketForUser extends Model {
   @Column({ type: DataType.STRING, allowNull: false }) title: string;
   @Column({ type: DataType.TEXT, allowNull: false }) description: string;
   @Column({ type: DataType.SMALLINT, allowNull: false }) status: TicketStatus;
-  @Column(DataType.STRING) decisionPostedIn: PostedDecision;
+  @Column({ type: DataType.STRING }) decisionPostedIn: PostedDecision;
+  @Column({ type: DataType.TEXT }) decisionDescription: string;
 
-  @Column({ type: DataType.DATE }) completionAt: Date;
+  @Column({ type: DataType.DATE }) takenAt: Date;
+  @Column({ type: DataType.DATE }) decidedAt: Date;
 
   @BelongsTo(() => User) authorUser: User;
   @BelongsTo(() => Admin) resolvedByAdmin: Admin;

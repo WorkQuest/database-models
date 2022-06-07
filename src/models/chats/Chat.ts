@@ -2,7 +2,7 @@ import {ChatData} from "./ChatData";
 import {GroupChat} from "./GroupChat";
 import {QuestChat} from "./QuestChat";
 import { getUUID } from "../../utils";
-import { ChatMember } from "./ChatMember";
+import { ChatMember, MemberStatus } from "./ChatMember";
 import {StarredChat} from "./StarredChat";
 import {
   Model,
@@ -13,6 +13,10 @@ import {
   HasMany,
   DataType,
 } from "sequelize-typescript";
+import { Message } from "./Message";
+import { User } from "../user/User";
+import { Media } from "../Media";
+import { Quest } from "../quest/Quest";
 
 export enum ChatType {
   Private = 'Private',
@@ -26,13 +30,13 @@ export enum ChatType {
       exclude: ["updatedAt"],
     },
     include: [{
-      model: GroupChat,//.scope('forChatsList'),
+      model: GroupChat,
       as: 'groupChat',
     }, {
-      model: QuestChat,//.scope('forChatsList'),
+      model: QuestChat,
       as: 'questChat',
     }, {
-      model: ChatData,//.scope('forChatsList'),
+      model: ChatData,
       as: 'chatData',
     }],
   },
@@ -41,10 +45,10 @@ export enum ChatType {
       exclude: ["updatedAt"]
     },
     include: [{
-      model: GroupChat,//.scope('forChat'),
+      model: GroupChat,
       as: 'groupChat',
     }, {
-      model: ChatData,//.scope('forChat'),
+      model: ChatData,
       as: 'chatData',
     }],
   },
@@ -53,10 +57,10 @@ export enum ChatType {
       exclude: ["updatedAt"]
     },
     include: [{
-      model: QuestChat,//.scope('forChat'),
+      model: QuestChat,
       as: 'questChat',
     }, {
-      model: ChatData,//.scope('forChat'),
+      model: ChatData,
       as: 'chatData',
     }],
   },
@@ -65,7 +69,7 @@ export enum ChatType {
       exclude: ["updatedAt"],
     },
     include: [{
-      model: ChatData,//.scope('forChat'),
+      model: ChatData,
       as: 'chatData',
     }],
   },
@@ -73,15 +77,36 @@ export enum ChatType {
     include: [{
       model: QuestChat,
       as: 'questChat',
+      include: [{
+        model: Quest.unscoped(),
+        as: 'quest',
+        attributes: ["id", "title"]
+      }],
     }, {
       model: GroupChat,
-      as: 'groupChat'
+      as: 'groupChat',
     }, {
       model: ChatData,
       as: 'chatData',
+      include: [{
+        model: Message,
+        as: 'lastMessage'
+      }]
     }, {
       model: ChatMember,
       as: 'members',
+      where: {
+        status:  MemberStatus.Active
+      },
+      include: [{
+        model: User.unscoped(),
+        as: 'user',
+        attributes: ["firstName", "lastName", "avatarId"],
+        include: [{
+          model: Media,
+          as: 'avatar',
+        }]
+      }]
     }]
   }
 }))
@@ -90,16 +115,6 @@ export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
 
-  // @ForeignKey(() => User) /** If group chat */
-  // @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string; //TODO/////////////////
-
-  // @ForeignKey(() => Message)
-  // @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
-  // @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
-
-  // @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
-
-  // @HasMany(() => Message) messages: Message[];
   @HasMany(() => ChatMember) members: ChatMember[];
 
   @HasOne(() => ChatMember) meMember: ChatMember;

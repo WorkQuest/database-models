@@ -18,7 +18,7 @@ import {
   MemberStatus,
   QuestStatus, ReasonForRemovingFromChat
 } from "../models";
-import {questChatSchema} from "./quest";
+import { questChatSchema, questChatStatusSchema } from "./quest";
 
 /** Chat message */
 export const messageTypeSchema = Joi.string().valid(...Object.values(MessageType)).example(MessageType.Message).label("MessageType");
@@ -156,6 +156,8 @@ export const chatQuerySchema = Joi.object({
   offset: offsetSchema,
   limit: limitSchema,
   q: searchSchema,
+  type: chatTypeSchema,
+  questChatStatus: questChatStatusSchema,
   sort: Joi.object({
     lastMessageDate: sortDirectionSchema,
   }).default({ lastMessageDate: 'DESC' }).label('SortChats'),

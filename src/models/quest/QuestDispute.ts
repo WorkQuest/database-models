@@ -8,7 +8,8 @@ export enum DisputeStatus {
   Pending = 0,
   Created = 1,
   InProgress = 2,
-  Closed = 3,
+  PendingClosed = 3,
+  Closed = 4,
 }
 
 export enum DisputeReason {
@@ -21,9 +22,9 @@ export enum DisputeReason {
 }
 
 export enum DisputeDecision {
-  AcceptWork = 0,
-  RejectWork = 1,
-  Rework = 2,
+  Rework = 'Rework',
+  AcceptWork = 'AcceptWork',
+  RejectWork = 'RejectWork',
 }
 
 @Scopes(() => ({
@@ -63,7 +64,7 @@ export class QuestDispute extends Model {
 
   @Column({ type: DataType.TEXT, allowNull: false }) problemDescription: string;
   @Column(DataType.TEXT) decisionDescription: string;
-  @Column(DataType.SMALLINT) decision: DisputeDecision;
+  @Column(DataType.STRING) decision: DisputeDecision;
 
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;

@@ -20,7 +20,9 @@ export declare class SupportTicketForUser extends Model {
     description: string;
     status: TicketStatus;
     decisionPostedIn: PostedDecision;
-    completionAt: Date;
+    decisionDescription: string;
+    takenAt: Date;
+    decidedAt: Date;
     authorUser: User;
     resolvedByAdmin: Admin;
 }

@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-export declare const questChatStatusSchema: Joi.StringSchema;
+export declare const questChatStatusSchema: Joi.NumberSchema;
 export declare const questChatSchema: Joi.ObjectSchema<any>;
 export declare const questChatOnlyIdsSchema: Joi.ObjectSchema<any>;
 export declare const questStatusSchema: Joi.NumberSchema;
@@ -43,7 +43,7 @@ export declare const questDisputeStatusSchema: Joi.NumberSchema;
 export declare const questDisputeReasonSchema: Joi.StringSchema;
 export declare const questDisputeProblemDescriptionSchema: Joi.StringSchema;
 export declare const questDisputeDecisionDescriptionSchema: Joi.StringSchema;
-export declare const questDisputeDecisionSchema: Joi.NumberSchema;
+export declare const questDisputeDecisionSchema: Joi.StringSchema;
 export declare const questDisputeReviewMarkSchema: Joi.NumberSchema;
 export declare const questDisputeReviewMessageTextSchema: Joi.StringSchema;
 export declare const questDisputeStatusesSchema: Joi.ArraySchema;

@@ -42,7 +42,7 @@ import {contractAddressSchema} from "./liquidity";
 
 /** Quest chat schemes */
 
-export const questChatStatusSchema = Joi.string().valid(...Object.values(QuestChatStatus)).example(QuestChatStatus.Open).label('QuestChatStatus');
+export const questChatStatusSchema = Joi.number().valid(...Object.keys(QuestChatStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(QuestChatStatus.Open).label('QuestChatStatus');
 
 export const questChatSchema = Joi.object({
   id: idSchema,
@@ -313,7 +313,7 @@ export const questDisputeStatusSchema = Joi.number().valid(...Object.keys(Disput
 export const questDisputeReasonSchema = Joi.string().max(255).valid(...Object.values(DisputeReason)).default(DisputeReason.AnotherReason).example(DisputeReason.AnotherReason).label('DisputeReason');
 export const questDisputeProblemDescriptionSchema = Joi.string().example('The problem is...').label('ProblemDescription');
 export const questDisputeDecisionDescriptionSchema = Joi.string().example('Decision is...').label('DecisionDescription');
-export const questDisputeDecisionSchema = Joi.number().valid(...Object.keys(DisputeDecision).map(key => parseInt(key)).filter(key => !isNaN(key))).example(DisputeDecision.AcceptWork).label('DisputeDecision');
+export const questDisputeDecisionSchema = Joi.string().valid(...Object.values(DisputeDecision)).example(DisputeDecision.AcceptWork).label("DisputeDecision");
 export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Mark');
 export const questDisputeReviewMessageTextSchema = Joi.string().example("Hello world!").label('QuestDisputeMessageText');
 

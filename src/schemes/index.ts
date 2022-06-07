@@ -21,3 +21,4 @@ export * from "./questRaiseView";
 export * from "./savingProduct";
 export * from "./bridge";
 export * from "./supportUser";
+export * from "./report";
