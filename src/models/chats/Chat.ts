@@ -17,6 +17,7 @@ import { Message } from "./Message";
 import { User } from "../user/User";
 import { Media } from "../Media";
 import { Quest } from "../quest/Quest";
+import { ChatMemberData } from "./ChatMemberData";
 
 export enum ChatType {
   Private = 'Private',
@@ -119,6 +120,10 @@ export enum ChatType {
           model: Media,
           as: 'avatar',
         }]
+      }, {
+        model: ChatMemberData,
+        attributes: ['unreadCountMessages'],
+        as: 'chatMemberData',
       }]
     }]
   }
