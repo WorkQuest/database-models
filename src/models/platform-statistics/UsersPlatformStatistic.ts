@@ -28,6 +28,12 @@ export class UsersPlatformStatistic extends Model {
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) useApp: number;
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) useWallet: number;
 
+  // Rating Statistic region
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) noStatus: number;
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) verified: number;
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) reliable: number;
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) topRanked: number;
+
   // Security region
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) use2FA: number;
 

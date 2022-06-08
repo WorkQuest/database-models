@@ -67,6 +67,10 @@ export enum UsersPlatformStatisticFields {
   UseApp = 'useApp',
   UseWallet = 'useWallet',
   Use2FA = 'use2FA',
+  NoStatus = 'noStatus',
+  Verified = 'verified',
+  Reliable = 'reliable',
+  TopRanked = 'topRanked',
 }
 
 export const daoPlatformStatisticFieldsArray = Object.values(DaoPlatformStatisticFields) as string[];

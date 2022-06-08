@@ -16,6 +16,10 @@ export declare class UsersPlatformStatistic extends Model {
     useWeb: number;
     useApp: number;
     useWallet: number;
+    noStatus: number;
+    verified: number;
+    reliable: number;
+    topRanked: number;
     use2FA: number;
     date: Date;
 }

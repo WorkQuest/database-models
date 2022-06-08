@@ -61,7 +61,11 @@ export declare enum UsersPlatformStatisticFields {
     UseWeb = "useWeb",
     UseApp = "useApp",
     UseWallet = "useWallet",
-    Use2FA = "use2FA"
+    Use2FA = "use2FA",
+    NoStatus = "noStatus",
+    Verified = "verified",
+    Reliable = "reliable",
+    TopRanked = "topRanked"
 }
 export declare const daoPlatformStatisticFieldsArray: string[];
 export declare const disputesPlatformStatisticFieldsArray: string[];
