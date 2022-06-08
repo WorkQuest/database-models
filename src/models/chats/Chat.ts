@@ -18,6 +18,7 @@ import { User } from "../user/User";
 import { Media } from "../Media";
 import { Quest } from "../quest/Quest";
 import { ChatMemberData } from "./ChatMemberData";
+import { QuestDispute } from "../quest/QuestDispute";
 
 export enum ChatType {
   Private = 'Private',
@@ -80,6 +81,15 @@ export enum ChatType {
       as: 'questChat',
       include: [{
         model: Quest.unscoped(),
+        include: [{
+          model: QuestDispute.unscoped(),
+          as: 'openDispute',
+          required: false,
+          attributes: [
+            'id',
+            'status',
+          ],
+        }],
         as: 'quest',
         attributes: ["id", "title"]
       }],
@@ -115,7 +125,7 @@ export enum ChatType {
       include: [{
         model: User.unscoped(),
         as: 'user',
-        attributes: ["firstName", "lastName", "avatarId"],
+        attributes: ["firstName", "lastName", "avatarId", "role"],
         include: [{
           model: Media,
           as: 'avatar',
