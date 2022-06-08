@@ -25,11 +25,13 @@ export declare enum QuestsPlatformStatisticFields {
     Sum = "sum"
 }
 export declare enum RaiseViewsPlatformStatisticFields {
+    ProfilesSum = "profilesSum",
     ProfilesTotal = "profilesTotal",
     ProfilesGoldPlus = "profilesGoldPlus",
     ProfilesGold = "profilesGold",
     ProfilesSilver = "profilesSilver",
     ProfilesBronze = "profilesBronze",
+    QuestsSum = "questsSum",
     QuestsTotal = "questsTotal",
     QuestsGoldPlus = "questsGoldPlus",
     QuestsGold = "questsGold",
