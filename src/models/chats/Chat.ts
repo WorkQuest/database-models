@@ -90,7 +90,20 @@ export enum ChatType {
       as: 'chatData',
       include: [{
         model: Message,
-        as: 'lastMessage'
+        as: 'lastMessage',
+        include: [{
+          model: ChatMember,
+          as: 'sender',
+          include: [{
+            model: User.unscoped(),
+            as: 'user',
+            attributes: ["id", "avatarId", "firstName", "lastName"],
+            include: [{
+              model: Media,
+              as: 'avatar',
+            }],
+          }],
+        }]
       }]
     }, {
       model: ChatMember,

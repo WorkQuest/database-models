@@ -35,7 +35,7 @@ import {
   workPlacesSchema,
   sortDirectionSchema,
   locationPlaceNameSchema,
-  searchByNorthAndSouthCoordinatesSchema,
+  searchByNorthAndSouthCoordinatesSchema, timestampSchema,
 
 } from './common';
 import {contractAddressSchema} from "./liquidity";
@@ -121,6 +121,16 @@ export const betweenPriceSchema = Joi.object({
   from: questPriceSchema.required(),
   to: questPriceSchema.required(),
 }).label('BetweenPrice');
+
+export const createdBetweenSchema = Joi.object({
+  from: timestampSchema.required(),
+  to: timestampSchema.required(),
+}).label('CreatedBetween');
+
+export const updatedBetweenSchema = Joi.object({
+  from: timestampSchema.required(),
+  to: timestampSchema.required(),
+}).label('UpdatedBetween');
 
 export const questsPayloadSchema = Joi.object({
   specializations: specializationsFilerSchema.unique().default(null),
