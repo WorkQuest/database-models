@@ -1,6 +1,6 @@
 import * as Joi from "joi";
 import { userEmailSchema, userShortSchema } from "./user";
-import { idSchema, isoDateSchema, limitSchema, offsetSchema } from "./common";
+import { idSchema, isoDateSchema, limitSchema, offsetSchema, sortDirectionSchema } from "./common";
 import {PostedDecision, TicketStatus} from "../models";
 import { adminSchema } from "./admin";
 
@@ -32,4 +32,5 @@ export const supportTicketQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
   statuses: supportTicketStatusesSchema,
+  sort: sortDirectionSchema.default('DESC'),
 }).label('SupportTicketQuery')
