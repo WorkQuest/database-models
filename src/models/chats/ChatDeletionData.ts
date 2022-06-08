@@ -30,7 +30,7 @@ export class ChatDeletionData extends Model {
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
   @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string;
+  @Column({type: DataType.STRING, allowNull: false}) userId: string; //TODO: memberId not userId
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, allowNull: false}) beforeDeletionMessageId: string;
