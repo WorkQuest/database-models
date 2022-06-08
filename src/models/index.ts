@@ -111,6 +111,7 @@ import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/Que
 import { SupportTicketForUser } from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
+import { FaucetWqtWusd } from "./faucet/FaucetWqtWusd";
 
 export const models = [
   /** User section */
@@ -297,6 +298,10 @@ export const models = [
   /** Reports */
   Report,
   ReportMedia,
+
+
+  /** Faucet */
+  FaucetWqtWusd,
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -432,3 +437,4 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
+export * from "./faucet/FaucetWqtWusd";

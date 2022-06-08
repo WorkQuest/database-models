@@ -4,7 +4,7 @@ export declare enum FaucetAmount {
     WQT = "100",
     WUSD = "1000"
 }
-export declare class FaucetWusdWqt extends Model {
+export declare class FaucetWqtWusd extends Model {
     userId: string;
     address: string;
     amount: string;

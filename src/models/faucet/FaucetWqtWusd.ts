@@ -7,7 +7,7 @@ export enum FaucetAmount {
 }
 
 @Table
-export class FaucetWusdWqt extends Model {
+export class FaucetWqtWusd extends Model {
   @Column({ type: DataType.STRING, allowNull: false }) userId: string;
   @Column({ type: DataType.STRING, allowNull: false }) address: string;
   @Column({ type: DataType.DECIMAL, allowNull: false }) amount: string;
