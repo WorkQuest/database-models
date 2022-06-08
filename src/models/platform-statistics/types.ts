@@ -10,7 +10,7 @@ export enum DisputesPlatformStatisticFields {
   Pending = 'pending',
   Created = 'created',
   InProgress = 'inProgress',
-  AcceptedWork = 'acceptedWork'
+  Resolved = 'resolved'
 }
 
 export enum QuestsPlatformStatisticFields {
