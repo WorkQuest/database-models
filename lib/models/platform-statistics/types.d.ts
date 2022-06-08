@@ -1,8 +1,8 @@
 export declare enum DaoPlatformStatisticFields {
     Votes = "votes",
     DelegatedValue = "delegatedValue",
-    VotesForPercent = "votesForPercent",
-    VotesAgainPercent = "votesAgainPercent"
+    VotesFor = "votesFor",
+    VotesAgain = "votesAgain"
 }
 export declare enum DisputesPlatformStatisticFields {
     Total = "total",
