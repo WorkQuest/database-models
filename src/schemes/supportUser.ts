@@ -32,5 +32,7 @@ export const supportTicketQuerySchema = Joi.object({
   limit: limitSchema,
   offset: offsetSchema,
   statuses: supportTicketStatusesSchema,
-  sort: sortDirectionSchema.default('DESC'),
+  sort: Joi.object({
+    createdAt: sortDirectionSchema.default('DESC'),
+  }).default({ createdAt: 'DESC' }).label('SortTickets'),
 }).label('SupportTicketQuery')
