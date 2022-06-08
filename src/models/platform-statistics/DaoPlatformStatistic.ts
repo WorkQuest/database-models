@@ -6,9 +6,9 @@ export class DaoPlatformStatistic extends Model {
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) votes: number;
   @Column({ type: DataType.DECIMAL, defaultValue: '0' }) delegatedValue: string;
 
-  // Votes percentage for or against region
-  @Column({ type: DataType.FLOAT, defaultValue: 0 }) votesForPercent: number;
-  @Column({ type: DataType.FLOAT, defaultValue: 0 }) votesAgainPercent: number;
+  // Votes for or against region
+  @Column({ type: DataType.FLOAT, defaultValue: 0 }) votesFor: number;
+  @Column({ type: DataType.FLOAT, defaultValue: 0 }) votesAgain: number;
 
   @Column({ type: DataType.DATEONLY, defaultValue: Date.now(), primaryKey: true }) date: Date;
 }
