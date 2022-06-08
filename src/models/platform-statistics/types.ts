@@ -24,6 +24,7 @@ export enum QuestsPlatformStatisticFields {
   ExecutionOfWork = 'executionOfWork',
   WaitingForEmployerConfirmationWork = 'waitingForEmployerConfirmationWork',
   Completed = 'completed',
+  Sum = 'sum'
 }
 
 export enum RaiseViewsPlatformStatisticFields {

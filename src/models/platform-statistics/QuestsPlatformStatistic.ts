@@ -3,6 +3,7 @@ import { Column, DataType, Model, Table } from "sequelize-typescript";
 @Table
 export class QuestsPlatformStatistic extends Model {
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) total: number;
+  @Column({ type: DataType.DECIMAL, defaultValue: '0' }) sum: string;
 
   // By quest status region
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) closed: number;

@@ -1,6 +1,7 @@
 import { Model } from "sequelize-typescript";
 export declare class QuestsPlatformStatistic extends Model {
     total: number;
+    sum: string;
     closed: number;
     dispute: number;
     blocked: number;

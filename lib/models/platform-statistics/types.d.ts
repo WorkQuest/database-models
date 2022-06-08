@@ -21,7 +21,8 @@ export declare enum QuestsPlatformStatisticFields {
     WaitingForConfirmFromWorkerOnAssign = "waitingForConfirmFromWorkerOnAssign",
     ExecutionOfWork = "executionOfWork",
     WaitingForEmployerConfirmationWork = "waitingForEmployerConfirmationWork",
-    Completed = "completed"
+    Completed = "completed",
+    Sum = "sum"
 }
 export declare enum RaiseViewsPlatformStatisticFields {
     ProfilesTotal = "profilesTotal",
