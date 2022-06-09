@@ -59,6 +59,13 @@ export const chatMemberDeletionDataSchema = Joi.object({
   beforeDeletionMessageNumber: messageNumberSchema,
 }).label('ChatMemberDeletionData');
 
+export const ChatDeletionDataSchema = Joi.object({
+  id: idSchema,
+  chatMemberId: idsSchema,
+  beforeDeletionMessageId: idSchema,
+  beforeDeletionMessageNumber: messageNumberSchema,
+}).label('ChatDeletionData');
+
 export const chatMemberSchema = Joi.object({
   id: idSchema,
   chatId: idSchema,

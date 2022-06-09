@@ -1,6 +1,7 @@
+import { Chat } from "./Chat";
 import { Message } from "./Message";
 import { getUUID } from "../../utils";
-import { User } from "../user/User";
+import { ChatMember } from "./ChatMember";
 import {
   Model,
   Table,
@@ -9,7 +10,6 @@ import {
   BelongsTo,
   ForeignKey, Scopes,
 } from "sequelize-typescript";
-import { Chat } from "./Chat";
 
 @Scopes(() => ({
   defaultScope: {
@@ -29,8 +29,8 @@ export class ChatDeletionData extends Model {
   @ForeignKey(() => Chat)
   @Column({type: DataType.STRING, allowNull: false}) chatId: string;
 
-  @ForeignKey(() => User)
-  @Column({type: DataType.STRING, allowNull: false}) userId: string; //TODO: memberId not userId
+  @ForeignKey(() => ChatMember)
+  @Column({type: DataType.STRING, allowNull: false}) chatMemberId: string;
 
   @ForeignKey(() => Message)
   @Column({type: DataType.STRING, allowNull: false}) beforeDeletionMessageId: string;
@@ -38,6 +38,6 @@ export class ChatDeletionData extends Model {
   @Column({type: DataType.INTEGER, allowNull: false}) beforeDeletionMessageNumber: string;
 
   @BelongsTo(() => Chat) chat: Chat;
-  @BelongsTo(() => User) user: User;
+  @BelongsTo(() => ChatMember) chatMember: ChatMember;
   @BelongsTo(() => Message) beforeDeletionMessage: Message;
 }
