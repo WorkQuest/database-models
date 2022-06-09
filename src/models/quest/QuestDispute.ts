@@ -38,7 +38,7 @@ export enum DisputeDecision {
       as: 'opponentUser'
     }, {
       model: Admin.scope('short'),
-      as: 'assignedAdminId'
+      as: 'assignedAdmin'
     }, {
       model: Quest,
       as: 'quest',
