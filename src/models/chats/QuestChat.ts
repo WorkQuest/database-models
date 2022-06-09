@@ -54,7 +54,7 @@ export enum QuestChatStatus {
   },
   forQuestChat: {
     attributes: {
-      exclude: ['id', 'chatId', 'createdAt', 'updatedAt'],
+      exclude: ['id', 'createdAt', 'updatedAt'],
     },
     include: [{
       model: Quest.unscoped(),
