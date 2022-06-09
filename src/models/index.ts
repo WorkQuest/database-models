@@ -111,6 +111,7 @@ import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/Que
 import { SupportTicketForUser } from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
+import { ChatDeletionData } from "./chats/ChatDeletionData";
 
 export const models = [
   /** User section */
@@ -170,6 +171,7 @@ export const models = [
   StarredChat,
   ChatMemberData,
   StarredMessage,
+  ChatDeletionData,
   ChatMemberDeletionData,
 
 
@@ -432,3 +434,4 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
+export * from "./chats/ChatDeletionData";
