@@ -6,6 +6,7 @@ import { Admin } from "../admin/Admin";
 import {ChatMemberDeletionData} from "./ChatMemberDeletionData";
 import {ChatMemberData} from "./ChatMemberData";
 import {MemberType} from "../types";
+import { ChatDeletionData } from "./ChatDeletionData";
 
 
 export enum MemberStatus {
@@ -95,5 +96,6 @@ export class ChatMember extends Model {
   @BelongsTo(() => Chat) chat: Chat;
 
   @HasOne(() => ChatMemberData) chatMemberData: ChatMemberData;
+  @HasOne(() => ChatDeletionData) chatDeletionData: ChatDeletionData;
   @HasOne(() => ChatMemberDeletionData) chatMemberDeletionData: ChatMemberDeletionData;
 }
