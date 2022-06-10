@@ -124,7 +124,6 @@ export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
 export * from "./raise-view/types";
-export * from "./platform-statistics/types";
 export * from "./transaction-features/types";
 export * from "./Media";
 export * from "./quest/Quest";
