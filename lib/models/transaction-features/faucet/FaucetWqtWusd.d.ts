@@ -8,5 +8,6 @@ export declare class FaucetWqtWusd extends Model {
     amount: string;
     symbol: string;
     status: TransactionStatus;
+    error: string;
     tx: Transaction;
 }

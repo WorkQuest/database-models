@@ -21,5 +21,7 @@ export class FaucetWqtWusd extends Model {
 
   @Column({ type: DataType.INTEGER, allowNull: false }) status: TransactionStatus;
 
+  @Column(DataType.STRING) error: string;
+
   @BelongsTo(() => Transaction) tx: Transaction;
 }
