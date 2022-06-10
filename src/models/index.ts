@@ -111,7 +111,7 @@ import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/Que
 import { SupportTicketForUser } from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
-import { FaucetWqtWusd } from "./faucet/FaucetWqtWusd";
+import { FaucetWqtWusd } from "./transaction-features/faucet/FaucetWqtWusd";
 
 export const models = [
   /** User section */
@@ -437,4 +437,4 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
-export * from "./faucet/FaucetWqtWusd";
+export * from "./transaction-features/faucet/FaucetWqtWusd";
