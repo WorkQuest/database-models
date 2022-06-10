@@ -1,13 +1,13 @@
+import { FaucetSymbol, TransactionStatus } from "../types";
+import { Transaction } from "../Transaction";
 import {
   Model,
   Table,
   Column,
   DataType,
-  ForeignKey,
   BelongsTo,
+  ForeignKey,
 } from "sequelize-typescript";
-import { Transaction } from "../Transaction";
-import { TransactionStatus } from "../types";
 
 @Table
 export class FaucetWqtWusd extends Model {
@@ -17,7 +17,7 @@ export class FaucetWqtWusd extends Model {
   @Column({ type: DataType.STRING, allowNull: false }) userId: string;
   @Column({ type: DataType.STRING, allowNull: false }) address: string;
   @Column({ type: DataType.DECIMAL, allowNull: false }) amount: string;
-  @Column({ type: DataType.STRING, allowNull: false }) symbol: string;
+  @Column({ type: DataType.STRING, allowNull: false }) symbol: FaucetSymbol;
 
   @Column({ type: DataType.INTEGER, allowNull: false }) status: TransactionStatus;
 

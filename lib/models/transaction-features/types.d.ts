@@ -10,3 +10,7 @@ export declare enum FaucetAmount {
     WQT = "100",
     WUSD = "1000"
 }
+export declare enum FaucetSymbol {
+    WQT = "WQT",
+    WUSD = "WUSD"
+}
