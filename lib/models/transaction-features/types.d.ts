@@ -6,3 +6,11 @@ export declare enum TransactionStatus {
     InProcess = 1,
     Success = 2
 }
+export declare enum FaucetAmount {
+    WQT = "100",
+    WUSD = "1000"
+}
+export declare enum FaucetSymbol {
+    WQT = "WQT",
+    WUSD = "WUSD"
+}

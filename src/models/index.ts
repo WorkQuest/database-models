@@ -114,9 +114,10 @@ import {UsersPlatformStatistic} from "./platform-statistics/UsersPlatformStatist
 import {DaoPlatformStatistic} from "./platform-statistics/DaoPlatformStatistic";
 import {QuestsPlatformStatistic} from "./platform-statistics/QuestsPlatformStatistic";
 import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/QuestDisputeDecisionData"
-import { SupportTicketForUser } from "./support/SupportTicketForUser";
+import {SupportTicketForUser} from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
+import {FaucetWqtWusd} from "./transaction-features/faucet/FaucetWqtWusd";
 
 export const models = [
   /** User section */
@@ -311,6 +312,10 @@ export const models = [
   QuestsPlatformStatistic,
   UsersPlatformStatistic,
   DaoPlatformStatistic,
+
+
+  /** Faucet */
+  FaucetWqtWusd,
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -453,3 +458,4 @@ export * from "./chats/StarredMessage";
 export * from "./chats/UserChatsStatistic";
 export * from "./chats/StarredChat";
 export * from "./chats/QuestChat";
+export * from "./transaction-features/faucet/FaucetWqtWusd";
