@@ -114,10 +114,10 @@ import {UsersPlatformStatistic} from "./platform-statistics/UsersPlatformStatist
 import {DaoPlatformStatistic} from "./platform-statistics/DaoPlatformStatistic";
 import {QuestsPlatformStatistic} from "./platform-statistics/QuestsPlatformStatistic";
 import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/QuestDisputeDecisionData"
-import { SupportTicketForUser } from "./support/SupportTicketForUser";
+import {SupportTicketForUser} from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
-import { FaucetWqtWusd } from "./transaction-features/faucet/FaucetWqtWusd";
+import {FaucetWqtWusd} from "./transaction-features/faucet/FaucetWqtWusd";
 
 export const models = [
   /** User section */
@@ -334,6 +334,7 @@ export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
 export * from "./raise-view/types";
+export * from "./platform-statistics/types";
 export * from "./transaction-features/types";
 
 export * from "./Media";
