@@ -3,6 +3,7 @@ import {getUUID, getUUIDInt} from '../../utils';
 import {User} from "../user/User";
 import {Quest, QuestStatus} from "./Quest";
 import {Admin} from "../admin/Admin";
+import { QuestChat } from "../chats/QuestChat";
 
 export enum DisputeStatus {
   Pending = 0,
@@ -36,8 +37,16 @@ export enum DisputeDecision {
       model: User.scope('short'),
       as: 'opponentUser'
     }, {
+      model: Admin.scope('short'),
+      as: 'assignedAdmin'
+    }, {
       model: Quest,
       as: 'quest',
+      include: [{
+        model: QuestChat.unscoped(),
+        as: 'questChat',
+        attributes: ["chatId", "status"],
+      }],
     }]
   }
 }))
