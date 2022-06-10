@@ -8,3 +8,13 @@ export enum TransactionStatus {
   InProcess = 1,
   Success = 2,
 }
+
+export enum FaucetAmount {
+  WQT = '100',
+  WUSD = '1000',
+}
+
+export enum FaucetSymbol {
+  WQT = 'WQT',
+  WUSD = 'WUSD'
+}
