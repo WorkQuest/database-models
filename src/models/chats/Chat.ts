@@ -19,6 +19,7 @@ import { Media } from "../Media";
 import { Quest } from "../quest/Quest";
 import { ChatMemberData } from "./ChatMemberData";
 import { QuestDispute } from "../quest/QuestDispute";
+import { Admin } from "../admin/Admin";
 
 export enum ChatType {
   Private = 'Private',
@@ -113,6 +114,10 @@ export enum ChatType {
               model: Media,
               as: 'avatar',
             }],
+          }, {
+            model: Admin.unscoped(),
+            as: 'user',
+            attributes: ["id", "firstName", "lastName"],
           }],
         }]
       }]
