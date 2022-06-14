@@ -114,10 +114,6 @@ export enum ChatType {
               model: Media,
               as: 'avatar',
             }],
-          }, {
-            model: Admin.unscoped(),
-            as: 'admin',
-            attributes: ["id", "firstName", "lastName"],
           }],
         }]
       }]
@@ -134,6 +130,10 @@ export enum ChatType {
         include: [{
           model: Media,
           as: 'avatar',
+        },  {
+          model: Admin.unscoped(),
+          as: 'admin',
+          attributes: ["id", "firstName", "lastName"],
         }]
       }, {
         model: ChatMemberData,
