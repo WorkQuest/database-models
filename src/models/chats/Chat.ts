@@ -116,7 +116,7 @@ export enum ChatType {
             }],
           }, {
             model: Admin.unscoped(),
-            as: 'user',
+            as: 'admin',
             attributes: ["id", "firstName", "lastName"],
           }],
         }]
