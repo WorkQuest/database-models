@@ -130,15 +130,15 @@ export enum ChatType {
         include: [{
           model: Media,
           as: 'avatar',
-        },  {
-          model: Admin.unscoped(),
-          as: 'admin',
-          attributes: ["id", "firstName", "lastName"],
-        }]
+        }],
       }, {
         model: ChatMemberData,
         attributes: ['unreadCountMessages'],
         as: 'chatMemberData',
+      }, {
+        model: Admin.unscoped(),
+        as: 'admin',
+        attributes: ["id", "firstName", "lastName"],
       }]
     }]
   }
