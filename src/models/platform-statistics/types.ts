@@ -10,6 +10,7 @@ export enum DisputesPlatformStatisticFields {
   Pending = 'pending',
   Created = 'created',
   InProgress = 'inProgress',
+  PendingResolved = 'pendingResolved',
   Resolved = 'resolved'
 }
 
