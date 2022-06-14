@@ -19,6 +19,7 @@ import { Media } from "../Media";
 import { Quest } from "../quest/Quest";
 import { ChatMemberData } from "./ChatMemberData";
 import { QuestDispute } from "../quest/QuestDispute";
+import { Admin } from "../admin/Admin";
 
 export enum ChatType {
   Private = 'Private',
@@ -129,11 +130,15 @@ export enum ChatType {
         include: [{
           model: Media,
           as: 'avatar',
-        }]
+        }],
       }, {
         model: ChatMemberData,
         attributes: ['unreadCountMessages'],
         as: 'chatMemberData',
+      }, {
+        model: Admin.unscoped(),
+        as: 'admin',
+        attributes: ["id", "firstName", "lastName"],
       }]
     }]
   }
