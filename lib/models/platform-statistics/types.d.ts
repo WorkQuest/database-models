@@ -9,8 +9,8 @@ export declare enum DisputesPlatformStatisticFields {
     Pending = "pending",
     Created = "created",
     InProgress = "inProgress",
-    PendingResolved = "pendingResolved",
-    Resolved = "resolved"
+    PendingClosed = "pendingClosed",
+    Closed = "closed"
 }
 export declare enum QuestsPlatformStatisticFields {
     Total = "total",
