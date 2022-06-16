@@ -1,4 +1,4 @@
-import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
+import {Column, DataType, Model, Scopes, Table, HasOne, ForeignKey, BelongsTo} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import {Quest, QuestStatus} from "./Quest";
@@ -79,7 +79,7 @@ export class QuestDispute extends Model {
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;
 
-  @HasMany(() => QuestDisputeReview) questDisputeReviews: QuestDisputeReview[];
+  @HasOne(() => QuestDisputeReview) currentUserDisputeReview: QuestDisputeReview;
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
