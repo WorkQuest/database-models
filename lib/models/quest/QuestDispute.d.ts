@@ -2,6 +2,7 @@ import { Model } from 'sequelize-typescript';
 import { User } from "../user/User";
 import { Quest, QuestStatus } from "./Quest";
 import { Admin } from "../admin/Admin";
+import { QuestDisputeReview } from "./QuestDisputeReview";
 export declare enum DisputeStatus {
     Pending = 0,
     Created = 1,
@@ -37,6 +38,7 @@ export declare class QuestDispute extends Model {
     decision: DisputeDecision;
     acceptedAt: Date;
     resolvedAt: Date;
+    questDisputeReview: QuestDisputeReview[];
     openDisputeUser: User;
     opponentUser: User;
     assignedAdmin: Admin;
