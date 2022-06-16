@@ -79,7 +79,7 @@ export class QuestDispute extends Model {
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;
 
-  @HasMany(() => QuestDisputeReview) questDisputeReview: QuestDisputeReview[];
+  @HasMany(() => QuestDisputeReview) questDisputeReviews: QuestDisputeReview[];
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;

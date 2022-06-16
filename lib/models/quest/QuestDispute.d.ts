@@ -38,7 +38,7 @@ export declare class QuestDispute extends Model {
     decision: DisputeDecision;
     acceptedAt: Date;
     resolvedAt: Date;
-    questDisputeReview: QuestDisputeReview[];
+    questDisputeReviews: QuestDisputeReview[];
     openDisputeUser: User;
     opponentUser: User;
     assignedAdmin: Admin;
