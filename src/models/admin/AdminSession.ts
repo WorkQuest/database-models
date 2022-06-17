@@ -19,6 +19,8 @@ export class AdminSession extends Model {
 
   @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
 
+  @Column({type: DataType.DATE}) lastActionDate: Date;
+
   @Column(DataType.STRING) ip: string;
 
   @Column(DataType.STRING) device: string;
