@@ -117,6 +117,7 @@ import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/Que
 import { SupportTicketForUser } from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
+import {AdminChangeRoleData} from "./admin/AdminChangeRoleData";
 
 export const models = [
   /** User section */
@@ -134,6 +135,7 @@ export const models = [
   Admin,
   AdminSession,
   AdminActionMetadata,
+  AdminChangeRoleData,
   AdminQuestDisputesStatistic,
 
 
