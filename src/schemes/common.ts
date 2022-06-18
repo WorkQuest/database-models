@@ -32,6 +32,7 @@ export const accountAddressSchema = Joi.string().example("0xke2083852Ccf274D48E1
 export const accountAddressesSchema = Joi.array().items(accountAddressSchema).label('AccountAddresses');
 export const HTTPVerbSchema = Joi.string().valid(...Object.values(HTTPVerb)).example(HTTPVerb.POST).label('HTTPVerb');
 export const inputFromLoginSchema = Joi.string().valid('main', 'dao').label('InputFromLogin');
+export const percentSchema = Joi.number().example(45.5);
 
 export const outputOkSchema = (res: Joi.Schema): Joi.Schema => {
   return Joi.object({

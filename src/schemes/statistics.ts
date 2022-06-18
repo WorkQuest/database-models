@@ -1,6 +1,15 @@
 import * as Joi from "joi";
-import {MemberType, RatingStatus, Priority} from "../models";
-import {countSchema, idSchema, timeInSecondSchema} from "./common";
+import {
+  RatingStatus,
+  MemberType,
+  Priority
+} from "../models";
+import {
+  idSchema,
+  countSchema,
+  percentSchema,
+  timeInSecondSchema
+} from "./common";
 
 export const statisticAverageMark = Joi.number().example(3.5).label('StatisticAverageMark');
 export const chatsStatisticTypeSchema = Joi.string().valid(...Object.values(MemberType)).example(MemberType.User).label("ChatsStatisticType");
@@ -63,3 +72,31 @@ export const adminQuestDisputesStatisticSchema = Joi.object({
   resolvedQuestDisputes: countSchema,
   averageResolutionTimeInSeconds: timeInSecondSchema,
 }).label('AdminQuestDisputesStatistic');
+
+export const disputeDecideStatisticSchema = Joi.object({
+  AcceptWork: percentSchema,
+  RejectWork: percentSchema,
+  Rework: percentSchema
+}).label('DisputeDecideStatistic');
+
+export const reportEntityStatisticSchema = Joi.object({
+  Decided: percentSchema,
+  Rejected: percentSchema
+}).label('ReportEntityStatistic');
+
+export const reportStatisticSchema = Joi.object({
+  User: reportEntityStatisticSchema,
+  Quest: reportEntityStatisticSchema
+}).label('ReportStatistic');
+
+export const adminDisputeStatisticSchema = Joi.object({
+  disputeDecideStatistic: disputeDecideStatisticSchema,
+  reportStatistic: reportStatisticSchema,
+  disputeStatistic: adminQuestDisputesStatisticSchema
+}).label('AdminDisputeStatistic');
+
+export const supportStatisticSchema = Joi.object({
+  Decided: countSchema,
+  Rejected: countSchema,
+  Pending: countSchema
+}).label('SupportStatistic');

@@ -30,6 +30,7 @@ export declare const accountAddressSchema: Joi.StringSchema;
 export declare const accountAddressesSchema: Joi.ArraySchema;
 export declare const HTTPVerbSchema: Joi.StringSchema;
 export declare const inputFromLoginSchema: Joi.StringSchema;
+export declare const percentSchema: Joi.NumberSchema;
 export declare const outputOkSchema: (res: Joi.Schema) => Joi.Schema;
 export declare const paginationFields: {
     limit: Joi.NumberSchema;
