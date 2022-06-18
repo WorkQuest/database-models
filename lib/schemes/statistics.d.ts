@@ -13,4 +13,4 @@ export declare const disputeDecideStatisticSchema: Joi.ObjectSchema<any>;
 export declare const reportEntityStatisticSchema: Joi.ObjectSchema<any>;
 export declare const reportStatisticSchema: Joi.ObjectSchema<any>;
 export declare const adminDisputeStatisticSchema: Joi.ObjectSchema<any>;
-export declare const supportStatisticSchema: Joi.ObjectSchema<any>;
+export declare const adminSupportStatisticSchema: Joi.ObjectSchema<any>;

@@ -95,7 +95,7 @@ export const adminDisputeStatisticSchema = Joi.object({
   disputeStatistic: adminQuestDisputesStatisticSchema
 }).label('AdminDisputeStatistic');
 
-export const supportStatisticSchema = Joi.object({
+export const adminSupportStatisticSchema = Joi.object({
   Decided: countSchema,
   Rejected: countSchema,
   Pending: countSchema
