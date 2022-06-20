@@ -107,10 +107,17 @@ import {BridgeSwapUsdtParserBlockInfo} from "./bridge-usdt/BridgeSwapUsdtParserB
 import {CommissionSettings} from "./platform-settings/CommissionSettings";
 import {FirstWqtTransmissionData} from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 import {Transaction} from "./transaction-features/Transaction";
+import {RaiseViewsPlatformStatistic} from "./platform-statistics/RaiseViewsPlatformStatistic";
+import {DisputesPlatformStatistic} from "./platform-statistics/DisputesPlatformStatistic";
+import {ReportsPlatformStatistic} from "./platform-statistics/ReportsPlatformStatistic";
+import {UsersPlatformStatistic} from "./platform-statistics/UsersPlatformStatistic";
+import {DaoPlatformStatistic} from "./platform-statistics/DaoPlatformStatistic";
+import {QuestsPlatformStatistic} from "./platform-statistics/QuestsPlatformStatistic";
 import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/QuestDisputeDecisionData"
 import {SupportTicketForUser} from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
+import {AdminChangeRoleData} from "./admin/AdminChangeRoleData";
 import {FaucetWqtWusd} from "./transaction-features/faucet/FaucetWqtWusd";
 
 export const models = [
@@ -129,6 +136,7 @@ export const models = [
   Admin,
   AdminSession,
   AdminActionMetadata,
+  AdminChangeRoleData,
   AdminQuestDisputesStatistic,
 
 
@@ -299,6 +307,14 @@ export const models = [
   Report,
   ReportMedia,
 
+  /** Platform Statistics */
+  RaiseViewsPlatformStatistic,
+  DisputesPlatformStatistic,
+  ReportsPlatformStatistic,
+  QuestsPlatformStatistic,
+  UsersPlatformStatistic,
+  DaoPlatformStatistic,
+
   /** Faucet */
   FaucetWqtWusd,
 ] as const;
@@ -319,6 +335,7 @@ export * from "./types";
 export * from "./admin/types";
 export * from "./proposal/types";
 export * from "./raise-view/types";
+export * from "./platform-statistics/types";
 export * from "./transaction-features/types";
 
 export * from "./Media";
@@ -422,6 +439,12 @@ export * from "./transaction-features/faucet/FaucetWqtWusd";
 export * from "./report/Report";
 export * from "./report/ReportMedia";
 export * from "./support/SupportTicketForUser";
+export * from "./platform-statistics/RaiseViewsPlatformStatistic"
+export * from "./platform-statistics/DisputesPlatformStatistic"
+export * from "./platform-statistics/ReportsPlatformStatistic"
+export * from "./platform-statistics/QuestsPlatformStatistic"
+export * from "./platform-statistics/UsersPlatformStatistic"
+export * from "./platform-statistics/DaoPlatformStatistic"
 
 export * from "./chats/GroupChat";
 export * from "./chats/ChatData";

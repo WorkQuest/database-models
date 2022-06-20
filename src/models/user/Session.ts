@@ -2,6 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize
 import { getUUID } from "../../utils";
 import { User } from "./User";
 import {Place} from "../types";
+import { LoginApp } from "./types";
 
 const defaultUserLoginPlace: Place = {
   country: null,
@@ -15,12 +16,15 @@ export class Session extends Model {
 
   @Column({type: DataType.JSONB, defaultValue: defaultUserLoginPlace}) place: Place;
 
+  @Column({type: DataType.STRING, defaultValue: LoginApp.App}) app: LoginApp;
+
   @Column({type: DataType.BOOLEAN, defaultValue: true}) invalidating: boolean;
   @Column({type: DataType.BOOLEAN, allowNull: false}) isTotpPassed: boolean;
 
   @Column(DataType.STRING) ip: string;
 
   @Column(DataType.STRING) device: string;
+
 
   @Column(DataType.DATE) logoutAt: Date;
 
