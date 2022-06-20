@@ -9,7 +9,7 @@ export class AdminChangeRoleData extends Model {
 
   /** Main admin who change role to admin */
   @ForeignKey(() => Admin)
-  @Column(DataType.STRING) changedByAdminId: string;                                                          /** Optional: if changed on admin panel */
+  @Column({type: DataType.STRING, allowNull: false}) changedByAdminId: string;                                                          /** Optional: if changed on admin panel */
 
   /** Admin whose role was changed */
   @ForeignKey(() => Admin)
