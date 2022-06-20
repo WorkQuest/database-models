@@ -1,9 +1,10 @@
-import {Column, DataType, Model, Scopes, Table, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript';
-import {getUUID, getUUIDInt} from '../../utils';
+import {Column, DataType, Model, Scopes, Table, HasOne, ForeignKey, BelongsTo} from 'sequelize-typescript';
+import {getUUID} from '../../utils';
 import {User} from "../user/User";
 import {Quest, QuestStatus} from "./Quest";
 import {Admin} from "../admin/Admin";
 import { QuestChat } from "../chats/QuestChat";
+import { QuestDisputeReview } from "./QuestDisputeReview";
 
 export enum DisputeStatus {
   Pending = 0,
@@ -77,6 +78,8 @@ export class QuestDispute extends Model {
 
   @Column(DataType.DATE) acceptedAt: Date;
   @Column(DataType.DATE) resolvedAt: Date;
+
+  @HasOne(() => QuestDisputeReview) currentUserDisputeReview: QuestDisputeReview;
 
   @BelongsTo(() => User, 'openDisputeUserId') openDisputeUser: User;
   @BelongsTo(() => User, 'opponentUserId') opponentUser: User;
