@@ -6,7 +6,6 @@ export declare class AdminSession extends Model {
     adminId: string;
     place: Place;
     invalidating: boolean;
-    lastActionDate: Date;
     ip: string;
     device: string;
     logoutAt: Date;
