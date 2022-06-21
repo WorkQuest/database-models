@@ -34,6 +34,9 @@ export class UsersPlatformStatistic extends Model {
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) reliable: number;
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) topRanked: number;
 
+  // Sessions
+  @Column({ type: DataType.INTEGER, defaultValue: 0 }) averageSessionTime: number;
+
   // Security region
   @Column({ type: DataType.INTEGER, defaultValue: 0 }) use2FA: number;
 
