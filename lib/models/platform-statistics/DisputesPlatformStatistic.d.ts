@@ -4,6 +4,7 @@ export declare class DisputesPlatformStatistic extends Model {
     pending: number;
     created: number;
     inProgress: number;
-    resolved: number;
+    pendingClosed: number;
+    closed: number;
     date: Date;
 }
