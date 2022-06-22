@@ -20,6 +20,7 @@ export declare class UsersPlatformStatistic extends Model {
     verified: number;
     reliable: number;
     topRanked: number;
+    averageSessionTime: number;
     use2FA: number;
     date: Date;
 }

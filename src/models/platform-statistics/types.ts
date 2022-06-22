@@ -74,6 +74,7 @@ export enum UsersPlatformStatisticFields {
   Verified = 'verified',
   Reliable = 'reliable',
   TopRanked = 'topRanked',
+  AverageSessionTime = 'averageSessionTime'
 }
 
 export const daoPlatformStatisticFieldsArray = Object.values(DaoPlatformStatisticFields) as string[];
