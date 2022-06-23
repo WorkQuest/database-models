@@ -31,6 +31,9 @@ export enum DisputeDecision {
 
 @Scopes(() => ({
   defaultScope: {
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "deletedAt"]
+    },
     include: [{
       model: User.scope('shortForList'),
       as: 'openDisputeUser'
