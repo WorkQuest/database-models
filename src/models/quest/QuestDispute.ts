@@ -32,10 +32,10 @@ export enum DisputeDecision {
 @Scopes(() => ({
   defaultScope: {
     include: [{
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'openDisputeUser'
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'opponentUser'
     }, {
       model: Admin.scope('short'),
