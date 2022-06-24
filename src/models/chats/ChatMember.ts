@@ -18,6 +18,7 @@ export enum MemberStatus {
 @Scopes(() => ({
   forChatsList: {
     attributes: [
+      'id',
       'userId',
       "chatId",
       'adminId',
