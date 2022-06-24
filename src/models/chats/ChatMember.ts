@@ -28,7 +28,7 @@ export enum MemberStatus {
     include: [{
       model: User.unscoped(),
       attributes: {
-        include: ["id", "firstName", "lastName", "avatar"],
+        include: ["id", "firstName", "lastName"],
       },
       include: [{
         model: Media.scope('urlOnly'),
