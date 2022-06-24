@@ -32,9 +32,7 @@ import {GroupChat} from "./GroupChat";
     }],
   },
   forChatListWithoutMessage: {
-    attributes: {
-      include: ["chatId", "lastMessageId", "createdAt"]
-    }
+    attributes: ["chatId", "lastMessageId", "createdAt"],
   }
 }))
 

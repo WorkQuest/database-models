@@ -57,17 +57,15 @@ export enum SenderMessageStatus {
     }],
   },
   lastMessage: {
-    attributes: {
-      include: [
-        "id",
-        "type",
-        "text",
-        "number",
-        "chatId",
-        "createdAt",
-        "senderStatus",
-      ]
-    }
+    attributes: [
+      "id",
+      "type",
+      "text",
+      "number",
+      "chatId",
+      "createdAt",
+      "senderStatus",
+    ]
   }
 }))
 @Table

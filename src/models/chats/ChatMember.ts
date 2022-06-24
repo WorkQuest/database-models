@@ -17,32 +17,26 @@ export enum MemberStatus {
 
 @Scopes(() => ({
   forChatsList: {
-    attributes: {
-      include: [
-        'id',
-        'userId',
-        "chatId",
-        'adminId',
-        'type',
-        'status',
-      ]
-    },
+    attributes: [
+      'id',
+      'type',
+      'status',
+      'userId',
+      'chatId',
+      'adminId',
+    ],
     include: [{
       model: User.unscoped(),
-      attributes: {
-        include: ["id", "firstName", "lastName"],
-      },
+      as: 'user',
+      attributes: ["id", "firstName", "lastName"],
       include: [{
         model: Media.scope('urlOnly'),
         as: 'avatar'
       }],
-      as: 'user',
     }, {
       model: Admin.unscoped(),
-      attributes: {
-        include: ["id", "firstName", "lastName"],
-      },
       as: 'admin',
+      attributes: ["id", "firstName", "lastName"],
     }],
   },
   forChat: {
@@ -84,7 +78,7 @@ export enum MemberStatus {
       model: ChatMemberDeletionData,
       as: 'chatMemberDeletionData',
     }],
-  }
+  },
 }))
 @Table
 export class ChatMember extends Model {
