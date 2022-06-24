@@ -58,7 +58,15 @@ export enum SenderMessageStatus {
   },
   lastMessage: {
     attributes: {
-      include: ["id", "number", "chatId", "senderStatus", "type", "text", "createdAt"]
+      include: [
+        "id",
+        "type",
+        "text",
+        "number",
+        "chatId",
+        "createdAt",
+        "senderStatus",
+      ]
     }
   }
 }))

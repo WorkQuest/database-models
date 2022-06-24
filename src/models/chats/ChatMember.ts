@@ -38,7 +38,9 @@ export enum MemberStatus {
       as: 'user',
     }, {
       model: Admin.unscoped(),
-      include: ["id", "firstName", "lastName"],
+      attributes: {
+        include: ["id", "firstName", "lastName"],
+      },
       as: 'admin',
     }],
   },
