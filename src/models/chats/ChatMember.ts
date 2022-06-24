@@ -23,8 +23,6 @@ export enum MemberStatus {
       'adminId',
       'type',
       'status',
-      'user',
-      'admin',
     ],
     include: [{
       model: User.unscoped(),
