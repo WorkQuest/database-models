@@ -17,20 +17,22 @@ export enum MemberStatus {
 @Scopes(() => ({
   forChatsList: {
     attributes: [
-      'id',
       'userId',
       'adminId',
       'type',
       'status',
-      'createdAt',
       'user',
       'admin',
     ],
     include: [{
-      model: User.scope('shortWithAdditionalInfo'),
+      model: User.unscoped(),
+      attributes: {
+        include: ["id", "firstName", "lastName"],
+      },
       as: 'user',
     }, {
-      model: Admin.scope('short'),
+      model: Admin.unscoped(),
+      include: ["id", "firstName", "lastName"],
       as: 'admin',
     }],
   },
