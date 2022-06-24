@@ -17,14 +17,16 @@ export enum MemberStatus {
 
 @Scopes(() => ({
   forChatsList: {
-    attributes: [
-      'id',
-      'userId',
-      "chatId",
-      'adminId',
-      'type',
-      'status',
-    ],
+    attributes: {
+      include: [
+        'id',
+        'userId',
+        "chatId",
+        'adminId',
+        'type',
+        'status',
+      ]
+    },
     include: [{
       model: User.unscoped(),
       attributes: {
