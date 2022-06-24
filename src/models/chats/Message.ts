@@ -32,6 +32,7 @@ export enum SenderMessageStatus {
   forChatsList: {
     attributes: [
       'id',
+      'number',
       'senderMemberId',
       'text',
       'type',
@@ -55,6 +56,11 @@ export enum SenderMessageStatus {
       as: 'sender',
     }],
   },
+  lastMessage: {
+    attributes: {
+      include: ["id", "number", "chatId", "senderStatus", "type", "text", "createdAt"]
+    }
+  }
 }))
 @Table
 export class Message extends Model {

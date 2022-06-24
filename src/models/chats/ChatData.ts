@@ -31,6 +31,11 @@ import {GroupChat} from "./GroupChat";
       as: 'lastMessage',
     }],
   },
+  forChatListWithoutMessage: {
+    attributes: {
+      include: ["chatId", "lastMessageId", "createdAt"]
+    }
+  }
 }))
 
 @Table
