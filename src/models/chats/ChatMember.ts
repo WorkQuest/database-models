@@ -19,6 +19,7 @@ export enum MemberStatus {
   forChatsList: {
     attributes: [
       'userId',
+      "chatId",
       'adminId',
       'type',
       'status',
