@@ -7,6 +7,7 @@ import {ChatMemberDeletionData} from "./ChatMemberDeletionData";
 import {ChatMemberData} from "./ChatMemberData";
 import {MemberType} from "../types";
 import { ChatDeletionData } from "./ChatDeletionData";
+import { Media } from "../Media";
 
 
 export enum MemberStatus {
@@ -27,8 +28,12 @@ export enum MemberStatus {
     include: [{
       model: User.unscoped(),
       attributes: {
-        include: ["id", "firstName", "lastName"],
+        include: ["id", "firstName", "lastName", "avatar"],
       },
+      include: [{
+        model: Media.scope('urlOnly'),
+        as: 'avatar'
+      }],
       as: 'user',
     }, {
       model: Admin.unscoped(),
