@@ -17,8 +17,8 @@ export declare class QuestsResponse extends Model {
     id: string;
     workerId: string;
     questId: string;
-    status: QuestsResponseStatus;
     type: QuestsResponseType;
+    status: QuestsResponseStatus;
     message: string;
     worker: User;
     quest: Quest;

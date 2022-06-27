@@ -1,20 +1,24 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Scopes, Table} from "sequelize-typescript";
 import {getUUID} from "../../utils";
 import {Message} from "./Message";
-import {User} from "../user/User";
+import {ChatMember} from "./ChatMember";
 
 export enum MessageAction {
-  groupChatCreate = 'groupChatCreate',
-  groupChatAddUser = 'groupChatAddUser',
-  groupChatDeleteUser = 'groupChatDeleteUser',
-  groupChatLeaveUser = 'groupChatLeaveUser',
+  GroupChatCreate = 'GroupChatCreate',
+  GroupChatAddMember = 'GroupChatAddMember',
+  GroupChatMemberRestored = 'GroupChatMemberRestored',
+  GroupChatDeleteMember = 'GroupChatDeleteMember',
+  GroupChatLeaveMember = 'GroupChatLeaveMember',
   /** Quest flow */
-  workerResponseOnQuest = 'workerResponseOnQuest',
-  employerRejectResponseOnQuest = 'employerRejectResponseOnQuest',
+  WorkerResponseOnQuest = 'WorkerResponseOnQuest',
+  EmployerRejectResponseOnQuest = 'EmployerRejectResponseOnQuest',
 
-  employerInviteOnQuest = 'employerInviteOnQuest',
-  workerRejectInviteOnQuest = 'workerRejectInviteOnQuest',
-  workerAcceptInviteOnQuest = 'workerAcceptInviteOnQuest',
+  EmployerInviteOnQuest = 'EmployerInviteOnQuest',
+  WorkerRejectInviteOnQuest = 'WorkerRejectInviteOnQuest',
+  WorkerAcceptInviteOnQuest = 'WorkerAcceptInviteOnQuest',
+
+  QuestChatAddDisputeAdmin = 'QuestChatAddDisputeAdmin',
+  QuestChatLeaveDisputeAdmin = 'QuestChatLeaveDisputeAdmin',
 }
 
 @Scopes(() => ({
@@ -23,8 +27,8 @@ export enum MessageAction {
       exclude: ["createdAt", "updatedAt"]
     },
     include: [{
-      model: User.scope('shortWithAdditionalInfo'),
-      as: 'user',
+      model: ChatMember,//.scope('memberOnly'),
+      as: 'member',
     }],
   }
 }))
@@ -36,11 +40,11 @@ export class InfoMessage extends Model {
   @Column({type: DataType.STRING, allowNull: false}) messageId: string;
 
   /** Common relations user table: who was removed and etc */
-  @ForeignKey(() => User)
-  @Column({type: DataType.STRING, defaultValue: null}) userId: string;
+  @ForeignKey(() => ChatMember)
+  @Column({type: DataType.STRING, defaultValue: null}) memberId: string;
 
   @Column({type: DataType.STRING, allowNull: false}) messageAction: MessageAction;
 
-  @BelongsTo(() => User) user: User;
+  @BelongsTo(() => ChatMember) member: ChatMember;
   @BelongsTo(() => Message) message: Message;
 }

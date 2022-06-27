@@ -1,13 +1,7 @@
 import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from 'sequelize-typescript';
 import {getUUID} from '../../utils';
 import {User} from './User';
-
-export enum RatingStatus {
-  noStatus = "noStatus",
-  verified = "verified",
-  reliable = "reliable",
-  topRanked = "topRanked",
-}
+import {RatingStatus} from "../types";
 
 @Table
 export class RatingStatistic extends Model {
@@ -17,7 +11,7 @@ export class RatingStatistic extends Model {
   @Column({type: DataType.INTEGER, defaultValue: 0 }) reviewCount: number;
   @Column({type: DataType.DOUBLE, defaultValue: null }) averageMark: number;
 
-  @Column({type: DataType.STRING, defaultValue: RatingStatus.noStatus }) status: RatingStatus;
+  @Column({type: DataType.INTEGER, defaultValue: RatingStatus.NoStatus }) status: RatingStatus;
 
   @BelongsTo(() => User) user: User;
 }

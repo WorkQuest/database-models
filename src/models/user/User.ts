@@ -1,3 +1,23 @@
+import {getUUID} from "../../utils";
+import * as bcrypt from "bcrypt";
+import {Media} from "../Media";
+import {Session} from "./Session";
+import {QuestsReview} from "../quest/QuestsReview";
+import {RatingStatistic} from "./RatingStatistic";
+import {ChatMember} from "../chats/ChatMember";
+import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone, PayPeriod } from "../types";
+import {UserSpecializationFilter} from "./UserSpecializationFilter";
+import {DiscussionLike} from "../discussion/DiscussionLike";
+import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
+import {Chat} from "../chats/Chat";
+import {UserRaiseView} from "../raise-view/UserRaiseView";
+import {QuestsStatistic} from "../quest/QuestsStatistic";
+import {Wallet} from "../wallet/Wallet";
+import {UserChatsStatistic} from "../chats/UserChatsStatistic";
+import {ReferralProgramAffiliate} from "../referral-program/ReferralProgramAffiliate";
+import {ReferralProgramReferral} from "../referral-program/ReferralProgramReferral";
+import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting";
+import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
 import {
   BelongsTo,
   Column,
@@ -9,20 +29,7 @@ import {
   Scopes,
   Table
 } from "sequelize-typescript";
-import {getUUID} from "../../utils";
-import * as bcrypt from "bcrypt";
-import {Media} from "../Media";
-import {Session} from "./Session";
-import {Review} from "../quest/Review";
-import {RatingStatistic, RatingStatus} from "./RatingStatistic";
-import {ChatMember} from "../chats/ChatMember";
-import {LocationPostGISType, LocationType, Priority, WorkPlace} from "../types";
-import {UserSpecializationFilter} from "./UserSpecializationFilter";
-import {DiscussionLike} from "../discussion/DiscussionLike";
-import {DiscussionCommentLike} from "../discussion/DiscussionCommentLike";
-import {Chat} from "../chats/Chat";
-import {QuestsStatistic} from "../quest/QuestsStatistic";
-import {Wallet} from "../wallet/Wallet";
+
 
 export interface SocialInfo {
   id: string;
@@ -74,6 +81,7 @@ export enum UserStatus {
   Unconfirmed,
   Confirmed,
   NeedSetRole,
+  Blocked,
 }
 
 export enum UserRole {
@@ -95,7 +103,7 @@ interface SocialMediaNicknames {
 
 interface AdditionalInfo {
   description: string | null;
-  secondMobileNumber: string | null;
+  secondMobileNumber: Phone | null;
   address: string | null;
   socialNetwork: SocialMediaNicknames;
 }
@@ -127,7 +135,7 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 @Scopes(() => ({
   defaultScope: {
     attributes: {
-      exclude: ["password", "settings", "tempPhone", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
+      exclude: ["password", "settings", "updatedAt", "deletedAt", "locationPostGIS", "delegate"]
     },
     include: [{
       model: Media.scope('urlOnly'),
@@ -135,6 +143,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }, {
       model: UserSpecializationFilter,
       as: 'userSpecializations',
@@ -151,23 +162,29 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }
   },
   short: {
-    attributes: ["id", "firstName", "lastName"],
+    attributes: ["id", "firstName", "lastName", "role"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithAdditionalInfo: {
-    attributes: ["id", "firstName", "lastName", "additionalInfo"],
+    attributes: ["id", "firstName", "lastName", "additionalInfo", "role"],
     include: [{
       model: Media.scope('urlOnly'),
       as: 'avatar'
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }]
   },
   shortWithWallet: {
@@ -178,6 +195,9 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     }, {
       model: RatingStatistic,
       as: 'ratingStatistic'
+    }, {
+      model: UserRaiseView,
+      as: 'raiseView'
     }, {
       model: Wallet,
       as: 'wallet'
@@ -192,10 +212,8 @@ export class User extends Model {
   @Column({type: DataType.STRING, defaultValue: null}) avatarId: string;
 
   /** User profile */
-  @Column(DataType.STRING) firstName: string;
   @Column(DataType.STRING) lastName: string;
-  @Column(DataType.JSONB) location: LocationType;
-  // @Column(DataType.STRING) locationPlaceName: string; TODO
+  @Column(DataType.STRING) firstName: string;
   @Column({type: DataType.STRING, unique: true}) email: string;
   @Column({type: DataType.STRING, defaultValue: null}) role: UserRole;
   @Column({type: DataType.JSONB, defaultValue: {}}) additionalInfo: object;
@@ -217,40 +235,54 @@ export class User extends Model {
       return this.getDataValue("password");
     }
   }) password: string;
-  @Column({type: DataType.STRING, defaultValue: null}) phone: string;
-  @Column({type: DataType.STRING, defaultValue: null}) tempPhone: string;
+  @Column({type: DataType.JSONB, defaultValue: null}) phone: Phone;
+  @Column({type: DataType.JSONB, defaultValue: null}) tempPhone: Phone;
   @Column({type: DataType.JSONB, defaultValue: defaultUserSettings}) settings: UserSettings;
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
   /** UserRole.Worker: priority list for quests */
-  @Column({type: DataType.DECIMAL, defaultValue: null}) wagePerHour: string;
+  @Column({type: DataType.DECIMAL, defaultValue: null}) costPerHour: string;
+  @Column({type: DataType.STRING, defaultValue: null}) payPeriod: PayPeriod;
   @Column({type: DataType.STRING, defaultValue: null}) workplace: WorkPlace;
   @Column({type: DataType.INTEGER, defaultValue: Priority.AllPriority}) priority: Priority;
 
-  /** PostGIS */
+  /** Location fields and PostGIS */
+  @Column(DataType.JSONB) location: LocationType;
+  @Column(DataType.STRING) locationPlaceName: string;
   @Column(DataType.GEOMETRY('POINT', 4326)) locationPostGIS: LocationPostGISType;
+
+  /** Profile visibility settings */
+  @HasOne(() => WorkerProfileVisibilitySetting) workerProfileVisibilitySetting: WorkerProfileVisibilitySetting;
+  @HasOne(() => EmployerProfileVisibilitySetting) employerProfileVisibilitySetting: EmployerProfileVisibilitySetting;
 
   /** Statistic */
   @HasOne(() => RatingStatistic) ratingStatistic: RatingStatistic;
   @HasOne(() => QuestsStatistic) questsStatistic: QuestsStatistic;
+  @HasOne(() => UserChatsStatistic) chatStatistic: UserChatsStatistic;
+  /** RaiseView */
+  @HasOne(() => UserRaiseView) raiseView: UserRaiseView;
 
-  @BelongsTo(() => Media,{constraints: false, foreignKey: 'avatarId'}) avatar: Media;
+  @BelongsTo(() => Media, {constraints: false, foreignKey: 'avatarId'}) avatar: Media;
 
   @HasMany(() => Session) sessions: Session[];
-  @HasMany(() => Review, 'toUserId') reviews: Review[];
+  @HasMany(() => QuestsReview, 'toUserId') reviews: QuestsReview[];
   @HasMany(() => Media, {constraints: false}) medias: Media[];
   @HasMany(() => UserSpecializationFilter) userSpecializations: UserSpecializationFilter[];
 
   /** Wallet */
   @HasOne(() => Wallet) wallet: Wallet;
 
+  /** ReferralProgram */
+  @HasOne(() => ReferralProgramAffiliate) affiliateUser: ReferralProgramAffiliate;
+  @HasOne(() => ReferralProgramReferral) referralUser: ReferralProgramReferral;
+
   /** Aliases for query */
-  @HasOne(() => Chat) chatOfUser: Chat;
+  //@HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
-  @HasMany(() => Chat) chatsOfUser: Chat[];
+  //@HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
   @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];
@@ -264,7 +296,7 @@ export class User extends Model {
   }
 
   static async findWithEmail(email: string): Promise<User> {
-    return await User.scope("withPassword").findOne({ where: { ["email"]: email } });
+    return await User.scope("withPassword").findOne({where: {["email"]: email}});
   }
 
   static async findWithSocialId(network: string, id: string): Promise<User> {

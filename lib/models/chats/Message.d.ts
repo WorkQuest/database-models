@@ -1,28 +1,28 @@
 import { Model } from "sequelize-typescript";
-import { User } from "../user/User";
 import { Chat } from "./Chat";
 import { Media } from "../Media";
 import { InfoMessage } from "./InfoMessage";
 import { StarredMessage } from "./StarredMessage";
+import { ChatMember } from "./ChatMember";
 export declare enum MessageType {
-    info = "info",
-    message = "message"
+    Info = "Info",
+    Message = "Message"
 }
 export declare enum SenderMessageStatus {
-    unread = "unread",
-    read = "read"
+    Unread = "Unread",
+    Read = "Read"
 }
 export declare class Message extends Model {
     id: string;
     number: number;
     chatId: string;
-    senderUserId: string;
+    senderMemberId: string;
     senderStatus: SenderMessageStatus;
     type: MessageType;
     text: string;
     infoMessage: InfoMessage;
     star: StarredMessage;
     medias: Media[];
-    sender: User;
+    sender: ChatMember;
     chat: Chat;
 }

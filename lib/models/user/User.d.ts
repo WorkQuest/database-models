@@ -1,16 +1,21 @@
-import { Model } from "sequelize-typescript";
 import { Media } from "../Media";
 import { Session } from "./Session";
-import { Review } from "../quest/Review";
+import { QuestsReview } from "../quest/QuestsReview";
 import { RatingStatistic } from "./RatingStatistic";
 import { ChatMember } from "../chats/ChatMember";
-import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
+import { LocationPostGISType, LocationType, Priority, WorkPlace, Phone, PayPeriod } from "../types";
 import { UserSpecializationFilter } from "./UserSpecializationFilter";
 import { DiscussionLike } from "../discussion/DiscussionLike";
 import { DiscussionCommentLike } from "../discussion/DiscussionCommentLike";
-import { Chat } from "../chats/Chat";
+import { UserRaiseView } from "../raise-view/UserRaiseView";
 import { QuestsStatistic } from "../quest/QuestsStatistic";
 import { Wallet } from "../wallet/Wallet";
+import { UserChatsStatistic } from "../chats/UserChatsStatistic";
+import { ReferralProgramAffiliate } from "../referral-program/ReferralProgramAffiliate";
+import { ReferralProgramReferral } from "../referral-program/ReferralProgramReferral";
+import { WorkerProfileVisibilitySetting } from "./WorkerProfileVisibilitySetting";
+import { EmployerProfileVisibilitySetting } from "./EmployerProfileVisibilitySetting";
+import { Model } from "sequelize-typescript";
 export interface SocialInfo {
     id: string;
     email: string;
@@ -42,7 +47,8 @@ export declare const defaultUserSettings: UserSettings;
 export declare enum UserStatus {
     Unconfirmed = 0,
     Confirmed = 1,
-    NeedSetRole = 2
+    NeedSetRole = 2,
+    Blocked = 3
 }
 export declare enum UserRole {
     Employer = "employer",
@@ -60,7 +66,7 @@ interface SocialMediaNicknames {
 }
 interface AdditionalInfo {
     description: string | null;
-    secondMobileNumber: string | null;
+    secondMobileNumber: Phone | null;
     address: string | null;
     socialNetwork: SocialMediaNicknames;
 }
@@ -87,35 +93,41 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
 export declare class User extends Model {
     id: string;
     avatarId: string;
-    firstName: string;
     lastName: string;
-    location: LocationType;
+    firstName: string;
     email: string;
     role: UserRole;
     additionalInfo: object;
     password: string;
-    phone: string;
-    tempPhone: string;
+    phone: Phone;
+    tempPhone: Phone;
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
-    wagePerHour: string;
+    costPerHour: string;
+    payPeriod: PayPeriod;
     workplace: WorkPlace;
     priority: Priority;
+    location: LocationType;
+    locationPlaceName: string;
     locationPostGIS: LocationPostGISType;
+    workerProfileVisibilitySetting: WorkerProfileVisibilitySetting;
+    employerProfileVisibilitySetting: EmployerProfileVisibilitySetting;
     ratingStatistic: RatingStatistic;
     questsStatistic: QuestsStatistic;
+    chatStatistic: UserChatsStatistic;
+    raiseView: UserRaiseView;
     avatar: Media;
     sessions: Session[];
-    reviews: Review[];
+    reviews: QuestsReview[];
     medias: Media[];
     userSpecializations: UserSpecializationFilter[];
     wallet: Wallet;
-    chatOfUser: Chat;
+    affiliateUser: ReferralProgramAffiliate;
+    referralUser: ReferralProgramReferral;
     chatMember: ChatMember;
     userIndustryForFiltering: UserSpecializationFilter;
     userSpecializationForFiltering: UserSpecializationFilter;
-    chatsOfUser: Chat[];
     chatMembers: ChatMember[];
     discussionLikes: DiscussionLike[];
     commentLikes: DiscussionCommentLike[];

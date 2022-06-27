@@ -1,73 +1,167 @@
+import {ChatData} from "./ChatData";
+import {GroupChat} from "./GroupChat";
+import {QuestChat} from "./QuestChat";
+import { getUUID } from "../../utils";
+import { ChatMember, MemberStatus } from "./ChatMember";
+import {StarredChat} from "./StarredChat";
 import {
-  Column,
-  DataType,
-  ForeignKey,
   Model,
   Table,
-  BelongsTo,
+  Column,
+  Scopes,
+  HasOne,
   HasMany,
-  BelongsToMany,
-  Scopes, HasOne,
+  DataType,
 } from "sequelize-typescript";
 import { Message } from "./Message";
-import { ChatMember } from "./ChatMember";
 import { User } from "../user/User";
-import {StarredChat} from "./StarredChat";
-import { getUUID } from "../../utils";
-import {QuestChat} from "./QuestChat";
+import { Media } from "../Media";
+import { Quest } from "../quest/Quest";
+import { ChatMemberData } from "./ChatMemberData";
+import { QuestDispute } from "../quest/QuestDispute";
+import { Admin } from "../admin/Admin";
 
 export enum ChatType {
-  private = 'private',
-  group = 'group',
-  quest = 'quest'
+  Private = 'Private',
+  Group = 'Group',
+  Quest = 'Quest'
 }
 
 @Scopes(() => ({
-  defaultScope: {
+  chatsList: {
     attributes: {
-      exclude: ["messages", "updatedAt"]
+      exclude: ["updatedAt"],
     },
     include: [{
-      model: User.scope('shortWithAdditionalInfo'),
-      as: 'owner'
-    }, {
-      model: Message,
-      as: 'lastMessage'
-    }, {
-      model: User.scope('shortWithAdditionalInfo'),
-      as: 'userMembers',
-      through: { attributes: [] }
+      model: GroupChat,
+      as: 'groupChat',
     }, {
       model: QuestChat,
       as: 'questChat',
+    }, {
+      model: ChatData,
+      as: 'chatData',
+    }],
+  },
+  groupChat: {
+    attributes: {
+      exclude: ["updatedAt"]
+    },
+    include: [{
+      model: GroupChat,
+      as: 'groupChat',
+    }, {
+      model: ChatData,
+      as: 'chatData',
+    }],
+  },
+  questChat: {
+    attributes: {
+      exclude: ["updatedAt"]
+    },
+    include: [{
+      model: QuestChat,
+      as: 'questChat',
+    }, {
+      model: ChatData,
+      as: 'chatData',
+    }],
+  },
+  privateChat: {
+    attributes: {
+      exclude: ["updatedAt"],
+    },
+    include: [{
+      model: ChatData,
+      as: 'chatData',
+    }],
+  },
+  forGetChat: {
+    include: [{
+      model: QuestChat,
+      as: 'questChat',
+      include: [{
+        model: Quest.unscoped(),
+        include: [{
+          model: QuestDispute.unscoped(),
+          as: 'openDispute',
+          required: false,
+          attributes: [
+            'id',
+            'status',
+          ],
+        }],
+        as: 'quest',
+        attributes: ["id", "title"]
+      }],
+    }, {
+      model: GroupChat,
+      as: 'groupChat',
+    }, {
+      model: ChatData,
+      as: 'chatData',
+      include: [{
+        model: Message,
+        as: 'lastMessage',
+        include: [{
+          model: ChatMember,
+          as: 'sender',
+          include: [{
+            model: User.unscoped(),
+            as: 'user',
+            attributes: ["id", "avatarId", "firstName", "lastName"],
+            include: [{
+              model: Media,
+              as: 'avatar',
+            }],
+          }],
+        }]
+      }]
+    }, {
+      model: ChatMember,
+      as: 'members',
+      where: {
+        status:  MemberStatus.Active
+      },
+      include: [{
+        model: User.unscoped(),
+        as: 'user',
+        attributes: ["firstName", "lastName", "avatarId", "role"],
+        include: [{
+          model: Media,
+          as: 'avatar',
+        }],
+      }, {
+        model: ChatMemberData,
+        attributes: ['unreadCountMessages'],
+        as: 'chatMemberData',
+      }, {
+        model: Admin.unscoped(),
+        as: 'admin',
+        attributes: ["id", "firstName", "lastName"],
+      }]
     }]
   }
 }))
 @Table
 export class Chat extends Model {
   @Column({primaryKey: true, type: DataType.STRING, defaultValue: () => getUUID(), unique: true}) id: string;
-
-  @ForeignKey(() => User) /** If group chat */
-  @Column({type: DataType.STRING, defaultValue: null}) ownerUserId: string;
-
-  @ForeignKey(() => Message)
-  @Column({type: DataType.STRING, defaultValue: null}) lastMessageId: string;
-
-  @Column({type: DataType.STRING, defaultValue: null}) name: string; /** If group chat */
   @Column({type: DataType.STRING, allowNull: false}) type: ChatType;
-  @Column({type: DataType.DATE, defaultValue: null}) lastMessageDate: Date;
 
-  @BelongsToMany(() => User, () => ChatMember) userMembers: User[];
-  @BelongsTo(() => User) owner: User;
-  @BelongsTo(() => Message, { foreignKey: 'lastMessageId', constraints: false }) lastMessage: Message;
+  @HasMany(() => ChatMember) members: ChatMember[];
 
-  @HasMany(() => Message) messages: Message[];
-  @HasMany(() => Message) members: ChatMember[];
   @HasOne(() => ChatMember) meMember: ChatMember;
+
   @HasOne(() => QuestChat) questChat: QuestChat;
+  @HasOne(() => GroupChat) groupChat: GroupChat;
+  @HasOne(() => ChatData) chatData: ChatData;
 
   /** Aliases for Queries */
   @HasOne(() => StarredChat) star: StarredChat;
-  @HasOne(() => ChatMember) firstMemberInPrivateChat: ChatMember;
-  @HasOne(() => ChatMember) secondMemberInPrivateChat: ChatMember;
+
+  @HasOne(() => ChatMember) senderInPrivateChat: ChatMember;
+  @HasOne(() => ChatMember) recipientInPrivateChat: ChatMember;
+
+  @HasOne(() => ChatMember) firstMemberInPrivateChat: ChatMember; /** delete */
+  @HasOne(() => ChatMember) secondMemberInPrivateChat: ChatMember; /** delete */
 }

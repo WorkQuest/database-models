@@ -9,5 +9,4 @@ export class WqtWbnbMintEvent extends Model {
   @Column(DataType.STRING) sender: string;
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) transactionHash: string;
-  @Column(DataType.STRING) network: BlockchainNetworks;
 }

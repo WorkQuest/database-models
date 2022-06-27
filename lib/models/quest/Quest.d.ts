@@ -1,60 +1,69 @@
-import { User } from "../user/User";
 import { Media } from '../Media';
-import { Review } from './Review';
-import { QuestsResponse } from "./QuestsResponse";
-import { StarredQuests } from './StarredQuests';
-import { LocationPostGISType, LocationType, Priority, WorkPlace } from "../types";
-import { QuestSpecializationFilter } from './QuestSpecializationFilter';
+import { User } from "../user/User";
+import { QuestsReview } from './QuestsReview';
 import { QuestChat } from "../chats/QuestChat";
+import { QuestsStarred } from './QuestsStarred';
+import { QuestsResponse } from "./QuestsResponse";
+import { QuestRaiseView } from "../raise-view/QuestRaiseView";
+import { QuestDispute } from "./QuestDispute";
+import { QuestSpecializationFilter } from './QuestSpecializationFilter';
+import { Priority, WorkPlace, PayPeriod, LocationType, LocationPostGISType } from "../types";
 import { Model } from 'sequelize-typescript';
-export declare enum AdType {
-    Free = 0,
-    Paid = 1
-}
 export declare enum QuestStatus {
-    Created = 0,
-    Active = 1,
-    Closed = 2,
-    Dispute = 3,
-    WaitWorker = 4,
-    WaitConfirm = 5,
-    Done = 6
+    Closed = -3,
+    Dispute = -2,
+    Blocked = -1,
+    Pending = 0,
+    Recruitment = 1,
+    WaitingForConfirmFromWorkerOnAssign = 2,
+    ExecutionOfWork = 3,
+    WaitingForEmployerConfirmationWork = 4,
+    Completed = 5
 }
 export declare enum QuestEmployment {
-    FullTime = "fullTime",
-    PartTime = "partTime",
-    FixedTerm = "fixedTerm"
+    FullTime = "FullTime",
+    PartTime = "PartTime",
+    FixedTerm = "FixedTerm",
+    RemoteWork = "RemoteWork",
+    EmploymentContract = "EmploymentContract"
 }
 export declare const activeFlowStatuses: QuestStatus[];
 export declare class Quest extends Model {
     id: string;
     userId: string;
+    avatarId: string;
     assignedWorkerId: string;
+    contractAddress: string;
+    nonce: string;
+    status: QuestStatus;
     title: string;
     description: string;
-    status: QuestStatus;
-    workplace: WorkPlace;
-    employment: QuestEmployment;
-    priority: Priority;
-    category: string;
-    locationPlaceName: string;
-    location: LocationType;
-    locationPostGIS: LocationPostGISType;
     price: string;
-    adType: AdType;
+    payPeriod: PayPeriod;
+    workplace: WorkPlace;
+    typeOfEmployment: QuestEmployment;
+    priority: Priority;
+    location: LocationType;
+    locationPlaceName: string;
+    locationPostGIS: LocationPostGISType;
+    startedAt: Date;
     user: User;
     assignedWorker: User;
+    avatar: Media;
     medias: Media[];
     questChat: QuestChat;
-    star: StarredQuests;
+    star: QuestsStarred;
     response: QuestsResponse;
     responded: QuestsResponse;
     invited: QuestsResponse;
     questIndustryForFiltering: QuestSpecializationFilter;
     questSpecializationForFiltering: QuestSpecializationFilter;
-    yourReview: Review;
+    raiseView: QuestRaiseView;
+    yourReview: QuestsReview;
+    openDispute: QuestDispute;
     questSpecializations: QuestSpecializationFilter[];
-    reviews: Review[];
-    starredQuests: StarredQuests[];
+    questDisputes: QuestDispute[];
+    reviews: QuestsReview[];
+    starredQuests: QuestsStarred[];
     responses: QuestsResponse[];
 }
