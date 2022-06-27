@@ -39,25 +39,6 @@ export enum MemberStatus {
       attributes: ["id", "firstName", "lastName"],
     }],
   },
-  forChat: {
-    attributes: [
-      'id',
-      'userId',
-      'adminId',
-      'type',
-      'status',
-      'createdAt',
-      'user',
-      'admin',
-    ],
-    include: [{
-      model: User.scope('short'),
-      as: 'user',
-    }, {
-      model: Admin.scope('short'),
-      as: 'admin',
-    }],
-  },
   forGetChat: {
     attributes: [
       'id',
@@ -77,6 +58,25 @@ export enum MemberStatus {
     }, {
       model: ChatMemberDeletionData,
       as: 'chatMemberDeletionData',
+    }],
+  },
+  forMeMemberUser: {
+    attributes: [
+      'id',
+      'type',
+      'status',
+      'userId',
+      'chatId',
+      'adminId',
+    ],
+    include: [{
+      model: User.unscoped(),
+      as: 'user',
+      attributes: ["id", "firstName", "lastName"],
+      include: [{
+        model: Media.scope('urlOnly'),
+        as: 'avatar'
+      }],
     }],
   },
 }))
