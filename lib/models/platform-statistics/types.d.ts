@@ -68,7 +68,8 @@ export declare enum UsersPlatformStatisticFields {
     NoStatus = "noStatus",
     Verified = "verified",
     Reliable = "reliable",
-    TopRanked = "topRanked"
+    TopRanked = "topRanked",
+    AverageSessionTime = "averageSessionTime"
 }
 export declare const daoPlatformStatisticFieldsArray: string[];
 export declare const disputesPlatformStatisticFieldsArray: string[];
