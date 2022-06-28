@@ -57,7 +57,7 @@ export enum MemberStatus {
       as: 'admin',
     }, {
       model: ChatMemberDeletionData,
-      as: 'chatMemberDeletionData',
+      as: 'deletionData',
     }],
   },
   forMeMemberUser: {

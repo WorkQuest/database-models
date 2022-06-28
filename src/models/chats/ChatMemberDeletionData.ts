@@ -28,7 +28,7 @@ export enum ReasonForRemovingFromChat {
     },
     include: [{
       model: Message,
-      as: 'beforeDeletionMessage'
+      as: 'message'
     }]
   },
 }))
