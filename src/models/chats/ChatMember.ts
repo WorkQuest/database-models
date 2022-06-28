@@ -60,7 +60,7 @@ export enum MemberStatus {
       as: 'deletionData',
     }],
   },
-  forMeMemberUser: {
+  userOnly: {
     attributes: [
       'id',
       'type',
