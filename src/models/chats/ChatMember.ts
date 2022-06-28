@@ -102,5 +102,5 @@ export class ChatMember extends Model {
 
   @HasOne(() => ChatMemberData) chatMemberData: ChatMemberData;
   @HasOne(() => ChatDeletionData) chatDeletionData: ChatDeletionData;
-  @HasOne(() => ChatMemberDeletionData) chatMemberDeletionData: ChatMemberDeletionData;
+  @HasOne(() => ChatMemberDeletionData) deletionData: ChatMemberDeletionData;
 }
