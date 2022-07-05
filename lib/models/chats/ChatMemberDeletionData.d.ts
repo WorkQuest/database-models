@@ -13,5 +13,5 @@ export declare class ChatMemberDeletionData extends Model {
     reason: ReasonForRemovingFromChat;
     beforeDeletionMessageNumber: string;
     chatMember: ChatMember;
-    beforeDeletionMessage: Message;
+    message: Message;
 }
