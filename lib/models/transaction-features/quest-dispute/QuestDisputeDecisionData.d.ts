@@ -1,4 +1,6 @@
+import { Transaction } from "../Transaction";
 import { TransactionStatus } from "../types";
+import { QuestDispute } from "../../quest/QuestDispute";
 import { Model } from "sequelize-typescript";
 export declare enum QuestDisputeDecision {
     Rework = "Rework",
@@ -12,4 +14,6 @@ export declare class QuestDisputeDecisionData extends Model {
     gasPriceAtMoment: string;
     status: TransactionStatus;
     error: string;
+    tx: Transaction;
+    dispute: QuestDispute;
 }
