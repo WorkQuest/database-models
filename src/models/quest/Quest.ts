@@ -71,10 +71,10 @@ export const activeFlowStatuses = [
       as: 'medias',
       through: { attributes: [] }
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'user'
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'assignedWorker'
     }, {
       model: QuestSpecializationFilter,
@@ -95,10 +95,10 @@ export const activeFlowStatuses = [
       'title',
     ],
     include: [{
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'user'
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'assignedWorker'
     }, {
       model: QuestDispute.unscoped(),

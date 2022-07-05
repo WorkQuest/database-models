@@ -13,7 +13,8 @@ import { QuestDispute } from "./QuestDispute";
       model: Admin,
       as: 'toAdmin'
     }, {
-      model: QuestDispute,
+      model: QuestDispute.unscoped(),
+      attributes: ["id"],
       as: 'dispute'
     }]
   }

@@ -31,11 +31,14 @@ export enum DisputeDecision {
 
 @Scopes(() => ({
   defaultScope: {
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "deletedAt"]
+    },
     include: [{
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'openDisputeUser'
     }, {
-      model: User.scope('short'),
+      model: User.scope('shortForList'),
       as: 'opponentUser'
     }, {
       model: Admin.scope('short'),
