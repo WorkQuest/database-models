@@ -33,7 +33,7 @@ export const transactionDisputeDataSchema = Joi.object({
 
 export const transactionSwapWqtDataSchema = Joi.object({
   transactionHashTransmissionWqt: transactionHashSchema,
-  txHashSwapInitialized: transactionSchema,
+  txHashSwapInitialized: transactionHashSchema,
   gasPriceAtMoment: coinAmountSchema,
   amount: coinAmountSchema,
   platformCommissionCoefficient: coinAmountSchema,
