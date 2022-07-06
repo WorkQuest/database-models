@@ -74,7 +74,7 @@ export const activeFlowStatuses = [
       model: User.scope('shortForList'),
       as: 'user'
     }, {
-      model: User.scope('shortForList'),
+      model: User.scope('short'),
       as: 'assignedWorker'
     }, {
       model: QuestSpecializationFilter,
