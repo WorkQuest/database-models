@@ -11,7 +11,7 @@ export declare class QuestDisputeDecisionData extends Model {
     disputeId: string;
     transactionHashDisputeResolution: string;
     decision: QuestDisputeDecision;
-    gasPriceAtMoment: string;
+    gasPriceAtMoment: number;
     status: TransactionStatus;
     error: string;
     tx: Transaction;
