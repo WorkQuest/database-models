@@ -5,6 +5,7 @@ import { Admin } from "../admin/Admin";
 import { ChatMemberDeletionData } from "./ChatMemberDeletionData";
 import { ChatMemberData } from "./ChatMemberData";
 import { MemberType } from "../types";
+import { ChatDeletionData } from "./ChatDeletionData";
 export declare enum MemberStatus {
     Deleted = -1,
     Active = 0
@@ -20,5 +21,6 @@ export declare class ChatMember extends Model {
     admin: Admin;
     chat: Chat;
     chatMemberData: ChatMemberData;
-    chatMemberDeletionData: ChatMemberDeletionData;
+    chatDeletionData: ChatDeletionData;
+    deletionData: ChatMemberDeletionData;
 }

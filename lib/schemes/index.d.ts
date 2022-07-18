@@ -23,3 +23,4 @@ export * from "./bridge";
 export * from "./supportUser";
 export * from "./report";
 export * from "./platformStatistic";
+export * from "./transaction";

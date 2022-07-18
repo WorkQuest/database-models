@@ -1,17 +1,14 @@
+import { Chat } from "./Chat";
 import { Message } from "./Message";
 import { ChatMember } from "./ChatMember";
 import { Model } from "sequelize-typescript";
-export declare enum ReasonForRemovingFromChat {
-    Left = "Left",
-    Removed = "Removed",
-    ResolvedDispute = "ResolvedDispute"
-}
-export declare class ChatMemberDeletionData extends Model {
+export declare class ChatDeletionData extends Model {
     id: string;
+    chatId: string;
     chatMemberId: string;
     beforeDeletionMessageId: string;
-    reason: ReasonForRemovingFromChat;
     beforeDeletionMessageNumber: string;
+    chat: Chat;
     chatMember: ChatMember;
-    message: Message;
+    beforeDeletionMessage: Message;
 }

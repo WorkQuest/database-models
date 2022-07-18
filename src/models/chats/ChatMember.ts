@@ -6,6 +6,8 @@ import { Admin } from "../admin/Admin";
 import {ChatMemberDeletionData} from "./ChatMemberDeletionData";
 import {ChatMemberData} from "./ChatMemberData";
 import {MemberType} from "../types";
+import { ChatDeletionData } from "./ChatDeletionData";
+import { Media } from "../Media";
 
 
 export enum MemberStatus {
@@ -17,39 +19,24 @@ export enum MemberStatus {
   forChatsList: {
     attributes: [
       'id',
-      'userId',
-      'adminId',
       'type',
       'status',
-      'createdAt',
-      'user',
-      'admin',
-    ],
-    include: [{
-      model: User.scope('shortWithAdditionalInfo'),
-      as: 'user',
-    }, {
-      model: Admin.scope('short'),
-      as: 'admin',
-    }],
-  },
-  forChat: {
-    attributes: [
-      'id',
       'userId',
+      'chatId',
       'adminId',
-      'type',
-      'status',
-      'createdAt',
-      'user',
-      'admin',
     ],
     include: [{
-      model: User.scope('short'),
+      model: User.unscoped(),
       as: 'user',
+      attributes: ["id", "firstName", "lastName"],
+      include: [{
+        model: Media.scope('urlOnly'),
+        as: 'avatar'
+      }],
     }, {
-      model: Admin.scope('short'),
+      model: Admin.unscoped(),
       as: 'admin',
+      attributes: ["id", "firstName", "lastName"],
     }],
   },
   forGetChat: {
@@ -70,9 +57,28 @@ export enum MemberStatus {
       as: 'admin',
     }, {
       model: ChatMemberDeletionData,
-      as: 'chatMemberDeletionData',
+      as: 'deletionData',
     }],
-  }
+  },
+  userOnly: {
+    attributes: [
+      'id',
+      'type',
+      'status',
+      'userId',
+      'chatId',
+      'adminId',
+    ],
+    include: [{
+      model: User.unscoped(),
+      as: 'user',
+      attributes: ["id", "firstName", "lastName"],
+      include: [{
+        model: Media.scope('urlOnly'),
+        as: 'avatar'
+      }],
+    }],
+  },
 }))
 @Table
 export class ChatMember extends Model {
@@ -95,5 +101,6 @@ export class ChatMember extends Model {
   @BelongsTo(() => Chat) chat: Chat;
 
   @HasOne(() => ChatMemberData) chatMemberData: ChatMemberData;
-  @HasOne(() => ChatMemberDeletionData) chatMemberDeletionData: ChatMemberDeletionData;
+  @HasOne(() => ChatDeletionData) chatDeletionData: ChatDeletionData;
+  @HasOne(() => ChatMemberDeletionData) deletionData: ChatMemberDeletionData;
 }

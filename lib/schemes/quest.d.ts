@@ -49,6 +49,7 @@ export declare const questDisputeDecisionSchema: Joi.StringSchema;
 export declare const questDisputeReviewMarkSchema: Joi.NumberSchema;
 export declare const questDisputeReviewMessageTextSchema: Joi.StringSchema;
 export declare const questDisputeStatusesSchema: Joi.ArraySchema;
+export declare const questDisputeDecisionsSchema: Joi.ArraySchema;
 export declare const questDisputeSchema: Joi.ObjectSchema<any>;
 export declare const questDisputeWIthChatSchema: Joi.ObjectSchema<any>;
 export declare const questDisputeQuerySchema: Joi.ObjectSchema<any>;
