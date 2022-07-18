@@ -28,7 +28,7 @@ export enum ReasonForRemovingFromChat {
     },
     include: [{
       model: Message,
-      as: 'beforeDeletionMessage'
+      as: 'message'
     }]
   },
 }))
@@ -47,5 +47,5 @@ export class ChatMemberDeletionData extends Model {
   @Column({type: DataType.INTEGER, allowNull: false}) beforeDeletionMessageNumber: string;
 
   @BelongsTo(() => ChatMember) chatMember: ChatMember;
-  @BelongsTo(() => Message) beforeDeletionMessage: Message;
+  @BelongsTo(() => Message) message: Message;
 }

@@ -202,7 +202,14 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
       model: Wallet,
       as: 'wallet'
     }]
-  }
+  },
+  shortForList: {
+    attributes: ["id", "firstName", "lastName", "role"],
+    include: [{
+      model: Media.scope('urlOnly'),
+      as: 'avatar'
+    }]
+  },
 }))
 @Table({ paranoid: true })
 export class User extends Model {
@@ -278,7 +285,7 @@ export class User extends Model {
   @HasOne(() => ReferralProgramReferral) referralUser: ReferralProgramReferral;
 
   /** Aliases for query */
-  //@HasOne(() => Chat) chatOfUser: Chat;
+    //@HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;

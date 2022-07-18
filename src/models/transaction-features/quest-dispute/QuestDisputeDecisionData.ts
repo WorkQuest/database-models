@@ -6,7 +6,7 @@ import {
   Table,
   Column,
   DataType,
-  ForeignKey,
+  ForeignKey, BelongsTo,
 } from "sequelize-typescript";
 
 export enum QuestDisputeDecision {
@@ -27,8 +27,11 @@ export class QuestDisputeDecisionData extends Model {
 
   @Column(DataType.STRING) decision: QuestDisputeDecision;
 
-  @Column(DataType.INTEGER) gasPriceAtMoment: string;
+  @Column(DataType.INTEGER) gasPriceAtMoment: number;
   @Column({ type: DataType.INTEGER, allowNull: false }) status: TransactionStatus;
 
   @Column(DataType.STRING) error: string;
+
+  @BelongsTo(() => Transaction) tx: Transaction;
+  @BelongsTo(() => QuestDispute) dispute: QuestDispute;
 }

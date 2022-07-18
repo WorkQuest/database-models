@@ -328,6 +328,7 @@ export const questDisputeReviewMarkSchema = Joi.number().min(1).max(5).label('Ma
 export const questDisputeReviewMessageTextSchema = Joi.string().example("Hello world!").label('QuestDisputeMessageText');
 
 export const questDisputeStatusesSchema = Joi.array().items(questDisputeStatusSchema).label('QuestDisputeStatuses');
+export const questDisputeDecisionsSchema = Joi.array().items(questDisputeDecisionSchema).label('QuestDisputeDecisions');
 
 export const questDisputeSchema = Joi.object({
   id: idSchema,
