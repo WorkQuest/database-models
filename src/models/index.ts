@@ -119,6 +119,8 @@ import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
 import { ChatDeletionData } from "./chats/ChatDeletionData";
 import {AdminChangeRoleData} from "./admin/AdminChangeRoleData";
+import { ProposalDelegateChangedEvent } from "./proposal/ProposalDelegateChangedEvent";
+import { ProposalDelegateVotesChangedEvent } from "./proposal/ProposalDelegateVotesChangedEvent";
 
 export const models = [
   /** User section */
@@ -209,6 +211,8 @@ export const models = [
   ProposalCreatedEvent,
   ProposalVoteCastEvent,
   ProposalExecutedEvent,
+  ProposalDelegateChangedEvent,
+  ProposalDelegateVotesChangedEvent,
 
 
   /** Statistic */
@@ -370,6 +374,8 @@ export * from "./proposal/ProposalParseBlock";
 export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
+export * from "./proposal/ProposalDelegateChangedEvent";
+export * from "./proposal/ProposalDelegateVotesChangedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
