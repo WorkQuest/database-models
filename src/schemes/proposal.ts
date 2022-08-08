@@ -112,3 +112,10 @@ export const proposalDelegateVotesChangedEventSchema = Joi.object({
   delegatorWallet: proposalDelegatorSchema,
   delegateeWallet: proposalDelegatorSchema,
 }).label('ProposalDelegateVotesChangedEvent');
+
+export const proposalDelegateUserHistorySchema = Joi.object({
+  delegator: walletAddressSchema,
+  delegatee: walletAddressSchema,
+  timestamp: timestampSchema,
+  delegateeWallet: proposalDelegatorSchema,
+}).label('ProposalDelegateUserHistory');
