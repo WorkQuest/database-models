@@ -16,9 +16,17 @@ export class ProposalDelegateVotesChangedEvent extends Model {
   @Column(DataType.STRING) timestamp: string;
   @Column(DataType.STRING) network: BlockchainNetworks;
 
-  @BelongsTo(() => Wallet, { foreignKey: 'delegator', targetKey: 'address' })
+  @BelongsTo(() => Wallet, {
+    foreignKey: 'delegator',
+    targetKey: 'address',
+    constraints: false
+  })
   delegatorWallet: Wallet;
 
-  @BelongsTo(() => Wallet, { foreignKey: 'delegatee', targetKey: 'address' })
+  @BelongsTo(() => Wallet, {
+    foreignKey: 'delegatee',
+    targetKey: 'address',
+    constraints: false
+  })
   delegateeWallet: Wallet;
 }
