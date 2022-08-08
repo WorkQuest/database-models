@@ -1,5 +1,6 @@
 import * as Joi from "joi";
 import {ProposalStatus} from "../models";
+import { walletAddressSchema, walletBech32AddressSchema } from "./wallet";
 import {
   idSchema,
   countSchema,
@@ -9,8 +10,9 @@ import {
   timestampSchema,
   sortDirectionSchema,
   accountAddressSchema,
-  transactionHashSchema,
+  transactionHashSchema, blockNumberSchema, coinAmountSchema,
 } from "./common";
+import { userShortSchema } from "./user";
 
 export const proposalTitleSchema = Joi.string().example('New post').label('ProposalTitle');
 export const proposalDescriptionSchema = Joi.string().example('Hello world').label('ProposalDescription');
@@ -80,3 +82,33 @@ export const proposalVoteCastEventQuerySchema = Joi.object({
   sort: proposalVoteCastEventSortSchema,
   support: proposalVoteCastSupportSchema.default(null),
 }).label('ProposalQuery');
+
+export const proposalDelegatorSchema = Joi.object({
+  bech32Address: walletBech32AddressSchema,
+  address: walletAddressSchema,
+  user: userShortSchema
+}).label('ProposalDelegator');
+
+export const proposalDelegateChangedEventSchema = Joi.object({
+  blockNumber: blockNumberSchema,
+  transactionHash: transactionHashSchema,
+  delegator: walletAddressSchema,
+  fromDelegate: walletAddressSchema,
+  toDelegate: walletAddressSchema,
+  timestamp: timestampSchema,
+  delegatorWallet: proposalDelegatorSchema,
+  fromDelegateWallet: proposalDelegatorSchema,
+  toDelegateWallet: proposalDelegatorSchema,
+}).label('ProposalDelegateChangedEvent');
+
+export const proposalDelegateVotesChangedEventSchema = Joi.object({
+  blockNumber: blockNumberSchema,
+  transactionHash: transactionHashSchema,
+  delegator: walletAddressSchema,
+  delegatee: walletAddressSchema,
+  previousBalance: coinAmountSchema,
+  newBalance: coinAmountSchema,
+  timestamp: timestampSchema,
+  delegatorWallet: proposalDelegatorSchema,
+  delegateeWallet: proposalDelegatorSchema,
+}).label('ProposalDelegateVotesChangedEvent');
