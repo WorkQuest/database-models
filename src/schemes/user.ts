@@ -256,6 +256,14 @@ export const userShortWithWalletSchema = Joi.object({
   wallet: walletAddressesSchema,
 }).label('UserShortWithWallet');
 
+export const userShortForListSchema = Joi.object({
+  id: idSchema,
+  firstName: userFirstNameSchema,
+  lastName: userLastNameSchema,
+  role: userRoleSchema,
+  avatar: mediaUrlOnlySchema.allow(null),
+}).label('UserShortForList');
+
 export const userListSortSchema = Joi.object({
   createdAt: sortDirectionSchema,
 }).default({}).label('UserListSort');

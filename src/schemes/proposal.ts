@@ -1,5 +1,6 @@
 import * as Joi from "joi";
-import {ProposalStatus} from "../models";
+import { ProposalStatus } from "../models";
+import { userShortForListSchema } from "./user";
 import { walletAddressSchema, walletBech32AddressSchema } from "./wallet";
 import {
   idSchema,
@@ -12,7 +13,6 @@ import {
   accountAddressSchema,
   transactionHashSchema, blockNumberSchema, coinAmountSchema,
 } from "./common";
-import { userShortSchema } from "./user";
 
 export const proposalTitleSchema = Joi.string().example('New post').label('ProposalTitle');
 export const proposalDescriptionSchema = Joi.string().example('Hello world').label('ProposalDescription');
@@ -86,7 +86,7 @@ export const proposalVoteCastEventQuerySchema = Joi.object({
 export const proposalDelegatorSchema = Joi.object({
   bech32Address: walletBech32AddressSchema,
   address: walletAddressSchema,
-  user: userShortSchema
+  user: userShortForListSchema,
 }).label('ProposalDelegator');
 
 export const proposalDelegateChangedEventSchema = Joi.object({
@@ -109,8 +109,6 @@ export const proposalDelegateVotesChangedEventSchema = Joi.object({
   previousBalance: coinAmountSchema,
   newBalance: coinAmountSchema,
   timestamp: timestampSchema,
-  delegatorWallet: proposalDelegatorSchema,
-  delegateeWallet: proposalDelegatorSchema,
 }).label('ProposalDelegateVotesChangedEvent');
 
 export const proposalDelegateUserHistorySchema = Joi.object({
