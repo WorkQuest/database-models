@@ -89,6 +89,8 @@ export const proposalDelegatorSchema = Joi.object({
   user: userShortForListSchema,
 }).label('ProposalDelegator');
 
+export const proposalDelegateVotesTypeSchema = Joi.string().valid('delegate', 'undelegate').example('delegate');
+
 export const proposalDelegateChangedEventSchema = Joi.object({
   blockNumber: blockNumberSchema,
   transactionHash: transactionHashSchema,
@@ -108,7 +110,9 @@ export const proposalDelegateVotesChangedEventSchema = Joi.object({
   delegatee: walletAddressSchema,
   previousBalance: coinAmountSchema,
   newBalance: coinAmountSchema,
-  timestamp: timestampSchema,
+  delegated: coinAmountSchema,
+  type: proposalDelegateVotesTypeSchema,
+  delegateTimestamp: timestampSchema,
 }).label('ProposalDelegateVotesChangedEvent');
 
 export const proposalDelegateUserHistorySchema = Joi.object({
