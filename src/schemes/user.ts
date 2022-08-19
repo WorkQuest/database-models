@@ -169,7 +169,7 @@ export const userMeSchema = Joi.object({
   payPeriod: payPeriodSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   totpIsActive: userTotpIsActiveSchema,
-  userNeverEditedProfileFlag: userNeverEditedProfileFlagSchema,
+  neverEditedProfileFlag: userNeverEditedProfileFlagSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
   employerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,
