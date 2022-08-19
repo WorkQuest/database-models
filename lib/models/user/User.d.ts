@@ -43,7 +43,11 @@ interface UserSettings {
     social: UserSocialSettings;
     security: Security;
 }
-export declare const defaultUserSettings: UserSettings;
+interface UserMetadata {
+    state: {
+        neverEditedProfileFlag: boolean;
+    };
+}
 export declare enum UserStatus {
     Unconfirmed = 0,
     Confirmed = 1,
@@ -90,6 +94,8 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
     CEO: string | null;
     website: string | null;
 }
+export declare const defaultUserSettings: UserSettings;
+export declare const defaultUserMetadata: UserMetadata;
 export declare class User extends Model {
     id: string;
     avatarId: string;
@@ -104,6 +110,7 @@ export declare class User extends Model {
     settings: UserSettings;
     status: UserStatus;
     statusKYC: StatusKYC;
+    metadata: UserMetadata;
     costPerHour: string;
     payPeriod: PayPeriod;
     workplace: WorkPlace;

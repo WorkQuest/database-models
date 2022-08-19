@@ -63,17 +63,17 @@ interface UserSettings {
   security: Security;
 }
 
-export const defaultUserSettings: UserSettings = {
-  restorePassword: null,
-  emailConfirm: null,
-  phoneConfirm: null,
-  social: {},
-  security: {
-    TOTP: {
-      confirmCode: null,
-      active: false,
-      secret: null,
-    }
+interface UserMetadata {
+  state: {
+    /**
+     * Used to re-edit the profile.
+     *    Re-editing a profile only through 2FA.
+     *    See "edit profile" and "get me" handlers.
+     *    When registering flag is true.
+     * false: if the user edited the profile at least once
+     *
+     */
+    neverEditedProfileFlag: boolean;
   }
 }
 
@@ -130,6 +130,24 @@ export interface AdditionalInfoEmployer extends AdditionalInfo {
   company: string | null;
   CEO: string | null;
   website: string | null;
+}
+
+export const defaultUserSettings: UserSettings = {
+  restorePassword: null,
+  emailConfirm: null,
+  phoneConfirm: null,
+  social: {},
+  security: {
+    TOTP: {
+      confirmCode: null,
+      active: false,
+      secret: null,
+    }
+  }
+}
+
+export const defaultUserMetadata: UserMetadata = {
+  state: { neverEditedProfileFlag: true },
 }
 
 @Scopes(() => ({
@@ -248,6 +266,9 @@ export class User extends Model {
   @Column({type: DataType.INTEGER, defaultValue: UserStatus.Unconfirmed}) status: UserStatus;
   @Column({type: DataType.INTEGER, defaultValue: StatusKYC.Unconfirmed}) statusKYC: StatusKYC;
 
+  /** User metadata */
+  @Column({type: DataType.JSONB, defaultValue: defaultUserMetadata }) metadata: UserMetadata;
+
   /** UserRole.Worker: priority list for quests */
   @Column({type: DataType.DECIMAL, defaultValue: null}) costPerHour: string;
   @Column({type: DataType.STRING, defaultValue: null}) payPeriod: PayPeriod;
@@ -285,11 +306,9 @@ export class User extends Model {
   @HasOne(() => ReferralProgramReferral) referralUser: ReferralProgramReferral;
 
   /** Aliases for query */
-    //@HasOne(() => Chat) chatOfUser: Chat;
   @HasOne(() => ChatMember) chatMember: ChatMember;
   @HasOne(() => UserSpecializationFilter) userIndustryForFiltering: UserSpecializationFilter;
   @HasOne(() => UserSpecializationFilter) userSpecializationForFiltering: UserSpecializationFilter;
-  //@HasMany(() => Chat) chatsOfUser: Chat[];
   @HasMany(() => ChatMember) chatMembers: ChatMember[];
   @HasMany(() => DiscussionLike) discussionLikes: DiscussionLike[];
   @HasMany(() => DiscussionCommentLike) commentLikes: DiscussionCommentLike[];

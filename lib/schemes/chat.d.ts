@@ -8,7 +8,7 @@ export declare const chatNameSchema: Joi.StringSchema;
 export declare const chatDataSchema: Joi.ObjectSchema<any>;
 export declare const chatMemberDataUnreadCountMessagesSchema: Joi.NumberSchema;
 export declare const chatMemberTypeSchema: Joi.StringSchema;
-export declare const chatMemberStatusSchema: Joi.AnySchema<any>;
+export declare const chatMemberStatusSchema: Joi.AnySchema;
 export declare const removingFromChatReasonSchema: Joi.StringSchema;
 export declare const chatMemberDataSchema: Joi.ObjectSchema<any>;
 export declare const chatMemberDeletionDataSchema: Joi.ObjectSchema<any>;
