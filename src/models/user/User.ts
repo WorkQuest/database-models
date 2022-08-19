@@ -175,8 +175,8 @@ export const defaultUserMetadata: UserMetadata = {
   },
   withPassword: {
     attributes: {
-      include: ["password", "settings", "tempPhone"],
       exclude: ["locationPostGIS"],
+      include: ["password", "settings", "tempPhone", "metadata"],
     }
   },
   short: {
