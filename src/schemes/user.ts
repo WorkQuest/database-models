@@ -42,7 +42,8 @@ export const userEmailSchema = Joi.string().email().max(1000).example("user@exam
 export const userPasswordSchema = Joi.string().min(8).max(1000).example("p@ssw0rd").label("UserPassword");
 export const userFirstNameSchema = Joi.string().min(1).max(1000).example("ivan").label("UserFirstName");
 export const userLastNameSchema = Joi.string().min(1).max(1000).example("ivanov").label("UserLastName");
-export const userTotpIsActiveSchema = Joi.boolean().example(true).label('UserTotpIsActive')
+export const userTotpIsActiveSchema = Joi.boolean().example(true).label('UserTotpIsActive');
+export const userNeverEditedProfileFlagSchema = Joi.boolean().example(true).label('UserNeverEditedProfileFlag');
 export const userStatusSchema = Joi.number().valid(...Object.keys(UserStatus).map(key => parseInt(key)).filter(key => !isNaN(key))).example(UserStatus.Unconfirmed).label("UserStatus");
 export const userStatusKycSchema = Joi.number().valid(...Object.keys(StatusKYC).map(key => parseInt(key)).filter(key => !isNaN(key))).example(StatusKYC.Confirmed).label("UserStatusKyc");
 export const userRoleSchema = Joi.string().valid(...Object.values(UserRole)).example(UserRole.Worker).label("UserRole");
@@ -168,6 +169,7 @@ export const userMeSchema = Joi.object({
   payPeriod: payPeriodSchema,
   additionalInfo: userCommonAdditionalInfoSchema,
   totpIsActive: userTotpIsActiveSchema,
+  userNeverEditedProfileFlag: userNeverEditedProfileFlagSchema,
   avatar: mediaUrlOnlySchema.allow(null),
   ratingStatistic: userRatingStatisticSchema,
   employerProfileVisibilitySetting: employerProfileVisibilitySettingsForGetMeSchema,

@@ -4,6 +4,7 @@ export declare const userPasswordSchema: Joi.StringSchema;
 export declare const userFirstNameSchema: Joi.StringSchema;
 export declare const userLastNameSchema: Joi.StringSchema;
 export declare const userTotpIsActiveSchema: Joi.BooleanSchema;
+export declare const userNeverEditedProfileFlagSchema: Joi.BooleanSchema;
 export declare const userStatusSchema: Joi.NumberSchema;
 export declare const userStatusKycSchema: Joi.NumberSchema;
 export declare const userRoleSchema: Joi.StringSchema;
