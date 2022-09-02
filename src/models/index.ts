@@ -117,9 +117,12 @@ import {QuestDisputeDecisionData} from "./transaction-features/quest-dispute/Que
 import {SupportTicketForUser} from "./support/SupportTicketForUser";
 import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
-import { ChatDeletionData } from "./chats/ChatDeletionData";
+import {ChatDeletionData} from "./chats/ChatDeletionData";
 import {AdminChangeRoleData} from "./admin/AdminChangeRoleData";
 import {FaucetWqtWusd} from "./transaction-features/faucet/FaucetWqtWusd";
+import {ProposalDelegateChangedEvent} from "./proposal/ProposalDelegateChangedEvent";
+import {ProposalDelegateVotesChangedEvent} from "./proposal/ProposalDelegateVotesChangedEvent";
+import {ProposalDelegateUserHistory} from "./proposal/ProposalDelegateUserHistory";
 
 export const models = [
   /** User section */
@@ -210,6 +213,9 @@ export const models = [
   ProposalCreatedEvent,
   ProposalVoteCastEvent,
   ProposalExecutedEvent,
+  ProposalDelegateUserHistory,
+  ProposalDelegateChangedEvent,
+  ProposalDelegateVotesChangedEvent,
 
 
   /** Statistic */
@@ -374,6 +380,9 @@ export * from "./proposal/ProposalParseBlock";
 export * from "./proposal/ProposalCreatedEvent";
 export * from "./proposal/ProposalVoteCastEvent";
 export * from "./proposal/ProposalExecutedEvent";
+export * from "./proposal/ProposalDelegateUserHistory";
+export * from "./proposal/ProposalDelegateChangedEvent";
+export * from "./proposal/ProposalDelegateVotesChangedEvent";
 export * from "./quest/QuestResponseMedia";
 export * from "./wallet/Wallet";
 export * from "./quest/contract-quest-factory/QuestFactoryCreatedEvent";
