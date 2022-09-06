@@ -1,10 +1,17 @@
 See [database schema](https://github.com/WorkQuest/database-models/tree/testnet/database-schema.png)
 
-#Joi Schemes
+#Schemes
+Framework: ``Joi``
+Used in:
+[admin-backend](https://github.com/workQuest/admin-backend/)
+[main-backend](https://github.com/workQuest/backend-development/)
 
 
-
-#Sequelize Models
+#Models
+Framework: ``Sequelize``
+Used in:
+[admin-backend](https://github.com/workQuest/admin-backend/)
+[main-backend](https://github.com/workQuest/backend-development/)
 
 
 
