@@ -11,7 +11,7 @@ export class Wallet extends Model {
     @ForeignKey(() => User)
     @Column(DataType.STRING) userId!: string;
 
-    @Column({ type: DataType.STRING, allowNull: false })
+    @Column({ type: DataType.STRING, allowNull: false, unique: true })
     address!: string;
 
     @Column({

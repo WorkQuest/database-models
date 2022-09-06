@@ -115,6 +115,8 @@ export const questsWithCountSchema = Joi.object({
 export const questsListSortSchema = Joi.object({
   price: sortDirectionSchema,
   createdAt: sortDirectionSchema,
+  invitedCreatedAt: sortDirectionSchema,
+  respondedCreatedAt: sortDirectionSchema,
 }).default({createdAt: 'asc'}).label('QuestsListSort');
 
 export const betweenPriceSchema = Joi.object({
