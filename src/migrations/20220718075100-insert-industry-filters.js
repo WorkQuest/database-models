@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const insertIndustryFiltersPath = path.join(__dirname, '..', 'raw-queries', 'migrations', 'insertIndustryFilters.sql');
+const insertIndustryFiltersPath = path.join(__dirname, 'migrations-data', 'insertIndustryFilters.sql');
 const insertIndustryFiltersQuery = fs.readFileSync(insertIndustryFiltersPath).toString();
 
 module.exports = {
