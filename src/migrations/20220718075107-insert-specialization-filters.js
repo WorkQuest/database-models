@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const insertSpecializationFiltersPath = path.join(__dirname, '..', 'raw-queries', 'migrations', 'insertSpecializationFilters.sql');
+const insertSpecializationFiltersPath = path.join(__dirname, 'migrations-data', 'insertSpecializationFilters.sql');
 const insertSpecializationFiltersQuery = fs.readFileSync(insertSpecializationFiltersPath).toString();
 
 module.exports = {
