@@ -119,7 +119,6 @@ import {Report} from "./report/Report";
 import {ReportMedia} from "./report/ReportMedia";
 import { ChatDeletionData } from "./chats/ChatDeletionData";
 import {AdminChangeRoleData} from "./admin/AdminChangeRoleData";
-import {FaucetWqtWusd} from "./transaction-features/faucet/FaucetWqtWusd";
 
 export const models = [
   /** User section */
@@ -316,9 +315,6 @@ export const models = [
   QuestsPlatformStatistic,
   UsersPlatformStatistic,
   DaoPlatformStatistic,
-
-  /** Faucet */
-  FaucetWqtWusd,
 ] as const;
 
 export async function initDatabase(dbLink: string, logging = false, sync = false) {
@@ -437,7 +433,6 @@ export * from "./platform-settings/CommissionSettings"
 export * from "./transaction-features/first-wqt/FirstWqtTransmissionData";
 export * from "./transaction-features/Transaction";
 export * from "./transaction-features/quest-dispute/QuestDisputeDecisionData";
-export * from "./transaction-features/faucet/FaucetWqtWusd";
 export * from "./report/Report";
 export * from "./report/ReportMedia";
 export * from "./support/SupportTicketForUser";

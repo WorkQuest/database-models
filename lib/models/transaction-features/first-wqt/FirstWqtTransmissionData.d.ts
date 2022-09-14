@@ -8,7 +8,7 @@ export declare enum TransmissionStatusFirstWqt {
 export declare class FirstWqtTransmissionData extends Model {
     transactionHashTransmissionWqt: string;
     txHashSwapInitialized: string;
-    gasPriceAtMoment: number;
+    gasPriceAtMoment: string;
     amount: string;
     platformCommissionCoefficient: number;
     status: TransmissionStatusFirstWqt | TransactionStatus;
